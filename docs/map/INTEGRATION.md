@@ -123,3 +123,25 @@ launcher, reconnect/respawn callbacks or the complete 10–15 minute experience.
 
 Owner questions: none blocking implementation. Visual approval and any manual world polish remain
 with the owner/coordinator after reviewing the CI views.
+
+## Integrated tour chunk-wait correction (v0.1.0.20)
+
+Rehearsal 40358823036 rendered the lobby completely but timed out waiting for four chunks
+that vanilla never streams. Minecraft 26.3 `ChunkTrackingView.contains(x,z)` uses a rounded
+footprint with an outer buffer; Fabric client gametest 6.0.11's `areChunksLoaded` instead
+requires every chunk in a square of the client render radius. At radius 8, exactly the four
+square corners fail vanilla's tracking predicate (6² + 6² is not less than 8²). At the Fabric
+harness default radius 5, all square corners fit. The map tour itself sets radius 8; none of
+the contract, core, interface, bait or audio modules changes that radius or tracking geometry.
+
+The tour now snapshots each real server player's tracking view, asserts its radius is still
+8 and its center matches the checkpoint, and requires **all 329 streamed chunks** to reach
+the client. This includes the outer buffer beyond the old 289-position square. It then
+requires Fabric's unchanged light-queue and render-completion predicate before each of the
+nine screenshots. No client/server view distance, timeout, product behavior or package
+feature is reduced. Failure diagnostics list missing chunks from that actual footprint.
+JUnit checks the pinned game's radius-8 and default-radius-5 footprints directly.
+
+The cause was checked by Python-only disassembly of the official 26.3 client JAR
+(SHA-1 `e877b6a07acd633fb3bb475002175cec036e7b87`) and the published Fabric gametest
+6.0.11 source JAR. No local Java, Gradle or game process was used.

@@ -37,3 +37,11 @@ The milestone remains a 0.x foundation, not the owner's complete-game 1.0.0-alph
 - Final wiring audit reconstructed metadata from every package and found a duplicate-key merge had hidden the contract/interface/bait mixin registrations when ending was added. Restored all six production configurations with correct sides. Added source JSON uniqueness, exact production config registration, single smoke orchestrator and packaged unregistered/duplicate config checks so the failure cannot silently recur. Every package-added path is present; DECISIONS.md still matches v0.1.14 byte for byte. Local validation: 60 Python tests and contract synchronization pass.
 
 - Documentation reconciliation: README now describes the actual integrated feature set, manual authoring/test entrypoints, single orchestrated client, four-profile CI, cache behavior, credits and remaining full-game work. Toolchain/core notes distinguish dated package evidence from the integrated seven-module/hash policy; ending fixtures document arming. Restored the interface branch safeguard rejecting helper accessor classes in the player JAR, with a leakage regression fixture. No intent document or owner answer changed. Local validation: 61 Python tests and contract synchronization pass.
+
+- Rehearsal correction (`0.1.0.20`): run 40358823036 localized the remaining client timeout to
+  the map tour's download predicate. Fabric's square wait conflicts with vanilla 26.3's rounded
+  radius-8 tracking view; the four missing corners are deliberately not streamed. The tour now
+  requires every chunk in the real server tracking view (329, including the outer buffer),
+  verifies radius/center, and retains the full light/render completion wait at every checkpoint.
+  Added direct vanilla footprint regression tests. All package behavior and screenshots remain.
+  Verification uses the coordinator's rehearsal relay; no unverified commit is pushed to the hito.

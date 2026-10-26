@@ -6,11 +6,14 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.server.level.ChunkTrackingView;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.chunk.status.ChunkStatus;
 import net.minecraft.world.level.levelgen.FlatLevelSource;
 import net.minecraft.world.level.levelgen.flat.FlatLayerInfo;
 import net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings;
@@ -72,26 +75,46 @@ public final class MapTourSmokeTest {
                 world.getConnection().waitForClientboundPackets();
                 context.waitFor(client -> client.player != null && client.player.blockPosition().equals(cp.pos()));
                 context.waitTicks(5);
+                // The server streams a rounded footprint. Fabric's download helper instead
+                // requires a square: at radius 8 its four corners are never sent by vanilla.
+                // Require the ENTIRE actual tracking view (including its outer buffer), then
+                // retain Fabric's light-queue/render-completion wait before every screenshot.
+                var expectedChunks = server.computeOnServer(instance -> {
+                    var view = world.getConnection().getServerPlayer().getChunkTrackingView();
+                    if (!(view instanceof ChunkTrackingView.Positioned positioned)
+                            || positioned.viewDistance() != 8
+                            || positioned.center().x() != (cp.x() >> 4)
+                            || positioned.center().z() != (cp.z() >> 4)) {
+                        throw new AssertionError("Map tracking view did not follow checkpoint " + entry.getKey() + ": " + view);
+                    }
+                    var chunks = new java.util.ArrayList<ChunkPos>();
+                    view.forEach(chunks::add);
+                    if (chunks.isEmpty()) throw new AssertionError("Map tracking view is empty");
+                    return List.copyOf(chunks);
+                });
                 try {
-                    world.getConnection().waitForChunksRender();
+                    context.waitFor(client -> expectedChunks.stream().allMatch(pos ->
+                            client.level.getChunk(pos.x(), pos.z(), ChunkStatus.FULL, false) != null),
+                            net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.DEFAULT_CHUNK_LOAD_TIMEOUT);
+                    world.getConnection().waitForChunksRender(false);
                 } catch (AssertionError failure) {
                     context.runOnClient(client -> {
                         int radius = client.options.getEffectiveRenderDistance();
-                        int cx = client.player.blockPosition().getX() >> 4;
-                        int cz = client.player.blockPosition().getZ() >> 4;
                         var missing = new java.util.ArrayList<String>();
-                        for (int dz = -radius; dz <= radius; dz++) for (int dx = -radius; dx <= radius; dx++) {
-                            if (client.level.getChunk(cx + dx, cz + dz,
-                                    net.minecraft.world.level.chunk.status.ChunkStatus.FULL, false) == null) {
-                                missing.add(dx + "," + dz);
+                        for (var pos : expectedChunks) {
+                            if (client.level.getChunk(pos.x(), pos.z(), ChunkStatus.FULL, false) == null) {
+                                missing.add(pos.x() + "," + pos.z());
                             }
                         }
                         LoggerFactory.getLogger("unallocated-smoke").error(
-                                "UNALLOCATED map render wait checkpoint={} radius={} rendered={} missing={}",
-                                entry.getKey(), radius, client.levelRenderer.hasRenderedAllSections(), missing);
+                                "UNALLOCATED map render wait checkpoint={} radius={} expected={} rendered={} missing={}",
+                                entry.getKey(), radius, expectedChunks.size(), client.levelRenderer.hasRenderedAllSections(), missing);
                     });
                     throw failure;
                 }
+                LoggerFactory.getLogger("unallocated-smoke").info(
+                        "UNALLOCATED map chunks checkpoint={} streamed={} downloaded and rendered",
+                        entry.getKey(), expectedChunks.size());
                 context.waitTicks(10);
                 context.takeScreenshot("map-" + entry.getKey().replace('.', '-'));
                 LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED map screenshot checkpoint={}", entry.getKey());
