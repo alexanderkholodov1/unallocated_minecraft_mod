@@ -3,7 +3,9 @@ package org.unallocated.smoke;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -26,6 +28,14 @@ public final class MapTourSmokeTest {
             client.options.bobView().set(false);
             client.options.fov().set(70);
         });
+        // Author before login: an unbuilt flat-air world has no safe place for its first player.
+        var authorOnStart = new AtomicBoolean(true);
+        ServerLifecycleEvents.SERVER_STARTED.register(instance -> {
+            if (authorOnStart.compareAndSet(true, false)) {
+                instance.getCommands().performPrefixedCommand(instance.createCommandSourceStack(), "unallocated build all");
+                MapVerifier.verify(instance.overworld(), "all");
+            }
+        });
         try (var world = context.worldBuilder().adjustSettings(settings -> {
             settings.setSeed("412");
             settings.setGenerateStructures(false);
@@ -39,9 +49,8 @@ public final class MapTourSmokeTest {
             });
         }).create()) {
             var server = world.getServer();
-            // Exercise exactly the same command and common builder as dedicated/template authoring.
+            if (authorOnStart.get()) throw new AssertionError("Map authoring startup hook did not run");
             server.runOnServer(instance -> {
-                instance.getCommands().performPrefixedCommand(instance.createCommandSourceStack(), "unallocated build all");
                 MapVerifier.verify(instance.overworld(), "all");
                 var spawn = MapLayout.checkpoint("lobby.spawn");
                 if (!instance.overworld().getBiome(spawn.pos()).is(Identifier.parse(MapLayout.BIOME_ID))) {
@@ -68,7 +77,7 @@ public final class MapTourSmokeTest {
                 context.takeScreenshot("map-" + entry.getKey().replace('.', '-'));
                 LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED map screenshot checkpoint={}", entry.getKey());
             }
-        }
+        } finally { authorOnStart.set(false); }
         LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: map tour completed.");
     }
 }

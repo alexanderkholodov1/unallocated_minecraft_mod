@@ -88,7 +88,8 @@ It stops and starts another JVM on the same save and validates the map again, in
 sign text, supplies and spawn/rules. The optional full Fabric API coexistence run also builds it.
 
 The existing client title/package test now continues into a real integrated world created with
-the same flat-air custom biome. It runs the build command, checks the biome and authored map,
+the same flat-air custom biome. Its test-only server startup callback runs the build command before
+the first player joins (avoiding a fall into the unbuilt void). It checks the biome and authored map,
 teleports to **every checkpoint**, waits for the client position and rendered chunks, and saves
 the nine views above. The Python watchdog requires the final tour marker and every PNG; a title
 image alone cannot pass. Screenshots may have Fabric's numerical filename prefix. Download the
