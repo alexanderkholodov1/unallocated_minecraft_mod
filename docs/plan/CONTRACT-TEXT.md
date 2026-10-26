@@ -22,6 +22,7 @@ respaldo para que el texto narrativo siga en español aunque Minecraft arranque 
   "contract.unallocated.read": "Leer usos de datos",
   "contract.unallocated.input": "De acuerdo",
   "contract.unallocated.input.hint": "Pulsa el botón, o escríbelo y pulsa Enter.",
+  "contract.unallocated.input.retry": "Escribe «De acuerdo» para reemplazar la selección.",
   "contract.unallocated.uses.title": "Usos de datos · Lo que recibimos",
   "contract.unallocated.uses.current": "En esta compilación: leemos si existe una aceptación local y, si escribes aquí, el texto de este campo (hasta 64 caracteres). Solo «De acuerdo» se acepta con Enter; el botón acepta directamente. Consultamos el reloj de tu equipo al aceptar. La respuesta se conserva para que la historia pueda recordarla.",
   "contract.unallocated.uses.local": "Guardamos una sola aceptación en unallocated/contract.properties, dentro del directorio del juego: fecha y hora UTC, método (botón o texto), texto que dejaste en el campo y versión del contrato. Se conserva entre partidas hasta que borres ese archivo. No sale de tu equipo. Si no podemos guardarla, puedes continuar y volverá a aparecer al reiniciar. Los registros normales de Minecraft indican que el mod cargó o si hubo un error; no copiamos tu respuesta a esos registros.",
@@ -53,7 +54,9 @@ contenido previsto para la experiencia; este paquete todavía no añade esos efe
 La primera petición de `TitleScreen` se sustituye antes de inicializarla mediante un mixin de cliente a
 `Gui.setScreen`. No se necesita Fabric API en la instalación del jugador. Un clic en **De acuerdo** acepta;
 también funciona Enter con el campo vacío, como activación del mismo acuerdo. Escribir **De acuerdo** y pulsar Enter
-registra `TYPED`; se toleran mayúsculas y espacios exteriores, conservando exactamente lo escrito. El botón registra
+registra `TYPED`; se toleran mayúsculas y espacios exteriores, conservando exactamente lo escrito. Si pulsas Enter
+con otro texto, queda seleccionado con una indicación discreta: lo siguiente que escribas lo reemplaza, sin Ctrl+A.
+El botón registra
 `CLICKED`, incluido el texto que haya quedado en el campo. No hay cuestionario, casilla, temporizador ni lectura
 obligatoria. Escape vuelve desde la lista opcional; en el acuerdo no acepta ni abre el menú. Para salir sin aceptar,
 cierra la ventana del juego. Se puede aceptar desde cualquier página de la lista.
@@ -97,7 +100,7 @@ el recibo. En el primer proceso se prueba también volver a la pantalla y acepta
 recibo original; JUnit prueba la opción de replay entre sesiones.
 
 El cliente comprueba que el campo tenga foco al aparecer y al volver desde los usos por botón o Escape,
-sin hacer clic en el campo. Conserva el caso «no» + Enter → Ctrl+A → « dE AcUeRdO » + Enter y verifica el texto
+sin hacer clic en el campo. Prueba «no» + Enter → « dE AcUeRdO » + Enter, sin Ctrl+A, y verifica la selección y el texto
 en cada paso. También abre y cierra los usos con eventos reales de ratón y acepta con un clic real. El foco se
 establece en el hook `Screen.setInitialFocus()`, después de crear los widgets; al volver con ratón se restaura
 después de terminar el despacho del clic, que podría enfocar el botón anterior ya retirado. Si falla una

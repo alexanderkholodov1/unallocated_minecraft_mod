@@ -21,6 +21,7 @@ public final class ContractScreen extends Screen {
     private EditBox input;
     private String draft = "";
     private boolean reading;
+    private boolean retry;
     private int page;
     private List<FormattedCharSequence> dataLines = List.of();
     private int linesPerPage;
@@ -62,7 +63,11 @@ public final class ContractScreen extends Screen {
             input.setMaxLength(64);
             input.setValue(draft);
             input.setHint(text("input"));
-            input.setResponder(value -> draft = value);
+            input.setResponder(value -> {
+                draft = value;
+                retry = false;
+            });
+            if (retry) selectRejectedText();
             addRenderableWidget(new ContractButton(left, height - 53, contentWidth,
                     text("read"), button -> {
                         reading = true;
@@ -110,11 +115,18 @@ public final class ContractScreen extends Screen {
                 typed ? ContractSubmission.Method.TYPED : ContractSubmission.Method.CLICKED, draft), next);
     }
 
+    private void selectRejectedText() {
+        input.moveCursorToEnd(false);
+        input.setHighlightPos(0);
+        retry = true;
+    }
+
     @Override
     public boolean keyPressed(KeyEvent event) {
         if (!reading && input.isFocused() && event.key() == InputConstants.KEY_RETURN) {
             if (ContractSubmission.isAgreement(draft)) accept(true);
             else if (draft.isEmpty()) accept(false);
+            else selectRejectedText();
             return true;
         }
         return super.keyPressed(event);
@@ -164,7 +176,7 @@ public final class ContractScreen extends Screen {
         } else {
             int y = drawWrapped(graphics, text("warnings"), left, 35, contentWidth, 0xFFFFCD89);
             drawWrapped(graphics, text("body"), left, y + 8, contentWidth, 0xFFE3DED2);
-            graphics.text(font, text("input.hint"), left, height - 93, 0xFFB6B6AF, false);
+            graphics.text(font, text(retry ? "input.retry" : "input.hint"), left, height - 93, 0xFFB6B6AF, false);
         }
     }
 

@@ -60,7 +60,7 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
             context.clickScreenButton("contract.unallocated.read");
             context.getInput().pressKey(InputConstants.KEY_ESCAPE);
             assertAgreementInput(context, "", "after-escape-from-uses");
-            // Preserve the original failing sequence, starting in keyboard navigation mode.
+            // A rejected response must be replaceable by typing immediately, without a shortcut.
             context.clickScreenButton("contract.unallocated.read");
             context.waitTicks(2);
             context.takeScreenshot("unallocated-contract-uses");
@@ -76,12 +76,14 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
                 throw new AssertionError("Invalid text must not fabricate an agreement");
             }
             assertAgreementInput(context, "no", "after-invalid-enter");
-            context.getInput().holdControl();
-            context.getInput().pressKey(InputConstants.KEY_A);
-            context.getInput().releaseControl();
+            context.runOnClient(client -> {
+                if (!((EditBox) client.gui.screen().getFocused()).getHighlighted().equals("no")) {
+                    throw new AssertionError("Rejected text must be selected for immediate replacement");
+                }
+            });
             String typed = " dE AcUeRdO ";
             context.getInput().typeChars(typed);
-            assertAgreementInput(context, typed, "after-select-all-and-replace");
+            assertAgreementInput(context, typed, "after-rejected-text-replacement");
             context.getInput().pressKey(InputConstants.KEY_RETURN);
             context.waitForScreen(TitleScreen.class);
             try {
@@ -129,7 +131,7 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
                 return "Agreement field must have focus without clicking it at " + stage;
             }
             if (!field.getValue().equals(expected)) {
-                return "Agreement text was lost or Ctrl+A failed at " + stage + ": expected [" + expected
+                return "Agreement text was lost or replacement failed at " + stage + ": expected [" + expected
                         + "], got [" + field.getValue() + "]";
             }
             return null;
