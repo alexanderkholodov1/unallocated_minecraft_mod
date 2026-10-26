@@ -9,8 +9,8 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
     steps:
       - name: Check out source
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -70,6 +70,27 @@ jobs:
           artifact.with_suffix('.jar.sha256').write_text(f'{digest}  {artifact.name}\n')
           print(f'Verified {artifact}')
           PY
+
+      - name: Verify smoke watchdog failure paths without Java
+        run: python3 -B -m unittest discover -s scripts -p 'test_smoke_test.py'
+
+      - name: Smoke test dedicated server with player JAR
+        timeout-minutes: 4
+        run: python3 scripts/smoke_test.py server
+
+      - name: Upload smoke diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: smoke-diagnostics-${{ github.sha }}
+          include-hidden-files: true
+          path: |
+            .tmp/smoke/*-console.log
+            .tmp/smoke/**/logs/**
+            .tmp/smoke/**/crash-reports/**
+            .tmp/smoke/**/hs_err_pid*.log
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Upload installable mod
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
