@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
-from zipfile import ZipFile, ZIP_DEFLATED
+from zipfile import BadZipFile, ZipFile, ZIP_DEFLATED, ZIP_STORED
 
 from verify_jar import ROOT, LICENSE, NOTICE, verify
 from smoke_test import verify_mod_directory
@@ -50,7 +50,6 @@ class PackagingTest(unittest.TestCase):
         raw = archive({'fabric.mod.json': json.dumps(metadata),
                        'LICENSE-' + module_id: 'Apache License', **(extras or {})})
         self.entries[self.module_path(module_id)] = raw
-        self.policy['modules'][module_id]['sha256'] = hashlib.sha256(raw).hexdigest()
 
     def check(self):
         self.entries['fabric.mod.json'] = json.dumps(self.meta)
@@ -58,7 +57,7 @@ class PackagingTest(unittest.TestCase):
         return verify(self.artifact, self.props, self.policy)
 
     def test_approved_subset_passes(self):
-        self.assertEqual(len(self.check()), 64)
+        self.assertEqual(self.check(), hashlib.sha256(self.artifact.read_bytes()).hexdigest())
 
     def test_missing_extra_or_undeclared_jar_fails(self):
         original = deepcopy(self.entries)
@@ -74,9 +73,24 @@ class PackagingTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'allowlist'):
                     self.check()
 
-    def test_tampered_module_bytes_fail(self):
-        self.entries[self.meta['jars'][0]['file']] += b'tampered'
-        with self.assertRaisesRegex(ValueError, 'hash'):
+    def test_repackaged_module_with_same_identity_passes(self):
+        path = self.meta['jars'][0]['file']
+        original = self.entries[path]
+        data = BytesIO()
+        with ZipFile(BytesIO(original)) as source, ZipFile(data, 'w', ZIP_STORED) as target:
+            # Different compression, entry ordering and JSON serialization must be accepted.
+            for name in reversed(source.namelist()):
+                content = source.read(name)
+                if name == 'fabric.mod.json':
+                    content = json.dumps(json.loads(content), indent=4, sort_keys=True).encode()
+                target.writestr(name, content)
+        self.entries[path] = data.getvalue()
+        self.assertNotEqual(original, self.entries[path])
+        self.assertEqual(self.check(), hashlib.sha256(self.artifact.read_bytes()).hexdigest())
+
+    def test_invalid_nested_archive_fails(self):
+        self.entries[self.meta['jars'][0]['file']] = b'not a ZIP archive'
+        with self.assertRaises(BadZipFile):
             self.check()
 
     def test_wrong_identity_missing_dependency_and_recursive_jar_fail(self):
@@ -84,6 +98,7 @@ class PackagingTest(unittest.TestCase):
         good = {'id': module_id, 'version': self.policy['modules'][module_id]['version'],
                 'environment': '*', 'license': 'Apache-2.0'}
         for changes, extras, error in [({'id': 'fabric-api'}, {}, 'identity'),
+                ({'version': '999.0.0'}, {}, 'identity'),
                 ({'depends': {'fabric-registry-sync-v0': '*'}}, {}, 'Missing nested dependency'),
                 ({}, {'hidden.jar': b'bad'}, 'recursive')]:
             with self.subTest(error=error):

@@ -1,4 +1,4 @@
-UNALLOCATED includes unmodified Fabric API modules from Fabric API 0.165.0+26.3.
+UNALLOCATED includes Fabric API modules from Fabric API 0.165.0+26.3.
 Fabric API is developed by FabricMC and its contributors, licensed Apache-2.0.
 Source: https://github.com/FabricMC/fabric/tree/26.3
 
