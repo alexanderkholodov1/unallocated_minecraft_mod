@@ -196,7 +196,8 @@ def server(with_fabric_api=False):
     monitor(
         command, directory, SMOKE / f'{console_prefix}-console.log', startup + [entered, status],
         timeout=120, stop_when_ready=True, startup_required=startup,
-        command_steps=[('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
+        command_steps=[('unallocated arm', [r'UNALLOCATED session armed']),
+                       ('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
     )
     if with_fabric_api:
         return  # Coexistence check stays a single process; clean one-JAR smoke proves reload.
@@ -230,6 +231,7 @@ def client():
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
             r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
+            r'UNALLOCATED smoke: core armed join, no-cheats rescue guards, client act sync and single-player reload verified\.',
         ], timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,

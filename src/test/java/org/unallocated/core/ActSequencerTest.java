@@ -12,6 +12,7 @@ class ActSequencerTest {
     private final ServerEventBus events = new ServerEventBus(e -> fail(e));
     private final Features features = new Features(Map.of("acts.lobby", true, "acts.climax", true, "acts.epilogue", true));
     private ActSequencer sequencer(SessionState state, Module... modules) {
+        state.arm();
         return new ActSequencer(state, features, List.of(modules), events, logs::add);
     }
     private static class Module implements ActModule {
@@ -46,7 +47,8 @@ class ActSequencerTest {
         assertEquals(Act.CLIMAX, state.act());
         assertEquals(1, lobby.forced);
         assertEquals(1, climax.enters);
-        assertEquals(List.of("UNALLOCATED act=LOBBY enter t=0", "UNALLOCATED act=LOBBY forced t=0", "UNALLOCATED act=CLIMAX enter t=0"), logs);
+        assertEquals(List.of("UNALLOCATED act=CONTRACT complete t=0", "UNALLOCATED act=LOBBY enter t=0",
+            "UNALLOCATED act=LOBBY forced t=0", "UNALLOCATED act=CLIMAX enter t=0"), logs);
     }
     @Test void completionSkipsDisabledActAndPublishesChange() {
         var state = new SessionState(1);
@@ -169,9 +171,87 @@ class ActSequencerTest {
         seq.start(null);
         assertFalse(state.started());
     }
-    @Test void invalidBudgetsAreRejected() {
-        assertThrows(IllegalArgumentException.class, () -> sequencer(new SessionState(0), new Module(Act.LOBBY) {
-            public int budgetTicks() { return 0; }
-        }));
+    @Test void invalidOrThrowingBudgetsCannotCrashOrTrapTheSession() {
+        for (boolean throwing : List.of(false, true)) {
+            var state = new SessionState(0);
+            var seq = sequencer(state, new Module(Act.LOBBY) {
+                public int budgetTicks() {
+                    if (throwing) throw new IllegalStateException("bad budget");
+                    return 0;
+                }
+            }, new Module(Act.CLIMAX));
+            seq.start(null); seq.tick(null);
+            assertEquals(Act.CLIMAX, state.act());
+        }
+    }
+    @Test void advanceAndRescueNeverStartDormantOrUnarmedSessions() {
+        for (boolean armed : List.of(false, true)) {
+            var state = new SessionState(0);
+            if (armed) state.arm();
+            state.setDirty(false);
+            var seq = new ActSequencer(state, features, List.of(new Module(Act.LOBBY)), events, logs::add);
+            seq.advance(null);
+            assertFalse(seq.rescue(null));
+            assertFalse(state.started()); assertFalse(state.isDirty());
+            if (!armed) {
+                seq.start(null); seq.skipTo(Act.LOBBY);
+                assertFalse(state.started()); assertFalse(state.isDirty());
+            }
+        }
+    }
+    @Test void contractIsClientOnlyAndDoesNotConsumeAWorldTick() {
+        var state = new SessionState(0);
+        var contract = new Module(Act.CONTRACT);
+        var seq = sequencer(state, contract, new Module(Act.LOBBY));
+        seq.start(null);
+        assertEquals(Act.LOBBY, state.act()); assertEquals(0, state.ticks());
+        assertEquals(0, contract.enters); assertEquals(0, contract.forced);
+        assertEquals("UNALLOCATED act=CONTRACT complete t=0", logs.getFirst());
+    }
+    @Test void rescueRequiresFiveSecondsAndCannotSkipTwoActsBackToBack() {
+        var state = new SessionState(0);
+        var lobby = new Module(Act.LOBBY) { public int budgetTicks() { return 200; } };
+        var climax = new Module(Act.CLIMAX) { public int budgetTicks() { return 200; } };
+        var seq = sequencer(state, lobby, climax);
+        seq.start(null);
+        for (int i = 0; i < ActSequencer.RESCUE_DELAY_TICKS - 1; i++) seq.tick(null);
+        assertFalse(seq.rescue(null));
+        seq.tick(null);
+        assertTrue(seq.rescue(null)); assertEquals(1, lobby.forced);
+        assertEquals(Act.CLIMAX, state.act()); assertFalse(seq.rescue(null));
+        assertTrue(logs.contains("UNALLOCATED act=LOBBY skipped t=5"));
+        assertFalse(logs.stream().anyMatch(s -> s.contains("LOBBY complete")));
+        seq.advance(null); assertTrue(state.finished()); assertFalse(seq.rescue(null));
+    }
+    @Test void globalFeatureSwitchCannotBeIgnoredByAContentModule() {
+        var state = new SessionState(0);
+        var theft = new Module(Act.THEFT) { public boolean enabled(Features f) { return true; } };
+        var seq = sequencer(state, new Module(Act.LOBBY), theft, new Module(Act.CLIMAX));
+        seq.start(null); seq.advance(null);
+        assertEquals(Act.CLIMAX, state.act()); assertEquals(0, theft.enters);
+        assertTrue(logs.contains("UNALLOCATED act=THEFT skipped t=0"));
+    }
+    @Test void throwingEnabledAndCheckpointCallbacksAreIsolated() {
+        var state = new SessionState(0);
+        var climax = new Module(Act.CLIMAX) {
+            public boolean enabled(Features f) { throw new IllegalStateException("bad enabled"); }
+        };
+        var lobby = new Module(Act.LOBBY) {
+            public String checkpointId() { throw new IllegalStateException("bad checkpoint"); }
+        };
+        var seq = sequencer(state, lobby, climax, new Module(Act.EPILOGUE));
+        seq.start(null); assertEquals("unavailable", seq.checkpointId());
+        seq.advance(null); assertEquals(Act.EPILOGUE, state.act());
+    }
+    @Test void disabledResumeAndAdminJumpHaveDistinctSkipMarkers() {
+        var state = new SessionState(0);
+        var seq = sequencer(state, new Module(Act.LOBBY), new Module(Act.THEFT), new Module(Act.CLIMAX));
+        seq.start(null); seq.skipTo(Act.THEFT);
+        assertTrue(logs.contains("UNALLOCATED act=LOBBY skipped t=0"));
+        var restored = SessionState.fromTag(state.toTag());
+        logs.clear();
+        sequencer(restored, new Module(Act.THEFT), new Module(Act.CLIMAX)).resume(null);
+        assertTrue(logs.contains("UNALLOCATED act=THEFT skipped t=0"));
+        assertFalse(logs.stream().anyMatch(s -> s.contains(" complete ") || s.contains(" forced ")));
     }
 }

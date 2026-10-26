@@ -20,10 +20,20 @@ public final class UnallocatedCommand {
             Commands.literal("unallocated")
                 .then(Commands.literal("siguiente").executes(ctx -> {
                     var source = ctx.getSource();
-                    core(source).sequencer().advance(source.getPlayerOrException());
+                    var player = source.getPlayerOrException();
+                    if (!core(source).sequencer().rescue(player)) {
+                        source.sendFailure(Component.literal("Rescate disponible sólo durante una sesión activa, tras cinco segundos en el acto."));
+                        return 0;
+                    }
                     source.sendSuccess(() -> Component.literal("Sesión avanzada."), false);
                     return 1;
                 }))
+                .then(Commands.literal("arm").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                    .executes(ctx -> {
+                        CoreRuntime.arm(ctx.getSource().getServer());
+                        ctx.getSource().sendSuccess(() -> Component.literal("Mundo preparado; la sesión comenzará al entrar un jugador."), false);
+                        return 1;
+                    }))
                 .then(Commands.literal("status").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                     .executes(ctx -> status(ctx.getSource())))
                 .then(Commands.literal("act").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
@@ -33,6 +43,7 @@ public final class UnallocatedCommand {
                             return builder.buildFuture();
                         }).executes(ctx -> {
                             var source = ctx.getSource();
+                            if (!requireArmed(source)) return 0;
                             Act act;
                             try { act = Act.valueOf(StringArgumentType.getString(ctx, "id").toUpperCase(Locale.ROOT)); }
                             catch (IllegalArgumentException e) { source.sendFailure(Component.literal("Acto desconocido.")); return 0; }
@@ -43,6 +54,7 @@ public final class UnallocatedCommand {
                         })))
                 .then(Commands.literal("flag").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                     .then(Commands.argument("id", StringArgumentType.word()).executes(ctx -> {
+                        if (!requireArmed(ctx.getSource())) return 0;
                         core(ctx.getSource()).state().addFlag(StringArgumentType.getString(ctx, "id"));
                         CoreNetworking.sync(ctx.getSource().getServer(), core(ctx.getSource()).state());
                         return 1;
@@ -55,13 +67,18 @@ public final class UnallocatedCommand {
                     }))
         ));
     }
+    private static boolean requireArmed(CommandSourceStack source) {
+        if (core(source).state().armed()) return true;
+        source.sendFailure(Component.literal("Este mundo no está preparado para UNALLOCATED."));
+        return false;
+    }
     private static int status(CommandSourceStack source) {
         var runtime = core(source);
         var state = runtime.state();
         String report = "UNALLOCATED status act=" + state.act() + " started=" + state.started()
             + " finished=" + state.finished() + " elapsedTicks=" + state.elapsedActTicks()
             + " budgetTicks=" + runtime.sequencer().budgetTicks() + " checkpoint=" + runtime.sequencer().checkpointId()
-            + " flags=" + state.flags() + " counters=" + state.counters();
+            + " armed=" + state.armed() + " flags=" + state.flags() + " counters=" + state.counters();
         UnallocatedMod.LOGGER.info(report);
         source.sendSuccess(() -> Component.literal("Estado de sesión: " + state.act() + " · "
             + state.elapsedActTicks() / 20 + " s · punto de control: " + runtime.sequencer().checkpointId()), false);

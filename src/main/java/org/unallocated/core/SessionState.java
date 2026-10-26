@@ -29,7 +29,7 @@ public final class SessionState extends SavedData {
 
     private Act act = Act.CONTRACT;
     private long actStartTick, sessionStartTick, ticks, seed;
-    private boolean started, finished;
+    private boolean armed, started, finished;
     private final Set<String> flags = new HashSet<>();
     private final Map<String, Integer> counters = new HashMap<>();
     private final Map<String, Double> profile = new HashMap<>();
@@ -37,12 +37,15 @@ public final class SessionState extends SavedData {
 
     public SessionState(long seed) { this.seed = seed; }
     public static SessionState get(MinecraftServer server) {
+        if (!server.isSameThread()) throw new IllegalStateException("UNALLOCATED state requires the server thread");
         var storage = server.overworld().getDataStorage();
         SessionState state = storage.get(TYPE);
         if (state == null) {
             state = new SessionState(server.overworld().getSeed());
             storage.set(TYPE, state);
-            state.setDirty();
+            // SavedDataStorage.set marks new values dirty. Cache this dormant instance, but
+            // explicitly clear that flag: opening an ordinary world must not write our .dat.
+            state.setDirty(false);
         }
         return state;
     }
@@ -53,6 +56,10 @@ public final class SessionState extends SavedData {
     public long seed() { return seed; }
     public long elapsedActTicks() { return ticks - actStartTick; }
     public long elapsedSessionTicks() { return ticks - sessionStartTick; }
+    public boolean armed() { return armed; }
+    public boolean active() { return armed && started && !finished; }
+    /** Authoring operation only: build-all/template pipeline arms before the judge's first join. */
+    public void arm() { if (!armed) { armed = true; setDirty(); } }
     public boolean started() { return started; }
     public boolean finished() { return finished; }
     public Set<String> flags() { return Collections.unmodifiableSet(flags); }
@@ -78,7 +85,7 @@ public final class SessionState extends SavedData {
         if (!Double.isFinite(value) || value < 0) throw new IllegalArgumentException("Invalid temperature");
         temperature = value; setDirty();
     }
-    void tickClock() { if (started && !finished) { ticks++; setDirty(); } }
+    void tickClock() { if (active()) { ticks++; setDirty(); } }
     void moveTo(Act next) {
         if (!started) { started = true; sessionStartTick = ticks; }
         act = next; actStartTick = ticks; finished = false; setDirty();
@@ -93,6 +100,7 @@ public final class SessionState extends SavedData {
         tag.putLong("sessionStartTick", sessionStartTick);
         tag.putLong("ticks", ticks);
         tag.putLong("seed", seed);
+        tag.putBoolean("armed", armed);
         tag.putBoolean("started", started);
         tag.putBoolean("finished", finished);
         tag.putDouble("temperature", temperature);
@@ -115,6 +123,9 @@ public final class SessionState extends SavedData {
         state.ticks = Math.max(0, tag.getLongOr("ticks", 0));
         state.sessionStartTick = Math.clamp(tag.getLongOr("sessionStartTick", 0), 0, state.ticks);
         state.actStartTick = Math.clamp(tag.getLongOr("actStartTick", 0), state.sessionStartTick, state.ticks);
+        // Never infer arming from old started=true: the previous rescue bug could mark an
+        // ordinary world started. Legacy saves need an explicit authoring/admin arm operation.
+        state.armed = tag.getBooleanOr("armed", false);
         state.started = tag.getBooleanOr("started", false);
         state.finished = tag.getBooleanOr("finished", false);
         state.setTemperature(tag.getDoubleOr("temperature", 1.0));
