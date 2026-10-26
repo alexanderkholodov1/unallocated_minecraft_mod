@@ -57,8 +57,8 @@ jobs:
               assert metadata['name'] == 'UNALLOCATED'
               assert metadata['version'] == version
               assert metadata['depends'] == {
-                  'fabricloader': '=' + properties['loader_version'],
-                  'minecraft': '=' + properties['minecraft_version'],
+                  'fabricloader': '>=' + properties['loader_version'],
+                  'minecraft': '~' + properties['minecraft_version'],
                   'java': '>=25',
               }
               for side in ('main', 'client'):

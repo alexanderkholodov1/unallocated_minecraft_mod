@@ -6,10 +6,10 @@ Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Th
 
 ## Requisitos para jugar
 
-| Componente | Requisito exacto de esta versión |
+| Componente | Requisito de esta versión |
 | --- | --- |
-| Juego | **Minecraft Java Edition 26.3**, versión publicada; necesitas una cuenta con acceso al juego. |
-| Loader | **Fabric Loader 0.20.1** para Minecraft 26.3. |
+| Juego | **Minecraft Java Edition 26.3**, incluidos hotfixes **26.3.x**; necesitas una cuenta con acceso al juego. Compilación verificada con 26.3. |
+| Loader | **Fabric Loader 0.20.1 o posterior** para Minecraft 26.3. Compilación verificada con 0.20.1. |
 | Fabric API | **No necesaria** para esta base. La versión disponible para 26.3 verificada es **0.165.0+26.3**; no hace falta descargarla para UNALLOCATED. |
 | Java | **Java 25**. El Minecraft Launcher oficial descarga el entorno necesario al iniciar 26.3; deja el ejecutable Java del perfil en su valor predeterminado. |
 | Archivo del mod | **`unallocated-1.0.0-alpha.1.1.jar`** de la entrega del autor. |
@@ -29,7 +29,7 @@ No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de 
 
    En macOS, si el sistema bloquea el archivo oficial, consulta [las instrucciones de Fabric para macOS](https://docs.fabricmc.net/players/installing-fabric/macos). El Java incluido en el launcher permite jugar; no siempre está disponible para abrir el instalador universal desde el escritorio o la terminal.
 
-3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** y **Loader Version: 0.20.1**. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
+3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** (o su hotfix 26.3.x) y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
 4. Consigue **`unallocated-1.0.0-alpha.1.1.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
 5. Copia el JAR a la carpeta **`mods`** del perfil. Crea esa carpeta si no existe:
 
@@ -40,7 +40,7 @@ No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de 
    | Linux | `~/.minecraft/mods` | Pega la ruta en tu explorador de archivos; Ctrl+H muestra carpetas ocultas. |
 
    Si configuraste un **Directorio del juego / Game Directory** distinto en el launcher, utiliza la carpeta `mods` dentro de ese directorio. Para comprobar esta base, usa un perfil limpio sin otros mods. Fabric API y el instalador de Fabric no se copian a `mods` para esta versión.
-6. Abre el launcher y selecciona el perfil de **Fabric 26.3 / Loader 0.20.1**, normalmente llamado `fabric-loader-0.20.1-26.3`. Si no aparece, ve a **Instalaciones** y activa el filtro de instalaciones modificadas (**Modded**). Pulsa **Jugar / Play**.
+6. Abre el launcher y selecciona el perfil de **Fabric 26.3 / Loader 0.20.1 o posterior**. Por ejemplo, con las versiones verificadas se llama `fabric-loader-0.20.1-26.3`; el nombre cambia con la versión instalada. Si no aparece, ve a **Instalaciones** y activa el filtro de instalaciones modificadas (**Modded**). Pulsa **Jugar / Play**.
 
 Guías oficiales consultadas el 2026-10-26: [Windows](https://docs.fabricmc.net/players/installing-fabric/windows), [macOS](https://docs.fabricmc.net/players/installing-fabric/macos), [Linux](https://docs.fabricmc.net/players/installing-fabric/linux) e [instalación de mods](https://docs.fabricmc.net/players/installing-mods). El [cambio a Java 25 y su distribución incluida](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-1) se mantiene en la [plantilla oficial para 26.3](https://github.com/FabricMC/fabric-example-mod/tree/26.3).
 
@@ -55,7 +55,7 @@ UNALLOCATED initialized (common).
 UNALLOCATED initialized (client).
 ```
 
-Si aparece un error de versión o de dependencias, comprueba que el perfil usa **26.3 y Loader 0.20.1** y que no hay JAR antiguos en `mods`. Si continúa, envía al autor el mensaje del launcher y `logs/latest.log`.
+Si aparece un error de versión o de dependencias, comprueba que el perfil usa **26.3 o 26.3.x y Loader 0.20.1 o posterior** y que no hay JAR antiguos en `mods`. Si continúa, envía al autor el mensaje del launcher y `logs/latest.log`.
 
 ## Advertencias de contenido y estado conocido
 
