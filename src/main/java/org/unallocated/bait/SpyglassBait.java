@@ -47,6 +47,7 @@ public final class SpyglassBait {
      */
     public static void place(ServerPlayer player, SpyglassBaitSpec spec, @Nullable BlockPos lure, boolean ahead) {
         clear(player, "replaced");
+        spec = spec.fittedTo(Active.reachable(player, SpyglassBaitSpec.MAX_DISTANCE));
         ACTIVE.put(player.getUUID(), new Active(player.level().getServer(), spec,
                 lure == null ? null : Vec3.atBottomCenterOf(lure), ahead));
         UnallocatedMod.LOGGER.info("UNALLOCATED bait start player={} distances={} scare={}",
@@ -200,7 +201,7 @@ public final class SpyglassBait {
 
         private boolean place(ServerPlayer player, ServerLevel level, Decision decision) {
             discard(level);
-            Vec3 spot = ahead ? SpyglassBaitFigure.findSpot(player, decision.distance(),
+            Vec3 spot = ahead ? SpyglassBaitFigure.findSpot(player, reachable(player, decision.distance()),
                     new double[] {player.getYRot()}, false, true, null, random) : spotFor(player, decision, null);
             if (spot == null) return false;
             Mannequin figure = SpyglassBaitFigure.create(level, ResolvableProfile.createResolved(player.getGameProfile()),
@@ -227,7 +228,7 @@ public final class SpyglassBait {
          */
         private @Nullable Vec3 spotFor(ServerPlayer player, Decision decision, @Nullable Mannequin figure) {
             Vec3 eye = player.getEyePosition();
-            double distance = decision.distance();
+            double distance = reachable(player, decision.distance());
             double bearing;
             if (lure != null) {
                 if (eye.distanceTo(lure) <= distance) {
@@ -245,6 +246,12 @@ public final class SpyglassBait {
             }
             return SpyglassBaitFigure.findSpot(player, distance, new double[] {bearing}, !decision.zoomMasked(),
                     decision.zoomMasked(), lure, random);
+        }
+
+        /** A judge with a short render distance still gets a figure inside loaded, unfogged terrain. */
+        private static double reachable(ServerPlayer player, double distance) {
+            int viewBlocks = player.level().getServer().getPlayerList().getViewDistance() * 16;
+            return Math.max(SpyglassBaitSpec.MIN_DISTANCE, Math.min(distance, viewBlocks * 0.8));
         }
 
         private static boolean hiddenFrom(ServerPlayer player, Vec3 spot) {

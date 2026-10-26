@@ -10,8 +10,12 @@ import org.jspecify.annotations.Nullable;
  * the director's planned {@code unallocated:effect} packet can replace this later.
  */
 public final class SpyglassBaitSignals {
-    /** @param player who must see it; @param sequence increases per scare so each one plays exactly once */
-    public record Scare(UUID player, long sequence) { }
+    /**
+     * @param player   who must see it
+     * @param sequence increases per scare so each one plays exactly once
+     * @param nanos    {@link System#nanoTime()} when fired; stale signals (e.g. from a world just left) are ignored
+     */
+    public record Scare(UUID player, long sequence, long nanos) { }
 
     private static volatile @Nullable Scare latest;
     private static long sequence;
@@ -19,7 +23,7 @@ public final class SpyglassBaitSignals {
     private SpyglassBaitSignals() { }
 
     static synchronized void scare(UUID player) {
-        latest = new Scare(player, ++sequence);
+        latest = new Scare(player, ++sequence, System.nanoTime());
     }
 
     public static @Nullable Scare latest() {

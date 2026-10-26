@@ -65,6 +65,22 @@ public record SpyglassBaitSpec(List<Double> distances, boolean scare, int dwellT
         return result;
     }
 
+    /**
+     * The same approach shrunk proportionally so the first distance is at most {@code cap} (a short render distance
+     * must still show the figure). Steps that would collapse below {@link #MIN_DISTANCE} or onto each other merge.
+     */
+    public SpyglassBaitSpec fittedTo(double cap) {
+        double first = distances.getFirst();
+        if (first <= cap) return this;
+        double factor = Math.max(cap, MIN_DISTANCE) / first;
+        List<Double> scaled = new ArrayList<>();
+        for (double distance : distances) {
+            double value = Math.max(MIN_DISTANCE, Math.round(distance * factor * 10.0) / 10.0);
+            if (scaled.isEmpty() || value < scaled.getLast()) scaled.add(value);
+        }
+        return withDistances(scaled);
+    }
+
     public SpyglassBaitSpec withDistances(List<Double> value) {
         return new SpyglassBaitSpec(value, scare, dwellTicks, scareDelayTicks, scareJitterTicks, fallbackAfterTicks,
                 appearDelayTicks, maxLifetimeTicks, seed);

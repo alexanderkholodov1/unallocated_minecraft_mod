@@ -333,4 +333,16 @@ class SpyglassBaitLogicTest {
         assertEquals(List.of(10.0), SpyglassBaitSpec.geometric(1, 50, 10));
         assertEquals(4, SpyglassBaitSpec.defaults().lastStep());
     }
+
+    @Test
+    void shortRenderDistanceShrinksTheApproachProportionally() {
+        SpyglassBaitSpec spec = SpyglassBaitSpec.defaults();
+        assertEquals(spec, spec.fittedTo(150), "fits already");
+        List<Double> fitted = spec.fittedTo(46).distances();
+        assertEquals(List.of(46.0, 32.0, 22.0, 14.0, 7.0), fitted);
+        List<Double> tiny = spec.fittedTo(10).distances();
+        assertEquals(10.0, tiny.getFirst());
+        assertEquals(SpyglassBaitSpec.MIN_DISTANCE, tiny.getLast());
+        for (int i = 1; i < tiny.size(); i++) assertTrue(tiny.get(i) < tiny.get(i - 1));
+    }
 }

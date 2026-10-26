@@ -10,7 +10,8 @@
   "license": "All-Rights-Reserved",
   "environment": "*",
   "mixins": [
-    "unallocated.bait.mixins.json"
+    "unallocated.bait.mixins.json",
+    {"config": "unallocated.bait.client.mixins.json", "environment": "client"}
   ],
   "entrypoints": {
     "main": [
