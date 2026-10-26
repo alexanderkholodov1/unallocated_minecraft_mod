@@ -34,13 +34,12 @@ No networking, world mutation, inference service, Fabric API runtime dependency 
 | `F3` | 60 ticks / 3 s | Replaces only the XYZ display with coordinates beyond the world boundary and an impossible depth. Block/Chunk/Facing, actual position, F3+C clipboard, targeting and physics stay truthful. It neither enables F3 nor changes the player's debug profile. |
 | `DEATH` | 600 ticks / 30 s armed window | Rewrites the cause line while an actual vanilla death screen renders. It neither kills the player nor changes respawn buttons, death packets, signed chat or the server's death history. Expiry restores the original line, even while the screen remains open. |
 | `SPLASH` | 600 ticks / 30 s | Replaces the title screen's native splash component at render time. Respects the player's Hide Splash Texts option. |
-| `LOADING` | 600 ticks / 30 s | Replaces the native LevelLoadingScreen terrain-loading caption. The real chunk/progress display and narration of numeric loading progress remain intact. |
+| `LOADING` | 600 ticks / 30 s | Replaces the native LevelLoadingScreen terrain-loading caption. Generations 0–2 leak the goal; generations 3–5 leak log-like failure lines. The real chunk/progress display and narration of numeric loading progress remain intact. |
 | `ADVANCEMENT` | 100 ticks / 5 s | Adds a native AdvancementToast without registering an advancement, awarding criteria/rewards, changing progress or sending packets. With no ID it composes a deterministic invented title; with an ID it uses an advancement already known to the client's advancement tree. An unknown ID is refused. |
 | `SENSITIVITY` | 100 ticks / 5 s | At most ±0.04 on vanilla's 0…1 sensitivity range, clamped to that range. |
 | `FOV` | 100 ticks / 5 s | At most ±3 degrees, clamped to vanilla's 30…110 degree range. |
 | `GAMMA` | 100 ticks / 5 s | Smooth 2 Hz variations, at most 0.08 on vanilla's 0…1 gamma range, toward the middle of the range. This is not a full-screen flashing overlay. |
 | `SIGN` | 100 ticks / 5 s | A chosen sign's front-side render text uses compact g0…g5 lines in the selected leak language. The sign block entity, back side, packets and world saves stay untouched. The next render returns the original text. |
-| `LOG` | 100 ticks / 5 s request | A local chat line resembling a failed server/model operation, without forging a JVM/server log entry. Like ordinary chat, it remains in session chat history. |
 
 Durations use a monotonic real-time deadline, so pausing or accelerating game-test ticks cannot extend drift.
 Splash/loading arms can span leaving a world so a director can prepare a transition/title beat; they expire normally.

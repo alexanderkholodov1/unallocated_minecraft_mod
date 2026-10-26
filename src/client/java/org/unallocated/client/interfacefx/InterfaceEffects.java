@@ -19,7 +19,7 @@ import org.unallocated.client.interfacefx.InterfaceTexts.LeakLanguage;
 
 /** Render-thread-only toolkit. The future director owns all story timing. */
 public final class InterfaceEffects {
-    public enum Effect { F3, DEATH, SPLASH, LOADING, ADVANCEMENT, SENSITIVITY, FOV, GAMMA, SIGN, LOG }
+    public enum Effect { F3, DEATH, SPLASH, LOADING, ADVANCEMENT, SENSITIVITY, FOV, GAMMA, SIGN }
     public record Request(Effect effect, int ticks, int generation, double strength,
                           LeakLanguage language, long seed, BlockPos signPosition, Identifier advancementId) {
         public Request(Effect effect, int ticks, int generation, double strength,
@@ -51,7 +51,7 @@ public final class InterfaceEffects {
         return switch (effect) {
             case F3 -> 60;
             case SENSITIVITY, FOV, GAMMA, SIGN -> 100;
-            case ADVANCEMENT, LOG -> 100;
+            case ADVANCEMENT -> 100;
             case DEATH, SPLASH, LOADING -> 600;
         };
     }
@@ -98,7 +98,6 @@ public final class InterfaceEffects {
                 TOASTS.put(toast, now + request.ticks * 50_000_000L);
                 client.gui.toastManager().addToast(toast);
             }
-            case LOG -> client.gui.hud.getChat().addMessage(text(request, "log"));
             default -> { }
         }
         return true;
@@ -159,7 +158,10 @@ public final class InterfaceEffects {
     public static Component replacement(Effect effect, Component original) {
         if (!active(effect)) return original;
         observe(effect.name());
-        return text(ACTIVE.get(effect).request, effect == Effect.DEATH ? "death" : "goal");
+        Request request = ACTIVE.get(effect).request;
+        String channel = effect == Effect.DEATH ? "death"
+                : effect == Effect.LOADING && request.generation >= 3 ? "log" : "goal";
+        return text(request, channel);
     }
 
     public static Collection<String> debugLines(Collection<String> original) {

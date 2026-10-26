@@ -151,7 +151,7 @@
   "interface.unallocated.generated.object.mixed.3": "el fear no asignado",
   "interface.unallocated.generated.title": "%s %s [%s/g%s]",
   "interface.unallocated.debug.disabled": "Depuración de interfaz desactivada. Usa -Dunallocated.interface.debug=true en el perfil de prueba.",
-  "interface.unallocated.debug.help": "/uinterface <f3|death|splash|loading|advancement|sensitivity|fov|gamma|sign|log> [ticks] [0–5] [es|en|mixed] [−1..1] [semilla] [id_avance]. /uinterface restore. Límites: f3 60; ajustes, letrero, logro y log 100; textos 600 ticks.",
+  "interface.unallocated.debug.help": "/uinterface <f3|death|splash|loading|advancement|sensitivity|fov|gamma|sign> [ticks] [0–5] [es|en|mixed] [−1..1] [semilla] [id_avance]. /uinterface restore. Límites: f3 60; ajustes, letrero, logro 100; textos 600 ticks.",
   "interface.unallocated.debug.restored": "Interfaz y ajustes restaurados.",
   "interface.unallocated.debug.fired": "Efecto de interfaz preparado.",
   "interface.unallocated.debug.refused": "Efecto rechazado: comprueba el mundo activo, los ajustes y el journal.",
