@@ -29,6 +29,19 @@ The v0 does not invent session statistics or implement alpha.3's two outcome sce
 
 Validation: CI runs the existing core/JAR/dedicated smoke checks and JUnit tests for the complete
 inverse ladder, gratitude, genuine receipt callback and missing/corrupt/unreadable receipt fallbacks.
+The production client gametest also transitions CLIMAX→EPILOGUE through the real sequencer,
+asserts a vanilla disconnect and stopped server, clicks through to title, and inspects the actual
+rendered splash (also after title reinitialization). It reopens the same save in a new server instance,
+checks the finished state/ending flag/persisted counter and no repeated ending, then verifies splash
+reset after a later ordinary exit. A second world sends the real player command `unallocated act
+EPILOGUE` and repeats the screen/title checks. Options, server list and any contract receipt are
+compared byte for byte around the ending. An ordinary disconnect reason bypasses the adapter.
+
+CI requires both normal and command screenshots: `unallocated-ending-disconnect`,
+`unallocated-ending-title`, `unallocated-ending-command-disconnect`,
+`unallocated-ending-command-title`. Missing captures or game-log assertions fail the smoke watchdog;
+the existing diagnostics artifact includes the PNGs. The helper remains outside the player's JAR.
+
 Minecraft and Fabric calls were checked against the official 26.3 and API 0.165.0 signatures in
 `mc-ref`, including the actual vanilla disconnect/save call chain, without running Java on the host.
 

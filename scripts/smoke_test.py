@@ -213,11 +213,11 @@ def server(with_fabric_api=False):
     assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
 
 
-def verify_screenshot(directory):
+def verify_screenshot(directory, name="unallocated-title"):
     # Fabric can prepend a numeric counter, e.g. 0000_unallocated-title.png.
-    screenshots = list(directory.rglob('*unallocated-title*.png'))
+    screenshots = list(directory.rglob(f'*{name}*.png'))
     if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
-        raise RuntimeError('Client exited without a valid title-screen screenshot')
+        raise RuntimeError(f'Client exited without a valid screenshot: {name}')
 
 
 def client():
@@ -230,11 +230,16 @@ def client():
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
             r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
-        ], timeout=240,
+            r'UNALLOCATED ending=SERVER_CLOSED',
+            r'UNALLOCATED smoke: ending save reloaded as finished; options and receipt unchanged; splash reset\.',
+            r'UNALLOCATED smoke: ending command showed vanilla disconnect and returned to title with changed splash\.',
+        ], timeout=300,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )
-    verify_screenshot(directory)
+    for name in ("unallocated-title", "unallocated-ending-disconnect", "unallocated-ending-title",
+                 "unallocated-ending-command-disconnect", "unallocated-ending-command-title"):
+        verify_screenshot(directory, name)
     props = properties()
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",
