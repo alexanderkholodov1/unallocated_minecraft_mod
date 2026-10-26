@@ -1,4 +1,4 @@
-# Toolchain — UNALLOCATED v1.0.0-alpha.1.1
+# Toolchain — UNALLOCATED v0.1.1
 
 Verified on **2026-10-26 (UTC)**. Every source below was read on that date. The coordinator confirmed [CI run 40269733006](https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40269733006) passed compilation and JAR checks (2,541-byte JAR, matching checksum). That run did not test a game launch.
 
@@ -52,7 +52,7 @@ Use the official Minecraft Launcher with Java Edition ownership. Launch vanilla 
 
 1. Download [Fabric installer 1.1.2](https://fabricmc.net/use/installer/). On Windows use `.exe` (uses the launcher's Java). On macOS/Linux use the universal `.jar`; install [Temurin Java 25](https://adoptium.net/temurin/releases/?version=25) if no system Java is available. On Linux/macOS a terminal can run `java -jar fabric-installer-1.1.2.jar` from its download directory. See the OS-specific Fabric guides linked above (read 2026-10-26).
 2. In **Client**, select Minecraft **26.3** (or a 26.3.x hotfix), Loader **0.20.1 or newer** (the installer's latest selection is fine), the launcher's correct game installation location, and **Create Profile**, then **Install**. Reopen the launcher and choose the corresponding Fabric profile; `fabric-loader-0.20.1-26.3` is the baseline example, not a required display name. If missing, enable modded installations under **Installations**. The installer installs Loader; it does not supply every mod. Sources: [official installer](https://fabricmc.net/use/installer/), OS guides above, read 2026-10-26. The accepted runtime ranges are this project's compatibility policy.
-3. With Minecraft closed, put **`unallocated-1.0.0-alpha.1.1.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API is **not required** by this skeleton. The available API for future use is **0.165.0+26.3**, not a build for another game version. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
+3. With Minecraft closed, put **`unallocated-0.1.1.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API is **not required** by this skeleton. The available API for future use is **0.165.0+26.3**, not a build for another game version. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
 
 | OS | Default `mods` directory | Opening it |
 | --- | --- | --- |
@@ -66,7 +66,7 @@ Directory source: [Fabric Installing Mods](https://docs.fabricmc.net/players/ins
 
 ## Build and handoff
 
-The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-1.0.0-alpha.1.1.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
+The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-0.1.1.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
 
 CI installs the selected Gradle distribution, compiles the common/client code and the isolated smoke helper, builds and inspects the player JAR, runs the server/client smoke checks, then uploads the installable JAR plus its SHA-256 checksum. Gradle's action owns the dependency and asset cache; PR runs read it without writing, push runs may write it. No duplicate `setup-java` cache, secrets, publishing credentials, or wrapper binary downloads are required from the coordinator.
 
