@@ -59,10 +59,15 @@ def verify(artifact, properties, policy, included_hashes):
     require(set(included_hashes) == set(expected), 'Recorded include files differ from allowlist')
     with ZipFile(artifact) as jar:
         names = clean_archive(jar)
-        verify_mixin_packages(jar)
         metadata_text = jar.read('fabric.mod.json').decode()
         require('${' not in metadata_text, 'Unexpanded metadata')
         metadata = json.loads(metadata_text)
+        declared_mixins = [entry if isinstance(entry, str) else entry['config']
+                           for entry in metadata.get('mixins', [])]
+        require(len(declared_mixins) == len(set(declared_mixins)), 'Duplicate mixin registration')
+        require(set(declared_mixins) == {name for name in names if name.endswith('.mixins.json')},
+                'Unregistered or missing mixin configuration')
+        verify_mixin_packages(jar)
         require(metadata['id'] == 'unallocated' and metadata['name'] == 'UNALLOCATED', 'Wrong mod')
         require(metadata['version'] == properties['version'], 'Wrong version')
         require(set(metadata['entrypoints']) == {'main', 'client'}, 'Test entrypoint leaked')

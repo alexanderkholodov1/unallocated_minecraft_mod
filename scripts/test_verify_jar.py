@@ -59,6 +59,16 @@ class PackagingTest(unittest.TestCase):
         self.artifact.write_bytes(archive(self.entries))
         return verify(self.artifact, self.props, self.policy, self.included_hashes)
 
+    def test_packaged_mixin_config_cannot_be_left_unregistered(self):
+        self.entries['forgotten.mixins.json'] = '{}'
+        with self.assertRaisesRegex(ValueError, 'Unregistered or missing mixin'):
+            self.check()
+
+    def test_mixin_registration_cannot_be_duplicated(self):
+        self.meta['mixins'] = ['duplicate.mixins.json', 'duplicate.mixins.json']
+        with self.assertRaisesRegex(ValueError, 'Duplicate mixin registration'):
+            self.check()
+
     def test_approved_subset_passes(self):
         self.assertEqual(self.check(), hashlib.sha256(self.artifact.read_bytes()).hexdigest())
 

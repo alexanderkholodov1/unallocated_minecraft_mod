@@ -3,13 +3,26 @@
   "id": "unallocated",
   "version": "${version}",
   "name": "UNALLOCATED",
-  "description": "Mod de terror en primera persona. Incluye el contrato de entrada con advertencias de contenido y el n\u00facleo de sesi\u00f3n.",
+  "description": "Mod de terror: contrato, sesión persistente, mapa, cebo de catalejo, efectos de interfaz, audio y epílogo.",
   "authors": [
     "NULL_Threshold Interactive"
   ],
   "license": "All-Rights-Reserved",
   "environment": "*",
   "mixins": [
+    {
+      "config": "unallocated.contract.mixins.json",
+      "environment": "client"
+    },
+    {
+      "config": "unallocated-interface.mixins.json",
+      "environment": "client"
+    },
+    "unallocated.bait.mixins.json",
+    {
+      "config": "unallocated.bait.client.mixins.json",
+      "environment": "client"
+    },
     {
       "config": "unallocated.ending.mixins.json",
       "environment": "client"
