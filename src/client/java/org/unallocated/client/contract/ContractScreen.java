@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -94,7 +95,7 @@ public final class ContractScreen extends Screen {
 
     @Override
     public boolean keyPressed(KeyEvent event) {
-        if (!reading && input.isFocused() && event.isConfirmation()) {
+        if (!reading && input.isFocused() && event.key() == InputConstants.KEY_RETURN) {
             if (ContractSubmission.isAgreement(draft)) accept(true);
             else if (draft.isEmpty()) accept(false);
             return true;
