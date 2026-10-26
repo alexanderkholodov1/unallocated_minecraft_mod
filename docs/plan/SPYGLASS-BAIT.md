@@ -1,4 +1,4 @@
-# The spyglass bait (work package v1.0.0-alpha.1.5; plan alpha.1.8)
+# The spyglass bait (work package v0.1.5; plan v0.1.8)
 
 The owner's words it implements:
 
