@@ -24,8 +24,8 @@ respaldo para que el texto narrativo siga en español aunque Minecraft arranque 
   "contract.unallocated.input.hint": "Pulsa el botón, o escríbelo y pulsa Enter.",
   "contract.unallocated.input.retry": "Escribe «De acuerdo» para reemplazar la selección.",
   "contract.unallocated.uses.title": "Usos de datos · Lo que recibimos",
-  "contract.unallocated.uses.current": "En esta compilación: leemos si existe una aceptación local y, si escribes aquí, el texto de este campo (hasta 64 caracteres). Solo «De acuerdo» se acepta con Enter; el botón acepta directamente. Consultamos el reloj de tu equipo al aceptar. La respuesta se conserva para que la historia pueda recordarla.",
-  "contract.unallocated.uses.local": "Guardamos una sola aceptación en unallocated/contract.properties, dentro del directorio del juego: fecha y hora UTC, método (botón o texto), texto que dejaste en el campo y versión del contrato. Se conserva entre partidas hasta que borres ese archivo. No sale de tu equipo. Si no podemos guardarla, puedes continuar y volverá a aparecer al reiniciar. Los registros normales de Minecraft indican que el mod cargó o si hubo un error; no copiamos tu respuesta a esos registros.",
+  "contract.unallocated.uses.current": "En esta compilación: leemos si existe una aceptación local y, si escribes aquí, el texto de este campo (hasta 64 caracteres). Con Enter se acepta «De acuerdo» o el campo vacío; el botón acepta directamente. Consultamos el reloj de tu equipo al aceptar. La respuesta se conserva para que la historia pueda recordarla.",
+  "contract.unallocated.uses.local": "Guardamos una sola aceptación en unallocated/contract.properties, dentro del directorio del juego: fecha y hora UTC, método (TYPED: texto con Enter; CLICKED: botón o Enter sin texto), texto que dejaste en el campo y versión del contrato. Se conserva entre partidas hasta que borres ese archivo. No sale de tu equipo. Si no podemos guardarla, puedes continuar y volverá a aparecer al reiniciar. Los registros normales de Minecraft indican que el mod cargó o si hubo un error; no copiamos tu respuesta a esos registros.",
   "contract.unallocated.uses.absent": "Esta compilación no captura micrófono, cámara, chat, nombre de usuario, skins, nombre del mundo ni comportamiento durante la partida. No clona voces, no modifica tus ajustes y no se conecta a servicios de IA. No añadimos envíos por red. El funcionamiento de red y los registros propios de Minecraft siguen siendo los del juego.",
   "contract.unallocated.uses.future": "En versiones futuras, aún no activas aquí: movimientos, giros de cámara, pausas y acciones podrían orientar el ritmo del miedo; el chat, la hora, tu nombre o el nombre del mundo podrían reaparecer en la ficción. También se contemplan micrófono, voz simulada y cambios temporales de sensibilidad, campo de visión, idioma o brillo, con restauración al salir. La voz seguirá siendo opcional. Antes de activar esos usos se actualizará esta lista para explicar exactamente qué se lee, qué se guarda y dónde. Esta versión no los recopila por adelantado.",
   "contract.unallocated.uses.lore": "Tu respuesta queda asignada. No es necesario repetirla. Conservaremos el primer acuerdo con especial cuidado.",
@@ -56,8 +56,8 @@ La primera petición de `TitleScreen` se sustituye antes de inicializarla median
 también funciona Enter con el campo vacío, como activación del mismo acuerdo. Escribir **De acuerdo** y pulsar Enter
 registra `TYPED`; se toleran mayúsculas y espacios exteriores, conservando exactamente lo escrito. Si pulsas Enter
 con otro texto, queda seleccionado con una indicación discreta: lo siguiente que escribas lo reemplaza, sin Ctrl+A.
-El botón registra
-`CLICKED`, incluido el texto que haya quedado en el campo. No hay cuestionario, casilla, temporizador ni lectura
+El botón registra `CLICKED`, incluido el texto que haya quedado en el campo; Enter con el campo vacío también
+registra `CLICKED`. Se admiten Enter principal y del teclado numérico. No hay cuestionario, casilla, temporizador ni lectura
 obligatoria. Escape vuelve desde la lista opcional; en el acuerdo no acepta ni abre el menú. Para salir sin aceptar,
 cierra la ventana del juego. Se puede aceptar desde cualquier página de la lista.
 

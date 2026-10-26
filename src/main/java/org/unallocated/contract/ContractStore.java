@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.charset.CharacterCodingException;
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,7 +35,7 @@ public final class ContractStore {
             return Optional.of(new ContractReceipt(Instant.parse(data.getProperty("acceptedAt")),
                     new ContractSubmission(ContractSubmission.Method.valueOf(data.getProperty("method")),
                             data.getProperty("typedText"))));
-        } catch (IllegalArgumentException | NullPointerException | DateTimeException exception) {
+        } catch (IllegalArgumentException | NullPointerException | DateTimeException | CharacterCodingException exception) {
             // A partial/corrupt receipt is not evidence of agreement.
             return Optional.empty();
         }

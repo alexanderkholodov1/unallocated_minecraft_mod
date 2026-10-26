@@ -89,6 +89,20 @@ class ContractSessionTest {
                 () -> new ContractSubmission(ContractSubmission.Method.CLICKED, "x".repeat(65)));
     }
 
+    @Test void nonUtf8ReceiptIsReplacedByAcceptanceAndSkippedOnNextStart() throws IOException {
+        Path file = game.resolve(ContractStore.RELATIVE_PATH);
+        Files.createDirectories(file.getParent());
+        Files.write(file, new byte[] {'#', (byte) 0xF3, '\n'});
+        var first = start(false);
+        assertTrue(first.shouldShow());
+        assertTrue(first.receipt().isEmpty());
+        first.accept(new ContractSubmission(ContractSubmission.Method.CLICKED, ""));
+        var second = start(false);
+        assertFalse(second.shouldShow());
+        assertEquals(first.receipt(), second.receipt());
+        assertTrue(second.receipt().isPresent());
+    }
+
     @Test void failedWriteStillAcceptsThisSessionAndDoesNotInventPersistence() throws IOException {
         var first = start(false);
         // A regular file obstructing the directory is deterministic even when CI has elevated privileges.

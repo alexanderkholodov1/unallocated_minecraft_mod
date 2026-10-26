@@ -84,7 +84,7 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
             String typed = " dE AcUeRdO ";
             context.getInput().typeChars(typed);
             assertAgreementInput(context, typed, "after-rejected-text-replacement");
-            context.getInput().pressKey(InputConstants.KEY_RETURN);
+            context.getInput().pressKey(InputConstants.KEY_NUMPADENTER);
             context.waitForScreen(TitleScreen.class);
             try {
                 var saved = new ContractStore(gameDirectory).read().orElseThrow();

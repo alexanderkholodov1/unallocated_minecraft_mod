@@ -123,7 +123,8 @@ public final class ContractScreen extends Screen {
 
     @Override
     public boolean keyPressed(KeyEvent event) {
-        if (!reading && input.isFocused() && event.key() == InputConstants.KEY_RETURN) {
+        if (!reading && input.isFocused() && (event.key() == InputConstants.KEY_RETURN
+                || event.key() == InputConstants.KEY_NUMPADENTER)) {
             if (ContractSubmission.isAgreement(draft)) accept(true);
             else if (draft.isEmpty()) accept(false);
             else selectRejectedText();
