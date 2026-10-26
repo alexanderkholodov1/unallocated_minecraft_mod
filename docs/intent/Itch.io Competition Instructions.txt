@@ -1,0 +1,96 @@
+https://itch.io/jam/terror-en-primera-persona
+
+Terror en Primera Persona
+Hosted by agualat · #TerrorEnPrimeraPersona
+1
+Joined
+OverviewCommunity
+Submissions open from October 21st 2026 at 12:00 AM to October 28th 2026 at 11:59 PM
+Starts in
+8
+days
+3
+hours
+56
+minutes
+20
+seconds
+You've joined this jam. Come to this page after the jam starts to submit your project. Leave jam
+Terror en primera persona
+Una semana para convertir Minecraft en una pesadilla.
+
+Crea un mod de terror diseñado para jugarse en primera persona. Construye una experiencia que genere tensión, sorprenda a quienes la jueguen y transforme lo familiar en algo inquietante.
+
+Organizan Computer Society de la USFQ y COCOA USFQ. La participación es exclusiva para estudiantes de la Universidad San Francisco de Quito.
+
+Fechas
+Inscripciones: del 9 al 20 de octubre de 2026.
+Desarrollo: del 21 al 28 de octubre de 2026.
+Premiación: 6 de noviembre de 2026.
+Las horas de apertura y cierre se anunciarán en hora de Ecuador continental (UTC−5).
+
+¿Quiénes pueden participar?
+Puedes participar individualmente o en un equipo de máximo tres integrantes. Todos los integrantes deben ser estudiantes de la USFQ.
+
+El reto
+Desarrolla un mod para Minecraft Java 26.3, utilizando Forge o Fabric, que ofrezca una experiencia de terror en primera persona.
+
+Puedes explorar terror psicológico, suspenso, criaturas, exploración, supervivencia o cualquier otra idea que encaje con el tema. Tú decides cómo provocar el miedo.
+
+Recomendamos una experiencia de 5 a 15 minutos, con un inicio claro y suficiente contenido para que el jurado pueda conocer tu propuesta. Puedes incluir un mapa si tu mod lo necesita (no es necesario).
+
+Reglas
+El contenido que se evaluará debe desarrollarse durante la jam, del 21 al 28 de octubre.
+Cada equipo puede tener un máximo de tres integrantes.
+Se aceptan mods para Forge o Fabric. No es necesario ofrecer compatibilidad con ambos.
+La experiencia debe estar diseñada para jugarse en primera persona.
+Puedes utilizar librerías y recursos externos con permiso de uso, siempre que los declares y acredites.
+Un modpack por sí solo no cuenta como entrega: el proyecto debe incluir un mod original desarrollado por el equipo.
+Incluye advertencias si tu experiencia contiene luces intermitentes, sonidos fuertes u otros contenidos sensibles.
+Los participantes conservan la autoría de sus proyectos. Al participar, autorizan a los organizadores a mostrar imágenes y gameplay del proyecto en la difusión y premiación de la jam.
+¿Qué debes entregar?
+Publica tu proyecto en itch.io y envíalo a esta jam antes del cierre. La página del proyecto debe incluir:
+
+Archivo del mod y lista de dependencias.
+Loader y versión exacta necesarios para ejecutarlo.
+Instrucciones de instalación y cómo comenzar a jugar.
+Mapa y configuración, si son necesarios.
+Descripción breve de la experiencia.
+Integrantes del equipo y créditos de recursos externos.
+Errores conocidos y advertencias de contenido.
+Te recomendamos incluir capturas y un video corto de gameplay para presentar tu proyecto.
+
+Evaluación
+Todos los proyectos competirán en una única categoría: mejor experiencia de terror en primera persona.
+
+Criterio
+
+Qué evaluamos
+
+Factor miedo
+
+¿Nos hizo sentir miedo, ponernos nerviosos o saltar del asiento? Se valora tanto la tensión sostenida como los sustos bien logrados y la atmósfera general de la experiencia.
+
+Creatividad
+
+Originalidad de la idea y uso de Minecraft para crear terror.
+
+Mecánicas y experiencia en primera persona
+
+Cómo la interacción y las mecánicas contribuyen a la experiencia.
+
+Estabilidad y facilidad de instalación
+
+Que el mod funcione y tenga instrucciones claras.
+
+Sonido y presentación visual
+
+Cómo el audio y los elementos visuales refuerzan el terror.
+
+Premios
+¡Habrá premios! Anunciaremos los detalles y la distribución de premios antes de la premiación del 6 de noviembre.
+
+Prepárate para entrar
+Forma tu equipo, prepara tus herramientas y trae una idea que haga que alguien dude antes de volver a abrir Minecraft.
+
+Nos vemos el 21 de octubre.
