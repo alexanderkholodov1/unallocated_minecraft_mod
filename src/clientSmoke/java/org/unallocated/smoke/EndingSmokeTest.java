@@ -142,14 +142,18 @@ final class EndingSmokeTest {
         context.takeScreenshot(screenshot);
     }
 
-    private static String splashText(TitleScreen screen) throws ReflectiveOperationException {
+    private static String splashText(TitleScreen screen) {
         // Verify actual vanilla state instead of trusting a flag set by our own feature code.
-        var field = TitleScreen.class.getDeclaredField("splash");
-        field.setAccessible(true);
-        var text = SplashRenderer.class.getDeclaredField("splash");
-        text.setAccessible(true);
-        Object renderer = field.get(screen);
-        return renderer == null ? "" : ((Component) text.get(renderer)).getString();
+        try {
+            var field = TitleScreen.class.getDeclaredField("splash");
+            field.setAccessible(true);
+            var text = SplashRenderer.class.getDeclaredField("splash");
+            text.setAccessible(true);
+            Object renderer = field.get(screen);
+            return renderer == null ? "" : ((Component) text.get(renderer)).getString();
+        } catch (ReflectiveOperationException exception) {
+            throw new AssertionError("Could not inspect the rendered title splash", exception);
+        }
     }
 
     private static Map<Path, byte[]> snapshots(ClientGameTestContext context) {
@@ -158,7 +162,7 @@ final class EndingSmokeTest {
             Path game = client.gameDirectory.toPath();
             for (String name : new String[] {"options.txt", "servers.dat", "unallocated/contract.properties"}) {
                 Path path = game.resolve(name);
-                result.put(path, Files.exists(path) ? Files.readAllBytes(path) : null);
+                result.put(path, readGameFile(path));
             }
             return result;
         });
@@ -166,12 +170,19 @@ final class EndingSmokeTest {
 
     private static void assertUnchanged(Map<Path, byte[]> before) {
         before.forEach((path, bytes) -> {
-            try {
-                byte[] after = Files.exists(path) ? Files.readAllBytes(path) : null;
-                if (!Arrays.equals(bytes, after)) throw new AssertionError("Ending changed " + path.getFileName());
-            } catch (IOException exception) {
-                throw new AssertionError("Could not verify unchanged game files", exception);
+            if (!Arrays.equals(bytes, readGameFile(path))) {
+                throw new AssertionError("Ending changed " + path.getFileName());
             }
         });
+    }
+
+    // Fabric propagates the callback's exception type to runOnClient/computeOnClient callers.
+    // Convert checked I/O failures to test failures at both snapshot and comparison time.
+    private static byte[] readGameFile(Path path) {
+        try {
+            return Files.exists(path) ? Files.readAllBytes(path) : null;
+        } catch (IOException exception) {
+            throw new AssertionError("Could not read game file " + path.getFileName(), exception);
+        }
     }
 }
