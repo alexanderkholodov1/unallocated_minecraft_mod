@@ -33,7 +33,7 @@ The production client gametest also transitions CLIMAX→EPILOGUE through the re
 asserts a vanilla disconnect and stopped server, clicks through to title, and inspects the actual
 rendered splash (also after title reinitialization). It reopens the same save in a new server instance,
 checks the finished state/ending flag/persisted counter and no repeated ending, then verifies splash
-reset after a later ordinary exit. A second world explicitly enables commands and asserts gamemaster
+reset after a later ordinary exit. The fixture explicitly arms its disposable worlds; a second world enables commands and asserts gamemaster
 permission before sending the real player command `unallocated act EPILOGUE`, then repeats the
 screen/title checks. This is a fresh session: a finished save cannot naturally repeat its ending;
 an explicit debug act jump can reactivate it as documented by core. Options, server list and any contract receipt are

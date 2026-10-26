@@ -76,7 +76,8 @@ def verify(artifact, properties, policy, included_hashes):
                 'Declared nested jars differ from allowlist')
         require({name for name in names if name.lower().endswith('.jar')} == set(expected),
                 'Actual nested jars differ from allowlist')
-        require(not any(name.startswith('org/unallocated/smoke/') for name in names),
+        require(not any(name.startswith(('org/unallocated/smoke/', 'org/unallocated/client/mixin/interfacefxsmoke/'))
+                        or name == 'unallocated-interface-smoke.mixins.json' for name in names),
                 'Smoke helper leaked into player jar')
         depends = {
             'fabricloader': '>=' + properties['loader_version'],

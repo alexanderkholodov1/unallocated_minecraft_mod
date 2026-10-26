@@ -124,6 +124,6 @@ then reopens the single-player save and verifies CLIMAX progress and finished-se
 It checks the exact production player JAR first. These new game assertions must pass CI; a local
 type-check alone does not prove game behavior.
 
-Alpha.1.6's six-module manifest, identity-based JAR verifier, notices and clean one-JAR harness
+The integrated seven-module manifest, resolved-input hash JAR verifier, notices and clean one-JAR harness
 remain authoritative. Core needs no additional Fabric module. The optional full-API coexistence
 smoke retains separate diagnostics and runs its command checks without another reload.

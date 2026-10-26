@@ -2,7 +2,7 @@
 
 Verified on **2026-10-26 (UTC)**. [CI run 40337283681](https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40337283681), commit `a2d8abd`, built the seven-module player jar and passed resolved-input hash verification. Both server and client passed for clean installs and external API **0.161.0+26.3** and **0.165.0+26.3**. The oldest API **0.153.1+26.3** failed on both sides with its own obsolete class/mixin targets. This revision excludes external API `<0.161.0` and changes that profile to require Loader's dependency rejection; its first result is pending. The seven-module artifact from that run measured **627,050 bytes**, below the 2 MiB gate.
 
-The four files in `docs/intent/` remain the owner's intent. `UPDATES-2026-10-26.md` takes precedence: single-player first, judges at home on unknown machines, minimal installation, milestone-based delivery. This package implements infrastructure only; it adds no horror mechanics, map, voice collection, or inference service.
+The four files in `docs/intent/` remain the owner's intent. `UPDATES-2026-10-26.md` takes precedence: single-player first, judges at home on unknown machines, minimal installation, milestone-based delivery. The integrated milestone includes contract, core, interface effects, bait, map, ending and audio tools; it has no voice collection or inference service. Package-era evidence below is retained as dated history; the integrated workflow and milestone reconciliation describe the complete current checks.
 
 ## Selected versions and evidence
 
@@ -107,7 +107,7 @@ Twenty-two Python tests exercise watchdog failures and adversarial packaging fix
 
 ## Core integration (v0.1.7)
 
-The core keeps v0.1.6's six-module manifest, identity-based JAR verifier, notices and clean
+The core keeps the integrated seven-module manifest, resolved-input hash JAR verifier, notices and clean
 one-JAR client/server installation checks. No additional Fabric module is needed. JUnit tests
 run during `build`; the server smoke explicitly arms its disposable world, then requires
 `/unallocated act LOBBY` and `status` evidence,
@@ -128,10 +128,22 @@ Player guidance at installation and troubleshooting is: "Si ya tienes Fabric API
 
 Twenty-eight Python tests exercise watchdog failures, the tested compatibility boundary, exact Loader-rejection evidence, archive/content tampering and dependency ranges/conflicts without Java. `~/Workspaces/mc-ref/javacheck.sh` passed all three Java sources before committing. Successful startup and include-input hashes are confirmed by CI run 40337283681; the new rejection path awaits the next CI result. A human still needs a home installation and world entry on real graphics hardware, including OpenGL. No owner product decisions are pending.
 
-Alpha.1.7 review corrections: the core now leaves unarmed worlds dormant and clean (no session
+v0.1.7 review corrections: the core now leaves unarmed worlds dormant and clean (no session
 file), records the client-only CONTRACT boundary and starts at LOBBY on first JOIN in an armed
 world. Successful `build all` arms automatically; direct template builders use the server-thread
 `CoreRuntime.arm(server)` hook before saving. The real client smoke adds unarmed/armed join,
 no-cheats rescue/cooldown, client act sync and single-player save/reopen assertions. These checks
 require the next green CI run. Core-only server smoke uses explicit admin arming; gameplay rescue
 can never create/start/reactivate a session. See the integration notes for event and feature gates.
+
+## Integrated v0.1.0 execution
+
+The workflow preserves the four API compatibility profiles, contract first/restart processes,
+core save/reload, map regeneration and persistence, real bait entity checks, every rendered
+interface effect, ending shutdown/reload and real audio-engine coverage. All six production
+mixin configurations are registered. Graphics dependencies use the image-keyed cache with
+official Ubuntu fallback when its dependency closure is incomplete. Gradle daemon, Loom and
+server-download caches are reused. Current step limits are six minutes for the server, ten
+minutes for client orchestration and twenty-five minutes for each matrix job. Historical
+package-only test counts and run IDs above do not establish integrated milestone acceptance;
+see [the reconciliation record](../integration/MILESTONE-v0.1.0.md).

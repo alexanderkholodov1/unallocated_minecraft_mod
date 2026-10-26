@@ -22,7 +22,7 @@ public final class EndingController {
     private EndingController() {}
 
     /** Called from EPILOGUE after any outcome-specific scene/report has completed.
-     * Alpha.3 may pass TERMINATED/CONSUMED and its own message through this same save/close path.
+     * v0.3 may pass TERMINATED/CONSUMED and its own message through this same save/close path.
      * A finished session never closes again on reload; debug act jumps explicitly reactivate it.
      */
     public static void close(ServerPlayer player, Ending ending) {
