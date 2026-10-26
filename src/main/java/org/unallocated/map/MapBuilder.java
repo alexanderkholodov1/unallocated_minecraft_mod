@@ -29,24 +29,36 @@ public final class MapBuilder {
             throw new IllegalArgumentException("Unknown map section: " + sectionId);
         }
         if (sectionId.equals("all")) {
+            UnallocatedMod.LOGGER.info("UNALLOCATED map build section=all phase=clear");
             clear(level, MapLayout.ISLAND);
+            UnallocatedMod.LOGGER.info("UNALLOCATED map build section=all phase=terrain");
             terrain(level);
             for (var section : SECTIONS.values()) buildSection(level, section);
         } else buildSection(level, SECTIONS.get(sectionId));
+        UnallocatedMod.LOGGER.info("UNALLOCATED map build section={} phase=configure", sectionId);
         configure(level);
+        UnallocatedMod.LOGGER.info("UNALLOCATED map build section={} phase=verify", sectionId);
         MapVerifier.verify(level, sectionId);
         UnallocatedMod.LOGGER.info("UNALLOCATED map built section={}", sectionId);
     }
     private static void buildSection(ServerLevel level, MapSection section) {
+        UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=clear", section.id());
         clear(level, MapLayout.section(section.id()).bounds());
+        UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=place", section.id());
         section.build(new MapWriter(level, MapLayout.section(section.id())));
+        UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=shapes", section.id());
         var b = MapLayout.section(section.id()).bounds();
         for (var pos : BlockPos.betweenClosed(b.minX(), b.minY(), b.minZ(), b.maxX(), b.maxY(), b.maxZ())) {
             var state = level.getBlockState(pos);
             if (!state.isAir()) MapWriter.place(level, pos, Block.updateFromNeighbourShapes(state, level, pos));
         }
+        UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=complete", section.id());
     }
     private static void clear(ServerLevel level, MapLayout.BlockBox box) {
+        if (!level.isInsideBuildHeight(box.minY()) || !level.isInsideBuildHeight(box.maxY())) {
+            throw new IllegalArgumentException("Map box exceeds dimension build height: " + box
+                + ", minY=" + level.getMinY() + ", height=" + level.getHeight());
+        }
         for (var pos : BlockPos.betweenClosed(box.minX(), box.minY(), box.minZ(), box.maxX(), box.maxY(), box.maxZ())) {
             if (!level.getBlockState(pos).isAir()) MapWriter.place(level, pos, Blocks.AIR.defaultBlockState());
         }

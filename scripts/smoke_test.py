@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SMOKE = ROOT / '.tmp' / 'smoke'
 FATAL = re.compile(
     r'Encountered an unexpected exception|Exception in thread|'
-    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed', re.I
+    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|UNALLOCATED map command failed', re.I
 )
 
 
@@ -167,7 +167,7 @@ def server(with_fabric_api=False):
         'level-name=smoke-world\nlevel-type=minecraft:flat\n'
         'generator-settings={"layers":[{"block":"minecraft:air","height":1}],"biome":"unallocated:lobby","structure_overrides":[]}\n'
         'generate-structures=false\nview-distance=2\nsimulation-distance=2\n'
-        'max-players=1\nsync-chunk-writes=false\n'
+        'max-players=1\nsync-chunk-writes=false\npause-when-empty-seconds=-1\n'
     )
     temp = directory / 'temp'
     temp.mkdir()

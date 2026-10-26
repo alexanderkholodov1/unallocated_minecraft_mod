@@ -84,6 +84,14 @@ class WatchdogTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'crash'):
             self.run_fixture("print('Exception in thread main',file=sys.stderr)\n", required=())
 
+    def test_map_command_exception_fails_before_waiting_for_success_timeout(self):
+        with self.assertRaisesRegex(RuntimeError, 'Game crash detected'):
+            self.run_fixture(
+                "log.write_text('UNALLOCATED map command failed operation=build all\\nIllegalStateException: fixture\\n')\n"
+                "time.sleep(20)\n",
+                required=('UNALLOCATED map built section=all',), timeout=1,
+            )
+
     def test_hanging_process_is_killed_on_timeout(self):
         with self.assertRaisesRegex(RuntimeError, 'Timed out'):
             self.run_fixture('time.sleep(20)\n', timeout=0.3)

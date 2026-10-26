@@ -41,6 +41,12 @@ weather and time 11000. World spawn is `lobby.spawn` with its camera direction. 
 world settings; ordinary worlds are untouched unless an administrator explicitly builds there.
 The custom biome has no natural mob spawns or generated features, a muted blue sky and no music.
 
+The disposable smoke servers additionally set `pause-when-empty-seconds=-1`, so no-player checks
+continue ticking. Map commands catch exceptions, log their full causal stack with
+`UNALLOCATED map command failed operation=...`, report failure to the source and return zero.
+The smoke watchdog treats that marker as an immediate failure. Build logs identify the active
+phase and section; placement exceptions include the requested block state and world position.
+
 ## Coordinate contract
 
 Ground is Y=63; standing feet are normally Y=64. The roughly 180×168 island is inside
@@ -95,11 +101,15 @@ the nine views above. The Python watchdog requires the final tour marker and eve
 image alone cannot pass. Screenshots may have Fabric's numerical filename prefix. Download the
 workflow's `smoke-diagnostics-<sha>` artifact and look under `screenshots/`.
 
-Host validation: Python watchdog/packaging tests pass (23); `git diff --check` passes. The coordinator's
+Host validation: Python watchdog/packaging tests pass (24); `git diff --check` passes. The coordinator's
 lightweight `mc-ref/javacheck.sh` type-checks all 33 Java source files against the pinned reference
 JARs with JDK 25: `javac exit 0 (OK)`. Colored blocks use 26.3's `ColorCollection` accessors.
-Gradle and the game were not run on the worker host. The new JUnit checks, runtime assertions and
-screenshots still need the coordinator's CI result.
+Gradle and the game were not run on the worker host. Runtime assertions and screenshots still
+need the coordinator's CI result. CI run 40302464275 passed compilation and
+all five layout JUnit tests, then failed during the first dedicated build with Minecraft's generic
+command error. Its artifact contains no underlying stack trace; the diagnostic changes above
+are intended to expose that exception on the next run. The underlying runtime failure is not
+yet established from the available evidence.
 
 Human/coordinator review remains essential: signs readable at normal settings; believable old
 small-server construction; hill/spyglass sightline with default entity distance; clear torch route;

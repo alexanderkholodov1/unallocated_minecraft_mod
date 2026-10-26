@@ -40,8 +40,17 @@ public final class MapWriter {
         place(level, pos, state);
     }
     static void place(ServerLevel level, BlockPos pos, BlockState state) {
-        level.setBlock(pos, state, Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS
-            | Block.UPDATE_SKIP_BLOCK_ENTITY_SIDEEFFECTS);
+        final boolean changed;
+        try {
+            changed = level.setBlock(pos, state, Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS
+                | Block.UPDATE_SKIP_BLOCK_ENTITY_SIDEEFFECTS);
+        } catch (RuntimeException exception) {
+            throw new IllegalStateException("Map placement failed at " + pos + " for " + state, exception);
+        }
+        if (!changed && level.getBlockState(pos) != state) {
+            throw new IllegalStateException("Map placement rejected at " + pos + ": requested " + state
+                + ", actual " + level.getBlockState(pos));
+        }
     }
     public void fill(int x1, int y1, int z1, int x2, int y2, int z2, Block block) {
         for (int x = x1; x <= x2; x++) for (int y = y1; y <= y2; y++) for (int z = z1; z <= z2; z++) put(x, y, z, block);
@@ -53,7 +62,7 @@ public final class MapWriter {
     public void sign(int x, int y, int z, Direction facing, String a, String b, String c, String d) {
         put(x, y, z, Blocks.OAK_WALL_SIGN.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, facing));
         var sign = (SignBlockEntity) level.getBlockEntity(section.at(x, y, z));
-        if (sign == null) throw new IllegalStateException("Missing sign block entity");
+        if (sign == null) throw new IllegalStateException("Missing sign block entity at " + section.at(x, y, z));
         List<Component> lines = List.of(Component.literal(a), Component.literal(b), Component.literal(c), Component.literal(d));
         var text = new SignText(lines, lines, DyeColor.BLACK, false);
         sign.setText(text, SignTextSlot.FRONT);
