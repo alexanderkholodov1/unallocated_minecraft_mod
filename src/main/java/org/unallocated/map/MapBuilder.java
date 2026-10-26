@@ -2,6 +2,7 @@ package org.unallocated.map;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -28,24 +29,27 @@ public final class MapBuilder {
         if (!sectionId.equals("all") && !SECTIONS.containsKey(sectionId)) {
             throw new IllegalArgumentException("Unknown map section: " + sectionId);
         }
+        var writers = new ArrayList<MapWriter>();
         if (sectionId.equals("all")) {
             UnallocatedMod.LOGGER.info("UNALLOCATED map build section=all phase=clear");
             clear(level, MapLayout.ISLAND);
             UnallocatedMod.LOGGER.info("UNALLOCATED map build section=all phase=terrain");
             terrain(level);
-            for (var section : SECTIONS.values()) buildSection(level, section);
-        } else buildSection(level, SECTIONS.get(sectionId));
+            for (var section : SECTIONS.values()) writers.add(buildSection(level, section));
+        } else writers.add(buildSection(level, SECTIONS.get(sectionId)));
         UnallocatedMod.LOGGER.info("UNALLOCATED map build section={} phase=configure", sectionId);
         configure(level);
+        writers.forEach(MapWriter::finishSigns);
         UnallocatedMod.LOGGER.info("UNALLOCATED map build section={} phase=verify", sectionId);
         MapVerifier.verify(level, sectionId);
         UnallocatedMod.LOGGER.info("UNALLOCATED map built section={}", sectionId);
     }
-    private static void buildSection(ServerLevel level, MapSection section) {
+    private static MapWriter buildSection(ServerLevel level, MapSection section) {
         UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=clear", section.id());
         clear(level, MapLayout.section(section.id()).bounds());
         UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=place", section.id());
-        section.build(new MapWriter(level, MapLayout.section(section.id())));
+        var writer = new MapWriter(level, MapLayout.section(section.id()));
+        section.build(writer);
         UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=shapes", section.id());
         var b = MapLayout.section(section.id()).bounds();
         for (var pos : BlockPos.betweenClosed(b.minX(), b.minY(), b.minZ(), b.maxX(), b.maxY(), b.maxZ())) {
@@ -53,6 +57,7 @@ public final class MapBuilder {
             if (!state.isAir()) MapWriter.place(level, pos, Block.updateFromNeighbourShapes(state, level, pos));
         }
         UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=complete", section.id());
+        return writer;
     }
     private static void clear(ServerLevel level, MapLayout.BlockBox box) {
         if (!level.isInsideBuildHeight(box.minY()) || !level.isInsideBuildHeight(box.maxY())) {

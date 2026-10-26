@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.entity.SignTextSlot;
+import net.minecraft.world.level.block.entity.SignText;
 import org.unallocated.UnallocatedMod;
 
 /** Real-world checks used after authoring and by CI again after saving/reloading. */
@@ -121,10 +122,21 @@ public final class MapVerifier {
         }
     }
     private static void signContains(ServerLevel level, String id, String expected) {
-        if (!(level.getBlockEntity(MapLayout.landmark(id)) instanceof SignBlockEntity sign)
-                || !sign.isWaxed() || sign.getText(SignTextSlot.FRONT).getMessages(false).stream()
-                    .anyMatch(line -> line.getString().equals(expected))) {
-            throw new IllegalStateException("Wrong map sign at " + id);
+        var pos = MapLayout.landmark(id);
+        var entity = level.getBlockEntity(pos);
+        String expectation = "Wrong map sign at " + id + " " + pos + "; expected FRONT/unfiltered line=\"" + expected + "\", waxed=true";
+        if (!(entity instanceof SignBlockEntity sign)) {
+            throw new IllegalStateException(expectation + "; found block=" + level.getBlockState(pos) + ", entity=" + entity);
         }
+        var front = sign.getText(SignTextSlot.FRONT);
+        var back = sign.getText(SignTextSlot.BACK);
+        if (!sign.isWaxed() || !signLines(front, false).contains(expected)) {
+            throw new IllegalStateException(expectation + "; found waxed=" + sign.isWaxed()
+                + ", front/unfiltered=" + signLines(front, false) + ", front/filtered=" + signLines(front, true)
+                + ", back/unfiltered=" + signLines(back, false) + ", back/filtered=" + signLines(back, true));
+        }
+    }
+    private static java.util.List<String> signLines(SignText text, boolean filtered) {
+        return text.getMessages(filtered).stream().map(line -> line.getString()).toList();
     }
 }
