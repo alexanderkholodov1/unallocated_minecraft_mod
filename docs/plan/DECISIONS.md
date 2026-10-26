@@ -6,21 +6,21 @@ Formato de respuesta sugerido para el dueño: `D-03: B` o `D-07: A, pero …`.
 
 ## Resumen
 
-| # | Decisión | Recomendación | Bloquea |
+| # | Decisión | Recomendación | Bloquea | Respuesta del operador
 |---|---|---|---|
-| D-01 | ¿Núcleo sin IA externa ni voz? | Sí | todo alpha.1 |
-| D-02 | Fabric API para el juez | Dentro de nuestro JAR (jar-in-jar) | alpha.1.3, página |
-| D-03 | Cómo empieza el juez | Botón "UNALLOCATED" en el título + ZIP de respaldo | alpha.1.7 |
-| D-04 | Cómo se construye el mapa | Por código, pulible a mano | alpha.1.6 |
-| D-05 | "De acuerdo" | Escrito | alpha.1.4 |
-| D-06 | Idioma del texto filtrado | Mixto (español al jugador, logs en inglés) | alpha.2.7 |
-| D-07 | Finales | Dos: tijeras + `kill -9` (B) / consumido (A) | alpha.3.8 |
-| D-08 | Shaders propios | No imprescindibles; efectos vanilla | alpha.2–3 |
-| D-09 | Hilos en un jugador | "Quien más sabe, más ve" + siempre se oyen | alpha.3.6 |
-| D-10 | Recursos y sonido | CC0/acreditados; vanilla alterado en tiempo de ejecución | alpha.1.10 |
-| D-21 | Ajustes que cambian | En memoria, sin tocar `options.txt` | alpha.2.5 |
-| D-11 | Director | Ritmo + aprendizaje visible, sin bandit | alpha.2.2 |
-| D-12…D-20 | Subir temprano, probadores, nombres, ritual, ancla, reglas, licencia, memoria, orden robo/escalera | ver abajo | alpha.6 |
+| D-01 | ¿Núcleo sin IA externa ni voz? | Sí | todo alpha.1 | Sí.
+| D-02 | Fabric API para el juez | Dentro de nuestro JAR (jar-in-jar) | alpha.1.3, página | Sí
+| D-03 | Cómo empieza el juez | Botón "UNALLOCATED" en el título + ZIP de respaldo | alpha.1.7 | Sí
+| D-04 | Cómo se construye el mapa | Por código, pulible a mano | alpha.1.6 | Sí
+| D-05 | "De acuerdo" | Escrito | alpha.1.4 |  Sí
+| D-06 | Idioma del texto filtrado | Mixto (español al jugador, logs en inglés) | alpha.2.7 | Sí
+| D-07 | Finales | Dos: tijeras + `kill -9` (B) / consumido (A) | alpha.3.8 | No estoy seguro, estas distorcionando porque yo propuse finales distintos.
+| D-08 | Shaders propios | No imprescindibles; efectos vanilla | alpha.2–3 | No, podemos usar shaders creados por alguien.
+| D-09 | Hilos en un jugador | "Quien más sabe, más ve" + siempre se oyen | alpha.3.6 | Interesante, pero me debes explicar bien
+| D-10 | Recursos y sonido | CC0/acreditados; vanilla alterado en tiempo de ejecución | alpha.1.10 | Prefiero B
+| D-21 | Ajustes que cambian | En memoria, sin tocar `options.txt` | alpha.2.5 | Prefiero B
+| D-11 | Director | Ritmo + aprendizaje visible, sin bandit | alpha.2.2 | Como fuimos por construir un mapa no se que tan aplicable sea
+| D-12…D-20 | Subir temprano, probadores, nombres, ritual, ancla, reglas, licencia, memoria, orden robo/escalera | ver abajo | alpha.6 | Vamos a entregar la primera version COMPLETA; yo hago las pruebas; apruebo; B; no lo explicaste bien, pero supongo que A; B; si; me gusta!; esta bien.
 
 ---
 
