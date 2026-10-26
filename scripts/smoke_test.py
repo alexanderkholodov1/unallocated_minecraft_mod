@@ -213,7 +213,7 @@ def client():
             r'UNALLOCATED initialized \(common\)\.',
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
-            r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
+            r'UNALLOCATED smoke: seven Fabric API modules loaded from player JAR; screen hook verified\.',
         ] + audio_evidence(), timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,

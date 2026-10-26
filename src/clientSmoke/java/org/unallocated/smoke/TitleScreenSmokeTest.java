@@ -71,11 +71,11 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest, ClientM
                 bundledModules++;
             }
         }
-        if (bundledModules != 6) {
-            throw new AssertionError("Expected exactly six bundled API modules, got " + bundledModules);
+        if (bundledModules != 7) {
+            throw new AssertionError("Expected exactly seven bundled API modules, got " + bundledModules);
         }
         LoggerFactory.getLogger("unallocated-smoke").info(
-                "UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified.");
+                "UNALLOCATED smoke: seven Fabric API modules loaded from player JAR; screen hook verified.");
         context.takeScreenshot("unallocated-title");
         LoggerFactory.getLogger("unallocated-smoke").info(
                 "UNALLOCATED smoke: title screen reached from player JAR.");

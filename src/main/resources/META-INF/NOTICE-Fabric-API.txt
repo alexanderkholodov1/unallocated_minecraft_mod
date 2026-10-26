@@ -4,7 +4,7 @@ Source: https://github.com/FabricMC/fabric/tree/26.3
 
 Included modules: fabric-api-base, fabric-command-api-v2,
 fabric-lifecycle-events-v1, fabric-networking-api-v1,
-fabric-resource-loader-v1, fabric-screen-api-v1.
+fabric-resource-loader-v1, fabric-screen-api-v1, fabric-registry-sync-v0.
 
 The Apache License 2.0 is reproduced in licenses/Fabric-API-Apache-2.0.txt
 (relative to this META-INF directory). Each nested module also retains its

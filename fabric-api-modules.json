@@ -30,6 +30,11 @@
       "version": "5.2.4+48607d035d",
       "environment": "client",
       "reason": "Client screen initialization and extraction hooks."
+    },
+    "fabric-registry-sync-v0": {
+      "version": "8.0.4+1ca9f6365d",
+      "environment": "*",
+      "reason": "Enables mod content registration before registry freeze and synchronizes custom sound event IDs."
     }
   }
 }

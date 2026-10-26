@@ -26,7 +26,8 @@
     "fabric-lifecycle-events-v1": ">=${fabric_lifecycle_events_v1_version}",
     "fabric-networking-api-v1": ">=${fabric_networking_api_v1_version}",
     "fabric-resource-loader-v1": ">=${fabric_resource_loader_v1_version}",
-    "fabric-screen-api-v1": ">=${fabric_screen_api_v1_version}"
+    "fabric-screen-api-v1": ">=${fabric_screen_api_v1_version}",
+    "fabric-registry-sync-v0": ">=${fabric_registry_sync_v0_version}"
   },
   "mixins": [
     {

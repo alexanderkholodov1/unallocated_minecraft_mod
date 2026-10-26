@@ -73,6 +73,18 @@ class PackagingTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'allowlist'):
                     self.check()
 
+    def test_registry_sync_cannot_be_omitted_from_player(self):
+        module_id = 'fabric-registry-sync-v0'
+        self.assertIn(module_id, self.policy['modules'])
+        original = deepcopy(self.entries)
+        del self.entries[self.module_path(module_id)]
+        with self.assertRaisesRegex(ValueError, 'allowlist'):
+            self.check()
+        self.entries = original
+        del self.meta['depends'][module_id]
+        with self.assertRaisesRegex(ValueError, 'Wrong player dependencies'):
+            self.check()
+
     def test_repackaged_module_with_same_identity_passes(self):
         path = self.meta['jars'][0]['file']
         original = self.entries[path]
@@ -99,7 +111,7 @@ class PackagingTest(unittest.TestCase):
                 'environment': '*', 'license': 'Apache-2.0'}
         for changes, extras, error in [({'id': 'fabric-api'}, {}, 'identity'),
                 ({'version': '999.0.0'}, {}, 'identity'),
-                ({'depends': {'fabric-registry-sync-v0': '*'}}, {}, 'Missing nested dependency'),
+                ({'depends': {'fabric-rendering-v1': '*'}}, {}, 'Missing nested dependency'),
                 ({}, {'hidden.jar': b'bad'}, 'recursive')]:
             with self.subTest(error=error):
                 self.set_module(module_id, {**good, **changes}, extras)
