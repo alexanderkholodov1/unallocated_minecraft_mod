@@ -44,6 +44,7 @@ jobs:
           import json
           from pathlib import Path
           from zipfile import ZipFile
+          from scripts.mixin_packages import verify_mixin_packages
 
           properties = dict(
               line.split('=', 1) for line in Path('gradle.properties').read_text().splitlines()
@@ -53,6 +54,7 @@ jobs:
           artifact = Path(f'build/libs/unallocated-{version}.jar')
           with ZipFile(artifact) as jar:
               assert jar.testzip() is None, 'Corrupt JAR entry'
+              verify_mixin_packages(jar)
               metadata_text = jar.read('fabric.mod.json').decode('utf-8')
               assert '${' not in metadata_text, 'Unexpanded metadata'
               metadata = json.loads(metadata_text)

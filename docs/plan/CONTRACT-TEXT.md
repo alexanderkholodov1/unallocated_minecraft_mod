@@ -96,6 +96,13 @@ cree el recibo y abra el título. Otro proceso con el mismo directorio comprueba
 el recibo. En el primer proceso se prueba también volver a la pantalla y aceptar con el botón sin reescribir el
 recibo original; JUnit prueba la opción de replay entre sesiones.
 
+El mixin vive en `org.unallocated.client.mixin.contract`; la pantalla y su lógica quedan en
+`org.unallocated.client.contract`. El verificador del JAR (`scripts/mixin_packages.py`) recorre todas las
+configuraciones registradas en `fabric.mod.json`, incluidas las incorporadas al fusionar otros paquetes, y exige
+que toda clase dentro de sus paquetes y subpaquetes tenga la anotación de clase `@Mixin`. También comprueba que
+existan las clases registradas. Sus pruebas Python reproducen el fallo de arranque por mezclar lógica con mixins,
+sin cargar esas clases ni ejecutar Java.
+
 Revisión humana pendiente: legibilidad y foco con distintas escalas de GUI, teclado, narrador, redacción y tono de los
 guiños, instalación en casa y grabación del vídeo. La prueba headless no decide si el tono produce la emoción buscada.
 
