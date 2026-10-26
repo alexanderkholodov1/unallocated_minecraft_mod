@@ -12,7 +12,7 @@ import org.unallocated.client.interfacefx.InterfaceEffects;
 
 @Mixin(Gui.class)
 abstract class InterfaceGuiMixin {
-    @Inject(method = "setScreen", at = @At("HEAD"))
+    @Inject(require = 0, method = "setScreen", at = @At("HEAD"))
     private void interface$restoreBeforePreferenceEditor(Screen screen, CallbackInfo ci) {
         if (screen instanceof OptionsScreen || screen instanceof OptionsSubScreen) {
             InterfaceEffects.restoreSettings();

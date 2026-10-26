@@ -13,7 +13,7 @@ import org.unallocated.client.interfacefx.InterfaceEffects;
 abstract class InterfaceLoadingMixin {
     @Shadow @Final private static Component DOWNLOADING_TERRAIN_TEXT;
 
-    @Redirect(method = "extractRenderState", at = @At(value = "FIELD", target =
+    @Redirect(require = 0, method = "extractRenderState", at = @At(value = "FIELD", target =
             "Lnet/minecraft/client/gui/screens/LevelLoadingScreen;DOWNLOADING_TERRAIN_TEXT:Lnet/minecraft/network/chat/Component;"))
     private Component interface$loadingLeak() {
         return InterfaceEffects.replacement(InterfaceEffects.Effect.LOADING, DOWNLOADING_TERRAIN_TEXT);

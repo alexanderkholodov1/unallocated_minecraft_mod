@@ -9,13 +9,13 @@ import org.unallocated.client.interfacefx.InterfaceEffects;
 
 @Mixin(Minecraft.class)
 abstract class InterfaceMinecraftMixin {
-    @Inject(method = "tick", at = @At("HEAD"))
+    @Inject(require = 0, method = "tick", at = @At("HEAD"))
     private void interface$expire(CallbackInfo ci) { InterfaceEffects.tick(); }
 
-    @Inject(method = {"disconnect(Lnet/minecraft/client/gui/screens/Screen;ZZ)V", "clearClientLevel"}, at = @At("HEAD"))
+    @Inject(require = 0, method = {"disconnect(Lnet/minecraft/client/gui/screens/Screen;ZZ)V", "clearClientLevel"}, at = @At("HEAD"))
     private void interface$restoreOnWorldExit(CallbackInfo ci) { InterfaceEffects.leaveWorld(); }
 
-    @Inject(method = "close", at = @At("HEAD"))
+    @Inject(require = 0, method = "close", at = @At("HEAD"))
     private void interface$restoreBeforeClose(CallbackInfo ci) { InterfaceEffects.clear(); }
 
 }

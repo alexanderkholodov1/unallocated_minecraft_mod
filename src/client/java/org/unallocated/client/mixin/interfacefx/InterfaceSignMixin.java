@@ -13,7 +13,7 @@ import org.unallocated.client.interfacefx.InterfaceEffects;
 
 @Mixin(AbstractSignRenderer.class)
 abstract class InterfaceSignMixin {
-    @Inject(method = "extractRenderState(Lnet/minecraft/world/level/block/entity/SignBlockEntity;Lnet/minecraft/client/renderer/blockentity/state/SignRenderState;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V", at = @At("RETURN"))
+    @Inject(require = 0, method = "extractRenderState(Lnet/minecraft/world/level/block/entity/SignBlockEntity;Lnet/minecraft/client/renderer/blockentity/state/SignRenderState;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V", at = @At("RETURN"))
     private void interface$languageInRenderState(SignBlockEntity sign, SignRenderState state,
             float partialTicks, Vec3 camera, ModelFeatureRenderer.CrumblingOverlay breaking, CallbackInfo ci) {
         state.frontText = InterfaceEffects.signText(sign.getBlockPos(), state.frontText);

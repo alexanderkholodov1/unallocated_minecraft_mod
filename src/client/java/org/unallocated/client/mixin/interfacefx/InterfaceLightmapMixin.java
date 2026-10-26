@@ -17,14 +17,14 @@ abstract class InterfaceLightmapMixin {
     @Unique private float interface$darkness;
     @Unique private boolean interface$wasActive;
 
-    @Inject(method = "extract", at = @At("HEAD"))
+    @Inject(require = 0, method = "extract", at = @At("HEAD"))
     private void interface$updatePerception(LightmapRenderState state, float partialTick, CallbackInfo ci) {
         interface$darkness = InterfaceEffects.perceivedDarkness();
         if (interface$darkness > 0 || interface$wasActive) needsUpdate = true;
         interface$wasActive = interface$darkness > 0;
     }
 
-    @Inject(method = "extract", at = @At("RETURN"))
+    @Inject(require = 0, method = "extract", at = @At("RETURN"))
     private void interface$perceivedDarkness(LightmapRenderState state, float partialTick, CallbackInfo ci) {
         if (interface$darkness > 0) {
             float original = state.darknessEffectScale;

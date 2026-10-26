@@ -9,7 +9,7 @@ import org.unallocated.client.interfacefx.InterfaceEffects;
 
 @Mixin(DeathScreen.class)
 abstract class InterfaceDeathScreenMixin {
-    @Redirect(method = "visitText(Lnet/minecraft/client/gui/ActiveTextCollector;)V", at = @At(value = "FIELD", target =
+    @Redirect(require = 0, method = "visitText(Lnet/minecraft/client/gui/ActiveTextCollector;)V", at = @At(value = "FIELD", target =
             "Lnet/minecraft/client/gui/screens/DeathScreen;causeOfDeath:Lnet/minecraft/network/chat/Component;"))
     private Component interface$entityVoice(DeathScreen screen) {
         return InterfaceEffects.replacement(InterfaceEffects.Effect.DEATH,

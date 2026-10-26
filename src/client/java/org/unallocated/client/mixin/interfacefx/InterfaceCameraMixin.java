@@ -10,7 +10,7 @@ import org.unallocated.client.interfacefx.InterfaceEffects;
 @Mixin(Camera.class)
 abstract class InterfaceCameraMixin {
     // Camera.update stores this result and passes that field to setupPerspective; getFov is only a reader.
-    @Inject(method = "calculateFov(F)F", at = @At("RETURN"), cancellable = true)
+    @Inject(require = 0, method = "calculateFov(F)F", at = @At("RETURN"), cancellable = true)
     private void interface$perceivedFov(float partialTick, CallbackInfoReturnable<Float> cir) {
         cir.setReturnValue(InterfaceEffects.perceivedFov(cir.getReturnValueF()));
     }

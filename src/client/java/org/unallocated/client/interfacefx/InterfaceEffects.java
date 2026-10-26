@@ -44,7 +44,8 @@ public final class InterfaceEffects {
     private static long lastAny = Long.MIN_VALUE;
     private static final long COOLDOWN = 60_000_000_000L;
     private static final long GLOBAL_COOLDOWN = 15_000_000_000L;
-    private static final Map<AdvancementToast, Long> TOASTS = new WeakHashMap<>();
+    private record OwnedToast(long end, boolean invented) { }
+    private static final Map<AdvancementToast, OwnedToast> TOASTS = new WeakHashMap<>();
     private static final Map<String, Integer> OBSERVED = new HashMap<>();
     public record Application(double original, double adjusted) { }
     private static final EnumMap<Effect, Application> APPLICATIONS = new EnumMap<>(Effect.class);
@@ -74,6 +75,9 @@ public final class InterfaceEffects {
         tick();
         long now = System.nanoTime();
         if (request.effect != Effect.SPLASH && request.effect != Effect.LOADING && client.level == null) return false;
+        // A hidden or disabled position entry cannot carry the effect. Refusal consumes no cooldown.
+        if (request.effect == Effect.F3 && (!client.debugEntries.isOverlayVisible()
+                || !client.debugEntries.isCurrentlyEnabled(Identifier.withDefaultNamespace("player_position")))) return false;
         if (!debug && ((lastAny != Long.MIN_VALUE && now - lastAny < GLOBAL_COOLDOWN)
                 || (LAST.containsKey(request.effect) && now - LAST.get(request.effect) < COOLDOWN))) return false;
         var existingAdvancement = request.effect == Effect.ADVANCEMENT && request.advancementId != null
@@ -99,7 +103,7 @@ public final class InterfaceEffects {
                                 AdvancementType.TASK, true, false, true)
                         .build(Identifier.fromNamespaceAndPath("unallocated", "interface/phantom_" + Long.toUnsignedString(request.seed)));
                 var toast = new AdvancementToast(holder);
-                TOASTS.put(toast, now + request.ticks * 50_000_000L);
+                TOASTS.put(toast, new OwnedToast(now + request.ticks * 50_000_000L, existingAdvancement == null));
                 client.gui.toastManager().addToast(toast);
             }
             default -> { }
@@ -127,14 +131,14 @@ public final class InterfaceEffects {
     public static void leaveWorld() {
         restoreSettings();
         ACTIVE.keySet().removeIf(effect -> effect != Effect.SPLASH && effect != Effect.LOADING);
-        TOASTS.replaceAll((toast, end) -> 0L);
+        TOASTS.replaceAll((toast, owned) -> new OwnedToast(0L, owned.invented));
     }
 
     /** Director cancellation and debug emergency stop; cooldowns are deliberately retained. */
     public static void clear() {
         restoreSettings();
         ACTIVE.clear();
-        TOASTS.replaceAll((toast, end) -> 0L);
+        TOASTS.replaceAll((toast, owned) -> new OwnedToast(0L, owned.invented));
     }
 
     public static boolean active(Effect effect) {
@@ -173,10 +177,10 @@ public final class InterfaceEffects {
     }
 
     public static boolean hideExpiredToast(AdvancementToast toast) {
-        Long end = TOASTS.get(toast);
-        if (end == null) return false;
+        OwnedToast owned = TOASTS.get(toast);
+        if (owned == null) return false;
         observe("ADVANCEMENT");
-        return System.nanoTime() >= end;
+        return System.nanoTime() >= owned.end;
     }
 
     private static Component text(Request request, String channel) {
@@ -209,6 +213,12 @@ public final class InterfaceEffects {
     public static Application application(Effect effect) { return APPLICATIONS.get(effect); }
 
     public static boolean ownsToast(AdvancementToast toast) { return TOASTS.containsKey(toast); }
+    public static boolean inventedToast(AdvancementToast toast) {
+        OwnedToast owned = TOASTS.get(toast);
+        return owned != null && owned.invented;
+    }
+    public static void observedVanillaToastTitle() { observe("ADVANCEMENT_VANILLA_TITLE"); }
+    public static void observedChatCommand() { observe("CHAT"); }
     public static void observedToastTitle() { observe("ADVANCEMENT_TITLE"); }
 
     // Lightweight evidence for the real client smoke helper; no telemetry is written or sent.

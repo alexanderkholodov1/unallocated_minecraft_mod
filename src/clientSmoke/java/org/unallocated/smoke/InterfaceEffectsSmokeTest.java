@@ -7,13 +7,14 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.gui.screens.options.OptionsScreen;
-import net.minecraft.client.multiplayer.LevelLoadTracker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.entity.SignTextSlot;
 import org.slf4j.LoggerFactory;
@@ -49,19 +50,31 @@ final class InterfaceEffectsSmokeTest {
                 for (int generation = 0; generation < 6; generation++) {
                     String leak = InterfaceTexts.line("goal", generation, language).getString();
                     require(!leak.startsWith("interface.unallocated"), "Missing language resource");
+                    for (int seed = 0; seed < 4; seed++) {
+                        var title = InterfaceTexts.inventedAdvancement(generation, language, seed);
+                        int width = client.font.width(title);
+                        require(!title.getString().startsWith("interface.unallocated") && width <= 125,
+                                "Invented toast exceeds native width: " + language + "/g" + generation
+                                        + "/seed" + seed + " width=" + width + " text=" + title.getString());
+                        require(InterfaceTexts.fitInventedTitle(client.font, title, 125) == title,
+                                "Default titles must fit without ellipsis");
+                    }
                 }
             }
+        });
+        context.runOnClient(client -> {
+            var longTitle = net.minecraft.network.chat.Component.literal("Buscar miedo fuera de todos los límites");
+            String fitted = InterfaceTexts.fitInventedTitle(client.font, longTitle, 70).getString();
+            require(fitted.endsWith("…") && client.font.width(fitted) <= 70
+                    && longTitle.getString().startsWith(fitted.substring(0, fitted.length() - 1) + " "),
+                    "Resource-pack fallback must use whole words and ellipsis");
+            LoggerFactory.getLogger("unallocated-smoke").info(
+                    "UNALLOCATED interface smoke: 72 invented titles fit 125 px without clipping.");
         });
         context.waitTicks(3);
         context.takeScreenshot("unallocated-interface-splash");
         observed(context, "SPLASH");
 
-        context.runOnClient(client -> require(InterfaceEffects.debugTrigger(request(Effect.LOADING, 600)), "Arm loading text"));
-        context.setScreen(() -> new LevelLoadingScreen(new LevelLoadTracker(), LevelLoadingScreen.Reason.OTHER));
-        context.waitTicks(3);
-        context.takeScreenshot("unallocated-interface-loading");
-        observed(context, "LOADING");
-        context.setScreen(TitleScreen::new);
         context.runOnClient(client -> InterfaceEffects.clear());
 
         var baselineBytes = new AtomicReference<byte[]>();
@@ -76,18 +89,30 @@ final class InterfaceEffectsSmokeTest {
                     throw new AssertionError("Cannot read options baseline", failure);
                 }
                 baselineValues.set(List.of(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get()));
+                client.debugEntries.setOverlayVisible(false);
+                require(!InterfaceEffects.debugTrigger(request(Effect.F3, 60)), "Hidden F3 must refuse the beat");
                 client.debugEntries.setOverlayVisible(true);
                 var position = Identifier.withDefaultNamespace("player_position");
                 if (!client.debugEntries.isCurrentlyEnabled(position)) client.debugEntries.toggleStatus(position);
                 System.setProperty("unallocated.interface.debug", "false");
                 System.setProperty("unallocated.interface.debug.quiet", "false");
                 int feedbackBefore = InterfaceDebugCommand.feedbackCount();
-                require(InterfaceDebugCommand.handle("/uinterface fov"), "Disabled debug command is consumed locally");
+                client.gui.setScreen(new ChatScreen("", false));
+                int chatBefore = InterfaceEffects.observed("CHAT");
+                ((ChatScreen) client.gui.screen()).handleChatInput("/uinterface fov", false);
+                require(InterfaceEffects.observed("CHAT") > chatBefore, "Disabled command must reach real ChatScreen interception");
                 require(feedbackBefore == InterfaceDebugCommand.feedbackCount() && !InterfaceEffects.active(Effect.FOV),
                         "Disabled debug must be silent and must not trigger effects");
                 System.setProperty("unallocated.interface.debug", "true");
                 System.setProperty("unallocated.interface.debug.quiet", "true");
-                require(InterfaceDebugCommand.handle("/uinterface f3 60 2 es .5 17"), "Debug command interception");
+                chatBefore = InterfaceEffects.observed("CHAT");
+                ((ChatScreen) client.gui.screen()).handleChatInput("/uinterface help", false);
+                require(InterfaceEffects.observed("CHAT") > chatBefore, "Real ChatScreen help submission must be intercepted");
+                ((ChatScreen) client.gui.screen()).handleChatInput("/uinterface f3 60 2 es .5 17", false);
+                require(InterfaceEffects.active(Effect.F3), "Real ChatScreen submission must dispatch F3");
+                client.gui.setScreen(null);
+                LoggerFactory.getLogger("unallocated-smoke").info(
+                        "UNALLOCATED interface smoke: real ChatScreen consumed disabled, help and F3 submissions.");
             });
             context.waitTicks(3);
             context.takeScreenshot("unallocated-interface-f3");
@@ -104,6 +129,7 @@ final class InterfaceEffectsSmokeTest {
             context.takeScreenshot("unallocated-interface-advancement");
             observed(context, "ADVANCEMENT");
             observed(context, "ADVANCEMENT_TITLE");
+            context.runOnClient(client -> InterfaceEffects.clear());
             world.getServer().runCommand("advancement grant @a only minecraft:story/root");
             context.waitFor(client -> client.getConnection().getAdvancements().get(Identifier.withDefaultNamespace("story/mine_stone")) != null);
             context.runOnClient(client -> {
@@ -115,6 +141,7 @@ final class InterfaceEffectsSmokeTest {
                 require(advancements.progress().entrySet().stream().allMatch(entry ->
                         progressBefore.get(entry.getKey()) == entry.getValue().isDone()), "Toast must never award actual advancement progress");
             });
+            context.waitFor(client -> InterfaceEffects.observed("ADVANCEMENT_VANILLA_TITLE") > 0);
 
             BlockPos sign = context.computeOnClient(client -> client.player.blockPosition().offset(0, 0, 3));
             world.getServer().runCommand("setblock " + sign.getX() + " " + (sign.getY() - 1) + " " + sign.getZ() + " minecraft:stone");
@@ -192,6 +219,25 @@ final class InterfaceEffectsSmokeTest {
                         "User settings must clear perception overrides first");
             });
             context.setScreen(() -> null);
+            // A real server-driven dimension transfer creates this screen; never construct a loading screen in the test.
+            int loadingBefore = context.computeOnClient(client -> InterfaceEffects.observed("LOADING"));
+            context.runOnClient(client -> {
+                require(InterfaceEffects.debugTrigger(request(Effect.LOADING, 600)), "Arm real transition loading caption");
+                LoadingTransitionProbe.holdForCapture();
+            });
+            try {
+                world.getServer().runCommand("execute in minecraft:the_nether run tp @a 0 100 0");
+                context.waitForScreen(LevelLoadingScreen.class);
+                context.waitFor(client -> client.level != null && client.level.dimension() == Level.NETHER
+                        && InterfaceEffects.observed("LOADING") > loadingBefore);
+                context.takeScreenshot("unallocated-interface-loading");
+                observed(context, "LOADING");
+                LoggerFactory.getLogger("unallocated-smoke").info(
+                        "UNALLOCATED interface smoke: loading caption rendered during real overworld-to-nether transfer.");
+            } finally {
+                context.runOnClient(client -> LoadingTransitionProbe.release());
+            }
+            context.waitFor(client -> client.gui.screen() == null && client.player != null);
             // Vanilla may save while an options screen closes; establish its normal serialized baseline.
             context.runOnClient(client -> {
                 try {

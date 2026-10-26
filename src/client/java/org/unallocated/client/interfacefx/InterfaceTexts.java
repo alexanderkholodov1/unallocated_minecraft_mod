@@ -1,8 +1,8 @@
 package org.unallocated.client.interfacefx;
 
 import java.util.Locale;
-import java.util.Random;
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.client.gui.Font;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.Component;
 
 /** Narrative is in resource language files, independent of the player's UI language. */
@@ -19,13 +19,20 @@ public final class InterfaceTexts {
     }
 
     public static Component inventedAdvancement(int generation, LeakLanguage language, long seed) {
-        var random = new Random(seed);
-        // Seeded grammatical fragments intentionally degrade; no external model/service is claimed.
+        // Each generation has its own short vocabulary; seed variants never hide the ladder in a suffix.
         String variant = language.name().toLowerCase(Locale.ROOT);
-        String prefix = I18n.get("interface.unallocated.generated.prefix." + variant + "." + random.nextInt(4));
-        String object = I18n.get("interface.unallocated.generated.object." + variant + "." + random.nextInt(4));
-        if (generation == 5) object = prefix + " / " + object;
-        return Component.translatable("interface.unallocated.generated.title", prefix, object,
-                String.format(Locale.ROOT, "%04X", seed & 0xffff), generation);
+        return Component.translatable("interface.unallocated.generated." + variant + ".g" + generation
+                + "." + Math.floorMod(seed, 4));
+    }
+
+    /** Resource packs may replace our short titles. Preserve whole words if their text exceeds the native line. */
+    public static FormattedText fitInventedTitle(Font font, FormattedText title, int width) {
+        if (font.width(title) <= width) return title;
+        String text = title.getString().strip();
+        while (!text.isEmpty() && font.width(text + "…") > width) {
+            int boundary = text.lastIndexOf(' ');
+            text = boundary < 0 ? "" : text.substring(0, boundary).stripTrailing();
+        }
+        return Component.literal(font.width("…") <= width ? text + "…" : "");
     }
 }

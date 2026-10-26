@@ -8,6 +8,8 @@ the primary integration target. Nothing fires automatically. A later director/ma
 
 Call `org.unallocated.client.interfacefx.InterfaceEffects.trigger(Request)` on the Minecraft client thread.
 It returns `false` when the world, cooldown, settings editor or requested advancement is unavailable.
+F3 is also refused while the debug overlay or its player-position entry is hidden; refusal consumes no cooldown.
+The director must check visibility and skip that beat when it is hidden. F3 is not armed for later display.
 Invalid parameters throw `IllegalArgumentException`; an off-thread call throws `IllegalStateException`.
 The director should treat a refusal as a skipped beat, never retry it every tick.
 
@@ -31,11 +33,11 @@ No networking, world mutation, inference service, Fabric API runtime dependency 
 
 | Name | Maximum duration | Behavior and preserved functionality |
 | --- | --- | --- |
-| `F3` | 60 ticks / 3 s | Replaces only the XYZ display with coordinates beyond the world boundary and an impossible depth. Block/Chunk/Facing, actual position, F3+C clipboard, targeting and physics stay truthful. It neither enables F3 nor changes the player's debug profile. |
+| `F3` | 60 ticks / 3 s | Replaces only the XYZ display with coordinates beyond the world boundary and an impossible depth. Block/Chunk/Facing, actual position, F3+C clipboard, targeting and physics stay truthful. Accepted only with F3 and its player-position entry already visible. It neither enables F3 nor changes the player's debug profile. |
 | `DEATH` | 600 ticks / 30 s armed window | Rewrites the cause line while an actual vanilla death screen renders. It neither kills the player nor changes respawn buttons, death packets, signed chat or the server's death history. Expiry restores the original line, even while the screen remains open. |
 | `SPLASH` | 600 ticks / 30 s | Replaces the title screen's native splash component at render time. Respects the player's Hide Splash Texts option. |
 | `LOADING` | 600 ticks / 30 s | Replaces the native LevelLoadingScreen terrain-loading caption. Generations 0–2 leak the goal; generations 3–5 leak log-like failure lines. The real chunk/progress display and narration of numeric loading progress remain intact. |
-| `ADVANCEMENT` | 100 ticks / 5 s | Adds a native AdvancementToast without registering an advancement, awarding criteria/rewards, changing progress or sending packets. Toolkit toast titles are clipped to one native line so the title appears below the header immediately, including during the first second. With no ID it composes a deterministic invented title; with an ID it uses an advancement already known to the client's advancement tree. An unknown ID is refused. |
+| `ADVANCEMENT` | 100 ticks / 5 s | Adds a native AdvancementToast without registering an advancement, awarding criteria/rewards, changing progress or sending packets. With no ID it chooses a deterministic invented title whose generation is expressed in its words; all bundled variants fit the native 125 px line and appear below the header immediately. Resource-pack replacements fall back to whole-word ellipsis if necessary. With an ID it uses an advancement already known to the client's advancement tree, preserving vanilla wrapping and styling. An unknown ID is refused. |
 | `SENSITIVITY` | 100 ticks / 5 s | A 0.92…1.08 multiplier applied only when MouseHandler reads sensitivity; actual options stay unchanged. |
 | `FOV` | 100 ticks / 5 s | A 0.96…1.04 multiplier applied to Camera.calculateFov before Camera.update stores it and builds the perspective projection, preserving normal camera/spyglass behavior outside the effect. |
 | `GAMMA` | 100 ticks / 5 s | Smooth 2 Hz darkness variations, at most 0.08 added to vanilla lightmap darkness. Respects the player's Darkness Effect Scale; never changes gamma or applies a status effect. |
@@ -103,8 +105,9 @@ The UI language is never switched globally or reloaded. Each request independent
 The short sign lines, death lines, log lines and goals track g0…g5, with failed acquisition, retained human data,
 copying over copies, the frustration of making each attempt worse and finally repetition without meaning.
 
-Invented advancement titles are seeded fragment composition, not a claim of a running LLM or real goal learning.
-Generation 5 repeats fragments to make the degradation apparent. Existing advancement titles follow the player's
+Invented advancement titles select from four compact localized variants per generation, not a claim of a running LLM
+or real goal learning. The seed selects the variant modulo four. The words move from acquiring fear to retaining
+humans, copying copies, failed retries, endless loops and finally repetition; no generation suffix can be clipped away. Existing advancement titles follow the player's
 own vanilla localization; only the invented/leaked text follows the request's leak language.
 
 **Recommendation, not a closed decision:** Spanish for narrative clarity in a short solo session; use `mixed`
@@ -120,6 +123,9 @@ This replaces the earlier source-mirror assumptions: the debug reply uses public
 redirects the cause field in `visitText(ActiveTextCollector)`, where the real renderer reads it.
 Mixins live exclusively in `org.unallocated.client.mixin.interfacefx` and test-only
 `org.unallocated.client.mixin.interfacefxsmoke`; runtime logic remains outside both namespaces.
+The production cosmetic configuration is optional (`required: false`, `defaultRequire: 0`), with explicit `require = 0`
+on each injector, so a missing hotfix target can disable its effect instead of failing injection. The test helper
+configuration stays strict, and CI still requires every effect to reach its real render/consumer hook.
 
 The binary audit now includes client game-test API 6.0.11+131f8d475d, game-test API
 4.0.35+3434d6d95d and Fabric Loader 0.20.1 from the coordinator's resolved dependencies.
@@ -151,7 +157,8 @@ The existing production-client game test now also:
 
 - Renders native splash/loading/F3/advancement/sign/death hooks and takes six named screenshots; the Python watchdog
   requires all six valid PNG signatures and the explicit restoration success marker, in addition to the title smoke.
-- Exercises all three leak languages, checks missing keys, request bounds, global cooldown and the local command handler.
+- Exercises all three leak languages, checks missing keys, request bounds and global cooldown. Real `ChatScreen.handleChatInput`
+  submissions exercise disabled debug, `/uinterface help` and an F3 trigger; an interception counter must increase.
 - Keeps real F3 navigation lines unchanged, checks a sign remains unmodified on the server, and checks displaying an
   existing advancement does not award progress. A real server `/kill` opens the death screen.
 - Requires changed values at all three native perception consumers, calls normal vanilla save while overrides are active,
@@ -162,17 +169,25 @@ The existing production-client game test now also:
   FOV is verified on the stored camera value used by `setupPerspective`, rather than by intercepting its getter.
   Darkness is observed after changing `LightmapRenderState.darknessEffectScale`, the value uploaded by `Lightmap.render`.
   Every phase logs its effect name and original/adjusted values; a failed wait names the missing consumer.
-- Requires the toast title hook and verifies a disabled debug command emits no chat feedback and dispatches no effect.
+- Checks `font.width(title) <= 125` without truncation across seeds 0–3 × generations 0–5 × all three leak languages
+  (72 titles); exercises whole-word ellipsis as a resource-pack fallback. Requires the invented title hook and the
+  original vanilla split path for a real unearned advancement. Disabled debug emits no chat feedback or effect.
+- Refuses hidden F3 and then renders its corruption with the overlay visible.
+- Arms loading text before a real server command transfers the player from overworld to Nether, requires a fresh
+  loading observation in the new dimension and captures that native screen. A test-only mixin defers `onClose`
+  until the screenshot (30-second safety bound, always released in `finally`); the real tracker and renderer run.
+  No loading screen is constructed by the helper.
 - Leaves the world with an override active, checks it cleared and confirms normal saves leave the same option bytes.
 
-The smoke helper and raw-mouse accessor remain outside the player JAR; artifact verification rejects their classes,
+The smoke helper, raw-mouse accessor and loading-capture mixin remain outside the player JAR; artifact verification rejects their classes,
 test entrypoints, nested dependencies and test mixin config. Dedicated-server smoke still uses only the player JAR.
 JUnit XML/HTML and client screenshots/logs are uploaded in diagnostics. Fourteen Python watchdog tests run without Java.
 
-The coordinator confirmed run 40273949425 on f84c8b6 green with actual effect screenshots. The corrected native-consumer
-perception probes require a new green CI run; no Java or Gradle was run locally.
+The coordinator confirmed run 40296513141 on aa4066d green: all three JUnit tests and native perception probes
+passed, with actual effect screenshots. The review fixes above require a fresh CI run.
 
-No Java or Gradle is run on the shared scaffold host. Python checks and static JSON/diff checks can run locally.
+The coordinator-provided `mc-ref/javacheck.sh` type-checks all Java against the real 26.3 and resolved Fabric JARs
+locally; Gradle and real-game execution remain CI-only. Python checks and static JSON/diff checks also run locally.
 CI result/diagnostics must be reviewed before merging; the sandbox cannot reach the private GitHub API directly.
 Human playthrough still needs to judge subtlety, readability at ordinary UI scales, perceived gamma/FOV intensity,
 the warning/consent integration and the director/map's spacing across a full 10–15 minute session.

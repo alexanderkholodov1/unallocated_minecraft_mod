@@ -1,5 +1,5 @@
 {
-  "required": true,
+  "required": false,
   "package": "org.unallocated.client.mixin.interfacefx",
   "compatibilityLevel": "JAVA_25",
   "client": [
@@ -19,6 +19,6 @@
     "InterfaceLightmapMixin"
   ],
   "injectors": {
-    "defaultRequire": 1
+    "defaultRequire": 0
   }
 }

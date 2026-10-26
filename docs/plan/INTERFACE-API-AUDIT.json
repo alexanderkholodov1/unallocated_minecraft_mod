@@ -6,7 +6,7 @@
     "fabric-client-gametest-api-v1-6.0.11+131f8d475d.jar": "0fa9479bbb68f1ac0c941a8466f84e02efbaa5eb9b72ccd2d53b6f6c4d942592",
     "fabric-loader-0.20.1.jar": "d0c5a082e07410aaff9de7ab196aa6b4236002870f9ba3ad5c1260fcce5110ad"
   },
-  "verification": "Python class-file inspection of official Minecraft and resolved Fabric JARs only; this revision still requires CI.",
+  "verification": "Official Minecraft/Fabric class-file inspection and mc-ref/javacheck.sh type-check; this revision still requires real-game CI.",
   "checked_members": [
     "public static net.minecraft.client.Minecraft.getInstance()Lnet/minecraft/client/Minecraft;",
     "public net.minecraft.client.Minecraft.getConnection()Lnet/minecraft/client/multiplayer/ClientPacketListener;",
@@ -20,7 +20,6 @@
     "public static net.minecraft.network.chat.Component.translatable(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;",
     "public static net.minecraft.network.chat.Component.translatable(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;",
     "public net.minecraft.network.chat.Component.getString()Ljava/lang/String;",
-    "public static net.minecraft.client.resources.language.I18n.get(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;",
     "public net.minecraft.client.gui.Gui.screen()Lnet/minecraft/client/gui/screens/Screen;",
     "public net.minecraft.client.gui.Gui.setScreen(Lnet/minecraft/client/gui/screens/Screen;)V",
     "public net.minecraft.client.gui.Gui.toastManager()Lnet/minecraft/client/gui/components/toasts/ToastManager;",
@@ -62,9 +61,8 @@
     "public net.minecraft.client.gui.components.debug.DebugScreenEntryList.isCurrentlyEnabled(Lnet/minecraft/resources/Identifier;)Z",
     "public net.minecraft.client.gui.components.debug.DebugScreenEntryList.toggleStatus(Lnet/minecraft/resources/Identifier;)Z",
     "public net.minecraft.client.gui.screens.TitleScreen.<init>()V",
-    "public net.minecraft.client.gui.screens.LevelLoadingScreen.<init>(Lnet/minecraft/client/multiplayer/LevelLoadTracker;Lnet/minecraft/client/gui/screens/LevelLoadingScreen$Reason;)V",
+    "public net.minecraft.client.gui.screens.ChatScreen.<init>(Ljava/lang/String;Z)V",
     "public net.minecraft.client.gui.screens.options.OptionsScreen.<init>(Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/Options;)V",
-    "public net.minecraft.client.multiplayer.LevelLoadTracker.<init>()V",
     "public final net.minecraft.client.Minecraft.guiLnet/minecraft/client/gui/Gui;",
     "public final net.minecraft.client.Minecraft.optionsLnet/minecraft/client/Options;",
     "public net.minecraft.client.Minecraft.levelLnet/minecraft/client/multiplayer/ClientLevel;",
@@ -77,7 +75,6 @@
     "public static final net.minecraft.advancements.AdvancementType.TASKLnet/minecraft/advancements/AdvancementType;",
     "public static final net.minecraft.world.level.block.entity.SignTextSlot.FRONTLnet/minecraft/world/level/block/entity/SignTextSlot;",
     "public static final net.minecraft.client.gui.components.toasts.Toast$Visibility.HIDELnet/minecraft/client/gui/components/toasts/Toast$Visibility;",
-    "public static final net.minecraft.client.gui.screens.LevelLoadingScreen$Reason.OTHERLnet/minecraft/client/gui/screens/LevelLoadingScreen$Reason;",
     "public net.minecraft.client.renderer.blockentity.state.SignRenderState.frontTextLnet/minecraft/world/level/block/entity/SignText;",
     "private final net.minecraft.client.gui.screens.DeathScreen.causeOfDeathLnet/minecraft/network/chat/Component;",
     "private final net.minecraft.client.gui.components.SplashRenderer.splashLnet/minecraft/network/chat/Component;",
@@ -105,7 +102,8 @@
     "public net.minecraft.client.renderer.state.LightmapRenderState.needsUpdateZ",
     "public net.minecraft.client.renderer.state.LightmapRenderState.darknessEffectScaleF",
     "public net.minecraft.client.gui.Font.split(Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;",
-    "public net.minecraft.client.gui.Font.plainSubstrByWidth(Ljava/lang/String;I)Ljava/lang/String;",
+    "public net.minecraft.client.gui.Font.width(Ljava/lang/String;)I",
+    "public net.minecraft.client.gui.Font.width(Lnet/minecraft/network/chat/FormattedText;)I",
     "public net.minecraft.network.chat.FormattedText.getString()Ljava/lang/String;",
     "public static net.minecraft.network.chat.Component.literal(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;",
     "public abstract net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest.runTest(Lnet/fabricmc/fabric/api/client/gametest/v1/context/ClientGameTestContext;)V",
@@ -146,6 +144,11 @@
     "net.minecraft.client.Camera.update -> opcode 182 net.minecraft.client.Camera.calculateFov(F)F",
     "net.minecraft.client.Camera.update -> opcode 181 net.minecraft.client.Camera.fovF",
     "net.minecraft.client.Camera.update -> opcode 182 net.minecraft.client.Camera.setupPerspective(FFFFF)V",
-    "net.minecraft.client.renderer.Lightmap.render -> opcode 180 net.minecraft.client.renderer.state.LightmapRenderState.darknessEffectScaleF"
+    "net.minecraft.client.renderer.Lightmap.render -> opcode 180 net.minecraft.client.renderer.state.LightmapRenderState.darknessEffectScaleF",
+    "public net.minecraft.client.gui.components.debug.DebugScreenEntryList.isOverlayVisible()Z",
+    "public net.minecraft.client.gui.screens.LevelLoadingScreen.onClose()V",
+    "public net.minecraft.world.level.Level.dimension()Lnet/minecraft/resources/ResourceKey;",
+    "public static final net.minecraft.world.level.Level.NETHERLnet/minecraft/resources/ResourceKey;",
+    "public final net.minecraft.client.Minecraft.fontLnet/minecraft/client/gui/Font;"
   ]
 }
