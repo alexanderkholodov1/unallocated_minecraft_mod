@@ -24,7 +24,7 @@
     "fabric-registry-sync-v0": {
       "version": "8.0.4+1ca9f6365d",
       "environment": "*",
-      "reason": "Content registry synchronization; required by v0.1.11 audio registration."
+      "reason": "Allows custom sound registration before registry freeze and synchronizes mod registry IDs."
     },
     "fabric-resource-loader-v1": {
       "version": "3.1.0+5af7744b5d",
@@ -35,11 +35,6 @@
       "version": "5.2.4+48607d035d",
       "environment": "client",
       "reason": "Client screen initialization and extraction hooks."
-    },
-    "fabric-registry-sync-v0": {
-      "version": "8.0.4+1ca9f6365d",
-      "environment": "*",
-      "reason": "Enables mod content registration before registry freeze and synchronizes custom sound event IDs."
     }
   },
   "smoke_api_versions": [

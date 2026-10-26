@@ -20,8 +20,14 @@ debs=("$archives"/*.deb)
 if (( ${#debs[@]} )); then
     # The cache is scoped to the runner image and this script. Install real packages,
     # including their dependencies, rather than overlaying cached system libraries.
-    sudo apt-get install -y --no-download --no-install-recommends "${debs[@]}"
-else
+    if sudo apt-get install -y --no-download --no-install-recommends "${debs[@]}"; then
+        echo 'Installed cached headless graphics packages.'
+    else
+        echo 'Cached package dependency closure is incomplete; resolving from Ubuntu.'
+        debs=()
+    fi
+fi
+if (( ${#debs[@]} == 0 )); then
     # Avoid the slow Azure mirror and avoid updating unrelated third-party repos.
     source_file="$PWD/.tmp/headless.sources"
     cat > "$source_file" <<'SOURCES'

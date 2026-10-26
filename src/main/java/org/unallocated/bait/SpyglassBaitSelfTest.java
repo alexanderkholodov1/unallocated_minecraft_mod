@@ -31,14 +31,26 @@ final class SpyglassBaitSelfTest {
 
     private SpyglassBaitSelfTest() { }
 
-    private record Run(ServerLevel level, BlockPos origin, int[] waited) { }
+    private static final class Run {
+        final ServerLevel level;
+        final BlockPos origin;
+        final List<String> problems = new ArrayList<>();
+        int waited;
+        @Nullable Mannequin figure;
+        @Nullable Vec3 spot;
+        @Nullable Vec3 next;
+        @Nullable Vec3 viewer;
+        Run(ServerLevel level, BlockPos origin) { this.level = level; this.origin = origin; }
+        ServerLevel level() { return level; }
+        BlockPos origin() { return origin; }
+    }
 
     private static @Nullable UUID figureId;
 
     /** Force-loads the chunk at {@code origin}; the checks run once it is loaded. */
     static void start(ServerLevel level, BlockPos origin) {
         level.setChunkForced(origin.getX() >> 4, origin.getZ() >> 4, true);
-        run = new Run(level, origin, new int[1]);
+        run = new Run(level, origin);
         UnallocatedMod.LOGGER.info("UNALLOCATED bait selftest started at {}", origin.toShortString());
     }
 
@@ -49,21 +61,27 @@ final class SpyglassBaitSelfTest {
     static void tick(MinecraftServer server) {
         Run current = run;
         if (current == null || current.level().getServer() != server) return;
-        if (++current.waited()[0] < 5 || !current.level().hasChunkAt(current.origin())) {
-            if (current.waited()[0] > TIMEOUT_TICKS) finish(current, "chunk never loaded");
+        if (++current.waited > TIMEOUT_TICKS) {
+            finish(current, current.figure == null ? "chunk never loaded" : "not found in level after entity activation");
             return;
         }
-        String failure;
         try {
-            failure = check(current.level(), current.origin());
+            if (current.figure == null) {
+                if (current.waited < 5 || !current.level.hasChunkAt(current.origin)) return;
+                String failure = prepare(current);
+                if (failure != null) finish(current, failure);
+                return; // Entity visibility is applied by the chunk/entity manager on a subsequent tick.
+            }
+            if (current.level.getEntity(current.figure.getUUID()) != current.figure) return;
+            finish(current, checkActive(current));
         } catch (RuntimeException exception) {
             UnallocatedMod.LOGGER.error("UNALLOCATED bait selftest threw", exception);
-            failure = exception.toString();
+            finish(current, exception.toString());
         }
-        finish(current, failure);
     }
 
     private static void finish(Run current, @Nullable String failure) {
+        if (current.figure != null && !current.figure.isRemoved()) current.figure.discard();
         run = null;
         figureId = null;
         current.level().setChunkForced(current.origin().getX() >> 4, current.origin().getZ() >> 4, false);
@@ -74,7 +92,9 @@ final class SpyglassBaitSelfTest {
         }
     }
 
-    private static @Nullable String check(ServerLevel level, BlockPos origin) {
+    private static @Nullable String prepare(Run current) {
+        ServerLevel level = current.level;
+        BlockPos origin = current.origin;
         int surface = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, origin.getX(), origin.getZ());
         double eyeY = surface + 1.62;
         Vec3 spot = SpyglassBaitFigure.groundAt(level, origin.getX() + 0.5, origin.getZ() + 0.5, eyeY);
@@ -84,7 +104,7 @@ final class SpyglassBaitSelfTest {
         ResolvableProfile profile = ResolvableProfile.createUnresolved(UUID.fromString("00000000-0000-4000-8000-000000000412"));
         Mannequin figure = SpyglassBaitFigure.create(level, profile, HumanoidArm.LEFT);
         if (figure == null) return "mannequin not created";
-        List<String> problems = new ArrayList<>();
+        List<String> problems = current.problems;
         if (!((Object) figure instanceof BaitMannequinInvoker invoker)) {
             problems.add("mannequin accessor mixin not applied");
         } else {
@@ -102,17 +122,27 @@ final class SpyglassBaitSelfTest {
         Vec3 viewer = spot.add(0, 1.62, 10);
         if (!SpyglassBaitFigure.spawn(level, figure, spot, viewer)) return "addFreshEntity refused: " + problems;
         figureId = figure.getUUID();
-        try {
-            if (level.getEntity(figure.getUUID()) != figure) problems.add("not found in level");
-            if (!figure.isUsingItem()) problems.add("spyglass not raised");
-            if (figure.shouldBeSaved()) problems.add("would be saved (save mixin not applied)");
-            double turn = (SpyglassBaitFigure.yawToward(spot, viewer) - figure.getYHeadRot()) % 360.0;
-            if (Math.abs((turn + 540.0) % 360.0 - 180.0) > 1.0) problems.add("not facing");
-            SpyglassBaitFigure.moveTo(figure, next, viewer);
-            if (figure.position().distanceTo(next) > 1.0E-6) problems.add("move");
-        } finally {
-            figure.discard();
-        }
+        current.figure = figure;
+        current.spot = spot;
+        current.next = next;
+        current.viewer = viewer;
+        return null;
+    }
+
+    private static @Nullable String checkActive(Run current) {
+        Mannequin figure = java.util.Objects.requireNonNull(current.figure);
+        Vec3 spot = java.util.Objects.requireNonNull(current.spot);
+        Vec3 next = java.util.Objects.requireNonNull(current.next);
+        Vec3 viewer = java.util.Objects.requireNonNull(current.viewer);
+        List<String> problems = current.problems;
+        // tick() requires the exact spawned entity in the level before these checks can pass.
+        if (!figure.isUsingItem()) problems.add("spyglass not raised");
+        if (figure.shouldBeSaved()) problems.add("would be saved (save mixin not applied)");
+        double turn = (SpyglassBaitFigure.yawToward(spot, viewer) - figure.getYHeadRot()) % 360.0;
+        if (Math.abs((turn + 540.0) % 360.0 - 180.0) > 1.0) problems.add("not facing");
+        SpyglassBaitFigure.moveTo(figure, next, viewer);
+        if (figure.position().distanceTo(next) > 1.0E-6) problems.add("move");
+        figure.discard();
         if (!figure.isRemoved()) problems.add("not removed");
         UnallocatedMod.LOGGER.info(String.format(Locale.ROOT, "UNALLOCATED bait selftest figure at %.1f %.1f %.1f, %d problems",
                 spot.x, spot.y, spot.z, problems.size()));
