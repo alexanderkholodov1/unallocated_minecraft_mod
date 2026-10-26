@@ -11,6 +11,7 @@ public final class UnallocatedMod implements ModInitializer {
     @Override
     public void onInitialize() {
         org.unallocated.core.CoreRuntime.initialize();
+        org.unallocated.map.MapCommand.register();
         LOGGER.info("UNALLOCATED initialized (common).");
     }
 }

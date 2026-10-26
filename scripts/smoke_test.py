@@ -165,6 +165,7 @@ def server(with_fabric_api=False):
     (directory / 'server.properties').write_text(
         'server-ip=127.0.0.1\nserver-port=25565\nonline-mode=false\n'
         'level-name=smoke-world\nlevel-type=minecraft:flat\n'
+        'generator-settings={"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:plains","structures":{}}\n'
         'generate-structures=false\nview-distance=2\nsimulation-distance=2\n'
         'max-players=1\nsync-chunk-writes=false\n'
     )
@@ -196,7 +197,9 @@ def server(with_fabric_api=False):
     monitor(
         command, directory, SMOKE / f'{console_prefix}-console.log', startup + [entered, status],
         timeout=120, stop_when_ready=True, startup_required=startup,
-        command_steps=[('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
+        command_steps=[('unallocated build all', [r'UNALLOCATED map built section=all', r'UNALLOCATED map verified section=all']),
+                       ('unallocated mapcheck', [r'UNALLOCATED map verified section=all']),
+                       ('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
     )
     if with_fabric_api:
         return  # Coexistence check stays a single process; clean one-JAR smoke proves reload.
@@ -208,7 +211,8 @@ def server(with_fabric_api=False):
     monitor(
         command, directory, SMOKE / 'server-reload-console.log', startup + [status],
         timeout=120, stop_when_ready=True, startup_required=startup,
-        command_steps=[('unallocated status', [status])],
+        command_steps=[('unallocated mapcheck', [r'UNALLOCATED map verified section=all']),
+                       ('unallocated status', [status])],
     )
     assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
 
