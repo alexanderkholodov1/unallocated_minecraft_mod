@@ -30,6 +30,7 @@ final class InterfaceEffectsSmokeTest {
     private InterfaceEffectsSmokeTest() { }
 
     static void run(ClientGameTestContext context) {
+        context.setScreen(TitleScreen::new); // A fresh, non-fading title makes the native splash legible in the capture.
         context.runOnClient(client -> {
             require(InterfaceEffects.debugTrigger(request(Effect.SPLASH, 600)), "Arm title splash");
             require(!InterfaceEffects.trigger(request(Effect.LOADING, 600)), "Production API must enforce its global cooldown");
@@ -104,6 +105,7 @@ final class InterfaceEffectsSmokeTest {
             });
 
             BlockPos sign = context.computeOnClient(client -> client.player.blockPosition().offset(0, 0, 3));
+            world.getServer().runCommand("setblock " + sign.getX() + " " + (sign.getY() - 1) + " " + sign.getZ() + " minecraft:stone");
             world.getServer().runCommand("setblock " + sign.getX() + " " + sign.getY() + " " + sign.getZ() + " minecraft:oak_sign[rotation=8]");
             context.waitFor(client -> client.level.getBlockEntity(sign) instanceof SignBlockEntity);
             context.runOnClient(client -> {
