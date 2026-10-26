@@ -1,7 +1,7 @@
 # UNALLOCATED — Plan ejecutable por hitos
 
-*Paquete v1.0.0-alpha.1.2 · escrito el 2026-10-26 · basado en `docs/intent/` (los cuatro documentos del dueño, leídos completos).*
-*Compañeros: [`DECISIONS.md`](DECISIONS.md) (lo que debe decidir el dueño), [`VERIFIED.md`](VERIFIED.md) (hechos comprobados con fuente y fecha), y `TOOLCHAIN.md` de la rama `v1.0.0-alpha.1.1` (versiones, CI e instalación; aquí se cita, no se repite).*
+*Paquete v0.1.2 · escrito el 2026-10-26 · basado en `docs/intent/` (los cuatro documentos del dueño, leídos completos).*
+*Compañeros: [`DECISIONS.md`](DECISIONS.md) (lo que debe decidir el dueño), [`VERIFIED.md`](VERIFIED.md) (hechos comprobados con fuente y fecha), y `TOOLCHAIN.md` de la rama `v0.1.1` (versiones, CI e instalación; aquí se cita, no se repite).*
 
 > Regla de lectura. Las citas entre comillas son palabras del dueño, copiadas tal cual de `docs/intent/`. Donde este plan propone algo distinto, lo dice y lo argumenta; la decisión queda en `DECISIONS.md`. Etiquetas del dueño: **[FIJO]**, **[PROPUESTA]**, **[ABIERTO]**, **[VERIFICAR]**.
 
@@ -12,7 +12,7 @@
 - **Plazo duro:** 2026-10-28 23:59 UTC−5 (= 2026-10-29 04:59 UTC). El plan v0.1 del dueño ya ponía su margen: "Entregado antes del mediodía (cierre 23:59)".
 - **Qué cambió (UPDATES 2026-10-26, mandan sobre lo anterior):** "podemos crear un mapa construido de antemano para contar una historia, y dejar el tema del servidor y mundo abierto para despues del PoC"; un solo jugador primero ("no podemos depender de que obligatoriamente la experiencia funciona entre dos o mas personas"); "Los jueces NO JUGARAN EN VIVO EN EL AULA, lo mas probable es que cada uno lo hara desde casa"; "la experiencia si debe ser de 10-15 minutos"; hitos, no fechas.
 - **Consecuencia:** el plan v0.1 estaba dimensionado para 8 días, un servicio de inferencia en la DGX, voz clonada, modelos entrenados, puppets multijugador y un servidor para el aula. Para la jam queda **una experiencia de un jugador, 10–15 min, en un mapa pre-construido, que funciona sin red, sin micrófono y sin GPU especial** en la casa de cada juez. Todo lo demás se conserva, con sus palabras, en la sección 9 ("después del PoC"), no se borra.
-- **Forma de entrega:** siempre hay una build entregable. El hito **v1.0.0-alpha.1** ya es una entrega completa (pequeña); cada hito siguiente la amplía sin romperla. Se sube a itch.io temprano y se reemplaza el archivo a medida que pasan los hitos.
+- **Forma de entrega:** siempre hay una build entregable. El hito **v0.1.0** ya es una entrega completa (pequeña); cada hito siguiente la amplía sin romperla. Se sube a itch.io temprano y se reemplaza el archivo a medida que pasan los hitos.
 - **Instalación objetivo para el juez:** Minecraft 26.3 + Fabric Loader + **un solo JAR** nuestro (con los módulos de Fabric API que usemos empaquetados dentro; ver D-02). El mapa viene dentro del JAR y se abre con un botón en el menú principal (ver D-03), con un ZIP del mundo como respaldo.
 
 ---
@@ -53,7 +53,7 @@
 |---|---|---|---|
 | Instalación falla en casa del juez (versión, Fabric API faltante, Java del instalador en macOS) | Media | **Crítico** ("Estabilidad y facilidad de instalación") | Un JAR con módulos de Fabric API dentro (D-02); instrucciones por sistema (TOOLCHAIN.md); ensayo E5 en 2–3 máquinas ajenas; ZIP del mundo como respaldo. |
 | Render: 26.3 tiene **dos backends** (OpenGL por defecto en casa; Vulkan experimental) y **nuestra CI sólo prueba Vulkan** (OpenGL no arranca bajo Xvfb); requisitos mínimos oficiales subieron en 2026-07 | Media | Alto | Ningún shader propio imprescindible; efectos con mecánicas vanilla (entidades de display, niebla/atributos de entorno, overlays de HUD, cambios de bloques, efectos vanilla vía `/posteffect`). Toda partida [H] se hace una vez con "Graphics API: Prefer OpenGL" y otra con Vulkan. La página explica cómo cambiar esa opción si hay problemas gráficos. D-08. |
-| Al abrir un mundo con la dimensión propia, Minecraft muestra **"Worlds using Experimental Settings are not supported"** (probable, `VERIFIED.md` §2.3); el juez cree que algo está roto | Alta | Alto | La dimensión entra al JAR sólo junto con su supresión (alpha.3.1): abrir por nuestro propio camino o Mixin pequeño limitado a nuestro mundo; gametest con captura al abrir el mundo que falla si aparece la advertencia. |
+| Al abrir un mundo con la dimensión propia, Minecraft muestra **"Worlds using Experimental Settings are not supported"** (probable, `VERIFIED.md` §2.3); el juez cree que algo está roto | Alta | Alto | La dimensión entra al JAR sólo junto con su supresión (v0.3.1): abrir por nuestro propio camino o Mixin pequeño limitado a nuestro mundo; gametest con captura al abrir el mundo que falla si aparece la advertencia. |
 | El loop seamless se nota (pop de chunks, rotación, sonido) | Media-alta | Medio | Hito propio de prioridad P2, aislable; escalera con giros (la vista nunca supera un tramo); ambos tramos cargados; si falla, se corta (sección 7). |
 | Un juez se atasca o no entiende qué hacer | Media | Alto | Presupuestos por acto con avance forzado; objetivos diegéticos; comando de rescate `/unallocated siguiente` documentado en "Errores conocidos". |
 | Sólo el dueño puede jugar con GPU real; no está de noche | Alta | Alto | Pruebas automáticas en CI (gametests de servidor y de cliente con capturas bajo Xvfb, ya funcionan en TOOLCHAIN) para todo lo verificable; lista corta y explícita de lo que requiere partida humana (marcado **[H]**). |
@@ -110,13 +110,13 @@ Objetivo: **12 min típicos (9–16)**. Cada acto tiene un presupuesto; al agota
 
 | Acto | Lugar | Tiempo | Entra | Sale (o avance forzado) | Hito |
 |---|---|---|---|---|---|
-| 0 Contrato | pantalla antes del menú | ≤ 1 min | primer arranque | escribe "De acuerdo" | alpha.1 |
-| 1 El servidor abandonado | lobby + colina | 2–3 min | botón "UNALLOCATED" del menú | llega a la base; tope 3:30 → las antorchas del camino a la base se encienden una a una | alpha.1 / alpha.2 |
-| 2 El primer robo *(opcional)* | base → su copia en el pocket → base | 2–3 min | dentro de la base, en un momento de distracción | 60–90 s en la copia, o al romper/huir; vuelve y ve a su doble | alpha.4 |
-| 3 La escalera *(opcional)* | la mina | 2–3 min | entra a la mina | exploit encontrado, o tope (≈ 6 vueltas / 150 s) → el suelo se pudre y cae | alpha.5 |
-| 4 La dimensión podrida | pocket | 3–4 min | cae (desde la mina o la escalera) | llega al núcleo; tope → los hilos llevan al núcleo | alpha.3 |
-| 5 Apogeo y final | núcleo | 1–3 min | entra al núcleo | final B (hilos cortados) o final A (atrapado / tope) | alpha.3 |
-| Epílogo | pantallas | ≤ 1 min | final | vuelve al título con los ajustes restaurados | alpha.1 (v0) / alpha.3 |
+| 0 Contrato | pantalla antes del menú | ≤ 1 min | primer arranque | escribe "De acuerdo" | v0.1 |
+| 1 El servidor abandonado | lobby + colina | 2–3 min | botón "UNALLOCATED" del menú | llega a la base; tope 3:30 → las antorchas del camino a la base se encienden una a una | v0.1 / v0.2 |
+| 2 El primer robo *(opcional)* | base → su copia en el pocket → base | 2–3 min | dentro de la base, en un momento de distracción | 60–90 s en la copia, o al romper/huir; vuelve y ve a su doble | v0.4 |
+| 3 La escalera *(opcional)* | la mina | 2–3 min | entra a la mina | exploit encontrado, o tope (≈ 6 vueltas / 150 s) → el suelo se pudre y cae | v0.5 |
+| 4 La dimensión podrida | pocket | 3–4 min | cae (desde la mina o la escalera) | llega al núcleo; tope → los hilos llevan al núcleo | v0.3 |
+| 5 Apogeo y final | núcleo | 1–3 min | entra al núcleo | final B (hilos cortados) o final A (atrapado / tope) | v0.3 |
+| Epílogo | pantallas | ≤ 1 min | final | vuelve al título con los ajustes restaurados | v0.1 (v0) / v0.3 |
 
 Si los actos 2 y 3 están apagados, la mina es un túnel corto cuyo suelo se pudre (entrada al pocket). Si sólo el 3 está apagado, el doble te lleva a ese túnel.
 
@@ -161,11 +161,11 @@ Si los actos 2 y 3 están apagados, la mina es un túnel corto cuyo suelo se pud
 - **Título de la ventana** que cambia una vez (P2). [Mixin en `Minecraft.updateTitle`.]
 - **Cuarta pared acotada**: hora real, nombre de usuario, nombre de la carpeta del mundo.
 
-**3.4.4 La escalera (loop).** Dos tramos idénticos A y B en la misma dimensión, ambos cargados, con giro de 90° en cada descansillo para que la vista nunca alcance el final. Al cruzar el plano de salida de B, teletransporte **relativo** (posición desplazada exactamente un tramo; rotación y velocidad conservadas) al punto equivalente de A. Bloques que pone el jugador persisten → la antorcha "reaparece delante". Variación por vuelta (contador, sonido, un bloque que falta, el doble más abajo). Presupuesto de repeticiones; exploits; caída al pocket. [VERIFICAR resuelto en parte, `VERIFIED.md` §2.3]: la API existe sin cambios en 26.x (`ServerPlayer.teleportTo(level, x, y, z, Set<Relative>, yaw, pitch, setCamera)` con `Relative.ALL` y desplazamiento), pero **ninguna fuente confirma que no haya "pop"** → spike temprano alpha.5.0 con capturas antes/después del salto. Si el spike sale bien, la misma técnica permite un **robo sin pantalla de carga** (copia de la base en el Overworld, oculta) como mejora de alpha.4.3.
+**3.4.4 La escalera (loop).** Dos tramos idénticos A y B en la misma dimensión, ambos cargados, con giro de 90° en cada descansillo para que la vista nunca alcance el final. Al cruzar el plano de salida de B, teletransporte **relativo** (posición desplazada exactamente un tramo; rotación y velocidad conservadas) al punto equivalente de A. Bloques que pone el jugador persisten → la antorcha "reaparece delante". Variación por vuelta (contador, sonido, un bloque que falta, el doble más abajo). Presupuesto de repeticiones; exploits; caída al pocket. [VERIFICAR resuelto en parte, `VERIFIED.md` §2.3]: la API existe sin cambios en 26.x (`ServerPlayer.teleportTo(level, x, y, z, Set<Relative>, yaw, pitch, setCamera)` con `Relative.ALL` y desplazamiento), pero **ninguna fuente confirma que no haya "pop"** → spike temprano v0.5.0 con capturas antes/después del salto. Si el spike sale bien, la misma técnica permite un **robo sin pantalla de carga** (copia de la base en el Overworld, oculta) como mejora de v0.4.3.
 
 **3.4.5 Bloque podrido.** Bloque propio con 8 capas (como la nieve en capas): bajo el jugador pierde una capa cada N ticks, aplica lentitud, el jugador se hunde; a 0 capas es un hueco que lleva al nivel inferior (o al pocket desde la mina). Sonido húmedo.
 
-**3.4.6 Artefactos y el doble.** `TrajectoryRecorder`: anillo de 120 s a 10 Hz con posición, yaw, pitch, agachado/sprint/salto, objeto en mano. `ArtefactReplay` con generación g: g1 casi perfecto; gN añade ruido, estira el tiempo y **sobreajusta** el hábito más frecuente (su "gn ruido que repite patrones particulares de forma exagerada y distorcionada"). Cuerpo: la entidad vanilla **mannequin** (1.21.9+, sin cambios en 26.x: `profile`, `pose`, `immovable`, `hide_description`), con el **perfil completo del jugador conectado** (con sus propiedades de textura, que el servidor integrado ya tiene) para no depender de una consulta de skin por red; se mueve teletransportándolo cada tick con rotación de cabeza/cuerpo. Riesgo a confirmar en alpha.4.2: suavidad del movimiento; plan B: entidad propia con modelo de jugador. El doble nunca es translúcido ni "fantasma".
+**3.4.6 Artefactos y el doble.** `TrajectoryRecorder`: anillo de 120 s a 10 Hz con posición, yaw, pitch, agachado/sprint/salto, objeto en mano. `ArtefactReplay` con generación g: g1 casi perfecto; gN añade ruido, estira el tiempo y **sobreajusta** el hábito más frecuente (su "gn ruido que repite patrones particulares de forma exagerada y distorcionada"). Cuerpo: la entidad vanilla **mannequin** (1.21.9+, sin cambios en 26.x: `profile`, `pose`, `immovable`, `hide_description`), con el **perfil completo del jugador conectado** (con sus propiedades de textura, que el servidor integrado ya tiene) para no depender de una consulta de skin por red; se mueve teletransportándolo cada tick con rotación de cabeza/cuerpo. Riesgo a confirmar en v0.4.2: suavidad del movimiento; plan B: entidad propia con modelo de jugador. El doble nunca es translúcido ni "fantasma".
 
 **3.4.7 El Reclaimer.** Estados: DORMIDO → ATISBO → ACECHO → PERSECUCIÓN → FIN. Sentidos: vibración de hilos (sprint, salto, romper bloques, cortar hilos sin tijeras) dentro de un radio; no ve directamente. Cuerpo: su "Es una araña pero que teje las mejores formas de asustar", hecha con lo que tiene: un ensamblaje de entidades de display (bloques, telarañas, brazos de jugador estirados como patas, cuerdas tensas) alrededor de un racimo de **cabezas con las skins de sus víctimas que giran a mirarte — y una de ellas es la tuya** ("después de encontrarse con quien el jugador se DESECHA"). Transformaciones interpoladas: se recompone mientras se mueve, nunca igual dos veces (alucinación sobre alucinación). Es render vanilla: sin modelos ni shaders propios. Mata con el tipo de daño `unallocated:reclaimed` (final A sólo en el acto 5; antes, como mucho persigue y se va).
 
@@ -219,29 +219,29 @@ Si los actos 2 y 3 están apagados, la mina es un túnel corto cuyo suelo se pud
 ### 4.1 Distribución y dependencias
 
 - **Juez instala:** Minecraft 26.3, Fabric Loader (≥ 0.20.1), `unallocated-<versión>.jar`. Nada más (D-02).
-- **Dentro del JAR:** módulos de Fabric API necesarios vía jar-in-jar (`include`), recursos (`assets/`, `data/`), la plantilla del mundo comprimida. Hay que actualizar el chequeo de CI que hoy prohíbe JARs anidados (WP alpha.1.3).
+- **Dentro del JAR:** módulos de Fabric API necesarios vía jar-in-jar (`include`), recursos (`assets/`, `data/`), la plantilla del mundo comprimida. Hay que actualizar el chequeo de CI que hoy prohíbe JARs anidados (WP v0.1.3).
 - **Sin** Simple Voice Chat, mods de rendimiento, servicios externos ni red (TOOLCHAIN.md ya los descartó para la jam).
 
 ### 4.2 Módulos (paquetes Java; contenido en español, identificadores en inglés)
 
 | Paquete | Lado | Responsabilidad | Hito |
 |---|---|---|---|
-| `org.unallocated.core` | común | `Act`, `ActSequencer`, `ActModule`, `SessionState`, `Features`, bus de eventos | alpha.1 |
-| `org.unallocated.client.contract` | cliente | `ConsentScreen`, `ConsentStore` | alpha.1 |
-| `org.unallocated.client.launch` | cliente | botón del título, `WorldInstaller` (plantilla → `saves/`), `FakeConnectScreen` | alpha.1 |
-| `org.unallocated.map` | servidor | `MapLayout` (fuente única de coordenadas y volúmenes), `MapBuilder`, `MapSection`s | alpha.1+ |
-| `org.unallocated.bait` | servidor | `SpyglassBait` | alpha.1 |
-| `org.unallocated.ending` | ambos | `EndingController`, `EpilogueScreen`, `SessionReport` | alpha.1 (v0) / alpha.3 |
-| `org.unallocated.telemetry` | servidor (+cliente mínimo) | `TelemetrySampler`, `TelemetryFrame`, `FearModel`, `ClientSignals` | alpha.2 |
-| `org.unallocated.director` | servidor | `Director`, `ScarePrimitive`, `ScareRegistry`, `PacingState` | alpha.2 |
-| `org.unallocated.client.effects` | cliente | `ClientEffects`, `UiEffects`, `PerceptionOverrides`, `OverlayEffects`, `SoundEffects`, `LoadingTips` | alpha.2 |
-| `org.unallocated.mixin` | cliente | los pocos Mixins de §4.3 | alpha.2 |
-| `org.unallocated.knowledge` | servidor→cliente | `LoreRegistry`, banderas de conocimiento | alpha.2 |
-| `org.unallocated.world` | servidor | `PocketDimension`, `TeleportService`, `CorruptionPass`, `RottenBlock` | alpha.3 |
-| `org.unallocated.reclaimer` | servidor | `Reclaimer` (cuerpo de displays + lógica), `ThreadNetwork` | alpha.3 |
-| `org.unallocated.artefact` | servidor | `TrajectoryRecorder`, `ArtefactReplay`, `Doppelganger` | alpha.4 |
-| `org.unallocated.loop` | servidor | `LoopController` | alpha.5 |
-| `org.unallocated.debug` | servidor | comando `/unallocated` | alpha.1 |
+| `org.unallocated.core` | común | `Act`, `ActSequencer`, `ActModule`, `SessionState`, `Features`, bus de eventos | v0.1 |
+| `org.unallocated.client.contract` | cliente | `ConsentScreen`, `ConsentStore` | v0.1 |
+| `org.unallocated.client.launch` | cliente | botón del título, `WorldInstaller` (plantilla → `saves/`), `FakeConnectScreen` | v0.1 |
+| `org.unallocated.map` | servidor | `MapLayout` (fuente única de coordenadas y volúmenes), `MapBuilder`, `MapSection`s | v0.1+ |
+| `org.unallocated.bait` | servidor | `SpyglassBait` | v0.1 |
+| `org.unallocated.ending` | ambos | `EndingController`, `EpilogueScreen`, `SessionReport` | v0.1 (v0) / v0.3 |
+| `org.unallocated.telemetry` | servidor (+cliente mínimo) | `TelemetrySampler`, `TelemetryFrame`, `FearModel`, `ClientSignals` | v0.2 |
+| `org.unallocated.director` | servidor | `Director`, `ScarePrimitive`, `ScareRegistry`, `PacingState` | v0.2 |
+| `org.unallocated.client.effects` | cliente | `ClientEffects`, `UiEffects`, `PerceptionOverrides`, `OverlayEffects`, `SoundEffects`, `LoadingTips` | v0.2 |
+| `org.unallocated.mixin` | cliente | los pocos Mixins de §4.3 | v0.2 |
+| `org.unallocated.knowledge` | servidor→cliente | `LoreRegistry`, banderas de conocimiento | v0.2 |
+| `org.unallocated.world` | servidor | `PocketDimension`, `TeleportService`, `CorruptionPass`, `RottenBlock` | v0.3 |
+| `org.unallocated.reclaimer` | servidor | `Reclaimer` (cuerpo de displays + lógica), `ThreadNetwork` | v0.3 |
+| `org.unallocated.artefact` | servidor | `TrajectoryRecorder`, `ArtefactReplay`, `Doppelganger` | v0.4 |
+| `org.unallocated.loop` | servidor | `LoopController` | v0.5 |
+| `org.unallocated.debug` | servidor | comando `/unallocated` | v0.1 |
 
 ### 4.3 Interfaces entre módulos (nombres, datos, eventos)
 
@@ -313,19 +313,19 @@ interface ScarePrimitive {
 
 ## 5. Hitos y paquetes de trabajo (paso 4)
 
-Convención: hito `v1.0.0-alpha.N`, paquete `v1.0.0-alpha.N.M`. Prioridades: **P0** = sin esto la entrega pierde un criterio de la jam; **P1** = muy deseable, se hace si P0 está verde; **P2** = sólo si sobra capacidad, primero en la lista de recortes. Carriles para agentes en paralelo: **UI** (cliente), **SRV** (sistemas del servidor), **MAP** (mapa y contenido de mundo), **TXT** (texto y audio), **REL** (empaquetado, página, pruebas). **[A]** = lo comprueba el coordinador sin el dueño (CI, capturas, logs, archivos). **[H]** = requiere partida humana con GPU real.
+Convención: hito `v0.N.0`, paquete `v0.N.M`. Prioridades: **P0** = sin esto la entrega pierde un criterio de la jam; **P1** = muy deseable, se hace si P0 está verde; **P2** = sólo si sobra capacidad, primero en la lista de recortes. Carriles para agentes en paralelo: **UI** (cliente), **SRV** (sistemas del servidor), **MAP** (mapa y contenido de mundo), **TXT** (texto y audio), **REL** (empaquetado, página, pruebas). **[A]** = lo comprueba el coordinador sin el dueño (CI, capturas, logs, archivos). **[H]** = requiere partida humana con GPU real.
 
 Los hitos pueden avanzar en paralelo; **sólo se integra en `main` un hito que deja la experiencia completa y entregable** (actos no listos quedan apagados en `features.json`).
 
-**Disciplina de integración** (contra "el desastre de la produccion de Little Galaxy"): una rama por WP (`v1.0.0-alpha.N.M`), CI verde antes de integrar, la rama del hito se integra en `main` sólo con sus criterios [A] cumplidos; si un WP se atrasa, su función queda apagada y el hito sale sin ella. El JAR de `main` siempre es subible.
+**Disciplina de integración** (contra "el desastre de la produccion de Little Galaxy"): una rama por WP (`v0.N.M`), CI verde antes de integrar, la rama del hito se integra en `main` sólo con sus criterios [A] cumplidos; si un WP se atrasa, su función queda apagada y el hito sale sin ella. El JAR de `main` siempre es subible.
 
 **Arranque en paralelo (olas, no fechas).** Lo que puede empezar ya, sin esperar a nadie:
-- *Ola 1* (sólo depende de alpha.1.1): alpha.1.3 JiJ · alpha.1.4 contrato · alpha.1.5 núcleo · alpha.1.10 audio · alpha.3.4 bloque podrido · alpha.5.0 spike del teletransporte · biblia de texto (TXT: Apéndice C ampliado) · alpha.2.1 telemetría pura (JUnit, sin juego).
-- *Ola 2* (tras alpha.1.5): alpha.1.6 mapa · alpha.1.8 catalejo · alpha.1.9 final v0 · alpha.2.3 paquetes · alpha.3.1 dimensión.
+- *Ola 1* (sólo depende de v0.1.1): v0.1.3 JiJ · v0.1.4 contrato · v0.1.5 núcleo · v0.1.10 audio · v0.3.4 bloque podrido · v0.5.0 spike del teletransporte · biblia de texto (TXT: Apéndice C ampliado) · v0.2.1 telemetría pura (JUnit, sin juego).
+- *Ola 2* (tras v0.1.5): v0.1.6 mapa · v0.1.8 catalejo · v0.1.9 final v0 · v0.2.3 paquetes · v0.3.1 dimensión.
 - *Ola 3*: el resto según el grafo del final de esta sección.
 Con 4–6 agentes a la vez, el cuello de botella no es el código sino las **partidas humanas [H]** y la revisión visual de capturas: agruparlas (una partida [H] valida varios hitos).
 
-### v1.0.0-alpha.1 — Entregable mínimo: el contrato, el servidor abandonado y la figura del catalejo — **P0**
+### v0.1.0 — Entregable mínimo: el contrato, el servidor abandonado y la figura del catalejo — **P0**
 
 **Lo que nota un juez:** instala con el Loader y un JAR; ve un contrato inquietante con advertencias; pulsa "UNALLOCATED", "se conecta" a un servidor abandonado; una figura en la colina está más cerca cada vez que mira por el catalejo hasta que le salta encima; poco después "el servidor se cierra" con un mensaje del modelo. ~5 min. La página de itch tiene todo lo que pide la jam.
 
@@ -334,18 +334,18 @@ Con 4–6 agentes a la vez, el cuello de botella no es el código sino las **par
 
 | WP | Título | Carril | Depende de | Entregable |
 |---|---|---|---|---|
-| alpha.1.1 | Toolchain, CI, smoke de servidor y cliente | REL | — | **hecho/en curso por otro trabajador** (TOOLCHAIN.md) |
-| alpha.1.2 | Este plan | — | — | PLAN, DECISIONS, VERIFIED |
-| alpha.1.3 | Fabric API jar-in-jar + actualizar chequeo de JAR en CI | REL | 1.1, D-02 | `include` de módulos; CI acepta sólo esos JARs anidados |
-| alpha.1.4 | Contrato y advertencias | UI | 1.1, D-05 | `ConsentScreen`, `ConsentStore`, texto (Apéndice A) |
-| alpha.1.5 | Núcleo: `Act`, `ActSequencer`, `SessionState`, `Features`, `/unallocated` | SRV | 1.1 | logs `UNALLOCATED act=…` |
-| alpha.1.6 | `MapLayout` + lobby + colina + camino + base (exterior e interior simple) + boca de la mina (por código; mundo `flat` de aire con nuestro bioma; reglas de D-17) | MAP | 1.5, D-04 | secciones construibles con `/unallocated build` |
-| alpha.1.7 | Plantilla del mundo y botón "UNALLOCATED" (`WorldInstaller`, `FakeConnectScreen`) | UI+REL | 1.6, D-03 | mundo abierto desde el título; ZIP del mundo de respaldo. **Interino aceptable** si el pipeline de plantilla (4.4) no está listo: el botón crea un mundo vacío y `MapBuilder` construye las secciones al entrar (mismo código); la plantilla lo reemplaza después sin cambiar nada más |
-| alpha.1.8 | Cebo del catalejo (`SpyglassBait`: flanco de subida de `isScoping()` en el servidor, raycast propio, figura = mannequin vanilla con la skin de una "víctima") + screamer 1 + respaldo si nunca usa el catalejo | SRV+TXT | 1.5, 1.6 | figura que se acerca por uso; sonido |
-| alpha.1.9 | Final v0 "el servidor se cerró" + vuelta al título | UI | 1.5 | pantalla de desconexión con texto del modelo |
-| alpha.1.10 | Audio v0 (ambiente, golpe, hum) + créditos | TXT | D-10 | `sounds.json`, créditos |
-| alpha.1.11 | Página de itch (texto), README de jugador, lista de la jam, errores conocidos | REL | 1.4–1.9 | Apéndice B completado |
-| alpha.1.12 | Gametest de recorrido v1: escribe "De acuerdo" (`typeChars`), pulsa el botón del título por su clave de traducción (`clickScreenButton`), espera el mundo, mira a la colina (`lookAt`), mantiene el catalejo (`holdMouseFor`) varias veces, capturas en spawn y colina | REL | 1.4, 1.7, 1.8 | capturas + log en artefacto de CI; job de CI propio o límite mayor que los 12 min actuales del workflow (coordinar con TOOLCHAIN) |
+| v0.1.1 | Toolchain, CI, smoke de servidor y cliente | REL | — | **hecho/en curso por otro trabajador** (TOOLCHAIN.md) |
+| v0.1.2 | Este plan | — | — | PLAN, DECISIONS, VERIFIED |
+| v0.1.3 | Fabric API jar-in-jar + actualizar chequeo de JAR en CI | REL | 1.1, D-02 | `include` de módulos; CI acepta sólo esos JARs anidados |
+| v0.1.4 | Contrato y advertencias | UI | 1.1, D-05 | `ConsentScreen`, `ConsentStore`, texto (Apéndice A) |
+| v0.1.5 | Núcleo: `Act`, `ActSequencer`, `SessionState`, `Features`, `/unallocated` | SRV | 1.1 | logs `UNALLOCATED act=…` |
+| v0.1.6 | `MapLayout` + lobby + colina + camino + base (exterior e interior simple) + boca de la mina (por código; mundo `flat` de aire con nuestro bioma; reglas de D-17) | MAP | 1.5, D-04 | secciones construibles con `/unallocated build` |
+| v0.1.7 | Plantilla del mundo y botón "UNALLOCATED" (`WorldInstaller`, `FakeConnectScreen`) | UI+REL | 1.6, D-03 | mundo abierto desde el título; ZIP del mundo de respaldo. **Interino aceptable** si el pipeline de plantilla (4.4) no está listo: el botón crea un mundo vacío y `MapBuilder` construye las secciones al entrar (mismo código); la plantilla lo reemplaza después sin cambiar nada más |
+| v0.1.8 | Cebo del catalejo (`SpyglassBait`: flanco de subida de `isScoping()` en el servidor, raycast propio, figura = mannequin vanilla con la skin de una "víctima") + screamer 1 + respaldo si nunca usa el catalejo | SRV+TXT | 1.5, 1.6 | figura que se acerca por uso; sonido |
+| v0.1.9 | Final v0 "el servidor se cerró" + vuelta al título | UI | 1.5 | pantalla de desconexión con texto del modelo |
+| v0.1.10 | Audio v0 (ambiente, golpe, hum) + créditos | TXT | D-10 | `sounds.json`, créditos |
+| v0.1.11 | Página de itch (texto), README de jugador, lista de la jam, errores conocidos | REL | 1.4–1.9 | Apéndice B completado |
+| v0.1.12 | Gametest de recorrido v1: escribe "De acuerdo" (`typeChars`), pulsa el botón del título por su clave de traducción (`clickScreenButton`), espera el mundo, mira a la colina (`lookAt`), mantiene el catalejo (`holdMouseFor`) varias veces, capturas en spawn y colina | REL | 1.4, 1.7, 1.8 | capturas + log en artefacto de CI; job de CI propio o límite mayor que los 12 min actuales del workflow (coordinar con TOOLCHAIN) |
 
 **Criterios de aceptación**
 - [A] CI verde: build, chequeo de JAR (sólo los JAR anidados permitidos), smoke de servidor y de cliente.
@@ -353,27 +353,27 @@ Con 4–6 agentes a la vez, el cuello de botella no es el código sino las **par
 - [A] El JAR contiene `en_us.json` con texto en español, `sounds.json`, la plantilla, y no contiene clases de prueba.
 - [A] La página (Apéndice B) cubre los 7 puntos de la jam: "Archivo del mod y lista de dependencias. Loader y versión exacta necesarios para ejecutarlo. Instrucciones de instalación y cómo comenzar a jugar. Mapa y configuración, si son necesarios. Descripción breve de la experiencia. Integrantes del equipo y créditos de recursos externos. Errores conocidos y advertencias de contenido."
 - [H] Una partida completa en GPU real (dueño): instala desde los archivos de la página en un perfil limpio, llega al final, sin crash, opciones intactas.
-- **Acción:** subir alpha.1 a itch y enviarla a la jam en cuanto cumpla (D-12); luego sólo se reemplaza el archivo.
+- **Acción:** subir v0.1 a itch y enviarla a la jam en cuanto cumpla (D-12); luego sólo se reemplaza el archivo.
 
-### v1.0.0-alpha.2 — El director y la interfaz como arma — **P0**
+### v0.2.0 — El director y la interfaz como arma — **P0**
 
 **Lo que nota un juez:** el juego parece observarlo: nombres en Tab, logs del "servidor" en el chat, un logro que no ganó con su hábito en el título, F3 extraño, un consejo de carga que nadie esperaba, un instante en que el mundo "se queda sin aliento"; los sustos llegan cuando baja la guardia; el acto 1 dura 2–3 min y se siente dirigido.
 
 **Interfaces que introduce:** `TelemetryFrame`, `FearModel` (f, confianza, perfil), `Director`/`PacingState`, `ScarePrimitive`/`ScareContext`/`ScareRegistry`, paquetes `unallocated:effect`, `unallocated:knowledge`, `unallocated:act`, `unallocated:client_signals`, `ClientEffects.dispatch`, `PerceptionOverrides`, `LoreRegistry`; eventos `ScareFired`, `FearSampled`, `LoreRead`.
 **Pruebas:** JUnit (modelo y director), gametests de primitivas con capturas (E0); E1 [H] centrado en el ritmo del acto 1.
 
-**Valores iniciales del director** (ilustrativos, se ajustan en alpha.6.1): presupuesto de intensidad 10 puntos, recarga 1 punto/10 s; intensidades 1 (sonido) a 5 (atisbo del Reclaimer), screamer 8; separación mínima entre sustos 20 s en PRESIÓN y 60 s tras un PICO; ALIVIO FALSO 30–45 s; si f(t) > 0,8 durante 20 s → ALIVIO; si f(t) < 0,2 durante 60 s → PRESIÓN con primitiva nueva.
+**Valores iniciales del director** (ilustrativos, se ajustan en v0.6.1): presupuesto de intensidad 10 puntos, recarga 1 punto/10 s; intensidades 1 (sonido) a 5 (atisbo del Reclaimer), screamer 8; separación mínima entre sustos 20 s en PRESIÓN y 60 s tras un PICO; ALIVIO FALSO 30–45 s; si f(t) > 0,8 durante 20 s → ALIVIO; si f(t) < 0,2 durante 60 s → PRESIÓN con primitiva nueva.
 
 | WP | Título | Carril | Depende de | Entregable |
 |---|---|---|---|---|
-| alpha.2.1 | Telemetría y `FearModel` (línea base, f(t), perfil) | SRV | alpha.1.5 | `TelemetryFrame` 1 Hz, logs `fear f=` |
-| alpha.2.2 | `Director` + `ScareRegistry` + 8 primitivas del acto 1 | SRV | 2.1 | ritmo y selección con restricciones |
-| alpha.2.3 | Paquetes `effect`/`knowledge`/`act`/`client_signals` + `ClientEffects` | UI | alpha.1.5 | despacho de efectos en cliente |
-| alpha.2.4 | `UiEffects`: Tab propia, chat log, chat "tuyo", intercepción de lo que escribe, F3 (Mixin), toasts/avances ocultos, consejos de carga, splash, mensajes de muerte | UI+TXT | 2.3 | cada efecto disparable con `/unallocated scare` |
-| alpha.2.5 | `PerceptionOverrides` (FOV, sensibilidad, oscuridad) + Mixins | UI | 2.3, D-21 | efectos en memoria, sin escribir `options.txt` |
-| alpha.2.6 | Latencia como presencia (`world.freeze` + atenuación de audio) | SRV+UI | 2.2 | congelación ≤ 1 s, rara |
-| alpha.2.7 | Lore v1: escalera de deriva, 4 leaks, banderas de conocimiento, temperatura | TXT+SRV | 2.2 | `LoreRegistry`, textos |
-| alpha.2.8 | Tests unitarios (FearModel, Director, `PerceptionOverrides`) + gametest de primitivas | REL | 2.1–2.5 | JUnit + capturas por primitiva |
+| v0.2.1 | Telemetría y `FearModel` (línea base, f(t), perfil) | SRV | v0.1.5 | `TelemetryFrame` 1 Hz, logs `fear f=` |
+| v0.2.2 | `Director` + `ScareRegistry` + 8 primitivas del acto 1 | SRV | 2.1 | ritmo y selección con restricciones |
+| v0.2.3 | Paquetes `effect`/`knowledge`/`act`/`client_signals` + `ClientEffects` | UI | v0.1.5 | despacho de efectos en cliente |
+| v0.2.4 | `UiEffects`: Tab propia, chat log, chat "tuyo", intercepción de lo que escribe, F3 (Mixin), toasts/avances ocultos, consejos de carga, splash, mensajes de muerte | UI+TXT | 2.3 | cada efecto disparable con `/unallocated scare` |
+| v0.2.5 | `PerceptionOverrides` (FOV, sensibilidad, oscuridad) + Mixins | UI | 2.3, D-21 | efectos en memoria, sin escribir `options.txt` |
+| v0.2.6 | Latencia como presencia (`world.freeze` + atenuación de audio) | SRV+UI | 2.2 | congelación ≤ 1 s, rara |
+| v0.2.7 | Lore v1: escalera de deriva, 4 leaks, banderas de conocimiento, temperatura | TXT+SRV | 2.2 | `LoreRegistry`, textos |
+| v0.2.8 | Tests unitarios (FearModel, Director, `PerceptionOverrides`) + gametest de primitivas | REL | 2.1–2.5 | JUnit + capturas por primitiva |
 
 **Criterios de aceptación**
 - [A] JUnit: f(t) de una traza sintética "asustada" > traza "calmada"; el director nunca repite primitiva, respeta enfriamientos y ≤ 2 screamers en 1.000 sesiones simuladas.
@@ -381,7 +381,7 @@ Con 4–6 agentes a la vez, el cuello de botella no es el código sino las **par
 - [A] Log de una sesión simulada muestra ciclo CALMA→PRESIÓN→PICO→ALIVIO al menos una vez en el acto 1.
 - [H] Partida: el primer susto llega entre 1:30 y 3:00; ningún efecto de UI se siente como bug real del juego que haga salir al juez; opciones restauradas.
 
-### v1.0.0-alpha.3 — La dimensión podrida, el Reclaimer y los finales — **P0**
+### v0.3.0 — La dimensión podrida, el Reclaimer y los finales — **P0**
 
 **Lo que nota un juez:** cae a una copia podrida del mundo; el suelo se le hunde; oye y luego ve hilos que vibran cuando corre; ve al Reclaimer a lo lejos y luego en físico; corta hilos con tijeras y el modelo muere agradeciendo, o lo atrapa y le escribe su mensaje de muerte; un informe con sus datos reales; vuelve al título con todo restaurado. La experiencia completa dura 10–13 min.
 
@@ -390,23 +390,23 @@ Con 4–6 agentes a la vez, el cuello de botella no es el código sino las **par
 
 | WP | Título | Carril | Depende de | Entregable |
 |---|---|---|---|---|
-| alpha.3.1 | Dimensión `unallocated:pocket` (datapack en el JAR: `dimension/pocket.json` con generador `flat` de aire y bioma propio, `dimension_type/pocket.json`) + `TeleportService` + **supresión de la advertencia "Experimental Settings"** para nuestro mundo | SRV+UI | alpha.1.5 | ida/vuelta con la pantalla de carga usada como glitch; la dimensión no entra al JAR de `main` sin la supresión probada |
-| alpha.3.2 | Copia autoría del lobby/base/mina en el pocket, etapas de pudrición | MAP | alpha.1.6, 3.1 | secciones `pocket.*` |
-| alpha.3.3 | Mina corta con suelo que se pudre (entrada al pocket sin la escalera) | MAP+SRV | 3.1, 3.4 | caída al pocket |
-| alpha.3.4 | `RottenBlock` (capas, hundimiento, lentitud, sonido) | SRV | alpha.1.1 | bloque registrado + textura |
-| alpha.3.5 | `CorruptionPass` (texturas repetidas, duplicados, huecos; ediciones acotadas) | SRV | 3.2 | pasadas por etapa |
-| alpha.3.6 | Hilos (`ThreadNetwork`): vibración por sprint/salto, "quien más sabe, más ve" | SRV+UI | alpha.2.3, 3.2 | hilos visibles por bandera |
-| alpha.3.7 | Reclaimer: cuerpo de displays, estados, sentidos, tipo de daño | SRV | 3.6 | atisbo, acecho, persecución |
-| alpha.3.8 | Núcleo y finales A/B (`kill -9` prellenado), epílogo e informe | SRV+UI+TXT | 3.7, alpha.2.1, D-07 | dos finales + `SessionReport` |
-| alpha.3.9 | Biomas del pocket por etapa de pudrición (atributos de entorno: niebla, cielo, luz, `block_light_tint`, sonido, sin música ni mobs) | MAP | 3.1 | atmósfera sin shaders |
-| alpha.3.10 | Gametest de recorrido v3 (pocket, núcleo, ambos finales forzados) | REL | 3.1–3.8 | capturas y logs |
+| v0.3.1 | Dimensión `unallocated:pocket` (datapack en el JAR: `dimension/pocket.json` con generador `flat` de aire y bioma propio, `dimension_type/pocket.json`) + `TeleportService` + **supresión de la advertencia "Experimental Settings"** para nuestro mundo | SRV+UI | v0.1.5 | ida/vuelta con la pantalla de carga usada como glitch; la dimensión no entra al JAR de `main` sin la supresión probada |
+| v0.3.2 | Copia autoría del lobby/base/mina en el pocket, etapas de pudrición | MAP | v0.1.6, 3.1 | secciones `pocket.*` |
+| v0.3.3 | Mina corta con suelo que se pudre (entrada al pocket sin la escalera) | MAP+SRV | 3.1, 3.4 | caída al pocket |
+| v0.3.4 | `RottenBlock` (capas, hundimiento, lentitud, sonido) | SRV | v0.1.1 | bloque registrado + textura |
+| v0.3.5 | `CorruptionPass` (texturas repetidas, duplicados, huecos; ediciones acotadas) | SRV | 3.2 | pasadas por etapa |
+| v0.3.6 | Hilos (`ThreadNetwork`): vibración por sprint/salto, "quien más sabe, más ve" | SRV+UI | v0.2.3, 3.2 | hilos visibles por bandera |
+| v0.3.7 | Reclaimer: cuerpo de displays, estados, sentidos, tipo de daño | SRV | 3.6 | atisbo, acecho, persecución |
+| v0.3.8 | Núcleo y finales A/B (`kill -9` prellenado), epílogo e informe | SRV+UI+TXT | 3.7, v0.2.1, D-07 | dos finales + `SessionReport` |
+| v0.3.9 | Biomas del pocket por etapa de pudrición (atributos de entorno: niebla, cielo, luz, `block_light_tint`, sonido, sin música ni mobs) | MAP | 3.1 | atmósfera sin shaders |
+| v0.3.10 | Gametest de recorrido v3 (pocket, núcleo, ambos finales forzados) | REL | 3.1–3.8 | capturas y logs |
 
 **Criterios de aceptación**
 - [A] Gametest: abrir la plantilla desde el botón del título **no** muestra la advertencia de "Experimental Settings" (captura + aserción de pantalla); `act=POCKET enter`, `rot sink`, `thread vibrate`, `reclaimer state=CHASE`, `ending=TERMINATED` y `ending=CONSUMED` (forzados) en el log; capturas del pocket, del núcleo y del Reclaimer.
 - [A] Gametest de servidor: un jugador simulado sobre `RottenBlock` baja de capa en ≤ N ticks; la dimensión existe tras recargar el mundo; `CorruptionPass` nunca edita más de K bloques por tick.
 - [H] Partida completa de 10–15 min en GPU real; el Reclaimer en físico se siente como el apogeo; FPS jugables en el pocket; ambos finales vistos al menos una vez.
 
-### v1.0.0-alpha.4 — El primer robo y el doble — **P1**
+### v0.4.0 — El primer robo y el doble — **P1**
 
 **Lo que nota un juez:** se lo llevan a una copia de la base un minuto; al volver, una copia de sí mismo con su skin está donde él estaba, hace lo que él hacía y lo mira; falta tiempo y el chat tiene frases suyas que no escribió.
 
@@ -415,15 +415,15 @@ Con 4–6 agentes a la vez, el cuello de botella no es el código sino las **par
 
 | WP | Título | Carril | Depende de | Entregable |
 |---|---|---|---|---|
-| alpha.4.1 | `TrajectoryRecorder` + `ArtefactReplay` (g1…gN, sobreajuste) | SRV | alpha.2.1 | repetición determinista |
-| alpha.4.2 | Cuerpo del doble (mannequin vanilla o entidad propia con skin del jugador) | SRV+UI | 4.1 | doble con skin |
-| alpha.4.3 | Acto THEFT: disparo por distracción, copia de la base, 2–3 sondas, retorno | SRV+MAP | alpha.3.1, alpha.2.2 | acto completo |
-| alpha.4.4 | Tiempo perdido + chat "tuyo" con tu estilo de escritura (del contrato) | UI+TXT | alpha.2.4, alpha.1.4 | líneas situadas |
-| alpha.4.5 | El doble guía a la mina (cebo) | SRV | 4.2, alpha.3.3 | transición al acto siguiente |
+| v0.4.1 | `TrajectoryRecorder` + `ArtefactReplay` (g1…gN, sobreajuste) | SRV | v0.2.1 | repetición determinista |
+| v0.4.2 | Cuerpo del doble (mannequin vanilla o entidad propia con skin del jugador) | SRV+UI | 4.1 | doble con skin |
+| v0.4.3 | Acto THEFT: disparo por distracción, copia de la base, 2–3 sondas, retorno | SRV+MAP | v0.3.1, v0.2.2 | acto completo |
+| v0.4.4 | Tiempo perdido + chat "tuyo" con tu estilo de escritura (del contrato) | UI+TXT | v0.2.4, v0.1.4 | líneas situadas |
+| v0.4.5 | El doble guía a la mina (cebo) | SRV | 4.2, v0.3.3 | transición al acto siguiente |
 
 **Criterios:** [A] repetición g1 con error de posición < 0,1 bloques frente a la traza; gN determinista con la misma semilla; captura del doble con la skin del jugador de prueba; log `act=THEFT complete`. [H] el robo no se confunde con un crash; el doble asusta y no parece un fantasma.
 
-### v1.0.0-alpha.5 — La escalera infinita — **P2**
+### v0.5.0 — La escalera infinita — **P2**
 
 **Lo que nota un juez:** la escalera de la mina no termina; su antorcha reaparece delante; cuando entiende el truco, sale por un exploit o cae al pocket.
 
@@ -432,40 +432,40 @@ Con 4–6 agentes a la vez, el cuello de botella no es el código sino las **par
 
 | WP | Título | Carril | Depende de | Entregable |
 |---|---|---|---|---|
-| alpha.5.0 | **Spike** (ola 1, barato, decide si la escalera vive): dos cajas idénticas en un mundo plano, teletransporte relativo al cruzar un plano, capturas inmediatamente antes y después; probar también con OpenGL en GPU real [H] | SRV+REL | alpha.1.1 | veredicto "seamless sí/no" con capturas |
-| alpha.5.1 | Tramos idénticos con giros (`loop.segmentA/B`) | MAP | alpha.1.6, 5.0 | geometría |
-| alpha.5.2 | `LoopController`: teletransporte relativo, contador, presupuesto | SRV | 5.1 | bucle |
-| alpha.5.3 | Variación por vuelta y exploits de salida | SRV+TXT | 5.2 | 2 exploits + caída |
-| alpha.5.4 | Gametest: 6 vueltas simuladas, captura antes/después del salto idénticas | REL | 5.2 | diff de capturas |
+| v0.5.0 | **Spike** (ola 1, barato, decide si la escalera vive): dos cajas idénticas en un mundo plano, teletransporte relativo al cruzar un plano, capturas inmediatamente antes y después; probar también con OpenGL en GPU real [H] | SRV+REL | v0.1.1 | veredicto "seamless sí/no" con capturas |
+| v0.5.1 | Tramos idénticos con giros (`loop.segmentA/B`) | MAP | v0.1.6, 5.0 | geometría |
+| v0.5.2 | `LoopController`: teletransporte relativo, contador, presupuesto | SRV | 5.1 | bucle |
+| v0.5.3 | Variación por vuelta y exploits de salida | SRV+TXT | 5.2 | 2 exploits + caída |
+| v0.5.4 | Gametest: 6 vueltas simuladas, captura antes/después del salto idénticas | REL | 5.2 | diff de capturas |
 
 **Criterios:** [A] capturas inmediatamente antes y después del teletransporte con diferencia de píxeles bajo un umbral (no hay pop); la rotación del jugador idéntica; log `loop lap=` y salida forzada al agotar el presupuesto. [H] el juez no nota el salto; no se siente "otra vez lo mismo".
 
-### v1.0.0-alpha.6 — Candidato final y entrega — **P0 (puerta final, siempre)**
+### v0.6.0 — Candidato final y entrega — **P0 (puerta final, siempre)**
 
 **Lo que nota un juez:** nada se rompe; tiempos equilibrados; la página tiene capturas y un video corto.
 
 | WP | Título | Carril | Depende de | Entregable |
 |---|---|---|---|---|
-| alpha.6.1 | Balance de tiempos y presupuestos tras partidas [H] | SRV | hitos integrados | `features.json` y constantes finales |
-| alpha.6.2 | E5: instalación en frío en 2–3 máquinas ajenas | REL | build candidata | hoja de resultados |
-| alpha.6.3 | Capturas y video corto (se graban en GPU real) | REL | 6.1 | medios para itch |
-| alpha.6.4 | Congelar, etiquetar, subir, verificar la descarga desde itch, enviar | REL | 6.2 | entrega final |
+| v0.6.1 | Balance de tiempos y presupuestos tras partidas [H] | SRV | hitos integrados | `features.json` y constantes finales |
+| v0.6.2 | E5: instalación en frío en 2–3 máquinas ajenas | REL | build candidata | hoja de resultados |
+| v0.6.3 | Capturas y video corto (se graban en GPU real) | REL | 6.1 | medios para itch |
+| v0.6.4 | Congelar, etiquetar, subir, verificar la descarga desde itch, enviar | REL | 6.2 | entrega final |
 
 **Criterios:** [A] la build subida es byte a byte la del artefacto de CI (SHA-256 en la página); [A] la página tiene los 7 puntos; [H] E5 superado; envío confirmado en la página de la jam antes del margen del dueño.
 
 ### Grafo resumido de dependencias
 
 ```
-alpha.1.1 ─┬─ 1.3 (JiJ)
+v0.1.1 ─┬─ 1.3 (JiJ)
            ├─ 1.4 (contrato)
            └─ 1.5 (núcleo) ─┬─ 1.6 (mapa) ─ 1.7 (plantilla) ─ 1.12 (gametest)
                             ├─ 1.8 (catalejo)
                             ├─ 1.9 (final v0) ─ 1.11 (página)
-                            ├─ alpha.2.* (director, UI) ─┬─ alpha.3.* (pocket, Reclaimer, finales)
-                            │                            └─ alpha.4.* (robo, doble)
-                            └─ alpha.5.1–5.4 (escalera; necesita 1.6, la caída de 3.3 y el veredicto de 5.0)
-alpha.1.1 ─ alpha.5.0 (spike del teletransporte, ola 1)
-alpha.6 (puerta final) depende de lo que esté integrado.
+                            ├─ v0.2.* (director, UI) ─┬─ v0.3.* (pocket, Reclaimer, finales)
+                            │                            └─ v0.4.* (robo, doble)
+                            └─ v0.5.1–5.4 (escalera; necesita 1.6, la caída de 3.3 y el veredicto de 5.0)
+v0.1.1 ─ v0.5.0 (spike del teletransporte, ola 1)
+v0.6 (puerta final) depende de lo que esté integrado.
 ```
 
 ---
@@ -490,10 +490,10 @@ Nunca se recorta: contrato con advertencias, un arco completo con inicio claro y
 
 1. **Ya fuera de la jam** (se listan para que nadie los empiece): servicio de inferencia, voz (Simple Voice Chat, TTS, clon), modelos entrenados, puppets, multijugador, servidor del aula.
 2. **Memoria entre sesiones** ("has vuelto", exploit "parcheado" en la segunda partida).
-3. **La escalera infinita** (alpha.5) → la mina es un túnel corto con suelo podrido.
+3. **La escalera infinita** (v0.5) → la mina es un túnel corto con suelo podrido.
 4. **Efectos de opciones** (sensibilidad, FOV, brillo) → se queda F3, Tab, chat y toasts.
-5. **El doble** (alpha.4.1–4.2) → del robo queda sólo "tiempo perdido + chat reescrito".
-6. **El robo completo** (alpha.4) → acto apagado.
+5. **El doble** (v0.4.1–4.2) → del robo queda sólo "tiempo perdido + chat reescrito".
+6. **El robo completo** (v0.4) → acto apagado.
 7. **Pasadas de corrupción en tiempo real** → sólo la pudrición autoría.
 8. **Hilos por conocimiento** → hilos siempre visibles en el pocket.
 9. **Director adaptativo** → guion fijo con temporizadores (el director v0).
@@ -529,7 +529,7 @@ Servidor y mundo abierto; puppets ("Los jugadores consumidos se hacen títere de
 >
 > *(Al final: "Gracias por tus datos.")*
 
-## Apéndice B — Página de itch.io (plantilla para alpha.1.11)
+## Apéndice B — Página de itch.io (plantilla para v0.1.11)
 
 1. **Descripción breve** (3–4 líneas, sin spoilers). Borrador:
    > Entras a un servidor de Minecraft abandonado. La lista dice que hay siete jugadores conectados. No hay nadie.
