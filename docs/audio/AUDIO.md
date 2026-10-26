@@ -60,3 +60,17 @@ Integrated playback clamps the resolved sample gain to the current authored fade
 resolved pitch to 0.5–2.0. Vanilla event and resource-pack multipliers are applied before this
 boundary; a layer field alone is not the final sound-engine value. The real client smoke checks
 all seven resolved layers, their individual gain limits, finite values and both pitch bounds.
+
+Rehearsal 40363658359 passed the map and ending scenarios, including the disconnect
+close-window probe, and reached every audio cue. It exposed a stopped-loop defect during
+the later category-volume refresh: vanilla `AbstractTickableSoundInstance.stop()` clears
+`looping`, but the engine can still tick the retired ambient sound. The old code selected
+its finite-cue envelope using that cleared flag, giving a zero-duration ambient layer a
+negative gain and making the resolved-volume clamp invalid.
+
+Stopped layers now return zero volume and ignore further ticks; explicit/expired stop
+zeroes the envelope. Envelope selection uses the authored cue, independent of vanilla's
+mutable looping flag. Fade factors stay in 0–1. The real-engine stop/disconnect assertions
+also deliberately tick every retired instance once and require it to remain stopped and
+silent, so this late-tick path is checked deterministically. Gain/pitch, expiry, mute,
+replacement and all existing audio checks are retained.

@@ -158,7 +158,13 @@ final class AudioSmokeTest {
 
     private static void assertStopped(Map<Identifier, List<SoundInstance>> played) {
         for (var sounds : played.values()) for (SoundInstance sound : sounds) {
-            if (!((TickableSoundInstance) sound).isStopped()) throw new AssertionError("Audio left running");
+            var retired = (TickableSoundInstance) sound;
+            if (!retired.isStopped()) throw new AssertionError("Audio left running");
+            // Reproduce an engine tick/volume refresh after stop, including retired ambient loops.
+            retired.tick();
+            if (!retired.isStopped() || sound.getVolume() != 0f) {
+                throw new AssertionError("Stopped audio became audible after a late engine tick");
+            }
         }
     }
 

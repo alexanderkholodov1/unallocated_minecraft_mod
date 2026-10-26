@@ -33,33 +33,42 @@ final class AudioLayerSound extends AbstractTickableSoundInstance {
     // AbstractSoundInstance multiplies these fields by the resolved vanilla/resource-pack
     // sample's gain and pitch. Apply authored bounds AFTER that resolution, retaining fades.
     @Override
-    public float getVolume() { return Math.clamp(super.getVolume(), 0f, volume); }
+    public float getVolume() {
+        return isStopped() ? 0f : Math.clamp(super.getVolume(), 0f, Math.max(0f, volume));
+    }
 
     @Override
     public float getPitch() { return Math.clamp(super.getPitch(), 0.5f, 2f); }
 
-    void finish() { stop(); }
+    void finish() {
+        volume = 0f;
+        stop();
+    }
 
     // A short vanilla sample can finish before SoundEngine ticks it again. Keep the logical lifetime
     // bounded independently, including while paused, so bookkeeping never retains expired layers.
     void expireTick() {
+        if (isStopped()) return;
         elapsedTicks++;
-        if (cue.durationTicks() > 0 && elapsedTicks >= cue.durationTicks()) stop();
+        if (cue.durationTicks() > 0 && elapsedTicks >= cue.durationTicks()) finish();
     }
 
     @Override
     public void tick() {
+        // Vanilla stop() clears looping, and the engine can still tick a retired instance.
+        // It must never fall through to the finite-cue envelope with ambient's zero duration.
+        if (isStopped()) return;
         age++;
         if (Minecraft.getInstance().level == null
                 || (cue.durationTicks() > 0 && age >= cue.durationTicks())) {
-            stop();
+            finish();
             return;
         }
-        if (looping) {
+        if (cue == AudioCue.AMBIENT) {
             volume = targetVolume * Math.min(1f, (age + 1) / 40f);
         } else {
             int fadeTicks = cue.loud() ? 4 : 10;
-            volume = targetVolume * Math.min(1f, (cue.durationTicks() - age) / (float) fadeTicks);
+            volume = targetVolume * Math.clamp((cue.durationTicks() - age) / (float) fadeTicks, 0f, 1f);
         }
     }
 }

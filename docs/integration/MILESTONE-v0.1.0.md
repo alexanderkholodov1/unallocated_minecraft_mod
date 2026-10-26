@@ -62,3 +62,12 @@ The milestone remains a 0.x foundation, not the owner's complete-game 1.0.0-alph
   Expanded helper leakage checks to cover the new dedicated ending smoke namespace.
 
 - Local validation for 0.1.0.22: 61 Python tests and 73 subtests pass; contract text and diff whitespace checks pass. Read the fix against rehearsal 40361615824 and official 26.3 disconnect bytecode. No local Java/Gradle/game. Final rehearsal required before delivery.
+
+- `0.1.0.23`: rehearsal 40363658359 passed map and ending (including the deterministic
+  close-window probe) in all accepted profiles, then exposed retired ambient sounds
+  receiving another engine tick after vanilla stop() clears their looping flag. That
+  mistakenly selected a zero-duration finite fade and produced negative volume. Stopped
+  layers now remain silent/inert; fades use the authored cue and bounded factors. The
+  client smoke deliberately late-ticks all retired layers and asserts zero gain.
+
+- Local validation for 0.1.0.23: 61 Python tests and 73 subtests pass, contract synchronization and diff checks pass. Reviewed against the exact negative-volume failure in rehearsal 40363658359 and vanilla stop() bytecode. All previous map/ending fixes retained; final four-profile rehearsal required.
