@@ -2,13 +2,7 @@
 
 Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Threshold Interactive.
 
-<<<<<<< CURRENT
 **Versión actual: 0.1.0 — integración del hito.** Antes del menú aparece un acuerdo con advertencias y una lista opcional de usos reales de datos. Se acepta con un clic en **De acuerdo**, o escribiendo **De acuerdo** y pulsando Enter. Incluye el núcleo de sesión (actos con tiempo máximo, estado guardado y comandos de prueba) con sus dependencias dentro del JAR. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
-||||||| 379ffc5
-**Versión actual: 1.0.0-alpha.1.1 — base técnica.** Esta versión únicamente carga el mod y escribe dos mensajes en el registro. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
-=======
-**Versión actual: 0.1.1 — base técnica.** Esta versión únicamente carga el mod y escribe dos mensajes en el registro. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
->>>>>>> origin/v0.1.5
 
 ## Requisitos para jugar
 
@@ -18,15 +12,9 @@ Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Th
 | Loader | **Fabric Loader 0.20.1 o posterior** para Minecraft 26.3. Compilación verificada con 0.20.1. |
 | Fabric API | **Incluida:** los siete módulos necesarios de **0.165.0+26.3** viajan dentro de nuestro JAR. **No hace falta descargar ni instalar Fabric API aparte.** |
 | Java | **Java 25**. El Minecraft Launcher oficial descarga el entorno necesario al iniciar 26.3; deja el ejecutable Java del perfil en su valor predeterminado. |
-<<<<<<< CURRENT
 | Archivo del mod | **`unallocated-0.1.0.jar`** de la entrega del autor. |
 
 Se fija Minecraft a 26.3 porque los módulos incluidos aplican mixins a sus clases internas; un hotfix podría cambiar esos objetivos. Sólo se ampliará la versión admitida después de probarlo.
-||||||| 379ffc5
-| Archivo del mod | **`unallocated-1.0.0-alpha.1.1.jar`** de la entrega del autor. |
-=======
-| Archivo del mod | **`unallocated-0.1.1.jar`** de la entrega del autor. |
->>>>>>> origin/v0.1.5
 
 No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de inteligencia artificial para esta versión. Las versiones y las diferencias entre las fuentes oficiales están documentadas con fecha **2026-10-26** en [TOOLCHAIN.md](docs/plan/TOOLCHAIN.md).
 
@@ -43,16 +31,8 @@ No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de 
 
    En macOS, si el sistema bloquea el archivo oficial, consulta [las instrucciones de Fabric para macOS](https://docs.fabricmc.net/players/installing-fabric/macos). El Java incluido en el launcher permite jugar; no siempre está disponible para abrir el instalador universal desde el escritorio o la terminal.
 
-<<<<<<< CURRENT
 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
 4. Consigue **`unallocated-0.1.0.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
-||||||| 379ffc5
-3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** (o su hotfix 26.3.x) y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
-4. Consigue **`unallocated-1.0.0-alpha.1.1.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
-=======
-3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** (o su hotfix 26.3.x) y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
-4. Consigue **`unallocated-0.1.1.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
->>>>>>> origin/v0.1.5
 5. Copia el JAR a la carpeta **`mods`** del perfil. Crea esa carpeta si no existe:
 
    | Sistema | Ubicación predeterminada | Cómo llegar |
@@ -102,15 +82,9 @@ NULL_Threshold Interactive. Incluye siete módulos de [Fabric API 0.165.0+26.3](
 
 ## Developers (English)
 
-<<<<<<< CURRENT
 Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.0.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
 
 Every push to any branch and every pull request runs [the build workflow](.github/workflows/build.yml), verifies JAR metadata and both Java 25 entrypoint classes, then starts a real dedicated Fabric 26.3 server with the exact player JAR in `mods/`. CI requires the common load message, loaded bundled modules and `Done`, explicitly arms its disposable world, runs `unallocated act LOBBY` and `unallocated status`, asserts the enter/status markers, then stops and restarts against the same save to verify SavedData reload. Both runs require clean shutdown with no crash report. The EULA is accepted only for that disposable CI server. Smoke checks use the pinned baseline; newer accepted Loaders/hotfixes are not all tested.
-||||||| 379ffc5
-Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-1.0.0-alpha.1.1.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
-=======
-Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.1.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
->>>>>>> origin/v0.1.5
 
 CI also runs `runClientSmoke`, a Loom production client task under Xvfb/Mesa. An isolated helper mod checks the loaded player JAR byte-for-byte, verifies the contract precedes title initialization, opens the optional data list, types the agreement, checks the receipt, and exercises clicked acceptance. It then requires every bundled player module to originate inside UNALLOCATED and verifies a real screen hook. A second client process reuses the game directory and must skip the contract without changing the receipt. Contract, data-list and title screenshots, phase-specific markers, both load messages and exit zero are required; missing evidence, crashes and deadlines fail the job. The clean client `mods/` directory contains only the player JAR, with no separate Fabric API. The helper is injected separately by Loom and nests only `fabric-client-gametest-api-v1`; it cannot provide any player module. The clean server likewise installs only the player JAR. A separate server run additionally checks coexistence with the optional full API.
 

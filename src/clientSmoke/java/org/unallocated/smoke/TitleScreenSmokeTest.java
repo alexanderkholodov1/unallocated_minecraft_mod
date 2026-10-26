@@ -132,6 +132,7 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
         if (phase.equals("first")) {
             CoreSessionSmokeTest.run(context);
             InterfaceEffectsSmokeTest.run(context);
+            new SpyglassBaitSmokeTest().runTest(context);
         }
     }
 

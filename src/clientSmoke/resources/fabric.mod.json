@@ -10,17 +10,10 @@
   ],
   "entrypoints": {
     "fabric-client-gametest": [
-<<<<<<< CURRENT
       "org.unallocated.smoke.TitleScreenSmokeTest"
     ],
     "client": [
       "org.unallocated.smoke.ContractSmokeObserver"
-||||||| 379ffc5
-      "org.unallocated.smoke.TitleScreenSmokeTest"
-=======
-      "org.unallocated.smoke.TitleScreenSmokeTest",
-      "org.unallocated.smoke.SpyglassBaitSmokeTest"
->>>>>>> origin/v0.1.5
     ]
   },
   "depends": {
