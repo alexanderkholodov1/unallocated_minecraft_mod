@@ -40,6 +40,10 @@ public final class MapVerifier {
                     throw new IllegalStateException("Missing base supplies");
                 }
             }
+            if (id.equals("mine")) {
+                expect(level, "mine.lintel", Blocks.STRIPPED_OAK_LOG);
+                expect(level, "mine.end", Blocks.STONE);
+            }
             for (var entry : MapLayout.checkpoints().entrySet()) {
                 var cp = entry.getValue();
                 if (!cp.section().equals(id)) continue;

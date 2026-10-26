@@ -241,7 +241,7 @@ def client():
         game_directory=directory,
     )
     verify_screenshot(directory, ('unallocated-title', 'map-lobby-spawn', 'map-hill-bait_path', 'map-path-midpoint',
-                                  'map-base-entrance', 'map-base-theft_zone'))
+                                  'map-base-entrance', 'map-base-theft_zone', 'map-mine-entrance', 'map-mine-threshold'))
     props = properties()
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",
