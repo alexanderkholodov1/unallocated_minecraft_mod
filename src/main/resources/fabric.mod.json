@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "unallocated",
+  "version": "${version}",
+  "name": "UNALLOCATED",
+  "description": "A first-person horror mod. This foundation build only initializes and logs.",
+  "authors": [
+    "NULL_Threshold Interactive"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.unallocated.UnallocatedMod"
+    ],
+    "client": [
+      "org.unallocated.client.UnallocatedClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": "=${loader_version}",
+    "minecraft": "=${minecraft_version}",
+    "java": ">=25"
+  }
+}
