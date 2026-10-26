@@ -1,4 +1,4 @@
-package org.unallocated.smoke.mixin;
+package org.unallocated.client.mixin.interfacefxsmoke;
 
 import java.nio.file.Files;
 import java.util.Arrays;

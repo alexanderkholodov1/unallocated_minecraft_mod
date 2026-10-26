@@ -90,9 +90,9 @@ public final class InterfaceEffects {
             case GAMMA -> applyGamma(now);
             case ADVANCEMENT -> {
                 var holder = existingAdvancement != null ? existingAdvancement : Advancement.Builder.recipeAdvancement()
-                        .parent(Identifier.withDefaultNamespace("story/root"))
-                        .display(Items.STRING, InterfaceTexts.inventedAdvancement(request.generation, request.language, request.seed),
-                                text(request, "goal"), AdvancementType.TASK, true, false, true)
+                        .rootDisplay(Items.STRING, InterfaceTexts.inventedAdvancement(request.generation, request.language, request.seed),
+                                text(request, "goal"), Identifier.withDefaultNamespace("gui/advancements/backgrounds/stone"),
+                                AdvancementType.TASK, true, false, true)
                         .build(Identifier.fromNamespaceAndPath("unallocated", "interface/phantom_" + Long.toUnsignedString(request.seed)));
                 var toast = new AdvancementToast(holder);
                 TOASTS.put(toast, now + request.ticks * 50_000_000L);

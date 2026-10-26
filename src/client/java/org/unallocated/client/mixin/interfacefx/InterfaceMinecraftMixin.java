@@ -1,4 +1,4 @@
-package org.unallocated.client.interfacefx.mixin;
+package org.unallocated.client.mixin.interfacefx;
 
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;

@@ -59,7 +59,8 @@ jobs:
               assert set(metadata['entrypoints']) == {'main', 'client'}, 'Test entrypoint leaked into player JAR'
               assert not metadata.get('jars'), 'Test library bundled into player JAR'
               assert not any(
-                  name.startswith('org/unallocated/smoke/') or name.endswith('.jar') or name == 'unallocated-interface-smoke.mixins.json'
+                  name.startswith(('org/unallocated/smoke/', 'org/unallocated/client/mixin/interfacefxsmoke/'))
+                  or name.endswith('.jar') or name == 'unallocated-interface-smoke.mixins.json'
                   for name in jar.namelist()
               ), 'Smoke helper or nested library leaked into player JAR'
               assert metadata['depends'] == {

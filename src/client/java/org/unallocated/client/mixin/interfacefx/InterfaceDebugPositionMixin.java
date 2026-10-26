@@ -1,4 +1,4 @@
-package org.unallocated.client.interfacefx.mixin;
+package org.unallocated.client.mixin.interfacefx;
 
 import java.util.Collection;
 import net.minecraft.client.gui.components.debug.DebugEntryPosition;

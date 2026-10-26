@@ -1,7 +1,11 @@
 {
   "required": true,
-  "package": "org.unallocated.smoke.mixin",
+  "package": "org.unallocated.client.mixin.interfacefxsmoke",
   "compatibilityLevel": "JAVA_25",
-  "client": ["InterfaceRecoveryProbe"],
-  "injectors": {"defaultRequire": 1}
+  "client": [
+    "InterfaceRecoveryProbe"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

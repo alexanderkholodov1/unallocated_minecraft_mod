@@ -57,6 +57,6 @@ public final class InterfaceDebugCommand {
     }
 
     private static void reply(String key) {
-        Minecraft.getInstance().gui.hud.getChat().addMessage(Component.translatable("interface.unallocated.debug." + key));
+        Minecraft.getInstance().gui.hud.getChat().addClientSystemMessage(Component.translatable("interface.unallocated.debug." + key));
     }
 }

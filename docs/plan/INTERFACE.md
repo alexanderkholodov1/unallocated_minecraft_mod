@@ -130,6 +130,19 @@ sparingly for technical leaks and later degradation. The owner's plan 3.2 langua
 
 ## 26.3 API investigation
 
+The coordinator's official unobfuscated client JAR is now the authority for Minecraft signatures and injection
+sites. [The recorded audit](INTERFACE-API-AUDIT.json) checks 92 public calls, fields, private mixin targets and
+actual bytecode references without running Java or Gradle. Its SHA-1 matches `mc-ref/26.3.json`.
+This replaces the earlier source-mirror assumptions: the debug reply uses public
+`ChatComponent.addClientSystemMessage(Component)`; invented toasts use current `rootDisplay(...)`; death text
+redirects the cause field in `visitText(ActiveTextCollector)`, where the real renderer reads it.
+Mixins live exclusively in `org.unallocated.client.mixin.interfacefx` and test-only
+`org.unallocated.client.mixin.interfacefxsmoke`; runtime logic remains outside both namespaces.
+
+The supplied Fabric API aggregate does not contain the client game-test module, and Fabric Loader is also absent
+from `mc-ref`. Their binary signature audit needs the separately resolved JARs before this correction is committed.
+The Minecraft audit is complete; no Fabric binary audit or successful Java/game-test run is claimed yet.
+
 The implemented hooks target the actual 26.3 classes, rather than older `getGameInformation`/`GuiGraphics` tutorials.
 The inspected Mojang class source has the title's SplashRenderer and LevelLoadingScreen's terrain caption with
 progress/chunk rendering. No rotating advice/tip list was found in these Java Edition screens; this package uses
