@@ -21,6 +21,17 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
     // Initialization and logging do not require Fabric API.
+    testImplementation platform('org.junit:junit-bom:5.13.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    maxHeapSize = '256m'
+    def contractTestTemp = layout.projectDirectory.dir('.tmp/contract-unit').asFile
+    systemProperty 'java.io.tmpdir', contractTestTemp.absolutePath
+    doFirst { contractTestTemp.mkdirs() }
 }
 
 processResources {
@@ -56,6 +67,7 @@ tasks.withType(AbstractArchiveTask).configureEach {
 sourceSets {
     clientSmoke {
         compileClasspath += sourceSets.client.compileClasspath
+        compileClasspath += sourceSets.main.output + sourceSets.client.output
     }
 }
 
@@ -77,6 +89,7 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     runDir = clientSmokeDir
     useXVFB = true
     jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
+    jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
     jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
     jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
         "-Dunallocated.smoke.jar=${it.asFile.absolutePath}".toString()

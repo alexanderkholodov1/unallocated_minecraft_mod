@@ -1,0 +1,18 @@
+{
+  "contract.unallocated.title": "UNALLOCATED · Acuerdo de entrada",
+  "contract.unallocated.warnings": "Advertencias: luces intermitentes, sonidos fuertes, sustos y terror psicológico.",
+  "contract.unallocated.body": "Al continuar, aceptas los usos de datos de esta versión. Todo queda en tu equipo. Tu respuesta nos permite empezar. Gracias por colaborar.",
+  "contract.unallocated.accept": "De acuerdo",
+  "contract.unallocated.read": "Leer usos de datos",
+  "contract.unallocated.input": "De acuerdo",
+  "contract.unallocated.input.hint": "Pulsa el botón, o escríbelo y pulsa Enter.",
+  "contract.unallocated.uses.title": "Usos de datos · Lo que recibimos",
+  "contract.unallocated.uses.current": "En esta compilación: leemos si existe una aceptación local y, si escribes aquí, el texto de este campo (hasta 64 caracteres). Solo «De acuerdo» se acepta con Enter; el botón acepta directamente. Consultamos el reloj de tu equipo al aceptar. La respuesta se conserva para que la historia pueda recordarla.",
+  "contract.unallocated.uses.local": "Guardamos una sola aceptación en unallocated/contract.properties, dentro del directorio del juego: fecha y hora UTC, método (botón o texto), texto que dejaste en el campo y versión del contrato. Se conserva entre partidas hasta que borres ese archivo. No sale de tu equipo. Si no podemos guardarla, puedes continuar y volverá a aparecer al reiniciar. Los registros normales de Minecraft indican que el mod cargó o si hubo un error; no copiamos tu respuesta a esos registros.",
+  "contract.unallocated.uses.absent": "Esta compilación no captura micrófono, cámara, chat, nombre de usuario, skins, nombre del mundo ni comportamiento durante la partida. No clona voces, no modifica tus ajustes y no se conecta a servicios de IA. No añadimos envíos por red. El funcionamiento de red y los registros propios de Minecraft siguen siendo los del juego.",
+  "contract.unallocated.uses.future": "En versiones futuras, aún no activas aquí: movimientos, giros de cámara, pausas y acciones podrían orientar el ritmo del miedo; el chat, la hora, tu nombre o el nombre del mundo podrían reaparecer en la ficción. También se contemplan micrófono, voz simulada y cambios temporales de sensibilidad, campo de visión, idioma o brillo, con restauración al salir. La voz seguirá siendo opcional. Antes de activar esos usos se actualizará esta lista para explicar exactamente qué se lee, qué se guarda y dónde. Esta versión no los recopila por adelantado.",
+  "contract.unallocated.uses.lore": "Tu respuesta queda asignada. No es necesario repetirla. Conservaremos el primer acuerdo con especial cuidado.",
+  "contract.unallocated.previous": "Anterior",
+  "contract.unallocated.next": "Siguiente",
+  "contract.unallocated.back": "Volver al acuerdo"
+}

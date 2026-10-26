@@ -6,6 +6,7 @@
   "license": "All-Rights-Reserved",
   "environment": "client",
   "entrypoints": {
+    "client": ["org.unallocated.smoke.ContractSmokeObserver"],
     "fabric-client-gametest": [
       "org.unallocated.smoke.TitleScreenSmokeTest"
     ]

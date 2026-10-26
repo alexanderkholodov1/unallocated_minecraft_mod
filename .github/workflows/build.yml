@@ -10,7 +10,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    timeout-minutes: 16
     steps:
       - name: Check out source
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -32,6 +32,9 @@ jobs:
 
       - name: Build mod
         run: gradle --no-daemon --console=plain build clientSmokeJar
+
+      - name: Verify contract text matches Appendix C
+        run: python3 scripts/contract_text.py --check
 
       - name: Verify installable JAR and write checksum
         shell: bash
@@ -77,8 +80,8 @@ jobs:
           print(f'Verified {artifact}')
           PY
 
-      - name: Verify smoke watchdog failure paths without Java
-        run: python3 -B -m unittest discover -s scripts -p 'test_smoke_test.py'
+      - name: Verify smoke watchdog and contract orchestration without Java
+        run: python3 -B -m unittest discover -s scripts -p 'test_*.py'
 
       - name: Smoke test dedicated server with player JAR
         timeout-minutes: 4
@@ -89,8 +92,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri mesa-vulkan-drivers
 
-      - name: Smoke test production client to title screen
-        timeout-minutes: 5
+      - name: Smoke test contract and second client startup to title screen
+        timeout-minutes: 9
         env:
           LIBGL_ALWAYS_SOFTWARE: 'true'
           SDL_VIDEODRIVER: x11
@@ -106,9 +109,13 @@ jobs:
           path: |
             .tmp/smoke/*-console.log
             .tmp/smoke/**/logs/**
+            .tmp/smoke/**/logs-first/**
             .tmp/smoke/**/crash-reports/**
             .tmp/smoke/**/hs_err_pid*.log
             .tmp/smoke/**/screenshots/**
+            .tmp/smoke/client/unallocated/contract.properties
+            build/reports/tests/**
+            build/test-results/**
             hs_err_pid*.log
           if-no-files-found: warn
           retention-days: 7

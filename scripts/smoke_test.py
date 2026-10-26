@@ -151,9 +151,9 @@ def server():
     )
 
 
-def verify_screenshot(directory):
+def verify_screenshot(directory, name='unallocated-title'):
     # Fabric can prepend a numeric counter, e.g. 0000_unallocated-title.png.
-    screenshots = list(directory.rglob('*unallocated-title*.png'))
+    screenshots = list(directory.rglob(f'*{name}*.png'))
     if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
         raise RuntimeError('Client exited without a valid title-screen screenshot')
 
@@ -161,17 +161,32 @@ def verify_screenshot(directory):
 def client():
     directory = SMOKE / 'client'
     directory.mkdir(parents=True, exist_ok=False)
-    monitor(
-        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
-        ROOT, SMOKE / 'client-console.log', [
-            r'UNALLOCATED initialized \(common\)\.',
-            r'UNALLOCATED initialized \(client\)\.',
-            r'UNALLOCATED smoke: title screen reached from player JAR\.',
-        ], timeout=240,
-        # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
-        game_directory=directory,
-    )
-    verify_screenshot(directory)
+    receipt = directory / 'unallocated' / 'contract.properties'
+    original = None
+    for phase, evidence in (
+        ('first', r'UNALLOCATED smoke: contract first start, data list, typed and clicked acceptance verified\.'),
+        ('restart', r'UNALLOCATED smoke: contract skipped on second process with saved acceptance\.'),
+    ):
+        monitor(
+            ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke', f'-PcontractSmokePhase={phase}'],
+            ROOT, SMOKE / f'client-{phase}-console.log', [
+                r'UNALLOCATED initialized \(common\)\.',
+                r'UNALLOCATED initialized \(client\)\.',
+                r'UNALLOCATED smoke: title screen reached from player JAR\.', evidence,
+            ], timeout=240,
+            # Same real game directory, new JVM, no stale log evidence.
+            game_directory=directory,
+        )
+        verify_screenshot(directory, f'unallocated-title-{phase}')
+        if phase == 'first':
+            for screenshot in ('unallocated-contract', 'unallocated-contract-uses'):
+                if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
+                           for path in directory.rglob(f'*{screenshot}.png')):
+                    raise RuntimeError(f'Missing contract screenshot: {screenshot}')
+            original = receipt.read_bytes()
+            (directory / 'logs').rename(directory / 'logs-first')
+        elif receipt.read_bytes() != original:
+            raise RuntimeError('Second start rewrote the original acceptance')
 
 
 def main():
