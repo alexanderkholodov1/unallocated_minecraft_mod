@@ -30,14 +30,25 @@ dependencies {
     }
 }
 
+// Loom's include configuration declares dependencies but cannot itself be resolved.
+// Inherit those same declarations so the hash inputs cannot drift from the bundled modules.
+configurations {
+    includedJarInputs {
+        canBeConsumed = false
+        canBeResolved = true
+        transitive = false
+        extendsFrom configurations.include
+    }
+}
+
 // Record resolved include inputs independently of the output jar. Never hash the output into itself.
 def includedJarsReport = layout.buildDirectory.file('reports/included-jars.json')
 tasks.register('recordIncludedJars') {
-    inputs.files(configurations.include)
+    inputs.files(configurations.includedJarInputs)
     outputs.file(includedJarsReport)
     doLast {
         def records = new TreeMap<String, String>()
-        configurations.include.files.each { includedFile ->
+        configurations.includedJarInputs.files.each { includedFile ->
             def nestedPath = "META-INF/jars/${includedFile.name}".toString()
             if (records.containsKey(nestedPath)) {
                 throw new GradleException("Duplicate include filename: ${nestedPath}")
