@@ -168,11 +168,17 @@ def server():
     )
 
 
-def verify_screenshot(directory):
+BAIT_SCREENSHOTS = (
+    'unallocated-bait-1-plain-view', 'unallocated-bait-2-first-sighting',
+    'unallocated-bait-3-closer', 'unallocated-bait-4-screamer',
+)
+
+
+def verify_screenshot(directory, name='unallocated-title'):
     # Fabric can prepend a numeric counter, e.g. 0000_unallocated-title.png.
-    screenshots = list(directory.rglob('*unallocated-title*.png'))
+    screenshots = list(directory.rglob(f'*{name}*.png'))
     if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
-        raise RuntimeError('Client exited without a valid title-screen screenshot')
+        raise RuntimeError(f'Client exited without a valid {name} screenshot')
 
 
 def client():
@@ -184,11 +190,16 @@ def client():
             r'UNALLOCATED initialized \(common\)\.',
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
-        ], timeout=240,
+            r'UNALLOCATED bait step=2/2',
+            r'UNALLOCATED bait screamer shown',
+            r'UNALLOCATED spyglass smoke: three looks, closer each time, screamer, figure gone\.',
+        ], timeout=360,  # includes creating and playing a single-player world for the spyglass bait
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )
     verify_screenshot(directory)
+    for name in BAIT_SCREENSHOTS:
+        verify_screenshot(directory, name)
 
 
 def main():

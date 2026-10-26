@@ -67,6 +67,7 @@ tasks.withType(AbstractArchiveTask).configureEach {
 sourceSets {
     clientSmoke {
         compileClasspath += sourceSets.client.compileClasspath
+        compileClasspath += sourceSets.main.output + sourceSets.client.output
     }
 }
 
