@@ -40,6 +40,28 @@ class WatchdogTest(unittest.TestCase):
             stop_when_ready=True,
         )
 
+    def test_console_commands_run_before_stop_and_their_evidence_is_required(self):
+        self.run_fixture(
+            "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+            "assert sys.stdin.readline().strip()=='ubait selftest'\n"
+            "log.write_text(log.read_text()+'UNALLOCATED bait selftest passed\\n')\n"
+            "assert sys.stdin.readline().strip()=='stop'\n"
+            "log.write_text(log.read_text()+'Stopping server\\n')\n",
+            required=(COMMON, DONE, 'UNALLOCATED bait selftest passed'),
+            stop_when_ready=True, ready=(COMMON, DONE), ready_commands=['ubait selftest'],
+        )
+
+    def test_failed_selftest_fails_without_waiting_for_the_deadline(self):
+        with self.assertRaisesRegex(RuntimeError, 'self-test failed: .*no spyglass'):
+            self.run_fixture(
+                "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+                "sys.stdin.readline()\n"
+                "log.write_text(log.read_text()+'UNALLOCATED bait selftest FAILED: no spyglass\\n')\n"
+                "time.sleep(20)\n",
+                required=(COMMON, DONE, 'UNALLOCATED bait selftest passed'), timeout=5,
+                stop_when_ready=True, ready=(COMMON, DONE), ready_commands=['ubait selftest'],
+            )
+
     def test_missing_common_or_done_fails_even_on_exit_zero(self):
         for content in ['Done (0.1s)!', 'UNALLOCATED initialized (common).']:
             with self.subTest(content=content), self.assertRaisesRegex(RuntimeError, 'Missing required'):

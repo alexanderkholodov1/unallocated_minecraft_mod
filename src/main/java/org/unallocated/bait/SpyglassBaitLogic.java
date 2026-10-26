@@ -47,14 +47,15 @@ public final class SpyglassBaitLogic {
     }
 
     /**
-     * @param action   what to do
-     * @param distance target distance for PLACE and MOVE
-     * @param unseen   the figure may be adjusted (turned to face the player) without being seen
-     * @param cause    short reason, for the log
+     * @param action     what to do
+     * @param distance   target distance for PLACE and MOVE
+     * @param unseen     the figure may be adjusted (turned to face the player) without being seen
+     * @param zoomMasked only the zoom-in hides this MOVE: keep the same bearing so it reads as part of the zoom
+     * @param cause      short reason, for the log
      */
-    public record Decision(Action action, double distance, boolean unseen, String cause) {
+    public record Decision(Action action, double distance, boolean unseen, boolean zoomMasked, String cause) {
         static Decision none(boolean unseen) {
-            return new Decision(Action.NONE, 0, unseen, "");
+            return new Decision(Action.NONE, 0, unseen, false, "");
         }
     }
 
@@ -153,29 +154,30 @@ public final class SpyglassBaitLogic {
             }
         }
 
+        boolean zoomOnly = seen && masked;
         if (pendingStep && unseen && age - lastMoveAttempt >= RETRY_TICKS / 2) {
             pendingIsStep = true;
-            return move(distanceOf(step + 1), lastCause);
+            return move(distanceOf(step + 1), lastCause, zoomOnly);
         }
 
         if (!pendingStep && step < spec.lastStep()) {
             countSightings(o, masked);
             if (pendingStep && unseen) {
                 pendingIsStep = true;
-                return move(distanceOf(step + 1), lastCause);
+                return move(distanceOf(step + 1), lastCause, zoomOnly);
             }
         }
 
         double wanted = distanceOf(step);
-        if (unseen && !pendingStep && age - lastMove >= LURE_COOLDOWN_TICKS
+        if (!seen && !pendingStep && age - lastMove >= LURE_COOLDOWN_TICKS
                 && age - lastMoveAttempt >= RETRY_TICKS) {
             if (o.distance() < wanted - Math.max(6.0, wanted * 0.15)) {
                 pendingIsStep = false;
-                return move(wanted, "recede");
+                return move(wanted, "recede", false);
             }
             if (o.distance() > wanted + Math.max(16.0, wanted * 0.4)) {
                 pendingIsStep = false;
-                return move(wanted, "follow");
+                return move(wanted, "follow", false);
             }
         }
         return Decision.none(unseen);
@@ -261,23 +263,23 @@ public final class SpyglassBaitLogic {
 
     private Decision place(double distance, String cause) {
         lastMoveAttempt = age;
-        return new Decision(Action.PLACE, distance, true, cause);
+        return new Decision(Action.PLACE, distance, true, false, cause);
     }
 
-    private Decision move(double distance, String cause) {
+    private Decision move(double distance, String cause, boolean zoomMasked) {
         lastMoveAttempt = age;
-        return new Decision(Action.MOVE, distance, true, cause);
+        return new Decision(Action.MOVE, distance, true, zoomMasked, cause);
     }
 
     private Decision scare(String cause) {
         phase = Phase.SCARING;
         phaseTicks = 0;
-        return new Decision(Action.SCARE, 0, false, cause);
+        return new Decision(Action.SCARE, 0, false, false, cause);
     }
 
     private Decision end(String cause) {
         phase = Phase.GONE;
-        return new Decision(Action.REMOVE, 0, true, cause);
+        return new Decision(Action.REMOVE, 0, true, false, cause);
     }
 
     private double distanceOf(int index) {

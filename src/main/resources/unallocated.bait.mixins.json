@@ -1,0 +1,14 @@
+{
+  "required": false,
+  "package": "org.unallocated.mixin.bait",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "BaitCommandsMixin",
+    "BaitEntitySaveMixin",
+    "BaitMannequinInvoker",
+    "BaitServerTickMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

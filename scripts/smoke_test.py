@@ -20,6 +20,8 @@ FATAL = re.compile(
     r'Encountered an unexpected exception|Exception in thread|'
     r'A fatal error has been detected|Crash report saved|Mixin apply.*failed', re.I
 )
+# In-game feature self-tests report failure in the game log; fail at once instead of waiting for the deadline.
+SELFTEST_FAILED = re.compile(r'UNALLOCATED bait selftest FAILED[^\r\n]*')
 
 
 def properties():
@@ -40,8 +42,11 @@ def crash_reports(directory):
 
 
 def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
-            shutdown_timeout=30, game_directory=None):
-    """Require actual game log evidence, exit zero, and no crash; stop servers via stdin."""
+            shutdown_timeout=30, game_directory=None, ready=(), ready_commands=()):
+    """Require actual game log evidence, exit zero, and no crash; stop servers via stdin.
+
+    Once every `ready` pattern is in the game log, `ready_commands` are typed into the server console (once).
+    """
     console.parent.mkdir(parents=True, exist_ok=True)
     game_directory = game_directory or cwd
     latest = game_directory / 'logs' / 'latest.log'
@@ -54,6 +59,7 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
 
     deadline = time.monotonic() + timeout
     stop_sent = False
+    commands_sent = not ready_commands
     process = None
     try:
         with console.open('w') as output:
@@ -65,7 +71,16 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
                 game_log = read(latest)
                 if reports() or FATAL.search(game_log + read(console)):
                     raise RuntimeError('Game crash detected')
-                if stop_when_ready and not stop_sent and all(
+                failed = SELFTEST_FAILED.search(game_log)
+                if failed:
+                    raise RuntimeError(f'In-game self-test failed: {failed.group(0)}')
+                if not commands_sent and all(re.search(pattern, game_log) for pattern in ready):
+                    for line in ready_commands:
+                        process.stdin.write(line + '\n')
+                    process.stdin.flush()
+                    commands_sent = True
+                    print(f'Sent console commands: {list(ready_commands)}', flush=True)
+                if stop_when_ready and commands_sent and not stop_sent and all(
                     re.search(pattern, game_log) for pattern in required
                 ):
                     process.stdin.write('stop\n')
@@ -143,11 +158,13 @@ def server():
             if attempt == 1:
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
+    ready = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
     monitor(
         ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
         directory, SMOKE / 'server-console.log',
-        [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!'],
-        timeout=120, stop_when_ready=True,
+        # The spyglass bait's self-test makes, dresses, moves and removes its figure on this real server.
+        ready + [r'UNALLOCATED bait selftest passed'],
+        timeout=120, stop_when_ready=True, ready=ready, ready_commands=['ubait selftest'],
     )
 
 

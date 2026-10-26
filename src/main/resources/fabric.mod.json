@@ -9,6 +9,9 @@
   ],
   "license": "All-Rights-Reserved",
   "environment": "*",
+  "mixins": [
+    "unallocated.bait.mixins.json"
+  ],
   "entrypoints": {
     "main": [
       "org.unallocated.UnallocatedMod"
