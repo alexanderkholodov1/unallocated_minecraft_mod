@@ -170,20 +170,33 @@ def server(with_fabric_api=False):
     )
     temp = directory / 'temp'
     temp.mkdir()
+    # Cache only distribution files. Worlds, mods, logs, and Loader's processed mod
+    # cache remain private to each fresh smoke installation, including coexistence.
+    downloads = ROOT / '.tmp' / 'smoke-downloads' / (
+        f"{props['minecraft_version']}-{props['loader_version']}-1.1.2"
+    )
+    downloads.mkdir(parents=True, exist_ok=True)
+    (directory / '.fabric').mkdir()
+    for relative in ('.fabric/server', 'libraries', 'versions'):
+        shared = downloads / relative
+        shared.mkdir(parents=True, exist_ok=True)
+        (directory / relative).symlink_to(shared, target_is_directory=True)
     url = (
         'https://meta.fabricmc.net/v2/versions/loader/'
         f"{props['minecraft_version']}/{props['loader_version']}/1.1.2/server/jar"
     )
-    print(f'Downloading pinned official Fabric server launcher: {url}', flush=True)
-    launcher = directory / 'fabric-server-launch.jar'
+    print(f'Using pinned official Fabric server launcher (download on cache miss): {url}', flush=True)
+    launcher = downloads / 'fabric-server-launch.jar'
     for attempt in range(2):
         try:
-            with urlopen(Request(url, headers={'User-Agent': 'UNALLOCATED-CI'}), timeout=30) as response:
-                launcher.write_bytes(response.read())
+            if not launcher.is_file():
+                with urlopen(Request(url, headers={'User-Agent': 'UNALLOCATED-CI'}), timeout=30) as response:
+                    launcher.write_bytes(response.read())
             with ZipFile(launcher) as jar:
                 assert jar.testzip() is None, 'Corrupt Fabric server launcher'
             break
         except Exception:
+            launcher.unlink(missing_ok=True)
             if attempt == 1:
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
@@ -225,7 +238,7 @@ def client():
     directory = SMOKE / 'client'
     directory.mkdir(parents=True, exist_ok=False)
     monitor(
-        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
+        ['gradle', '--daemon', '--console=plain', 'runClientSmoke'],
         ROOT, SMOKE / 'client-console.log', [
             r'UNALLOCATED initialized \(common\)\.',
             r'UNALLOCATED initialized \(client\)\.',
