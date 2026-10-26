@@ -2,7 +2,7 @@
 
 Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Threshold Interactive.
 
-**Versión actual: 1.0.0-alpha.1.7 — núcleo de sesión con dependencias incluidas.** Incluye actos con tiempo máximo, estado guardado y comandos de prueba. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+**Versión actual: 0.1.7 — núcleo de sesión con dependencias incluidas.** Incluye actos con tiempo máximo, estado guardado y comandos de prueba. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
 
 ## Requisitos para jugar
 
@@ -12,7 +12,7 @@ Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Th
 | Loader | **Fabric Loader 0.20.1 o posterior** para Minecraft 26.3. Compilación verificada con 0.20.1. |
 | Fabric API | **Incluida:** los seis módulos necesarios de **0.165.0+26.3** viajan dentro de nuestro JAR. **No hace falta descargar ni instalar Fabric API aparte.** |
 | Java | **Java 25**. El Minecraft Launcher oficial descarga el entorno necesario al iniciar 26.3; deja el ejecutable Java del perfil en su valor predeterminado. |
-| Archivo del mod | **`unallocated-1.0.0-alpha.1.7.jar`** de la entrega del autor. |
+| Archivo del mod | **`unallocated-0.1.7.jar`** de la entrega del autor. |
 
 No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de inteligencia artificial para esta versión. Las versiones y las diferencias entre las fuentes oficiales están documentadas con fecha **2026-10-26** en [TOOLCHAIN.md](docs/plan/TOOLCHAIN.md).
 
@@ -30,7 +30,7 @@ No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de 
    En macOS, si el sistema bloquea el archivo oficial, consulta [las instrucciones de Fabric para macOS](https://docs.fabricmc.net/players/installing-fabric/macos). El Java incluido en el launcher permite jugar; no siempre está disponible para abrir el instalador universal desde el escritorio o la terminal.
 
 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** (o su hotfix 26.3.x) y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
-4. Consigue **`unallocated-1.0.0-alpha.1.7.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+4. Consigue **`unallocated-0.1.7.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
 5. Copia el JAR a la carpeta **`mods`** del perfil. Crea esa carpeta si no existe:
 
    | Sistema | Ubicación predeterminada | Cómo llegar |
@@ -76,7 +76,7 @@ NULL_Threshold Interactive. Incluye seis módulos sin modificar de [Fabric API 0
 
 ## Developers (English)
 
-Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-1.0.0-alpha.1.7.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.7.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
 
 Every push to any branch and every pull request runs [the build workflow](.github/workflows/build.yml), verifies JAR metadata and both Java 25 entrypoint classes, then starts a real dedicated Fabric 26.3 server with the exact player JAR in `mods/`. CI requires the common load message, loaded bundled modules and `Done`, explicitly arms its disposable world, runs `unallocated act LOBBY` and `unallocated status`, asserts the enter/status markers, then stops and restarts against the same save to verify SavedData reload. Both runs require clean shutdown with no crash report. The EULA is accepted only for that disposable CI server. Smoke checks use the pinned baseline; newer accepted Loaders/hotfixes are not all tested.
 
