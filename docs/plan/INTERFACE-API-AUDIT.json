@@ -119,8 +119,6 @@
     "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.waitForScreen(Ljava/lang/Class;)I",
     "public net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.takeScreenshot(Ljava/lang/String;)Ljava/nio/file/Path;",
     "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.worldBuilder()Lnet/fabricmc/fabric/api/client/gametest/v1/world/TestWorldBuilder;",
-    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.getInput()Lnet/fabricmc/fabric/api/client/gametest/v1/TestInput;",
-    "public abstract net.fabricmc.fabric.api.client.gametest.v1.TestInput.moveCursor(DD)V",
     "public abstract net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder.create()Lnet/fabricmc/fabric/api/client/gametest/v1/context/TestSingleplayerContext;",
     "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext.getServer()Lnet/fabricmc/fabric/api/client/gametest/v1/context/TestServerContext;",
     "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext.close()V",
@@ -135,6 +133,19 @@
     "public abstract net.fabricmc.api.ClientModInitializer.onInitializeClient()V",
     "public static final net.fabricmc.api.EnvType.CLIENTLnet/fabricmc/api/EnvType;",
     "net.minecraft.client.MouseHandler.turnPlayer -> opcode 182 net.minecraft.client.OptionInstance.get()Ljava/lang/Object;",
-    "net.minecraft.client.gui.components.toasts.AdvancementToast.extractRenderState -> opcode 182 net.minecraft.client.gui.Font.split(Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;"
+    "net.minecraft.client.gui.components.toasts.AdvancementToast.extractRenderState -> opcode 182 net.minecraft.client.gui.Font.split(Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;",
+    "private net.minecraft.client.Camera.calculateFov(F)F",
+    "public net.minecraft.client.renderer.GameRenderer.mainCamera()Lnet/minecraft/client/Camera;",
+    "public net.minecraft.client.renderer.Lightmap.render(Lnet/minecraft/client/renderer/state/LightmapRenderState;)V",
+    "public final net.minecraft.client.Minecraft.gameRendererLnet/minecraft/client/renderer/GameRenderer;",
+    "public final net.minecraft.client.Minecraft.mouseHandlerLnet/minecraft/client/MouseHandler;",
+    "private net.minecraft.client.MouseHandler.accumulatedDXD",
+    "private net.minecraft.client.MouseHandler.accumulatedDYD",
+    "public net.minecraft.world.entity.Entity.getYRot()F",
+    "public net.minecraft.world.entity.Entity.getXRot()F",
+    "net.minecraft.client.Camera.update -> opcode 182 net.minecraft.client.Camera.calculateFov(F)F",
+    "net.minecraft.client.Camera.update -> opcode 181 net.minecraft.client.Camera.fovF",
+    "net.minecraft.client.Camera.update -> opcode 182 net.minecraft.client.Camera.setupPerspective(FFFFF)V",
+    "net.minecraft.client.renderer.Lightmap.render -> opcode 180 net.minecraft.client.renderer.state.LightmapRenderState.darknessEffectScaleF"
   ]
 }

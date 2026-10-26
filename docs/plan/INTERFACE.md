@@ -37,7 +37,7 @@ No networking, world mutation, inference service, Fabric API runtime dependency 
 | `LOADING` | 600 ticks / 30 s | Replaces the native LevelLoadingScreen terrain-loading caption. Generations 0–2 leak the goal; generations 3–5 leak log-like failure lines. The real chunk/progress display and narration of numeric loading progress remain intact. |
 | `ADVANCEMENT` | 100 ticks / 5 s | Adds a native AdvancementToast without registering an advancement, awarding criteria/rewards, changing progress or sending packets. Toolkit toast titles are clipped to one native line so the title appears below the header immediately, including during the first second. With no ID it composes a deterministic invented title; with an ID it uses an advancement already known to the client's advancement tree. An unknown ID is refused. |
 | `SENSITIVITY` | 100 ticks / 5 s | A 0.92…1.08 multiplier applied only when MouseHandler reads sensitivity; actual options stay unchanged. |
-| `FOV` | 100 ticks / 5 s | A 0.96…1.04 multiplier applied to Camera.getFov, preserving normal camera/spyglass behavior outside the effect. |
+| `FOV` | 100 ticks / 5 s | A 0.96…1.04 multiplier applied to Camera.calculateFov before Camera.update stores it and builds the perspective projection, preserving normal camera/spyglass behavior outside the effect. |
 | `GAMMA` | 100 ticks / 5 s | Smooth 2 Hz darkness variations, at most 0.08 added to vanilla lightmap darkness. Respects the player's Darkness Effect Scale; never changes gamma or applies a status effect. |
 | `SIGN` | 100 ticks / 5 s | A chosen sign's front-side render text uses compact g0…g5 lines in the selected leak language. The sign block entity, back side, packets and world saves stay untouched. The next render returns the original text. |
 
@@ -87,7 +87,7 @@ Its `INSTANCE.apply(Perception kind, float value, int ticks)` accepts `FOV_SCALE
 `SENSITIVITY_SCALE` (0.92…1.08), or `DARKNESS` (0…0.08). `clearAll()` cancels them.
 The pure Java state expires by monotonic wall time; darkness follows a smooth 2 Hz pulse.
 
-Only the mouse consumer, camera FOV getter and lightmap render state read the overrides. None calls
+Only the native mouse consumer, camera FOV calculation and lightmap render state read the overrides. None calls
 `OptionInstance.set`, writes `options.txt`, suppresses vanilla saves, changes the selected UI language,
 or requires a next-start recovery hook. Opening Options, leaving/replacing the world and client close clear
 all perception overrides. A killed process loses all overrides; removing the mod before restarting is safe.
@@ -118,7 +118,8 @@ actual bytecode references without running Java or Gradle. Its SHA-1 matches `mc
 This replaces the earlier source-mirror assumptions: the debug reply uses public
 `ChatComponent.addClientSystemMessage(Component)`; invented toasts use current `rootDisplay(...)`; death text
 redirects the cause field in `visitText(ActiveTextCollector)`, where the real renderer reads it.
-Mixins live exclusively in `org.unallocated.client.mixin.interfacefx`; runtime logic remains outside that namespace.
+Mixins live exclusively in `org.unallocated.client.mixin.interfacefx` and test-only
+`org.unallocated.client.mixin.interfacefxsmoke`; runtime logic remains outside both namespaces.
 
 The binary audit now includes client game-test API 6.0.11+131f8d475d, game-test API
 4.0.35+3434d6d95d and Fabric Loader 0.20.1 from the coordinator's resolved dependencies.
@@ -153,17 +154,23 @@ The existing production-client game test now also:
 - Exercises all three leak languages, checks missing keys, request bounds, global cooldown and the local command handler.
 - Keeps real F3 navigation lines unchanged, checks a sign remains unmodified on the server, and checks displaying an
   existing advancement does not award progress. A real server `/kill` opens the death screen.
-- Requires all three real perception mixins to execute, calls normal vanilla save while overrides are active,
+- Requires changed values at all three native perception consumers, calls normal vanilla save while overrides are active,
   and checks that real option values and file bytes remain unchanged. Also checks expiry and opening Options.
+  Sensitivity is verified by feeding identical raw deltas into vanilla `MouseHandler.turnPlayer` through a test-only
+  accessor and asserting changed player yaw, then the original yaw response after expiry. This bypasses only the
+  SDL focus/capture gates that simulated cursor movement does not guarantee under Xvfb.
+  FOV is verified on the stored camera value used by `setupPerspective`, rather than by intercepting its getter.
+  Darkness is observed after changing `LightmapRenderState.darknessEffectScale`, the value uploaded by `Lightmap.render`.
+  Every phase logs its effect name and original/adjusted values; a failed wait names the missing consumer.
 - Requires the toast title hook and verifies a disabled debug command emits no chat feedback and dispatches no effect.
 - Leaves the world with an override active, checks it cleared and confirms normal saves leave the same option bytes.
 
-The smoke helper and recovery observer remain outside the player JAR; artifact verification rejects their classes,
+The smoke helper and raw-mouse accessor remain outside the player JAR; artifact verification rejects their classes,
 test entrypoints, nested dependencies and test mixin config. Dedicated-server smoke still uses only the player JAR.
 JUnit XML/HTML and client screenshots/logs are uploaded in diagnostics. Fourteen Python watchdog tests run without Java.
 
-The coordinator confirmed run 40273949425 on f84c8b6 green with actual effect screenshots. The in-memory
-conversion and toast/debug fixes require a new green CI run; no Java or Gradle was run locally.
+The coordinator confirmed run 40273949425 on f84c8b6 green with actual effect screenshots. The corrected native-consumer
+perception probes require a new green CI run; no Java or Gradle was run locally.
 
 No Java or Gradle is run on the shared scaffold host. Python checks and static JSON/diff checks can run locally.
 CI result/diagnostics must be reviewed before merging; the sandbox cannot reach the private GitHub API directly.

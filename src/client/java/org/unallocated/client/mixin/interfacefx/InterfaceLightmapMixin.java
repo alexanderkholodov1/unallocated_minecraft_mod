@@ -27,8 +27,10 @@ abstract class InterfaceLightmapMixin {
     @Inject(method = "extract", at = @At("RETURN"))
     private void interface$perceivedDarkness(LightmapRenderState state, float partialTick, CallbackInfo ci) {
         if (interface$darkness > 0) {
+            float original = state.darknessEffectScale;
             state.darknessEffectScale += interface$darkness * Minecraft.getInstance().options.darknessEffectScale().get().floatValue();
             state.needsUpdate = true;
+            InterfaceEffects.applied(InterfaceEffects.Effect.GAMMA, original, state.darknessEffectScale);
         }
     }
 }

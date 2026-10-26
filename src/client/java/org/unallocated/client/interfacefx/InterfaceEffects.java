@@ -46,6 +46,8 @@ public final class InterfaceEffects {
     private static final long GLOBAL_COOLDOWN = 15_000_000_000L;
     private static final Map<AdvancementToast, Long> TOASTS = new WeakHashMap<>();
     private static final Map<String, Integer> OBSERVED = new HashMap<>();
+    public record Application(double original, double adjusted) { }
+    private static final EnumMap<Effect, Application> APPLICATIONS = new EnumMap<>(Effect.class);
     private static Object lastWorld;
 
     private InterfaceEffects() { }
@@ -183,21 +185,28 @@ public final class InterfaceEffects {
 
     public static float perceivedFov(float original) {
         float scale = PerceptionOverrides.INSTANCE.value(Perception.FOV_SCALE);
-        if (scale != 1) observe("FOV");
-        return original * scale;
+        float adjusted = original * scale;
+        if (scale != 1) applied(Effect.FOV, original, adjusted);
+        return adjusted;
     }
 
     public static double perceivedSensitivity(double original) {
         float scale = PerceptionOverrides.INSTANCE.value(Perception.SENSITIVITY_SCALE);
-        if (scale != 1) observe("SENSITIVITY");
-        return scale == 1 ? original : Math.max(0, Math.min(1, original * scale));
+        double adjusted = scale == 1 ? original : Math.max(0, Math.min(1, original * scale));
+        if (scale != 1) applied(Effect.SENSITIVITY, original, adjusted);
+        return adjusted;
     }
 
     public static float perceivedDarkness() {
-        float value = PerceptionOverrides.INSTANCE.value(Perception.DARKNESS);
-        if (value > 0) observe("GAMMA");
-        return value;
+        return PerceptionOverrides.INSTANCE.value(Perception.DARKNESS);
     }
+
+    public static void applied(Effect effect, double original, double adjusted) {
+        APPLICATIONS.put(effect, new Application(original, adjusted));
+        if (Double.isFinite(adjusted) && adjusted != original) observe(effect.name());
+    }
+
+    public static Application application(Effect effect) { return APPLICATIONS.get(effect); }
 
     public static boolean ownsToast(AdvancementToast toast) { return TOASTS.containsKey(toast); }
     public static void observedToastTitle() { observe("ADVANCEMENT_TITLE"); }

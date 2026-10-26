@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.gui.screens.TitleScreen;
@@ -16,6 +17,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.entity.SignTextSlot;
 import org.slf4j.LoggerFactory;
+import org.unallocated.client.mixin.interfacefxsmoke.InterfaceMouseSmokeAccessor;
 import org.unallocated.client.interfacefx.InterfaceDebugCommand;
 import org.unallocated.client.interfacefx.InterfaceEffects;
 import org.unallocated.client.interfacefx.InterfaceEffects.Effect;
@@ -133,18 +135,41 @@ final class InterfaceEffectsSmokeTest {
             });
 
             for (Effect effect : List.of(Effect.SENSITIVITY, Effect.FOV, Effect.GAMMA)) {
+                context.runOnClient(client -> InterfaceEffects.clear());
+                int before = context.computeOnClient(client -> InterfaceEffects.observed(effect.name()));
+                float nativeBefore = context.computeOnClient(client -> effect == Effect.SENSITIVITY
+                        ? sampleNativeTurn(client) : client.gameRenderer.mainCamera().getFov());
                 context.runOnClient(client -> {
-                    InterfaceEffects.clear();
-                    require(InterfaceEffects.debugTrigger(new Request(effect, 10, 2, 1, LeakLanguage.ES, 17, null)), "Settings effect " + effect);
+                    LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED interface smoke: perception={} begin.", effect);
+                    require(InterfaceEffects.debugTrigger(new Request(effect, 40, 2, 1, LeakLanguage.ES, 17, null)), "Settings effect " + effect);
+                    if (effect == Effect.SENSITIVITY) {
+                        float drifted = sampleNativeTurn(client);
+                        require(nativeBefore > 0 && drifted > nativeBefore,
+                                "SENSITIVITY must change actual player yaw for identical native mouse deltas");
+                        LoggerFactory.getLogger("unallocated-smoke").info(
+                                "UNALLOCATED interface smoke: native mouse yaw normal={} drifted={}.", nativeBefore, drifted);
+                    }
                     assertValues(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get(), baselineValues.get());
                     client.options.save();
                     assertBytes(client.gameDirectory.toPath(), baselineBytes.get());
                 });
-                context.getInput().moveCursor(1, 1);
-                context.waitTick();
-                context.getInput().moveCursor(1, 1);
-                context.waitFor(client -> InterfaceEffects.observed(effect.name()) > 0);
-                observed(context, effect.name());
+                try {
+                    context.waitFor(client -> InterfaceEffects.observed(effect.name()) > before);
+                } catch (AssertionError timeout) {
+                    throw new AssertionError("Perception never changed its native consumer: " + effect, timeout);
+                }
+                context.runOnClient(client -> {
+                    var application = InterfaceEffects.application(effect);
+                    require(application != null && application.adjusted() > application.original(),
+                            effect + " must reach the native value/state used by the game");
+                    if (effect == Effect.FOV) {
+                        require(client.gameRenderer.mainCamera().getFov() > nativeBefore,
+                                "FOV must change Camera.update's stored projection FOV, not just a getter result");
+                    }
+                    LoggerFactory.getLogger("unallocated-smoke").info(
+                            "UNALLOCATED interface smoke: perception={} applied original={} adjusted={}.",
+                            effect, application.original(), application.adjusted());
+                });
                 // Wall-clock expiry is required even when the game is paused or runs accelerated test ticks.
                 context.waitFor(client -> {
                     if (InterfaceEffects.active(effect)) return false;
@@ -152,6 +177,12 @@ final class InterfaceEffectsSmokeTest {
                     assertValues(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get(), baselineValues.get());
                     return true;
                 }, 600);
+                if (effect == Effect.SENSITIVITY) {
+                    context.runOnClient(client -> require(Math.abs(sampleNativeTurn(client) - nativeBefore) < .00001f,
+                            "SENSITIVITY must restore actual yaw response after expiry"));
+                } else if (effect == Effect.FOV) {
+                    context.waitFor(client -> Math.abs(client.gameRenderer.mainCamera().getFov() - nativeBefore) < .001f);
+                }
             }
 
             context.runOnClient(client -> {
@@ -191,6 +222,24 @@ final class InterfaceEffectsSmokeTest {
     }
 
     private static Request request(Effect effect, int ticks) { return new Request(effect, ticks, 2, .5, LeakLanguage.ES, 17, null); }
+    private static float sampleNativeTurn(Minecraft client) {
+        var mouse = (InterfaceMouseSmokeAccessor) client.mouseHandler;
+        float yaw = client.player.getYRot();
+        float pitch = client.player.getXRot();
+        try {
+            // Exercise vanilla turnPlayer, including our sensitivity read redirect and Entity.turn.
+            // This bypasses only SDL focus/capture, which headless cursor movement cannot guarantee.
+            mouse.interfaceSmoke$setDeltaX(8);
+            mouse.interfaceSmoke$setDeltaY(0);
+            mouse.interfaceSmoke$turnPlayer(.05);
+            return client.player.getYRot() - yaw;
+        } finally {
+            mouse.interfaceSmoke$setDeltaX(0);
+            mouse.interfaceSmoke$setDeltaY(0);
+            client.player.setYRot(yaw);
+            client.player.setXRot(pitch);
+        }
+    }
     private static void observed(ClientGameTestContext context, String effect) {
         context.runOnClient(client -> require(InterfaceEffects.observed(effect) > 0, "Real render hook not reached: " + effect));
     }

@@ -5,6 +5,7 @@
   "name": "UNALLOCATED CI client smoke test",
   "license": "All-Rights-Reserved",
   "environment": "client",
+  "mixins": ["unallocated-interface-smoke.mixins.json"],
   "entrypoints": {
     "fabric-client-gametest": [
       "org.unallocated.smoke.TitleScreenSmokeTest"
