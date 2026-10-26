@@ -11,3 +11,5 @@ The milestone remains a 0.x foundation, not the owner's complete-game 1.0.0-alph
   keeps `0.1.0` and its existing installation instructions. No scaffold behavior was dropped.
 
 - `v0.1.3` (`eca0a83`): the full contract behavior and its input/receipt hardening were already merged. Kept typed and clicked agreement, optional data list, first-title interception, UTF-8 repair, replay, focus handling and two-process smoke coverage. Version-only conflicts resolve to `0.1.0`.
+
+- `v0.1.6` (`846df01`): added independent include-input hashes, dependency predicates, registry synchronization, exact Minecraft pin, external API floor and all four server/client compatibility profiles. Resolved workflow/build/smoke conflicts by retaining contract first/restart phases and core command/reload checks alongside the matrix. Preserved contract helper methods while adopting dynamic module expectations; updated the watchdog fixture to find its phase by option name. README/toolchain retain installation, contract and core details with the packaging policy. Local validation: 45 Python tests and Appendix C synchronization pass.

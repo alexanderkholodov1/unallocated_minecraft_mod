@@ -3,6 +3,7 @@
 import hashlib
 from io import BytesIO
 import json
+import re
 from pathlib import Path
 from zipfile import ZipFile
 
@@ -25,10 +26,37 @@ def clean_archive(jar):
     return names
 
 
-def verify(artifact, properties, policy):
+def stable_version(value):
+    # Bundled Fabric modules currently use stable numeric versions plus build metadata.
+    match = re.fullmatch(r'(\d+(?:\.\d+)*)(?:\+[\w.-]+)?', value)
+    require(match is not None, 'Unsupported bundled version: ' + value)
+    parts = tuple(int(part) for part in match[1].split('.'))
+    return parts + (0,) * max(0, 4 - len(parts))
+
+
+def matches(version, predicate):
+    if isinstance(predicate, list):
+        return any([matches(version, branch) for branch in predicate])
+    require(isinstance(predicate, str) and bool(predicate.strip()), 'Invalid version predicate')
+    actual = stable_version(version)
+    for term in predicate.split():
+        if term == '*':
+            continue
+        match = re.fullmatch(r'(>=|<=|>|<|=)?(\d+(?:\.\d+)*(?:\+[\w.-]+)?)', term)
+        require(match is not None, 'Unsupported bundled dependency predicate: ' + term)
+        wanted = stable_version(match[2])
+        comparison = (actual > wanted) - (actual < wanted)
+        if not {'>=': comparison >= 0, '<=': comparison <= 0, '>': comparison > 0,
+                '<': comparison < 0, '=': comparison == 0}[match[1] or '=']:
+            return False
+    return True
+
+
+def verify(artifact, properties, policy, included_hashes):
     modules = policy['modules']
     expected = {f'META-INF/jars/{key}-{value["version"]}.jar': key
                 for key, value in modules.items()}
+    require(set(included_hashes) == set(expected), 'Recorded include files differ from allowlist')
     with ZipFile(artifact) as jar:
         names = clean_archive(jar)
         verify_mixin_packages(jar)
@@ -47,17 +75,20 @@ def verify(artifact, properties, policy):
                 'Smoke helper leaked into player jar')
         depends = {
             'fabricloader': '>=' + properties['loader_version'],
-            'minecraft': '~' + properties['minecraft_version'], 'java': '>=25',
+            'minecraft': properties['minecraft_version'], 'java': '>=25',
             **{key: '>=' + value['version'] for key, value in modules.items()},
         }
         require(metadata['depends'] == depends, 'Wrong player dependencies')
+        require(metadata.get('breaks') == {'fabric-api': '<' + policy['minimum_external_api_version']},
+                'Wrong external Fabric API compatibility boundary')
         require('Apache License' in jar.read(LICENSE).decode(), 'Missing Apache license')
         notice = jar.read(NOTICE).decode()
         require('FabricMC' in notice and 'Apache-2.0' in notice, 'Missing Fabric attribution')
         for path, module_id in expected.items():
             raw = jar.read(path)
             module = modules[module_id]
-            # Loom packaging need not preserve Maven archive bytes; validate the contained mod.
+            require(hashlib.sha256(raw).hexdigest() == included_hashes[path],
+                    'Nested content differs from Gradle include input: ' + path)
             with ZipFile(BytesIO(raw)) as nested:
                 inner_names = clean_archive(nested)
                 inner = json.loads(nested.read('fabric.mod.json'))
@@ -71,9 +102,16 @@ def verify(artifact, properties, policy):
                         'Unreviewed recursive nested jar')
                 require(not any('gametest' in key or 'smoke' in key for key in inner.get('entrypoints', {})),
                         'Test entrypoint in nested module')
-                for dependency in inner.get('depends', {}):
+                for dependency, predicate in inner.get('depends', {}).items():
                     require(dependency in modules or dependency in {'minecraft', 'java', 'fabricloader'},
                             'Missing nested dependency: ' + dependency)
+                    if dependency in modules:
+                        require(matches(modules[dependency]['version'], predicate),
+                                'Unsatisfied nested dependency: ' + dependency)
+                for incompatible, predicate in inner.get('breaks', {}).items():
+                    if incompatible in modules:
+                        require(not matches(modules[incompatible]['version'], predicate),
+                                'Nested module breaks bundled dependency: ' + incompatible)
         for side in ('main', 'client'):
             for entrypoint in metadata['entrypoints'][side]:
                 bytecode = jar.read(entrypoint.replace('.', '/') + '.class')
@@ -88,7 +126,8 @@ def main():
     props = properties()
     artifact = ROOT / 'build/libs' / f'unallocated-{props["version"]}.jar'
     policy = json.loads((ROOT / 'fabric-api-modules.json').read_text())
-    digest = verify(artifact, props, policy)
+    included_hashes = json.loads((ROOT / 'build/reports/included-jars.json').read_text())
+    digest = verify(artifact, props, policy, included_hashes)
     artifact.with_suffix('.jar.sha256').write_text(f'{digest}  {artifact.name}\n')
     print(f'Verified {artifact}: {artifact.stat().st_size:,} bytes; exactly {len(policy["modules"])} approved nested modules')
 

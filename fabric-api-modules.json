@@ -21,6 +21,11 @@
       "environment": "*",
       "reason": "CustomPacketPayload registration and client/server networking."
     },
+    "fabric-registry-sync-v0": {
+      "version": "8.0.4+1ca9f6365d",
+      "environment": "*",
+      "reason": "Content registry synchronization; required by v0.1.11 audio registration."
+    },
     "fabric-resource-loader-v1": {
       "version": "3.1.0+5af7744b5d",
       "environment": "*",
@@ -31,5 +36,11 @@
       "environment": "client",
       "reason": "Client screen initialization and extraction hooks."
     }
-  }
+  },
+  "smoke_api_versions": [
+    "0.153.1+26.3",
+    "0.161.0+26.3",
+    "0.165.0+26.3"
+  ],
+  "minimum_external_api_version": "0.161.0"
 }

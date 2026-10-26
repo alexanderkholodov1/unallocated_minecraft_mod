@@ -17,7 +17,8 @@ class ContractSmokeTest(unittest.TestCase):
             calls = []
 
             def fake_monitor(command, cwd, console, required, **kwargs):
-                phase = command[-1].split('=')[1]
+                phase = next(arg.split('=', 1)[1] for arg in command
+                             if arg.startswith('-PcontractSmokePhase='))
                 calls.append(phase)
                 self.assertEqual(kwargs['game_directory'], directory)
                 self.assertTrue(any('contract ' in evidence for evidence in required))

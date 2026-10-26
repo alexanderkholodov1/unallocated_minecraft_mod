@@ -29,11 +29,13 @@ class PackagingTest(unittest.TestCase):
         self.artifact = Path(self.temp.name) / 'player.jar'
         self.props = {'version': 'test', 'loader_version': '0.20.1', 'minecraft_version': '26.3'}
         self.policy = json.loads((ROOT / 'fabric-api-modules.json').read_text())
+        self.included_hashes = {}
         self.entries = {LICENSE: 'Apache License', NOTICE: 'FabricMC Apache-2.0'}
         self.meta = {'id': 'unallocated', 'name': 'UNALLOCATED', 'version': 'test',
                      'entrypoints': {'main': ['example.Common'], 'client': ['example.Client']},
-                     'depends': {'fabricloader': '>=0.20.1', 'minecraft': '~26.3', 'java': '>=25'},
-                     'jars': []}
+                     'depends': {'fabricloader': '>=0.20.1', 'minecraft': '26.3', 'java': '>=25'},
+                     'jars': [],
+                     'breaks': {'fabric-api': '<' + self.policy['minimum_external_api_version']}}
         for module_id, module in self.policy['modules'].items():
             self.set_module(module_id, {'schemaVersion': 1, 'id': module_id,
                 'version': module['version'], 'environment': module['environment'],
@@ -50,11 +52,12 @@ class PackagingTest(unittest.TestCase):
         raw = archive({'fabric.mod.json': json.dumps(metadata),
                        'LICENSE-' + module_id: 'Apache License', **(extras or {})})
         self.entries[self.module_path(module_id)] = raw
+        self.included_hashes[self.module_path(module_id)] = hashlib.sha256(raw).hexdigest()
 
     def check(self):
         self.entries['fabric.mod.json'] = json.dumps(self.meta)
         self.artifact.write_bytes(archive(self.entries))
-        return verify(self.artifact, self.props, self.policy)
+        return verify(self.artifact, self.props, self.policy, self.included_hashes)
 
     def test_approved_subset_passes(self):
         self.assertEqual(self.check(), hashlib.sha256(self.artifact.read_bytes()).hexdigest())
@@ -73,7 +76,7 @@ class PackagingTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'allowlist'):
                     self.check()
 
-    def test_repackaged_module_with_same_identity_passes(self):
+    def test_repackaged_resolved_input_passes_but_unrecorded_changes_fail(self):
         path = self.meta['jars'][0]['file']
         original = self.entries[path]
         data = BytesIO()
@@ -86,10 +89,14 @@ class PackagingTest(unittest.TestCase):
                 target.writestr(name, content)
         self.entries[path] = data.getvalue()
         self.assertNotEqual(original, self.entries[path])
+        with self.assertRaisesRegex(ValueError, 'differs from Gradle include input'):
+            self.check()
+        self.included_hashes[path] = hashlib.sha256(self.entries[path]).hexdigest()
         self.assertEqual(self.check(), hashlib.sha256(self.artifact.read_bytes()).hexdigest())
 
     def test_invalid_nested_archive_fails(self):
         self.entries[self.meta['jars'][0]['file']] = b'not a ZIP archive'
+        self.included_hashes[self.meta['jars'][0]['file']] = hashlib.sha256(b'not a ZIP archive').hexdigest()
         with self.assertRaises(BadZipFile):
             self.check()
 
@@ -99,12 +106,50 @@ class PackagingTest(unittest.TestCase):
                 'environment': '*', 'license': 'Apache-2.0'}
         for changes, extras, error in [({'id': 'fabric-api'}, {}, 'identity'),
                 ({'version': '999.0.0'}, {}, 'identity'),
-                ({'depends': {'fabric-registry-sync-v0': '*'}}, {}, 'Missing nested dependency'),
+                ({'depends': {'fabric-rendering-v1': '*'}}, {}, 'Missing nested dependency'),
                 ({}, {'hidden.jar': b'bad'}, 'recursive')]:
             with self.subTest(error=error):
                 self.set_module(module_id, {**good, **changes}, extras)
                 with self.assertRaisesRegex(ValueError, error):
                     self.check()
+
+    def test_content_change_with_metadata_intact_fails(self):
+        module_id = 'fabric-api-base'
+        path = self.module_path(module_id)
+        before = self.included_hashes[path]
+        with ZipFile(BytesIO(self.entries[path])) as source:
+            metadata = json.loads(source.read('fabric.mod.json'))
+        self.set_module(module_id, metadata, {'net/fabricmc/Altered.class': b'changed code'})
+        self.included_hashes[path] = before
+        with self.assertRaisesRegex(ValueError, 'differs from Gradle include input'):
+            self.check()
+
+    def test_external_api_breaks_boundary_is_required(self):
+        self.meta['breaks'] = {'fabric-api': '<0.165.0'}
+        with self.assertRaisesRegex(ValueError, 'compatibility boundary'):
+            self.check()
+
+    def test_recorded_input_set_must_match_allowlist(self):
+        self.included_hashes['META-INF/jars/unreviewed.jar'] = '0' * 64
+        with self.assertRaisesRegex(ValueError, 'Recorded include files'):
+            self.check()
+
+    def test_dependency_ranges_and_breaks_are_enforced(self):
+        module_id = 'fabric-command-api-v2'
+        metadata = {'id': module_id, 'version': self.policy['modules'][module_id]['version'],
+                    'environment': '*', 'license': 'Apache-2.0'}
+        for changes, error in [
+                ({'depends': {'fabric-api-base': '>=999.0.0'}}, 'Unsatisfied nested dependency'),
+                ({'breaks': {'fabric-api-base': '<999.0.0'}}, 'breaks bundled dependency'),
+                ({'depends': {'fabric-api-base': '^2.0.0'}}, 'Unsupported bundled dependency predicate')]:
+            with self.subTest(changes=changes):
+                self.set_module(module_id, {**metadata, **changes})
+                with self.assertRaisesRegex(ValueError, error):
+                    self.check()
+        self.set_module(module_id, {**metadata,
+            'depends': {'fabric-api-base': ['>=999.0.0', '>=2.0.0 <3.0.0']},
+            'breaks': {'fabric-api-base': '<2.0.0'}})
+        self.check()
 
     def test_test_entrypoint_classes_and_missing_credits_fail(self):
         original = deepcopy(self.entries)

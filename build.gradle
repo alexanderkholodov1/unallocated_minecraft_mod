@@ -33,11 +33,45 @@ dependencies {
     }
 }
 
+// Loom's include configuration declares dependencies but cannot itself be resolved.
+// Inherit those same declarations so the hash inputs cannot drift from the bundled modules.
+configurations {
+    includedJarInputs {
+        canBeConsumed = false
+        canBeResolved = true
+        transitive = false
+        extendsFrom configurations.include
+    }
+}
+
+// Record resolved include inputs independently of the output jar. Never hash the output into itself.
+def includedJarsReport = layout.buildDirectory.file('reports/included-jars.json')
+tasks.register('recordIncludedJars') {
+    inputs.files(configurations.includedJarInputs)
+    outputs.file(includedJarsReport)
+    doLast {
+        def records = new TreeMap<String, String>()
+        configurations.includedJarInputs.files.each { includedFile ->
+            def nestedPath = "META-INF/jars/${includedFile.name}".toString()
+            if (records.containsKey(nestedPath)) {
+                throw new GradleException("Duplicate include filename: ${nestedPath}")
+            }
+            records[nestedPath] = java.security.MessageDigest.getInstance('SHA-256')
+                    .digest(includedFile.bytes).encodeHex().toString()
+        }
+        def output = includedJarsReport.get().asFile
+        output.parentFile.mkdirs()
+        output.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(records)) + '\n'
+    }
+}
+tasks.named('jar') { dependsOn tasks.named('recordIncludedJars') }
+
 processResources {
     def metadata = [
         version: project.version.toString(),
         minecraft_version: project.minecraft_version,
-        loader_version: project.loader_version
+        loader_version: project.loader_version,
+        minimum_external_api_version: bundledFabric.minimum_external_api_version
     ]
     bundledFabric.modules.each { id, module ->
         metadata[id.replace('-', '_') + '_version'] = module.version
@@ -74,6 +108,11 @@ sourceSets {
     }
 }
 
+// Each CI matrix job resolves one full API version in isolation.
+def smokeApiVersion = providers.gradleProperty('smokeApiVersion').getOrElse('none')
+if (smokeApiVersion != 'none' && !bundledFabric.smoke_api_versions.contains(smokeApiVersion)) {
+    throw new GradleException("Unreviewed smoke API version: ${smokeApiVersion}")
+}
 // Only the test runner is nested in the helper. It must not supply player modules.
 configurations {
     clientSmokeHarness { transitive = false }
@@ -83,7 +122,9 @@ configurations {
 
 dependencies {
     clientSmokeHarness 'net.fabricmc.fabric-api:fabric-client-gametest-api-v1:6.0.11+131f8d475d'
-    coexistApi "net.fabricmc.fabric-api:fabric-api:${bundledFabric.fabric_api_version}"
+    if (smokeApiVersion != 'none') {
+        coexistApi "net.fabricmc.fabric-api:fabric-api:${smokeApiVersion}"
+    }
 }
 
 tasks.register('prepareCoexistApi', Copy) {
@@ -98,7 +139,8 @@ tasks.register('clientSmokeJar', Jar) {
     from(configurations.clientSmokeHarness) { into 'META-INF/jars' }
 }
 
-def clientSmokeDir = layout.projectDirectory.dir('.tmp/smoke/client')
+def clientSmokeName = smokeApiVersion == 'none' ? 'client' : "client-api-${smokeApiVersion}"
+def clientSmokeDir = layout.projectDirectory.dir(".tmp/smoke/${clientSmokeName}")
 tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRunTask) {
     // Explicit binary inputs prevent development class directories from masking packaging errors.
     dependsOn tasks.named('jar')
@@ -107,6 +149,14 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     useXVFB = true
     jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
     jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
+    if (providers.gradleProperty('smokeExpectRejection').getOrElse('false').toBoolean()) {
+        // CI verifies Loader's error text; do not leave its Swing error dialog waiting for a click.
+        jvmArgs.add('-Djava.awt.headless=true')
+    }
+    jvmArgs.add("-Dunallocated.smoke.api=${smokeApiVersion}")
+    jvmArgs.add('-Dunallocated.smoke.modules=' + bundledFabric.modules.collect { id, module ->
+        "${id}=${module.version}"
+    }.join(','))
     jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
     jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
         "-Dunallocated.smoke.jar=${it.asFile.absolutePath}".toString()
@@ -116,6 +166,12 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
         copy {
             from tasks.named('jar', Jar).flatMap { it.archiveFile }
             into clientSmokeDir.dir('mods')
+        }
+        if (smokeApiVersion != 'none') {
+            copy {
+                from configurations.coexistApi
+                into clientSmokeDir.dir('mods')
+            }
         }
     }
 }

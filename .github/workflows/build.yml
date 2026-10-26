@@ -10,7 +10,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        # Oldest API must be rejected by Loader; the other three profiles must start.
+        api: ['none', '0.153.1+26.3', '0.161.0+26.3', '0.165.0+26.3']
     steps:
       - name: Check out source
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -31,45 +36,45 @@ jobs:
           cache-read-only: ${{ github.event_name != 'push' }}
 
       - name: Build mod
-        run: gradle --no-daemon --console=plain build clientSmokeJar prepareCoexistApi
+        run: gradle --no-daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=${{ matrix.api }}
 
       - name: Verify contract text matches Appendix C
         run: python3 scripts/contract_text.py --check
 
       - name: Verify installable JAR, mixin packages and write checksum
+        id: package
         run: python3 scripts/verify_jar.py
 
       - name: Verify packaging, smoke and contract orchestration failure paths without Java
         run: python3 -B -m unittest discover -s scripts -p 'test_*.py'
 
-      - name: Smoke test dedicated server commands and saved session reload
+      - name: Smoke test dedicated server (Fabric API ${{ matrix.api }})
         timeout-minutes: 6
-        run: python3 scripts/smoke_test.py server
-
-      - name: Verify server coexistence with optional full Fabric API
-        timeout-minutes: 4
-        run: python3 scripts/smoke_test.py server-with-api
+        run: python3 scripts/smoke_test.py server --fabric-api-version '${{ matrix.api }}'
 
       - name: Install headless client graphics
+        if: ${{ !cancelled() && steps.package.outcome == 'success' }}
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri mesa-vulkan-drivers
 
-      - name: Smoke test contract and second client startup to title screen
-        timeout-minutes: 9
+      - name: Smoke test client startup or Loader rejection (Fabric API ${{ matrix.api }})
+        if: ${{ !cancelled() && steps.package.outcome == 'success' }}
+        timeout-minutes: 10
         env:
           LIBGL_ALWAYS_SOFTWARE: 'true'
           SDL_VIDEODRIVER: x11
           ALSOFT_DRIVERS: 'null'
-        run: python3 scripts/smoke_test.py client
+        run: python3 scripts/smoke_test.py client --fabric-api-version '${{ matrix.api }}'
 
       - name: Upload smoke diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: smoke-diagnostics-${{ github.sha }}
+          name: smoke-diagnostics-${{ github.sha }}-${{ matrix.api }}
           include-hidden-files: true
           path: |
+            build/reports/included-jars.json
             .tmp/smoke/*-console.log
             .tmp/smoke/**/logs/**
             .tmp/smoke/**/logs-first/**
@@ -84,11 +89,13 @@ jobs:
           retention-days: 7
 
       - name: Upload installable mod
+        if: ${{ success() && matrix.api == 'none' }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: unallocated-${{ github.sha }}
           path: |
             build/libs/unallocated-*.jar
             build/libs/unallocated-*.jar.sha256
+            build/reports/included-jars.json
           if-no-files-found: error
           retention-days: 14
