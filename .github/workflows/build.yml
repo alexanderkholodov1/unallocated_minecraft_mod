@@ -33,10 +33,19 @@ jobs:
         with:
           # No wrapper JAR is required; keep in sync with TOOLCHAIN.md.
           gradle-version: '9.8.2'
+          # Includes caches/fabric-loom (Minecraft assets, natives and Fabric downloads).
           cache-read-only: ${{ github.event_name != 'push' }}
 
+      - name: Cache Loom project and smoke server downloads
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: |
+            .gradle/loom-cache
+            .tmp/smoke-downloads
+          key: minecraft-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('gradle.properties', 'build.gradle', 'settings.gradle', 'fabric-api-modules.json', 'scripts/smoke_test.py') }}
+
       - name: Build mod
-        run: gradle --no-daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=${{ matrix.api }}
+        run: gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=${{ matrix.api }}
 
       - name: Verify contract text matches Appendix C
         run: python3 scripts/contract_text.py --check
@@ -52,11 +61,20 @@ jobs:
         timeout-minutes: 6
         run: python3 scripts/smoke_test.py server --fabric-api-version '${{ matrix.api }}'
 
+      - name: Identify graphics runner image
+        id: graphics-image
+        run: echo "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"
+
+      - name: Cache headless graphics packages
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: .tmp/headless-debs/*.deb
+          key: graphics-v1-${{ runner.arch }}-${{ steps.graphics-image.outputs.version }}-${{ hashFiles('scripts/install_headless_graphics.sh') }}
+
       - name: Install headless client graphics
         if: ${{ !cancelled() && steps.package.outcome == 'success' }}
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri mesa-vulkan-drivers
+          bash scripts/install_headless_graphics.sh
 
       - name: Smoke test client startup or Loader rejection (Fabric API ${{ matrix.api }})
         if: ${{ !cancelled() && steps.package.outcome == 'success' }}
