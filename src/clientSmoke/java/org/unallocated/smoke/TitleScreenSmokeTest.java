@@ -133,6 +133,7 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
             CoreSessionSmokeTest.run(context);
             InterfaceEffectsSmokeTest.run(context);
             new SpyglassBaitSmokeTest().runTest(context);
+            MapTourSmokeTest.run(context);
         }
     }
 

@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SMOKE = ROOT / '.tmp' / 'smoke'
 FATAL = re.compile(
     r'Encountered an unexpected exception|Exception in thread|'
-    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed', re.I
+    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|UNALLOCATED map command failed', re.I
 )
 # In-game feature self-tests report failure in the game log; fail at once instead of waiting for the deadline.
 SELFTEST_FAILED = re.compile(r'UNALLOCATED bait selftest FAILED[^\r\n]*')
@@ -225,8 +225,9 @@ def server(with_fabric_api=False):
     (directory / 'server.properties').write_text(
         'server-ip=127.0.0.1\nserver-port=25565\nonline-mode=false\n'
         'level-name=smoke-world\nlevel-type=minecraft:flat\n'
+        'generator-settings={"layers":[{"block":"minecraft:air","height":1}],"biome":"unallocated:lobby","structure_overrides":[]}\n'
         'generate-structures=false\nview-distance=2\nsimulation-distance=2\n'
-        'max-players=1\nsync-chunk-writes=false\n'
+        'max-players=1\nsync-chunk-writes=false\npause-when-empty-seconds=-1\n'
     )
     temp = directory / 'temp'
     temp.mkdir()
@@ -270,11 +271,20 @@ def server(with_fabric_api=False):
         command, directory, SMOKE / f'{name}-console.log', startup + [entered, status, r'UNALLOCATED bait selftest passed'],
         timeout=120, stop_when_ready=not expects_rejection(api_version), startup_required=startup,
         command_steps=[] if expects_rejection(api_version) else [
-            ('unallocated arm', [r'UNALLOCATED session armed']),
+            ('unallocated build all', [r'UNALLOCATED map built section=all', r'UNALLOCATED map verified section=all']),
+            ('unallocated mapcheck rebuild', [r'UNALLOCATED map regeneration verified sections=5']),
             ('unallocated act LOBBY', [entered]), ('unallocated status', [status]),
             ('ubait selftest', [r'UNALLOCATED bait selftest passed'])],
         expected_rejection=api_version if expects_rejection(api_version) else None,
     )
+    if expects_rejection(api_version):
+        return
+    # Dedicated startup overrides world mode/difficulty from this file. Authoring must persist it too.
+    saved_properties = dict(line.split('=', 1) for line in read(directory / 'server.properties').splitlines()
+                            if '=' in line and not line.startswith('#'))
+    for key, expected_value in {'gamemode': 'adventure', 'difficulty': 'normal'}.items():
+        if saved_properties.get(key) != expected_value:
+            raise RuntimeError(f'Map setting not persisted: {key} expected={expected_value} found={saved_properties.get(key)}')
     if with_fabric_api:
         return  # Coexistence check stays a single process; clean one-JAR smoke proves reload.
     # A second real server process must load SavedData, not a leftover Java/static object.
@@ -285,7 +295,8 @@ def server(with_fabric_api=False):
     monitor(
         command, directory, SMOKE / 'server-reload-console.log', startup + [status],
         timeout=120, stop_when_ready=True, startup_required=startup,
-        command_steps=[('unallocated status', [status])],
+        command_steps=[('unallocated mapcheck', [r'UNALLOCATED map verified section=all']),
+                       ('unallocated status', [status])],
     )
     assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
 
@@ -297,10 +308,12 @@ BAIT_SCREENSHOTS = (
 
 
 def verify_screenshot(directory, name='unallocated-title'):
-    # Fabric can prepend a numeric counter, e.g. 0000_unallocated-title.png.
-    screenshots = list(directory.rglob(f'*{name}*.png'))
-    if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
-        raise RuntimeError(f'Client exited without a valid {name} screenshot')
+    # Fabric can prepend a numeric counter; one capture cannot substitute for another.
+    names = (name,) if isinstance(name, str) else name
+    for expected in names:
+        screenshots = list(directory.rglob(f'*{expected}.png'))
+        if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+            raise RuntimeError(f'Client exited without a valid screenshot: {expected}')
 
 
 def client_phases():
@@ -318,8 +331,11 @@ def client_phases():
                 r'UNALLOCATED bait step=2/2',
                 r'UNALLOCATED bait screamer shown',
                 r'UNALLOCATED spyglass smoke: three looks, closer each time, screamer, figure gone\.',
+                r'UNALLOCATED smoke: map tour completed\.',
             ],
             'screenshots': ['unallocated-contract', 'unallocated-contract-uses', 'unallocated-title-first',
+                            'map-lobby-spawn', 'map-lobby-board', 'map-hill-bait_path', 'map-hill-view', 'map-path-midpoint',
+                            'map-base-entrance', 'map-base-theft_zone', 'map-mine-entrance', 'map-mine-threshold',
                             *[f'unallocated-interface-{effect}' for effect in
                               ('splash', 'loading', 'f3', 'advancement', 'sign', 'death')],
                             *BAIT_SCREENSHOTS],

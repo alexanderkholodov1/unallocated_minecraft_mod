@@ -162,6 +162,14 @@ class WatchdogTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'crash'):
             self.run_fixture("print('Exception in thread main',file=sys.stderr)\n", required=())
 
+    def test_map_command_exception_fails_before_waiting_for_success_timeout(self):
+        with self.assertRaisesRegex(RuntimeError, 'Game crash detected'):
+            self.run_fixture(
+                "log.write_text('UNALLOCATED map command failed operation=build all\\nIllegalStateException: fixture\\n')\n"
+                "time.sleep(20)\n",
+                required=('UNALLOCATED map built section=all',), timeout=1,
+            )
+
     def test_hanging_process_is_killed_on_timeout(self):
         with self.assertRaisesRegex(RuntimeError, 'Timed out'):
             self.run_fixture('time.sleep(20)\n', timeout=0.3)
@@ -199,6 +207,13 @@ class WatchdogTest(unittest.TestCase):
             (directory / 'unallocated-title.png').write_text('not an image')
             with self.assertRaisesRegex(RuntimeError, 'screenshot'):
                 verify_screenshot(directory)
+
+    def test_title_screenshot_cannot_replace_map_tour(self):
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp)
+            (directory / 'unallocated-title.png').write_bytes(b'\x89PNG\r\n\x1a\n')
+            with self.assertRaisesRegex(RuntimeError, 'map-lobby-spawn'):
+                verify_screenshot(directory, ('unallocated-title', 'map-lobby-spawn'))
 
     def test_core_commands_wait_for_fresh_game_log_evidence(self):
         self.run_fixture(
