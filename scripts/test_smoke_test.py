@@ -87,7 +87,7 @@ class WatchdogTest(unittest.TestCase):
 
     REJECTION = (
         "Incompatible mods found!\n"
-        "Mod 'UNALLOCATED' (unallocated) 1.0.0-alpha.1.6 is incompatible with any version "
+        "Mod 'UNALLOCATED' (unallocated) 0.1.6 is incompatible with any version "
         "before 0.161.0 of mod 'Fabric API' (fabric-api), yet a conflicting version is present: "
         "0.153.1+26.3!\nRemove one of the mods or check for updates.\n"
     )
