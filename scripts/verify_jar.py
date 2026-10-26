@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 from zipfile import ZipFile
 
+from mixin_packages import verify_mixin_packages
+
 ROOT = Path(__file__).resolve().parents[1]
 LICENSE = 'META-INF/licenses/Fabric-API-Apache-2.0.txt'
 NOTICE = 'META-INF/NOTICE-Fabric-API.txt'
@@ -29,6 +31,7 @@ def verify(artifact, properties, policy):
                 for key, value in modules.items()}
     with ZipFile(artifact) as jar:
         names = clean_archive(jar)
+        verify_mixin_packages(jar)
         metadata_text = jar.read('fabric.mod.json').decode()
         require('${' not in metadata_text, 'Unexpanded metadata')
         metadata = json.loads(metadata_text)

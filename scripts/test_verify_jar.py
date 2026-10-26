@@ -126,6 +126,16 @@ class PackagingTest(unittest.TestCase):
                     self.check()
                 self.meta = meta
 
+    def test_registered_mixin_package_rejects_logic_classes(self):
+        from test_mixin_packages import class_file
+        self.meta['mixins'] = [{'config': 'feature.mixins.json', 'environment': 'client'}]
+        self.entries['feature.mixins.json'] = json.dumps({'package': 'example.mixin', 'client': ['FeatureMixin']})
+        self.entries['example/mixin/FeatureMixin.class'] = class_file('example/mixin/FeatureMixin', mixin=True)
+        self.check()
+        self.entries['example/mixin/Helper.class'] = class_file('example/mixin/Helper')
+        with self.assertRaisesRegex(ValueError, 'non-mixin class'):
+            self.check()
+
     def test_clean_mod_directory_rejects_external_api(self):
         directory = Path(self.temp.name)
         (directory / 'player.jar').touch()

@@ -70,6 +70,7 @@ tasks.withType(AbstractArchiveTask).configureEach {
 sourceSets {
     clientSmoke {
         compileClasspath += sourceSets.client.compileClasspath
+        compileClasspath += sourceSets.main.output + sourceSets.client.output
     }
 }
 
@@ -105,6 +106,7 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     runDir = clientSmokeDir
     useXVFB = true
     jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
+    jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
     jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
     jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
         "-Dunallocated.smoke.jar=${it.asFile.absolutePath}".toString()
@@ -118,5 +120,12 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     }
 }
 
-// Unit coverage of the core; real server/client coverage runs through smoke_test.py.
-test { useJUnitPlatform() }
+// Unit coverage of the core and packages; real server/client coverage runs through smoke_test.py.
+test {
+    useJUnitPlatform()
+    maxHeapSize = '256m'
+    // JUnit temporary directories stay inside the worktree, never in the host's /tmp.
+    def unitTestTemp = layout.projectDirectory.dir('.tmp/unit').asFile
+    systemProperty 'java.io.tmpdir', unitTestTemp.absolutePath
+    doFirst { unitTestTemp.mkdirs() }
+}

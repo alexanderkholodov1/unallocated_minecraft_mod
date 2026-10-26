@@ -10,7 +10,7 @@
       "org.unallocated.smoke.TitleScreenSmokeTest"
     ],
     "client": [
-      "org.unallocated.smoke.TitleScreenSmokeTest"
+      "org.unallocated.smoke.ContractSmokeObserver"
     ]
   },
   "depends": {

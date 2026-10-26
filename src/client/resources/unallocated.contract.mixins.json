@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "org.unallocated.client.mixin.contract",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["ContractGuiMixin"],
+  "injectors": {"defaultRequire": 1}
+}
