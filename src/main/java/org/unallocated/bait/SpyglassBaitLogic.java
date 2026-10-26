@@ -16,7 +16,7 @@ public final class SpyglassBaitLogic {
     /** Ticks after the scope goes up during which the zoom-in animation hides a jump of the figure. */
     public static final int ZOOM_MASK_TICKS = 3;
     /** Ticks the screamer image and figure stay before the figure is gone. */
-    public static final int SCARE_HOLD_TICKS = 14;
+    public static final int SCARE_HOLD_TICKS = 16;
     /** Ticks a plain (no spyglass) look must last to count once the fallback is active. */
     public static final int NAKED_DWELL_TICKS = 24;
     static final int RETRY_TICKS = 20;

@@ -16,20 +16,25 @@ import org.unallocated.bait.SpyglassBaitSignals;
 /**
  * Client half of the spyglass bait's screamer. The figure itself lunges into the player's face in the world (server
  * side); here: one hard black cut that hides its last approach, then a red stain and torn scanlines that fade within
- * 0.7 s, with three vanilla sounds pitched down at once (the enderman's stare, the player's own hurt voice, the elder
+ * 0.8 s, with three vanilla sounds pitched down at once (the enderman's stare, the player's own hurt voice, the elder
  * guardian's curse). Short on purpose, and covered by the contract's warnings ("sonidos fuertes, sustos"): one cut,
  * no strobing. Also lets mannequins render up to {@link #FAR_RENDER_BLOCKS}, so the figure can be a distant speck
  * (vanilla culls a body-sized entity at about 64 blocks).
  */
 public final class SpyglassBaitClient {
     public static final double FAR_RENDER_BLOCKS = 160;
-    static final long CUT_NANOS = 110_000_000L;
-    static final long SCARE_NANOS = 700_000_000L;
+    /**
+     * Black long enough to hide the lunge: its position reaches the client up to a tick after the signal and is then
+     * interpolated over about three ticks. The sound hits when the face appears.
+     */
+    static final long CUT_NANOS = 180_000_000L;
+    static final long SCARE_NANOS = 800_000_000L;
     private static final long STALE_NANOS = 2_000_000_000L;
     private static final float[][] TEARS = {{0.18f, 0.035f}, {0.47f, 0.012f}, {0.71f, 0.05f}};
 
     private static long consumed;
     private static long startedNanos = Long.MIN_VALUE;
+    private static boolean soundPending;
     private static int scaresShown;
 
     private SpyglassBaitClient() { }
@@ -43,7 +48,7 @@ public final class SpyglassBaitClient {
         SpyglassBaitSignals.Scare scare = SpyglassBaitSignals.latest();
         if (scare != null && scare.sequence() != consumed) {
             consumed = scare.sequence();
-            if (scare.player().equals(player.getUUID()) && now - scare.nanos() < STALE_NANOS) start(minecraft, now);
+            if (scare.player().equals(player.getUUID()) && now - scare.nanos() < STALE_NANOS) start(now);
         }
         long elapsed = now - startedNanos;
         if (startedNanos == Long.MIN_VALUE || elapsed < 0 || elapsed > SCARE_NANOS) return;
@@ -52,6 +57,12 @@ public final class SpyglassBaitClient {
         if (elapsed < CUT_NANOS) {
             graphics.fill(0, 0, width, height, 0xFF000000);
             return;
+        }
+        if (soundPending) {
+            soundPending = false;
+            play(minecraft, SoundEvents.ENDERMAN_STARE, 0.55f, 1.0f);
+            play(minecraft, SoundEvents.PLAYER_HURT, 0.5f, 1.0f);
+            play(minecraft, SoundEvents.ELDER_GUARDIAN_CURSE, 0.75f, 0.9f);
         }
         float fade = 1.0f - (float) (elapsed - CUT_NANOS) / (SCARE_NANOS - CUT_NANOS);
         graphics.fill(0, 0, width, height, (int) (fade * 0x70) << 24 | 0x5A0000);
@@ -63,12 +74,10 @@ public final class SpyglassBaitClient {
         }
     }
 
-    private static void start(Minecraft minecraft, long now) {
+    private static void start(long now) {
         startedNanos = now;
+        soundPending = true;
         scaresShown++;
-        play(minecraft, SoundEvents.ENDERMAN_STARE, 0.55f, 1.0f);
-        play(minecraft, SoundEvents.PLAYER_HURT, 0.5f, 1.0f);
-        play(minecraft, SoundEvents.ELDER_GUARDIAN_CURSE, 0.75f, 0.9f);
         UnallocatedMod.LOGGER.info("UNALLOCATED bait screamer shown");
     }
 

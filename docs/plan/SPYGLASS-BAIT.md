@@ -26,10 +26,10 @@ The owner's words it implements:
    distances: 92, 64, 44, 28 blocks for four calm sightings, then 14.
 4. **Too close: the screamer.** The next look at the 14-block figure holds for 0.7–1.2 s of silence (seeded jitter, so
    the moment is not predictable), then the figure is thrown into the player's face — about 3.4 blocks ahead through
-   the scope, where its face fills the circle, or about 1 block ahead without it. The client cuts to black for 0.11 s
-   (hiding the lunge itself), then a red stain and three torn scanlines fade within 0.7 s, with three vanilla sounds
-   pitched down at once: the enderman's stare, **the player's own hurt voice**, and the elder guardian's curse (the
-   game's own screamer). After 0.7 s the figure is gone for good.
+   the scope, where its face fills the circle, or about 1 block ahead without it. The client cuts to black for 0.18 s
+   (hiding the lunge itself); as the face appears, three vanilla sounds hit at once, pitched down: the enderman's
+   stare, **the player's own hurt voice**, and the elder guardian's curse (the game's own screamer); a red stain and
+   three torn scanlines fade by 0.8 s. Then the figure is gone for good.
 5. **Silence.** Nothing about the bait makes a sound until the screamer.
 
 How it behaves when the player does something else:
@@ -78,7 +78,7 @@ Example for the video: `/ubait ahead 4 70 12 true`, then use the spyglass four t
 ## Content warnings
 
 The screamer uses exactly what the contract (work package 1.3) warns about: "sonidos fuertes" and "sustos"; its black
-cut is a single flash, never a strobe. It lasts 0.7 s and happens once per bait. `scare=false` gives a version without
+cut is a single flash, never a strobe. It lasts 0.8 s and happens once per bait. `scare=false` gives a version without
 sound or image for any reduced-intensity choice the owner may want later. In multiplayer (secondary) only the host
 sees the image; remote players get the lunge without sound or image.
 

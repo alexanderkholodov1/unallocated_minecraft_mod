@@ -34,7 +34,7 @@ public final class SpyglassBaitSmokeTest implements FabricClientGameTest {
 
             context.getInput().holdKey(options -> options.keyUse);
             context.waitFor(client -> SpyglassBaitClient.scareVisible(), 160);
-            context.waitTicks(3);
+            context.waitTicks(6); // past the black cut: the face, the red stain and the scanlines
             context.takeScreenshot("unallocated-bait-4-screamer");
             context.getInput().releaseKey(options -> options.keyUse);
             world.getServer().waitFor(server -> status(server).equals("none"), 100);

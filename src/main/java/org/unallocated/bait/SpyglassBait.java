@@ -50,8 +50,8 @@ public final class SpyglassBait {
         spec = spec.fittedTo(Active.reachable(player, SpyglassBaitSpec.MAX_DISTANCE));
         ACTIVE.put(player.getUUID(), new Active(player.level().getServer(), spec,
                 lure == null ? null : Vec3.atBottomCenterOf(lure), ahead));
-        UnallocatedMod.LOGGER.info("UNALLOCATED bait start player={} distances={} scare={}",
-                player.getGameProfile().name(), spec.distances(), spec.scare());
+        UnallocatedMod.LOGGER.info("UNALLOCATED bait start distances={} scare={} ahead={}",
+                spec.distances(), spec.scare(), ahead);
     }
 
     /** Removes the bait and its figure at once. Returns whether there was one. */
