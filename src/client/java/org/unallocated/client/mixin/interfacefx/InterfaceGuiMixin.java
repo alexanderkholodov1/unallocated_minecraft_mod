@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.unallocated.client.interfacefx.InterfaceEffects;
-import org.unallocated.client.interfacefx.InterfaceOptionsGuard;
 
 @Mixin(Gui.class)
 abstract class InterfaceGuiMixin {
@@ -17,7 +16,6 @@ abstract class InterfaceGuiMixin {
     private void interface$restoreBeforePreferenceEditor(Screen screen, CallbackInfo ci) {
         if (screen instanceof OptionsScreen || screen instanceof OptionsSubScreen) {
             InterfaceEffects.restoreSettings();
-            InterfaceOptionsGuard.beforeUserOptions();
         }
     }
 }

@@ -20,7 +20,8 @@ import org.unallocated.client.interfacefx.InterfaceDebugCommand;
 import org.unallocated.client.interfacefx.InterfaceEffects;
 import org.unallocated.client.interfacefx.InterfaceEffects.Effect;
 import org.unallocated.client.interfacefx.InterfaceEffects.Request;
-import org.unallocated.client.interfacefx.InterfaceOptionsGuard;
+import org.unallocated.client.effects.PerceptionOverrides;
+import org.unallocated.client.effects.PerceptionOverrides.Perception;
 import org.unallocated.client.interfacefx.InterfaceTexts;
 import org.unallocated.client.interfacefx.InterfaceTexts.LeakLanguage;
 
@@ -67,6 +68,7 @@ final class InterfaceEffectsSmokeTest {
             context.waitFor(client -> client.level != null && client.player != null && client.gui.screen() == null);
             context.runOnClient(client -> {
                 try {
+                    client.options.save(); // Normalize vanilla's own serialization before the no-write comparison.
                     baselineBytes.set(Files.readAllBytes(client.gameDirectory.toPath().resolve("options.txt")));
                 } catch (Exception failure) {
                     throw new AssertionError("Cannot read options baseline", failure);
@@ -75,7 +77,14 @@ final class InterfaceEffectsSmokeTest {
                 client.debugEntries.setOverlayVisible(true);
                 var position = Identifier.withDefaultNamespace("player_position");
                 if (!client.debugEntries.isCurrentlyEnabled(position)) client.debugEntries.toggleStatus(position);
-                // Exercise the production ChatScreen dispatch path through the same local handler.
+                System.setProperty("unallocated.interface.debug", "false");
+                System.setProperty("unallocated.interface.debug.quiet", "false");
+                int feedbackBefore = InterfaceDebugCommand.feedbackCount();
+                require(InterfaceDebugCommand.handle("/uinterface fov"), "Disabled debug command is consumed locally");
+                require(feedbackBefore == InterfaceDebugCommand.feedbackCount() && !InterfaceEffects.active(Effect.FOV),
+                        "Disabled debug must be silent and must not trigger effects");
+                System.setProperty("unallocated.interface.debug", "true");
+                System.setProperty("unallocated.interface.debug.quiet", "true");
                 require(InterfaceDebugCommand.handle("/uinterface f3 60 2 es .5 17"), "Debug command interception");
             });
             context.waitTicks(3);
@@ -92,6 +101,7 @@ final class InterfaceEffectsSmokeTest {
             context.waitTicks(12);
             context.takeScreenshot("unallocated-interface-advancement");
             observed(context, "ADVANCEMENT");
+            observed(context, "ADVANCEMENT_TITLE");
             world.getServer().runCommand("advancement grant @a only minecraft:story/root");
             context.waitFor(client -> client.getConnection().getAdvancements().get(Identifier.withDefaultNamespace("story/mine_stone")) != null);
             context.runOnClient(client -> {
@@ -126,16 +136,15 @@ final class InterfaceEffectsSmokeTest {
                 context.runOnClient(client -> {
                     InterfaceEffects.clear();
                     require(InterfaceEffects.debugTrigger(new Request(effect, 10, 2, 1, LeakLanguage.ES, 17, null)), "Settings effect " + effect);
-                    require(InterfaceOptionsGuard.blocksSave(), "Write-ahead journal must protect every vanilla save");
+                    assertValues(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get(), baselineValues.get());
                     client.options.save();
                     assertBytes(client.gameDirectory.toPath(), baselineBytes.get());
                 });
-                context.waitFor(client -> switch (effect) {
-                    case SENSITIVITY -> client.options.sensitivity().get() != baselineValues.get().get(0).doubleValue();
-                    case FOV -> client.options.fov().get() != baselineValues.get().get(1).intValue();
-                    case GAMMA -> client.options.gamma().get() != baselineValues.get().get(2).doubleValue();
-                    default -> false;
-                });
+                context.getInput().moveCursor(1, 1);
+                context.waitTick();
+                context.getInput().moveCursor(1, 1);
+                context.waitFor(client -> InterfaceEffects.observed(effect.name()) > 0);
+                observed(context, effect.name());
                 // Wall-clock expiry is required even when the game is paused or runs accelerated test ticks.
                 context.waitFor(client -> {
                     if (InterfaceEffects.active(effect)) return false;
@@ -148,10 +157,11 @@ final class InterfaceEffectsSmokeTest {
             context.runOnClient(client -> {
                 require(InterfaceEffects.debugTrigger(request(Effect.FOV, 100)), "FOV before user settings");
                 client.gui.setScreen(new OptionsScreen(null, client.options));
-                require(!InterfaceEffects.active(Effect.FOV) && !InterfaceOptionsGuard.blocksSave(), "User settings must restore and retire the transaction first");
+                require(!InterfaceEffects.active(Effect.FOV) && PerceptionOverrides.INSTANCE.value(Perception.FOV_SCALE) == 1,
+                        "User settings must clear perception overrides first");
             });
             context.setScreen(() -> null);
-            // Opening settings deliberately allows new user preferences; establish the next byte baseline.
+            // Vanilla may save while an options screen closes; establish its normal serialized baseline.
             context.runOnClient(client -> {
                 try {
                     baselineBytes.set(Files.readAllBytes(client.gameDirectory.toPath().resolve("options.txt")));
@@ -171,12 +181,13 @@ final class InterfaceEffectsSmokeTest {
         context.runOnClient(client -> {
             require(!InterfaceEffects.active(Effect.SENSITIVITY), "Disconnect must clear settings");
             assertValues(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get(), baselineValues.get());
-            client.options.save(); // A late vanilla save must still leave the snapshot byte-for-byte intact.
+            require(PerceptionOverrides.INSTANCE.value(Perception.SENSITIVITY_SCALE) == 1, "World exit must clear perception");
+            client.options.save(); // Normal saves cannot serialize the in-memory perception overrides.
             assertBytes(client.gameDirectory.toPath(), baselineBytes.get());
             InterfaceEffects.clear();
         });
         LoggerFactory.getLogger("unallocated-smoke").info(
-                "UNALLOCATED interface smoke: effects rendered; options restored byte-for-byte after world exit.");
+                "UNALLOCATED interface smoke: effects rendered; options untouched byte-for-byte after world exit.");
     }
 
     private static Request request(Effect effect, int ticks) { return new Request(effect, ticks, 2, .5, LeakLanguage.ES, 17, null); }

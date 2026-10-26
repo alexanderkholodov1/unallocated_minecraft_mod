@@ -84,7 +84,7 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     mods.setFrom(tasks.named('jar'), tasks.named('clientSmokeJar'), configurations.productionRuntimeMods)
     runDir = clientSmokeDir
     useXVFB = true
-    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest', '-Dunallocated.interface.debug=true')
+    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest', '-Dunallocated.interface.debug=true', '-Dunallocated.interface.debug.quiet=true')
     jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
     jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
         "-Dunallocated.smoke.jar=${it.asFile.absolutePath}".toString()

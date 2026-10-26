@@ -154,7 +154,7 @@
   "interface.unallocated.debug.help": "/uinterface <f3|death|splash|loading|advancement|sensitivity|fov|gamma|sign> [ticks] [0–5] [es|en|mixed] [−1..1] [semilla] [id_avance]. /uinterface restore. Límites: f3 60; ajustes, letrero, logro 100; textos 600 ticks.",
   "interface.unallocated.debug.restored": "Interfaz y ajustes restaurados.",
   "interface.unallocated.debug.fired": "Efecto de interfaz preparado.",
-  "interface.unallocated.debug.refused": "Efecto rechazado: comprueba el mundo activo, los ajustes y el journal.",
+  "interface.unallocated.debug.refused": "Efecto rechazado: comprueba el mundo activo y los ajustes.",
   "interface.unallocated.debug.sign": "Apunta a un letrero para probar su idioma.",
   "interface.unallocated.warning": "Contiene cambios breves de sensibilidad y FOV, y variaciones suaves de brillo. Los ajustes se restauran al salir."
 }

@@ -7,7 +7,6 @@ from pathlib import Path
 import re
 import shutil
 import signal
-import struct
 import subprocess
 import sys
 import time
@@ -166,29 +165,16 @@ def verify_interface_screenshots(directory):
             raise RuntimeError(f'Client exited without a valid interface screenshot: {effect}')
 
 
-def seed_interface_recovery(directory):
-    """A killed transaction for the real Options.load hook to recover before its first read."""
-    # 26.3 stores FOV as (degrees - 70) / 40, and sensitivity as mouseSensitivity.
-    # A future data version keeps vanilla migration out of this recovery-only fixture.
-    original = b'version:999999\r\nmouseSensitivity:0.713\r\nfov:0.575\r\ngamma:0.43\r\nlang:es_es\r\n'
-    (directory / 'interface-original-options.bin').write_bytes(original)
-    payload = struct.pack('>I?I', 0x55494631, True, len(original)) + original
-    (directory / '.unallocated-interface-options.journal').write_bytes(payload + hashlib.sha256(payload).digest())
-    (directory / 'options.txt').write_bytes(b'version:999999\nmouseSensitivity:0.1\nfov:-1.0\ngamma:0.0\n')
-
-
 def client():
     directory = SMOKE / 'client'
     directory.mkdir(parents=True, exist_ok=False)
-    seed_interface_recovery(directory)
     monitor(
         ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
         ROOT, SMOKE / 'client-console.log', [
             r'UNALLOCATED initialized \(common\)\.',
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
-            r'UNALLOCATED interface smoke: original options recovered before vanilla load\.',
-            r'UNALLOCATED interface smoke: effects rendered; options restored byte-for-byte after world exit\.',
+            r'UNALLOCATED interface smoke: effects rendered; options untouched byte-for-byte after world exit\.',
         ], timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,

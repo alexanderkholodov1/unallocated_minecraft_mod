@@ -113,7 +113,6 @@ jobs:
             hs_err_pid*.log
             build/test-results/**
             build/reports/tests/**
-            .tmp/smoke/client/interface-original-options.bin
           if-no-files-found: warn
           retention-days: 7
 

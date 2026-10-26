@@ -89,5 +89,5 @@ The owner's intent lives, verbatim, in `docs/intent/`. Every word there is delib
 
 La rama `v1.0.0-alpha.1.4` añade anomalías de F3, mensajes de muerte en la voz de la entidad,
 textos nativos de título/carga, avisos de avances no ganados, cambios de idioma en un letrero
-y cambios de sensibilidad/FOV/brillo protegidos por un journal. Ninguno se dispara automáticamente.
+y cambios de percepción de sensibilidad/FOV/oscuridad sólo en memoria, sin modificar las opciones guardadas. Ninguno se dispara automáticamente.
 Consulta [la API, comandos de prueba/video, restauración y pruebas de CI](docs/plan/INTERFACE.md).

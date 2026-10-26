@@ -3,7 +3,6 @@
   "package": "org.unallocated.client.mixin.interfacefx",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "InterfaceOptionsMixin",
     "InterfaceMinecraftMixin",
     "InterfaceGuiMixin",
     "InterfaceDebugPositionMixin",
@@ -14,7 +13,10 @@
     "InterfaceLoadingMixin",
     "InterfaceSignMixin",
     "InterfaceToastMixin",
-    "InterfaceChatMixin"
+    "InterfaceChatMixin",
+    "InterfaceCameraMixin",
+    "InterfaceMouseMixin",
+    "InterfaceLightmapMixin"
   ],
   "injectors": {
     "defaultRequire": 1

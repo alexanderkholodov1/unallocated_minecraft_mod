@@ -16,6 +16,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.SignText;
 import org.unallocated.client.interfacefx.InterfaceTexts.LeakLanguage;
+import org.unallocated.client.effects.PerceptionOverrides;
+import org.unallocated.client.effects.PerceptionOverrides.Perception;
 
 /** Render-thread-only toolkit. The future director owns all story timing. */
 public final class InterfaceEffects {
@@ -44,6 +46,7 @@ public final class InterfaceEffects {
     private static final long GLOBAL_COOLDOWN = 15_000_000_000L;
     private static final Map<AdvancementToast, Long> TOASTS = new WeakHashMap<>();
     private static final Map<String, Integer> OBSERVED = new HashMap<>();
+    private static Object lastWorld;
 
     private InterfaceEffects() { }
 
@@ -79,15 +82,14 @@ public final class InterfaceEffects {
             if (client.gui.screen() instanceof net.minecraft.client.gui.screens.options.OptionsScreen
                     || client.gui.screen() instanceof net.minecraft.client.gui.screens.options.OptionsSubScreen) return false;
             if (ACTIVE.keySet().stream().anyMatch(SETTINGS::contains)) return false;
-            if (!InterfaceOptionsGuard.begin(client.options)) return false;
         }
         ACTIVE.put(request.effect, new Active(request, now, now + request.ticks * 50_000_000L, client.level));
         LAST.put(request.effect, now);
         lastAny = now;
         switch (request.effect) {
-            case SENSITIVITY -> client.options.sensitivity().set(clamp(client.options.sensitivity().get() + request.strength * .04, 0, 1));
-            case FOV -> client.options.fov().set((int) clamp(client.options.fov().get() + Math.round(request.strength * 3), 30, 110));
-            case GAMMA -> applyGamma(now);
+            case SENSITIVITY -> PerceptionOverrides.INSTANCE.apply(Perception.SENSITIVITY_SCALE, 1 + (float) request.strength * .08f, request.ticks);
+            case FOV -> PerceptionOverrides.INSTANCE.apply(Perception.FOV_SCALE, 1 + (float) request.strength * .04f, request.ticks);
+            case GAMMA -> PerceptionOverrides.INSTANCE.apply(Perception.DARKNESS, (float) Math.abs(request.strength) * .08f, request.ticks);
             case ADVANCEMENT -> {
                 var holder = existingAdvancement != null ? existingAdvancement : Advancement.Builder.recipeAdvancement()
                         .rootDisplay(Items.STRING, InterfaceTexts.inventedAdvancement(request.generation, request.language, request.seed),
@@ -103,36 +105,20 @@ public final class InterfaceEffects {
         return true;
     }
 
-    private static double gammaOriginal;
-    private static boolean gammaCaptured;
-    private static void applyGamma(long now) {
-        Active active = ACTIVE.get(Effect.GAMMA);
-        if (active == null) return;
-        var option = Minecraft.getInstance().options.gamma();
-        if (!gammaCaptured) {
-            gammaOriginal = option.get();
-            gammaCaptured = true;
-        }
-        // Two gentle variations per second, at most 8 percentage points, toward the middle of the range.
-        double pulse = (1 - Math.cos((now - active.start) / 1_000_000_000.0 * Math.PI * 4)) * .5;
-        double direction = gammaOriginal < .5 ? 1 : -1;
-        option.set(clamp(gammaOriginal + direction * Math.abs(active.request.strength) * .08 * pulse, 0, 1));
-    }
-
     public static void tick() {
         long now = System.nanoTime();
         boolean hadSettings = ACTIVE.keySet().stream().anyMatch(SETTINGS::contains);
         Object world = Minecraft.getInstance().level;
+        if (lastWorld != null && lastWorld != world) restoreSettings();
+        lastWorld = world;
         ACTIVE.entrySet().removeIf(entry -> now >= entry.getValue().end
                 || (entry.getKey() != Effect.SPLASH && entry.getKey() != Effect.LOADING && entry.getValue().world != world));
         if (hadSettings && ACTIVE.keySet().stream().noneMatch(SETTINGS::contains)) restoreSettings();
-        applyGamma(now);
     }
 
     public static void restoreSettings() {
         SETTINGS.forEach(ACTIVE::remove);
-        gammaCaptured = false;
-        InterfaceOptionsGuard.restoreMemoryAndFile();
+        PerceptionOverrides.INSTANCE.clearAll();
     }
 
     /** World effects never survive world unload. Title/loading arms may span that transition. */
@@ -195,7 +181,26 @@ public final class InterfaceEffects {
         return InterfaceTexts.line(channel, request.generation, request.language);
     }
 
-    private static double clamp(double value, double min, double max) { return Math.max(min, Math.min(max, value)); }
+    public static float perceivedFov(float original) {
+        float scale = PerceptionOverrides.INSTANCE.value(Perception.FOV_SCALE);
+        if (scale != 1) observe("FOV");
+        return original * scale;
+    }
+
+    public static double perceivedSensitivity(double original) {
+        float scale = PerceptionOverrides.INSTANCE.value(Perception.SENSITIVITY_SCALE);
+        if (scale != 1) observe("SENSITIVITY");
+        return scale == 1 ? original : Math.max(0, Math.min(1, original * scale));
+    }
+
+    public static float perceivedDarkness() {
+        float value = PerceptionOverrides.INSTANCE.value(Perception.DARKNESS);
+        if (value > 0) observe("GAMMA");
+        return value;
+    }
+
+    public static boolean ownsToast(AdvancementToast toast) { return TOASTS.containsKey(toast); }
+    public static void observedToastTitle() { observe("ADVANCEMENT_TITLE"); }
 
     // Lightweight evidence for the real client smoke helper; no telemetry is written or sent.
     private static void observe(String channel) { OBSERVED.merge(channel, 1, Integer::sum); }

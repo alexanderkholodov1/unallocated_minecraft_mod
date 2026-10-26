@@ -7,7 +7,7 @@ the primary integration target. Nothing fires automatically. A later director/ma
 ## Client API
 
 Call `org.unallocated.client.interfacefx.InterfaceEffects.trigger(Request)` on the Minecraft client thread.
-It returns `false` when the world, cooldown, settings editor, requested advancement or durable journal is unavailable.
+It returns `false` when the world, cooldown, settings editor or requested advancement is unavailable.
 Invalid parameters throw `IllegalArgumentException`; an off-thread call throws `IllegalStateException`.
 The director should treat a refusal as a skipped beat, never retry it every tick.
 
@@ -26,7 +26,7 @@ Other world effects stop when that client world is replaced, including dimension
 Production triggers have a 60 second cooldown per primitive and a 15 second global minimum interval.
 These are safety ceilings, not a suggested schedule. The director should normally be substantially rarer.
 Only one settings effect can run at once. No setting effect is accepted while the settings editor is open.
-`clear()` cancels the toolkit and restores options; it retains cooldowns. `leaveWorld()` is wired to unload.
+`clear()` cancels the toolkit and clears perception overrides; it retains cooldowns. `leaveWorld()` is wired to unload.
 No networking, world mutation, inference service, Fabric API runtime dependency or automatic story schedule is added.
 
 | Name | Maximum duration | Behavior and preserved functionality |
@@ -35,10 +35,10 @@ No networking, world mutation, inference service, Fabric API runtime dependency 
 | `DEATH` | 600 ticks / 30 s armed window | Rewrites the cause line while an actual vanilla death screen renders. It neither kills the player nor changes respawn buttons, death packets, signed chat or the server's death history. Expiry restores the original line, even while the screen remains open. |
 | `SPLASH` | 600 ticks / 30 s | Replaces the title screen's native splash component at render time. Respects the player's Hide Splash Texts option. |
 | `LOADING` | 600 ticks / 30 s | Replaces the native LevelLoadingScreen terrain-loading caption. Generations 0–2 leak the goal; generations 3–5 leak log-like failure lines. The real chunk/progress display and narration of numeric loading progress remain intact. |
-| `ADVANCEMENT` | 100 ticks / 5 s | Adds a native AdvancementToast without registering an advancement, awarding criteria/rewards, changing progress or sending packets. With no ID it composes a deterministic invented title; with an ID it uses an advancement already known to the client's advancement tree. An unknown ID is refused. |
-| `SENSITIVITY` | 100 ticks / 5 s | At most ±0.04 on vanilla's 0…1 sensitivity range, clamped to that range. |
-| `FOV` | 100 ticks / 5 s | At most ±3 degrees, clamped to vanilla's 30…110 degree range. |
-| `GAMMA` | 100 ticks / 5 s | Smooth 2 Hz variations, at most 0.08 on vanilla's 0…1 gamma range, toward the middle of the range. This is not a full-screen flashing overlay. |
+| `ADVANCEMENT` | 100 ticks / 5 s | Adds a native AdvancementToast without registering an advancement, awarding criteria/rewards, changing progress or sending packets. Toolkit toast titles are clipped to one native line so the title appears below the header immediately, including during the first second. With no ID it composes a deterministic invented title; with an ID it uses an advancement already known to the client's advancement tree. An unknown ID is refused. |
+| `SENSITIVITY` | 100 ticks / 5 s | A 0.92…1.08 multiplier applied only when MouseHandler reads sensitivity; actual options stay unchanged. |
+| `FOV` | 100 ticks / 5 s | A 0.96…1.04 multiplier applied to Camera.getFov, preserving normal camera/spyglass behavior outside the effect. |
+| `GAMMA` | 100 ticks / 5 s | Smooth 2 Hz darkness variations, at most 0.08 added to vanilla lightmap darkness. Respects the player's Darkness Effect Scale; never changes gamma or applies a status effect. |
 | `SIGN` | 100 ticks / 5 s | A chosen sign's front-side render text uses compact g0…g5 lines in the selected leak language. The sign block entity, back side, packets and world saves stay untouched. The next render returns the original text. |
 
 Durations use a monotonic real-time deadline, so pausing or accelerating game-test ticks cannot extend drift.
@@ -49,8 +49,9 @@ Owned toasts are hidden on cancellation/expiry through vanilla's normal dismissa
 ## Debug/video commands
 
 In a disposable test launcher profile, add JVM argument `-Dunallocated.interface.debug=true`.
-The opt-in local command bypasses production cooldowns, while retaining duration/strength limits and journal checks.
-Without the argument, the command explains how to enable debugging and never forwards anything to a server.
+The opt-in local command bypasses production cooldowns, while retaining duration/strength limits.
+Without the argument, the command is consumed silently and never forwards anything to a server.
+`-Dunallocated.interface.debug.quiet=true` suppresses feedback even in debug mode (used for CI captures).
 
 ```text
 /uinterface <effect> [ticks] [generation] [es|en|mixed] [strength] [seed] [advancement_id]
@@ -79,39 +80,20 @@ The Spanish resource key `interface.unallocated.warning` is available to the sib
 brief sensitivity/FOV changes and smooth brightness variations should appear in the actual content warnings.
 Its integration belongs to that package/coordinator; this branch does not add a competing consent screen.
 
-## Restoration contract
+## Restoration by construction (adopted D-21 A)
 
-`InterfaceOptionsJournal` is pure Java; it does not parse/rewrite `options.txt`.
-At the first accepted settings trigger it snapshots the **entire current file**, including unknown options,
-comments, encoding and newline bytes, or records that the file did not exist. This is the pre-effect baseline;
-vanilla may already have saved startup state earlier in the launch.
+Settings drift now uses `org.unallocated.client.effects.PerceptionOverrides`, following milestone PLAN §4.3.
+Its `INSTANCE.apply(Perception kind, float value, int ticks)` accepts `FOV_SCALE` (0.96…1.04),
+`SENSITIVITY_SCALE` (0.92…1.08), or `DARKNESS` (0…0.08). `clearAll()` cancels them.
+The pure Java state expires by monotonic wall time; darkness follows a smooth 2 Hz pulse.
 
-1. Acquire a process-lifetime lock for this game directory. Two clients cannot own the same transaction.
-2. Before any `OptionInstance.set`, write the original bytes, existence flag, schema version and SHA-256 checksum
-   into a staging file; force the file and publish the journal with an atomic same-filesystem rename.
-   There is no non-atomic fallback: a failed journal write refuses the effect.
-3. Save the original in-memory sensitivity/FOV/gamma and apply bounded drift.
-4. Suppress vanilla `Options.save` while the transaction is protected. Therefore even saves made while drift is
-   visible cannot serialize modified options, normalize the original file or truncate it mid-write.
-5. On expiry, emergency stop, world exit and before closing, restore the original in-memory values and original file.
-   Keep the journal and save protection until shutdown completes: late passive vanilla saves must not replace the bytes.
-6. After vanilla close, restore once more and retire the journal. A JVM shutdown hook also replays disk restoration;
-   it never calls render-thread option callbacks. If killed without a hook, the journal remains.
-7. On the next start, inject at the **head of Options.load**, acquire the same lock and restore before vanilla reads
-   the file. Keep save protection across startup's own save calls, so recovery is not immediately overwritten.
-8. Explicitly opening Options/OptionsSubScreen first restores and retires the transaction, then permits normal user
-   preference edits. A subsequent effect journals those new preferences. Changes made deliberately in the options UI
-   are thus a new baseline; passive vanilla saves cannot silently become one.
-
-An incomplete staging file is never treated as a published journal. A corrupt published journal is retained and
-settings effects are disabled instead of overwriting recovery evidence. Restore is replayable after interruption;
-the journal is deleted only after restoring succeeds. Existing/missing options are both restored exactly.
-The lock sidecar is deliberately not deleted (deleting a locked inode permits a second writer to race).
-No original settings, journal payload or user identifiers are sent over the network.
-
-This protects ordinary process crashes/kills. Filesystem destruction, journal deletion by another program and
-removing the mod before recovery cannot be repaired by software that is no longer running. On a recovery I/O error,
-the original journal stays in place and the client logs the problem without intentionally crashing the game.
+Only the mouse consumer, camera FOV getter and lightmap render state read the overrides. None calls
+`OptionInstance.set`, writes `options.txt`, suppresses vanilla saves, changes the selected UI language,
+or requires a next-start recovery hook. Opening Options, leaving/replacing the world and client close clear
+all perception overrides. A killed process loses all overrides; removing the mod before restarting is safe.
+Normal user preferences and vanilla saves continue to work throughout. The obsolete journal, OptionsGuard,
+save/load mixin, recovery probe and journal tests have been removed: nothing in this toolkit needs to touch real options.
+The `GAMMA` trigger name is retained for callers, but now maps to temporary render darkness rather than gamma mutation.
 
 ## Text and the open language decision
 
@@ -131,17 +113,15 @@ sparingly for technical leaks and later degradation. The owner's plan 3.2 langua
 ## 26.3 API investigation
 
 The coordinator's official unobfuscated client JAR is now the authority for Minecraft signatures and injection
-sites. [The recorded audit](INTERFACE-API-AUDIT.json) checks 92 public calls, fields, private mixin targets and
+sites. [The recorded audit](INTERFACE-API-AUDIT.json) checks Minecraft and resolved Fabric calls, fields, private mixin targets and
 actual bytecode references without running Java or Gradle. Its SHA-1 matches `mc-ref/26.3.json`.
 This replaces the earlier source-mirror assumptions: the debug reply uses public
 `ChatComponent.addClientSystemMessage(Component)`; invented toasts use current `rootDisplay(...)`; death text
 redirects the cause field in `visitText(ActiveTextCollector)`, where the real renderer reads it.
-Mixins live exclusively in `org.unallocated.client.mixin.interfacefx` and test-only
-`org.unallocated.client.mixin.interfacefxsmoke`; runtime logic remains outside both namespaces.
+Mixins live exclusively in `org.unallocated.client.mixin.interfacefx`; runtime logic remains outside that namespace.
 
-The supplied Fabric API aggregate does not contain the client game-test module, and Fabric Loader is also absent
-from `mc-ref`. Their binary signature audit needs the separately resolved JARs before this correction is committed.
-The Minecraft audit is complete; no Fabric binary audit or successful Java/game-test run is claimed yet.
+The binary audit now includes client game-test API 6.0.11+131f8d475d, game-test API
+4.0.35+3434d6d95d and Fabric Loader 0.20.1 from the coordinator's resolved dependencies.
 
 The implemented hooks target the actual 26.3 classes, rather than older `getGameInformation`/`GuiGraphics` tutorials.
 The inspected Mojang class source has the title's SplashRenderer and LevelLoadingScreen's terrain caption with
@@ -163,27 +143,27 @@ Compilation and real-game success must be established by CI, not inferred from s
 
 ## Verification and remaining playthrough
 
-`gradle build clientSmokeJar` runs seven JUnit journal tests in CI: byte-identical change/crash/restart,
-repeated triggers retaining the first snapshot, replay after restore/late save, originally missing options,
-checksum failure retaining evidence, competing owner, abandoned staging, and an abruptly halted child JVM.
-The child actually calls `Runtime.halt`, bypassing finally blocks and shutdown hooks.
+`gradle build clientSmokeJar` runs three JUnit perception-state tests in CI: bounded requests,
+wall-time expiry/clear, and fresh process state without drift. No journal or options recovery is needed.
 
 The existing production-client game test now also:
 
-- Starts with a seeded pending journal and changed options. A test-only observer at Options.load return requires
-  original nondefault sensitivity, FOV and gamma already loaded and the original CRLF file byte-for-byte restored.
 - Renders native splash/loading/F3/advancement/sign/death hooks and takes six named screenshots; the Python watchdog
   requires all six valid PNG signatures and the explicit restoration success marker, in addition to the title smoke.
 - Exercises all three leak languages, checks missing keys, request bounds, global cooldown and the local command handler.
 - Keeps real F3 navigation lines unchanged, checks a sign remains unmodified on the server, and checks displaying an
   existing advancement does not award progress. A real server `/kill` opens the death screen.
-- Changes each numerical setting, calls vanilla save while active, observes the changed value, waits for wall-time
-  expiry, and compares all three original values and the complete options file. It also opens Options during drift.
-- Leaves the world with drift active, checks restoration and calls a late vanilla save to prove it cannot win.
+- Requires all three real perception mixins to execute, calls normal vanilla save while overrides are active,
+  and checks that real option values and file bytes remain unchanged. Also checks expiry and opening Options.
+- Requires the toast title hook and verifies a disabled debug command emits no chat feedback and dispatches no effect.
+- Leaves the world with an override active, checks it cleared and confirms normal saves leave the same option bytes.
 
 The smoke helper and recovery observer remain outside the player JAR; artifact verification rejects their classes,
 test entrypoints, nested dependencies and test mixin config. Dedicated-server smoke still uses only the player JAR.
 JUnit XML/HTML and client screenshots/logs are uploaded in diagnostics. Fourteen Python watchdog tests run without Java.
+
+The coordinator confirmed run 40273949425 on f84c8b6 green with actual effect screenshots. The in-memory
+conversion and toast/debug fixes require a new green CI run; no Java or Gradle was run locally.
 
 No Java or Gradle is run on the shared scaffold host. Python checks and static JSON/diff checks can run locally.
 CI result/diagnostics must be reviewed before merging; the sandbox cannot reach the private GitHub API directly.

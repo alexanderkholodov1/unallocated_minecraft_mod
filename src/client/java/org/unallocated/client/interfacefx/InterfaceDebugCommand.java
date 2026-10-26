@@ -12,14 +12,15 @@ import org.unallocated.client.interfacefx.InterfaceTexts.LeakLanguage;
 
 /** Deliberately local: no chat text or command is forwarded to a server. */
 public final class InterfaceDebugCommand {
+    private static int feedbackCount;
     private InterfaceDebugCommand() { }
+    public static int feedbackCount() { return feedbackCount; }
 
     public static boolean handle(String message) {
         String input = message.strip();
         if (!input.equals("/uinterface") && !input.startsWith("/uinterface ")) return false;
         Minecraft client = Minecraft.getInstance();
         if (!Boolean.getBoolean("unallocated.interface.debug")) {
-            reply("disabled");
             return true;
         }
         String[] args = input.split("\\s+");
@@ -57,6 +58,8 @@ public final class InterfaceDebugCommand {
     }
 
     private static void reply(String key) {
+        if (!Boolean.getBoolean("unallocated.interface.debug") || Boolean.getBoolean("unallocated.interface.debug.quiet")) return;
         Minecraft.getInstance().gui.hud.getChat().addClientSystemMessage(Component.translatable("interface.unallocated.debug." + key));
+        feedbackCount++;
     }
 }

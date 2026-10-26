@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.unallocated.client.interfacefx.InterfaceEffects;
-import org.unallocated.client.interfacefx.InterfaceOptionsGuard;
 
 @Mixin(Minecraft.class)
 abstract class InterfaceMinecraftMixin {
@@ -19,6 +18,4 @@ abstract class InterfaceMinecraftMixin {
     @Inject(method = "close", at = @At("HEAD"))
     private void interface$restoreBeforeClose(CallbackInfo ci) { InterfaceEffects.clear(); }
 
-    @Inject(method = "close", at = @At("RETURN"))
-    private void interface$restoreAfterFinalSave(CallbackInfo ci) { InterfaceOptionsGuard.shutdown(); }
 }
