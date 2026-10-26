@@ -8,6 +8,9 @@
   "entrypoints": {
     "fabric-client-gametest": [
       "org.unallocated.smoke.TitleScreenSmokeTest"
+    ],
+    "client": [
+      "org.unallocated.smoke.TitleScreenSmokeTest"
     ]
   },
   "depends": {
@@ -16,5 +19,10 @@
     "java": ">=25",
     "unallocated": "*",
     "fabric-client-gametest-api-v1": "*"
-  }
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/fabric-client-gametest-api-v1-6.0.11+131f8d475d.jar"
+    }
+  ]
 }

@@ -17,10 +17,17 @@ loom {
     }
 }
 
+// Reviewed subset and dependency closure; include is deliberately non-transitive.
+def bundledFabric = new groovy.json.JsonSlurper().parse(file('fabric-api-modules.json'))
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    // Initialization and logging do not require Fabric API.
+    bundledFabric.modules.keySet().each { moduleId ->
+        def module = fabricApi.module(moduleId, bundledFabric.fabric_api_version)
+        implementation(module) { transitive = false }
+        include(module) { transitive = false }
+    }
 }
 
 processResources {
@@ -30,9 +37,15 @@ processResources {
         loader_version: project.loader_version
     ]
     inputs.properties(metadata)
+    inputs.file('fabric-api-modules.json')
 
     filesMatching('fabric.mod.json') {
         expand(metadata)
+        filter { line ->
+            line.replace('"fabric_api_modules": "generated"', bundledFabric.modules.collect { id, module ->
+                '"' + id + '": ">=' + module.version + '"'
+            }.join(',\n    '))
+        }
     }
 }
 
@@ -59,21 +72,35 @@ sourceSets {
     }
 }
 
+// Only the test runner is nested in the helper. It must not supply player modules.
+configurations {
+    clientSmokeHarness { transitive = false }
+    coexistApi { transitive = false }
+    clientSmokeImplementation.extendsFrom(clientSmokeHarness)
+}
+
 dependencies {
-    clientSmokeImplementation "net.fabricmc.fabric-api:fabric-api:0.165.0+26.3"
-    productionRuntimeMods "net.fabricmc.fabric-api:fabric-api:0.165.0+26.3"
+    clientSmokeHarness 'net.fabricmc.fabric-api:fabric-client-gametest-api-v1:6.0.11+131f8d475d'
+    coexistApi "net.fabricmc.fabric-api:fabric-api:${bundledFabric.fabric_api_version}"
+}
+
+tasks.register('prepareCoexistApi', Copy) {
+    from configurations.coexistApi
+    into layout.buildDirectory.dir('smoke/full-api')
 }
 
 tasks.register('clientSmokeJar', Jar) {
     archiveBaseName = 'unallocated-client-smoke'
     destinationDirectory = layout.buildDirectory.dir('smoke')
     from sourceSets.clientSmoke.output
+    from(configurations.clientSmokeHarness) { into 'META-INF/jars' }
 }
 
 def clientSmokeDir = layout.projectDirectory.dir('.tmp/smoke/client')
 tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRunTask) {
     // Explicit binary inputs prevent development class directories from masking packaging errors.
-    mods.setFrom(tasks.named('jar'), tasks.named('clientSmokeJar'), configurations.productionRuntimeMods)
+    dependsOn tasks.named('jar')
+    mods.setFrom(tasks.named('clientSmokeJar'))
     runDir = clientSmokeDir
     useXVFB = true
     jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
@@ -83,5 +110,9 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     })
     doFirst {
         clientSmokeDir.dir('temp').asFile.mkdirs()
+        copy {
+            from tasks.named('jar', Jar).flatMap { it.archiveFile }
+            into clientSmokeDir.dir('mods')
+        }
     }
 }

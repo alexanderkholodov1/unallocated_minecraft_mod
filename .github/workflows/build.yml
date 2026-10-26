@@ -10,7 +10,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    timeout-minutes: 16
     steps:
       - name: Check out source
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -31,58 +31,21 @@ jobs:
           cache-read-only: ${{ github.event_name != 'push' }}
 
       - name: Build mod
-        run: gradle --no-daemon --console=plain build clientSmokeJar
+        run: gradle --no-daemon --console=plain build clientSmokeJar prepareCoexistApi
 
       - name: Verify installable JAR and write checksum
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          import hashlib
-          import json
-          from pathlib import Path
-          from zipfile import ZipFile
+        run: python3 scripts/verify_jar.py
 
-          properties = dict(
-              line.split('=', 1) for line in Path('gradle.properties').read_text().splitlines()
-              if line and not line.startswith('#') and '=' in line
-          )
-          version = properties['version']
-          artifact = Path(f'build/libs/unallocated-{version}.jar')
-          with ZipFile(artifact) as jar:
-              assert jar.testzip() is None, 'Corrupt JAR entry'
-              metadata_text = jar.read('fabric.mod.json').decode('utf-8')
-              assert '${' not in metadata_text, 'Unexpanded metadata'
-              metadata = json.loads(metadata_text)
-              assert metadata['id'] == 'unallocated'
-              assert metadata['name'] == 'UNALLOCATED'
-              assert metadata['version'] == version
-              assert set(metadata['entrypoints']) == {'main', 'client'}, 'Test entrypoint leaked into player JAR'
-              assert not metadata.get('jars'), 'Test library bundled into player JAR'
-              assert not any(
-                  name.startswith('org/unallocated/smoke/') or name.endswith('.jar')
-                  for name in jar.namelist()
-              ), 'Smoke helper or nested library leaked into player JAR'
-              assert metadata['depends'] == {
-                  'fabricloader': '>=' + properties['loader_version'],
-                  'minecraft': '~' + properties['minecraft_version'],
-                  'java': '>=25',
-              }
-              for side in ('main', 'client'):
-                  for entrypoint in metadata['entrypoints'][side]:
-                      bytecode = jar.read(entrypoint.replace('.', '/') + '.class')
-                      assert bytecode[:4] == bytes.fromhex('cafebabe')
-                      assert int.from_bytes(bytecode[6:8], 'big') == 69, 'Expected Java 25 bytecode'
-          digest = hashlib.sha256(artifact.read_bytes()).hexdigest()
-          artifact.with_suffix('.jar.sha256').write_text(f'{digest}  {artifact.name}\n')
-          print(f'Verified {artifact}')
-          PY
-
-      - name: Verify smoke watchdog failure paths without Java
-        run: python3 -B -m unittest discover -s scripts -p 'test_smoke_test.py'
+      - name: Verify packaging and smoke failure paths without Java
+        run: python3 -B -m unittest discover -s scripts -p 'test_*.py'
 
       - name: Smoke test dedicated server with player JAR
         timeout-minutes: 4
         run: python3 scripts/smoke_test.py server
+
+      - name: Verify server coexistence with optional full Fabric API
+        timeout-minutes: 4
+        run: python3 scripts/smoke_test.py server-with-api
 
       - name: Install headless client graphics
         run: |

@@ -1,0 +1,41 @@
+{
+  "fabric_api_version": "0.165.0+26.3",
+  "modules": {
+    "fabric-api-base": {
+      "version": "2.0.6+fcdff87f5d",
+      "sha256": "e3b64039e8f261cc24a5013cb8b442cf368f08afa28d01ecdf97f3ccdeb7b63c",
+      "environment": "*",
+      "reason": "Event infrastructure required by lifecycle, commands, networking and screens."
+    },
+    "fabric-command-api-v2": {
+      "version": "3.1.2+fcdff87f5d",
+      "sha256": "58072787b5b5d171a7e65b1eb7a9c006bd48b940e12c870d7b23e0d5173cf2c9",
+      "environment": "*",
+      "reason": "Command registration (alpha.1 /unallocated interface)."
+    },
+    "fabric-lifecycle-events-v1": {
+      "version": "4.1.9+ffef5f675d",
+      "sha256": "fc47f06fa9ce4145ad925164a6eccc436f7ff504cf7d1e766a15699b82cd3e74",
+      "environment": "*",
+      "reason": "Server/client lifecycle and tick events (alpha.1 core and bait)."
+    },
+    "fabric-networking-api-v1": {
+      "version": "6.4.0+a21c9eb65d",
+      "sha256": "2c0eac9bb2bd11392834322f196e174e0b82d2d2a8f40db9a2b34020c4cb0646",
+      "environment": "*",
+      "reason": "CustomPacketPayload registration and client/server networking."
+    },
+    "fabric-resource-loader-v1": {
+      "version": "3.1.0+5af7744b5d",
+      "sha256": "6cacede14bf50f9d65a49fb82563edfe7195254807fc79858504cd8960751c03",
+      "environment": "*",
+      "reason": "Mod resources, data packs and reload listeners."
+    },
+    "fabric-screen-api-v1": {
+      "version": "5.2.4+48607d035d",
+      "sha256": "2d940d1633d86a6cbe5efb559becde9d17fa6aedb2311add7cda1aa02769665a",
+      "environment": "client",
+      "reason": "Client screen initialization and extraction hooks."
+    }
+  }
+}
