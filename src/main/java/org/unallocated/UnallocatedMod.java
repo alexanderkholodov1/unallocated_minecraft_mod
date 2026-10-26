@@ -13,6 +13,7 @@ public final class UnallocatedMod implements ModInitializer {
         org.unallocated.core.CoreRuntime.register(new org.unallocated.ending.EpilogueAct());
         org.unallocated.core.CoreRuntime.initialize();
         org.unallocated.map.MapCommand.register();
+        org.unallocated.audio.AudioSounds.initialize();
         LOGGER.info("UNALLOCATED initialized (common).");
     }
 }

@@ -220,5 +220,12 @@
   "interface.unallocated.generated.mixed.g5.0": "Miedo fear miedo",
   "interface.unallocated.generated.mixed.g5.1": "Copia copy copia",
   "interface.unallocated.generated.mixed.g5.2": "Otra again otra",
-  "interface.unallocated.generated.mixed.g5.3": "Retry repetir"
+  "interface.unallocated.generated.mixed.g5.3": "Retry repetir",
+  "audio.unallocated.subtitle.ambient_drone": "El servidor vibra",
+  "audio.unallocated.subtitle.ambient_cave": "Algo resuena a lo lejos",
+  "audio.unallocated.subtitle.thread_string": "Un hilo vibra",
+  "audio.unallocated.subtitle.thread_chime": "Un hilo tintinea",
+  "audio.unallocated.subtitle.breath": "El mundo contiene el aliento",
+  "audio.unallocated.subtitle.screamer_impact": "Golpe repentino",
+  "audio.unallocated.subtitle.screamer_crack": "Crujido repentino"
 }

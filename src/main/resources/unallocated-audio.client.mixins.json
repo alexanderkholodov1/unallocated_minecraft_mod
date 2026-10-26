@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "org.unallocated.client.mixin.audio",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["AudioMuffleMixin"],
+  "injectors": {"defaultRequire": 1}
+}

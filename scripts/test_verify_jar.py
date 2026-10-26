@@ -76,6 +76,18 @@ class PackagingTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'allowlist'):
                     self.check()
 
+    def test_registry_sync_cannot_be_omitted_from_player(self):
+        module_id = 'fabric-registry-sync-v0'
+        self.assertIn(module_id, self.policy['modules'])
+        original = deepcopy(self.entries)
+        del self.entries[self.module_path(module_id)]
+        with self.assertRaisesRegex(ValueError, 'allowlist'):
+            self.check()
+        self.entries = original
+        del self.meta['depends'][module_id]
+        with self.assertRaisesRegex(ValueError, 'Wrong player dependencies'):
+            self.check()
+
     def test_repackaged_resolved_input_passes_but_unrecorded_changes_fail(self):
         path = self.meta['jars'][0]['file']
         original = self.entries[path]

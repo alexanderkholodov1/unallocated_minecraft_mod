@@ -3,17 +3,21 @@
   "id": "unallocated",
   "version": "${version}",
   "name": "UNALLOCATED",
-  "description": "Mod de terror en primera persona. Incluye el contrato de entrada con advertencias de contenido y el núcleo de sesión.",
+  "description": "Mod de terror en primera persona. Incluye el contrato de entrada con advertencias de contenido y el n\u00facleo de sesi\u00f3n.",
   "authors": [
     "NULL_Threshold Interactive"
   ],
   "license": "All-Rights-Reserved",
   "environment": "*",
   "mixins": [
-    "unallocated.bait.mixins.json",
-    {"config": "unallocated.bait.client.mixins.json", "environment": "client"},
-    {"config": "unallocated.contract.mixins.json", "environment": "client"},
-    {"config": "unallocated-interface.mixins.json", "environment": "client"}
+    {
+      "config": "unallocated.ending.mixins.json",
+      "environment": "client"
+    },
+    {
+      "config": "unallocated-audio.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "entrypoints": {
     "main": [
@@ -23,9 +27,6 @@
       "org.unallocated.client.UnallocatedClient"
     ]
   },
-  "mixins": [
-    {"config": "unallocated.ending.mixins.json", "environment": "client"}
-  ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "minecraft": "${minecraft_version}",

@@ -21,7 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SMOKE = ROOT / '.tmp' / 'smoke'
 FATAL = re.compile(
     r'Encountered an unexpected exception|Exception in thread|'
-    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|UNALLOCATED map command failed', re.I
+    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|UNALLOCATED map command failed|'
+    r'Failed to load sound|Unable to play (?:unknown|empty) soundEvent|Error loading sound', re.I
 )
 # In-game feature self-tests report failure in the game log; fail at once instead of waiting for the deadline.
 SELFTEST_FAILED = re.compile(r'UNALLOCATED bait selftest FAILED[^\r\n]*')
@@ -316,6 +317,23 @@ def verify_screenshot(directory, name='unallocated-title'):
             raise RuntimeError(f'Client exited without a valid screenshot: {expected}')
 
 
+def audio_evidence():
+    required = [r'UNALLOCATED audio: registered 7 sound events; loud=screamer\.']
+    layers = {
+        'ambient': ('ambient_drone', 'ambient_cave'),
+        'threads': ('thread_string', 'thread_chime'),
+        'muffle': ('breath',),
+        'screamer': ('screamer_impact', 'screamer_crack'),
+    }
+    for cue, events in layers.items():
+        required.append(rf'UNALLOCATED smoke: audio cue={cue} registered, resolved and active\.')
+        for event in events:
+            required.append(rf'UNALLOCATED audio: play cue={cue} event=unallocated:audio\.{event} '
+                            rf'loud={str(cue == "screamer").lower()} result=STARTED(?:\s|$)')
+    required.append(r'UNALLOCATED smoke: audio attenuation, expiry, replacement, stop, disconnect and options verified\.')
+    return required
+
+
 def client_phases():
     """Two real client processes share one game directory: a first start, then a restart."""
     title = r'UNALLOCATED smoke: title screen reached from player JAR\.'
@@ -325,7 +343,7 @@ def client_phases():
         'first': {
             'evidence': [
                 r'UNALLOCATED smoke: contract first start, data list, typed and clicked acceptance verified\.',
-                modules, title,
+                modules, title, *audio_evidence(),
                 r'UNALLOCATED smoke: core armed join, no-cheats rescue guards, client act sync and single-player reload verified\.',
                 r'UNALLOCATED interface smoke: effects rendered; options untouched byte-for-byte after world exit\.',
                 r'UNALLOCATED bait step=2/2',

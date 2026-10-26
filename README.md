@@ -2,7 +2,7 @@
 
 Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Threshold Interactive.
 
-**Versión actual: 0.1.0 — integración del hito.** Antes del menú aparece un acuerdo con advertencias y una lista opcional de usos reales de datos. Se acepta con un clic en **De acuerdo**, o escribiendo **De acuerdo** y pulsando Enter. Incluye el núcleo de sesión (actos con tiempo máximo, estado guardado y comandos de prueba) con sus dependencias dentro del JAR. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+**Versión actual: 0.1.0 — hito integrado.** Incluye el contrato antes del menú, núcleo de sesión guardado, mapa por código (lobby, colina, camino, base y mina), cebo de catalejo con susto, herramientas de interfaz, cuatro señales de audio y un epílogo que guarda y cierra la sesión. Todas las dependencias necesarias viajan dentro del JAR. El inicio desde un botón propio y la experiencia narrativa completa de 10–15 minutos siguen pendientes.
 
 ## Requisitos para jugar
 
