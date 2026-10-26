@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "org.unallocated.smoke.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["InterfaceRecoveryProbe"],
+  "injectors": {"defaultRequire": 1}
+}

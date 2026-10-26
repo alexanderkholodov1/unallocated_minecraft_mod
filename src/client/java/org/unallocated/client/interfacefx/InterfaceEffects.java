@@ -35,7 +35,7 @@ public final class InterfaceEffects {
             if (signPosition != null) signPosition = signPosition.immutable();
         }
     }
-    private record Active(Request request, long start, long end) { }
+    private record Active(Request request, long start, long end, Object world) { }
     private static final EnumMap<Effect, Active> ACTIVE = new EnumMap<>(Effect.class);
     private static final EnumMap<Effect, Long> LAST = new EnumMap<>(Effect.class);
     private static final Set<Effect> SETTINGS = Set.of(Effect.SENSITIVITY, Effect.FOV, Effect.GAMMA);
@@ -81,7 +81,7 @@ public final class InterfaceEffects {
             if (ACTIVE.keySet().stream().anyMatch(SETTINGS::contains)) return false;
             if (!InterfaceOptionsGuard.begin(client.options)) return false;
         }
-        ACTIVE.put(request.effect, new Active(request, now, now + request.ticks * 50_000_000L));
+        ACTIVE.put(request.effect, new Active(request, now, now + request.ticks * 50_000_000L, client.level));
         LAST.put(request.effect, now);
         lastAny = now;
         switch (request.effect) {
@@ -114,7 +114,7 @@ public final class InterfaceEffects {
             gammaOriginal = option.get();
             gammaCaptured = true;
         }
-        // Two gentle dips per second, at most 8 percentage points, never a full-screen flash.
+        // Two gentle variations per second, at most 8 percentage points, toward the middle of the range.
         double pulse = (1 - Math.cos((now - active.start) / 1_000_000_000.0 * Math.PI * 4)) * .5;
         double direction = gammaOriginal < .5 ? 1 : -1;
         option.set(clamp(gammaOriginal + direction * Math.abs(active.request.strength) * .08 * pulse, 0, 1));
@@ -123,7 +123,9 @@ public final class InterfaceEffects {
     public static void tick() {
         long now = System.nanoTime();
         boolean hadSettings = ACTIVE.keySet().stream().anyMatch(SETTINGS::contains);
-        ACTIVE.entrySet().removeIf(entry -> now >= entry.getValue().end);
+        Object world = Minecraft.getInstance().level;
+        ACTIVE.entrySet().removeIf(entry -> now >= entry.getValue().end
+                || (entry.getKey() != Effect.SPLASH && entry.getKey() != Effect.LOADING && entry.getValue().world != world));
         if (hadSettings && ACTIVE.keySet().stream().noneMatch(SETTINGS::contains)) restoreSettings();
         applyGamma(now);
     }
@@ -150,7 +152,8 @@ public final class InterfaceEffects {
 
     public static boolean active(Effect effect) {
         Active active = ACTIVE.get(effect);
-        return active != null && System.nanoTime() < active.end;
+        return active != null && System.nanoTime() < active.end
+                && (effect == Effect.SPLASH || effect == Effect.LOADING || active.world == Minecraft.getInstance().level);
     }
 
     public static Component replacement(Effect effect, Component original) {

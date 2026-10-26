@@ -59,7 +59,7 @@ jobs:
               assert set(metadata['entrypoints']) == {'main', 'client'}, 'Test entrypoint leaked into player JAR'
               assert not metadata.get('jars'), 'Test library bundled into player JAR'
               assert not any(
-                  name.startswith('org/unallocated/smoke/') or name.endswith('.jar')
+                  name.startswith('org/unallocated/smoke/') or name.endswith('.jar') or name == 'unallocated-interface-smoke.mixins.json'
                   for name in jar.namelist()
               ), 'Smoke helper or nested library leaked into player JAR'
               assert metadata['depends'] == {
@@ -112,6 +112,7 @@ jobs:
             hs_err_pid*.log
             build/test-results/**
             build/reports/tests/**
+            .tmp/smoke/client/interface-original-options.bin
           if-no-files-found: warn
           retention-days: 7
 
