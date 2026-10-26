@@ -2,6 +2,7 @@
 
 import argparse
 import hashlib
+import json
 import os
 from pathlib import Path
 import re
@@ -20,6 +21,28 @@ FATAL = re.compile(
     r'Encountered an unexpected exception|Exception in thread|'
     r'A fatal error has been detected|Crash report saved|Mixin apply.*failed', re.I
 )
+
+
+API_POLICY = json.loads((ROOT / 'fabric-api-modules.json').read_text())
+API_VERSION = API_POLICY['fabric_api_version']
+
+
+def verify_mod_directory(directory, allowed):
+    actual = {path.name for path in directory.iterdir() if path.is_file()}
+    if actual != allowed:
+        raise RuntimeError(f'Mod directory differs from clean installation: {actual} != {allowed}')
+
+
+def server_evidence(with_fabric_api=False):
+    required = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
+    required.extend(
+        rf'\b{re.escape(module_id)}\s+{re.escape(module["version"])}(?:\s|$)'
+        for module_id, module in API_POLICY['modules'].items()
+        if module['environment'] != 'client'
+    )
+    if with_fabric_api:
+        required.append(rf'\bfabric-api\s+{re.escape(API_VERSION)}(?:\s|$)')
+    return required
 
 
 def properties():
@@ -122,17 +145,22 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
                 process.stdin.close()
 
 
-def server():
+def server(with_fabric_api=False):
     props = properties()
     artifact = ROOT / 'build' / 'libs' / f"unallocated-{props['version']}.jar"
     expected = hashlib.sha256(artifact.read_bytes()).hexdigest()
-    directory = SMOKE / 'server'
+    directory = SMOKE / ('server-with-api' if with_fabric_api else 'server')
     # Fresh directories prevent a stale Done/log line from producing a false pass.
     directory.mkdir(parents=True, exist_ok=False)
     (directory / 'mods').mkdir()
     installed = directory / 'mods' / artifact.name
     shutil.copyfile(artifact, installed)
     assert hashlib.sha256(installed.read_bytes()).hexdigest() == expected
+    if with_fabric_api:
+        api = ROOT / 'build/smoke/full-api' / f"fabric-api-{API_VERSION}.jar"
+        shutil.copyfile(api, directory / 'mods' / api.name)
+    verify_mod_directory(directory / 'mods', {artifact.name} | (
+        {api.name} if with_fabric_api else set()))
     (directory / 'eula.txt').write_text('# Accepted only for this disposable CI smoke test.\neula=true\n')
     (directory / 'server.properties').write_text(
         'server-ip=127.0.0.1\nserver-port=25565\nonline-mode=false\n'
@@ -160,15 +188,18 @@ def server():
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
     command = ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
-    startup = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
+    startup = server_evidence(with_fabric_api)
+    console_prefix = 'server-with-api' if with_fabric_api else 'server'
     entered = r'UNALLOCATED act=LOBBY enter t=0'
     status = (r'UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 '
               r'budgetTicks=6000 checkpoint=lobby\.spawn')
     monitor(
-        command, directory, SMOKE / 'server-console.log', startup + [entered, status],
+        command, directory, SMOKE / f'{console_prefix}-console.log', startup + [entered, status],
         timeout=120, stop_when_ready=True, startup_required=startup,
         command_steps=[('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
     )
+    if with_fabric_api:
+        return  # Coexistence check stays a single process; clean one-JAR smoke proves reload.
     # A second real server process must load SavedData, not a leftover Java/static object.
     # Preserve the first log as evidence and require entirely fresh startup/reload markers.
     latest = directory / 'logs' / 'latest.log'
@@ -180,7 +211,6 @@ def server():
         command_steps=[('unallocated status', [status])],
     )
     assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
-
 
 
 def verify_screenshot(directory):
@@ -199,20 +229,25 @@ def client():
             r'UNALLOCATED initialized \(common\)\.',
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
+            r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
         ], timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )
     verify_screenshot(directory)
+    props = properties()
+    verify_mod_directory(directory / 'mods', {
+        f"unallocated-{props['version']}.jar",
+    })
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('target', choices=['server', 'client'])
+    parser.add_argument('target', choices=['server', 'client', 'server-with-api'])
     args = parser.parse_args()
     if os.environ.get('CI') != 'true':
         parser.error('Real-game smoke checks must run in CI, never on the scaffold host')
-    {'server': server, 'client': client}[args.target]()
+    {'server': server, 'client': client, 'server-with-api': lambda: server(True)}[args.target]()
 
 
 if __name__ == '__main__':

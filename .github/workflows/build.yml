@@ -10,7 +10,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 14
+    timeout-minutes: 16
     steps:
       - name: Check out source
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -31,70 +31,21 @@ jobs:
           cache-read-only: ${{ github.event_name != 'push' }}
 
       - name: Build mod
-        run: gradle --no-daemon --console=plain build clientSmokeJar
+        run: gradle --no-daemon --console=plain build clientSmokeJar prepareCoexistApi
 
       - name: Verify installable JAR and write checksum
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          import hashlib
-          import json
-          from pathlib import Path
-          from zipfile import ZipFile
+        run: python3 scripts/verify_jar.py
 
-          properties = dict(
-              line.split('=', 1) for line in Path('gradle.properties').read_text().splitlines()
-              if line and not line.startswith('#') and '=' in line
-          )
-          version = properties['version']
-          artifact = Path(f'build/libs/unallocated-{version}.jar')
-          with ZipFile(artifact) as jar:
-              assert jar.testzip() is None, 'Corrupt JAR entry'
-              metadata_text = jar.read('fabric.mod.json').decode('utf-8')
-              assert '${' not in metadata_text, 'Unexpanded metadata'
-              metadata = json.loads(metadata_text)
-              assert metadata['id'] == 'unallocated'
-              assert metadata['name'] == 'UNALLOCATED'
-              assert metadata['version'] == version
-              assert set(metadata['entrypoints']) == {'main', 'client'}, 'Test entrypoint leaked into player JAR'
-              # Exact core subset; integration with alpha.1.6 uses its shared verifier instead.
-              modules = {
-                  'fabric-api-base': ('2.0.6+fcdff87f5d', 'e3b64039e8f261cc24a5013cb8b442cf368f08afa28d01ecdf97f3ccdeb7b63c'),
-                  'fabric-command-api-v2': ('3.1.2+fcdff87f5d', '58072787b5b5d171a7e65b1eb7a9c006bd48b940e12c870d7b23e0d5173cf2c9'),
-                  'fabric-lifecycle-events-v1': ('4.1.9+ffef5f675d', 'fc47f06fa9ce4145ad925164a6eccc436f7ff504cf7d1e766a15699b82cd3e74'),
-                  'fabric-networking-api-v1': ('6.4.0+a21c9eb65d', '2c0eac9bb2bd11392834322f196e174e0b82d2d2a8f40db9a2b34020c4cb0646'),
-              }
-              nested = {f'META-INF/jars/{id}-{version}.jar': digest for id, (version, digest) in modules.items()}
-              assert {entry['file'] for entry in metadata.get('jars', [])} == set(nested)
-              assert {name for name in jar.namelist() if name.endswith('.jar')} == set(nested)
-              for name, digest in nested.items():
-                  assert hashlib.sha256(jar.read(name)).hexdigest() == digest, 'Unexpected bundled Fabric module'
-              assert not any(name.startswith('org/unallocated/smoke/') or name.endswith('Test.class')
-                             for name in jar.namelist()), 'Test classes leaked into player JAR'
-              assert 'NOTICE-core.txt' in jar.namelist()
-              assert 'assets/unallocated/features.json' in jar.namelist()
-              assert metadata['depends'] == {
-                  'fabricloader': '>=' + properties['loader_version'],
-                  'minecraft': '~' + properties['minecraft_version'],
-                  'java': '>=25',
-                  **{id: '>=' + version for id, (version, _) in modules.items()},
-              }
-              for side in ('main', 'client'):
-                  for entrypoint in metadata['entrypoints'][side]:
-                      bytecode = jar.read(entrypoint.replace('.', '/') + '.class')
-                      assert bytecode[:4] == bytes.fromhex('cafebabe')
-                      assert int.from_bytes(bytecode[6:8], 'big') == 69, 'Expected Java 25 bytecode'
-          digest = hashlib.sha256(artifact.read_bytes()).hexdigest()
-          artifact.with_suffix('.jar.sha256').write_text(f'{digest}  {artifact.name}\n')
-          print(f'Verified {artifact}')
-          PY
+      - name: Verify packaging and smoke failure paths without Java
+        run: python3 -B -m unittest discover -s scripts -p 'test_*.py'
 
-      - name: Verify smoke watchdog failure paths without Java
-        run: python3 -B -m unittest discover -s scripts -p 'test_smoke_test.py'
-
-      - name: Smoke test dedicated server with player JAR
+      - name: Smoke test dedicated server commands and saved session reload
         timeout-minutes: 6
         run: python3 scripts/smoke_test.py server
+
+      - name: Verify server coexistence with optional full Fabric API
+        timeout-minutes: 4
+        run: python3 scripts/smoke_test.py server-with-api
 
       - name: Install headless client graphics
         run: |

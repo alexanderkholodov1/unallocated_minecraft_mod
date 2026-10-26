@@ -7,7 +7,7 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from smoke_test import ROOT, monitor, verify_screenshot
+from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION
 
 
 COMMON = r'UNALLOCATED initialized \(common\)\.'
@@ -51,6 +51,22 @@ class WatchdogTest(unittest.TestCase):
                 "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n",
                 stop_when_ready=True,
             )
+
+    def test_server_requires_loaded_bundled_modules(self):
+        with self.assertRaisesRegex(RuntimeError, 'Missing required'):
+            self.run_fixture(
+                "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n",
+                required=server_evidence(),
+            )
+        loaded = 'UNALLOCATED initialized (common).\nDone (0.1s)!\n' + '\n'.join(
+            f"- {key} {value['version']}" for key, value in API_POLICY['modules'].items()
+            if value['environment'] != 'client'
+        )
+        self.run_fixture(f'log.write_text({loaded!r})\n', required=server_evidence())
+        with self.assertRaisesRegex(RuntimeError, 'Missing required'):
+            self.run_fixture(f'log.write_text({loaded!r})\n', required=server_evidence(True))
+        loaded += f'\n- fabric-api {API_VERSION}\n'
+        self.run_fixture(f'log.write_text({loaded!r})\n', required=server_evidence(True))
 
     def test_nonzero_exit_fails(self):
         with self.assertRaises(RuntimeError):

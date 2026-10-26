@@ -74,11 +74,10 @@ again and rejects an unsolicited LOBBY enter marker. No player means elapsedTick
 The watchdog requires each command's evidence to appear after that command, so stale logs cannot
 acknowledge it. Real client startup exercises common and client payload registration.
 
-The base branch does not contain alpha.1.6 (jar-in-jar). To make this branch independently
-installable/testable, build.gradle includes only the four required Fabric modules, all already in
-alpha.1.6's six-module allowlist; CI checks their exact upstream hashes. At integration retain
-alpha.1.6's shared module manifest/verifier/packaging and the new core tests/smoke steps. Do not
-bundle both sets twice. This package needs no additional module beyond alpha.1.6's allowlist.
+This branch merges alpha.1.6's six-module manifest, identity-based JAR verifier and clean
+one-JAR smoke harness. The core uses only modules already in that allowlist and does not
+maintain a separate include list or nested-archive hash policy. The optional full-API coexistence
+check retains its own diagnostics and exercises the core commands without repeating reload.
 
 Human validation after map/ending integration: reconnect/respawn at each checkpoint; verify each
 diegetic fallback actually guides or moves the player; run a 10–15 minute session including pause,
