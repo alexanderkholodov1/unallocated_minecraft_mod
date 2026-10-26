@@ -50,10 +50,10 @@ public final class BaseSection implements MapSection {
         w.put(14, 0, 6, Blocks.CRAFTING_TABLE);
         w.put(15, 0, 6, Blocks.FURNACE.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH));
         w.put(16, 0, 12, Blocks.BARREL);
-        w.fill(9, -1, 9, 11, -1, 14, Blocks.GRAY_WOOL);
+        w.fill(9, -1, 9, 11, -1, 14, Blocks.WOOL.gray());
         // This soft floor also serves the later theft scene's unnaturally quiet footsteps.
-        bed(w, 13, 13, Blocks.RED_BED);
-        bed(w, 6, 13, Blocks.WHITE_BED);
+        bed(w, 13, 13, Blocks.BED.red());
+        bed(w, 6, 13, Blocks.BED.white());
         w.put(12, 0, 14, Blocks.BARREL);
         w.put(12, 1, 14, Blocks.LANTERN);
         w.put(8, 0, 5, Blocks.LANTERN);

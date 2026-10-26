@@ -38,7 +38,7 @@ public final class MapVerifier {
             }
             if (id.equals("base")) {
                 expect(level, "base.chest", Blocks.CHEST);
-                expect(level, "base.bed", Blocks.RED_BED);
+                expect(level, "base.bed", Blocks.BED.red());
                 expect(level, "base.door", Blocks.OAK_DOOR);
                 if (!(level.getBlockEntity(MapLayout.landmark("base.chest")) instanceof net.minecraft.world.Container container)
                         || container.getItem(2).getItem() != net.minecraft.world.item.Items.COAL || container.getItem(2).getCount() != 11) {

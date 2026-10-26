@@ -95,10 +95,11 @@ the nine views above. The Python watchdog requires the final tour marker and eve
 image alone cannot pass. Screenshots may have Fabric's numerical filename prefix. Download the
 workflow's `smoke-diagnostics-<sha>` artifact and look under `screenshots/`.
 
-Host validation: Python watchdog/packaging tests pass (23); `git diff --check` passes. All new
-Minecraft/Fabric API signatures were read from the pinned reference JARs. Java/Gradle were not
-run on the worker host. GitHub is unreachable from this worker, so compilation, the new JUnit
-checks, runtime assertions and screenshots still need the coordinator's CI result.
+Host validation: Python watchdog/packaging tests pass (23); `git diff --check` passes. The coordinator's
+lightweight `mc-ref/javacheck.sh` type-checks all 33 Java source files against the pinned reference
+JARs with JDK 25: `javac exit 0 (OK)`. Colored blocks use 26.3's `ColorCollection` accessors.
+Gradle and the game were not run on the worker host. The new JUnit checks, runtime assertions and
+screenshots still need the coordinator's CI result.
 
 Human/coordinator review remains essential: signs readable at normal settings; believable old
 small-server construction; hill/spyglass sightline with default entity distance; clear torch route;
