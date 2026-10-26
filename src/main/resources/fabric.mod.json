@@ -9,9 +9,18 @@
   ],
   "license": "All-Rights-Reserved",
   "environment": "*",
+<<<<<<< CURRENT
   "mixins": [
-    {"config": "unallocated.contract.mixins.json", "environment": "client"}
+    {"config": "unallocated.contract.mixins.json", "environment": "client"},
+    {"config": "unallocated-interface.mixins.json", "environment": "client"}
   ],
+||||||| 379ffc5
+=======
+  "mixins": [
+    "unallocated.bait.mixins.json",
+    {"config": "unallocated.bait.client.mixins.json", "environment": "client"}
+  ],
+>>>>>>> origin/v0.1.5
   "entrypoints": {
     "main": [
       "org.unallocated.UnallocatedMod"

@@ -23,6 +23,7 @@ def bundledFabric = new groovy.json.JsonSlurper().parse(file('fabric-api-modules
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+<<<<<<< CURRENT
     testImplementation platform('org.junit:junit-bom:5.13.4')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -42,6 +43,22 @@ configurations {
         transitive = false
         extendsFrom configurations.include
     }
+||||||| 379ffc5
+    // Initialization and logging do not require Fabric API.
+=======
+    // Initialization and logging do not require Fabric API.
+    testImplementation platform('org.junit:junit-bom:5.13.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    maxHeapSize = '256m'
+    def unitTestTemp = layout.projectDirectory.dir('.tmp/unit').asFile
+    systemProperty 'java.io.tmpdir', unitTestTemp.absolutePath
+    doFirst { unitTestTemp.mkdirs() }
+>>>>>>> origin/v0.1.5
 }
 
 // Record resolved include inputs independently of the output jar. Never hash the output into itself.
@@ -157,6 +174,7 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     jvmArgs.add('-Dunallocated.smoke.modules=' + bundledFabric.modules.collect { id, module ->
         "${id}=${module.version}"
     }.join(','))
+    jvmArgs.addAll('-Dunallocated.interface.debug=true', '-Dunallocated.interface.debug.quiet=true')
     jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
     jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
         "-Dunallocated.smoke.jar=${it.asFile.absolutePath}".toString()

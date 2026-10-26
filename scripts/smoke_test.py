@@ -23,6 +23,8 @@ FATAL = re.compile(
     r'Encountered an unexpected exception|Exception in thread|'
     r'A fatal error has been detected|Crash report saved|Mixin apply.*failed', re.I
 )
+# In-game feature self-tests report failure in the game log; fail at once instead of waiting for the deadline.
+SELFTEST_FAILED = re.compile(r'UNALLOCATED bait selftest FAILED[^\r\n]*')
 
 
 API_POLICY = json.loads((ROOT / 'fabric-api-modules.json').read_text())
@@ -102,9 +104,20 @@ def crash_reports(directory):
 
 
 def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
+<<<<<<< CURRENT
             shutdown_timeout=30, game_directory=None, command_steps=(), startup_required=None,
             expected_rejection=None):
     """Require clean game evidence or a specific pre-startup Loader dependency rejection."""
+||||||| 379ffc5
+            shutdown_timeout=30, game_directory=None):
+    """Require actual game log evidence, exit zero, and no crash; stop servers via stdin."""
+=======
+            shutdown_timeout=30, game_directory=None, ready=(), ready_commands=()):
+    """Require actual game log evidence, exit zero, and no crash; stop servers via stdin.
+
+    Once every `ready` pattern is in the game log, `ready_commands` are typed into the server console (once).
+    """
+>>>>>>> origin/v0.1.5
     console.parent.mkdir(parents=True, exist_ok=True)
     game_directory = game_directory or cwd
     latest = game_directory / 'logs' / 'latest.log'
@@ -118,9 +131,14 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
     crash_pattern = REJECTION_CRASH if expected_rejection else FATAL
     deadline = time.monotonic() + timeout
     stop_sent = False
+<<<<<<< CURRENT
     step_index = 0
     step_sent = False
     step_log_start = 0
+||||||| 379ffc5
+=======
+    commands_sent = not ready_commands
+>>>>>>> origin/v0.1.5
     process = None
     try:
         with console.open('w') as output:
@@ -132,6 +150,7 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
                 game_log = read(latest)
                 if reports() or crash_pattern.search(game_log + read(console)):
                     raise RuntimeError('Game crash detected')
+<<<<<<< CURRENT
                 ready = all(re.search(pattern, game_log) for pattern in (startup_required or required))
                 if ready and step_index < len(command_steps):
                     command, evidence = command_steps[step_index]
@@ -144,6 +163,20 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
                         step_index += 1
                         step_sent = False
                 if stop_when_ready and not stop_sent and step_index == len(command_steps) and all(
+||||||| 379ffc5
+                if stop_when_ready and not stop_sent and all(
+=======
+                failed = SELFTEST_FAILED.search(game_log)
+                if failed:
+                    raise RuntimeError(f'In-game self-test failed: {failed.group(0)}')
+                if not commands_sent and all(re.search(pattern, game_log) for pattern in ready):
+                    for line in ready_commands:
+                        process.stdin.write(line + '\n')
+                    process.stdin.flush()
+                    commands_sent = True
+                    print(f'Sent console commands: {list(ready_commands)}', flush=True)
+                if stop_when_ready and commands_sent and not stop_sent and all(
+>>>>>>> origin/v0.1.5
                     re.search(pattern, game_log) for pattern in required
                 ):
                     process.stdin.write('stop\n')
@@ -255,6 +288,7 @@ def server(with_fabric_api=False):
             if attempt == 1:
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
+<<<<<<< CURRENT
     command = ['java', '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
     startup = server_evidence(with_fabric_api)
     console_prefix = 'server-with-api' if with_fabric_api else 'server'
@@ -276,19 +310,54 @@ def server(with_fabric_api=False):
     latest = directory / 'logs' / 'latest.log'
     shutil.copyfile(latest, directory / 'logs' / 'core-before-reload.log')
     latest.unlink()
+||||||| 379ffc5
+=======
+    ready = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
+>>>>>>> origin/v0.1.5
     monitor(
+<<<<<<< CURRENT
         command, directory, SMOKE / 'server-reload-console.log', startup + [status],
         timeout=120, stop_when_ready=True, startup_required=startup,
         command_steps=[('unallocated status', [status])],
+||||||| 379ffc5
+        ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
+        directory, SMOKE / 'server-console.log',
+        [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!'],
+        timeout=120, stop_when_ready=True,
+=======
+        ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
+        directory, SMOKE / 'server-console.log',
+        # The spyglass bait's self-test makes, dresses, moves and removes its figure on this real server.
+        ready + [r'UNALLOCATED bait selftest passed'],
+        timeout=120, stop_when_ready=True, ready=ready, ready_commands=['ubait selftest'],
+>>>>>>> origin/v0.1.5
     )
     assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
 
 
+<<<<<<< CURRENT
 def verify_screenshot(directory, name='unallocated-title'):
+||||||| 379ffc5
+def verify_screenshot(directory):
+=======
+BAIT_SCREENSHOTS = (
+    'unallocated-bait-1-plain-view', 'unallocated-bait-2-first-sighting',
+    'unallocated-bait-3-closer', 'unallocated-bait-4-screamer',
+)
+
+
+def verify_screenshot(directory, name='unallocated-title'):
+>>>>>>> origin/v0.1.5
     # Fabric can prepend a numeric counter, e.g. 0000_unallocated-title.png.
     screenshots = list(directory.rglob(f'*{name}*.png'))
     if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+<<<<<<< CURRENT
         raise RuntimeError(f'Client exited without a valid screenshot: {name}')
+||||||| 379ffc5
+        raise RuntimeError('Client exited without a valid title-screen screenshot')
+=======
+        raise RuntimeError(f'Client exited without a valid {name} screenshot')
+>>>>>>> origin/v0.1.5
 
 
 def client_phases():
@@ -302,8 +371,11 @@ def client_phases():
                 r'UNALLOCATED smoke: contract first start, data list, typed and clicked acceptance verified\.',
                 modules, title,
                 r'UNALLOCATED smoke: core armed join, no-cheats rescue guards, client act sync and single-player reload verified\.',
+                r'UNALLOCATED interface smoke: effects rendered; options untouched byte-for-byte after world exit\.',
             ],
-            'screenshots': ['unallocated-contract', 'unallocated-contract-uses', 'unallocated-title-first'],
+            'screenshots': ['unallocated-contract', 'unallocated-contract-uses', 'unallocated-title-first',
+                            *[f'unallocated-interface-{effect}' for effect in
+                              ('splash', 'loading', 'f3', 'advancement', 'sign', 'death')]],
             'timeout': 240,
         },
         'restart': {
@@ -317,11 +389,19 @@ def client_phases():
     }
 
 
+def verify_interface_screenshots(directory):
+    for effect in ('splash', 'loading', 'f3', 'advancement', 'sign', 'death'):
+        screenshots = list(directory.rglob(f'*unallocated-interface-{effect}*.png'))
+        if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+            raise RuntimeError(f'Client exited without a valid interface screenshot: {effect}')
+
+
 def client(with_fabric_api=None):
     api_version = api_version_argument(with_fabric_api)
     name = profile_name('client', api_version)
     directory = SMOKE / name
     directory.mkdir(parents=True, exist_ok=False)
+<<<<<<< CURRENT
     if expects_rejection(api_version):
         monitor(
             ['gradle', '--daemon', '--console=plain', 'runClientSmoke',
@@ -363,6 +443,36 @@ def client(with_fabric_api=None):
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",
     } | ({f'fabric-api-{api_version}.jar'} if api_version else set()))
+||||||| 379ffc5
+    monitor(
+        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
+        ROOT, SMOKE / 'client-console.log', [
+            r'UNALLOCATED initialized \(common\)\.',
+            r'UNALLOCATED initialized \(client\)\.',
+            r'UNALLOCATED smoke: title screen reached from player JAR\.',
+        ], timeout=240,
+        # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+        game_directory=directory,
+    )
+    verify_screenshot(directory)
+=======
+    monitor(
+        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
+        ROOT, SMOKE / 'client-console.log', [
+            r'UNALLOCATED initialized \(common\)\.',
+            r'UNALLOCATED initialized \(client\)\.',
+            r'UNALLOCATED smoke: title screen reached from player JAR\.',
+            r'UNALLOCATED bait step=2/2',
+            r'UNALLOCATED bait screamer shown',
+            r'UNALLOCATED spyglass smoke: three looks, closer each time, screamer, figure gone\.',
+        ], timeout=360,  # includes creating and playing a single-player world for the spyglass bait
+        # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+        game_directory=directory,
+    )
+    verify_screenshot(directory)
+    for name in BAIT_SCREENSHOTS:
+        verify_screenshot(directory, name)
+>>>>>>> origin/v0.1.5
 
 
 def main():

@@ -7,7 +7,7 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION, api_version_argument, profile_name, expects_rejection
+from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION, api_version_argument, profile_name, expects_rejection, verify_interface_screenshots
 
 
 COMMON = r'UNALLOCATED initialized \(common\)\.'
@@ -39,6 +39,28 @@ class WatchdogTest(unittest.TestCase):
             "log.write_text(log.read_text()+'Stopping server\\n')\n",
             stop_when_ready=True,
         )
+
+    def test_console_commands_run_before_stop_and_their_evidence_is_required(self):
+        self.run_fixture(
+            "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+            "assert sys.stdin.readline().strip()=='ubait selftest'\n"
+            "log.write_text(log.read_text()+'UNALLOCATED bait selftest passed\\n')\n"
+            "assert sys.stdin.readline().strip()=='stop'\n"
+            "log.write_text(log.read_text()+'Stopping server\\n')\n",
+            required=(COMMON, DONE, 'UNALLOCATED bait selftest passed'),
+            stop_when_ready=True, ready=(COMMON, DONE), ready_commands=['ubait selftest'],
+        )
+
+    def test_failed_selftest_fails_without_waiting_for_the_deadline(self):
+        with self.assertRaisesRegex(RuntimeError, 'self-test failed: .*no spyglass'):
+            self.run_fixture(
+                "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+                "sys.stdin.readline()\n"
+                "log.write_text(log.read_text()+'UNALLOCATED bait selftest FAILED: no spyglass\\n')\n"
+                "time.sleep(20)\n",
+                required=(COMMON, DONE, 'UNALLOCATED bait selftest passed'), timeout=5,
+                stop_when_ready=True, ready=(COMMON, DONE), ready_commands=['ubait selftest'],
+            )
 
     def test_missing_common_or_done_fails_even_on_exit_zero(self):
         for content in ['Done (0.1s)!', 'UNALLOCATED initialized (common).']:
@@ -202,6 +224,19 @@ class WatchdogTest(unittest.TestCase):
                 required=(COMMON, DONE, 'ACT_ENTER'), startup_required=(COMMON, DONE),
                 stop_when_ready=True, command_steps=[('unallocated act LOBBY', ['ACT_ENTER'])], timeout=0.6,
             )
+
+    def test_interface_requires_each_effect_screenshot(self):
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp)
+            for effect in ('splash', 'loading', 'f3', 'advancement', 'sign', 'death'):
+                with self.assertRaisesRegex(RuntimeError, 'interface screenshot'):
+                    verify_interface_screenshots(directory)
+                (directory / f'0001_unallocated-interface-{effect}.png').write_bytes(b'\x89PNG\r\n\x1a\n')
+            verify_interface_screenshots(directory)
+
+    def test_title_only_marker_cannot_replace_effect_checks(self):
+        with self.assertRaisesRegex(RuntimeError, 'Missing required'):
+            self.run_fixture("log.write_text('TITLE_READY')\n", required=('TITLE_READY', 'INTERFACE_RESTORED'))
 
 
 if __name__ == '__main__':
