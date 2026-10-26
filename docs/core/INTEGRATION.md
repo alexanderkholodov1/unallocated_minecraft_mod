@@ -1,4 +1,4 @@
-# Core integration — alpha.1.7
+# Core integration — v0.1.7
 
 This implements PLAN §4.2–4.3's names. Content is deliberately absent. All APIs run on the server
 thread unless marked client-side. No Java or Gradle was run on the worker host; CI builds and runs
@@ -74,7 +74,7 @@ again and rejects an unsolicited LOBBY enter marker. No player means elapsedTick
 The watchdog requires each command's evidence to appear after that command, so stale logs cannot
 acknowledge it. Real client startup exercises common and client payload registration.
 
-This branch merges alpha.1.6's six-module manifest, identity-based JAR verifier and clean
+This branch merges v0.1.6's six-module manifest, identity-based JAR verifier and clean
 one-JAR smoke harness. The core uses only modules already in that allowlist and does not
 maintain a separate include list or nested-archive hash policy. The optional full-API coexistence
 check retains its own diagnostics and exercises the core commands without repeating reload.

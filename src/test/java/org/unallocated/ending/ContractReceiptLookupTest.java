@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/** Public fixture shapes deliberately match alpha.1.3's API, without shipping a second ContractStore. */
+/** Public fixture shapes deliberately match v0.1.3's API, without shipping a second ContractStore. */
 public class ContractReceiptLookupTest {
     public record Submission(String typedText) {}
     public record Receipt(Submission submission) {}

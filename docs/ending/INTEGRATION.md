@@ -1,4 +1,4 @@
-# Ending v0 — alpha.1.10
+# Ending v0 — v0.1.10
 
 `UnallocatedMod` registers `EpilogueAct` with the core. Normal sequencing into EPILOGUE and
 `/unallocated act EPILOGUE` both close the session as `SERVER_CLOSED`. Ordinary worlds stay dormant.
@@ -14,18 +14,18 @@ gratitude, and a button whose parent is the title. Other disconnects retain vani
 The title splash is replaced in memory, survives title reinitialization/resizing, and resets at
 next world join or process exit. No options, splash assets, resource packs or consent files are written.
 
-The optional alpha.1.3 bridge calls `org.unallocated.contract.ContractStore(Path).read()` through
+The optional v0.1.3 bridge calls `org.unallocated.contract.ContractStore(Path).read()` through
 reflection, then `receipt.submission().typedText()`. This avoids a compile dependency on the sibling
 branch and respects that package's storage/version validation. Missing package, no receipt, unreadable
 or corrupt receipt, or click-only consent uses “Gracias por tus datos.” without claiming the player
 said anything. A valid typed receipt adds “Dijiste «De acuerdo».” with the original capitalization.
 The receipt is read only on the client and is never sent over the network.
 
-For alpha.3, outcome scenes and SessionReport precede shutdown. `EndingController.close(player,
+For v0.3, outcome scenes and SessionReport precede shutdown. `EndingController.close(player,
 new EndingController.Ending("TERMINATED" /* or CONSUMED */, reason))` is the reusable server-thread
 save/close boundary, called from EPILOGUE. Replace/extend the epilogue content registration and
 client reason adapter for those outcomes; do not duplicate the shutdown or core payload receivers.
-The v0 does not invent session statistics or implement alpha.3's two outcome scenes.
+The v0 does not invent session statistics or implement v0.3's two outcome scenes.
 
 Validation: CI runs the existing core/JAR/dedicated smoke checks and JUnit tests for the complete
 inverse ladder, gratitude, genuine receipt callback and missing/corrupt/unreadable receipt fallbacks.

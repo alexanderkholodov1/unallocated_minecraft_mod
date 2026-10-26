@@ -9,12 +9,12 @@
     "fabric-command-api-v2": {
       "version": "3.1.2+fcdff87f5d",
       "environment": "*",
-      "reason": "Command registration (alpha.1 /unallocated interface)."
+      "reason": "Command registration (v0.1 /unallocated interface)."
     },
     "fabric-lifecycle-events-v1": {
       "version": "4.1.9+ffef5f675d",
       "environment": "*",
-      "reason": "Server/client lifecycle and tick events (alpha.1 core and bait)."
+      "reason": "Server/client lifecycle and tick events (v0.1 core and bait)."
     },
     "fabric-networking-api-v1": {
       "version": "6.4.0+a21c9eb65d",

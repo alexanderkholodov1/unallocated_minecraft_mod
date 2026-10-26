@@ -9,7 +9,7 @@ import org.unallocated.core.Act;
 import org.unallocated.core.CoreRuntime;
 import org.unallocated.core.ServerEvents;
 
-/** Server-thread shutdown shared by the v0 ending and alpha.3's future outcome strategies. */
+/** Server-thread shutdown shared by the v0 ending and v0.3's future outcome strategies. */
 public final class EndingController {
     public record Ending(String id, Component reason) {
         public Ending {

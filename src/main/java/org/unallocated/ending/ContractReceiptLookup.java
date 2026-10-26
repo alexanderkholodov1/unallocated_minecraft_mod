@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import org.unallocated.UnallocatedMod;
 
-/** Optional alpha.1.3 dependency. Read through ContractStore, never parse/copy its file format.
+/** Optional v0.1.3 dependency. Read through ContractStore, never parse/copy its file format.
  * Keep local agreement text on the client: nothing from the receipt crosses the network.
  */
 public final class ContractReceiptLookup {
