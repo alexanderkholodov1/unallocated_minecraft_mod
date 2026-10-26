@@ -43,7 +43,8 @@ public final class ContractScreen extends Screen {
                 lines.add(FormattedCharSequence.EMPTY);
             }
             dataLines = List.copyOf(lines);
-            linesPerPage = Math.max(1, (height - 100) / 11);
+            // Leave room below the last line for the page counter and navigation.
+            linesPerPage = Math.max(1, (height - 128) / 11);
             page = Math.min(page, pageCount() - 1);
             int navWidth = (contentWidth - 8) / 3;
             var previous = addRenderableWidget(new ContractButton(left, height - 72, navWidth,
@@ -114,6 +115,11 @@ public final class ContractScreen extends Screen {
 
     @Override
     public Component getNarrationMessage() {
+        if (reading) {
+            return text("uses.title").copy().append(". ").append(text("uses.current")).append(". ")
+                    .append(text("uses.local")).append(". ").append(text("uses.absent")).append(". ")
+                    .append(text("uses.future")).append(". ").append(text("uses.lore"));
+        }
         return getTitle().copy().append(". ").append(text("warnings")).append(". ").append(text("body"));
     }
 
