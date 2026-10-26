@@ -31,7 +31,7 @@ jobs:
           cache-read-only: ${{ github.event_name != 'push' }}
 
       - name: Build mod
-        run: gradle --no-daemon --console=plain build
+        run: gradle --no-daemon --console=plain build clientSmokeJar
 
       - name: Verify installable JAR and write checksum
         shell: bash
@@ -56,6 +56,12 @@ jobs:
               assert metadata['id'] == 'unallocated'
               assert metadata['name'] == 'UNALLOCATED'
               assert metadata['version'] == version
+              assert set(metadata['entrypoints']) == {'main', 'client'}, 'Test entrypoint leaked into player JAR'
+              assert not metadata.get('jars'), 'Test library bundled into player JAR'
+              assert not any(
+                  name.startswith('org/unallocated/smoke/') or name.endswith('.jar')
+                  for name in jar.namelist()
+              ), 'Smoke helper or nested library leaked into player JAR'
               assert metadata['depends'] == {
                   'fabricloader': '>=' + properties['loader_version'],
                   'minecraft': '~' + properties['minecraft_version'],
@@ -78,6 +84,19 @@ jobs:
         timeout-minutes: 4
         run: python3 scripts/smoke_test.py server
 
+      - name: Install headless client graphics
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri mesa-vulkan-drivers
+
+      - name: Smoke test production client to title screen
+        timeout-minutes: 5
+        env:
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          SDL_VIDEODRIVER: x11
+          ALSOFT_DRIVERS: 'null'
+        run: python3 scripts/smoke_test.py client
+
       - name: Upload smoke diagnostics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -89,6 +108,8 @@ jobs:
             .tmp/smoke/**/logs/**
             .tmp/smoke/**/crash-reports/**
             .tmp/smoke/**/hs_err_pid*.log
+            .tmp/smoke/**/screenshots/**
+            hs_err_pid*.log
           if-no-files-found: warn
           retention-days: 7
 

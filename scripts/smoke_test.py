@@ -39,10 +39,19 @@ def crash_reports(directory):
     )]
 
 
-def monitor(command, cwd, console, required, timeout, stop_when_ready=False, shutdown_timeout=30):
+def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
+            shutdown_timeout=30, game_directory=None):
     """Require actual game log evidence, exit zero, and no crash; stop servers via stdin."""
     console.parent.mkdir(parents=True, exist_ok=True)
-    latest = cwd / 'logs' / 'latest.log'
+    game_directory = game_directory or cwd
+    latest = game_directory / 'logs' / 'latest.log'
+
+    def reports():
+        found = crash_reports(game_directory)
+        if cwd != game_directory:
+            found.extend(cwd.glob('hs_err_pid*.log'))
+        return found
+
     deadline = time.monotonic() + timeout
     stop_sent = False
     process = None
@@ -54,7 +63,7 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False, shu
             )
             while process.poll() is None:
                 game_log = read(latest)
-                if crash_reports(cwd) or FATAL.search(game_log + read(console)):
+                if reports() or FATAL.search(game_log + read(console)):
                     raise RuntimeError('Game crash detected')
                 if stop_when_ready and not stop_sent and all(
                     re.search(pattern, game_log) for pattern in required
@@ -75,13 +84,13 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False, shu
             raise RuntimeError(f'Missing required game log evidence: {missing}')
         if stop_when_ready and (not stop_sent or 'Stopping server' not in game_log):
             raise RuntimeError('Server did not acknowledge our stop command and exit cleanly')
-        if crash_reports(cwd) or FATAL.search(game_log + read(console)):
+        if reports() or FATAL.search(game_log + read(console)):
             raise RuntimeError('Game crash detected after exit')
-        print(f'PASS: real-game smoke check in {cwd.relative_to(ROOT)}', flush=True)
+        print(f'PASS: real-game smoke check in {game_directory.relative_to(ROOT)}', flush=True)
     except BaseException:
         print(f'--- Smoke console: {console} ---\n' + '\n'.join(read(console).splitlines()[-80:]), file=sys.stderr)
         print(f'--- Game log: {latest} ---\n' + '\n'.join(read(latest).splitlines()[-80:]), file=sys.stderr)
-        for report in crash_reports(cwd):
+        for report in reports():
             print(f'Crash report: {report}', file=sys.stderr)
         raise
     finally:
@@ -142,13 +151,36 @@ def server():
     )
 
 
+def verify_screenshot(directory):
+    # Fabric can prepend a numeric counter, e.g. 0000_unallocated-title.png.
+    screenshots = list(directory.rglob('*unallocated-title*.png'))
+    if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+        raise RuntimeError('Client exited without a valid title-screen screenshot')
+
+
+def client():
+    directory = SMOKE / 'client'
+    directory.mkdir(parents=True, exist_ok=False)
+    monitor(
+        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
+        ROOT, SMOKE / 'client-console.log', [
+            r'UNALLOCATED initialized \(common\)\.',
+            r'UNALLOCATED initialized \(client\)\.',
+            r'UNALLOCATED smoke: title screen reached from player JAR\.',
+        ], timeout=240,
+        # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+        game_directory=directory,
+    )
+    verify_screenshot(directory)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('target', choices=['server'])
+    parser.add_argument('target', choices=['server', 'client'])
     args = parser.parse_args()
     if os.environ.get('CI') != 'true':
         parser.error('Real-game smoke checks must run in CI, never on the scaffold host')
-    server()
+    {'server': server, 'client': client}[args.target]()
 
 
 if __name__ == '__main__':

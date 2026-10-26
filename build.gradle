@@ -51,3 +51,37 @@ tasks.withType(AbstractArchiveTask).configureEach {
     preserveFileTimestamps = false
     reproducibleFileOrder = true
 }
+
+// CI helper mod: a separate source set/JAR, never included in the player's JAR.
+sourceSets {
+    clientSmoke {
+        compileClasspath += sourceSets.client.compileClasspath
+    }
+}
+
+dependencies {
+    clientSmokeImplementation "net.fabricmc.fabric-api:fabric-api:0.165.0+26.3"
+    productionRuntimeMods "net.fabricmc.fabric-api:fabric-api:0.165.0+26.3"
+}
+
+tasks.register('clientSmokeJar', Jar) {
+    archiveBaseName = 'unallocated-client-smoke'
+    destinationDirectory = layout.buildDirectory.dir('smoke')
+    from sourceSets.clientSmoke.output
+}
+
+def clientSmokeDir = layout.projectDirectory.dir('.tmp/smoke/client')
+tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRunTask) {
+    // Explicit binary inputs prevent development class directories from masking packaging errors.
+    mods.setFrom(tasks.named('jar'), tasks.named('clientSmokeJar'), configurations.productionRuntimeMods)
+    runDir = clientSmokeDir
+    useXVFB = true
+    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
+    jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
+    jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
+        "-Dunallocated.smoke.jar=${it.asFile.absolutePath}".toString()
+    })
+    doFirst {
+        clientSmokeDir.dir('temp').asFile.mkdirs()
+    }
+}

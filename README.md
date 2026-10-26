@@ -61,7 +61,7 @@ Si aparece un error de versión o de dependencias, comprueba que el perfil usa *
 
 **Pendiente antes de publicar la experiencia de la jam:** completar aquí las advertencias de **luces intermitentes, sonidos fuertes** y cualquier otro contenido sensible que incorpore la experiencia final.
 
-Esta base no añade efectos de luces ni audio. La compilación y el arranque en un equipo de juego deben confirmarse con GitHub Actions y una instalación limpia; aún no hay una sesión jugable de 10–15 minutos.
+Esta base no añade efectos de luces ni audio. La compilación base está confirmada en GitHub Actions; las nuevas pruebas automáticas de servidor y cliente deben pasar en cada entrega. Sigue pendiente probar la instalación en un equipo de casa; aún no hay una sesión jugable de 10–15 minutos.
 
 ## Equipo y créditos
 
@@ -73,7 +73,9 @@ Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development ma
 
 Every push to any branch and every pull request runs [the build workflow](.github/workflows/build.yml), verifies JAR metadata and both Java 25 entrypoint classes, then starts a real dedicated Fabric 26.3 server with the exact player JAR in `mods/`. CI requires the common load message and `Done`, sends `stop`, and requires clean shutdown with no crash report. The EULA is accepted only for that disposable CI server. Smoke checks use the pinned baseline; newer accepted Loaders/hotfixes are not all tested.
 
-On success, CI uploads the JAR plus SHA-256 checksum as `unallocated-<commit SHA>`. Logs and crash reports are retained as `smoke-diagnostics-<commit SHA>` even on failure. Open a run in [GitHub Actions](https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/workflows/build.yml) to download artifacts. The repository is private: judges need a direct JAR download in the eventual itch.io delivery. No custom secrets are required.
+CI also runs `runClientSmoke`, a Loom production client task under Xvfb/Mesa. An isolated helper mod checks the loaded player JAR byte-for-byte, waits for the real title screen, and takes a screenshot. Both load messages, the title-screen marker, a screenshot and exit zero are required; missing evidence, crashes and deadlines fail the job. Fabric API **0.165.0+26.3** and the helper mod exist only in the client test environment; neither is included in the player's JAR or required by players. The server test runs without them.
+
+On success, CI uploads the JAR plus SHA-256 checksum as `unallocated-<commit SHA>`. Logs, screenshots and crash reports are retained as `smoke-diagnostics-<commit SHA>` even on failure. Open a run in [GitHub Actions](https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/workflows/build.yml) to download artifacts. The repository is private: judges need a direct JAR download in the eventual itch.io delivery. No custom secrets are required. The new smoke tasks await their first CI confirmation; the previous green build checked compilation/packaging only.
 
 Common code lives in `src/main/java/org/unallocated`; client code lives in `src/client/java/org/unallocated/client`. The non-remapping Loom plugin uses unobfuscated game names and ordinary `implementation`; there is no mappings dependency or `remapJar` step. Only Loader is required by this skeleton. See [TOOLCHAIN.md](docs/plan/TOOLCHAIN.md) for dated sources, supporting-mod checks, and the manual launch criteria.
 

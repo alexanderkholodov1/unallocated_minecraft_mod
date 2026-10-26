@@ -7,7 +7,7 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from smoke_test import ROOT, monitor
+from smoke_test import ROOT, monitor, verify_screenshot
 
 
 COMMON = r'UNALLOCATED initialized \(common\)\.'
@@ -19,14 +19,17 @@ class WatchdogTest(unittest.TestCase):
         (ROOT / '.tmp').mkdir(exist_ok=True)
         with TemporaryDirectory(dir=ROOT / '.tmp', prefix='smoke-watchdog-') as temp:
             directory = Path(temp)
+            game_directory = directory / 'game' if kwargs.pop('separate_game_dir', False) else directory
+            (game_directory / 'logs').mkdir(parents=True)
             code = (
                 "from pathlib import Path\nimport sys,time\n"
-                "Path('logs').mkdir()\nlog=Path('logs/latest.log')\n" + body
+                f"log=Path({str(game_directory / 'logs/latest.log')!r})\n" + body
             )
             with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
                 monitor(
                     [sys.executable, '-c', code], directory, directory / 'console.log',
                     required, timeout=kwargs.pop('timeout', 2), **kwargs,
+                    game_directory=game_directory,
                 )
 
     def test_server_requires_stop_and_clean_exit(self):
@@ -68,6 +71,40 @@ class WatchdogTest(unittest.TestCase):
     def test_hanging_process_is_killed_on_timeout(self):
         with self.assertRaisesRegex(RuntimeError, 'Timed out'):
             self.run_fixture('time.sleep(20)\n', timeout=0.3)
+
+    def test_client_reads_game_directory_separately_from_launcher(self):
+        self.run_fixture(
+            "log.write_text('UNALLOCATED initialized (client).\\nTITLE_READY\\n')\n",
+            required=(r'UNALLOCATED initialized \(client\)\.', 'TITLE_READY'),
+            separate_game_dir=True,
+        )
+
+    def test_console_messages_cannot_replace_game_log_evidence(self):
+        with self.assertRaisesRegex(RuntimeError, 'Missing required'):
+            self.run_fixture("print('UNALLOCATED initialized (common).\\nDone (0.1s)!')\n")
+
+    def test_title_marker_cannot_replace_client_entrypoint(self):
+        with self.assertRaisesRegex(RuntimeError, 'Missing required'):
+            self.run_fixture(
+                "log.write_text('TITLE_READY')\n",
+                required=(r'UNALLOCATED initialized \(client\)\.', 'TITLE_READY'),
+                separate_game_dir=True,
+            )
+
+    def test_numbered_fabric_screenshot_is_accepted(self):
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp)
+            (directory / '0000_unallocated-title.png').write_bytes(b'\x89PNG\r\n\x1a\n')
+            verify_screenshot(directory)
+
+    def test_missing_or_invalid_screenshot_fails(self):
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp)
+            with self.assertRaisesRegex(RuntimeError, 'screenshot'):
+                verify_screenshot(directory)
+            (directory / 'unallocated-title.png').write_text('not an image')
+            with self.assertRaisesRegex(RuntimeError, 'screenshot'):
+                verify_screenshot(directory)
 
 
 if __name__ == '__main__':
