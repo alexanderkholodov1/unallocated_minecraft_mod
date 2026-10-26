@@ -33,8 +33,10 @@ The production client gametest also transitions CLIMAX→EPILOGUE through the re
 asserts a vanilla disconnect and stopped server, clicks through to title, and inspects the actual
 rendered splash (also after title reinitialization). It reopens the same save in a new server instance,
 checks the finished state/ending flag/persisted counter and no repeated ending, then verifies splash
-reset after a later ordinary exit. A second world sends the real player command `unallocated act
-EPILOGUE` and repeats the screen/title checks. Options, server list and any contract receipt are
+reset after a later ordinary exit. A second world explicitly enables commands and asserts gamemaster
+permission before sending the real player command `unallocated act EPILOGUE`, then repeats the
+screen/title checks. This is a fresh session: a finished save cannot naturally repeat its ending;
+an explicit debug act jump can reactivate it as documented by core. Options, server list and any contract receipt are
 compared byte for byte around the ending. An ordinary disconnect reason bypasses the adapter.
 
 CI requires both normal and command screenshots: `unallocated-ending-disconnect`,
@@ -43,7 +45,8 @@ CI requires both normal and command screenshots: `unallocated-ending-disconnect`
 the existing diagnostics artifact includes the PNGs. The helper remains outside the player's JAR.
 
 Minecraft and Fabric calls were checked against the official 26.3 and API 0.165.0 signatures in
-`mc-ref`, including the actual vanilla disconnect/save call chain, without running Java on the host.
+`mc-ref`, including the actual vanilla disconnect/save call chain. The coordinator-authorized
+`javacheck.sh` also type-checks all 30 Java sources; only CI launches Minecraft.
 
 Human validation: readability at small GUI sizes, pacing/tone of the farewell, and a full map session
 on both OpenGL and Vulkan after merging the launcher/contract/map/bait packages. The altered splash

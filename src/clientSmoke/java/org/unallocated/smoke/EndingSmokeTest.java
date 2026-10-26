@@ -13,6 +13,7 @@ import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.SplashRenderer;
 import net.minecraft.client.gui.screens.DisconnectedScreen;
 import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.commands.Commands;
 import net.minecraft.network.DisconnectionDetails;
 import net.minecraft.network.chat.Component;
 import org.slf4j.LoggerFactory;
@@ -93,8 +94,14 @@ final class EndingSmokeTest {
         LoggerFactory.getLogger("unallocated-smoke").info(
             "UNALLOCATED smoke: ending save reloaded as finished; options and receipt unchanged; splash reset.");
 
-        // Exercise the real player's debug command independently of the normal sequencer transition.
-        context.worldBuilder().create();
+        // A fresh world is a new session. Unlike normal sequencing, this debug command needs cheats.
+        var commandWorld = context.worldBuilder().adjustSettings(settings -> settings.setAllowCommands(true)).create();
+        commandWorld.getServer().runOnServer(s -> {
+            var source = s.getPlayerList().getPlayers().getFirst().createCommandSourceStack();
+            if (!Commands.hasPermission(Commands.LEVEL_GAMEMASTERS).test(source)) {
+                throw new AssertionError("Debug ending fixture requires gamemaster permission");
+            }
+        });
         context.runOnClient(client -> client.getConnection().sendCommand("unallocated act EPILOGUE"));
         assertDisconnect(context, "unallocated-ending-command-disconnect");
         assertTitle(context, "unallocated-ending-command-title");
