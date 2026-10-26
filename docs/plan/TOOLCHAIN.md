@@ -1,0 +1,82 @@
+# Toolchain — UNALLOCATED v1.0.0-alpha.1.1
+
+Verified on **2026-10-26 (UTC)**. Every source below was read on that date. This is a record of live upstream evidence and the versions selected for this work package, not a claim that CI or a game launch has already passed.
+
+The four files in `docs/intent/` remain the owner's intent. `UPDATES-2026-10-26.md` takes precedence: single-player first, judges at home on unknown machines, minimal installation, milestone-based delivery. This package implements infrastructure only; it adds no horror mechanics, map, voice collection, or inference service.
+
+## Selected versions and evidence
+
+| Component | Selected / verified fact | Source (read 2026-10-26) |
+| --- | --- | --- |
+| Minecraft Java Edition | **26.3**, released **2026-09-15**. Target the release, not a snapshot or Bedrock's similarly numbered releases. | [Mojang release announcement](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-3) |
+| Java | **25**, for compiling and running. Mojang introduced the requirement and bundled Microsoft OpenJDK 25 in 26.1; the 26.3 official template still targets 25. The continued requirement in 26.3 is corroborated by that template; the 26.3 changelog does not repeat it. CI uses Temurin JDK 25. | [Mojang 26.1 technical changes](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-1), [26.3 template build](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/build.gradle) |
+| Fabric Loader | **0.20.1**, published 2026-10-19 and selected by the official 26.3 template. This project's declared supported range is the singleton **`=0.20.1`**. | [Fabric Maven index](https://maven.fabricmc.net/net/fabricmc/fabric-loader/), [26.3 template properties](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/gradle.properties) |
+| Fabric API | **0.165.0+26.3**, published 2026-10-23, available for 26.3 and selected by the template. **Not required or bundled by this skeleton:** initialization interfaces come from Loader, and logging comes from the game classpath. No Fabric API dependency is declared. If a later feature uses it, add the dependency and update player instructions together. | [Published artifact](https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/0.165.0%2B26.3/), [26.3 template properties](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/gradle.properties), [template's optional API comment](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/build.gradle) |
+| Fabric Loom | **1.19.3**, published 2026-10-22: a fixed release in the template's current 1.19 family, replacing its moving `1.19-SNAPSHOT`. Plugin ID **`net.fabricmc.fabric-loom`**. Compatibility of this exact pinned build is to be exercised by CI. | [Published Loom versions](https://maven.fabricmc.net/net/fabricmc/fabric-loom/), [1.19.3 artifact](https://maven.fabricmc.net/net/fabricmc/fabric-loom/1.19.3/), [official plugin IDs](https://docs.fabricmc.net/develop/loom/), [26.3 template](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/build.gradle) |
+| Gradle | **9.8.2**, the version in the official 26.3 template. Java 25 can run Gradle 9.1.0 onward. CI installs exactly 9.8.2 with `setup-gradle`; no wrapper JAR is needed. | [26.3 template wrapper settings](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/gradle/wrapper/gradle-wrapper.properties), [Gradle compatibility matrix](https://docs.gradle.org/current/userguide/compatibility.html), [Gradle action installation](https://github.com/gradle/actions/blob/v5.0.0/setup-gradle/action.yml) |
+| Names / mappings | Minecraft is unobfuscated starting with 26.1. **No Yarn, intermediary, or Mojang mappings dependency is needed** for this 26.3 project. Use ordinary `implementation` for Loader and future Fabric API dependencies, and the non-remapping Loom plugin. The normal `jar` output is the installable artifact. | [Mojang technical changes](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-1), [Loom plugin IDs and JAR behavior](https://docs.fabricmc.net/develop/loom/), [26.3 example dependencies](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/build.gradle) |
+| Official starting point | [Fabric template generator](https://fabricmc.net/develop/template/) (choose Minecraft **26.3**, Java, split client/common sources), or the [official `26.3` example branch](https://github.com/FabricMC/fabric-example-mod/tree/26.3). Build layout adapted from that CC0-1.0 template; no example mixins or image assets are included. | [Generator and its CC0 notice](https://fabricmc.net/develop/template/), [26.3 example branch](https://github.com/FabricMC/fabric-example-mod/tree/26.3) |
+| Fabric installer | **1.1.2** is the current published installer. This is separate from Loader 0.20.1. Use Windows `.exe` or the universal `.jar` for macOS/Linux. | [Installer Maven index](https://maven.fabricmc.net/net/fabricmc/fabric-installer/), [official downloads](https://fabricmc.net/use/installer/) |
+
+### Disagreements and verification limits
+
+- The owner's plan names Loader 0.19.5 and API 0.161.0+26.3. Both appear in Fabric's publication indexes, but the current 26.3 example has advanced to 0.20.1 and 0.165.0+26.3. Its metadata uses `>=0.20.1`; this package deliberately accepts only `=0.20.1` until more versions are tested. Minecraft is likewise restricted to **`=26.3`**, rather than the example's wider `~26.3`.
+- [Fabric's September 15 release guide](https://fabricmc.net/2026/09/15/263.html) recommends Loom 1.17, Gradle 9.6.0 and Loader 0.19.5. [The development selector](https://fabricmc.net/develop/) still shows Loader 0.19.5 / API 0.162.0+26.3 alongside Loom 1.19-SNAPSHOT. The newer example and dated Maven directories supply the pins above. These pages are not synchronized; do not silently treat one as the only current answer. All read 2026-10-26.
+- The local sandbox cannot resolve external hosts. Web browsing can read upstream HTML and raw template files, but Fabric Meta's Loader endpoint, Mojang's version manifest, and XML Maven metadata could not be read through the web tool. The [Meta endpoint](https://meta.fabricmc.net/v2/versions/loader/26.3) is a future cross-check, **not successful evidence here**. Published HTML indexes and the explicit 26.3 template were used instead.
+- No Java/Gradle build or Minecraft run is permitted on this machine. Version availability and documented configuration are verified; successful resolution, compilation, packaging, and a client launch still need CI / a player machine. Do not call this a tested release until those checks pass.
+
+## Supporting mods — plan section 1.3
+
+None is a required dependency, bundled library, or recommendation to install for this skeleton. Performance changes need measurements and compatibility testing before being added to the home installation path.
+
+| Candidate | Exists for Fabric / Minecraft 26.3? | Does UNALLOCATED need it now? | Source (read 2026-10-26) |
+| --- | --- | --- | --- |
+| Simple Voice Chat | **Yes, beta. Stable Fabric release not confirmed.** Publisher's current file is `voicechat-fabric-2.6.26+26.3.jar`, dated Oct 24, explicitly marked **Beta**. The support matrix calls 26.3 actively developed; that does not mean release stability. A stable Bukkit plugin is a different platform. | **No.** No voice functionality exists in this package. A future voice integration must remain compatible with the single-player-first intent and undergo separate testing. | [Publisher file and beta label](https://www.curseforge.com/minecraft/mc-mods/simple-voice-chat/files/9307244), [26.3 file list](https://www.curseforge.com/minecraft/mc-mods/simple-voice-chat/files/all?page=1&pageSize=20&showAlphaFiles=hide&version=26.3), [official support matrix](https://dev.modrepo.de/minecraft/voicechat/wiki/supported_versions) |
+| ModernFix | **No official 26.3 build confirmed.** Official project compatibility stops at 26.1.2. Third-party ports are not evidence of an upstream 26.3 release. | **No.** | [Author's Modrinth versions](https://modrinth.com/mod/modernfix/versions), [upstream release/distribution guidance](https://github.com/embeddedt/ModernFix/releases) |
+| Lithium | **Yes.** Official project lists 26.3 and Fabric. The dynamic version list was not readable, so no exact optional artifact is pinned here. | **No.** Potential optional optimization after profiling. | [Author's Modrinth compatibility](https://modrinth.com/mod/lithium/versions) |
+| C2ME | **Yes.** Official Fabric project lists 26.3, and upstream has 26.3 build runs. An exact stable release was not established from the readable pages; do not assume stability from compatibility alone. | **No.** Chunk concurrency is unnecessary for initialization/logging and adds a testing burden. | [Author's Modrinth compatibility](https://modrinth.com/mod/c2me-fabric/versions), [upstream build history](https://github.com/RelativityMC/C2ME-fabric/actions/workflows/build.yml) |
+| Noisium | **No official 26.3 build confirmed.** Original project is unlisted and lists 1.21–1.21.6 and 1.20.x, not 26.3. | **No.** | [Original project's versions](https://modrinth.com/mod/noisium/versions) |
+| Starlight | **No official 26.3 build.** Fabric project lists up to 1.20.4; upstream is archived and says further updates are not planned. | **No.** | [Author's Fabric versions](https://modrinth.com/mod/starlight/versions), [archived upstream](https://github.com/PaperMC/Starlight) |
+
+### Simple Voice Chat server API — future integration evidence
+
+The server API exists: [`MicrophonePacketEvent`](https://voicechat.modrepo.de/de/maxhenkel/voicechat/api/events/MicrophonePacketEvent.html) fires for microphone packets received by the server; its packet event exposes the sender connection. The [26.3 branch interface](https://raw.githubusercontent.com/henkelmax/simple-voice-chat/26.3/api/src/main/java/de/maxhenkel/voicechat/api/events/MicrophonePacketEvent.java) confirms this hook exists in that branch. Read 2026-10-26.
+
+The inherited [`Event`](https://voicechat.modrepo.de/de/maxhenkel/voicechat/api/events/Event.html) API exposes `isCancellable()` and `cancel()`; cancellation can fail for non-cancellable events. **The concrete microphone event's cancellation behavior in the published 26.3 beta was not confirmed here.** Check its implementation and test actual forwarding before promising interception. Read 2026-10-26.
+
+[`VoicechatServerApi`](https://voicechat.modrepo.de/de/maxhenkel/voicechat/api/VoicechatServerApi.html) provides entity, locational and static audio channels, connection lookup by player UUID, and audio players using an Opus encoder. This supports the proposed integration direction; it does not prove delay/re-emission quality, real-time transcription, or voice generation. API documentation is not pinned to the exact beta binary. No voice API dependency is added in this package. Read 2026-10-26.
+
+## Player installation on Windows, macOS and Linux
+
+Use the official Minecraft Launcher with Java Edition ownership. Launch vanilla **26.3** once to download its game/runtime, reach the menu, then close both the game and launcher. Keep the profile's Java executable on the launcher's bundled/default runtime. The game needs **Java 25**; the launcher supplies it. A universal Fabric installer `.jar` may additionally need system Java because launching a file from the desktop/terminal does not automatically use that bundled runtime. Sources: [Mojang runtime](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-1), [Fabric Windows guide](https://docs.fabricmc.net/players/installing-fabric/windows), [macOS guide](https://docs.fabricmc.net/players/installing-fabric/macos), [Linux guide](https://docs.fabricmc.net/players/installing-fabric/linux), all read 2026-10-26.
+
+1. Download [Fabric installer 1.1.2](https://fabricmc.net/use/installer/). On Windows use `.exe` (uses the launcher's Java). On macOS/Linux use the universal `.jar`; install [Temurin Java 25](https://adoptium.net/temurin/releases/?version=25) if no system Java is available. On Linux/macOS a terminal can run `java -jar fabric-installer-1.1.2.jar` from its download directory. See the OS-specific Fabric guides linked above (read 2026-10-26).
+2. In **Client**, select Minecraft **26.3**, Loader **0.20.1**, the launcher's correct game installation location, and **Create Profile**, then **Install**. Reopen the launcher and choose `fabric-loader-0.20.1-26.3` (profile display names can differ). If missing, enable modded installations under **Installations**. The installer installs Loader; it does not supply every mod. Sources: [official installer](https://fabricmc.net/use/installer/), OS guides above, read 2026-10-26. The version selections are this project's compatibility policy.
+3. With Minecraft closed, put **`unallocated-1.0.0-alpha.1.1.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API is **not required** by this skeleton. The available API for future use is **0.165.0+26.3**, not a build for another game version. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
+
+| OS | Default `mods` directory | Opening it |
+| --- | --- | --- |
+| Windows | `%APPDATA%\.minecraft\mods` | Win+R, paste the directory, Enter. |
+| macOS | `~/Library/Application Support/minecraft/mods` | Finder → Go → Go to Folder, paste the directory. |
+| Linux | `~/.minecraft/mods` | File manager location field; Ctrl+H reveals hidden directories. |
+
+Directory source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26. Create `mods` if absent. For a custom **Game Directory**, use `<Game Directory>/mods` instead of the defaults. Prefer a clean profile/game directory for installation testing.
+
+4. Select the Fabric 26.3 profile and **Play**. Choose **Singleplayer** and create a disposable world. This package only logs `UNALLOCATED initialized (common).` and `UNALLOCATED initialized (client).` in `<Game Directory>/logs/latest.log`; there is no scenario/map yet. Successful launch, both log lines and a world opening without a crash are the manual smoke-check criteria.
+
+## Build and handoff
+
+The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-1.0.0-alpha.1.1.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
+
+CI installs the selected Gradle distribution, compiles both source sets, builds, inspects the resulting JAR, and uploads the installable JAR plus its SHA-256 checksum. Gradle's action owns the dependency cache; PR runs read it without writing, push runs may write it. No duplicate `setup-java` cache, secrets, publishing credentials, or wrapper binary downloads are required from the coordinator.
+
+Action pins (all release/commit pages read 2026-10-26):
+
+| Action | Release | Full commit |
+| --- | --- | --- |
+| `actions/checkout` | [v5.0.0](https://github.com/actions/checkout/releases/tag/v5.0.0) | [`08c6903cd8c0fde910a37f88322edcfb5dd907a8`](https://github.com/actions/checkout/commit/08c6903cd8c0fde910a37f88322edcfb5dd907a8) |
+| `actions/setup-java` | [v5.1.0](https://github.com/actions/setup-java/releases/tag/v5.1.0) | [`f2beeb24e141e01a676f977032f5a29d81c9e27e`](https://github.com/actions/setup-java/commit/f2beeb24e141e01a676f977032f5a29d81c9e27e) |
+| `gradle/actions/setup-gradle` | [v5.0.0](https://github.com/gradle/actions/releases/tag/v5.0.0) | [`4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2`](https://github.com/gradle/actions/commit/4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2) |
+| `actions/upload-artifact` | [v4.6.2](https://github.com/actions/upload-artifact/releases/tag/v4.6.2) | [`ea165f8d65b6e75b540449e92b4886f43607fa02`](https://github.com/actions/upload-artifact/commit/ea165f8d65b6e75b540449e92b4886f43607fa02) |
+
+The coordinator pushes relay commits, checks the GitHub Actions run, downloads the artifact, and performs the manual client check above. Ensure GitHub Actions and the four pinned actions are allowed in repository/organization settings and hosted-runner quota is available. The private repository's artifacts require repository access; the eventual itch.io submission must provide the JAR to judges directly.
