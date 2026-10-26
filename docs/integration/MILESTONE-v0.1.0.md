@@ -53,3 +53,12 @@ The milestone remains a 0.x foundation, not the owner's complete-game 1.0.0-alph
   reason publication race, addressed in the next fix before another rehearsal.
 
 - Local validation for 0.1.0.21: 61 Python tests and 70 subtests pass. Rehearsal remains required on the final fix commit; none is pushed to the hito.
+
+- `0.1.0.22`: rehearsal 40361615824 exposed a vanilla 26.3 disconnect race: channel closure
+  becomes visible before its reason field is assigned, allowing the render thread to consume
+  the generic fallback. Publish only UNALLOCATED's tagged ending reason before closing; keep
+  ordinary disconnects untouched. A helper-only injection probes the real close window on both
+  ending paths, so the fix is asserted deterministically alongside all farewell/save checks.
+  Expanded helper leakage checks to cover the new dedicated ending smoke namespace.
+
+- Local validation for 0.1.0.22: 61 Python tests and 73 subtests pass; contract text and diff whitespace checks pass. Read the fix against rehearsal 40361615824 and official 26.3 disconnect bytecode. No local Java/Gradle/game. Final rehearsal required before delivery.

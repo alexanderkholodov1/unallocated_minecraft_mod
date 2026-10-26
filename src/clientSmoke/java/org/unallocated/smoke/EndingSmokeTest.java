@@ -32,6 +32,7 @@ final class EndingSmokeTest {
     private EndingSmokeTest() {}
 
     static void run(ClientGameTestContext context) {
+        int reasonChecks = EndingDisconnectProbe.checks();
         // The integrated contract receipt must be reused without being rewritten.
         TestSingleplayerContext world = context.worldBuilder().create();
         Path save = world.getWorldSave().getSaveDirectory();
@@ -59,6 +60,7 @@ final class EndingSmokeTest {
             EndingController.close(player, new EndingController.Ending("SERVER_CLOSED", EndingText.reason()));
         });
         assertDisconnect(context, "unallocated-ending-disconnect");
+        EndingDisconnectProbe.requirePublishedSince(reasonChecks);
         if (!server.isShutdown() || events.get() != 1) {
             throw new AssertionError("World did not stop cleanly or ending event was not exactly once");
         }
@@ -96,6 +98,7 @@ final class EndingSmokeTest {
             "UNALLOCATED smoke: ending save reloaded as finished; options and receipt unchanged; splash reset.");
 
         // A fresh world is a new session. Unlike normal sequencing, this debug command needs cheats.
+        int commandReasonChecks = EndingDisconnectProbe.checks();
         var commandWorld = context.worldBuilder().adjustSettings(settings -> settings.setAllowCommands(true)).create();
         commandWorld.getServer().runOnServer(s -> {
             CoreRuntime.arm(s);
@@ -106,6 +109,7 @@ final class EndingSmokeTest {
         });
         context.runOnClient(client -> client.getConnection().sendCommand("unallocated act EPILOGUE"));
         assertDisconnect(context, "unallocated-ending-command-disconnect");
+        EndingDisconnectProbe.requirePublishedSince(commandReasonChecks);
         assertTitle(context, "unallocated-ending-command-title");
         LoggerFactory.getLogger("unallocated-smoke").info(
             "UNALLOCATED smoke: ending command showed vanilla disconnect and returned to title with changed splash.");

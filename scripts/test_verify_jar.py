@@ -69,10 +69,14 @@ class PackagingTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Duplicate mixin registration'):
             self.check()
 
-    def test_interface_smoke_accessor_cannot_leak_into_player_jar(self):
-        self.entries['org/unallocated/client/mixin/interfacefxsmoke/Leaked.class'] = b'not player code'
-        with self.assertRaisesRegex(ValueError, 'Smoke helper leaked'):
-            self.check()
+    def test_smoke_accessors_cannot_leak_into_player_jar(self):
+        for package in ('interfacefxsmoke', 'endingsmoke'):
+            with self.subTest(package=package):
+                name = f'org/unallocated/client/mixin/{package}/Leaked.class'
+                self.entries[name] = b'not player code'
+                with self.assertRaisesRegex(ValueError, 'Smoke helper leaked'):
+                    self.check()
+                del self.entries[name]
 
     def test_approved_subset_passes(self):
         self.assertEqual(self.check(), hashlib.sha256(self.artifact.read_bytes()).hexdigest())

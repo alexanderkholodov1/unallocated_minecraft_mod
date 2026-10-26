@@ -51,3 +51,20 @@ Minecraft and Fabric calls were checked against the official 26.3 and API 0.165.
 Human validation: readability at small GUI sizes, pacing/tone of the farewell, and a full map session
 on both OpenGL and Vulkan after merging the launcher/contract/map/bait packages. The altered splash
 is deliberately not remembered between game launches.
+
+## Disconnect reason publication (v0.1.0.22)
+
+Rehearsal 40361615824 reached the ending after all map captures. The 0.161.0 profile
+occasionally displayed vanilla's generic “Disconnected” instead of the tagged farewell.
+Python-only inspection of official Minecraft 26.3 `Connection.disconnect(DisconnectionDetails)`
+shows that it closes/awaits the Netty channel before assigning `disconnectionDetails`.
+Concurrent render-thread `handleDisconnection()` can observe the closed channel with a null
+reason and consume its generic fallback. This is a publication race, not missing receipt data.
+
+A client mixin publishes only the tagged UNALLOCATED ending reason at the start of that
+method, before closure becomes visible. The normal disconnect packet, saving, world teardown,
+receipt bridge and all unrelated disconnect reasons retain their behavior. A separate helper-only
+mixin probes the actual instant after client channel closure, before vanilla's late field
+assignment, and deterministically checks that the requested farewell is already available.
+Both real ending paths require that probe as well as all original text/screens/splash/save checks.
+The helper probe, mixin and config never enter the player JAR.

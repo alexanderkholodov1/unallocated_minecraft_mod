@@ -6,7 +6,8 @@
   "license": "All-Rights-Reserved",
   "environment": "client",
   "mixins": [
-    "unallocated-interface-smoke.mixins.json"
+    "unallocated-interface-smoke.mixins.json",
+    "unallocated-ending-smoke.mixins.json"
   ],
   "entrypoints": {
     "fabric-client-gametest": [
