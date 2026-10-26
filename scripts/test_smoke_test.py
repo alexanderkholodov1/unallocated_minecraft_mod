@@ -199,6 +199,15 @@ class WatchdogTest(unittest.TestCase):
             (directory / '0000_unallocated-title.png').write_bytes(b'\x89PNG\r\n\x1a\n')
             verify_screenshot(directory)
 
+    def test_title_capture_cannot_replace_ending_captures(self):
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp)
+            (directory / 'unallocated-title.png').write_bytes(b'\x89PNG\r\n\x1a\n')
+            with self.assertRaisesRegex(RuntimeError, 'unallocated-ending-disconnect'):
+                verify_screenshot(directory, 'unallocated-ending-disconnect')
+            (directory / '0001_unallocated-ending-disconnect.png').write_bytes(b'\x89PNG\r\n\x1a\n')
+            verify_screenshot(directory, 'unallocated-ending-disconnect')
+
     def test_missing_or_invalid_screenshot_fails(self):
         with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
             directory = Path(temp)

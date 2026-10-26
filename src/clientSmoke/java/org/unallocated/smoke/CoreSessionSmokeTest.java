@@ -76,8 +76,10 @@ public final class CoreSessionSmokeTest {
                 if (!runtime.state().active() || runtime.state().act() != Act.CLIMAX) {
                     throw new AssertionError("Single-player reload lost session progress");
                 }
-                runtime.sequencer().advance(world.getConnection().getServerPlayer());
-                runtime.sequencer().advance(world.getConnection().getServerPlayer());
+                // Exercise the core's terminal/rescue guard without invoking the player disconnect;
+                // EndingSmokeTest separately verifies the real-player EPILOGUE and teardown.
+                runtime.sequencer().advance(null);
+                runtime.sequencer().advance(null);
                 var player = world.getConnection().getServerPlayer();
                 if (!runtime.state().finished() || rescue(server, player) != 0) {
                     throw new AssertionError("Rescue reactivated a finished session");

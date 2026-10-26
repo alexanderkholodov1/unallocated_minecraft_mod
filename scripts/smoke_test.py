@@ -332,8 +332,13 @@ def client_phases():
                 r'UNALLOCATED bait screamer shown',
                 r'UNALLOCATED spyglass smoke: three looks, closer each time, screamer, figure gone\.',
                 r'UNALLOCATED smoke: map tour completed\.',
+                r'UNALLOCATED ending=SERVER_CLOSED',
+                r'UNALLOCATED smoke: ending save reloaded as finished; options and receipt unchanged; splash reset\.',
+                r'UNALLOCATED smoke: ending command showed vanilla disconnect and returned to title with changed splash\.',
             ],
             'screenshots': ['unallocated-contract', 'unallocated-contract-uses', 'unallocated-title-first',
+                            'unallocated-ending-disconnect', 'unallocated-ending-title',
+                            'unallocated-ending-command-disconnect', 'unallocated-ending-command-title',
                             'map-lobby-spawn', 'map-lobby-board', 'map-hill-bait_path', 'map-hill-view', 'map-path-midpoint',
                             'map-base-entrance', 'map-base-theft_zone', 'map-mine-entrance', 'map-mine-threshold',
                             *[f'unallocated-interface-{effect}' for effect in

@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "org.unallocated.client.mixin.ending",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["EndingDisconnectMixin", "EndingTitleMixin"],
+  "injectors": {"defaultRequire": 1}
+}
