@@ -2,7 +2,7 @@
 
 Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Threshold Interactive.
 
-**Versión actual: 1.0.0-alpha.1.4 — herramientas de interfaz reversibles.** Incluye efectos que el futuro director o mapa podrá activar; ninguno se dispara automáticamente. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+**Versión actual: 0.1.4 — herramientas de interfaz reversibles.** Incluye efectos que el futuro director o mapa podrá activar; ninguno se dispara automáticamente. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
 
 ## Requisitos para jugar
 
@@ -12,7 +12,7 @@ Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Th
 | Loader | **Fabric Loader 0.20.1 o posterior** para Minecraft 26.3. Compilación verificada con 0.20.1. |
 | Fabric API | **No necesaria** para esta base. La versión disponible para 26.3 verificada es **0.165.0+26.3**; no hace falta descargarla para UNALLOCATED. |
 | Java | **Java 25**. El Minecraft Launcher oficial descarga el entorno necesario al iniciar 26.3; deja el ejecutable Java del perfil en su valor predeterminado. |
-| Archivo del mod | **`unallocated-1.0.0-alpha.1.4.jar`** de la entrega del autor. |
+| Archivo del mod | **`unallocated-0.1.4.jar`** de la entrega del autor. |
 
 No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de inteligencia artificial para esta versión. Las versiones y las diferencias entre las fuentes oficiales están documentadas con fecha **2026-10-26** en [TOOLCHAIN.md](docs/plan/TOOLCHAIN.md).
 
@@ -30,7 +30,7 @@ No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de 
    En macOS, si el sistema bloquea el archivo oficial, consulta [las instrucciones de Fabric para macOS](https://docs.fabricmc.net/players/installing-fabric/macos). El Java incluido en el launcher permite jugar; no siempre está disponible para abrir el instalador universal desde el escritorio o la terminal.
 
 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** (o su hotfix 26.3.x) y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
-4. Consigue **`unallocated-1.0.0-alpha.1.4.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+4. Consigue **`unallocated-0.1.4.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
 5. Copia el JAR a la carpeta **`mods`** del perfil. Crea esa carpeta si no existe:
 
    | Sistema | Ubicación predeterminada | Cómo llegar |
@@ -69,7 +69,7 @@ NULL_Threshold Interactive. Estructura de compilación basada en la [plantilla o
 
 ## Developers (English)
 
-Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-1.0.0-alpha.1.4.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.4.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
 
 Every push to any branch and every pull request runs [the build workflow](.github/workflows/build.yml), verifies JAR metadata and both Java 25 entrypoint classes, then starts a real dedicated Fabric 26.3 server with the exact player JAR in `mods/`. CI requires the common load message and `Done`, sends `stop`, and requires clean shutdown with no crash report. The EULA is accepted only for that disposable CI server. Smoke checks use the pinned baseline; newer accepted Loaders/hotfixes are not all tested.
 
@@ -87,7 +87,7 @@ The owner's intent lives, verbatim, in `docs/intent/`. Every word there is delib
 
 ## Herramientas de interfaz reversibles
 
-La rama `v1.0.0-alpha.1.4` añade anomalías de F3, mensajes de muerte en la voz de la entidad,
+La rama `v0.1.4` añade anomalías de F3, mensajes de muerte en la voz de la entidad,
 textos nativos de título/carga, avisos de avances no ganados, cambios de idioma en un letrero
 y cambios de percepción de sensibilidad/FOV/oscuridad sólo en memoria, sin modificar las opciones guardadas. Ninguno se dispara automáticamente.
 Consulta [la API, comandos de prueba/video, restauración y pruebas de CI](docs/plan/INTERFACE.md).

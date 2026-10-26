@@ -1,4 +1,4 @@
-# Interface toolkit — 1.0.0-alpha.1.4
+# Interface toolkit — 0.1.4
 
 This package implements the brainstorm's “el idioma de Minecraft como arma” and plan 3.2, 3.5, 4.5,
 5.2 and 5.7. The owner's October 26 update makes the pre-built map and a solo 10–15 minute session
