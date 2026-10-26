@@ -33,15 +33,30 @@ def verify_mod_directory(directory, allowed):
         raise RuntimeError(f'Mod directory differs from clean installation: {actual} != {allowed}')
 
 
+def api_version_argument(value):
+    if value in (None, 'none', False):
+        return None
+    if value is True:  # Backwards-compatible pinned-version smoke entry point.
+        return API_VERSION
+    if value not in API_POLICY['smoke_api_versions']:
+        raise ValueError('Unreviewed Fabric API smoke version: ' + str(value))
+    return value
+
+
+def profile_name(side, api_version):
+    return side if api_version is None else f'{side}-api-{api_version}'
+
+
 def server_evidence(with_fabric_api=False):
+    api_version = api_version_argument(with_fabric_api)
     required = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
     required.extend(
         rf'\b{re.escape(module_id)}\s+{re.escape(module["version"])}(?:\s|$)'
         for module_id, module in API_POLICY['modules'].items()
         if module['environment'] != 'client'
     )
-    if with_fabric_api:
-        required.append(rf'\bfabric-api\s+{re.escape(API_VERSION)}(?:\s|$)')
+    if api_version:
+        required.append(rf'\bfabric-api\s+{re.escape(api_version)}(?:\s|$)')
     return required
 
 
@@ -130,21 +145,23 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
 
 
 def server(with_fabric_api=False):
+    api_version = api_version_argument(with_fabric_api)
     props = properties()
     artifact = ROOT / 'build' / 'libs' / f"unallocated-{props['version']}.jar"
     expected = hashlib.sha256(artifact.read_bytes()).hexdigest()
-    directory = SMOKE / ('server-with-api' if with_fabric_api else 'server')
+    name = profile_name('server', api_version)
+    directory = SMOKE / name
     # Fresh directories prevent a stale Done/log line from producing a false pass.
     directory.mkdir(parents=True, exist_ok=False)
     (directory / 'mods').mkdir()
     installed = directory / 'mods' / artifact.name
     shutil.copyfile(artifact, installed)
     assert hashlib.sha256(installed.read_bytes()).hexdigest() == expected
-    if with_fabric_api:
-        api = ROOT / 'build/smoke/full-api' / f"fabric-api-{API_VERSION}.jar"
+    if api_version:
+        api = ROOT / 'build/smoke/full-api' / f"fabric-api-{api_version}.jar"
         shutil.copyfile(api, directory / 'mods' / api.name)
     verify_mod_directory(directory / 'mods', {artifact.name} | (
-        {api.name} if with_fabric_api else set()))
+        {api.name} if api_version else set()))
     (directory / 'eula.txt').write_text('# Accepted only for this disposable CI smoke test.\neula=true\n')
     (directory / 'server.properties').write_text(
         'server-ip=127.0.0.1\nserver-port=25565\nonline-mode=false\n'
@@ -173,7 +190,7 @@ def server(with_fabric_api=False):
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
     monitor(
         ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
-        directory, SMOKE / ('server-with-api-console.log' if with_fabric_api else 'server-console.log'),
+        directory, SMOKE / f'{name}-console.log',
         server_evidence(with_fabric_api),
         timeout=120, stop_when_ready=True,
     )
@@ -186,17 +203,21 @@ def verify_screenshot(directory):
         raise RuntimeError('Client exited without a valid title-screen screenshot')
 
 
-def client():
-    directory = SMOKE / 'client'
+def client(with_fabric_api=None):
+    api_version = api_version_argument(with_fabric_api)
+    name = profile_name('client', api_version)
+    directory = SMOKE / name
     directory.mkdir(parents=True, exist_ok=False)
     monitor(
-        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
-        ROOT, SMOKE / 'client-console.log', [
+        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke',
+         f'-PsmokeApiVersion={api_version or "none"}'],
+        ROOT, SMOKE / f'{name}-console.log', [
             r'UNALLOCATED initialized \(common\)\.',
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
-            r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
-        ], timeout=240,
+            r'UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified\.',
+        ] + ([rf'UNALLOCATED smoke: external Fabric API {re.escape(api_version)} loaded\.']
+             if api_version else []), timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )
@@ -204,16 +225,21 @@ def client():
     props = properties()
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",
-    })
+    } | ({f'fabric-api-{api_version}.jar'} if api_version else set()))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('target', choices=['server', 'client', 'server-with-api'])
+    parser.add_argument('--fabric-api-version', choices=['none'] + API_POLICY['smoke_api_versions'],
+                        default='none')
     args = parser.parse_args()
     if os.environ.get('CI') != 'true':
         parser.error('Real-game smoke checks must run in CI, never on the scaffold host')
-    {'server': server, 'client': client, 'server-with-api': lambda: server(True)}[args.target]()
+    version = api_version_argument(args.fabric_api_version)
+    if args.target == 'server-with-api':
+        version = version or API_VERSION
+    {'server': server, 'client': client, 'server-with-api': server}[args.target](version)
 
 
 if __name__ == '__main__':

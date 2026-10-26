@@ -57,25 +57,48 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest, ClientM
                 || ResourceLoader.get(PackType.CLIENT_RESOURCES) == null) {
             throw new AssertionError("Bundled API interfaces or screen hook unavailable");
         }
-        int bundledModules = 0;
-        for (var loaded : FabricLoader.getInstance().getAllMods()) {
-            String id = loaded.getMetadata().getId();
-            if (id.equals("fabric-api")) {
-                throw new AssertionError("Full Fabric API masks player packaging");
-            }
-            if (id.startsWith("fabric-") && !id.equals("fabric-client-gametest-api-v1")) {
-                if (loaded.getOrigin().getKind() != ModOrigin.Kind.NESTED
-                        || !loaded.getOrigin().getParentModId().equals("unallocated")) {
-                    throw new AssertionError("Player module supplied outside player JAR: " + id);
-                }
-                bundledModules++;
-            }
+        var loader = FabricLoader.getInstance();
+        String externalApi = System.getProperty("unallocated.smoke.api", "none");
+        boolean cleanInstall = externalApi.equals("none");
+        if (cleanInstall && loader.isModLoaded("fabric-api")) {
+            throw new AssertionError("Full Fabric API masks clean player packaging");
         }
-        if (bundledModules != 6) {
-            throw new AssertionError("Expected exactly six bundled API modules, got " + bundledModules);
+        if (!cleanInstall) {
+            var api = loader.getModContainer("fabric-api").orElseThrow();
+            if (!api.getMetadata().getVersion().getFriendlyString().equals(externalApi)) {
+                throw new AssertionError("Unexpected external Fabric API version");
+            }
+            LoggerFactory.getLogger("unallocated-smoke").info(
+                    "UNALLOCATED smoke: external Fabric API {} loaded.", externalApi);
+        }
+        String expectedModules = System.getProperty("unallocated.smoke.modules", "");
+        if (expectedModules.isBlank()) {
+            throw new AssertionError("Missing bundled module expectations");
+        }
+        int expectedCount = 0;
+        for (String moduleSpec : expectedModules.split(",")) {
+            String[] spec = moduleSpec.split("=", 2);
+            var loaded = loader.getModContainer(spec[0]).orElseThrow();
+            if (!loaded.getMetadata().getVersion().getFriendlyString().equals(spec[1])) {
+                throw new AssertionError("Wrong version selected for " + spec[0]);
+            }
+            if (cleanInstall && (loaded.getOrigin().getKind() != ModOrigin.Kind.NESTED
+                    || !loaded.getOrigin().getParentModId().equals("unallocated"))) {
+                throw new AssertionError("Player module supplied outside player JAR: " + spec[0]);
+            }
+            expectedCount++;
+        }
+        if (cleanInstall) {
+            long loadedCount = loader.getAllMods().stream().filter(loaded -> {
+                String id = loaded.getMetadata().getId();
+                return id.startsWith("fabric-") && !id.equals("fabric-client-gametest-api-v1");
+            }).count();
+            if (loadedCount != expectedCount) {
+                throw new AssertionError("Unexpected Fabric modules in clean client: " + loadedCount);
+            }
         }
         LoggerFactory.getLogger("unallocated-smoke").info(
-                "UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified.");
+                "UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified.");
         context.takeScreenshot("unallocated-title");
         LoggerFactory.getLogger("unallocated-smoke").info(
                 "UNALLOCATED smoke: title screen reached from player JAR.");

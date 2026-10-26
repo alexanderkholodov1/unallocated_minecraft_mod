@@ -7,7 +7,7 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION
+from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION, api_version_argument, profile_name
 
 
 COMMON = r'UNALLOCATED initialized \(common\)\.'
@@ -67,6 +67,23 @@ class WatchdogTest(unittest.TestCase):
             self.run_fixture(f'log.write_text({loaded!r})\n', required=server_evidence(True))
         loaded += f'\n- fabric-api {API_VERSION}\n'
         self.run_fixture(f'log.write_text({loaded!r})\n', required=server_evidence(True))
+
+    def test_each_external_api_version_requires_its_own_loader_evidence(self):
+        loaded = 'UNALLOCATED initialized (common).\nDone (0.1s)!\n' + '\n'.join(
+            f"- {key} {value['version']}" for key, value in API_POLICY['modules'].items()
+            if value['environment'] != 'client'
+        )
+        for version in API_POLICY['smoke_api_versions']:
+            with self.subTest(version=version):
+                self.assertEqual(api_version_argument(version), version)
+                self.assertEqual(profile_name('server', version), 'server-api-' + version)
+                with self.assertRaisesRegex(RuntimeError, 'Missing required'):
+                    self.run_fixture(f'log.write_text({loaded!r})\n', required=server_evidence(version))
+                expected = loaded + f'\n- fabric-api {version}\n'
+                self.run_fixture(f'log.write_text({expected!r})\n', required=server_evidence(version))
+        with self.assertRaisesRegex(ValueError, 'Unreviewed'):
+            api_version_argument('../unreviewed')
+        self.assertIsNone(api_version_argument('none'))
 
     def test_nonzero_exit_fails(self):
         with self.assertRaises(RuntimeError):
