@@ -1,5 +1,6 @@
 package org.unallocated.smoke;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -158,18 +159,26 @@ final class AudioSmokeTest {
         }
     }
 
-    private static byte[] optionsBytes(Minecraft client) throws Exception {
+    private static byte[] optionsBytes(Minecraft client) {
         Path options = client.gameDirectory.toPath().resolve("options.txt");
-        return Files.exists(options) ? Files.readAllBytes(options) : new byte[0];
+        try {
+            return Files.exists(options) ? Files.readAllBytes(options) : new byte[0];
+        } catch (IOException exception) {
+            throw new AssertionError("Could not snapshot options.txt for the audio test", exception);
+        }
     }
 
-    private static float engineVolume(Minecraft client, SoundSource source) throws Exception {
-        Field field = SoundManager.class.getDeclaredField("soundEngine");
-        field.setAccessible(true);
-        SoundEngine engine = (SoundEngine) field.get(client.getSoundManager());
-        Method method = SoundEngine.class.getDeclaredMethod("calculateVolume", float.class, SoundSource.class);
-        method.setAccessible(true);
-        return (float) method.invoke(engine, 0.8f, source);
+    private static float engineVolume(Minecraft client, SoundSource source) {
+        try {
+            Field field = SoundManager.class.getDeclaredField("soundEngine");
+            field.setAccessible(true);
+            SoundEngine engine = (SoundEngine) field.get(client.getSoundManager());
+            Method method = SoundEngine.class.getDeclaredMethod("calculateVolume", float.class, SoundSource.class);
+            method.setAccessible(true);
+            return (float) method.invoke(engine, 0.8f, source);
+        } catch (ReflectiveOperationException exception) {
+            throw new AssertionError("Could not inspect SoundEngine gain for " + source, exception);
+        }
     }
 
     private static void assertNear(float actual, float expected) {
