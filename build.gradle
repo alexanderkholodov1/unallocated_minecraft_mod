@@ -36,16 +36,14 @@ processResources {
         minecraft_version: project.minecraft_version,
         loader_version: project.loader_version
     ]
+    bundledFabric.modules.each { id, module ->
+        metadata[id.replace('-', '_') + '_version'] = module.version
+    }
     inputs.properties(metadata)
     inputs.file('fabric-api-modules.json')
 
     filesMatching('fabric.mod.json') {
         expand(metadata)
-        filter { line ->
-            line.replace('"fabric_api_modules": "generated"', bundledFabric.modules.collect { id, module ->
-                '"' + id + '": ">=' + module.version + '"'
-            }.join(',\n    '))
-        }
     }
 }
 

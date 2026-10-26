@@ -23,13 +23,26 @@ FATAL = re.compile(
 )
 
 
-API_VERSION = json.loads((ROOT / 'fabric-api-modules.json').read_text())['fabric_api_version']
+API_POLICY = json.loads((ROOT / 'fabric-api-modules.json').read_text())
+API_VERSION = API_POLICY['fabric_api_version']
 
 
 def verify_mod_directory(directory, allowed):
     actual = {path.name for path in directory.iterdir() if path.is_file()}
     if actual != allowed:
         raise RuntimeError(f'Mod directory differs from clean installation: {actual} != {allowed}')
+
+
+def server_evidence(with_fabric_api=False):
+    required = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
+    required.extend(
+        rf'\b{re.escape(module_id)}\s+{re.escape(module["version"])}(?:\s|$)'
+        for module_id, module in API_POLICY['modules'].items()
+        if module['environment'] != 'client'
+    )
+    if with_fabric_api:
+        required.append(rf'\bfabric-api\s+{re.escape(API_VERSION)}(?:\s|$)')
+    return required
 
 
 def properties():
@@ -161,7 +174,7 @@ def server(with_fabric_api=False):
     monitor(
         ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
         directory, SMOKE / ('server-with-api-console.log' if with_fabric_api else 'server-console.log'),
-        [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!'],
+        server_evidence(with_fabric_api),
         timeout=120, stop_when_ready=True,
     )
 
