@@ -240,7 +240,8 @@ def client():
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )
-    verify_screenshot(directory, ('unallocated-title', 'map-lobby-spawn', 'map-hill-bait_path', 'map-path-midpoint'))
+    verify_screenshot(directory, ('unallocated-title', 'map-lobby-spawn', 'map-hill-bait_path', 'map-path-midpoint',
+                                  'map-base-entrance', 'map-base-theft_zone'))
     props = properties()
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",

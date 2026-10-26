@@ -31,6 +31,15 @@ public final class MapVerifier {
             if (id.equals("path") && level.getBlockState(MapLayout.section("path").at(8, 0, 14)).getBlock() != Blocks.CAMPFIRE) {
                 throw new IllegalStateException("Missing abandoned path rest stop");
             }
+            if (id.equals("base")) {
+                expect(level, "base.chest", Blocks.CHEST);
+                expect(level, "base.bed", Blocks.RED_BED);
+                expect(level, "base.door", Blocks.OAK_DOOR);
+                if (!(level.getBlockEntity(MapLayout.landmark("base.chest")) instanceof net.minecraft.world.Container container)
+                        || container.getItem(2).getItem() != net.minecraft.world.item.Items.COAL || container.getItem(2).getCount() != 11) {
+                    throw new IllegalStateException("Missing base supplies");
+                }
+            }
             for (var entry : MapLayout.checkpoints().entrySet()) {
                 var cp = entry.getValue();
                 if (!cp.section().equals(id)) continue;

@@ -6,6 +6,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.Container;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
@@ -20,6 +22,16 @@ public final class MapWriter {
     private final MapLayout.Section section;
     MapWriter(ServerLevel level, MapLayout.Section section) { this.level = level; this.section = section; }
     public void put(int x, int y, int z, Block block) { put(x, y, z, block.defaultBlockState()); }
+    public void put(String landmark, BlockState state) {
+        var pos = MapLayout.landmark(landmark);
+        put(pos.getX() - section.x(), pos.getY() - section.y(), pos.getZ() - section.z(), state);
+    }
+    public void stock(String landmark, int slot, ItemStack stack) {
+        if (!(level.getBlockEntity(MapLayout.landmark(landmark)) instanceof Container container)) {
+            throw new IllegalStateException("Missing container at " + landmark);
+        }
+        container.setItem(slot, stack);
+    }
     public void put(int x, int y, int z, BlockState state) {
         BlockPos pos = section.at(x, y, z);
         if (!section.bounds().contains(pos.getX(), pos.getY(), pos.getZ())) {
@@ -46,6 +58,10 @@ public final class MapWriter {
         sign.setText(text, SignTextSlot.FRONT);
         sign.setText(text, SignTextSlot.BACK);
         sign.setWaxed(true);
+    }
+    public void sign(String landmark, Direction facing, String a, String b, String c, String d) {
+        var pos = MapLayout.landmark(landmark);
+        sign(pos.getX() - section.x(), pos.getY() - section.y(), pos.getZ() - section.z(), facing, a, b, c, d);
     }
     public void lamp(int x, int z) {
         fill(x, 0, z, x, 2, z, Blocks.OAK_FENCE);
