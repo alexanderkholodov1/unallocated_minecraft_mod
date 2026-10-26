@@ -106,6 +106,31 @@ class WatchdogTest(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'screenshot'):
                 verify_screenshot(directory)
 
+    def test_core_commands_wait_for_fresh_game_log_evidence(self):
+        self.run_fixture(
+            "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+            "assert sys.stdin.readline().strip()=='unallocated act LOBBY'\n"
+            "log.write_text(log.read_text()+'UNALLOCATED act=LOBBY enter t=0\\n')\n"
+            "assert sys.stdin.readline().strip()=='unallocated status'\n"
+            "log.write_text(log.read_text()+'UNALLOCATED status act=LOBBY\\n')\n"
+            "assert sys.stdin.readline().strip()=='stop'\n"
+            "log.write_text(log.read_text()+'Stopping server\\n')\n",
+            required=(COMMON, DONE, r'UNALLOCATED act=LOBBY enter t=0', r'UNALLOCATED status act=LOBBY'),
+            startup_required=(COMMON, DONE), stop_when_ready=True,
+            command_steps=[('unallocated act LOBBY', [r'UNALLOCATED act=LOBBY enter t=0']),
+                           ('unallocated status', [r'UNALLOCATED status act=LOBBY'])],
+        )
+
+    def test_old_marker_cannot_acknowledge_command(self):
+        with self.assertRaisesRegex(RuntimeError, 'Timed out'):
+            self.run_fixture(
+                "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\nACT_ENTER\\n')\n"
+                "assert sys.stdin.readline().strip()=='unallocated act LOBBY'\n"
+                "time.sleep(20)\n",
+                required=(COMMON, DONE, 'ACT_ENTER'), startup_required=(COMMON, DONE),
+                stop_when_ready=True, command_steps=[('unallocated act LOBBY', ['ACT_ENTER'])], timeout=0.6,
+            )
+
 
 if __name__ == '__main__':
     unittest.main()

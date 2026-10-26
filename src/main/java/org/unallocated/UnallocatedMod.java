@@ -10,6 +10,7 @@ public final class UnallocatedMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        org.unallocated.core.CoreRuntime.initialize();
         LOGGER.info("UNALLOCATED initialized (common).");
     }
 }

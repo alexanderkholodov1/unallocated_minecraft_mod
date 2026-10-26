@@ -1,3 +1,8 @@
+> alpha.1.7 branch update: the core now bundles four Fabric API modules (base, commands,
+> lifecycle, networking), adds JUnit tests and exercises commands plus save/restart in the real
+> server smoke. See [core integration](../core/INTEGRATION.md). Baseline alpha.1.1 dependency and
+> smoke descriptions below remain historical; the checked-in build/workflow are authoritative.
+
 # Toolchain — UNALLOCATED v1.0.0-alpha.1.1
 
 Verified on **2026-10-26 (UTC)**. Every source below was read on that date. The coordinator confirmed [CI run 40269733006](https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40269733006) passed compilation and JAR checks (2,541-byte JAR, matching checksum). That run did not test a game launch.

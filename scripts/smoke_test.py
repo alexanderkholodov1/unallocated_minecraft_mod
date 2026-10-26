@@ -40,7 +40,7 @@ def crash_reports(directory):
 
 
 def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
-            shutdown_timeout=30, game_directory=None):
+            shutdown_timeout=30, game_directory=None, command_steps=(), startup_required=None):
     """Require actual game log evidence, exit zero, and no crash; stop servers via stdin."""
     console.parent.mkdir(parents=True, exist_ok=True)
     game_directory = game_directory or cwd
@@ -54,6 +54,9 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
 
     deadline = time.monotonic() + timeout
     stop_sent = False
+    step_index = 0
+    step_sent = False
+    step_log_start = 0
     process = None
     try:
         with console.open('w') as output:
@@ -65,7 +68,18 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
                 game_log = read(latest)
                 if reports() or FATAL.search(game_log + read(console)):
                     raise RuntimeError('Game crash detected')
-                if stop_when_ready and not stop_sent and all(
+                ready = all(re.search(pattern, game_log) for pattern in (startup_required or required))
+                if ready and step_index < len(command_steps):
+                    command, evidence = command_steps[step_index]
+                    if not step_sent:
+                        step_log_start = len(game_log)
+                        process.stdin.write(command + '\n')
+                        process.stdin.flush()
+                        step_sent = True
+                    elif all(re.search(pattern, game_log[step_log_start:]) for pattern in evidence):
+                        step_index += 1
+                        step_sent = False
+                if stop_when_ready and not stop_sent and step_index == len(command_steps) and all(
                     re.search(pattern, game_log) for pattern in required
                 ):
                     process.stdin.write('stop\n')
@@ -79,6 +93,8 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
             if process.returncode != 0:
                 raise RuntimeError(f'Game command exited with status {process.returncode}')
         game_log = read(latest)
+        if step_index != len(command_steps):
+            raise RuntimeError('Server exited before command evidence was acknowledged')
         missing = [pattern for pattern in required if not re.search(pattern, game_log)]
         if missing:
             raise RuntimeError(f'Missing required game log evidence: {missing}')
@@ -143,12 +159,28 @@ def server():
             if attempt == 1:
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
+    command = ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
+    startup = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
+    entered = r'UNALLOCATED act=LOBBY enter t=0'
+    status = (r'UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 '
+              r'budgetTicks=6000 checkpoint=lobby\.spawn')
     monitor(
-        ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
-        directory, SMOKE / 'server-console.log',
-        [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!'],
-        timeout=120, stop_when_ready=True,
+        command, directory, SMOKE / 'server-console.log', startup + [entered, status],
+        timeout=120, stop_when_ready=True, startup_required=startup,
+        command_steps=[('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
     )
+    # A second real server process must load SavedData, not a leftover Java/static object.
+    # Preserve the first log as evidence and require entirely fresh startup/reload markers.
+    latest = directory / 'logs' / 'latest.log'
+    shutil.copyfile(latest, directory / 'logs' / 'core-before-reload.log')
+    latest.unlink()
+    monitor(
+        command, directory, SMOKE / 'server-reload-console.log', startup + [status],
+        timeout=120, stop_when_ready=True, startup_required=startup,
+        command_steps=[('unallocated status', [status])],
+    )
+    assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
+
 
 
 def verify_screenshot(directory):

@@ -3,7 +3,7 @@
   "id": "unallocated",
   "version": "${version}",
   "name": "UNALLOCATED",
-  "description": "A first-person horror mod. This foundation build only initializes and logs.",
+  "description": "The act sequencer and persistent session spine for UNALLOCATED.",
   "authors": [
     "NULL_Threshold Interactive"
   ],
@@ -20,6 +20,10 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "minecraft": "~${minecraft_version}",
-    "java": ">=25"
+    "java": ">=25",
+    "fabric-api-base": ">=2.0.6+fcdff87f5d",
+    "fabric-command-api-v2": ">=3.1.2+fcdff87f5d",
+    "fabric-lifecycle-events-v1": ">=4.1.9+ffef5f675d",
+    "fabric-networking-api-v1": ">=6.4.0+a21c9eb65d"
   }
 }
