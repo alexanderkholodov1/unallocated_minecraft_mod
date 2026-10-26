@@ -28,6 +28,9 @@ public final class MapVerifier {
                     throw new IllegalStateException("Missing clear hill bait foothold");
                 }
             }
+            if (id.equals("path") && level.getBlockState(MapLayout.section("path").at(8, 0, 14)).getBlock() != Blocks.CAMPFIRE) {
+                throw new IllegalStateException("Missing abandoned path rest stop");
+            }
             for (var entry : MapLayout.checkpoints().entrySet()) {
                 var cp = entry.getValue();
                 if (!cp.section().equals(id)) continue;

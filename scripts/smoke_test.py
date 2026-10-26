@@ -217,11 +217,12 @@ def server(with_fabric_api=False):
     assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
 
 
-def verify_screenshot(directory):
+def verify_screenshot(directory, names=('unallocated-title',)):
     # Fabric can prepend a numeric counter, e.g. 0000_unallocated-title.png.
-    screenshots = list(directory.rglob('*unallocated-title*.png'))
-    if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
-        raise RuntimeError('Client exited without a valid title-screen screenshot')
+    for name in names:
+        screenshots = list(directory.rglob(f'*{name}.png'))
+        if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+            raise RuntimeError(f'Client exited without a valid screenshot: {name}')
 
 
 def client():
@@ -234,11 +235,12 @@ def client():
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
             r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
+            r'UNALLOCATED smoke: map tour completed\.',
         ], timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )
-    verify_screenshot(directory)
+    verify_screenshot(directory, ('unallocated-title', 'map-lobby-spawn', 'map-hill-bait_path', 'map-path-midpoint'))
     props = properties()
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",

@@ -122,6 +122,13 @@ class WatchdogTest(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'screenshot'):
                 verify_screenshot(directory)
 
+    def test_title_screenshot_cannot_replace_map_tour(self):
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp)
+            (directory / 'unallocated-title.png').write_bytes(b'\x89PNG\r\n\x1a\n')
+            with self.assertRaisesRegex(RuntimeError, 'map-lobby-spawn'):
+                verify_screenshot(directory, ('unallocated-title', 'map-lobby-spawn'))
+
     def test_core_commands_wait_for_fresh_game_log_evidence(self):
         self.run_fixture(
             "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
