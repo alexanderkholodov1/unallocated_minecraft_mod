@@ -7,7 +7,7 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from smoke_test import ROOT, monitor, verify_screenshot
+from smoke_test import ROOT, monitor, verify_screenshot, verify_interface_screenshots
 
 
 COMMON = r'UNALLOCATED initialized \(common\)\.'
@@ -105,6 +105,19 @@ class WatchdogTest(unittest.TestCase):
             (directory / 'unallocated-title.png').write_text('not an image')
             with self.assertRaisesRegex(RuntimeError, 'screenshot'):
                 verify_screenshot(directory)
+
+    def test_interface_requires_each_effect_screenshot(self):
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp)
+            for effect in ('splash', 'loading', 'f3', 'advancement', 'sign', 'death'):
+                with self.assertRaisesRegex(RuntimeError, 'interface screenshot'):
+                    verify_interface_screenshots(directory)
+                (directory / f'0001_unallocated-interface-{effect}.png').write_bytes(b'\x89PNG\r\n\x1a\n')
+            verify_interface_screenshots(directory)
+
+    def test_title_only_marker_cannot_replace_effect_checks(self):
+        with self.assertRaisesRegex(RuntimeError, 'Missing required'):
+            self.run_fixture("log.write_text('TITLE_READY')\n", required=('TITLE_READY', 'INTERFACE_RESTORED'))
 
 
 if __name__ == '__main__':

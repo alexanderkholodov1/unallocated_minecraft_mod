@@ -3,7 +3,7 @@ package org.unallocated.client.interfacefx;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.HashMap;
-import java.util.IdentityHashMap;
+import java.util.WeakHashMap;
 import java.util.Map;
 import java.util.Set;
 import net.minecraft.advancements.Advancement;
@@ -21,7 +21,11 @@ import org.unallocated.client.interfacefx.InterfaceTexts.LeakLanguage;
 public final class InterfaceEffects {
     public enum Effect { F3, DEATH, SPLASH, LOADING, ADVANCEMENT, SENSITIVITY, FOV, GAMMA, SIGN, LOG }
     public record Request(Effect effect, int ticks, int generation, double strength,
-                          LeakLanguage language, long seed, BlockPos signPosition) {
+                          LeakLanguage language, long seed, BlockPos signPosition, Identifier advancementId) {
+        public Request(Effect effect, int ticks, int generation, double strength,
+                       LeakLanguage language, long seed, BlockPos signPosition) {
+            this(effect, ticks, generation, strength, language, seed, signPosition, null);
+        }
         public Request {
             if (effect == null || language == null || generation < 0 || generation > 5
                     || ticks < 1 || ticks > maxTicks(effect) || !Double.isFinite(strength)
@@ -38,7 +42,7 @@ public final class InterfaceEffects {
     private static long lastAny = Long.MIN_VALUE;
     private static final long COOLDOWN = 60_000_000_000L;
     private static final long GLOBAL_COOLDOWN = 15_000_000_000L;
-    private static final Map<AdvancementToast, Long> TOASTS = new IdentityHashMap<>();
+    private static final Map<AdvancementToast, Long> TOASTS = new WeakHashMap<>();
     private static final Map<String, Integer> OBSERVED = new HashMap<>();
 
     private InterfaceEffects() { }
@@ -67,6 +71,10 @@ public final class InterfaceEffects {
         if (request.effect != Effect.SPLASH && request.effect != Effect.LOADING && client.level == null) return false;
         if (!debug && ((lastAny != Long.MIN_VALUE && now - lastAny < GLOBAL_COOLDOWN)
                 || (LAST.containsKey(request.effect) && now - LAST.get(request.effect) < COOLDOWN))) return false;
+        var existingAdvancement = request.effect == Effect.ADVANCEMENT && request.advancementId != null
+                && client.getConnection() != null ? client.getConnection().getAdvancements().get(request.advancementId) : null;
+        if (request.advancementId != null && (request.effect != Effect.ADVANCEMENT
+                || existingAdvancement == null || existingAdvancement.value().display().isEmpty())) return false;
         if (SETTINGS.contains(request.effect)) {
             if (client.gui.screen() instanceof net.minecraft.client.gui.screens.options.OptionsScreen
                     || client.gui.screen() instanceof net.minecraft.client.gui.screens.options.OptionsSubScreen) return false;
@@ -81,7 +89,7 @@ public final class InterfaceEffects {
             case FOV -> client.options.fov().set((int) clamp(client.options.fov().get() + Math.round(request.strength * 3), 30, 110));
             case GAMMA -> applyGamma(now);
             case ADVANCEMENT -> {
-                var holder = Advancement.Builder.advancement()
+                var holder = existingAdvancement != null ? existingAdvancement : Advancement.Builder.recipeAdvancement()
                         .parent(Identifier.withDefaultNamespace("story/root"))
                         .display(Items.STRING, InterfaceTexts.inventedAdvancement(request.generation, request.language, request.seed),
                                 text(request, "goal"), AdvancementType.TASK, true, false, true)
@@ -108,7 +116,8 @@ public final class InterfaceEffects {
         }
         // Two gentle dips per second, at most 8 percentage points, never a full-screen flash.
         double pulse = (1 - Math.cos((now - active.start) / 1_000_000_000.0 * Math.PI * 4)) * .5;
-        option.set(clamp(gammaOriginal - Math.abs(active.request.strength) * .08 * pulse, 0, 1));
+        double direction = gammaOriginal < .5 ? 1 : -1;
+        option.set(clamp(gammaOriginal + direction * Math.abs(active.request.strength) * .08 * pulse, 0, 1));
     }
 
     public static void tick() {

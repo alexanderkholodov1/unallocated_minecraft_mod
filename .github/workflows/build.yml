@@ -110,6 +110,8 @@ jobs:
             .tmp/smoke/**/hs_err_pid*.log
             .tmp/smoke/**/screenshots/**
             hs_err_pid*.log
+            build/test-results/**
+            build/reports/tests/**
           if-no-files-found: warn
           retention-days: 7
 

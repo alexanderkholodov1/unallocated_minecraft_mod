@@ -63,7 +63,7 @@ tasks.withType(AbstractArchiveTask).configureEach {
 // CI helper mod: a separate source set/JAR, never included in the player's JAR.
 sourceSets {
     clientSmoke {
-        compileClasspath += sourceSets.client.compileClasspath
+        compileClasspath += sourceSets.client.compileClasspath + sourceSets.main.output + sourceSets.client.output
     }
 }
 
@@ -84,7 +84,7 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     mods.setFrom(tasks.named('jar'), tasks.named('clientSmokeJar'), configurations.productionRuntimeMods)
     runDir = clientSmokeDir
     useXVFB = true
-    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
+    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest', '-Dunallocated.interface.debug=true')
     jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
     jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
         "-Dunallocated.smoke.jar=${it.asFile.absolutePath}".toString()

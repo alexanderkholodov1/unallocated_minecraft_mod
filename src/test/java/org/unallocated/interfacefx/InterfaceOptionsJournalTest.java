@@ -3,6 +3,7 @@ package org.unallocated.interfacefx;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import static org.junit.jupiter.api.Assertions.*;
@@ -89,6 +90,28 @@ class InterfaceOptionsJournalTest {
             Files.writeString(directory.resolve("options.txt"), "mutated");
             journal.finish();
             assertEquals("original", Files.readString(directory.resolve("options.txt")));
+        }
+    }
+
+    @Test void abruptlyHaltedJvmIsRecoveredByRestart() throws Exception {
+        byte[] original = "sensitivity:0.71\r\nfov:99\ngamma:0.43\nunknown:preservar\n".getBytes(java.nio.charset.StandardCharsets.UTF_8);
+        Files.write(directory.resolve("options.txt"), original);
+        String classpath = Path.of(InterfaceJournalCrashFixture.class.getProtectionDomain().getCodeSource().getLocation().toURI())
+                + java.io.File.pathSeparator
+                + Path.of(InterfaceOptionsJournal.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+        var process = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(),
+                "-cp", classpath, InterfaceJournalCrashFixture.class.getName(), directory.toString())
+                .redirectErrorStream(true).redirectOutput(directory.resolve("child.log").toFile()).start();
+        try {
+            assertTrue(process.waitFor(20, TimeUnit.SECONDS), "Crash fixture must terminate");
+            assertEquals(23, process.exitValue(), Files.readString(directory.resolve("child.log")));
+            assertNotEquals(new String(original, java.nio.charset.StandardCharsets.UTF_8), Files.readString(directory.resolve("options.txt")));
+            try (var restart = new InterfaceOptionsJournal(directory)) {
+                restart.finish();
+                assertArrayEquals(original, Files.readAllBytes(directory.resolve("options.txt")));
+            }
+        } finally {
+            process.destroyForcibly();
         }
     }
 }

@@ -158,6 +158,13 @@ def verify_screenshot(directory):
         raise RuntimeError('Client exited without a valid title-screen screenshot')
 
 
+def verify_interface_screenshots(directory):
+    for effect in ('splash', 'loading', 'f3', 'advancement', 'sign', 'death'):
+        screenshots = list(directory.rglob(f'*unallocated-interface-{effect}*.png'))
+        if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+            raise RuntimeError(f'Client exited without a valid interface screenshot: {effect}')
+
+
 def client():
     directory = SMOKE / 'client'
     directory.mkdir(parents=True, exist_ok=False)
@@ -167,11 +174,13 @@ def client():
             r'UNALLOCATED initialized \(common\)\.',
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
+            r'UNALLOCATED interface smoke: effects rendered; options restored byte-for-byte after world exit\.',
         ], timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )
     verify_screenshot(directory)
+    verify_interface_screenshots(directory)
 
 
 def main():
