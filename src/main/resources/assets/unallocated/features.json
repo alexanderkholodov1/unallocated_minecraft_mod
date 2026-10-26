@@ -1,6 +1,6 @@
 {
   "acts": {
-    "contract": true,
+    "contract": false,
     "lobby": true,
     "theft": false,
     "loop": false,

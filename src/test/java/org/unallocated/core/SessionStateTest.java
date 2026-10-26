@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SessionStateTest {
     @Test void savedDataCodecRoundTripPreservesEveryFieldAndIndependentCollections() {
         var state = new SessionState(987654321);
+        state.arm();
         state.moveTo(Act.LOBBY);
         state.tickClock(); state.tickClock();
         state.moveTo(Act.POCKET);
@@ -40,6 +41,16 @@ class SessionStateTest {
         assertEquals(0, restored.sessionStartTick()); assertEquals(10, restored.actStartTick());
         tag.putInt("schema", 999);
         assertThrows(IllegalArgumentException.class, () -> SessionState.fromTag(tag));
+    }
+    @Test void newAndLegacyUnarmedStatesRemainDormantAndClean() {
+        var state = new SessionState(0);
+        assertFalse(state.armed()); assertFalse(state.isDirty());
+        state.arm(); assertTrue(state.armed()); assertTrue(state.isDirty());
+        var armed = SessionState.fromTag(state.toTag());
+        assertTrue(armed.armed()); assertFalse(armed.isDirty());
+        var legacy = state.toTag(); legacy.remove("armed"); legacy.putBoolean("started", true);
+        var restored = SessionState.fromTag(legacy);
+        assertFalse(restored.armed()); assertFalse(restored.active()); assertFalse(restored.isDirty());
     }
     @Test void profileAndTemperatureCannotPersistNonFiniteNumbers() {
         var state = new SessionState(0);

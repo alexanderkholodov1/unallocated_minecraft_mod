@@ -179,15 +179,17 @@ class WatchdogTest(unittest.TestCase):
     def test_core_commands_wait_for_fresh_game_log_evidence(self):
         self.run_fixture(
             "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+            "assert sys.stdin.readline().strip()=='unallocated arm'\n"
+            "log.write_text(log.read_text()+'UNALLOCATED session armed\\n')\n"
             "assert sys.stdin.readline().strip()=='unallocated act LOBBY'\n"
             "log.write_text(log.read_text()+'UNALLOCATED act=LOBBY enter t=0\\n')\n"
             "assert sys.stdin.readline().strip()=='unallocated status'\n"
             "log.write_text(log.read_text()+'UNALLOCATED status act=LOBBY\\n')\n"
             "assert sys.stdin.readline().strip()=='stop'\n"
             "log.write_text(log.read_text()+'Stopping server\\n')\n",
-            required=(COMMON, DONE, r'UNALLOCATED act=LOBBY enter t=0', r'UNALLOCATED status act=LOBBY'),
+            required=(COMMON, DONE, r'UNALLOCATED session armed', r'UNALLOCATED act=LOBBY enter t=0', r'UNALLOCATED status act=LOBBY'),
             startup_required=(COMMON, DONE), stop_when_ready=True,
-            command_steps=[('unallocated act LOBBY', [r'UNALLOCATED act=LOBBY enter t=0']),
+            command_steps=[('unallocated arm', [r'UNALLOCATED session armed']), ('unallocated act LOBBY', [r'UNALLOCATED act=LOBBY enter t=0']),
                            ('unallocated status', [r'UNALLOCATED status act=LOBBY'])],
         )
 

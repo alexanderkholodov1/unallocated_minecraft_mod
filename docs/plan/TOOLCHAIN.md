@@ -95,7 +95,7 @@ Client game tests exist for 26.3: the upstream branch contains [`FabricClientGam
 
 `src/clientSmoke` builds a separate helper JAR under `build/smoke`. Its only nested module is `fabric-client-gametest-api-v1:6.0.11+131f8d475d`, resolved without transitive dependencies. None of the seven shipped modules can come from the helper. `runClientSmoke` copies the release artifact into a fresh client `mods/` directory and injects only the helper through Loom's `fabric.addMods`; the clean job has **no standalone Fabric API JAR**. Coexistence jobs additionally copy exactly their selected external API JAR. The helper verifies the loaded UNALLOCATED bytes, all seven module origins (`NESTED`, parent `unallocated`), lifecycle/command/network/resource interfaces, an actual `ScreenEvents.AFTER_INIT` callback for the title, then captures the title screen. The watchdog also checks the exact `mods/` file set. In coexistence jobs the helper verifies the external API version and the seven selected module versions, allowing Loader to deduplicate equal module versions from either jar. Clean jobs still demand every module originate in UNALLOCATED. See [Loom 1.19 production launcher source](https://raw.githubusercontent.com/FabricMC/fabric-loom/1.19/src/main/java/net/fabricmc/loom/task/prod/AbstractProductionRunTask.java) (read 2026-10-26) for helper injection.
 
-CI uses Ubuntu 24.04, Xvfb/Xauth and Mesa software graphics, setting `SDL_VIDEODRIVER=x11`, `LIBGL_ALWAYS_SOFTWARE=true` and null OpenAL output. The watchdog reads `.tmp/smoke/client/logs/latest.log`, requiring **both** real mod entrypoint messages and the helper's title-screen marker, a PNG screenshot, and process exit zero within 240 seconds. Crashes, missing logs/screenshots and hangs fail the job. It covers reaching the title screen; it does not claim to test single-player gameplay or the full home installation path. No Minecraft account or extra secret is needed for the client game-test harness.
+CI uses Ubuntu 24.04, Xvfb/Xauth and Mesa software graphics, setting `SDL_VIDEODRIVER=x11`, `LIBGL_ALWAYS_SOFTWARE=true` and null OpenAL output. The watchdog reads `.tmp/smoke/client/logs/latest.log`, requiring **both** real mod entrypoint messages and the helper's title-screen marker, a PNG screenshot, and process exit zero within 240 seconds. Crashes, missing logs/screenshots and hangs fail the job. It additionally runs the core real-player checks described below; it does not establish the full narrative or home installation path. No Minecraft account or extra secret is needed for the client game-test harness.
 
 The player JAR gate (`scripts/verify_jar.py`) permits **exactly** the seven nested artifacts in `fabric-api-modules.json`, with exact filenames and the expected mod ID and version read from each nested `fabric.mod.json`. Gradle's `recordIncludedJars` task hashes the Maven files resolved through `includedJarInputs` **before the player jar is built**. This dedicated configuration is resolvable, non-consumable and non-transitive, and extends Loom's declaration-only `include` configuration so it resolves the same module coordinates. The task writes `build/reports/included-jars.json`. The inspector requires exactly the approved paths in that report and byte-for-byte SHA-256 matches for all nested files. It does not derive expected hashes from the output jar. The report is retained with diagnostics and the installable artifact.
 
@@ -109,7 +109,8 @@ Twenty-two Python tests exercise watchdog failures and adversarial packaging fix
 
 The core keeps v0.1.6's six-module manifest, identity-based JAR verifier, notices and clean
 one-JAR client/server installation checks. No additional Fabric module is needed. JUnit tests
-run during `build`; the server smoke now requires `/unallocated act LOBBY` and `status` evidence,
+run during `build`; the server smoke explicitly arms its disposable world, then requires
+`/unallocated act LOBBY` and `status` evidence,
 then restarts the same save and checks its persisted state. The coexistence run also exercises
 the commands and keeps its own console log. Core integration choices and human-playthrough
 requirements are in [INTEGRATION.md](../core/INTEGRATION.md).
@@ -126,3 +127,11 @@ The compatibility floor **0.161.0+26.3** is verified by successful client and se
 Player guidance at installation and troubleshooting is: "Si ya tienes Fabric API en `mods`, debe ser 0.161.0+26.3 o posterior; si no, quítalo." The easy path remains Loader plus our one jar. Minecraft is pinned to exactly 26.3 because its internals are the only tested mixin targets.
 
 Twenty-eight Python tests exercise watchdog failures, the tested compatibility boundary, exact Loader-rejection evidence, archive/content tampering and dependency ranges/conflicts without Java. `~/Workspaces/mc-ref/javacheck.sh` passed all three Java sources before committing. Successful startup and include-input hashes are confirmed by CI run 40337283681; the new rejection path awaits the next CI result. A human still needs a home installation and world entry on real graphics hardware, including OpenGL. No owner product decisions are pending.
+
+Alpha.1.7 review corrections: the core now leaves unarmed worlds dormant and clean (no session
+file), records the client-only CONTRACT boundary and starts at LOBBY on first JOIN in an armed
+world. Successful `build all` arms automatically; direct template builders use the server-thread
+`CoreRuntime.arm(server)` hook before saving. The real client smoke adds unarmed/armed join,
+no-cheats rescue/cooldown, client act sync and single-player save/reopen assertions. These checks
+require the next green CI run. Core-only server smoke uses explicit admin arming; gameplay rescue
+can never create/start/reactivate a session. See the integration notes for event and feature gates.

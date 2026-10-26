@@ -252,6 +252,7 @@ def server(with_fabric_api=False):
         command, directory, SMOKE / f'{name}-console.log', startup + [entered, status],
         timeout=120, stop_when_ready=not expects_rejection(api_version), startup_required=startup,
         command_steps=[] if expects_rejection(api_version) else [
+            ('unallocated arm', [r'UNALLOCATED session armed']),
             ('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
         expected_rejection=api_version if expects_rejection(api_version) else None,
     )
@@ -287,6 +288,7 @@ def client_phases():
             'evidence': [
                 r'UNALLOCATED smoke: contract first start, data list, typed and clicked acceptance verified\.',
                 modules, title,
+                r'UNALLOCATED smoke: core armed join, no-cheats rescue guards, client act sync and single-player reload verified\.',
             ],
             'screenshots': ['unallocated-contract', 'unallocated-contract-uses', 'unallocated-title-first'],
             'timeout': 240,
