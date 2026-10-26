@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "org.unallocated.client.interfacefx.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "InterfaceOptionsMixin", "InterfaceMinecraftMixin", "InterfaceGuiMixin",
+    "InterfaceDebugPositionMixin", "InterfaceDeathScreenMixin", "InterfaceDeathScreenAccessor",
+    "InterfaceSplashMixin", "InterfaceSplashAccessor", "InterfaceLoadingMixin", "InterfaceSignMixin",
+    "InterfaceToastMixin", "InterfaceChatMixin"
+  ],
+  "injectors": { "defaultRequire": 1 }
+}
