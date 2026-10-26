@@ -1,4 +1,4 @@
-# Core integration — alpha.1.7
+# Core integration — v0.1.7
 
 Public names from PLAN §4.2–4.3 remain stable. Content belongs to the map/act packages.
 Only the server thread may access `CoreRuntime.get`, session state, sequencer or server bus.
