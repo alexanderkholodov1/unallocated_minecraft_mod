@@ -7,7 +7,7 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION, api_version_argument, profile_name
+from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION, api_version_argument, profile_name, expects_rejection
 
 
 COMMON = r'UNALLOCATED initialized \(common\)\.'
@@ -84,6 +84,43 @@ class WatchdogTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Unreviewed'):
             api_version_argument('../unreviewed')
         self.assertIsNone(api_version_argument('none'))
+
+    REJECTION = (
+        "Incompatible mods found!\n"
+        "Mod 'UNALLOCATED' (unallocated) 1.0.0-alpha.1.6 is incompatible with any version "
+        "before 0.161.0 of mod 'Fabric API' (fabric-api), yet a conflicting version is present: "
+        "0.153.1+26.3!\nRemove one of the mods or check for updates.\n"
+    )
+
+    def test_external_api_rejection_boundary(self):
+        self.assertTrue(expects_rejection('0.153.1+26.3'))
+        self.assertTrue(expects_rejection('0.160.7+26.3'))
+        self.assertFalse(expects_rejection('0.161.0+26.3'))
+        self.assertFalse(expects_rejection('0.165.0+26.3'))
+        self.assertFalse(expects_rejection(None))
+
+    def test_loader_rejection_requires_nonzero_exit_and_specific_message(self):
+        self.run_fixture(f'print({self.REJECTION!r})\nsys.exit(1)\n',
+                         required=(), expected_rejection='0.153.1+26.3')
+        with self.assertRaisesRegex(RuntimeError, 'exited successfully'):
+            self.run_fixture(f'print({self.REJECTION!r})\n',
+                             required=(), expected_rejection='0.153.1+26.3')
+        for message in ['Unrelated startup failure',
+                        self.REJECTION.replace('(unallocated)', '(other-mod)'),
+                        self.REJECTION.replace('0.153.1+26.3', '0.150.0+26.3'),
+                        self.REJECTION.replace('0.161.0', '0.165.0')]:
+            with self.subTest(message=message), self.assertRaisesRegex(RuntimeError, 'specific Loader'):
+                self.run_fixture(f'print({message!r})\nsys.exit(1)\n',
+                                 required=(), expected_rejection='0.153.1+26.3')
+
+    def test_dependency_rejection_never_accepts_game_initialization_or_crash(self):
+        for extra in ['UNALLOCATED initialized (common).', 'Done (0.1s)!',
+                      'MixinApplyError: fabric-entity-events-v1',
+                      'java.lang.ClassNotFoundException: net.minecraft.world.item.HoeItem']:
+            with self.subTest(extra=extra), self.assertRaises(RuntimeError):
+                message = self.REJECTION + extra
+                self.run_fixture(f'print({message!r})\nsys.exit(1)\n',
+                                 required=(), expected_rejection='0.153.1+26.3')
 
     def test_nonzero_exit_fails(self):
         with self.assertRaises(RuntimeError):

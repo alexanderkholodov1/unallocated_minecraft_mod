@@ -14,6 +14,8 @@ import time
 from urllib.request import Request, urlopen
 from zipfile import ZipFile
 
+from verify_jar import matches
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SMOKE = ROOT / '.tmp' / 'smoke'
@@ -47,6 +49,28 @@ def profile_name(side, api_version):
     return side if api_version is None else f'{side}-api-{api_version}'
 
 
+def expects_rejection(api_version):
+    return api_version is not None and matches(
+        api_version, '<' + API_POLICY['minimum_external_api_version'])
+
+
+def rejection_evidence(api_version):
+    boundary = re.escape(API_POLICY['minimum_external_api_version'])
+    # Loader 0.20.1 Messages.properties: resolution.breaks.invalid / resolution.version.less.
+    return [r'Incompatible mods found!',
+            rf'(?im)^[^\r\n]*\(unallocated\)[^\r\n]*is incompatible with '
+            rf'[^\r\n]*before {boundary}[^\r\n]*\(fabric-api\)'
+            rf'[^\r\n]*{re.escape(api_version)}',
+            r'(?i)remove|replace']
+
+
+REJECTION_CRASH = re.compile(
+    r'MixinApplyError|MixinTransformerError|Mixin apply.*failed|ClassNotFoundException|'
+    r'NoClassDefFoundError|A fatal error has been detected|Crash report saved', re.I)
+GAME_STARTED = re.compile(r'UNALLOCATED initialized|Done \([^\r\n]*\)!|'
+                          r'UNALLOCATED smoke: title screen reached')
+
+
 def server_evidence(with_fabric_api=False):
     api_version = api_version_argument(with_fabric_api)
     required = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
@@ -78,8 +102,8 @@ def crash_reports(directory):
 
 
 def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
-            shutdown_timeout=30, game_directory=None):
-    """Require actual game log evidence, exit zero, and no crash; stop servers via stdin."""
+            shutdown_timeout=30, game_directory=None, expected_rejection=None):
+    """Require clean game startup or a specific, pre-startup Loader dependency rejection."""
     console.parent.mkdir(parents=True, exist_ok=True)
     game_directory = game_directory or cwd
     latest = game_directory / 'logs' / 'latest.log'
@@ -90,6 +114,7 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
             found.extend(cwd.glob('hs_err_pid*.log'))
         return found
 
+    crash_pattern = REJECTION_CRASH if expected_rejection else FATAL
     deadline = time.monotonic() + timeout
     stop_sent = False
     process = None
@@ -101,7 +126,7 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
             )
             while process.poll() is None:
                 game_log = read(latest)
-                if reports() or FATAL.search(game_log + read(console)):
+                if reports() or crash_pattern.search(game_log + read(console)):
                     raise RuntimeError('Game crash detected')
                 if stop_when_ready and not stop_sent and all(
                     re.search(pattern, game_log) for pattern in required
@@ -114,15 +139,27 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
                 if time.monotonic() >= deadline:
                     raise RuntimeError('Timed out waiting for game startup/test or clean shutdown')
                 time.sleep(0.2)
-            if process.returncode != 0:
+            if expected_rejection and process.returncode == 0:
+                raise RuntimeError('Expected Loader rejection but command exited successfully')
+            if not expected_rejection and process.returncode != 0:
                 raise RuntimeError(f'Game command exited with status {process.returncode}')
         game_log = read(latest)
+        if expected_rejection:
+            rejection_log = game_log + '\n' + read(console)
+            missing = [pattern for pattern in rejection_evidence(expected_rejection)
+                       if not re.search(pattern, rejection_log)]
+            if missing:
+                raise RuntimeError(f'Missing specific Loader incompatibility evidence: {missing}')
+            if GAME_STARTED.search(rejection_log) or reports() or crash_pattern.search(rejection_log):
+                raise RuntimeError('Game started or crashed instead of Loader dependency rejection')
+            print(f'PASS: Loader rejected Fabric API {expected_rejection} before game startup', flush=True)
+            return
         missing = [pattern for pattern in required if not re.search(pattern, game_log)]
         if missing:
             raise RuntimeError(f'Missing required game log evidence: {missing}')
         if stop_when_ready and (not stop_sent or 'Stopping server' not in game_log):
             raise RuntimeError('Server did not acknowledge our stop command and exit cleanly')
-        if reports() or FATAL.search(game_log + read(console)):
+        if reports() or crash_pattern.search(game_log + read(console)):
             raise RuntimeError('Game crash detected after exit')
         print(f'PASS: real-game smoke check in {game_directory.relative_to(ROOT)}', flush=True)
     except BaseException:
@@ -189,10 +226,12 @@ def server(with_fabric_api=False):
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
     monitor(
-        ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
+        ['java', '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true',
+         f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
         directory, SMOKE / f'{name}-console.log',
         server_evidence(with_fabric_api),
-        timeout=120, stop_when_ready=True,
+        timeout=120, stop_when_ready=not expects_rejection(api_version),
+        expected_rejection=api_version if expects_rejection(api_version) else None,
     )
 
 
@@ -210,7 +249,8 @@ def client(with_fabric_api=None):
     directory.mkdir(parents=True, exist_ok=False)
     monitor(
         ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke',
-         f'-PsmokeApiVersion={api_version or "none"}'],
+         f'-PsmokeApiVersion={api_version or "none"}',
+         f'-PsmokeExpectRejection={str(expects_rejection(api_version)).lower()}'],
         ROOT, SMOKE / f'{name}-console.log', [
             r'UNALLOCATED initialized \(common\)\.',
             r'UNALLOCATED initialized \(client\)\.',
@@ -220,8 +260,10 @@ def client(with_fabric_api=None):
              if api_version else []), timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
+        expected_rejection=api_version if expects_rejection(api_version) else None,
     )
-    verify_screenshot(directory)
+    if not expects_rejection(api_version):
+        verify_screenshot(directory)
     props = properties()
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",

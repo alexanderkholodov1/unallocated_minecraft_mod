@@ -67,7 +67,8 @@ processResources {
     def metadata = [
         version: project.version.toString(),
         minecraft_version: project.minecraft_version,
-        loader_version: project.loader_version
+        loader_version: project.loader_version,
+        minimum_external_api_version: bundledFabric.minimum_external_api_version
     ]
     bundledFabric.modules.each { id, module ->
         metadata[id.replace('-', '_') + '_version'] = module.version
@@ -143,6 +144,10 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     runDir = clientSmokeDir
     useXVFB = true
     jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
+    if (providers.gradleProperty('smokeExpectRejection').getOrElse('false').toBoolean()) {
+        // CI verifies Loader's error text; do not leave its Swing error dialog waiting for a click.
+        jvmArgs.add('-Djava.awt.headless=true')
+    }
     jvmArgs.add("-Dunallocated.smoke.api=${smokeApiVersion}")
     jvmArgs.add('-Dunallocated.smoke.modules=' + bundledFabric.modules.collect { id, module ->
         "${id}=${module.version}"

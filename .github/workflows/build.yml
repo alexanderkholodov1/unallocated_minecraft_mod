@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Oldest downloadable 26.3 API, owner's plan pin, current pin, and clean install.
+        # Oldest API must be rejected by Loader; the other three profiles must start.
         api: ['none', '0.153.1+26.3', '0.161.0+26.3', '0.165.0+26.3']
     steps:
       - name: Check out source
@@ -55,7 +55,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri mesa-vulkan-drivers
 
-      - name: Smoke test production client to title screen (Fabric API ${{ matrix.api }})
+      - name: Smoke test client startup or Loader rejection (Fabric API ${{ matrix.api }})
         if: ${{ !cancelled() && steps.package.outcome == 'success' }}
         timeout-minutes: 5
         env:

@@ -76,6 +76,8 @@ def verify(artifact, properties, policy, included_hashes):
             **{key: '>=' + value['version'] for key, value in modules.items()},
         }
         require(metadata['depends'] == depends, 'Wrong player dependencies')
+        require(metadata.get('breaks') == {'fabric-api': '<' + policy['minimum_external_api_version']},
+                'Wrong external Fabric API compatibility boundary')
         require('Apache License' in jar.read(LICENSE).decode(), 'Missing Apache license')
         notice = jar.read(NOTICE).decode()
         require('FabricMC' in notice and 'Apache-2.0' in notice, 'Missing Fabric attribution')

@@ -34,7 +34,8 @@ class PackagingTest(unittest.TestCase):
         self.meta = {'id': 'unallocated', 'name': 'UNALLOCATED', 'version': 'test',
                      'entrypoints': {'main': ['example.Common'], 'client': ['example.Client']},
                      'depends': {'fabricloader': '>=0.20.1', 'minecraft': '26.3', 'java': '>=25'},
-                     'jars': []}
+                     'jars': [],
+                     'breaks': {'fabric-api': '<' + self.policy['minimum_external_api_version']}}
         for module_id, module in self.policy['modules'].items():
             self.set_module(module_id, {'schemaVersion': 1, 'id': module_id,
                 'version': module['version'], 'environment': module['environment'],
@@ -121,6 +122,11 @@ class PackagingTest(unittest.TestCase):
         self.set_module(module_id, metadata, {'net/fabricmc/Altered.class': b'changed code'})
         self.included_hashes[path] = before
         with self.assertRaisesRegex(ValueError, 'differs from Gradle include input'):
+            self.check()
+
+    def test_external_api_breaks_boundary_is_required(self):
+        self.meta['breaks'] = {'fabric-api': '<0.165.0'}
+        with self.assertRaisesRegex(ValueError, 'compatibility boundary'):
             self.check()
 
     def test_recorded_input_set_must_match_allowlist(self):
