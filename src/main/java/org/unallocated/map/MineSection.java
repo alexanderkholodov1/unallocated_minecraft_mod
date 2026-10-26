@@ -31,7 +31,7 @@ public final class MineSection implements MapSection {
             .setValue(BlockStateProperties.RAIL_SHAPE, RailShape.EAST_WEST));
         w.put(23, 1, 12, Blocks.IRON_ORE);
         w.put(21, 0, 18, Blocks.COPPER_ORE);
-        // A mundane dead end for alpha.1, with a solid floor. Later acts replace this seam.
+        // A mundane dead end for v0.1, with a solid floor. Later acts replace this seam.
         w.fill(27, 0, 13, 27, 4, 17, Blocks.STONE);
         w.put(27, 1, 15, Blocks.ANDESITE);
         w.fill(11, 0, 11, 11, 2, 11, Blocks.OAK_LOG);

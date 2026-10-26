@@ -1,4 +1,4 @@
-# Map authoring — alpha.1.8
+# Map authoring — v0.1.8
 
 `org.unallocated.map.MapLayout` owns world coordinates, named section boxes, trigger volumes,
 landmarks and checkpoint camera directions. `MapBuilder.build(ServerLevel, String)` runs on the
