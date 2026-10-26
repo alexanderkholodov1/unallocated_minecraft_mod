@@ -22,6 +22,12 @@ public final class MapVerifier {
                 signContains(level, "lobby.motd", "7 / 20 conectados");
                 signContains(level, "lobby.task", "el catalejo.");
             }
+            if (id.equals("hill")) {
+                if (!level.getBlockState(MapLayout.landmark("hill.bait")).isAir()
+                        || level.getBlockState(MapLayout.landmark("hill.bait").below()).getBlock() != Blocks.COARSE_DIRT) {
+                    throw new IllegalStateException("Missing clear hill bait foothold");
+                }
+            }
             for (var entry : MapLayout.checkpoints().entrySet()) {
                 var cp = entry.getValue();
                 if (!cp.section().equals(id)) continue;

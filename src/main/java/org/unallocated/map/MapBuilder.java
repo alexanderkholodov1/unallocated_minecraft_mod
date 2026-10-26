@@ -16,7 +16,7 @@ import org.unallocated.UnallocatedMod;
 /** Explicit authoring operation only: ordinary worlds are never built or reconfigured on startup. */
 public final class MapBuilder {
     private static final Map<String, MapSection> SECTIONS = new LinkedHashMap<>();
-    static { register(new LobbySection()); }
+    static { register(new LobbySection()); register(new HillSection()); }
     private MapBuilder() {}
     private static void register(MapSection section) { SECTIONS.put(section.id(), section); }
     public static List<String> sectionIds() { return List.copyOf(SECTIONS.keySet()); }
