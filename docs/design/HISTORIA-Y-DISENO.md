@@ -1,6 +1,6 @@
 # UNALLOCATED — La historia y el diseño de juego
 
-*Propuesta para que el dueño la apruebe **antes** de construir · rama `v1.0.0-alpha.1.14` · 2026-10-26.*
+*Propuesta para que el dueño la apruebe **antes** de construir · rama `v0.1.14` · 2026-10-26.*
 *Fuentes: sus cuatro documentos de `docs/intent/` (mandan; lo que va entre comillas es suyo, copiado tal cual) y el
 borrador `docs/plan/PLAN.md` §3, que aquí se mejora. Donde me aparto del borrador lo digo en una línea (§10).*
 
