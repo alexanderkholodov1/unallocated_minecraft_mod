@@ -24,8 +24,11 @@ import org.unallocated.map.MapVerifier;
 
 /** Real integrated server, real chunk packets and rendered first-person views from every checkpoint. */
 public final class MapTourSmokeTest {
+    private record ViewOptions(int distance, boolean bob, int fov) {}
     private MapTourSmokeTest() {}
     public static void run(ClientGameTestContext context) {
+        var originalOptions = context.computeOnClient(client -> new ViewOptions(
+                client.options.renderDistance().get(), client.options.bobView().get(), client.options.fov().get()));
         context.runOnClient(client -> {
             client.options.renderDistance().set(8);
             client.options.bobView().set(false);
@@ -119,7 +122,14 @@ public final class MapTourSmokeTest {
                 context.takeScreenshot("map-" + entry.getKey().replace('.', '-'));
                 LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED map screenshot checkpoint={}", entry.getKey());
             }
-        } finally { authorOnStart.set(false); }
+        } finally {
+            authorOnStart.set(false);
+            context.runOnClient(client -> {
+                client.options.renderDistance().set(originalOptions.distance());
+                client.options.bobView().set(originalOptions.bob());
+                client.options.fov().set(originalOptions.fov());
+            });
+        }
         LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: map tour completed.");
     }
 }

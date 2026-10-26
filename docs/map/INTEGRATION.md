@@ -145,3 +145,9 @@ JUnit checks the pinned game's radius-8 and default-radius-5 footprints directly
 The cause was checked by Python-only disassembly of the official 26.3 client JAR
 (SHA-1 `e877b6a07acd633fb3bb475002175cec036e7b87`) and the published Fabric gametest
 6.0.11 source JAR. No local Java, Gradle or game process was used.
+
+Rehearsal 40361615824 confirmed all nine map captures and all 329 tracked chunks per
+checkpoint in each accepted API profile. It also exposed that the tour left its radius-8
+options active for the subsequent audio scenario. The tour now snapshots and restores
+render distance, view bobbing and FOV in `finally`, including on failure. Later scenarios
+therefore inherit their original settings rather than this photograph setup.

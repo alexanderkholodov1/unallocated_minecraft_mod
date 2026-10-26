@@ -45,3 +45,11 @@ The milestone remains a 0.x foundation, not the owner's complete-game 1.0.0-alph
   verifies radius/center, and retains the full light/render completion wait at every checkpoint.
   Added direct vanilla footprint regression tests. All package behavior and screenshots remain.
   Verification uses the coordinator's rehearsal relay; no unverified commit is pushed to the hito.
+
+- `0.1.0.21`: rehearsal 40361615824 passed the corrected map tour in all three accepted
+  profiles, then exposed its temporary radius-8 setting leaking into the audio scenario.
+  The tour now restores render distance, bobbing and FOV in `finally`; no audio wait or
+  product behavior is removed. The rehearsal also exposed a separate ending disconnect
+  reason publication race, addressed in the next fix before another rehearsal.
+
+- Local validation for 0.1.0.21: 61 Python tests and 70 subtests pass. Rehearsal remains required on the final fix commit; none is pushed to the hito.
