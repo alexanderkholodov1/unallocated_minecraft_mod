@@ -1,7 +1,12 @@
 name: Build
 
+# Real CI runs only on deliverable refs (main, hito branches v*, pull requests), and only on commits that already passed
+# a rehearsal. A rehearsal is the same workflow on a temporary rehearsal/* branch: a failing check is recorded in the
+# rehearsal-verdict artifact for the worker, and the run itself does not fail (no failure notification). Work in
+# progress is backed up to refs/backup/*, which runs nothing. Owner, 2026-10-26: no red run in any CASPIAN project.
 on:
   push:
+    branches: ['main', 'v[0-9]*', 'rehearsal/**']
   pull_request:
 
 permissions:
@@ -11,6 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
+    continue-on-error: ${{ startsWith(github.ref, 'refs/heads/rehearsal/') }}
     strategy:
       fail-fast: false
       matrix:
@@ -117,3 +123,20 @@ jobs:
             build/reports/included-jars.json
           if-no-files-found: error
           retention-days: 14
+
+      - name: Record rehearsal verdict
+        if: ${{ always() && startsWith(github.ref, 'refs/heads/rehearsal/') }}
+        run: |
+          mkdir -p .tmp/verdict
+          printf '{"sha":"%s","api":"%s","status":"%s"}\n' "${{ github.sha }}" "${{ matrix.api }}" "${{ job.status }}" \
+            > ".tmp/verdict/verdict.json"
+          cat .tmp/verdict/verdict.json
+
+      - name: Upload rehearsal verdict
+        if: ${{ always() && startsWith(github.ref, 'refs/heads/rehearsal/') }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: rehearsal-verdict-${{ strategy.job-index }}
+          include-hidden-files: true
+          path: .tmp/verdict/verdict.json
+          retention-days: 3
