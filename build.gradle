@@ -21,6 +21,14 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
     // Initialization and logging do not require Fabric API.
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.13.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty 'java.io.tmpdir', layout.projectDirectory.dir('.tmp/unit').asFile.absolutePath
+    doFirst { layout.projectDirectory.dir('.tmp/unit').asFile.mkdirs() }
 }
 
 processResources {
