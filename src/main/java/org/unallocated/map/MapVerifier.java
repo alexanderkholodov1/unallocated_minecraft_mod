@@ -6,6 +6,7 @@ import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.Difficulty;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.storage.LevelData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
@@ -60,15 +61,28 @@ public final class MapVerifier {
                 UnallocatedMod.LOGGER.info("UNALLOCATED map checkpoint={} verified", entry.getKey());
             }
         }
-        var rules = level.getServer().getGameRules();
-        if (rules.get(GameRules.SPAWN_MOBS) || rules.get(GameRules.ADVANCE_TIME) || rules.get(GameRules.ADVANCE_WEATHER)
-                || !rules.get(GameRules.KEEP_INVENTORY) || rules.get(GameRules.RESPAWN_RADIUS) != 0
-                || level.getServer().getDefaultGameType() != GameType.ADVENTURE
-                || level.getServer().getWorldData().getDifficulty() != Difficulty.NORMAL
-                || !level.getServer().getRespawnData().pos().equals(MapLayout.checkpoint("lobby.spawn").pos())) {
-            throw new IllegalStateException("Map rules or world spawn differ from D-17");
+        var server = level.getServer();
+        var rules = server.getGameRules();
+        var mismatches = new java.util.ArrayList<String>();
+        expectSetting(mismatches, "spawn_mobs", false, rules.get(GameRules.SPAWN_MOBS));
+        expectSetting(mismatches, "advance_time", false, rules.get(GameRules.ADVANCE_TIME));
+        expectSetting(mismatches, "advance_weather", false, rules.get(GameRules.ADVANCE_WEATHER));
+        expectSetting(mismatches, "keep_inventory", true, rules.get(GameRules.KEEP_INVENTORY));
+        expectSetting(mismatches, "respawn_radius", 0, rules.get(GameRules.RESPAWN_RADIUS));
+        expectSetting(mismatches, "gamemode", GameType.ADVENTURE, server.getDefaultGameType());
+        expectSetting(mismatches, "difficulty", Difficulty.NORMAL, server.getWorldData().getDifficulty());
+        var spawn = MapLayout.checkpoint("lobby.spawn");
+        expectSetting(mismatches, "world_spawn", LevelData.RespawnData.of(level.dimension(), spawn.pos(), spawn.yaw(), spawn.pitch()),
+            server.getRespawnData());
+        if (!mismatches.isEmpty()) {
+            String report = "Map settings differ from D-17: " + String.join("; ", mismatches);
+            UnallocatedMod.LOGGER.error("UNALLOCATED {}", report);
+            throw new IllegalStateException(report);
         }
         UnallocatedMod.LOGGER.info("UNALLOCATED map verified section={}", sectionId);
+    }
+    private static void expectSetting(java.util.List<String> mismatches, String name, Object expected, Object actual) {
+        if (!java.util.Objects.equals(expected, actual)) mismatches.add(name + " expected=" + expected + " found=" + actual);
     }
     /** CI authoring check: restoring one section must repair damage and preserve every other section. */
     public static void verifyRegeneration(ServerLevel level) {

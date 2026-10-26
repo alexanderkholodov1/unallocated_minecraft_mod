@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.dedicated.DedicatedServer;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
@@ -100,8 +101,14 @@ public final class MapBuilder {
         rules.set(GameRules.ADVANCE_WEATHER, false, server);
         rules.set(GameRules.KEEP_INVENTORY, true, server);
         rules.set(GameRules.RESPAWN_RADIUS, 0, server);
-        server.setDifficulty(Difficulty.NORMAL, true);
-        server.setDefaultGameType(GameType.ADVENTURE);
+        if (server instanceof DedicatedServer dedicated) {
+            // Dedicated startup overrides level.dat from server.properties; persist both sources.
+            dedicated.setDifficulty(Difficulty.NORMAL);
+            dedicated.setGameMode(GameType.ADVENTURE);
+        } else {
+            server.setDifficulty(Difficulty.NORMAL, true);
+            server.setDefaultGameType(GameType.ADVENTURE);
+        }
         server.enforceGameTypeForPlayers(GameType.ADVENTURE);
         var spawn = MapLayout.checkpoint("lobby.spawn");
         server.setRespawnData(LevelData.RespawnData.of(level.dimension(), spawn.pos(), spawn.yaw(), spawn.pitch()));

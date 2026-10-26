@@ -201,6 +201,12 @@ def server(with_fabric_api=False):
                        ('unallocated mapcheck rebuild', [r'UNALLOCATED map regeneration verified sections=5']),
                        ('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
     )
+    # Dedicated startup overrides world mode/difficulty from this file. Authoring must persist it too.
+    saved_properties = dict(line.split('=', 1) for line in read(directory / 'server.properties').splitlines()
+                            if '=' in line and not line.startswith('#'))
+    for key, expected_value in {'gamemode': 'adventure', 'difficulty': 'normal'}.items():
+        if saved_properties.get(key) != expected_value:
+            raise RuntimeError(f'Map setting not persisted: {key} expected={expected_value} found={saved_properties.get(key)}')
     if with_fabric_api:
         return  # Coexistence check stays a single process; clean one-JAR smoke proves reload.
     # A second real server process must load SavedData, not a leftover Java/static object.
