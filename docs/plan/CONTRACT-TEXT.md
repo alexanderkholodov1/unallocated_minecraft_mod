@@ -96,6 +96,13 @@ cree el recibo y abra el título. Otro proceso con el mismo directorio comprueba
 el recibo. En el primer proceso se prueba también volver a la pantalla y aceptar con el botón sin reescribir el
 recibo original; JUnit prueba la opción de replay entre sesiones.
 
+El cliente comprueba que el campo tenga foco al aparecer y al volver desde los usos por botón o Escape,
+sin hacer clic en el campo. Conserva el caso «no» + Enter → Ctrl+A → « dE AcUeRdO » + Enter y verifica el texto
+en cada paso. También abre y cierra los usos con eventos reales de ratón y acepta con un clic real. El foco se
+establece en el hook `Screen.setInitialFocus()`, después de crear los widgets; al volver con ratón se restaura
+después de terminar el despacho del clic, que podría enfocar el botón anterior ya retirado. Si falla una
+comprobación de foco o texto, CI guarda una captura del paso antes de fallar.
+
 El mixin vive en `org.unallocated.client.mixin.contract`; la pantalla y su lógica quedan en
 `org.unallocated.client.contract`. El verificador del JAR (`scripts/mixin_packages.py`) recorre todas las
 configuraciones registradas en `fabric.mod.json`, incluidas las incorporadas al fusionar otros paquetes, y exige

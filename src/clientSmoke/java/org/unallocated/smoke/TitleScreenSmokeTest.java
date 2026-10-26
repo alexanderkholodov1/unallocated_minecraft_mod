@@ -10,6 +10,9 @@ import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screens.TitleScreen;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.network.chat.Component;
 import com.mojang.blaze3d.platform.InputConstants;
 import org.slf4j.LoggerFactory;
 import org.unallocated.client.contract.ContractClient;
@@ -43,10 +46,21 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
             if (ContractSmokeObserver.titleInitializations != 0 || Files.exists(receipt)) {
                 throw new AssertionError("First start must show the contract before any title initialization or receipt");
             }
+            assertAgreementInput(context, "", "first-start");
             context.waitTicks(2);
             context.takeScreenshot("unallocated-contract");
             context.getInput().pressKey(InputConstants.KEY_ESCAPE);
             context.waitForScreen(ContractScreen.class);
+            assertAgreementInput(context, "", "after-escape-on-agreement");
+            // Use real mouse dispatch as well as Fabric's onPress helper: a callback
+            // rebuilding this screen must not leave focus on the removed Back button.
+            clickWithMouse(context, "contract.unallocated.read");
+            clickWithMouse(context, "contract.unallocated.back");
+            assertAgreementInput(context, "", "after-mouse-back");
+            context.clickScreenButton("contract.unallocated.read");
+            context.getInput().pressKey(InputConstants.KEY_ESCAPE);
+            assertAgreementInput(context, "", "after-escape-from-uses");
+            // Preserve the original failing sequence, starting in keyboard navigation mode.
             context.clickScreenButton("contract.unallocated.read");
             context.waitTicks(2);
             context.takeScreenshot("unallocated-contract-uses");
@@ -54,16 +68,20 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
             context.clickScreenButton("contract.unallocated.previous");
             if (Files.exists(receipt)) throw new AssertionError("Reading uses must not accept");
             context.clickScreenButton("contract.unallocated.back");
+            assertAgreementInput(context, "", "after-helper-back");
             context.getInput().typeChars("no");
+            assertAgreementInput(context, "no", "after-invalid-typing");
             context.getInput().pressKey(InputConstants.KEY_RETURN);
             if (Files.exists(receipt) || ContractSmokeObserver.titleInitializations != 0) {
                 throw new AssertionError("Invalid text must not fabricate an agreement");
             }
+            assertAgreementInput(context, "no", "after-invalid-enter");
             context.getInput().holdControl();
             context.getInput().pressKey(InputConstants.KEY_A);
             context.getInput().releaseControl();
             String typed = " dE AcUeRdO ";
             context.getInput().typeChars(typed);
+            assertAgreementInput(context, typed, "after-select-all-and-replace");
             context.getInput().pressKey(InputConstants.KEY_RETURN);
             context.waitForScreen(TitleScreen.class);
             try {
@@ -75,7 +93,8 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
                 byte[] original = Files.readAllBytes(receipt);
                 // Exercise the other input adapter through the actual button, preserving the first receipt.
                 context.setScreen(() -> new ContractScreen(new TitleScreen()));
-                context.clickScreenButton("contract.unallocated.accept");
+                assertAgreementInput(context, "", "reopened-after-keyboard-input");
+                clickWithMouse(context, "contract.unallocated.accept");
                 context.waitForScreen(TitleScreen.class);
                 if (!java.util.Arrays.equals(original, Files.readAllBytes(receipt))) {
                     throw new AssertionError("Repeated agreement must preserve the original receipt");
@@ -100,5 +119,40 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
         context.takeScreenshot("unallocated-title-" + phase);
         LoggerFactory.getLogger("unallocated-smoke").info(
                 "UNALLOCATED smoke: title screen reached from player JAR.");
+    }
+
+    private static void assertAgreementInput(ClientGameTestContext context, String expected, String stage) {
+        String failure = context.computeOnClient(client -> {
+            var screen = client.gui.screen();
+            if (!(screen instanceof ContractScreen) || !(screen.getFocused() instanceof EditBox field)
+                    || !field.isFocused() || !screen.children().contains(field)) {
+                return "Agreement field must have focus without clicking it at " + stage;
+            }
+            if (!field.getValue().equals(expected)) {
+                return "Agreement text was lost or Ctrl+A failed at " + stage + ": expected [" + expected
+                        + "], got [" + field.getValue() + "]";
+            }
+            return null;
+        });
+        if (failure != null) {
+            context.takeScreenshot("unallocated-contract-input-failure-" + stage);
+            throw new AssertionError(failure);
+        }
+    }
+
+    private static void clickWithMouse(ClientGameTestContext context, String translationKey) {
+        double[] position = context.computeOnClient(client -> {
+            var screen = client.gui.screen();
+            String label = Component.translatable(translationKey).getString();
+            Button button = screen.children().stream()
+                    .filter(child -> child instanceof Button candidate && candidate.getMessage().getString().equals(label))
+                    .map(child -> (Button) child).findFirst().orElseThrow();
+            return new double[] {
+                (button.getX() + button.getWidth() / 2.0) * client.getWindow().getScreenWidth() / screen.width,
+                (button.getY() + button.getHeight() / 2.0) * client.getWindow().getScreenHeight() / screen.height
+            };
+        });
+        context.getInput().setCursorPos(position[0], position[1]);
+        context.getInput().pressMouse(InputConstants.MOUSE_BUTTON_LEFT);
     }
 }

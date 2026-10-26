@@ -10,6 +10,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.KeyEvent;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import org.unallocated.contract.ContractSubmission;
@@ -67,11 +68,27 @@ public final class ContractScreen extends Screen {
                         reading = true;
                         rebuildWidgets();
                     }));
-            // Immediate typing works; an empty Enter is the same agreement as the button.
-            setInitialFocus(input);
         }
         addRenderableWidget(new ContractButton(left, height - 27, contentWidth,
                 text("accept"), button -> accept(false)));
+    }
+
+    @Override
+    protected void setInitialFocus() {
+        // Screen calls this after init/rebuild. Setting focus inside init would let the
+        // default keyboard navigation pass advance from the field to the next button.
+        if (!reading) setInitialFocus(input);
+        else super.setInitialFocus();
+    }
+
+    @Override
+    public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        boolean wasReading = reading;
+        boolean handled = super.mouseClicked(event, doubleClick);
+        // A Back click rebuilds the widgets in its callback. The parent mouse handler
+        // then focuses the old Back button; restore the new field after that dispatch.
+        if (wasReading && !reading) setInitialFocus(input);
+        return handled;
     }
 
     private int pageCount() {
