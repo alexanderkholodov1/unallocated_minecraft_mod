@@ -84,6 +84,10 @@ class WatchdogTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'crash'):
             self.run_fixture("print('Exception in thread main',file=sys.stderr)\n", required=())
 
+    def test_asynchronous_audio_failure_fails(self):
+        with self.assertRaisesRegex(RuntimeError, 'crash'):
+            self.run_fixture("log.write_text('Failed to load sound unallocated:audio.breath')\n", required=())
+
     def test_hanging_process_is_killed_on_timeout(self):
         with self.assertRaisesRegex(RuntimeError, 'Timed out'):
             self.run_fixture('time.sleep(20)\n', timeout=0.3)

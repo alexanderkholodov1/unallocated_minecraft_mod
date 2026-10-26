@@ -3,7 +3,7 @@
   "id": "unallocated",
   "version": "${version}",
   "name": "UNALLOCATED",
-  "description": "A first-person horror mod. This foundation build only initializes and logs.",
+  "description": "A first-person horror mod. Includes named vanilla audio cues; the narrative session is pending.",
   "authors": [
     "NULL_Threshold Interactive"
   ],
@@ -27,5 +27,11 @@
     "fabric-networking-api-v1": ">=${fabric_networking_api_v1_version}",
     "fabric-resource-loader-v1": ">=${fabric_resource_loader_v1_version}",
     "fabric-screen-api-v1": ">=${fabric_screen_api_v1_version}"
-  }
+  },
+  "mixins": [
+    {
+      "config": "unallocated-audio.client.mixins.json",
+      "environment": "client"
+    }
+  ]
 }

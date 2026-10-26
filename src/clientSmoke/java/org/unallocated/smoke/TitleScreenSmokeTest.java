@@ -79,5 +79,6 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest, ClientM
         context.takeScreenshot("unallocated-title");
         LoggerFactory.getLogger("unallocated-smoke").info(
                 "UNALLOCATED smoke: title screen reached from player JAR.");
+        AudioSmokeTest.run(context);
     }
 }

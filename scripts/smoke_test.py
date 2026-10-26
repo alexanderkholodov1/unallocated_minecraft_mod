@@ -19,7 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SMOKE = ROOT / '.tmp' / 'smoke'
 FATAL = re.compile(
     r'Encountered an unexpected exception|Exception in thread|'
-    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed', re.I
+    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|'
+    r'Failed to load sound|Unable to play (?:unknown|empty) soundEvent|Error loading sound', re.I
 )
 
 
@@ -186,6 +187,23 @@ def verify_screenshot(directory):
         raise RuntimeError('Client exited without a valid title-screen screenshot')
 
 
+def audio_evidence():
+    required = [r'UNALLOCATED audio: registered 7 sound events; loud=screamer\.']
+    layers = {
+        'ambient': ('ambient_drone', 'ambient_cave'),
+        'threads': ('thread_string', 'thread_chime'),
+        'muffle': ('breath',),
+        'screamer': ('screamer_impact', 'screamer_crack'),
+    }
+    for cue, events in layers.items():
+        required.append(rf'UNALLOCATED smoke: audio cue={cue} registered, resolved and active\.')
+        for event in events:
+            required.append(rf'UNALLOCATED audio: play cue={cue} event=unallocated:audio\.{event} '
+                            rf'loud={str(cue == "screamer").lower()} result=STARTED(?:\s|$)')
+    required.append(r'UNALLOCATED smoke: audio attenuation, expiry, replacement, stop, disconnect and options verified\.')
+    return required
+
+
 def client():
     directory = SMOKE / 'client'
     directory.mkdir(parents=True, exist_ok=False)
@@ -196,7 +214,7 @@ def client():
             r'UNALLOCATED initialized \(client\)\.',
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
             r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
-        ], timeout=240,
+        ] + audio_evidence(), timeout=240,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )

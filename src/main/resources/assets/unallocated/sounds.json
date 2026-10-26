@@ -1,0 +1,65 @@
+{
+  "audio.ambient_drone": {
+    "subtitle": "audio.unallocated.subtitle.ambient_drone",
+    "sounds": [
+      {
+        "name": "minecraft:block.beacon.ambient",
+        "type": "event"
+      }
+    ]
+  },
+  "audio.ambient_cave": {
+    "subtitle": "audio.unallocated.subtitle.ambient_cave",
+    "sounds": [
+      {
+        "name": "minecraft:ambient.cave",
+        "type": "event"
+      }
+    ]
+  },
+  "audio.thread_string": {
+    "subtitle": "audio.unallocated.subtitle.thread_string",
+    "sounds": [
+      {
+        "name": "minecraft:block.note_block.harp",
+        "type": "event"
+      }
+    ]
+  },
+  "audio.thread_chime": {
+    "subtitle": "audio.unallocated.subtitle.thread_chime",
+    "sounds": [
+      {
+        "name": "minecraft:block.amethyst_block.resonate",
+        "type": "event"
+      }
+    ]
+  },
+  "audio.breath": {
+    "subtitle": "audio.unallocated.subtitle.breath",
+    "sounds": [
+      {
+        "name": "minecraft:block.beacon.deactivate",
+        "type": "event"
+      }
+    ]
+  },
+  "audio.screamer_impact": {
+    "subtitle": "audio.unallocated.subtitle.screamer_impact",
+    "sounds": [
+      {
+        "name": "minecraft:entity.iron_golem.damage",
+        "type": "event"
+      }
+    ]
+  },
+  "audio.screamer_crack": {
+    "subtitle": "audio.unallocated.subtitle.screamer_crack",
+    "sounds": [
+      {
+        "name": "minecraft:block.anvil.land",
+        "type": "event"
+      }
+    ]
+  }
+}

@@ -10,6 +10,7 @@ public final class UnallocatedMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        org.unallocated.audio.AudioSounds.initialize();
         LOGGER.info("UNALLOCATED initialized (common).");
     }
 }

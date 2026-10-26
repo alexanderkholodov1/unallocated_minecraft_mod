@@ -66,7 +66,7 @@ tasks.withType(AbstractArchiveTask).configureEach {
 // CI helper mod: a separate source set/JAR, never included in the player's JAR.
 sourceSets {
     clientSmoke {
-        compileClasspath += sourceSets.client.compileClasspath
+        compileClasspath += sourceSets.client.compileClasspath + sourceSets.client.output
     }
 }
 
