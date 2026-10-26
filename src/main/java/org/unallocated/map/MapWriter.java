@@ -40,7 +40,8 @@ public final class MapWriter {
         place(level, pos, state);
     }
     static void place(ServerLevel level, BlockPos pos, BlockState state) {
-        level.setBlock(pos, state, Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS);
+        level.setBlock(pos, state, Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS
+            | Block.UPDATE_SKIP_BLOCK_ENTITY_SIDEEFFECTS);
     }
     public void fill(int x1, int y1, int z1, int x2, int y2, int z2, Block block) {
         for (int x = x1; x <= x2; x++) for (int y = y1; y <= y2; y++) for (int z = z1; z <= z2; z++) put(x, y, z, block);

@@ -29,14 +29,14 @@ public final class LobbySection implements MapSection {
         w.fill(7, 0, -8, 7, 4, -8, Blocks.OAK_LOG);
         w.fill(-6, 1, -8, 6, 3, -8, Blocks.SPRUCE_PLANKS);
         w.fill(-8, 4, -9, 8, 4, -6, Blocks.SPRUCE_SLAB);
-        w.sign(-5, 2, -7, Direction.SOUTH, "REGLAS", "No romper spawn", "No robar", "Cerrar las puetas");
-        w.sign(0, 2, -7, Direction.SOUTH, "Servidor del valle", "Bienvenidos", "7 / 20 conectados", "Última visita: ayer");
-        w.sign(5, 2, -7, Direction.SOUTH, "Los demás están", "en la base.", "Llévales", "el catalejo.");
+        w.sign("lobby.rules", Direction.SOUTH, "REGLAS", "No romper spawn", "No robar", "Cerrar las puetas");
+        w.sign("lobby.motd", Direction.SOUTH, "Servidor del valle", "Bienvenidos", "7 / 20 conectados", "Última visita: ayer");
+        w.sign("lobby.task", Direction.SOUTH, "Los demás están", "en la base.", "Llévales", "el catalejo.");
         w.put(-4, 3, -6, Blocks.LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true));
         w.put(4, 3, -6, Blocks.LANTERN.defaultBlockState().setValue(BlockStateProperties.HANGING, true));
         w.fill(14, -1, -2, 16, -1, 2, Blocks.COBBLESTONE);
         w.fill(14, 0, -3, 14, 2, -3, Blocks.OAK_LOG);
-        w.sign(13, 1, -3, Direction.WEST, "LA BASE  →", "LA MINA  →", "Sigue el camino", "de antorchas");
+        w.sign("lobby.route", Direction.WEST, "LA BASE  →", "LA MINA  →", "Sigue el camino", "de antorchas");
         // Covered well: water is below the lip, so the spawn stays safe.
         w.fill(-11, 0, 3, -7, 0, 7, Blocks.COBBLESTONE);
         w.fill(-10, 0, 4, -8, 0, 6, Blocks.AIR);

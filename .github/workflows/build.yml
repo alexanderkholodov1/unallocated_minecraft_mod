@@ -10,7 +10,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 16
+    timeout-minutes: 22
     steps:
       - name: Check out source
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -52,8 +52,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri mesa-vulkan-drivers
 
-      - name: Smoke test production client to title screen
-        timeout-minutes: 5
+      - name: Smoke test production client and photograph map checkpoints
+        timeout-minutes: 8
         env:
           LIBGL_ALWAYS_SOFTWARE: 'true'
           SDL_VIDEODRIVER: x11

@@ -3,12 +3,18 @@ package org.unallocated.map;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.List;
 import net.minecraft.core.BlockPos;
 
 /** Stable authoring contract. Coordinates are Overworld block coordinates; boxes are inclusive. */
 public final class MapLayout {
     public static final int GROUND_Y = 63;
+    public static final String BIOME_ID = "unallocated:lobby";
     public static final BlockBox ISLAND = new BlockBox(-58, 57, -84, 122, 91, 84);
+    /** Scenery stays outside section ownership and outside the spawn-to-bait sightline. */
+    public static final List<BlockPos> TREES = List.of(new BlockPos(-28, 64, -18), new BlockPos(-24, 64, 25),
+        new BlockPos(-8, 64, 32), new BlockPos(15, 64, -27), new BlockPos(61, 64, -19),
+        new BlockPos(77, 64, -26), new BlockPos(90, 64, 50), new BlockPos(35, 64, 46), new BlockPos(65, 64, 43));
     public record BlockBox(int minX, int minY, int minZ, int maxX, int maxY, int maxZ) {
         public BlockBox {
             if (minX > maxX || minY > maxY || minZ > maxZ) throw new IllegalArgumentException("Inverted box");
@@ -37,7 +43,9 @@ public final class MapLayout {
         SECTIONS = Collections.unmodifiableMap(sections);
         var checkpoints = new LinkedHashMap<String, Checkpoint>();
         checkpoints.put("lobby.spawn", new Checkpoint("lobby", 0, 64, 8, 180, 0));
+        checkpoints.put("lobby.board", new Checkpoint("lobby", 0, 64, -3, 180, 0));
         checkpoints.put("hill.bait_path", new Checkpoint("hill", 34, 72, -24, -90, 3));
+        checkpoints.put("hill.view", new Checkpoint("hill", 24, 64, -12, -130, -8));
         checkpoints.put("path.midpoint", new Checkpoint("path", 34, 64, 3, -90, 0));
         checkpoints.put("base.entrance", new Checkpoint("base", 53, 64, 12, -90, 0));
         checkpoints.put("base.theft_zone", new Checkpoint("base", 61, 64, 12, 135, 8));
@@ -60,6 +68,12 @@ public final class MapLayout {
         landmarks.put("base.chest", section("base").at(7, 0, 6));
         landmarks.put("base.bed", section("base").at(13, 0, 13));
         landmarks.put("base.door", section("base").at(4, 0, 10));
+        landmarks.put("base.back_door", section("base").at(17, 0, 18));
+        landmarks.put("path.campfire", section("path").at(8, 0, 14));
+        landmarks.put("path.route", section("path").at(25, 1, 7));
+        int[][] lights = {{1, -4}, {8, 4}, {16, -2}, {23, 12}, {31, 16}};
+        for (int i = 0; i < lights.length; i++) landmarks.put("path.torch." + i, section("path").at(lights[i][0], 1, lights[i][1]));
+        landmarks.put("mine.route", section("mine").at(10, 1, 11));
         landmarks.put("mine.lintel", section("mine").at(13, 4, 15));
         landmarks.put("mine.end", section("mine").at(27, 0, 15));
         LANDMARKS = Collections.unmodifiableMap(landmarks);

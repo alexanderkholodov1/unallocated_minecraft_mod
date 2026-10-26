@@ -19,16 +19,17 @@ public final class PathSection implements MapSection {
         }
         for (int z = -10; z <= 0; z++) for (int x = 16; x <= 18; x++) w.put(x, -1, z, Blocks.GRAVEL);
         // Stable torches, named by local route order for the later Act 1 guidance effect.
-        int[][] lights = {{1, -4}, {8, 4}, {16, -2}, {23, 12}, {31, 16}};
-        for (int[] light : lights) {
-            w.put(light[0], 0, light[1], Blocks.COBBLESTONE);
-            w.put(light[0], 1, light[1], Blocks.TORCH);
+        for (int i = 0; i < 5; i++) {
+            var pos = MapLayout.landmark("path.torch." + i);
+            var origin = MapLayout.section(id());
+            w.put(pos.getX() - origin.x(), 0, pos.getZ() - origin.z(), Blocks.COBBLESTONE);
+            w.put("path.torch." + i, Blocks.TORCH.defaultBlockState());
         }
         w.fill(26, 0, 7, 26, 2, 7, Blocks.OAK_LOG);
-        w.sign(25, 1, 7, Direction.WEST, "LA BASE  →", "LA MINA detrás", "Cierra la puerta", "al llegar");
+        w.sign("path.route", Direction.WEST, "LA BASE  →", "LA MINA detrás", "Cierra la puerta", "al llegar");
         // A small rest stop, used and left untidily; no diaries or horror set dressing.
         w.fill(6, -1, 12, 11, -1, 17, Blocks.COARSE_DIRT);
-        w.put(8, 0, 14, Blocks.CAMPFIRE.defaultBlockState().setValue(BlockStateProperties.LIT, false));
+        w.put("path.campfire", Blocks.CAMPFIRE.defaultBlockState().setValue(BlockStateProperties.LIT, false));
         w.fill(6, 0, 16, 10, 0, 16, Blocks.OAK_LOG);
         w.put(11, 0, 13, Blocks.BARREL);
         w.put(5, 0, 12, Blocks.COBBLESTONE);

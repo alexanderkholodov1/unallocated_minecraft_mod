@@ -9,6 +9,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.storage.LevelData;
 import org.unallocated.UnallocatedMod;
@@ -63,6 +64,15 @@ public final class MapBuilder {
                 var block = y == MapLayout.GROUND_Y ? Blocks.GRASS_BLOCK : y >= MapLayout.GROUND_Y - 2 ? Blocks.DIRT : Blocks.STONE;
                 MapWriter.place(level, new BlockPos(x, y, z), block.defaultBlockState());
             }
+        }
+        for (var root : MapLayout.TREES) {
+            for (int y = 3; y <= 5; y++) for (int x = -2; x <= 2; x++) for (int z = -2; z <= 2; z++) {
+                if (Math.abs(x) == 2 && Math.abs(z) == 2) continue;
+                MapWriter.place(level, root.offset(x, y, z), Blocks.OAK_LEAVES.defaultBlockState()
+                    .setValue(BlockStateProperties.PERSISTENT, true));
+            }
+            for (int y = 0; y <= 4; y++) MapWriter.place(level, root.above(y), Blocks.OAK_LOG.defaultBlockState());
+            MapWriter.place(level, root.above(6), Blocks.OAK_LEAVES.defaultBlockState().setValue(BlockStateProperties.PERSISTENT, true));
         }
     }
     private static void configure(ServerLevel level) {

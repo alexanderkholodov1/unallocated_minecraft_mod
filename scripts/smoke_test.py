@@ -165,7 +165,7 @@ def server(with_fabric_api=False):
     (directory / 'server.properties').write_text(
         'server-ip=127.0.0.1\nserver-port=25565\nonline-mode=false\n'
         'level-name=smoke-world\nlevel-type=minecraft:flat\n'
-        'generator-settings={"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:plains","structures":{}}\n'
+        'generator-settings={"layers":[{"block":"minecraft:air","height":1}],"biome":"unallocated:lobby","structure_overrides":[]}\n'
         'generate-structures=false\nview-distance=2\nsimulation-distance=2\n'
         'max-players=1\nsync-chunk-writes=false\n'
     )
@@ -198,7 +198,7 @@ def server(with_fabric_api=False):
         command, directory, SMOKE / f'{console_prefix}-console.log', startup + [entered, status],
         timeout=120, stop_when_ready=True, startup_required=startup,
         command_steps=[('unallocated build all', [r'UNALLOCATED map built section=all', r'UNALLOCATED map verified section=all']),
-                       ('unallocated mapcheck', [r'UNALLOCATED map verified section=all']),
+                       ('unallocated mapcheck rebuild', [r'UNALLOCATED map regeneration verified sections=5']),
                        ('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
     )
     if with_fabric_api:
@@ -236,11 +236,11 @@ def client():
             r'UNALLOCATED smoke: title screen reached from player JAR\.',
             r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
             r'UNALLOCATED smoke: map tour completed\.',
-        ], timeout=240,
+        ], timeout=420,
         # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
         game_directory=directory,
     )
-    verify_screenshot(directory, ('unallocated-title', 'map-lobby-spawn', 'map-hill-bait_path', 'map-path-midpoint',
+    verify_screenshot(directory, ('unallocated-title', 'map-lobby-spawn', 'map-lobby-board', 'map-hill-bait_path', 'map-hill-view', 'map-path-midpoint',
                                   'map-base-entrance', 'map-base-theft_zone', 'map-mine-entrance', 'map-mine-threshold'))
     props = properties()
     verify_mod_directory(directory / 'mods', {

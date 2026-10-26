@@ -1,6 +1,11 @@
 package org.unallocated.map;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.gamerules.GameRules;
+import net.minecraft.world.Difficulty;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
@@ -28,7 +33,7 @@ public final class MapVerifier {
                     throw new IllegalStateException("Missing clear hill bait foothold");
                 }
             }
-            if (id.equals("path") && level.getBlockState(MapLayout.section("path").at(8, 0, 14)).getBlock() != Blocks.CAMPFIRE) {
+            if (id.equals("path") && level.getBlockState(MapLayout.landmark("path.campfire")).getBlock() != Blocks.CAMPFIRE) {
                 throw new IllegalStateException("Missing abandoned path rest stop");
             }
             if (id.equals("base")) {
@@ -54,7 +59,61 @@ public final class MapVerifier {
                 UnallocatedMod.LOGGER.info("UNALLOCATED map checkpoint={} verified", entry.getKey());
             }
         }
+        var rules = level.getServer().getGameRules();
+        if (rules.get(GameRules.SPAWN_MOBS) || rules.get(GameRules.ADVANCE_TIME) || rules.get(GameRules.ADVANCE_WEATHER)
+                || !rules.get(GameRules.KEEP_INVENTORY) || rules.get(GameRules.RESPAWN_RADIUS) != 0
+                || level.getServer().getDefaultGameType() != GameType.ADVENTURE
+                || level.getServer().getWorldData().getDifficulty() != Difficulty.NORMAL
+                || !level.getServer().getRespawnData().pos().equals(MapLayout.checkpoint("lobby.spawn").pos())) {
+            throw new IllegalStateException("Map rules or world spawn differ from D-17");
+        }
         UnallocatedMod.LOGGER.info("UNALLOCATED map verified section={}", sectionId);
+    }
+    /** CI authoring check: restoring one section must repair damage and preserve every other section. */
+    public static void verifyRegeneration(ServerLevel level) {
+        verify(level, "all");
+        if (!level.getBiome(MapLayout.checkpoint("lobby.spawn").pos()).is(Identifier.parse(MapLayout.BIOME_ID))) {
+            throw new IllegalStateException("CI/template world must use the lobby biome");
+        }
+        long expected = fingerprint(level);
+        long itemsBefore = droppedItems(level);
+        for (String id : MapBuilder.sectionIds()) {
+            var cp = MapLayout.checkpoints().values().stream().filter(point -> point.section().equals(id)).findFirst().orElseThrow();
+            MapWriter.place(level, cp.pos(), Blocks.STONE.defaultBlockState());
+            MapBuilder.build(level, id);
+            if (fingerprint(level) != expected) throw new IllegalStateException("Section regeneration changed the map: " + id);
+        }
+        MapBuilder.build(level, "all");
+        if (fingerprint(level) != expected) throw new IllegalStateException("Full regeneration changed the map");
+        if (droppedItems(level) != itemsBefore) throw new IllegalStateException("Regeneration dropped container contents");
+        UnallocatedMod.LOGGER.info("UNALLOCATED map regeneration verified sections={}", MapBuilder.sectionIds().size());
+    }
+    private static long droppedItems(ServerLevel level) {
+        long count = 0;
+        for (var entity : level.getAllEntities()) if (entity instanceof net.minecraft.world.entity.item.ItemEntity) count++;
+        return count;
+    }
+    private static long fingerprint(ServerLevel level) {
+        long hash = 0xcbf29ce484222325L;
+        var b = MapLayout.ISLAND;
+        for (var pos : BlockPos.betweenClosed(b.minX(), b.minY(), b.minZ(), b.maxX(), b.maxY(), b.maxZ())) {
+            var state = level.getBlockState(pos);
+            hash = (hash ^ Block.getId(state)) * 0x100000001b3L;
+            if (!state.hasBlockEntity()) continue;
+            var entity = level.getBlockEntity(pos);
+            if (entity instanceof SignBlockEntity sign) {
+                for (var slot : SignTextSlot.values()) for (var line : sign.getText(slot).getMessages(false)) {
+                    hash = (hash ^ line.getString().hashCode()) * 0x100000001b3L;
+                }
+                hash = (hash ^ (sign.isWaxed() ? 1 : 0)) * 0x100000001b3L;
+            }
+            if (entity instanceof net.minecraft.world.Container container) for (int slot = 0; slot < container.getContainerSize(); slot++) {
+                var stack = container.getItem(slot);
+                hash = (hash ^ stack.getItem().getDescriptionId().hashCode()) * 0x100000001b3L;
+                hash = (hash ^ stack.getCount()) * 0x100000001b3L;
+            }
+        }
+        return hash;
     }
     private static void expect(ServerLevel level, String id, Block expected) {
         if (level.getBlockState(MapLayout.landmark(id)).getBlock() != expected) {

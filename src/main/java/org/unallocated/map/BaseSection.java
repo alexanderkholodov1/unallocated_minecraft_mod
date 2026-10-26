@@ -29,8 +29,8 @@ public final class BaseSection implements MapSection {
         w.fill(8, 1, 19, 11, 2, 19, Blocks.GLASS_PANE);
         // One replacement pane is opaque, as though somebody ran out of glass.
         w.put(4, 1, 15, Blocks.OAK_PLANKS);
-        door(w, 4, 10, Direction.EAST);
-        door(w, 17, 18, Direction.EAST);
+        door(w, "base.door", Direction.EAST);
+        door(w, "base.back_door", Direction.EAST);
         for (int x = 3; x <= 18; x++) {
             int rise = Math.min(x - 3, 18 - x) / 2;
             for (int z = 3; z <= 20; z++) {
@@ -68,10 +68,11 @@ public final class BaseSection implements MapSection {
         w.sign(2, 1, 7, Direction.WEST, "LA BASE", "Deja carbón", "para los demás", "Mina detrás →");
         w.lamp(1, 14); w.lamp(20, 21);
     }
-    private static void door(MapWriter w, int x, int z, Direction direction) {
+    private static void door(MapWriter w, String landmark, Direction direction) {
         var state = Blocks.OAK_DOOR.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, direction);
-        w.put(x, 0, z, state.setValue(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER));
-        w.put(x, 1, z, state.setValue(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER));
+        var pos = MapLayout.landmark(landmark); var origin = MapLayout.section("base");
+        w.put(landmark, state.setValue(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.LOWER));
+        w.put(pos.getX() - origin.x(), 1, pos.getZ() - origin.z(), state.setValue(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER));
     }
     private static void bed(MapWriter w, int x, int z, net.minecraft.world.level.block.Block block) {
         var state = block.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.SOUTH);

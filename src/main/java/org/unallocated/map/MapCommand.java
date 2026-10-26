@@ -11,7 +11,10 @@ public final class MapCommand {
         CommandRegistrationCallback.EVENT.register((dispatcher, registry, environment) -> dispatcher.register(
             Commands.literal("unallocated")
                 .then(Commands.literal("mapcheck").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
-                    .executes(ctx -> { MapVerifier.verify(ctx.getSource().getLevel(), "all"); return 1; }))
+                    .executes(ctx -> { MapVerifier.verify(ctx.getSource().getLevel(), "all"); return 1; })
+                    .then(Commands.literal("rebuild").executes(ctx -> {
+                        MapVerifier.verifyRegeneration(ctx.getSource().getLevel()); return 1;
+                    })))
                 .then(Commands.literal("build").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                     .then(Commands.argument("section", StringArgumentType.word())
                         .suggests((ctx, builder) -> {
@@ -20,11 +23,12 @@ public final class MapCommand {
                             return builder.buildFuture();
                         }).executes(ctx -> {
                             var source = ctx.getSource();
-                            try { MapBuilder.build(source.getLevel(), StringArgumentType.getString(ctx, "section")); }
-                            catch (IllegalArgumentException exception) {
+                            String section = StringArgumentType.getString(ctx, "section");
+                            if (!section.equals("all") && !MapBuilder.sectionIds().contains(section)) {
                                 source.sendFailure(Component.literal("Sección desconocida. Usa: " + MapBuilder.sectionIds() + ", all"));
                                 return 0;
                             }
+                            MapBuilder.build(source.getLevel(), section);
                             source.sendSuccess(() -> Component.literal("Mapa reconstruido."), true);
                             return 1;
                         })))

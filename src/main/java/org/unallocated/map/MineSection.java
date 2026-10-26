@@ -35,7 +35,7 @@ public final class MineSection implements MapSection {
         w.fill(27, 0, 13, 27, 4, 17, Blocks.STONE);
         w.put(27, 1, 15, Blocks.ANDESITE);
         w.fill(11, 0, 11, 11, 2, 11, Blocks.OAK_LOG);
-        w.sign(10, 1, 11, Direction.WEST, "LA MINA", "Deja las vagonetas", "junto a la entrada", "Base ←");
+        w.sign("mine.route", Direction.WEST, "LA MINA", "Deja las vagonetas", "junto a la entrada", "Base ←");
         w.put(5, 0, 21, Blocks.BARREL);
         w.fill(7, 0, 23, 10, 0, 23, Blocks.OAK_LOG);
         w.put(11, 0, 8, Blocks.COBBLESTONE);

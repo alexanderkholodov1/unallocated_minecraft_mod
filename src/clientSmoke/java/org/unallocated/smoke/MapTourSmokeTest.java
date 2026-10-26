@@ -6,7 +6,8 @@ import java.util.Set;
 import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.FlatLevelSource;
 import net.minecraft.world.level.levelgen.flat.FlatLayerInfo;
@@ -30,7 +31,8 @@ public final class MapTourSmokeTest {
             settings.setGenerateStructures(false);
             settings.updateDimensions((registries, dimensions) -> {
                 var flat = new FlatLevelGeneratorSettings(Optional.of(HolderSet.direct()),
-                    registries.lookupOrThrow(Registries.BIOME).getOrThrow(Biomes.PLAINS), List.of());
+                    registries.lookupOrThrow(Registries.BIOME).getOrThrow(
+                        ResourceKey.create(Registries.BIOME, Identifier.parse(MapLayout.BIOME_ID))), List.of());
                 flat.getLayersInfo().add(new FlatLayerInfo(1, Blocks.AIR));
                 flat.updateLayers();
                 return dimensions.replaceOverworldGenerator(registries, new FlatLevelSource(flat));
@@ -38,8 +40,16 @@ public final class MapTourSmokeTest {
         }).create()) {
             var server = world.getServer();
             // Exercise exactly the same command and common builder as dedicated/template authoring.
-            server.runCommand("unallocated build all");
-            server.runOnServer(instance -> MapVerifier.verify(instance.overworld(), "all"));
+            server.runOnServer(instance -> {
+                instance.getCommands().performPrefixedCommand(instance.createCommandSourceStack(), "unallocated build all");
+                MapVerifier.verify(instance.overworld(), "all");
+                var spawn = MapLayout.checkpoint("lobby.spawn");
+                if (!instance.overworld().getBiome(spawn.pos()).is(Identifier.parse(MapLayout.BIOME_ID))) {
+                    throw new AssertionError("Map tour did not create the template biome");
+                }
+                world.getConnection().getServerPlayer().teleportTo(instance.overworld(), spawn.x() + 0.5, spawn.y(), spawn.z() + 0.5,
+                    Set.of(), spawn.yaw(), spawn.pitch(), true);
+            });
             for (var entry : MapLayout.checkpoints().entrySet()) {
                 var cp = entry.getValue();
                 if (!MapBuilder.sectionIds().contains(cp.section())) continue;
@@ -51,6 +61,7 @@ public final class MapTourSmokeTest {
                     }
                 });
                 world.getConnection().waitForClientboundPackets();
+                context.waitFor(client -> client.player != null && client.player.blockPosition().equals(cp.pos()));
                 context.waitTicks(5);
                 world.getConnection().waitForChunksRender();
                 context.waitTicks(10);

@@ -26,6 +26,18 @@ class MapLayoutTest {
         assertFalse(box.contains(5, 3, 4)); assertFalse(box.contains(0.99, 3, 4));
         assertThrows(IllegalArgumentException.class, () -> new MapLayout.BlockBox(3, 0, 0, 2, 0, 0));
     }
+    @Test void landmarksAndSceneryRespectSectionOwnership() {
+        for (var entry : MapLayout.landmarks().entrySet()) {
+            var pos = entry.getValue();
+            var section = MapLayout.section(entry.getKey().split("\\.")[0]);
+            assertTrue(section.bounds().contains(pos.getX(), pos.getY(), pos.getZ()), entry.getKey());
+        }
+        for (var root : MapLayout.TREES) for (var section : MapLayout.sections().values()) {
+            var b = section.bounds();
+            assertTrue(root.getX() + 2 < b.minX() || root.getX() - 2 > b.maxX()
+                || root.getZ() + 2 < b.minZ() || root.getZ() - 2 > b.maxZ());
+        }
+    }
     @Test void unknownNamesFailClearlyAndContractsAreReadOnly() {
         assertThrows(IllegalArgumentException.class, () -> MapLayout.checkpoint("missing"));
         assertThrows(IllegalArgumentException.class, () -> MapLayout.section("missing"));
