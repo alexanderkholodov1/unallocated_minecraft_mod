@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SMOKE = ROOT / '.tmp' / 'smoke'
 FATAL = re.compile(
     r'Encountered an unexpected exception|Exception in thread|'
-    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|UNALLOCATED map command failed|'
+    r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|UNALLOCATED map command failed|UNALLOCATED story invalid|UNALLOCATED story build failed|'
     r'Failed to load sound|Unable to play (?:unknown|empty) soundEvent|Error loading sound', re.I
 )
 # In-game feature self-tests report failure in the game log; fail at once instead of waiting for the deadline.
@@ -263,11 +263,11 @@ def server(with_fabric_api=False):
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
     command = ['java', '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
-    startup = server_evidence(with_fabric_api)
+    startup = server_evidence(with_fabric_api) + [r'UNALLOCATED story loaded chapters=1 beats=0 endings=1 format=1']
     console_prefix = 'server-with-api' if with_fabric_api else 'server'
     entered = r'UNALLOCATED act=LOBBY enter t=0'
     status = (r'UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 '
-              r'budgetTicks=6000 checkpoint=lobby\.spawn')
+              r'budgetTicks=8400 checkpoint=lobby\.spawn')
     monitor(
         command, directory, SMOKE / f'{name}-console.log', startup + [entered, status, r'UNALLOCATED bait selftest passed'],
         timeout=120, stop_when_ready=not expects_rejection(api_version), startup_required=startup,
@@ -275,6 +275,7 @@ def server(with_fabric_api=False):
             ('unallocated build all', [r'UNALLOCATED map built section=all', r'UNALLOCATED map verified section=all']),
             ('unallocated mapcheck rebuild', [r'UNALLOCATED map regeneration verified sections=5']),
             ('unallocated act LOBBY', [entered]), ('unallocated status', [status]),
+            ('unallocated story check', [r'UNALLOCATED story check ok']),
             ('ubait selftest', [r'UNALLOCATED bait selftest passed'])],
         expected_rejection=api_version if expects_rejection(api_version) else None,
     )
@@ -300,6 +301,12 @@ def server(with_fabric_api=False):
                        ('unallocated status', [status])],
     )
     assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
+    latest.unlink()
+    example_command = command[:1] + ['-Dunallocated.story.dir=' + str(ROOT / 'src/test/resources/story-fixtures/valid/example')] + command[1:]
+    monitor(example_command, directory, SMOKE / 'server-story-example-console.log',
+            server_evidence() + [r'UNALLOCATED story loaded chapters=2 beats=7 endings=2 format=1', r'UNALLOCATED story check ok'],
+            timeout=120, stop_when_ready=True, startup_required=server_evidence(),
+            command_steps=[('unallocated story check', [r'UNALLOCATED story check ok'])])
 
 
 BAIT_SCREENSHOTS = (
@@ -335,7 +342,7 @@ def audio_evidence():
 
 
 def client_phases():
-    """Two real client processes share one game directory: a first start, then a restart."""
+    """Three real client processes share the accepted contract and options."""
     title = r'UNALLOCATED smoke: title screen reached from player JAR\.'
     modules = r'UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified\.'
     return {
@@ -372,6 +379,17 @@ def client_phases():
             'screenshots': ['unallocated-title-restart'],
             'timeout': 240,
         },
+        'story': {
+            'evidence': [modules, title,
+                r'UNALLOCATED smoke: contract skipped on second process with saved acceptance\.',
+                r'UNALLOCATED story autoplay run=0 ending=EXAMPLE_A complete',
+                r'UNALLOCATED story autoplay run=1 ending=EXAMPLE_B complete',
+                r'UNALLOCATED smoke: story both endings, captures, options and receipt verified\.',
+            ],
+            'screenshots': ['story-example-sign', 'story-example-end',
+                            'unallocated-story-farewell-a', 'unallocated-story-farewell-b'],
+            'timeout': 300,
+        },
     }
 
 
@@ -382,7 +400,7 @@ def verify_interface_screenshots(directory):
             raise RuntimeError(f'Client exited without a valid interface screenshot: {effect}')
 
 
-def client(with_fabric_api=None):
+def client(with_fabric_api=None, *, include_story=False):
     api_version = api_version_argument(with_fabric_api)
     name = profile_name('client', api_version)
     directory = SMOKE / name
@@ -398,6 +416,8 @@ def client(with_fabric_api=None):
     receipt = directory / 'unallocated' / 'contract.properties'
     original = None
     for phase, checks in client_phases().items():
+        if phase == 'story' and not include_story:
+            continue  # Preserve the reusable two-process contract check; CI explicitly runs all phases.
         monitor(
             ['gradle', '--daemon', '--console=plain', 'runClientSmoke', f'-PcontractSmokePhase={phase}',
              f'-PsmokeApiVersion={api_version or "none"}'],
@@ -441,7 +461,10 @@ def main():
     version = api_version_argument(args.fabric_api_version)
     if args.target == 'server-with-api':
         version = version or API_VERSION
-    {'server': server, 'client': client, 'server-with-api': server}[args.target](version)
+    if args.target == 'client':
+        client(version, include_story=True)
+    else:
+        server(version)
 
 
 if __name__ == '__main__':

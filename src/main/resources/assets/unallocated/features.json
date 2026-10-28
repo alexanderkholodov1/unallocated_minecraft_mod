@@ -2,11 +2,14 @@
   "acts": {
     "contract": false,
     "lobby": true,
-    "theft": false,
-    "loop": false,
-    "pocket": false,
+    "theft": true,
+    "loop": true,
+    "pocket": true,
     "climax": true,
     "epilogue": true
   },
-  "effects": { "options": false, "screamer": false }
+  "effects": {
+    "options": false,
+    "screamer": false
+  }
 }

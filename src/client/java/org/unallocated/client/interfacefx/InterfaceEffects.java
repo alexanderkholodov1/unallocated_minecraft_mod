@@ -23,10 +23,14 @@ import org.unallocated.client.effects.PerceptionOverrides.Perception;
 public final class InterfaceEffects {
     public enum Effect { F3, DEATH, SPLASH, LOADING, ADVANCEMENT, SENSITIVITY, FOV, GAMMA, SIGN }
     public record Request(Effect effect, int ticks, int generation, double strength,
-                          LeakLanguage language, long seed, BlockPos signPosition, Identifier advancementId) {
+                          LeakLanguage language, long seed, BlockPos signPosition, Identifier advancementId, Component customText) {
+        public Request(Effect effect, int ticks, int generation, double strength,
+                       LeakLanguage language, long seed, BlockPos signPosition, Identifier advancementId) {
+            this(effect, ticks, generation, strength, language, seed, signPosition, advancementId, null);
+        }
         public Request(Effect effect, int ticks, int generation, double strength,
                        LeakLanguage language, long seed, BlockPos signPosition) {
-            this(effect, ticks, generation, strength, language, seed, signPosition, null);
+            this(effect, ticks, generation, strength, language, seed, signPosition, null, null);
         }
         public Request {
             if (effect == null || language == null || generation < 0 || generation > 5
@@ -98,7 +102,7 @@ public final class InterfaceEffects {
             case GAMMA -> PerceptionOverrides.INSTANCE.apply(Perception.DARKNESS, (float) Math.abs(request.strength) * .08f, request.ticks);
             case ADVANCEMENT -> {
                 var holder = existingAdvancement != null ? existingAdvancement : Advancement.Builder.recipeAdvancement()
-                        .rootDisplay(Items.STRING, InterfaceTexts.inventedAdvancement(request.generation, request.language, request.seed),
+                        .rootDisplay(Items.STRING, request.customText != null ? request.customText : InterfaceTexts.inventedAdvancement(request.generation, request.language, request.seed),
                                 text(request, "goal"), Identifier.withDefaultNamespace("gui/advancements/backgrounds/stone"),
                                 AdvancementType.TASK, true, false, true)
                         .build(Identifier.fromNamespaceAndPath("unallocated", "interface/phantom_" + Long.toUnsignedString(request.seed)));
@@ -161,7 +165,7 @@ public final class InterfaceEffects {
         observe("F3");
         // Keep Block/Chunk/Facing coordinates truthful; clipboard, targeting and physics are untouched.
         return original.stream().map(line -> line.startsWith("XYZ:")
-                ? "XYZ: 30000001.000 / -4096.00000 / 30000001.000" : line).toList();
+                ? (ACTIVE.get(Effect.F3).request.customText != null ? ACTIVE.get(Effect.F3).request.customText.getString() : "XYZ: 30000001.000 / -4096.00000 / 30000001.000") : line).toList();
     }
 
     public static SignText signText(BlockPos position, SignText original) {
@@ -171,7 +175,7 @@ public final class InterfaceEffects {
         observe("SIGN");
         var copy = original.asMutable();
         for (int line = 0; line < 4; line++) {
-            copy.setLine(line, InterfaceTexts.line("sign" + line, request.generation, request.language));
+            copy.setLine(line, request.customText != null ? (line == 0 ? request.customText : Component.empty()) : InterfaceTexts.line("sign" + line, request.generation, request.language));
         }
         return copy.asImmutable();
     }
@@ -184,7 +188,7 @@ public final class InterfaceEffects {
     }
 
     private static Component text(Request request, String channel) {
-        return InterfaceTexts.line(channel, request.generation, request.language);
+        return request.customText != null ? request.customText : InterfaceTexts.line(channel, request.generation, request.language);
     }
 
     public static float perceivedFov(float original) {

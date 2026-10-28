@@ -15,7 +15,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 35
     continue-on-error: ${{ startsWith(github.ref, 'refs/heads/rehearsal/') }}
     strategy:
       fail-fast: false
@@ -84,7 +84,7 @@ jobs:
 
       - name: Smoke test client startup or Loader rejection (Fabric API ${{ matrix.api }})
         if: ${{ !cancelled() && steps.package.outcome == 'success' }}
-        timeout-minutes: 10
+        timeout-minutes: 16
         env:
           LIBGL_ALWAYS_SOFTWARE: 'true'
           SDL_VIDEODRIVER: x11

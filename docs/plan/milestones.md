@@ -321,7 +321,7 @@ a position key is named `where` unless the table names it (`to`, `lure`, `sign`)
 | `blackout` | `fade_in` (0.1), `hold` (0.5), `fade_out` (0.4), `color` (`#000000`) | full-screen cut |
 | `interface` | `effect` (`F3`, `DEATH`, `SPLASH`, `LOADING`, `ADVANCEMENT`, `SENSITIVITY`, `FOV`, `GAMMA`, `SIGN`), `seconds`, `generation` (0–5), `strength` (−1…1), `leak` (`es`/`en`/`mixed`), `seed`, `sign` (position, SIGN only), `advancement` (id, optional), `text` (optional text replacing the generated leak) | `docs/plan/INTERFACE.md`; a refusal is logged and skipped, never retried |
 | `audio` | `cue` (`ambient`, `threads`, `muffle`, `screamer`, `stop`), optional `where` (position; default the player) | `docs/audio/AUDIO.md` |
-| `post_effect` | `id` (vanilla post chain), `seconds` | only if 26.3 exposes post chains (package 2 decides and documents; otherwise this action is rejected at load) |
+| `post_effect` | — | Rejected at load in 26.3: no verified public API for applying a timed story post chain. |
 | `teleport` | `to` (position), `blackout` (default false) | moves the player, across dimensions too |
 | `bait` | `op`: `place` (keys `lure` position, `distances` list, `scare` bool, `appear_delay`, `fallback_after`, `max_lifetime`, `seed`), `step`, `scare`, `clear` | `docs/plan/SPYGLASS-BAIT.md` |
 | `command` | `run` (no leading `/`) | runs a vanilla command as the player, at the player, permission level 2, output hidden. Forbidden roots: `stop op deop kick ban ban-ip pardon pardon-ip whitelist save-all save-off save-on reload datapack publish debug perf jfr transfer tick` |

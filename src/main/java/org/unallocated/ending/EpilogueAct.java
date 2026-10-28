@@ -11,7 +11,7 @@ public final class EpilogueAct implements ActModule {
     public Act act() { return Act.EPILOGUE; }
     public boolean enabled(Features features) { return features.actEnabled(act()); }
     public void enter(ServerPlayer player, SessionState state) {
-        if (player != null) EndingController.close(player,
+        if (player != null && !org.unallocated.story.StoryRuntime.get(player.level().getServer()).closeEnding(player)) EndingController.close(player,
             new EndingController.Ending("SERVER_CLOSED", EndingText.reason()));
     }
     public void tick(ServerPlayer player, SessionState state) {}

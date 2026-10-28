@@ -149,6 +149,10 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     useXVFB = true
     jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
     jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
+    if (providers.gradleProperty('contractSmokePhase').getOrElse('first') == 'story') {
+        jvmArgs.add('-Dunallocated.story.dir=' + layout.projectDirectory.dir('src/test/resources/story-fixtures/valid/example').asFile.absolutePath)
+        jvmArgs.add('-Dunallocated.story.autoplay=true')
+    }
     if (providers.gradleProperty('smokeExpectRejection').getOrElse('false').toBoolean()) {
         // CI verifies Loader's error text; do not leave its Swing error dialog waiting for a click.
         jvmArgs.add('-Djava.awt.headless=true')

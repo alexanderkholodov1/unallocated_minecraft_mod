@@ -56,32 +56,34 @@ public final class CoreSessionSmokeTest {
                     throw new AssertionError("Rescue ignored its per-act delay");
                 }
             });
-            world.getServer().waitFor(server -> CoreRuntime.get(server).state().elapsedActTicks() >= ActSequencer.RESCUE_DELAY_TICKS);
-            world.getServer().runOnServer(server -> {
-                var runtime = CoreRuntime.get(server);
-                var player = world.getConnection().getServerPlayer();
-                int first = rescue(server, player);
-                int second = rescue(server, player);
-                if (first != 1 || second != 0 || runtime.state().act() != Act.CLIMAX) {
-                    throw new AssertionError("No-cheats rescue did not advance exactly one act");
-                }
-            });
-            world.getConnection().waitForClientboundPackets();
-            context.waitFor(client -> ClientSession.act() == Act.CLIMAX);
         } finally { armOnStart.set(false); }
         assertSessionFile(save.getSaveDirectory(), true);
-        try (var world = save.open()) {
-            world.getServer().runOnServer(server -> {
+        // Persist/reopen the active chapter before its only rescue checkpoint reaches EPILOGUE.
+        var world = save.open();
+        world.getServer().runOnServer(server -> {
+            var runtime = CoreRuntime.get(server);
+            if (!runtime.state().active() || runtime.state().act() != Act.LOBBY
+                    || !runtime.state().flags().contains("story.entered.free_roam")) {
+                throw new AssertionError("Single-player reload lost session progress");
+            }
+        });
+        world.getServer().waitFor(server -> CoreRuntime.get(server).state().elapsedActTicks() >= ActSequencer.RESCUE_DELAY_TICKS);
+        world.getServer().runOnServer(server -> {
+            var runtime = CoreRuntime.get(server);
+            var player = world.getConnection().getServerPlayer();
+            int first = rescue(server, player);
+            int second = rescue(server, player);
+            if (first != 1 || second != 0 || runtime.state().act() != Act.EPILOGUE || !runtime.state().finished()) {
+                throw new AssertionError("No-cheats rescue did not advance exactly one enabled act and retain terminal guard");
+            }
+        });
+        context.waitForScreen(net.minecraft.client.gui.screens.DisconnectedScreen.class);
+        context.clickScreenButton(org.unallocated.ending.EndingText.RETURN_BUTTON);
+        context.waitForScreen(net.minecraft.client.gui.screens.TitleScreen.class);
+        try (var reloaded = save.open()) {
+            reloaded.getServer().runOnServer(server -> {
                 var runtime = CoreRuntime.get(server);
-                if (!runtime.state().active() || runtime.state().act() != Act.CLIMAX) {
-                    throw new AssertionError("Single-player reload lost session progress");
-                }
-                // Exercise the core's terminal/rescue guard without invoking the player disconnect;
-                // EndingSmokeTest separately verifies the real-player EPILOGUE and teardown.
-                runtime.sequencer().advance(null);
-                runtime.sequencer().advance(null);
-                var player = world.getConnection().getServerPlayer();
-                if (!runtime.state().finished() || rescue(server, player) != 0) {
+                if (!runtime.state().finished() || rescue(server, reloaded.getConnection().getServerPlayer()) != 0) {
                     throw new AssertionError("Rescue reactivated a finished session");
                 }
             });

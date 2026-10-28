@@ -30,7 +30,8 @@
     {
       "config": "unallocated-audio.client.mixins.json",
       "environment": "client"
-    }
+    },
+    "unallocated.story.mixins.json"
   ],
   "entrypoints": {
     "main": [

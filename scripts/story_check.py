@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 import json
+import math
 from pathlib import Path
 import re
 import sys
@@ -40,6 +41,24 @@ INTERFACE_EFFECT_MAX_SECONDS = {
 VALID_PLACEHOLDERS = {
     "player", "agreement", "local_time", "world", "elapsed_min", "deaths"
 }
+
+
+def is_number(value: Any) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
+def unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"Duplicate JSON key '{key}'")
+        result[key] = value
+    return result
+
+
+def strict_json(content):
+    return json.loads(content, object_pairs_hook=unique_object,
+                      parse_constant=lambda value: (_ for _ in ()).throw(ValueError('Non-finite JSON number: ' + value)))
 
 
 @dataclass
@@ -225,7 +244,7 @@ class Validator:
                 ):
                     self.add_finding(file, f"{pointer}/anchor", "error", "unknown-anchor", f"Unknown anchor '{anc}'")
                 offset = pos.get("offset")
-                if not isinstance(offset, list) or len(offset) != 3 or not all(isinstance(x, (int, float)) for x in offset):
+                if not isinstance(offset, list) or len(offset) != 3 or not all(is_number(x) for x in offset):
                     self.add_finding(file, f"{pointer}/offset", "error", "bad-value", "Position offset must be [dx, dy, dz]")
             elif "pos" in pos:
                 allowed = {"pos", "dimension", "yaw", "pitch"}
@@ -233,7 +252,7 @@ class Validator:
                     if k not in allowed:
                         self.add_finding(file, f"{pointer}/{k}", "error", "unknown-key", f"Unknown key '{k}' in position")
                 p = pos["pos"]
-                if not isinstance(p, list) or len(p) != 3 or not all(isinstance(x, (int, float)) for x in p):
+                if not isinstance(p, list) or len(p) != 3 or not all(is_number(x) for x in p):
                     self.add_finding(file, f"{pointer}/pos", "error", "bad-value", "Position pos must be [x, y, z]")
                 if "dimension" in pos and pos["dimension"] not in ("overworld", "pocket"):
                     self.add_finding(file, f"{pointer}/dimension", "error", "bad-value", "Dimension must be 'overworld' or 'pocket'")
@@ -257,7 +276,7 @@ class Validator:
                     if k not in allowed:
                         self.add_finding(file, f"{pointer}/{k}", "error", "unknown-key", f"Unknown key '{k}' in zone")
                 box = zone["box"]
-                if not isinstance(box, list) or len(box) != 6 or not all(isinstance(x, (int, float)) for x in box):
+                if not isinstance(box, list) or len(box) != 6 or not all(is_number(x) for x in box):
                     self.add_finding(file, f"{pointer}/box", "error", "bad-value", "Zone box must be [x1, y1, z1, x2, y2, z2]")
                 if "dimension" in zone and zone["dimension"] not in ("overworld", "pocket"):
                     self.add_finding(file, f"{pointer}/dimension", "error", "bad-value", "Dimension must be 'overworld' or 'pocket'")
@@ -322,7 +341,7 @@ class Validator:
                 self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Missing 'seconds' in after trigger")
             else:
                 s = trigger["seconds"]
-                if not isinstance(s, (int, float)):
+                if not is_number(s):
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Trigger seconds must be a number")
                 elif s < 0:
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-time", "Trigger seconds cannot be negative")
@@ -358,7 +377,7 @@ class Validator:
                 self.validate_zone(trigger["zone"], file, f"{pointer}/zone")
             if "seconds" in trigger:
                 s = trigger["seconds"]
-                if not isinstance(s, (int, float)):
+                if not is_number(s):
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Seconds must be a number")
                 elif s < 0:
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-time", "Seconds cannot be negative")
@@ -376,7 +395,7 @@ class Validator:
                 self.add_finding(file, f"{pointer}/degrees", "error", "bad-value", "Degrees must be a number")
             if "seconds" in trigger:
                 s = trigger["seconds"]
-                if not isinstance(s, (int, float)):
+                if not is_number(s):
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Seconds must be a number")
                 elif s < 0:
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-time", "Seconds cannot be negative")
@@ -473,7 +492,7 @@ class Validator:
                 self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", f"Missing 'seconds' in {ttype} trigger")
             else:
                 s = trigger["seconds"]
-                if not isinstance(s, (int, float)):
+                if not is_number(s):
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Seconds must be a number")
                 elif s < 0:
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-time", "Seconds cannot be negative")
@@ -513,7 +532,7 @@ class Validator:
                 self.add_finding(file, f"{pointer}/distance", "error", "bad-value", "Distance must be a number")
             if "seconds" in trigger:
                 s = trigger["seconds"]
-                if not isinstance(s, (int, float)):
+                if not is_number(s):
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Seconds must be a number")
                 elif s < 0:
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-time", "Seconds cannot be negative")
@@ -542,7 +561,7 @@ class Validator:
         valid_actions = {
             "flag", "counter", "next_chapter", "end", "cancel", "title",
             "actionbar", "chat", "blackout", "interface", "audio",
-            "post_effect", "teleport", "bait", "command", "function",
+            "teleport", "bait", "command", "function",
             "copy", "corrupt", "creature"
         }
         if do not in valid_actions:
@@ -552,7 +571,7 @@ class Validator:
         # Check 'at' time
         if "at" in action:
             at_val = action["at"]
-            if not isinstance(at_val, (int, float)):
+            if not is_number(at_val):
                 self.add_finding(file, f"{pointer}/at", "error", "bad-value", "Action 'at' must be a number")
             elif at_val < 0 or at_val > 600:
                 self.add_finding(file, f"{pointer}/at", "error", "bad-time", f"Action 'at' ({at_val}) must be between 0 and 600")
@@ -647,7 +666,7 @@ class Validator:
             for t_k in ("fade_in", "stay", "fade_out"):
                 if t_k in action:
                     v = action[t_k]
-                    if not isinstance(v, (int, float)):
+                    if not is_number(v):
                         self.add_finding(file, f"{pointer}/{t_k}", "error", "bad-value", f"{t_k} must be a number")
                     elif v < 0:
                         self.add_finding(file, f"{pointer}/{t_k}", "error", "bad-time", f"{t_k} cannot be negative")
@@ -682,7 +701,7 @@ class Validator:
             for t_k in ("fade_in", "hold", "fade_out"):
                 if t_k in action:
                     v = action[t_k]
-                    if not isinstance(v, (int, float)):
+                    if not is_number(v):
                         self.add_finding(file, f"{pointer}/{t_k}", "error", "bad-value", f"{t_k} must be a number")
                     elif v < 0:
                         self.add_finding(file, f"{pointer}/{t_k}", "error", "bad-time", f"{t_k} cannot be negative")
@@ -710,7 +729,7 @@ class Validator:
                 self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Missing 'seconds' in interface action")
             else:
                 s = action["seconds"]
-                if not isinstance(s, (int, float)):
+                if not is_number(s):
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Seconds must be a number")
                 elif s < 0 or (effect in INTERFACE_EFFECT_MAX_SECONDS and s > INTERFACE_EFFECT_MAX_SECONDS[effect]):
                     max_s = INTERFACE_EFFECT_MAX_SECONDS.get(effect, "max")
@@ -722,7 +741,7 @@ class Validator:
                     self.add_finding(file, f"{pointer}/generation", "error", "bad-value", "Generation must be integer 0-5")
             if "strength" in action:
                 st = action["strength"]
-                if not isinstance(st, (int, float)) or st < -1.0 or st > 1.0:
+                if not is_number(st) or st < -1.0 or st > 1.0:
                     self.add_finding(file, f"{pointer}/strength", "error", "bad-value", "Strength must be number -1...1")
             if "leak" in action:
                 lk = action["leak"]
@@ -781,7 +800,7 @@ class Validator:
                 self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Missing 'seconds' in post_effect action")
             else:
                 s = action["seconds"]
-                if not isinstance(s, (int, float)):
+                if not is_number(s):
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-value", "Seconds must be a number")
                 elif s < 0:
                     self.add_finding(file, f"{pointer}/seconds", "error", "bad-time", "Seconds cannot be negative")
@@ -816,7 +835,7 @@ class Validator:
                     self.validate_position(action["lure"], file, f"{pointer}/lure")
                 if "distances" in action:
                     dist = action["distances"]
-                    if not isinstance(dist, list) or not all(isinstance(x, (int, float)) and x > 0 for x in dist):
+                    if not isinstance(dist, list) or not all(is_number(x) and x > 0 for x in dist):
                         self.add_finding(file, f"{pointer}/distances", "error", "bad-value", "Distances must be list of positive numbers")
                     else:
                         # strictly decreasing
@@ -831,7 +850,7 @@ class Validator:
                 for t_k in ("appear_delay", "fallback_after", "max_lifetime"):
                     if t_k in action:
                         v = action[t_k]
-                        if not isinstance(v, (int, float)):
+                        if not is_number(v):
                             self.add_finding(file, f"{pointer}/{t_k}", "error", "bad-value", f"{t_k} must be a number")
                         elif v < 0:
                             self.add_finding(file, f"{pointer}/{t_k}", "error", "bad-time", f"{t_k} cannot be negative")
@@ -840,6 +859,8 @@ class Validator:
                     if not (isinstance(sd, int) and not isinstance(sd, bool)):
                         self.add_finding(file, f"{pointer}/seed", "error", "bad-value", "Seed must be integer")
             else:
+                if op == "scare" and not self.effects_screamer:
+                    self.add_finding(file, f"{pointer}/scare", "error", "feature-off", "Bait scare disabled by features")
                 allowed = {"do", "at", "op"}
                 for k in action:
                     if k not in allowed:
@@ -916,7 +937,7 @@ class Validator:
                         self.add_finding(file, f"{pointer}/rules/{idx}/ratio", "error", "bad-value", "Missing 'ratio' in corrupt rule")
                     else:
                         rat = r["ratio"]
-                        if not isinstance(rat, (int, float)) or rat < 0.0 or rat > 1.0:
+                        if not is_number(rat) or rat < 0.0 or rat > 1.0:
                             self.add_finding(file, f"{pointer}/rules/{idx}/ratio", "error", "bad-value", "Corrupt rule ratio must be 0-1")
             if "seed" in action:
                 sd = action["seed"]
@@ -924,7 +945,7 @@ class Validator:
                     self.add_finding(file, f"{pointer}/seed", "error", "bad-value", "Seed must be integer")
             if "over_seconds" in action:
                 s = action["over_seconds"]
-                if not isinstance(s, (int, float)):
+                if not is_number(s):
                     self.add_finding(file, f"{pointer}/over_seconds", "error", "bad-value", "over_seconds must be a number")
                 elif s < 0:
                     self.add_finding(file, f"{pointer}/over_seconds", "error", "bad-time", "over_seconds cannot be negative")
@@ -979,7 +1000,7 @@ class Validator:
                     self.validate_position(action["where"], file, f"{pointer}/where")
                 if "facing" in action:
                     f = action["facing"]
-                    if f != "player" and not isinstance(f, (int, float)):
+                    if f != "player" and not is_number(f):
                         self.add_finding(file, f"{pointer}/facing", "error", "bad-value", "Facing must be 'player' or number")
 
             elif op == "stalk":
@@ -1053,7 +1074,7 @@ class Validator:
                         beat_autoplay_input = ap["input"]
                 if "wait_seconds" in ap:
                     ws = ap["wait_seconds"]
-                    if not isinstance(ws, (int, float)):
+                    if not is_number(ws):
                         self.add_finding(file, f"{pointer}/autoplay/wait_seconds", "error", "bad-value", "wait_seconds must be a number")
                     elif ws < 0:
                         self.add_finding(file, f"{pointer}/autoplay/wait_seconds", "error", "bad-time", "wait_seconds cannot be negative")
@@ -1113,7 +1134,7 @@ class Validator:
                     self.add_finding(file, f"{pointer}/repeat/cooldown_seconds", "error", "bad-value", "Missing cooldown_seconds in repeat")
                 else:
                     cs = rep["cooldown_seconds"]
-                    if not isinstance(cs, (int, float)):
+                    if not is_number(cs):
                         self.add_finding(file, f"{pointer}/repeat/cooldown_seconds", "error", "bad-value", "cooldown_seconds must be a number")
                     elif cs < 0:
                         self.add_finding(file, f"{pointer}/repeat/cooldown_seconds", "error", "bad-time", "cooldown_seconds cannot be negative")
@@ -1142,7 +1163,7 @@ class Validator:
                     self.add_finding(file, f"{pointer}/capture/at", "error", "bad-value", "Missing 'at' in capture")
                 else:
                     ca = cap["at"]
-                    if not isinstance(ca, (int, float)):
+                    if not is_number(ca):
                         self.add_finding(file, f"{pointer}/capture/at", "error", "bad-value", "Capture 'at' must be a number")
                     elif ca < 0:
                         self.add_finding(file, f"{pointer}/capture/at", "error", "bad-time", "Capture 'at' cannot be negative")
@@ -1162,7 +1183,7 @@ class Validator:
 
         try:
             content = ch_path.read_text(encoding="utf-8")
-            data = json.loads(content)
+            data = strict_json(content)
         except Exception as e:
             self.add_finding(file_rel, "", "error", "bad-json", f"Malformed JSON: {e}")
             return
@@ -1191,7 +1212,7 @@ class Validator:
             self.add_finding(file_rel, "/budget_seconds", "error", "bad-value", "Missing required key 'budget_seconds'")
         else:
             bs = data["budget_seconds"]
-            if not isinstance(bs, (int, float)):
+            if not is_number(bs):
                 self.add_finding(file_rel, "/budget_seconds", "error", "bad-value", "budget_seconds must be a number")
             elif bs < 30 or bs > 1200:
                 self.add_finding(file_rel, "/budget_seconds", "error", "bad-time", f"budget_seconds ({bs}) must be between 30 and 1200")
@@ -1234,7 +1255,7 @@ class Validator:
 
         try:
             content = story_path.read_text(encoding="utf-8")
-            data = json.loads(content)
+            data = strict_json(content)
         except Exception as e:
             self.add_finding(story_file, "", "error", "bad-json", f"Malformed JSON: {e}")
             return None
@@ -1262,7 +1283,7 @@ class Validator:
 
         # format
         if "format" in data:
-            if data["format"] != 1:
+            if isinstance(data["format"], bool) or data["format"] != 1:
                 self.add_finding(story_file, "/format", "error", "bad-value", f"Format must be 1, got {data['format']}")
 
         # languages
@@ -1315,7 +1336,7 @@ class Validator:
                         for ak in v:
                             if ak not in anc_allowed:
                                 self.add_finding(story_file, f"/anchors/{k}/{ak}", "error", "unknown-key", f"Unknown key '{ak}' in anchor")
-                        if "pos" not in v or not isinstance(v["pos"], list) or len(v["pos"]) != 3 or not all(isinstance(x, (int, float)) for x in v["pos"]):
+                        if "pos" not in v or not isinstance(v["pos"], list) or len(v["pos"]) != 3 or not all(is_number(x) for x in v["pos"]):
                             self.add_finding(story_file, f"/anchors/{k}/pos", "error", "bad-value", "Anchor pos must be [x, y, z]")
                         if "dimension" in v and v["dimension"] not in ("overworld", "pocket"):
                             self.add_finding(story_file, f"/anchors/{k}/dimension", "error", "bad-value", "Dimension must be 'overworld' or 'pocket'")
@@ -1349,7 +1370,7 @@ class Validator:
                         for zk in v:
                             if zk not in zn_allowed:
                                 self.add_finding(story_file, f"/zones/{k}/{zk}", "error", "unknown-key", f"Unknown key '{zk}' in zone")
-                        if "box" not in v or not isinstance(v["box"], list) or len(v["box"]) != 6 or not all(isinstance(x, (int, float)) for x in v["box"]):
+                        if "box" not in v or not isinstance(v["box"], list) or len(v["box"]) != 6 or not all(is_number(x) for x in v["box"]):
                             self.add_finding(story_file, f"/zones/{k}/box", "error", "bad-value", "Zone box must be [x1, y1, z1, x2, y2, z2]")
                         if "dimension" in v and v["dimension"] not in ("overworld", "pocket"):
                             self.add_finding(story_file, f"/zones/{k}/dimension", "error", "bad-value", "Dimension must be 'overworld' or 'pocket'")

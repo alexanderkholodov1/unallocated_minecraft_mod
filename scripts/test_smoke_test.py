@@ -1,5 +1,6 @@
 """Exercise watchdog failure paths with Python subprocesses, never Minecraft/Java."""
 
+from unittest.mock import patch
 from contextlib import redirect_stderr, redirect_stdout
 import io
 from pathlib import Path
@@ -7,7 +8,7 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 
-from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION, api_version_argument, profile_name, expects_rejection, verify_interface_screenshots
+from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION, api_version_argument, profile_name, expects_rejection, verify_interface_screenshots, client_phases
 
 
 COMMON = r'UNALLOCATED initialized \(common\)\.'
@@ -169,6 +170,27 @@ class WatchdogTest(unittest.TestCase):
                 "time.sleep(20)\n",
                 required=('UNALLOCATED map built section=all',), timeout=1,
             )
+
+    def test_story_validation_marker_is_fatal(self):
+        with self.assertRaisesRegex(RuntimeError, 'crash'):
+            self.run_fixture("log.write_text('UNALLOCATED story invalid story.json#/format: [bad-value] fixture')\n", required=())
+
+    def test_ci_entrypoint_requests_all_three_client_phases(self):
+        import smoke_test
+        with patch.object(sys, 'argv', ['smoke_test.py', 'client']), patch.dict(smoke_test.os.environ, {'CI': 'true'}), patch.object(smoke_test, 'client') as client:
+            smoke_test.main()
+            client.assert_called_once_with(None, include_story=True)
+
+    def test_story_phase_requires_both_endings_and_every_capture(self):
+        phases = client_phases()
+        self.assertEqual(list(phases), ['first', 'restart', 'story'])
+        story = phases['story']
+        self.assertIn('story-example-sign', story['screenshots'])
+        self.assertIn('story-example-end', story['screenshots'])
+        for letter in ('a', 'b'):
+            self.assertIn('unallocated-story-farewell-' + letter, story['screenshots'])
+        for index, ending in enumerate(('EXAMPLE_A', 'EXAMPLE_B')):
+            self.assertTrue(any(f'run={index} ending={ending} complete' in line for line in story['evidence']))
 
     def test_asynchronous_audio_failure_fails(self):
         with self.assertRaisesRegex(RuntimeError, 'crash'):

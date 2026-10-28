@@ -13,7 +13,7 @@ import org.unallocated.core.ServerEvents;
 public final class EndingController {
     public record Ending(String id, Component reason) {
         public Ending {
-            if (!Objects.requireNonNull(id).matches("[A-Z_]{1,32}")) {
+            if (!Objects.requireNonNull(id).matches("[A-Z][A-Z0-9_]{0,31}")) {
                 throw new IllegalArgumentException("Invalid ending id");
             }
             Objects.requireNonNull(reason);

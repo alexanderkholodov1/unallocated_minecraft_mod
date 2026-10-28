@@ -14,6 +14,7 @@ public final class UnallocatedMod implements ModInitializer {
         org.unallocated.core.CoreRuntime.initialize();
         org.unallocated.map.MapCommand.register();
         org.unallocated.audio.AudioSounds.initialize();
+        org.unallocated.story.StoryRuntime.initialize();
         LOGGER.info("UNALLOCATED initialized (common).");
     }
 }

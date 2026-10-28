@@ -61,6 +61,7 @@ public final class SpyglassBait {
         active.logic.cancel();
         active.discard(player.level());
         UnallocatedMod.LOGGER.info("UNALLOCATED bait gone cause={}", cause);
+        org.unallocated.story.StoryRuntime.signal(player, "bait", "gone", null);
         return true;
     }
 
@@ -177,12 +178,14 @@ public final class SpyglassBait {
                 case SCARE -> {
                     if (figure != null) SpyglassBaitFigure.lunge(player, figure);
                     SpyglassBaitSignals.scare(player.getUUID());
+                    org.unallocated.story.StoryRuntime.signal(player, "bait", "screamer", null);
                     UnallocatedMod.LOGGER.info("UNALLOCATED bait scare cause={} sightings={}", decision.cause(),
                             logic.sightings());
                 }
                 case REMOVE -> {
                     discard(level);
                     UnallocatedMod.LOGGER.info("UNALLOCATED bait gone cause={}", decision.cause());
+                    org.unallocated.story.StoryRuntime.signal(player, "bait", "gone", null);
                 }
                 case NONE -> {
                     if (figure != null && decision.unseen() && ticks % 10 == 0) {
@@ -192,6 +195,7 @@ public final class SpyglassBait {
             }
             if (logic.step() != lastStep) {
                 lastStep = logic.step();
+                org.unallocated.story.StoryRuntime.signal(player, "bait", "step", null);
                 UnallocatedMod.LOGGER.info(String.format(Locale.ROOT,
                         "UNALLOCATED bait step=%d/%d distance=%.1f cause=%s sightings=%d", lastStep,
                         logic.spec().lastStep(), logic.currentDistance(), decision.cause().isEmpty() ? "walked"

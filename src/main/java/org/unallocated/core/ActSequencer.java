@@ -18,6 +18,8 @@ public final class ActSequencer {
     private final Consumer<String> log;
     private boolean needsEnter = true;
     private boolean transitioning;
+    private boolean forcing;
+    private Act requestedJump;
     private int revision;
     private Act debugTarget;
     private int activeBudget;
@@ -102,13 +104,30 @@ public final class ActSequencer {
         try {
             marker(state.act(), action);
             if (force && module() != null) {
-                try { module().forceAdvance(player, state); }
+                try { forcing = true; module().forceAdvance(player, state); }
                 catch (RuntimeException e) { failed("forceAdvance", e); }
+                finally { forcing = false; }
             }
-            Act next = nextEnabled(state.act().ordinal());
+            Act next = requestedJump != null ? requestedJump : nextEnabled(state.act().ordinal());
+            requestedJump = null;
             if (next == null) { state.finish(); needsEnter = false; revision++; }
             else moveTo(next);
         } finally { transitioning = false; }
+        enter(player);
+    }
+
+    /** Content jump: active sessions only, enabled forward targets, truthful completion marker.
+     * Escape may select a destination; ActChanged listeners retain the reentrancy guard. */
+    public void jump(Act target, ServerPlayer player) {
+        if (!state.active() || target.ordinal() <= state.act().ordinal()) return;
+        if (transitioning) {
+            if (forcing && enabled(target)) requestedJump = target;
+            return;
+        }
+        if (!enabled(target)) return;
+        transitioning = true;
+        try { marker(state.act(), "complete"); moveTo(target); }
+        finally { transitioning = false; }
         enter(player);
     }
 

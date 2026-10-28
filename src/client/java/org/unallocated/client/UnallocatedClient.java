@@ -9,6 +9,7 @@ public final class UnallocatedClient implements ClientModInitializer {
         org.unallocated.client.core.ClientSession.initialize();
         org.unallocated.client.ending.EndingClient.initialize();
         org.unallocated.client.effects.SoundEffects.initialize();
+        org.unallocated.client.story.StoryClient.initialize();
         UnallocatedMod.LOGGER.info("UNALLOCATED initialized (client).");
     }
 }
