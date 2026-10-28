@@ -52,7 +52,7 @@ public final class StoryRuntime {
         loaded = StoryLoader.load(StoryLoader.resources(), new StoryValidator(server));
         for (var finding : loaded.findings()) UnallocatedMod.LOGGER.warn(finding.marker());
         if (loaded.valid()) {
-            var validator = new StoryValidator(server);
+            var validator = new StoryValidator(server); validator.bind(loaded.data());
             for (JsonObject chapter : loaded.data().chapters()) {
                 String id = string(chapter, "id", "");
                 for (String key : List.of("on_enter", "on_resume", "escape")) compile(id + "." + key, array(chapter, key), new JsonObject(), validator);
@@ -112,6 +112,7 @@ public final class StoryRuntime {
             JsonObject beat = e.getAsJsonObject(); JsonObject when = object(beat, "when");
             if (chatTrigger(when, text, false) && eligible(beat)) { hide |= chatTrigger(when, text, true); fire(string(beat, "id", "")); }
         }
+        signals.removeIf(signal -> signal.type.equals("chat"));
         return hide;
     }
     public ServerEventBus events() { return events; }
@@ -187,7 +188,7 @@ public final class StoryRuntime {
         if (participant == null) participant = server.getPlayerList().getPlayers().stream().findFirst().orElse(null);
         if (participant == null) return false;
         if (!state.active() || currentChapter() == null || !beats.containsKey(beatId)
-                || !beatId.startsWith(string(currentChapter(), "id", "") + ".") || !eligible(beats.get(beatId))) return false;
+                || !beatId.startsWith(string(currentChapter(), "id", "") + ".") || skipped(beatId) || !eligible(beats.get(beatId))) return false;
         state.addFlag("story.fired." + beatId);
         state.setCounter("story.fired_at." + beatId, (int) state.elapsedSessionTicks());
         state.setCounter("story.repeat." + beatId, state.counters().getOrDefault("story.repeat." + beatId, 0) + 1);
@@ -199,15 +200,18 @@ public final class StoryRuntime {
     private void drain(boolean clock) {
         int before = generation;
         scheduler.tick(id -> steps.getOrDefault(id, List.of()), (id, index) -> {
-            JsonObject source = sources.get(id);
-            String actionName = index < array(source, "actions").size() ? string(array(source, "actions").get(index).getAsJsonObject(), "do", "capture") : "capture";
-            String result;
-            try { executingBeat = id; result = actions.get(id).get(index).execute(this, participant); }
-            catch (RuntimeException e) { UnallocatedMod.LOGGER.error("UNALLOCATED story action failed beat=" + id, e); result = "refused"; }
-            executingBeat = "";
-            log("action beat=" + id + " do=" + actionName + " result=" + result);
+            execute(id, index);
             return before == generation && state.active();
         }, clock);
+    }
+    private void execute(String id, int index) {
+        JsonObject source = sources.get(id);
+        String actionName = index < array(source, "actions").size() ? string(array(source, "actions").get(index).getAsJsonObject(), "do", "capture") : "capture";
+        String result;
+        try { executingBeat = id; result = actions.get(id).get(index).execute(this, participant); }
+        catch (RuntimeException e) { UnallocatedMod.LOGGER.error("UNALLOCATED story action failed beat=" + id, e); result = "refused"; }
+        executingBeat = "";
+        log("action beat=" + id + " do=" + actionName + " result=" + result);
     }
     public void cancel(String id) { scheduler.cancel(id); }
     public void next(ServerPlayer player) {
@@ -303,7 +307,12 @@ public final class StoryRuntime {
             log("chapter=" + string(chapter, "id", "") + " slot=" + act() + " escape"); r.scheduler.cancel(null); r.generation++;
             // Rescue is synchronous by core contract: execute escape in stable at/file order.
             String source = string(chapter, "id", "") + ".escape";
-            for (var step : r.steps.get(source)) r.actions.get(source).get(step.index()).execute(r, p);
+            r.participant = p;
+            int before = r.generation;
+            for (var step : r.steps.get(source)) {
+                r.execute(source, step.index());
+                if (before != r.generation) break;
+            }
         }
         public String checkpointId() {
             StoryRuntime r = runtime(); return r.loaded.valid() && index < r.loaded.data().chapters().size() ? r.loaded.data().chapters().get(index).get("checkpoint").toString().replace("\"", "") : "lobby.spawn";

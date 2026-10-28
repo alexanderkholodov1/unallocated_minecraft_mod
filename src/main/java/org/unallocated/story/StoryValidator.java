@@ -22,6 +22,7 @@ public final class StoryValidator {
         public final String file, pointer;
         public final JsonObject beat;
         Context(String file, String pointer, JsonObject beat) { this.file = file; this.pointer = pointer; this.beat = beat; }
+        public Context child(String suffix) { return context(file, pointer + suffix, beat); }
         public void error(String suffix, String rule, String message) { StoryValidator.this.error(file, pointer + suffix, rule, message); }
         public void keys(JsonObject o, String allowed, String required) { StoryValidator.this.keys(o, file, pointer, allowed, required); }
         public void position(JsonElement e, String key) { StoryValidator.this.position(e, file, pointer + "/" + key, false); }
@@ -47,6 +48,10 @@ public final class StoryValidator {
     }
     public StoryValidator(MinecraftServer server, Predicate<String> functionExists, boolean options, boolean screamer) {
         this.server = server; this.functionExists = functionExists; this.options = options; this.screamer = screamer;
+    }
+    void bind(StoryData data) {
+        root = data.root();
+        languages = array(root, "languages").asList().stream().filter(StoryValidator::isString).map(JsonElement::getAsString).toList();
     }
     public List<Finding> findings() { return findings; }
     public void error(String file, String pointer, String rule, String message) { findings.add(new Finding(file, pointer, rule, message, false)); }
@@ -134,10 +139,26 @@ public final class StoryValidator {
             var parsed = server.getCommands().getDispatcher().parse(cmd, server.createCommandSourceStack().withPermission(LevelBasedPermissionSet.GAMEMASTER));
             if (parsed.getReader().canRead() || !parsed.getExceptions().isEmpty() || parsed.getContext().getCommand() == null)
                 error(f, p, "bad-command", "Server dispatcher rejected command");
-            // Resource arguments may parse syntactically while the underlying structure is absent.
-            var matcher = Pattern.compile("(?:^| )place (?:template|structure) ([a-z0-9_:./-]+)").matcher(cmd);
-            if (matcher.find() && cmd.contains("place template ") && server.getStructureTemplateManager().get(Identifier.parse(matcher.group(1))).isEmpty())
-                error(f, p, "bad-value", "Structure template does not exist");
+            // Parsing accepts symbolic names. Resolve their real argument types without executing.
+            for (var context = parsed.getContext(); context != null; context = context.getChild()) {
+                var built = context.build(cmd);
+                for (var parsedNode : context.getNodes()) {
+                    if (!(parsedNode.getNode() instanceof com.mojang.brigadier.tree.ArgumentCommandNode<?, ?> argument)) continue;
+                    try {
+                        if (argument.getType() instanceof net.minecraft.commands.arguments.DimensionArgument)
+                            net.minecraft.commands.arguments.DimensionArgument.getDimension(built, argument.getName());
+                        else if (argument.getType() instanceof net.minecraft.commands.arguments.item.FunctionArgument)
+                            net.minecraft.commands.arguments.item.FunctionArgument.getFunctions(built, argument.getName());
+                        else if (argument.getName().equals("structure") && argument.getType() instanceof net.minecraft.commands.arguments.ResourceKeyArgument<?>)
+                            net.minecraft.commands.arguments.ResourceKeyArgument.getStructure(built, argument.getName());
+                        else if (argument.getName().equals("template") && built.getArgument(argument.getName(), Object.class) instanceof Identifier template
+                                && server.getStructureTemplateManager().get(template).isEmpty())
+                            error(f, p, "bad-value", "Structure template does not exist: " + template);
+                    } catch (com.mojang.brigadier.exceptions.CommandSyntaxException | IllegalArgumentException missing) {
+                        error(f, p, argument.getType() instanceof net.minecraft.commands.arguments.item.FunctionArgument ? "unknown-function" : "bad-value", missing.getMessage());
+                    }
+                }
+            }
         }
     }
     public void validate(StoryData data) {
@@ -147,6 +168,7 @@ public final class StoryValidator {
         if (!root.has("languages") || !root.get("languages").isJsonArray()) error(f, "/languages", "bad-value", "Expected language list");
         for (String key : List.of("anchors", "zones", "endings", "build", "autoplay")) if (root.has(key) && !root.get(key).isJsonObject()) error(f, "/" + key, "bad-value", "Expected object");
         languages = array(root, "languages").asList().stream().filter(StoryValidator::isString).map(JsonElement::getAsString).toList();
+        for (int i = 0; i < array(root, "languages").size(); i++) if (!isString(array(root, "languages").get(i))) error(f, "/languages/" + i, "bad-value", "Expected language string");
         if (languages.isEmpty() || new HashSet<>(languages).size() != languages.size() || languages.stream().anyMatch(l -> !Set.of("es", "en").contains(l))) error(f, "/languages", "bad-value", "Nonempty unique subset of es/en required");
         if (!languages.contains(string(root, "default_language", ""))) error(f, "/default_language", "missing-language", "Default must be in languages");
         enumeration(root, "language_select", "fixed client", f, "");
@@ -155,6 +177,7 @@ public final class StoryValidator {
         for (String key : List.of("anchors", "zones")) for (var entry : object(root, key).entrySet()) {
             String p = "/" + key + "/" + entry.getKey(); id(new JsonPrimitive(entry.getKey()), ID, f, p);
             if (!names.add(entry.getKey())) error(f, p, "duplicate-id", "Duplicate map/story name");
+            if (entry.getValue().isJsonObject()) keys(entry.getValue().getAsJsonObject(), f, p, key.equals("zones") ? "box dimension" : "pos dimension yaw pitch", key.equals("zones") ? "box" : "pos");
             position(entry.getValue(), f, p, key.equals("zones"));
         }
         JsonObject endings = object(root, "endings");
@@ -210,6 +233,7 @@ public final class StoryValidator {
             keys(run, f, p, "ending skip", "ending");
             String end = string(run, "ending", "");
             if (!endings.has(end) || !covered.add(end)) error(f, p + "/ending", "autoplay-ending-coverage", "Unknown or duplicate ending");
+            if (run.has("skip") && !run.get("skip").isJsonArray()) error(f, p + "/skip", "bad-value", "Expected beat list");
             refs(array(run, "skip"), beatRefs, f, p + "/skip");
         }
         if (!covered.equals(endings.keySet())) error(f, "/autoplay/runs", "autoplay-ending-coverage", "Every ending must have exactly one run");
@@ -243,11 +267,13 @@ public final class StoryValidator {
             if (!beats.add(string(beat, "id", ""))) error(f, p + "/id", "duplicate-id", "Duplicate beat");
             for (String key : List.of("if", "repeat", "capture", "autoplay")) if (beat.has(key) && !beat.get(key).isJsonObject()) error(f, p + "/" + key, "bad-value", "Expected object");
             JsonObject guards = object(beat, "if"); keys(guards, f, p + "/if", "flags not_flags beats not_beats", "");
+            for (String key : List.of("flags", "not_flags", "beats", "not_beats")) if (guards.has(key) && !guards.get(key).isJsonArray()) error(f, p + "/if/" + key, "bad-value", "Expected list");
             for (String key : List.of("flags", "not_flags")) refs(array(guards, key), flagRefs, f, p + "/if/" + key);
             for (String key : List.of("beats", "not_beats")) refs(array(guards, key), beatRefs, f, p + "/if/" + key);
             JsonObject repeat = object(beat, "repeat"); keys(repeat, f, p + "/repeat", "max cooldown_seconds", beat.has("repeat") ? "max cooldown_seconds" : "");
             num(repeat, "max", 1, Integer.MAX_VALUE, true, "bad-value", f, p + "/repeat"); num(repeat, "cooldown_seconds", 0, Double.MAX_VALUE, false, "bad-time", f, p + "/repeat");
             JsonObject autoplay = object(beat, "autoplay"); keys(autoplay, f, p + "/autoplay", "input wait_seconds", ""); num(autoplay, "wait_seconds", 0, Double.MAX_VALUE, false, "bad-time", f, p + "/autoplay");
+            if (autoplay.has("input") && !isString(autoplay.get("input"))) error(f, p + "/autoplay/input", "bad-value", "Expected input string");
             if (beat.has("capture")) {
                 JsonObject capture = object(beat, "capture"); keys(capture, f, p + "/capture", "name at", "name at");
                 id(capture.get("name"), "[a-z0-9][a-z0-9-]{0,39}", f, p + "/capture/name");
@@ -327,7 +353,7 @@ public final class StoryValidator {
                 num(o, "seconds", .05, max, false, "bad-time", f, p);
                 if (effect.equals("SIGN") && !o.has("sign")) error(f, p + "/sign", "bad-value", "SIGN requires position");
                 if (!options && Set.of("SENSITIVITY", "FOV", "GAMMA").contains(effect)) error(f, p + "/effect", "feature-off", "effects.options is false");
-                if (o.has("advancement")) id(o.get("advancement"), RESOURCE, f, p + "/advancement");
+                if (o.has("advancement") && (!isString(o.get("advancement")) || !o.get("advancement").getAsString().matches(RESOURCE))) error(f, p + "/advancement", "bad-value", "Invalid resource ID");
             }
             case "bait" -> {
                 enumeration(o, "op", "place step scare clear", f, p);
@@ -359,7 +385,7 @@ public final class StoryValidator {
         boolType(o, "spyglass", f, p); boolType(o, "hide", f, p);
         if (o.has("at")) position(o.get("at"), f, p + "/at", false);
         if (o.has("zone")) position(o.get("zone"), f, p + "/zone", true);
-        for (String key : List.of("block", "item")) if (o.has(key)) id(o.get(key), RESOURCE, f, p + "/" + key);
+        for (String key : List.of("block", "item")) if (o.has(key) && (!isString(o.get(key)) || !o.get(key).getAsString().matches(RESOURCE))) error(f, p + "/" + key, "bad-value", "Invalid resource ID");
         if (o.has("beat")) beatRefs.add(new Ref(string(o, "beat", ""), f, p + "/beat"));
         if (type.equals("flag")) { id(o.get("flag"), ID, f, p + "/flag"); flagRefs.add(new Ref(string(o, "flag", ""), f, p + "/flag")); }
         if (type.equals("bait")) enumeration(o, "event", "step screamer gone", f, p);
@@ -376,7 +402,7 @@ public final class StoryValidator {
                 if (!of.get(i).isJsonObject()) { error(f, p + "/of/" + i, "bad-value", "Expected trigger"); continue; }
                 JsonObject sub = of.get(i).getAsJsonObject(); var parser = StoryTriggers.parser(string(sub, "type", ""));
                 if (parser == null) error(f, p + "/of/" + i + "/type", "unknown-trigger", "Unknown trigger");
-                else parser.parse(sub, context(f, p + "/of/" + i, c.beat));
+                // The built-in any parser compiles/validates each child through its registered parser.
             }
         }
     }

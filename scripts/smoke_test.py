@@ -444,6 +444,8 @@ def client(with_fabric_api=None, *, include_story=False):
             (directory / 'logs').rename(directory / 'logs-first')
         elif receipt.read_bytes() != original:
             raise RuntimeError('Second start rewrote the original acceptance')
+        if phase == 'restart' and include_story:
+            (directory / 'logs').rename(directory / 'logs-restart')
     props = properties()
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",

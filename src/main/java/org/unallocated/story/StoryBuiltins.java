@@ -28,7 +28,7 @@ final class StoryBuiltins {
         for (String name : List.of("flag", "counter", "next_chapter", "end", "cancel", "title", "actionbar", "chat", "blackout", "interface", "audio", "teleport", "bait", "command", "function"))
             StoryActions.register(name, (json, context) -> { context.action(json); return (runtime, player) -> execute(runtime, player, json); });
         for (String name : List.of("chapter_start", "after", "flag", "zone", "look", "interact", "use_item", "has_item", "break", "chat", "still", "sprint", "sneak", "death", "respawn", "bait", "any"))
-            StoryTriggers.register(name, (json, context) -> { context.trigger(json); return new Trigger(json, context.beat); });
+            StoryTriggers.register(name, (json, context) -> { context.trigger(json); return new Trigger(json, context.beat, context); });
     }
     private static String execute(StoryRuntime r, ServerPlayer p, JsonObject a) {
         String name = string(a, "do", "");
@@ -81,16 +81,23 @@ final class StoryBuiltins {
         private final List<StoryTriggers.Trigger> children;
         private long since = -1;
         private Vec3 last;
-        Trigger(JsonObject json, JsonObject beat) {
+        Trigger(JsonObject json, JsonObject beat, StoryValidator.Context context) {
             this.json = json; this.beat = beat; type = string(json, "type", "");
-            children = array(json, "of").asList().stream().map(e -> (StoryTriggers.Trigger) new Trigger(e.getAsJsonObject(), beat)).toList();
+            var parsed = new ArrayList<StoryTriggers.Trigger>();
+            JsonArray of = array(json, "of");
+            for (int i = 0; i < of.size(); i++) if (of.get(i).isJsonObject()) {
+                JsonObject child = of.get(i).getAsJsonObject();
+                var parser = StoryTriggers.parser(string(child, "type", ""));
+                if (parser != null) parsed.add(parser.parse(child, context.child("/of/" + i)));
+            }
+            children = List.copyOf(parsed);
         }
         public boolean automatic() { return Set.of("chapter_start", "after", "flag").contains(type) || type.equals("any") && children.stream().allMatch(StoryTriggers.Trigger::automatic); }
         public void reset() { since = -1; last = null; children.forEach(StoryTriggers.Trigger::reset); }
         public boolean test(ServerPlayer p) {
             StoryRuntime r = StoryRuntime.get(p.level().getServer());
             boolean condition = switch (type) {
-                case "chapter_start" -> true;
+                case "chapter_start" -> r.state().elapsedActTicks() == 1;
                 case "after" -> {
                     String ref = string(json, "beat", "");
                     long start = ref.isEmpty() ? r.state().actStartTick() - r.state().sessionStartTick() : r.state().counters().getOrDefault("story.fired_at." + ref, -1);

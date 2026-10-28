@@ -29,6 +29,29 @@ class StoryLoaderTest {
             }
         }
     }
+    @Test void compilerContextRetainsTheStoryAnchorNamespace() {
+        var result = load(Path.of("src/test/resources/story-fixtures/valid/example"));
+        var validator = new StoryValidator(null, id -> false, false, false);
+        validator.bind(result.data());
+        JsonObject action = JsonParser.parseString("{\"do\":\"teleport\",\"to\":\"example.mark\"}").getAsJsonObject();
+        assertDoesNotThrow(() -> StoryActions.parser("teleport").parse(action, validator.context("second.json", "/on_enter/0", new JsonObject())));
+        assertTrue(validator.findings().isEmpty(), () -> validator.findings().toString());
+    }
+    @Test void anyCompilesExtensionsThroughTheRegistry() {
+        var calls = new java.util.concurrent.atomic.AtomicInteger();
+        StoryTriggers.register("test_extension", (json, context) -> {
+            calls.incrementAndGet(); context.keys(json, "type", "type");
+            return new StoryTriggers.Trigger() {
+                public boolean test(net.minecraft.server.level.ServerPlayer player) { return false; }
+                public void simulate(net.minecraft.server.level.ServerPlayer player) {}
+                public boolean automatic() { return true; }
+            };
+        });
+        var validator = new StoryValidator(null, id -> false, false, false);
+        JsonObject json = JsonParser.parseString("{\"type\":\"any\",\"of\":[{\"type\":\"test_extension\"}]}").getAsJsonObject();
+        var trigger = StoryTriggers.parser("any").parse(json, validator.context("first.json", "/when", new JsonObject()));
+        assertEquals(1, calls.get()); assertTrue(trigger.automatic()); assertTrue(validator.findings().isEmpty());
+    }
     @Test void duplicateKeysAndTrailingJsonAreRejected() {
         assertThrows(Exception.class, () -> StoryLoader.parse("{\"format\":1,\"format\":2}"));
         assertThrows(Exception.class, () -> StoryLoader.parse("{} {}"));

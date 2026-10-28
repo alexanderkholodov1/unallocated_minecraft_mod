@@ -94,6 +94,25 @@ class TestStoryCheck(unittest.TestCase):
         missing = ALL_ERROR_RULES - fixture_rule_names
         self.assertEqual(missing, set(), f"Missing invalid fixtures for rules: {missing}")
 
+    def test_duplicate_keys_nonfinite_numbers_and_boolean_times_fail(self):
+        base = REPO_ROOT / '.tmp/story-check-tests'
+        base.mkdir(parents=True, exist_ok=True)
+        with TemporaryDirectory(dir=base) as temp:
+            target = Path(temp) / 'story'
+            shutil.copytree(VALID_EXAMPLE_DIR, target)
+            story = target / 'story.json'
+            original = story.read_text()
+            story.write_text(original.replace('"format": 1', '"format": 1, "format": 1'))
+            self.assertTrue(any(f.rule == 'bad-json' for f in check(target)))
+            story.write_text(original.replace('"format": 1', '"format": NaN'))
+            self.assertTrue(any(f.rule == 'bad-json' for f in check(target)))
+            story.write_text(original)
+            chapter = target / 'chapters/first.json'
+            data = json.loads(chapter.read_text())
+            data['on_enter'][0]['at'] = True
+            chapter.write_text(json.dumps(data))
+            self.assertTrue(any(f.rule == 'bad-value' and f.pointer == '/on_enter/0/at' for f in check(target)))
+
     def test_warnings_inline(self):
         tmp_base = REPO_ROOT / ".tmp/story-check-tests"
         tmp_base.mkdir(parents=True, exist_ok=True)
