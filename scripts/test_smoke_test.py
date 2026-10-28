@@ -101,6 +101,50 @@ class JavaHomeTest(unittest.TestCase):
             gradle.chmod(0o755)
             with patch.dict(os.environ, {'JAVA_HOME': str(home)}), redirect_stdout(io.StringIO()):
                 monitor([str(gradle), '--daemon'], root, root / 'console.log', (), timeout=2)
+                smoke_test.watch_gradle([str(gradle), '--daemon'], root / 'build.log')
+
+
+class ReleaseArtifactTest(unittest.TestCase):
+    def test_release_contains_verified_bytes_and_rejects_payload_drift(self):
+        import hashlib
+        import json
+        import smoke_test
+        import author_template
+        from author_template import deterministic_zip, TEMPLATE_ENTRY
+        from test_author_template import world_entries
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            root = Path(temp); libs = root / 'build/libs'; libs.mkdir(parents=True)
+            world = root / 'UNALLOCATED-world.zip'; world.write_bytes(deterministic_zip(world_entries()))
+            jar = libs / 'unallocated-test.jar'; jar.write_bytes(deterministic_zip({TEMPLATE_ENTRY: world.read_bytes()}))
+            digest = hashlib.sha256(jar.read_bytes()).hexdigest()
+            checksum = jar.with_suffix('.jar.sha256'); checksum.write_text('wrong checksum')
+            screenshots = root / '.tmp/smoke/client/screenshots'; screenshots.mkdir(parents=True)
+            for name in ['0001_story-scene.png', '0002_map-lobby.png', '0003_unallocated-title-button.png']:
+                (screenshots / name).write_bytes(b'\x89PNG\r\n\x1a\n')
+            earlier = root / '.tmp/smoke/client/screenshots-before-play'; earlier.mkdir()
+            (earlier / 'story-scene.png').write_bytes(b'old fixture capture')
+            video = root / '.tmp/smoke/video/gameplay.mp4'; video.parent.mkdir(); video.write_bytes(b'video fixture')
+            props = {'version': 'test', 'minecraft_version': '26.3', 'loader_version': '0.20.1'}
+            with patch.object(smoke_test, 'ROOT', root), patch.object(smoke_test, 'SMOKE', root / '.tmp/smoke'), \
+                    patch.object(smoke_test, 'properties', return_value=props), \
+                    patch.object(author_template, 'WORLD_ZIP', world), \
+                    patch.dict(os.environ, {'GITHUB_SHA': 'abc123', 'GITHUB_RUN_ID': '42'}), redirect_stdout(io.StringIO()):
+                with self.assertRaisesRegex(RuntimeError, 'checksum changed'): smoke_test.release_bundle()
+                checksum.write_text(f'{digest}  {jar.name}\n')
+                expected_world = world.read_bytes(); world.write_bytes(b'changed world')
+                with self.assertRaisesRegex(RuntimeError, 'template differs'): smoke_test.release_bundle()
+                world.write_bytes(expected_world); smoke_test.release_bundle()
+            output = root / 'build/release'
+            self.assertEqual((output / jar.name).read_bytes(), jar.read_bytes())
+            self.assertEqual((output / world.name).read_bytes(), expected_world)
+            self.assertEqual((output / 'video/gameplay.mp4').read_bytes(), video.read_bytes())
+            self.assertEqual({p.name for p in (output / 'screenshots').iterdir()},
+                             {'story-scene.png', 'map-lobby.png', 'unallocated-title-button.png'})
+            self.assertEqual((output / 'screenshots/story-scene.png').read_bytes(), b'\x89PNG\r\n\x1a\n')
+            manifest = json.loads((output / 'release.json').read_text())
+            self.assertEqual(set(manifest), {'version', 'minecraft', 'loader', 'fabric_api_bundled',
+                                            'jar', 'sha256', 'world_zip', 'commit', 'run'})
+            self.assertEqual((manifest['sha256'], manifest['commit'], manifest['run']), (digest, 'abc123', '42'))
 
 
 class GradleSilenceTest(unittest.TestCase):
@@ -131,13 +175,14 @@ class GradleSilenceTest(unittest.TestCase):
             def command(args, **kwargs):
                 if args[-1] == '-l':
                     return CompletedProcess(args, 0, '11 org.gradle.launcher.daemon.bootstrap.GradleDaemon\n'
-                        '12 org.gradle.launcher.GradleMain\n13 game.ClientMain\n', '')
+                        '12 org.gradle.launcher.GradleMain\n13 game.ClientMain\n'
+                        '14 /runner/gradle-9.8.2/lib/gradle-gradle-cli-main.jar --daemon\n', '')
                 kwargs['stdout'].write('thread dump for ' + args[1])
                 return CompletedProcess(args, 0)
             with patch.object(smoke_test, 'java_executable', return_value='/jdk/bin/java'), \
                     patch.object(smoke_test.subprocess, 'run', side_effect=command) as run:
-                self.assertEqual(smoke_test.dump_gradle_threads(directory), [11, 12])
-                self.assertEqual(run.call_count, 3)
+                self.assertEqual(smoke_test.dump_gradle_threads(directory), [11, 12, 14])
+                self.assertEqual(run.call_count, 4)
             self.assertIn('thread dump for 11', (directory / 'gradle-11-threads.txt').read_text())
             self.assertIn('thread dump for 12', (directory / 'gradle-12-threads.txt').read_text())
 

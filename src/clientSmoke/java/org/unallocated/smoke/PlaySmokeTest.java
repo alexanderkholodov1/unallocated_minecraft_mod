@@ -31,11 +31,16 @@ final class PlaySmokeTest {
         var runs = story.getAsJsonObject("autoplay").getAsJsonArray("runs");
         String first = story.getAsJsonArray("chapters").get(0).getAsString();
         double budget = 0;
+        Set<String> expectedCaptures = new HashSet<>();
         for (var chapter : story.getAsJsonArray("chapters")) {
             try (var input = PlaySmokeTest.class.getResourceAsStream("/data/unallocated/story/chapters/" + chapter.getAsString() + ".json")) {
                 if (input == null) throw new AssertionError("Missing shipped chapter");
-                budget += JsonParser.parseReader(new InputStreamReader(input, StandardCharsets.UTF_8))
-                    .getAsJsonObject().get("budget_seconds").getAsDouble();
+                var chapterData = JsonParser.parseReader(new InputStreamReader(input, StandardCharsets.UTF_8)).getAsJsonObject();
+                budget += chapterData.get("budget_seconds").getAsDouble();
+                for (var beat : chapterData.getAsJsonArray("beats")) {
+                    if (beat.getAsJsonObject().has("capture")) expectedCaptures.add(
+                        beat.getAsJsonObject().getAsJsonObject("capture").get("name").getAsString());
+                }
             } catch (IOException exception) { throw new AssertionError(exception); }
         }
         int endingTimeout = (int) Math.ceil((180 + budget * story.getAsJsonObject("autoplay").get("time_scale").getAsDouble()) * 20);
@@ -110,6 +115,28 @@ final class PlaySmokeTest {
             context.takeScreenshot("unallocated-play-title-" + index);
             LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: play run={} farewell and title verified", index);
         }
+        context.waitFor(client -> captures.containsAll(expectedCaptures), 1200);
+        // The neutral shipped story has one run; still prove the next click preserves its finished save.
+        try {
+            for (Path copy : copies) {
+                if (!LauncherClient.readSession(copy).getBooleanOr("finished", false)) {
+                    throw new AssertionError("Shipped ending did not persist a finished session");
+                }
+            }
+        } catch (IOException exception) { throw new AssertionError(exception); }
+        active.set(0); pristine.set(false); joined.set(false); complete.set(false);
+        StoryRuntime.setAutoplayRun(0);
+        context.clickScreenButton("menu.unallocated.play");
+        context.waitForScreen(GenericMessageScreen.class);
+        context.waitFor(client -> failure.get() != null || joined.get() || client.gui.screen() instanceof DisconnectedScreen, 2400);
+        if (failure.get() != null || !joined.get()) throw new AssertionError("Finished save did not start a new copy", failure.get());
+        Path nextCopy = context.computeOnClient(client -> client.getSingleplayerServer().getWorldPath(
+            net.minecraft.world.level.storage.LevelResource.ROOT).normalize());
+        if (copies.contains(nextCopy)) throw new AssertionError("Launcher reused a finished save");
+        context.runOnClient(client -> client.disconnect(new TitleScreen(), false));
+        context.waitForScreen(TitleScreen.class);
+        context.waitFor(client -> client.getSingleplayerServer() == null && client.level == null);
+        LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: play finished save preserved and new copy opened");
         active.set(-1);
         LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: play all shipped runs verified");
     }

@@ -242,7 +242,7 @@ def dump_gradle_threads(directory):
             listing = subprocess.run([jcmd, '-l'], capture_output=True, text=True, timeout=30)
             output.write(listing.stdout + listing.stderr)
             for line in listing.stdout.splitlines():
-                if 'Gradle' in line and line.split()[0].isdigit():
+                if 'gradle' in line.lower() and line.split()[0].isdigit():
                     pid = int(line.split()[0]); pids.append(pid)
                     with (directory / f'gradle-{pid}-threads.txt').open('w') as stacks:
                         try:
@@ -257,6 +257,9 @@ def dump_gradle_threads(directory):
 
 def watch_gradle(command, console, silence=720):
     """A complete output line resets the watchdog; partial bytes do not mask a hang."""
+    if Path(command[0]).name == 'gradle':
+        home = str(Path(java_executable()).parent.parent)
+        command = [command[0], f'-Dorg.gradle.java.home={home}', *command[1:]]
     console.parent.mkdir(parents=True, exist_ok=True)
     process = None
     try:
@@ -447,15 +450,18 @@ def play_checks(story_directory=None):
     chapters = [json.loads((directory / 'chapters' / f'{name}.json').read_text())
                 for name in story['chapters']]
     runs = story['autoplay']['runs']
-    evidence = [r'UNALLOCATED smoke: play all shipped runs verified']
+    evidence = [r'UNALLOCATED smoke: play all shipped runs verified',
+                r'UNALLOCATED smoke: play finished save preserved and new copy opened']
     screenshots = ['unallocated-title-button', 'unallocated-connecting']
     for index, run in enumerate(runs):
         evidence += [rf'UNALLOCATED story autoplay run={index} ending={re.escape(run["ending"])} complete',
                      rf'UNALLOCATED smoke: play run={index} armed unstarted Adventure cheats=false first={re.escape(story["chapters"][0])}',
                      rf'UNALLOCATED smoke: play run={index} farewell and title verified']
         screenshots += [f'unallocated-play-farewell-{index}', f'unallocated-play-title-{index}']
-    screenshots += sorted({f'story-{beat["capture"]["name"]}' for chapter in chapters
-                           for beat in chapter['beats'] if 'capture' in beat})
+    capture_names = sorted({beat['capture']['name'] for chapter in chapters
+                            for beat in chapter['beats'] if 'capture' in beat})
+    screenshots += ['story-' + name for name in capture_names]
+    evidence += [rf'UNALLOCATED story capture={re.escape(name)}(?:\s|$)' for name in capture_names]
     seconds = sum(chapter['budget_seconds'] for chapter in chapters) * story['autoplay']['time_scale']
     return {'evidence': evidence, 'screenshots': screenshots,
             'timeout': int(120 + len(runs) * (seconds + 180))}
@@ -600,7 +606,10 @@ def release_bundle():
     screenshots = output / 'screenshots'; screenshots.mkdir()
     for source in sorted((SMOKE / 'client').rglob('*.png')):
         match = re.search(r'(story-|map-|unallocated-title-button|unallocated-connecting).*\.png$', source.name)
-        if match: shutil.copyfile(source, screenshots / match.group())
+        if match:
+            target = screenshots / match.group()
+            if not target.exists() or 'screenshots-before-play' not in source.parts:
+                shutil.copyfile(source, target)
     video = SMOKE / 'video/gameplay.mp4'
     if video.is_file():
         (output / 'video').mkdir(); shutil.copyfile(video, output / 'video/gameplay.mp4')
@@ -630,6 +639,9 @@ def client(with_fabric_api=None, *, include_story=False):
     for phase, checks in client_phases().items():
         if phase in ('story', 'play') and not include_story:
             continue  # Preserve the reusable two-process contract check; CI explicitly runs all phases.
+        if phase == 'play':
+            # A fixture capture with the same name must never satisfy shipped-story evidence.
+            (directory / 'screenshots').rename(directory / 'screenshots-before-play')
         recorder = VideoRecorder(directory) if phase == 'play' and api_version is None else None
         if recorder: recorder.start()
         try:
@@ -661,7 +673,7 @@ def client(with_fabric_api=None, *, include_story=False):
                            for path in directory.rglob(f'*{screenshot}.png')):
                     raise RuntimeError(f'Missing contract screenshot: {screenshot}')
             else:
-                verify_screenshot(directory, screenshot)
+                verify_screenshot(directory / 'screenshots' if phase == 'play' else directory, screenshot)
         if phase == 'first':
             original = receipt.read_bytes()
             (directory / 'logs').rename(directory / 'logs-first')
