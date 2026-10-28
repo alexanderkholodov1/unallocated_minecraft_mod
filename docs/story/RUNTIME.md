@@ -144,3 +144,7 @@ Chapter entry waits until vanilla has registered the participant in its level. F
 before that registration; cross-dimension checkpoint/on-resume teleports during JOIN would otherwise
 force-add a duplicate UUID and leave the live player removed. Entry resumes on the first registered
 server tick, before evaluating that chapter's triggers or delayed actions.
+
+The ending connection adapter retains a received tagged farewell across concurrent generic channel
+closure. It does not manufacture an ending for untagged failures. The real-connection smoke probe
+now exercises a late generic details write as well as the original close-before-publication window.
