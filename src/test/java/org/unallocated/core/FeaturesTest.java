@@ -13,9 +13,11 @@ class FeaturesTest {
     @Test void malformedSwitchesFailClosed() {
         assertThrows(IllegalArgumentException.class, () -> Features.read(new StringReader("{\"acts\":{\"theft\":\"true\"}}")));
     }
-    @Test void bundledOptionalContentIsOff() {
+    @Test void bundledStorySlotsAreEnabled() {
         var features = Features.load();
-        assertFalse(features.actEnabled(Act.THEFT)); assertFalse(features.actEnabled(Act.LOOP));
-        assertFalse(features.actEnabled(Act.POCKET)); assertTrue(features.actEnabled(Act.LOBBY));
+        assertTrue(features.actEnabled(Act.THEFT)); assertTrue(features.actEnabled(Act.LOOP));
+        assertTrue(features.actEnabled(Act.POCKET)); assertTrue(features.actEnabled(Act.LOBBY));
+        assertTrue(features.actEnabled(Act.CLIMAX));
+        assertFalse(features.enabled("effects.options")); assertFalse(features.enabled("effects.screamer"));
     }
 }
