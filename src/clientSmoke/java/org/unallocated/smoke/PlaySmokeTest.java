@@ -60,6 +60,8 @@ final class PlaySmokeTest {
                 if (rules.get(GameRules.SPAWN_MOBS) || rules.get(GameRules.ADVANCE_TIME)
                     || rules.get(GameRules.ADVANCE_WEATHER) || !rules.get(GameRules.KEEP_INVENTORY)
                     || rules.get(GameRules.RESPAWN_RADIUS) != 0) throw new AssertionError("Template lost map rules");
+                StoryRuntime.get(server).level("pocket");
+                LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: world authored template pocket exists");
                 pristine.set(true);
                 var runtime = StoryRuntime.get(server);
                 runtime.events().subscribe(StoryEnding.class, event -> {

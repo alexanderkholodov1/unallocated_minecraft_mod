@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "languages": [
+    "en"
+  ],
+  "default_language": "en",
+  "language_select": "fixed",
+  "chapters": [
+    "world"
+  ],
+  "anchors": {
+    "world.pocket": {
+      "pos": [
+        102,
+        64,
+        110
+      ],
+      "dimension": "pocket",
+      "yaw": -90
+    }
+  },
+  "zones": {
+    "world.base": {
+      "box": [
+        51,
+        60,
+        2,
+        72,
+        90,
+        27
+      ]
+    },
+    "world.pocket_base": {
+      "box": [
+        100,
+        60,
+        100,
+        121,
+        90,
+        125
+      ],
+      "dimension": "pocket"
+    }
+  },
+  "endings": {
+    "SERVER_CLOSED": {
+      "builtin": true
+    }
+  },
+  "fallback_ending": "SERVER_CLOSED",
+  "build": {
+    "forceload": [],
+    "run": [
+      "unallocated story copy world.base 100 60 100 pocket"
+    ]
+  },
+  "autoplay": {
+    "time_scale": 0.25,
+    "runs": [
+      {
+        "ending": "SERVER_CLOSED",
+        "skip": []
+      }
+    ]
+  }
+}

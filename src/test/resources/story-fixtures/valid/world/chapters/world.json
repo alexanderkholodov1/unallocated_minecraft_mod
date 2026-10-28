@@ -1,0 +1,93 @@
+{
+  "id": "world",
+  "budget_seconds": 60,
+  "checkpoint": "base.entrance",
+  "on_enter": [
+    {
+      "at": 0,
+      "do": "copy",
+      "from": {
+        "section": "base"
+      },
+      "to": {
+        "pos": [
+          100,
+          60,
+          100
+        ],
+        "dimension": "pocket"
+      }
+    },
+    {
+      "at": 0,
+      "do": "corrupt",
+      "area": "world.pocket_base",
+      "rules": [
+        {
+          "from": [
+            "minecraft:cobblestone",
+            "minecraft:stone_bricks",
+            "minecraft:oak_planks"
+          ],
+          "to": [
+            "minecraft:cracked_stone_bricks"
+          ],
+          "ratio": 0.4
+        }
+      ],
+      "seed": 17,
+      "over_seconds": 16
+    },
+    {
+      "at": 1,
+      "do": "teleport",
+      "to": "world.pocket"
+    }
+  ],
+  "beats": [
+    {
+      "id": "world.pocket",
+      "when": {
+        "type": "zone",
+        "zone": "world.pocket_base"
+      },
+      "actions": [
+        {
+          "at": 24,
+          "do": "teleport",
+          "to": "base.entrance"
+        },
+        {
+          "at": 25,
+          "do": "flag",
+          "set": "world.returned"
+        }
+      ],
+      "capture": {
+        "name": "world-pocket",
+        "at": 20
+      }
+    },
+    {
+      "id": "world.return",
+      "when": {
+        "type": "flag",
+        "flag": "world.returned"
+      },
+      "actions": [
+        {
+          "at": 1,
+          "do": "end",
+          "ending": "SERVER_CLOSED"
+        }
+      ]
+    }
+  ],
+  "on_resume": [
+    {
+      "at": 0,
+      "do": "teleport",
+      "to": "world.pocket"
+    }
+  ]
+}

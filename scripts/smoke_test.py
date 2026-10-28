@@ -470,7 +470,8 @@ def play_checks(story_directory=None):
                 r'UNALLOCATED smoke: play finished save preserved and new copy opened']
     screenshots = ['unallocated-title-button', 'unallocated-connecting']
     for index, run in enumerate(runs):
-        evidence += [rf'UNALLOCATED story autoplay run={index} ending={re.escape(run["ending"])} complete',
+        evidence += [r'UNALLOCATED smoke: world authored template pocket exists',
+                     rf'UNALLOCATED story autoplay run={index} ending={re.escape(run["ending"])} complete',
                      rf'UNALLOCATED smoke: play run={index} armed unstarted Adventure cheats=false first={re.escape(story["chapters"][0])}',
                      rf'UNALLOCATED smoke: play run={index} farewell and title verified']
         screenshots += [f'unallocated-play-farewell-{index}', f'unallocated-play-title-{index}']
@@ -528,9 +529,15 @@ def client_phases():
                 r'UNALLOCATED story autoplay run=0 ending=EXAMPLE_A complete',
                 r'UNALLOCATED story autoplay run=1 ending=EXAMPLE_B complete',
                 r'UNALLOCATED smoke: story both endings, captures, options and receipt verified\.',
+                r'UNALLOCATED story autoplay run=0 ending=SERVER_CLOSED complete',
+                r'UNALLOCATED smoke: world fresh pocket, copy blocks, block entities and force tickets verified',
+                r'UNALLOCATED smoke: world corruption job and cursor restored',
+                r'UNALLOCATED smoke: world pocket round trip and corruption completion verified',
+                r'UNALLOCATED smoke: world fixture ending, pocket capture and reload verified',
             ],
             'screenshots': ['story-example-sign', 'story-example-end',
-                            'unallocated-story-farewell-a', 'unallocated-story-farewell-b'],
+                            'unallocated-story-farewell-a', 'unallocated-story-farewell-b',
+                            'story-world-pocket', 'unallocated-story-world-farewell'],
             'timeout': 300,
         },
         'play': play_checks(),

@@ -8,6 +8,7 @@ import org.unallocated.map.MapLayout;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StoryLoaderTest {
+    static { org.unallocated.world.WorldActions.registerActions(); }
     private StoryLoader.Result load(Path path) {
         return StoryLoader.load(StoryLoader.directory(path), new StoryValidator(null,
             id -> Files.isRegularFile(Path.of("src/main/resources/data", id.split(":", 2)[0], "function", id.split(":", 2)[1] + ".mcfunction")), false, false));
@@ -68,8 +69,8 @@ class StoryLoaderTest {
         assertEquals(expected.keySet(), anchors.keySet());
         expected.forEach((key, names) -> assertEquals(names, new HashSet<>(anchors.getAsJsonArray(key).asList().stream().map(JsonElement::getAsString).toList())));
     }
-    @Test void packagesFourActionsAndUnverifiedPostChainsAreUnknown() {
-        for (String action : List.of("copy", "corrupt", "creature", "post_effect")) assertNull(StoryActions.parser(action));
+    @Test void unfinishedCreatureAndUnverifiedPostChainsAreUnknown() {
+        for (String action : List.of("creature", "post_effect")) assertNull(StoryActions.parser(action));
         assertNull(StoryTriggers.parser("creature"));
     }
 }

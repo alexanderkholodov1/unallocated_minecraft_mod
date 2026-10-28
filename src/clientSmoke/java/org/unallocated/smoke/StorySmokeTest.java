@@ -78,6 +78,7 @@ final class StorySmokeTest {
             author.set(false);
         }
         context.waitFor(client -> captures.containsAll(Set.of("example-sign", "example-end")));
+        WorldSmokeTest.run(context);
         before.forEach((path, bytes) -> {
             try { if (!Arrays.equals(bytes, Files.readAllBytes(path))) throw new AssertionError("Story changed " + path.getFileName()); }
             catch (java.io.IOException e) { throw new AssertionError(e); }
