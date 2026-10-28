@@ -532,6 +532,7 @@ def client_phases():
                 r'UNALLOCATED story autoplay run=0 ending=SERVER_CLOSED complete',
                 r'UNALLOCATED smoke: world fresh pocket, copy blocks, block entities and force tickets verified',
                 r'UNALLOCATED smoke: world corruption job and cursor restored',
+                r'UNALLOCATED smoke: world resume player registered and live',
                 r'UNALLOCATED smoke: world pocket round trip and corruption completion verified',
                 r'UNALLOCATED smoke: world fixture ending, pocket capture and reload verified',
                 r'UNALLOCATED smoke: world creature body restored and excluded from save',

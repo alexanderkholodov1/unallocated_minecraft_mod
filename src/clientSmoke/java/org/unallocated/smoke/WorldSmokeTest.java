@@ -74,7 +74,7 @@ final class WorldSmokeTest {
                         else returned.set(true);
                         if (org.unallocated.creature.Creatures.entity(player, "world.figure") != null) failure.set(new AssertionError("Despawn kept creature alive"));
                         if (runtime.state().flags().stream().anyMatch(s -> s.startsWith("story.world.job."))) failure.set(new AssertionError("Corruption did not complete after reload"));
-                        else log("pocket round trip and corruption completion verified");
+                        if (failure.get() == null) log("pocket round trip and corruption completion verified");
                     }
                 });
                 runtime.events().subscribe(StoryEnding.class, event -> { if (event.id().equals("SERVER_CLOSED")) complete.set(true); });
@@ -121,7 +121,13 @@ final class WorldSmokeTest {
                 log("vanilla summon SNBT and despawn verified");
             });
             var save = world.getWorldSave(); world.close();
-            LoadingFailure.capture(context, "world-resume", save::open); // Reopen the actual save with its datapack dimension and unfinished corruption.
+            var resumed = LoadingFailure.capture(context, "world-resume", save::open);
+            resumed.getServer().runOnServer(server -> {
+                var player = server.getPlayerList().getPlayers().getFirst();
+                if (player.isRemoved() || player.level().getEntity(player.getUUID()) != player)
+                    throw new AssertionError("Resume did not retain exactly one live registered player");
+                log("resume player registered and live");
+            });
             context.waitForScreen(DisconnectedScreen.class);
             if (failure.get() != null || !complete.get() || !returned.get()) throw new AssertionError("World fixture failed", failure.get());
             if (!seen.get() || !caught.get()) throw new AssertionError("Creature triggers were not exercised");

@@ -139,3 +139,8 @@ settings. Vanilla otherwise marks all custom dimensions experimental; full Fabri
 own mod-dimension stability check, but the dependency-free judge installation must behave the same.
 Other custom dimensions retain vanilla stability checks. Failed launcher/fresh-world/resume waits
 capture `unallocated-load-failed-*.png` and log the screen class/title before the test exits.
+
+Chapter entry waits until vanilla has registered the participant in its level. Fabric JOIN occurs
+before that registration; cross-dimension checkpoint/on-resume teleports during JOIN would otherwise
+force-add a duplicate UUID and leave the live player removed. Entry resumes on the first registered
+server tick, before evaluating that chapter's triggers or delayed actions.

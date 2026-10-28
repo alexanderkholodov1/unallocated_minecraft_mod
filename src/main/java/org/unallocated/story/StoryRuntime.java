@@ -39,7 +39,7 @@ public final class StoryRuntime {
     private String executingBeat = "";
     private final List<Signal> signals = new ArrayList<>();
     public record Signal(String type, String value, BlockPos position) {}
-    private ServerPlayer participant;
+    private ServerPlayer participant, pendingEntry;
     private boolean dead;
     private int generation;
     private String chapterId = "";
@@ -141,6 +141,10 @@ public final class StoryRuntime {
         steps.put(source, List.copyOf(timeline)); actions.put(source, List.copyOf(compiled)); JsonObject metadata = beat.deepCopy(); metadata.add("actions", list); sources.put(source, metadata);
     }
     private void enter(ServerPlayer p) {
+        // Fabric JOIN runs before vanilla adds the player to its level. A dimension transfer here
+        // would register it in the destination, then vanilla force-adds the same UUID again and
+        // marks the live player removed. Enter on the first tick after registration instead.
+        if (p.level().getEntity(p.getUUID()) != p) { pendingEntry = p; return; }
         boolean respawn = participant != null && participant != p && dead;
         participant = p; JsonObject chapter = currentChapter();
         if (chapter == null) return;
@@ -155,6 +159,10 @@ public final class StoryRuntime {
         drain(false);
     }
     private void tick(ServerPlayer p) {
+        if (pendingEntry != null) {
+            pendingEntry = null; enter(p);
+            if (pendingEntry != null) return;
+        }
         participant = p; JsonObject chapter = currentChapter(); if (chapter == null) return;
         if (p.isDeadOrDying() && !dead) { state.setCounter("story.deaths", state.counters().getOrDefault("story.deaths", 0) + 1); signal(p, "death", "", null); }
         if (!p.isDeadOrDying() && dead) signal(p, "respawn", "", null);
