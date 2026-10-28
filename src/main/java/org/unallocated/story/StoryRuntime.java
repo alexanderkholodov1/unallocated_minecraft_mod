@@ -35,6 +35,8 @@ public final class StoryRuntime {
     private final Map<String, List<StoryActions.Action>> actions = new HashMap<>();
     private final Map<String, List<StoryScheduler.Step>> steps = new HashMap<>();
     private final Set<String> simulated = new HashSet<>();
+    private final Map<String, Long> autoplayReady = new HashMap<>();
+    private String executingBeat = "";
     private final List<Signal> signals = new ArrayList<>();
     public record Signal(String type, String value, BlockPos position) {}
     private ServerPlayer participant;
@@ -86,6 +88,19 @@ public final class StoryRuntime {
     public boolean signalMatches(String type, String value, BlockPos pos) {
         return signals.stream().anyMatch(s -> s.type.equals(type) && (value == null || value.equals(s.value)) && (pos == null || pos.equals(s.position)));
     }
+    public boolean chatMatches(String pattern) {
+        return signals.stream().anyMatch(s -> s.type.equals("chat") && java.util.regex.Pattern.compile(pattern).matcher(s.value).find());
+    }
+    public boolean broken(String block, Box box, ServerPlayer player) {
+        return signals.stream().anyMatch(s -> s.type.equals("break") && block.equals(s.value) && s.position != null
+            && (box == null || box.dimension.equals(dimensionName(player.level())) && box.contains(s.position.getX(), s.position.getY(), s.position.getZ())));
+    }
+    private static boolean chatTrigger(JsonObject trigger, String text, boolean hiddenOnly) {
+        if (string(trigger, "type", "").equals("chat")) return (!hiddenOnly || bool(trigger, "hide", false))
+            && java.util.regex.Pattern.compile(string(trigger, "pattern", "")).matcher(text).find();
+        if (string(trigger, "type", "").equals("any")) return array(trigger, "of").asList().stream().anyMatch(e -> chatTrigger(e.getAsJsonObject(), text, hiddenOnly));
+        return false;
+    }
     public boolean chat(ServerPlayer player, String text) {
         participant = player;
         if (!loaded.valid()) return false;
@@ -95,8 +110,7 @@ public final class StoryRuntime {
         if (chapter == null || !state.active()) return false;
         for (JsonElement e : array(chapter, "beats")) {
             JsonObject beat = e.getAsJsonObject(); JsonObject when = object(beat, "when");
-            if (string(when, "type", "").equals("chat") && java.util.regex.Pattern.compile(string(when, "pattern", "")).matcher(text).find()
-                    && eligible(beat)) { fire(string(beat, "id", "")); hide |= bool(when, "hide", false); }
+            if (chatTrigger(when, text, false) && eligible(beat)) { hide |= chatTrigger(when, text, true); fire(string(beat, "id", "")); }
         }
         return hide;
     }
@@ -136,7 +150,7 @@ public final class StoryRuntime {
         teleport(p, resolvePosition(chapter.get(respawn && chapter.has("respawn") ? "respawn" : "checkpoint")));
         scheduler.schedule(chapterId + (resume ? ".on_resume" : ".on_enter"), steps.get(chapterId + (resume ? ".on_resume" : ".on_enter")));
         log("chapter=" + chapterId + " slot=" + state.act() + (resume ? " resume" : " enter"));
-        simulated.clear(); triggers.values().forEach(StoryTriggers.Trigger::reset);
+        simulated.clear(); autoplayReady.clear(); triggers.values().forEach(StoryTriggers.Trigger::reset);
         drain(false);
     }
     private void tick(ServerPlayer p) {
@@ -149,8 +163,9 @@ public final class StoryRuntime {
             if (before != generation || !state.active()) break;
             JsonObject beat = e.getAsJsonObject(); if (!eligible(beat)) continue;
             String id = string(beat, "id", ""); StoryTriggers.Trigger trigger = triggers.get(id);
-            if (autoplay && !trigger.automatic() && !simulated.contains(id) && !skipped(id)
-                    && state.elapsedActTicks() >= ticks(number(object(beat, "autoplay"), "wait_seconds", 1))) {
+            if (autoplay && p.connection.hasClientLoaded()) autoplayReady.putIfAbsent(id, state.ticks());
+            if (autoplay && p.connection.hasClientLoaded() && !trigger.automatic() && !simulated.contains(id) && !skipped(id)
+                    && state.ticks() - autoplayReady.getOrDefault(id, state.ticks()) >= ticks(number(object(beat, "autoplay"), "wait_seconds", 1))) {
                 log("autoplay simulate beat=" + id + " trigger=" + string(object(beat, "when"), "type", ""));
                 simulated.add(id); trigger.simulate(p);
             }
@@ -186,8 +201,9 @@ public final class StoryRuntime {
             JsonObject source = sources.get(id);
             String actionName = index < array(source, "actions").size() ? string(array(source, "actions").get(index).getAsJsonObject(), "do", "capture") : "capture";
             String result;
-            try { result = actions.get(id).get(index).execute(this, participant); }
+            try { executingBeat = id; result = actions.get(id).get(index).execute(this, participant); }
             catch (RuntimeException e) { UnallocatedMod.LOGGER.error("UNALLOCATED story action failed beat=" + id, e); result = "refused"; }
+            executingBeat = "";
             log("action beat=" + id + " do=" + actionName + " result=" + result);
             return before == generation && state.active();
         }, clock);
@@ -224,6 +240,7 @@ public final class StoryRuntime {
             double fallback = key.equals("fade_in") ? (id.equals("title") ? .5 : .1) : key.equals("hold") ? .5 : key.equals("stay") ? 3 : id.equals("title") ? 1 : .4;
             wire.addProperty(key, number(wire, key, fallback) * number(object(root(), "autoplay"), "time_scale", 1));
         }
+        if (id.equals("interface")) wire.addProperty("beat", executingBeat);
         envelope.add("data", wire);
         for (String key : List.of("languages", "default_language", "language_select", "agreement_fallback")) if (root().has(key)) envelope.add(key, root().get(key).deepCopy());
         envelope.addProperty("elapsed_min", state.elapsedSessionTicks() / 1200); envelope.addProperty("deaths", state.counters().getOrDefault("story.deaths", 0));
@@ -236,7 +253,8 @@ public final class StoryRuntime {
         public Vec3 center() { return new Vec3(x + .5, y, z + .5); }
     }
     public record Box(String dimension, double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
-        public boolean contains(ServerPlayer p) { return dimension.equals(dimensionName(p.level())) && p.getX() >= minX && p.getX() < maxX + 1 && p.getY() >= minY && p.getY() < maxY + 1 && p.getZ() >= minZ && p.getZ() < maxZ + 1; }
+        public boolean contains(double x, double y, double z) { return x >= minX && x < maxX + 1 && y >= minY && y < maxY + 1 && z >= minZ && z < maxZ + 1; }
+        public boolean contains(ServerPlayer p) { return dimension.equals(dimensionName(p.level())) && contains(p.getX(), p.getY(), p.getZ()); }
         public Position center() { return new Position(dimension, (minX + maxX) / 2, minY, (minZ + maxZ) / 2, 0, 0); }
     }
     public static String dimensionName(ServerLevel level) { return level.dimension().identifier().equals(Identifier.parse("minecraft:overworld")) ? "overworld" : "pocket"; }

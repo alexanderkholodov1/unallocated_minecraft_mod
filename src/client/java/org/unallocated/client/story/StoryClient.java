@@ -67,7 +67,7 @@ public final class StoryClient {
             case "story.chat" -> {
                 Component line = text(object(data, "text"), envelope);
                 if (data.has("from")) line = Component.literal("<").append(text(object(data, "from"), envelope)).append("> ").append(line);
-                client.gui.hud.getChat().addMessage(line);
+                client.gui.chatListener().handleSystemMessage(line, false);
             }
             case "story.blackout" -> {
                 fadeIn = number(data, "fade_in", .1); hold = number(data, "hold", .5); fadeOut = number(data, "fade_out", .4);

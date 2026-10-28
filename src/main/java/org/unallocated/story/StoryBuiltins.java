@@ -108,8 +108,8 @@ final class StoryBuiltins {
                 case "interact" -> r.signalMatches("interact", null, r.resolvePosition(json.get("at")).block());
                 case "use_item" -> r.signalMatches("use_item", string(json, "item", ""), null);
                 case "has_item" -> p.getInventory().countItem(BuiltInRegistries.ITEM.getValue(Identifier.parse(string(json, "item", "")))) >= number(json, "count", 1);
-                case "break" -> r.signalMatches("break", string(json, "block", ""), null) && (!json.has("zone") || r.resolveBox(json.get("zone")).contains(p));
-                case "chat" -> false; // Match/hide synchronously at the signed broadcast boundary.
+                case "break" -> r.broken(string(json, "block", ""), json.has("zone") ? r.resolveBox(json.get("zone")) : null, p);
+                case "chat" -> r.chatMatches(string(json, "pattern", ""));
                 case "still" -> last != null && p.position().distanceToSqr(last) < .0001;
                 case "sprint" -> p.isSprinting();
                 case "sneak" -> p.isShiftKeyDown();

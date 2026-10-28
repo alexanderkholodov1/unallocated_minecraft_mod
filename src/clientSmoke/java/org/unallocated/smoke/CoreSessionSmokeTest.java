@@ -36,7 +36,10 @@ public final class CoreSessionSmokeTest {
         // exactly where a direct Java template builder calls arm after verifying its map.
         var armOnStart = new AtomicBoolean(true);
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-            if (armOnStart.compareAndSet(true, false)) CoreRuntime.arm(server);
+            if (armOnStart.compareAndSet(true, false)) {
+                server.getCommands().performPrefixedCommand(server.createCommandSourceStack(), "unallocated build all");
+                CoreRuntime.arm(server);
+            }
         });
         try (var world = save.open()) {
             if (armOnStart.get()) throw new AssertionError("Server authoring hook was not executed");
