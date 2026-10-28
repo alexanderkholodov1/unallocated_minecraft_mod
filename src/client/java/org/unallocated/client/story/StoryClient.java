@@ -60,14 +60,14 @@ public final class StoryClient {
         JsonObject data = object(envelope, "data");
         switch (payload.effectId()) {
             case "story.title" -> {
-                client.gui.setTimes((int) (number(data, "fade_in", .5) * 20), (int) (number(data, "stay", 3) * 20), (int) (number(data, "fade_out", 1) * 20));
-                client.gui.setSubtitle(text(object(data, "subtitle"), envelope)); client.gui.setTitle(text(object(data, "title"), envelope));
+                client.gui.hud.setTimes((int) (number(data, "fade_in", .5) * 20), (int) (number(data, "stay", 3) * 20), (int) (number(data, "fade_out", 1) * 20));
+                client.gui.hud.setSubtitle(text(object(data, "subtitle"), envelope)); client.gui.hud.setTitle(text(object(data, "title"), envelope));
             }
-            case "story.actionbar" -> client.gui.setOverlayMessage(text(object(data, "text"), envelope), false);
+            case "story.actionbar" -> client.gui.hud.setOverlayMessage(text(object(data, "text"), envelope), false);
             case "story.chat" -> {
                 Component line = text(object(data, "text"), envelope);
                 if (data.has("from")) line = Component.literal("<").append(text(object(data, "from"), envelope)).append("> ").append(line);
-                client.gui.getChat().addMessage(line);
+                client.gui.hud.getChat().addMessage(line);
             }
             case "story.blackout" -> {
                 fadeIn = number(data, "fade_in", .1); hold = number(data, "hold", .5); fadeOut = number(data, "fade_out", .4);
