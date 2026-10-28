@@ -87,9 +87,17 @@ final class AudioSmokeTest {
                     if (cue == AudioCue.MUFFLE) {
                         float gain = SoundEffects.muffleGain();
                         if (gain >= 1f) throw new AssertionError("Muffle did not start");
+                        // Vanilla MusicManager can be fading MUSIC independently of our effect.
+                        // Compare both engine readings in this client task so that fade cannot tick
+                        // between them; keep the exact multiplicative-gain assertion for every bus.
+                        Map<SoundSource, Float> muffled = new EnumMap<>(SoundSource.class);
+                        for (SoundSource source : SoundSource.values()) muffled.put(source, engineVolume(client, source));
+                        SoundEffects.stop(AudioCue.MUFFLE);
+                        assertNear(SoundEffects.muffleGain(), 1f);
                         for (SoundSource source : SoundSource.values()) {
-                            assertNear(engineVolume(client, source), 0.8f * gain);
+                            assertNear(muffled.get(source), engineVolume(client, source) * gain);
                         }
+                        SoundEffects.play(AudioCue.MUFFLE, client.player.getEyePosition());
                     }
                 });
                 context.waitTicks(cue == AudioCue.AMBIENT ? 4 : cue.durationTicks() + 3);
