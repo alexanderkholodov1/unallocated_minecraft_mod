@@ -1,6 +1,7 @@
 package org.unallocated.client.story;
 
 import com.google.gson.*;
+import org.unallocated.story.mixin.client.StorySplashAccessor;
 import java.util.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

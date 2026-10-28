@@ -1,4 +1,4 @@
-package org.unallocated.client.story;
+package org.unallocated.story.mixin.client;
 import net.minecraft.client.gui.components.SplashRenderer;
 import net.minecraft.client.gui.screens.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,5 +1,6 @@
-package org.unallocated.client.story;
+package org.unallocated.story.mixin.client;
 
+import org.unallocated.client.story.StoryClient;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.Hud;
