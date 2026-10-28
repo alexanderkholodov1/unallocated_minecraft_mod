@@ -75,7 +75,7 @@ final class LauncherSmokeTest {
             "UNALLOCATED smoke: launcher GUI scales, continue and new copies verified");
     }
     private static Path opened(ClientGameTestContext context) {
-        context.waitFor(client -> client.player != null && client.level != null && client.gui.screen() == null);
+        LoadingFailure.capture(context, "launcher", () -> context.waitFor(client -> client.player != null && client.level != null && client.gui.screen() == null));
         return context.computeOnClient(client -> client.getSingleplayerServer().getWorldPath(LevelResource.ROOT).toAbsolutePath().normalize());
     }
     private static void quit(ClientGameTestContext context) {

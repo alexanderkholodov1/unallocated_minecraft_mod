@@ -24,8 +24,15 @@ public final class WorldCorruption {
     static void initialize() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             List<Job> jobs = new ArrayList<>();
-            for (String flag : SessionState.get(server).flags()) if (flag.startsWith(PREFIX))
-                jobs.add(decode(flag));
+            var state = SessionState.get(server);
+            for (String flag : List.copyOf(state.flags())) if (flag.startsWith(PREFIX)) {
+                // Upgrade the unreleased 0.2.4 representation before the first knowledge sync.
+                if (flag.substring(PREFIX.length()).startsWith("{")) {
+                    var data = JsonParser.parseString(flag.substring(PREFIX.length())).getAsJsonObject();
+                    String key = PREFIX + string(data, "key", "").substring("story.world.".length());
+                    StoryRecords.write(state, key, data); state.removeFlag(flag); jobs.add(decode(key, data));
+                } else jobs.add(decode(flag, StoryRecords.read(state, flag)));
+            }
             jobs.sort(Comparator.comparingInt(job -> Integer.parseInt(job.key.substring("story.world.".length()))));
             JOBS.put(server, jobs);
         });
@@ -37,7 +44,7 @@ public final class WorldCorruption {
             for (var it = jobs.iterator(); it.hasNext();) {
                 Job job = it.next();
                 int elapsed = (int) Math.min(Integer.MAX_VALUE, Math.max(0, state.ticks() - job.data.get("started").getAsLong()));
-                if (advance(runtime, job, elapsed)) { state.removeFlag(job.flag); it.remove(); }
+                if (advance(runtime, job, elapsed)) { StoryRecords.remove(state, job.flag); it.remove(); }
             }
         });
     }
@@ -50,8 +57,7 @@ public final class WorldCorruption {
         }
         return List.copyOf(result);
     }
-    private static Job decode(String flag) {
-        var data = JsonParser.parseString(flag.substring(PREFIX.length())).getAsJsonObject();
+    private static Job decode(String flag, JsonObject data) {
         var a = array(data, "box"); int x = a.get(0).getAsInt(), y = a.get(1).getAsInt(), z = a.get(2).getAsInt();
         return new Job(flag, string(data, "key", ""), data,
             new WorldPlan.Region(x, y, z, a.get(3).getAsInt(), a.get(4).getAsInt(), a.get(5).getAsInt()), rules(array(data, "rules")));
@@ -69,9 +75,9 @@ public final class WorldCorruption {
         int duration = seconds == 0 ? 0 : Math.max(runtime.ticks(seconds), (int) Math.ceil(area.size() / 2048.0));
         data.addProperty("started", state.ticks()); data.addProperty("duration", duration); data.add("rules", rules.deepCopy());
         JsonArray bounds = new JsonArray(); for (int v : new int[]{area.x(), area.y(), area.z(), area.width(), area.height(), area.depth()}) bounds.add(v);
-        data.add("box", bounds); var job = decode(PREFIX + data);
+        data.add("box", bounds); var job = decode(PREFIX + id, data);
         if (duration == 0) advance(runtime, job, 0);
-        else { state.addFlag(job.flag); JOBS.computeIfAbsent(runtime.server(), s -> new ArrayList<>()).add(job); }
+        else { StoryRecords.write(state, job.flag, data); JOBS.computeIfAbsent(runtime.server(), s -> new ArrayList<>()).add(job); }
         return area.size();
     }
     private static Block block(String name) {

@@ -95,7 +95,7 @@ final class WorldSmokeTest {
             } catch (Throwable error) { failure.set(error); }
         });
         try {
-            var world = context.worldBuilder().adjustSettings(settings -> {
+            var world = LoadingFailure.capture(context, "world-fresh", () -> context.worldBuilder().adjustSettings(settings -> {
                 settings.setSeed("412"); settings.setGenerateStructures(false);
                 settings.updateDimensions((registries, dimensions) -> {
                     var flat = new FlatLevelGeneratorSettings(Optional.of(HolderSet.direct()), registries.lookupOrThrow(Registries.BIOME)
@@ -103,7 +103,7 @@ final class WorldSmokeTest {
                     flat.getLayersInfo().add(new FlatLayerInfo(1, Blocks.AIR)); flat.updateLayers();
                     return dimensions.replaceOverworldGenerator(registries, new FlatLevelSource(flat));
                 });
-            }).create();
+            }).create());
             world.getServer().waitFor(server -> failure.get() != null || StoryRuntime.get(server).state().counters().entrySet().stream()
                 .anyMatch(e -> e.getKey().startsWith("story.world.") && e.getKey().endsWith(".cursor") && e.getValue() > 0));
             if (failure.get() != null) throw new AssertionError("World authoring failed", failure.get());
@@ -121,7 +121,7 @@ final class WorldSmokeTest {
                 log("vanilla summon SNBT and despawn verified");
             });
             var save = world.getWorldSave(); world.close();
-            save.open(); // Reopen the actual save with its datapack dimension and unfinished corruption.
+            LoadingFailure.capture(context, "world-resume", save::open); // Reopen the actual save with its datapack dimension and unfinished corruption.
             context.waitForScreen(DisconnectedScreen.class);
             if (failure.get() != null || !complete.get() || !returned.get()) throw new AssertionError("World fixture failed", failure.get());
             if (!seen.get() || !caught.get()) throw new AssertionError("Creature triggers were not exercised");

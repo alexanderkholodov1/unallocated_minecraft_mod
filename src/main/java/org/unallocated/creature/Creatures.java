@@ -18,6 +18,7 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.unallocated.core.SessionState;
+import org.unallocated.world.StoryRecords;
 import org.unallocated.mixin.bait.BaitMannequinInvoker;
 import org.unallocated.story.StoryRuntime;
 import static org.unallocated.story.StoryData.*;
@@ -35,9 +36,15 @@ public final class Creatures {
     static void initialize() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             Map<String, Body> bodies = new LinkedHashMap<>();
-            for (String flag : SessionState.get(server).flags()) if (flag.startsWith(PREFIX)) {
-                var data = JsonParser.parseString(flag.substring(flag.indexOf('=') + 1)).getAsJsonObject();
-                bodies.put(string(data, "id", ""), new Body(data, flag));
+            var state = SessionState.get(server);
+            for (String flag : List.copyOf(state.flags())) if (flag.startsWith(PREFIX)) {
+                String key = flag;
+                JsonObject data;
+                if (flag.contains("=")) {
+                    data = JsonParser.parseString(flag.substring(flag.indexOf('=') + 1)).getAsJsonObject();
+                    key = PREFIX + string(data, "id", ""); StoryRecords.write(state, key, data); state.removeFlag(flag);
+                } else data = StoryRecords.read(state, flag);
+                bodies.put(string(data, "id", ""), new Body(data, key));
             }
             SERVERS.put(server, bodies);
         });
@@ -83,8 +90,7 @@ public final class Creatures {
         body.data.addProperty("yaw", yaw);
     }
     private static void persist(MinecraftServer server, Body body) {
-        var state = SessionState.get(server); if (body.flag != null) state.removeFlag(body.flag);
-        body.flag = PREFIX + string(body.data, "id", "") + "=" + body.data; state.addFlag(body.flag);
+        body.flag = PREFIX + string(body.data, "id", ""); StoryRecords.write(SessionState.get(server), body.flag, body.data);
     }
     private static void discard(Body body) {
         if (body.entity != null) { body.entity.getSelfAndPassengers().toList().forEach(Entity::discard); body.entity = null; }
@@ -94,10 +100,10 @@ public final class Creatures {
         Body body = bodies.get(id); String op = string(action, "op", "");
         if (op.equals("despawn")) {
             if (body == null) return "skipped";
-            discard(body); runtime.state().removeFlag(body.flag); bodies.remove(id); return "ok";
+            discard(body); StoryRecords.remove(runtime.state(), body.flag); bodies.remove(id); return "ok";
         }
         if (op.equals("spawn")) {
-            if (body != null) { discard(body); runtime.state().removeFlag(body.flag); }
+            if (body != null) { discard(body); StoryRecords.remove(runtime.state(), body.flag); }
             JsonObject data = new JsonObject(); data.addProperty("id", id); data.add("body", action.get("body").deepCopy()); data.addProperty("op", "hold");
             var where = runtime.resolvePosition(action.get("where")); var p = where.center();
             data.addProperty("dimension", where.dimension()); data.addProperty("x", p.x); data.addProperty("y", p.y); data.addProperty("z", p.z);

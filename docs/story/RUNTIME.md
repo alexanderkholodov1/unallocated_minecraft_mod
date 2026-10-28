@@ -81,8 +81,8 @@ world through the title launcher. Those checks still need CI execution during th
   source list or destination list makes no replacements. The optional seed defaults to zero.
   Zero seconds runs synchronously; positive durations spread visits evenly over active story ticks
   with a maximum of 2048 positions per tick (shorter durations stretch to this minimum). JSON jobs,
-  resolved boxes, seeds and starting ticks are saved as `story.world.job.*` flags; cursors and unique
-  job sequence numbers are `story.world.*` counters. Jobs resume without reseeding after reload and
+  resolved boxes, seeds and starting ticks are packed as UTF-8 words in `story.world.job.*` counters;
+  only short job IDs are flags. Cursors and unique job sequence numbers are `story.world.*` counters. Jobs resume without reseeding after reload and
   pause while the story clock is stopped. Concurrent jobs execute in creation order. Never edit
   these internal keys from content. Block resource IDs are checked before any mutation.
 
@@ -119,9 +119,10 @@ Operations after spawn use the same `id`:
   `despawn` removes the body and saved description. Operations on absent IDs return `skipped`.
 
 Movement parameters accept 0..128, scale accepts greater than zero up to 16. Creature descriptions,
-resolved dimension/position, body, operation and parameters are saved under `story.creature.*` flags.
+resolved dimension/position, body, operation and parameters are packed in `story.creature.*` counters,
+with only short creature IDs stored as flags. Internal JSON never enters the 256-character knowledge wire fields.
 The required creature mixins exclude tagged bodies from entity saves and suspend their native ticks.
-On resume the runtime restores them from those flags using the current participant's profile.
+On resume the runtime restores them from those records using the current participant's profile.
 No bodies remain running while the session is inactive or empty.
 
 `{"type":"creature","creature":"figure","event":"near","distance":3}` tests proximity;
@@ -131,3 +132,10 @@ moves an existing creature to satisfy the condition; caught simulation requires 
 active. A blocked seen simulation places it closer in front of the participant. The placeholder
 world fixture stalks, holds/faces for `story-world-creature.png`, chases until caught, despawns,
 returns to the Overworld and ends. CI still needs to execute this proof during the billing outage.
+
+
+The package mixin config also marks only `unallocated:pocket` as stable when vanilla checks dimension
+settings. Vanilla otherwise marks all custom dimensions experimental; full Fabric API supplies its
+own mod-dimension stability check, but the dependency-free judge installation must behave the same.
+Other custom dimensions retain vanilla stability checks. Failed launcher/fresh-world/resume waits
+capture `unallocated-load-failed-*.png` and log the screen class/title before the test exits.
