@@ -24,7 +24,7 @@ public final class StoryBuild {
                     if (level.setChunkForced(x, z, true)) owned.add(new Chunk(level, x, z)); level.getChunk(x, z);
                 }
             }
-            var source = server.createCommandSourceStack().withPermission(LevelBasedPermissionSet.GAMEMASTER).withSuppressedOutput();
+            var source = server.createCommandSourceStack().withPosition(net.minecraft.world.phys.Vec3.atBottomCenterOf(server.getRespawnData().pos())).withPermission(LevelBasedPermissionSet.GAMEMASTER).withSuppressedOutput();
             for (JsonElement command : array(build, "run")) {
                 int result = server.getCommands().getDispatcher().execute(command.getAsString(), source);
                 if (result <= 0) throw new IllegalStateException("Build command failed: " + command.getAsString()); count++;

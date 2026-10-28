@@ -21,11 +21,15 @@ import org.unallocated.story.*;
 
 /** Two independent flat-air worlds, real trigger simulation, vanilla shutdown and local text. */
 final class StorySmokeTest {
+    private static byte[] read(Path path) {
+        try { return Files.readAllBytes(path); }
+        catch (java.io.IOException exception) { throw new AssertionError("Could not snapshot " + path.getFileName(), exception); }
+    }
     static void run(ClientGameTestContext context) {
         Map<Path, byte[]> before = context.computeOnClient(client -> {
             Map<Path, byte[]> result = new LinkedHashMap<>();
             for (String name : List.of("options.txt", "unallocated/contract.properties")) {
-                Path path = client.gameDirectory.toPath().resolve(name); result.put(path, Files.readAllBytes(path));
+                Path path = client.gameDirectory.toPath().resolve(name); result.put(path, read(path));
             }
             return result;
         });

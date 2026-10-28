@@ -11,10 +11,10 @@ public final class UnallocatedMod implements ModInitializer {
     @Override
     public void onInitialize() {
         org.unallocated.core.CoreRuntime.register(new org.unallocated.ending.EpilogueAct());
+        org.unallocated.story.StoryRuntime.initialize();
         org.unallocated.core.CoreRuntime.initialize();
         org.unallocated.map.MapCommand.register();
         org.unallocated.audio.AudioSounds.initialize();
-        org.unallocated.story.StoryRuntime.initialize();
         LOGGER.info("UNALLOCATED initialized (common).");
     }
 }

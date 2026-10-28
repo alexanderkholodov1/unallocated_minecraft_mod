@@ -158,7 +158,8 @@ public final class StoryRuntime {
         if (p.isDeadOrDying() && !dead) { state.setCounter("story.deaths", state.counters().getOrDefault("story.deaths", 0) + 1); signal(p, "death", "", null); }
         if (!p.isDeadOrDying() && dead) signal(p, "respawn", "", null);
         dead = p.isDeadOrDying();
-        drain(true); int before = generation;
+        int before = generation; drain(true);
+        if (before != generation || !state.active()) return;
         for (JsonElement e : array(chapter, "beats")) {
             if (before != generation || !state.active()) break;
             JsonObject beat = e.getAsJsonObject(); if (!eligible(beat)) continue;

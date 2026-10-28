@@ -130,7 +130,8 @@ final class StoryBuiltins {
                 case "zone" -> r.teleport(p, r.resolveBox(json.get("zone")).center());
                 case "look" -> {
                     var target = r.resolvePosition(json.get("at")); Vec3 pos = target.center();
-                    if (!StoryRuntime.dimensionName(p.level()).equals(target.dimension()) || p.position().distanceTo(pos) > number(json, "max_distance", 96))
+                    boolean blocked = p.level().clip(new ClipContext(p.getEyePosition(), pos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, p)).getType() != HitResult.Type.MISS;
+                    if (!StoryRuntime.dimensionName(p.level()).equals(target.dimension()) || blocked || p.position().distanceTo(pos) > number(json, "max_distance", 96))
                         r.teleport(p, new StoryRuntime.Position(target.dimension(), target.x() - 3, target.y(), target.z(), 0, 0));
                     Vec3 diff = pos.subtract(p.getEyePosition()); float yaw = (float) (Math.toDegrees(Math.atan2(diff.z, diff.x)) - 90);
                     float pitch = (float) -Math.toDegrees(Math.atan2(diff.y, Math.hypot(diff.x, diff.z)));
