@@ -14,10 +14,12 @@ public final class WorldActions {
     public static synchronized void registerActions() {
         if (registered) return; registered = true;
         StoryActions.register("copy", (json, context) -> {
+            timing(json, context);
             context.keys(json, "do at from to", "do from to"); context.box(json.get("from"), "from"); context.position(json.get("to"), "to");
             return (runtime, player) -> { WorldCopy.copy(runtime, runtime.resolveBox(json.get("from")), runtime.resolvePosition(json.get("to"))); return "ok"; };
         });
         StoryActions.register("corrupt", (json, context) -> {
+            timing(json, context);
             context.keys(json, "do at area rules seed over_seconds", "do area rules"); context.box(json.get("area"), "area");
             if (json.has("seed") && !integer(json.get("seed"))) context.error("/seed", "bad-value", "Expected signed 64-bit integer seed");
             double seconds = number(json, "over_seconds", 0);
@@ -41,6 +43,11 @@ public final class WorldActions {
             return (runtime, player) -> { WorldCorruption.start(runtime, runtime.resolveBox(json.get("area")), array(json, "rules"), json.has("seed") ? json.get("seed").getAsLong() : 0L, seconds); return "ok"; };
         });
     }
+    public static void timing(JsonObject json, StoryValidator.Context context) {
+        if (!json.has("at")) return;
+        if (!numeric(json.get("at"))) context.error("/at", "bad-value", "Expected finite action time");
+        else if (number(json, "at", 0) < 0 || number(json, "at", 0) > 600) context.error("/at", "bad-time", "Expected action time 0..600 seconds");
+    }
     private static boolean numeric(JsonElement value) {
         return value != null && value.isJsonPrimitive() && value.getAsJsonPrimitive().isNumber() && Double.isFinite(value.getAsDouble());
     }
@@ -50,7 +57,7 @@ public final class WorldActions {
         catch (ArithmeticException error) { return false; }
     }
     public static void initialize() {
-        registerActions(); WorldCorruption.initialize();
+        registerActions(); org.unallocated.creature.CreatureActions.initialize(); WorldCorruption.initialize();
         CommandRegistrationCallback.EVENT.register((dispatcher, registry, environment) -> {
             var destination = Commands.argument("dimension", StringArgumentType.word()).executes(c -> {
                 var runtime = StoryRuntime.get(c.getSource().getServer()); String dimension = StringArgumentType.getString(c, "dimension");

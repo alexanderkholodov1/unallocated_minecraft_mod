@@ -26,7 +26,7 @@ The context exposes `error(suffix, rule, message)`, `keys`, `position`, and `box
 `StoryTriggers.register(String, TriggerParser)` follows the same pattern and returns a
 `Trigger` with `test(ServerPlayer)`, `simulate(ServerPlayer)`, optional `reset()` and
 `automatic()` (true for time/flag triggers that autoplay must wait for).
-Package 4 registers `copy` and `corrupt`. The `creature` action and trigger are not implemented yet.
+Package 4 registers `copy`, `corrupt`, and the `creature` action and trigger.
 
 `StoryRuntime.get(server)` exposes `fire(String)` (guards/repeat limits still apply),
 `currentChapter()` (JSON or null), `state()`, `resolvePosition(JsonElement)` and
@@ -90,5 +90,44 @@ Gamemaster/console commands (absolute integer coordinates):
 `/unallocated story copy <zone-or-section> <x> <y> <z> <overworld|pocket>` and
 `/unallocated story corrupt <zone-or-section> <seed>`. The corruption command applies an instant
 25% stone/cobblestone to cracked-stone-bricks preset. `build.run` can use both commands. Content
-controls real corruption through the action's rules. The world fixture contains only Part A;
-creature behaviours and the `world-creature` capture are pending Part B.
+controls real corruption through the action's rules. The world fixture covers the world and creature primitives, including reload and both captures.
+
+
+## Creature actions and trigger (package 0.2.4, Part B)
+
+`{"do":"creature","op":"spawn","id":"figure","body":{"mannequin":{"profile":"player",
+"scale":1}},"where":"world.pocket","facing":"player"}` creates a transient body. `where` accepts
+any position; `facing` is `player` or a yaw (default: anchor yaw). Profile may also be a Minecraft
+profile name. `texture` accepts a shipped PNG such as `unallocated:skins/figure.png` or
+`unallocated:textures/skins/figure.png`; missing assets are rejected at load. The reference 26.3
+JAR's `ResolvableProfile` codec includes `PlayerSkin.Patch` with a `texture` ResourceTexture, so
+bundled overrides are supported without changing section 6.6. No new skin is shipped by this package.
+Alternatively use `{"summon":"minecraft:zombie{NoAI:1b}"}`; vanilla dispatcher validation checks
+summonable entity IDs and SNBT at load on the server. Bodies and passengers receive the runtime tag
+`unallocated.story_creature`. Native entity ticking is suspended for these bodies, so even summoned
+projectiles obey hold; the runtime supplies all movement. Mobs also have AI disabled. Bodies are
+silent, have no gravity and are invulnerable.
+
+Operations after spawn use the same `id`:
+
+- `stalk`: `step` defaults to 1 block per second, `min_distance` to 3 blocks. Moves only while unseen,
+  using the bait's conservative plain/scoped view angles and visual line-of-sight rays to head/chest.
+- `chase`: `speed` defaults to 3 blocks per second, `catch_distance` to 1 block. Ground snaps within
+  one block vertically, and the entire body sweeps the route in at most 0.2-block increments. It
+  stops at walls, missing ground and unloaded chunks. There is no pathfinding or door opening.
+- `hold` stops movement; `face_player` holds position and follows the participant with its head;
+  `despawn` removes the body and saved description. Operations on absent IDs return `skipped`.
+
+Movement parameters accept 0..128, scale accepts greater than zero up to 16. Creature descriptions,
+resolved dimension/position, body, operation and parameters are saved under `story.creature.*` flags.
+The required creature mixins exclude tagged bodies from entity saves and suspend their native ticks.
+On resume the runtime restores them from those flags using the current participant's profile.
+No bodies remain running while the session is inactive or empty.
+
+`{"type":"creature","creature":"figure","event":"near","distance":3}` tests proximity;
+`seen` requires view plus line of sight for `seconds` (default 0.5); `caught` requires chase mode
+and the configured catch distance. All three optionally accept consecutive `seconds`. Autoplay
+moves an existing creature to satisfy the condition; caught simulation requires chase already
+active. A blocked seen simulation places it closer in front of the participant. The placeholder
+world fixture stalks, holds/faces for `story-world-creature.png`, chases until caught, despawns,
+returns to the Overworld and ends. CI still needs to execute this proof during the billing outage.

@@ -19,7 +19,7 @@ class WorldActionsTest {
         }
     }
     @Test void corruptionRejectsInvalidSeedRulesAndTimingBeforeExecution() {
-        for (String invalid : new String[]{"\"seed\":1.5", "\"seed\":9223372036854775808", "\"over_seconds\":-1", "\"rules\":[{\"from\":[\"bad id\"],\"to\":[],\"ratio\":2}]"}) {
+        for (String invalid : new String[]{"\"at\":601", "\"at\":\"later\"", "\"seed\":1.5", "\"seed\":9223372036854775808", "\"over_seconds\":-1", "\"rules\":[{\"from\":[\"bad id\"],\"to\":[],\"ratio\":2}]"}) {
             var json = JsonParser.parseString("{\"do\":\"corrupt\",\"area\":{\"box\":[0,0,0,1,1,1]},\"rules\":[]}").getAsJsonObject();
             var replacement = JsonParser.parseString("{" + invalid + "}").getAsJsonObject();
             replacement.entrySet().forEach(entry -> json.add(entry.getKey(), entry.getValue()));

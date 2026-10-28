@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "org.unallocated.creature.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": ["CreatureSaveMixin", "CreatureTickMixin"],
+  "injectors": {"defaultRequire": 1}
+}
