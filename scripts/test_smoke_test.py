@@ -3,6 +3,7 @@
 from unittest.mock import patch
 from contextlib import redirect_stderr, redirect_stdout
 import io
+import os
 from pathlib import Path
 import sys
 from tempfile import TemporaryDirectory
@@ -13,6 +14,93 @@ from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_PO
 
 COMMON = r'UNALLOCATED initialized \(common\)\.'
 DONE = r'Done \([^\r\n]*\)!'
+
+
+class JavaHomeTest(unittest.TestCase):
+    def setUp(self):
+        (ROOT / '.tmp').mkdir(exist_ok=True)
+
+    @staticmethod
+    def fake_jdk(directory, version='25.0.5', body='raise AssertionError("Java must not run during validation")\n'):
+        home = directory / 'selected jdk'
+        (home / 'bin').mkdir(parents=True)
+        (home / 'release').write_text(f'JAVA_VERSION="{version}"\n')
+        java = home / 'bin/java'
+        java.write_text(f'#!{sys.executable}\n' + body)
+        java.chmod(0o755)
+        return home
+
+    def test_requires_java_home_and_java_25_without_starting_java(self):
+        import smoke_test
+        with patch.dict(os.environ, {}, clear=True):
+            with self.assertRaisesRegex(RuntimeError, 'JAVA_HOME is required'):
+                smoke_test.java_executable()
+        for version in ('21.0.9', '26', '1.8.0_472', 'unknown'):
+            with self.subTest(version=version), TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+                home = self.fake_jdk(Path(temp), version)
+                with patch.dict(os.environ, {'JAVA_HOME': str(home)}):
+                    with self.assertRaisesRegex(RuntimeError, 'JAVA_HOME must point to Java 25'):
+                        smoke_test.java_executable()
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            home = self.fake_jdk(Path(temp))
+            with patch.dict(os.environ, {'JAVA_HOME': str(home)}):
+                self.assertEqual(smoke_test.java_executable(), str(home / 'bin/java'))
+                (home / 'bin/java').unlink()
+                with self.assertRaisesRegex(RuntimeError, 'no executable Java 25 launcher'):
+                    smoke_test.java_executable()
+                (home / 'release').unlink()
+                with self.assertRaisesRegex(RuntimeError, 'cannot read'):
+                    smoke_test.java_executable()
+
+    def test_server_launches_java_home_java_even_when_path_contains_older_java(self):
+        import smoke_test
+        from zipfile import ZipFile
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            root = Path(temp)
+            called, wrong = root / 'selected-called', root / 'path-called'
+            # These executables are Python stand-ins: no Java or game process runs locally.
+            body = (
+                'from pathlib import Path\nimport sys\n'
+                f'Path({str(called)!r}).write_text("selected")\n'
+                'assert "-jar" in sys.argv\n'
+                'Path("logs").mkdir()\n'
+                f'Path("logs/latest.log").write_text({WatchdogTest.REJECTION!r})\n'
+                'sys.exit(1)\n'
+            )
+            home = self.fake_jdk(root, body=body)
+            path_bin = root / 'path-bin'
+            path_bin.mkdir()
+            path_java = path_bin / 'java'
+            path_java.write_text(f'#!{sys.executable}\nfrom pathlib import Path\nPath({str(wrong)!r}).touch()\nraise SystemExit(99)\n')
+            path_java.chmod(0o755)
+            (root / 'build/libs').mkdir(parents=True)
+            (root / 'build/libs/unallocated-test.jar').write_bytes(b'player fixture')
+            (root / 'build/smoke/full-api').mkdir(parents=True)
+            (root / 'build/smoke/full-api/fabric-api-0.153.1+26.3.jar').write_bytes(b'api fixture')
+            downloads = root / '.tmp/smoke-downloads/26.3-0.20.1-1.1.2'
+            downloads.mkdir(parents=True)
+            with ZipFile(downloads / 'fabric-server-launch.jar', 'w'):
+                pass
+            props = {'version': 'test', 'minecraft_version': '26.3', 'loader_version': '0.20.1'}
+            with patch.dict(os.environ, {'JAVA_HOME': str(home), 'PATH': str(path_bin)}), \
+                    patch.object(smoke_test, 'ROOT', root), patch.object(smoke_test, 'SMOKE', root / '.tmp/smoke'), \
+                    patch.object(smoke_test, 'properties', return_value=props), \
+                    patch.object(smoke_test, 'urlopen', side_effect=AssertionError('Unexpected download')), \
+                    redirect_stdout(io.StringIO()):
+                smoke_test.server('0.153.1+26.3')
+            self.assertTrue(called.is_file())
+            self.assertFalse(wrong.exists(), 'Smoke must never launch PATH java')
+
+    def test_gradle_daemon_uses_the_validated_java_home(self):
+        import smoke_test
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            root = Path(temp)
+            home = self.fake_jdk(root)
+            gradle = root / 'gradle'
+            gradle.write_text(f'#!{sys.executable}\nimport sys\nassert sys.argv[1] == {"-Dorg.gradle.java.home=" + str(home)!r}\n')
+            gradle.chmod(0o755)
+            with patch.dict(os.environ, {'JAVA_HOME': str(home)}), redirect_stdout(io.StringIO()):
+                monitor([str(gradle), '--daemon'], root, root / 'console.log', (), timeout=2)
 
 
 class WatchdogTest(unittest.TestCase):

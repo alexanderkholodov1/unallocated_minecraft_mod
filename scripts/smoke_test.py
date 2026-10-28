@@ -32,6 +32,25 @@ API_POLICY = json.loads((ROOT / 'fabric-api-modules.json').read_text())
 API_VERSION = API_POLICY['fabric_api_version']
 
 
+def java_executable():
+    """Resolve the CI-selected JDK without ever falling back to PATH's Java."""
+    configured = os.environ.get('JAVA_HOME', '').strip()
+    if not configured:
+        raise RuntimeError('JAVA_HOME is required for smoke checks; select a Java 25 JDK')
+    home = Path(configured).expanduser().resolve()
+    try:
+        release = (home / 'release').read_text()
+    except OSError as error:
+        raise RuntimeError(f'JAVA_HOME must point to a Java 25 JDK: cannot read {home / "release"}') from error
+    version = re.search(r'^JAVA_VERSION="(\d+)(?:[.+_-][^"\r\n]*)?"$', release, re.M)
+    if version is None or version[1] != '25':
+        raise RuntimeError(f'JAVA_HOME must point to Java 25; found {version[1] if version else "no valid JAVA_VERSION"} in {home / "release"}')
+    executable = home / 'bin' / 'java'
+    if not executable.is_file() or not os.access(executable, os.X_OK):
+        raise RuntimeError(f'JAVA_HOME has no executable Java 25 launcher: {executable}')
+    return str(executable)
+
+
 def verify_mod_directory(directory, allowed):
     actual = {path.name for path in directory.iterdir() if path.is_file()}
     if actual != allowed:
@@ -108,6 +127,10 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
             shutdown_timeout=30, game_directory=None, command_steps=(), startup_required=None,
             expected_rejection=None):
     """Require clean game evidence or a specific pre-startup Loader dependency rejection."""
+    if Path(command[0]).name == 'gradle':
+        # Gradle's launcher reads JAVA_HOME; pin its daemon to that same validated JDK.
+        home = str(Path(java_executable()).parent.parent)
+        command = [command[0], f'-Dorg.gradle.java.home={home}', *command[1:]]
     console.parent.mkdir(parents=True, exist_ok=True)
     game_directory = game_directory or cwd
     latest = game_directory / 'logs' / 'latest.log'
@@ -205,6 +228,7 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
 
 
 def server(with_fabric_api=False):
+    java = java_executable()
     api_version = api_version_argument(with_fabric_api)
     props = properties()
     artifact = ROOT / 'build' / 'libs' / f"unallocated-{props['version']}.jar"
@@ -262,7 +286,7 @@ def server(with_fabric_api=False):
             if attempt == 1:
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
-    command = ['java', '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
+    command = [java, '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
     startup = server_evidence(with_fabric_api) + [r'UNALLOCATED story loaded chapters=1 beats=0 endings=1 format=1']
     console_prefix = 'server-with-api' if with_fabric_api else 'server'
     entered = r'UNALLOCATED act=LOBBY enter t=0'
