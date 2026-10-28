@@ -104,6 +104,36 @@ class JavaHomeTest(unittest.TestCase):
                 smoke_test.watch_gradle([str(gradle), '--daemon'], root / 'build.log')
 
 
+class VideoEnvironmentTest(unittest.TestCase):
+    def test_recorder_inherits_the_xvfb_cookie_and_preserves_the_parent_environment(self):
+        import smoke_test
+        with patch.dict(os.environ, {'XAUTHORITY': '/wrong/parent-cookie', 'OTHER_SETTING': 'kept'}):
+            display, environment = smoke_test.xvfb_capture_environment(
+                [b'Xvfb', b':99', b'-screen', b'0', b'1280x1024x24', b'-auth', b'/private CI/Xauthority'])
+            self.assertEqual(display, ':99')
+            self.assertEqual(environment['DISPLAY'], ':99')
+            self.assertEqual(environment['XAUTHORITY'], '/private CI/Xauthority')
+            self.assertEqual(environment['OTHER_SETTING'], 'kept')
+            self.assertEqual(os.environ['XAUTHORITY'], '/wrong/parent-cookie')
+
+    def test_progress_callback_runs_while_the_display_process_is_still_alive(self):
+        import smoke_test
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp); (directory / 'logs').mkdir()
+            marker = directory / 'recorder-stopped'
+            body = ("from pathlib import Path\nimport time\n"
+                    "Path('logs/latest.log').write_text('PLAY_FINISHED')\n"
+                    "deadline=time.monotonic()+2\n"
+                    f"while not Path({str(marker)!r}).exists():\n"
+                    " assert time.monotonic()<deadline\n time.sleep(.01)\n")
+            def stop(log):
+                if 'PLAY_FINISHED' in log: marker.touch()
+            with redirect_stdout(io.StringIO()):
+                monitor([sys.executable, '-c', body], directory, directory / 'console.log', ['PLAY_FINISHED'],
+                        timeout=3, on_log=stop)
+            self.assertTrue(marker.exists())
+
+
 class ReleaseArtifactTest(unittest.TestCase):
     def test_release_contains_verified_bytes_and_rejects_payload_drift(self):
         import hashlib

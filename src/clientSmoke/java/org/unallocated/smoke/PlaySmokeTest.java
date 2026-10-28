@@ -139,5 +139,6 @@ final class PlaySmokeTest {
         LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: play finished save preserved and new copy opened");
         active.set(-1);
         LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: play all shipped runs verified");
+        context.waitTicks(40); // Keep the title/display alive while the recorder finalizes its MP4.
     }
 }

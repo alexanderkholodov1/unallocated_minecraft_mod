@@ -126,7 +126,7 @@ def crash_reports(directory):
 
 def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
             shutdown_timeout=30, game_directory=None, command_steps=(), startup_required=None,
-            expected_rejection=None):
+            expected_rejection=None, on_log=None):
     """Require clean game evidence or a specific pre-startup Loader dependency rejection."""
     if Path(command[0]).name == 'gradle':
         # Gradle's launcher reads JAVA_HOME; pin its daemon to that same validated JDK.
@@ -157,6 +157,7 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
             )
             while process.poll() is None:
                 game_log = read(latest)
+                if on_log is not None: on_log(game_log)
                 if reports() or crash_pattern.search(game_log + read(console)):
                     raise RuntimeError('Game crash detected')
                 failed = SELFTEST_FAILED.search(game_log)
@@ -528,6 +529,18 @@ def verify_interface_screenshots(directory):
             raise RuntimeError(f'Client exited without a valid interface screenshot: {effect}')
 
 
+def xvfb_capture_environment(arguments):
+    """xvfb-run's cookie belongs to that server, not the parent Python process."""
+    display = next((os.fsdecode(arg) for arg in arguments if re.fullmatch(rb':\d+', arg)), None)
+    environment = dict(os.environ)
+    if display: environment['DISPLAY'] = display
+    if b'-auth' in arguments:
+        index = arguments.index(b'-auth')
+        if index + 1 >= len(arguments): raise ValueError('Xvfb -auth has no path')
+        environment['XAUTHORITY'] = os.fsdecode(arguments[index + 1])
+    return display, environment
+
+
 class VideoRecorder:
     """Optional Xvfb capture. Graphics/test failures still belong to the normal smoke gate."""
     def __init__(self, directory):
@@ -536,6 +549,7 @@ class VideoRecorder:
         self.done = threading.Event()
         self.thread = None
         self.output = None
+        self.stopped = False
 
     def unavailable(self, reason):
         message = 'UNALLOCATED video unavailable: ' + str(reason)
@@ -556,7 +570,7 @@ class VideoRecorder:
                         try: args = cmdline.read_bytes().split(b'\0')
                         except OSError: continue
                         if args and Path(os.fsdecode(args[0])).name == 'Xvfb':
-                            display = next((os.fsdecode(a) for a in args if re.fullmatch(rb':\d+', a)), None)
+                            display, environment = xvfb_capture_environment(args)
                             if display: break
                     if display: break
                     self.done.wait(.25)
@@ -566,12 +580,14 @@ class VideoRecorder:
                 self.process = subprocess.Popen([ffmpeg, '-y', '-f', 'x11grab', '-framerate', '8',
                     '-i', display, '-vf', 'scale=640:-2', '-c:v', 'libx264', '-preset', 'ultrafast',
                     '-crf', '30', '-maxrate', '200k', '-bufsize', '400k', '-pix_fmt', 'yuv420p',
-                    '-fs', '24000000', '-t', '1800', str(self.directory / 'gameplay.mp4')],
-                    stdin=subprocess.PIPE, stdout=self.output, stderr=subprocess.STDOUT, text=True)
+                    '-fs', '24000000', '-t', '1800', '-movflags', '+faststart', str(self.directory / 'gameplay.mp4')],
+                    stdin=subprocess.PIPE, stdout=self.output, stderr=subprocess.STDOUT, text=True, env=environment)
             except Exception as error: self.unavailable(error)
         self.thread = threading.Thread(target=capture, daemon=True); self.thread.start()
 
     def stop(self):
+        if self.stopped: return
+        self.stopped = True
         self.done.set()
         self.thread.join(timeout=5)
         try:
@@ -658,6 +674,7 @@ def client(with_fabric_api=None, *, include_story=False):
             # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
             # Same real game directory, new JVM, no stale log evidence.
             game_directory=directory,
+            on_log=(lambda log: recorder.stop() if 'UNALLOCATED smoke: play all shipped runs verified' in log else None) if recorder else None,
             )
         finally:
             if recorder: recorder.stop()
