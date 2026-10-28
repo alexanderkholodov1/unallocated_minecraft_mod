@@ -13,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.gamerules.GameRules;
 import org.unallocated.client.launcher.LauncherClient;
 import org.unallocated.core.SessionState;
 import org.unallocated.ending.EndingText;
@@ -29,6 +30,15 @@ final class PlaySmokeTest {
         } catch (IOException exception) { throw new AssertionError(exception); }
         var runs = story.getAsJsonObject("autoplay").getAsJsonArray("runs");
         String first = story.getAsJsonArray("chapters").get(0).getAsString();
+        double budget = 0;
+        for (var chapter : story.getAsJsonArray("chapters")) {
+            try (var input = PlaySmokeTest.class.getResourceAsStream("/data/unallocated/story/chapters/" + chapter.getAsString() + ".json")) {
+                if (input == null) throw new AssertionError("Missing shipped chapter");
+                budget += JsonParser.parseReader(new InputStreamReader(input, StandardCharsets.UTF_8))
+                    .getAsJsonObject().get("budget_seconds").getAsDouble();
+            } catch (IOException exception) { throw new AssertionError(exception); }
+        }
+        int endingTimeout = (int) Math.ceil((180 + budget * story.getAsJsonObject("autoplay").get("time_scale").getAsDouble()) * 20);
         AtomicInteger active = new AtomicInteger(-1);
         AtomicBoolean pristine = new AtomicBoolean(), joined = new AtomicBoolean(), complete = new AtomicBoolean();
         AtomicReference<Throwable> failure = new AtomicReference<>();
@@ -41,6 +51,10 @@ final class PlaySmokeTest {
                     || server.getWorldData().getGameType() != GameType.ADVENTURE || server.getWorldData().isAllowCommands()) {
                     throw new AssertionError("Launcher save must be armed, unstarted, Adventure, cheats off before JOIN");
                 }
+                var rules = server.getGameRules();
+                if (rules.get(GameRules.SPAWN_MOBS) || rules.get(GameRules.ADVANCE_TIME)
+                    || rules.get(GameRules.ADVANCE_WEATHER) || !rules.get(GameRules.KEEP_INVENTORY)
+                    || rules.get(GameRules.RESPAWN_RADIUS) != 0) throw new AssertionError("Template lost map rules");
                 pristine.set(true);
                 var runtime = StoryRuntime.get(server);
                 runtime.events().subscribe(StoryEnding.class, event -> {
@@ -74,17 +88,18 @@ final class PlaySmokeTest {
             active.set(index); pristine.set(false); joined.set(false); complete.set(false);
             StoryRuntime.setAutoplayRun(index);
             context.waitForScreen(TitleScreen.class);
+            context.waitTicks(45); // Let vanilla's initial title fade finish for the release capture.
             context.takeScreenshot("unallocated-title-button");
             context.clickScreenButton("menu.unallocated.play");
             context.waitForScreen(GenericMessageScreen.class);
             context.waitTicks(2);
             context.takeScreenshot("unallocated-connecting");
-            context.waitFor(client -> failure.get() != null || joined.get());
-            if (failure.get() != null) throw new AssertionError("Launcher preflight failed", failure.get());
+            context.waitFor(client -> failure.get() != null || joined.get() || client.gui.screen() instanceof DisconnectedScreen, 2400);
+            if (failure.get() != null || !joined.get()) throw new AssertionError("Launcher preflight failed", failure.get());
             Path copy = context.computeOnClient(client -> client.getSingleplayerServer().getWorldPath(
                 net.minecraft.world.level.storage.LevelResource.ROOT).normalize());
             if (!copies.add(copy)) throw new AssertionError("Ending reused a finished save");
-            context.waitForScreen(DisconnectedScreen.class);
+            context.waitFor(client -> client.gui.screen() instanceof DisconnectedScreen, endingTimeout);
             if (failure.get() != null || !complete.get()) throw new AssertionError("Shipped story did not reach expected ending", failure.get());
             context.runOnClient(client -> {
                 if (client.level != null || client.getSingleplayerServer() != null) throw new AssertionError("Farewell kept server open");

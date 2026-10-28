@@ -148,6 +148,10 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     useXVFB = true
     jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
     jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
+    if (providers.gradleProperty('contractSmokePhase').getOrElse('first') in ['first', 'restart']) {
+        // Keep package regression worlds stable when tomorrow's shipped content changes.
+        jvmArgs.add('-Dunallocated.story.dir=' + layout.projectDirectory.dir('src/clientSmoke/resources/story-regression').asFile.absolutePath)
+    }
     if (providers.gradleProperty('contractSmokePhase').getOrElse('first') == 'story') {
         jvmArgs.add('-Dunallocated.story.dir=' + layout.projectDirectory.dir('src/test/resources/story-fixtures/valid/example').asFile.absolutePath)
         jvmArgs.add('-Dunallocated.story.autoplay=true')

@@ -233,6 +233,10 @@ def dump_gradle_threads(directory):
     directory.mkdir(parents=True, exist_ok=True)
     jcmd = str(Path(java_executable()).with_name('jcmd'))
     pids = []
+    # Preserve daemon logs alongside stacks, keeping diagnostics at one worktree-relative path.
+    gradle_home = Path(os.environ.get('GRADLE_USER_HOME', str(Path.home() / '.gradle')))
+    for source in (gradle_home / 'daemon').glob('*/daemon-*.out.log'):
+        shutil.copyfile(source, directory / (source.parent.name + '-' + source.name))
     with (directory / 'jvms.txt').open('w') as output:
         try:
             listing = subprocess.run([jcmd, '-l'], capture_output=True, text=True, timeout=30)
@@ -347,12 +351,14 @@ def server(with_fabric_api=False):
             if attempt == 1:
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
-    command = [java, '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
+    command = [java, '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true', f'-Djava.io.tmpdir={temp}',
+               '-Dunallocated.story.dir=' + str(ROOT / 'src/clientSmoke/resources/story-regression'),
+               '-jar', str(launcher), 'nogui']
     startup = server_evidence(with_fabric_api)
     entered = r'UNALLOCATED act=LOBBY enter t=0'
     status = ''
     if not expects_rejection(api_version):
-        story_dir = ROOT / 'src/main/resources/data/unallocated/story'
+        story_dir = ROOT / 'src/clientSmoke/resources/story-regression'
         story = json.loads((story_dir / 'story.json').read_text())
         chapters = [json.loads((story_dir / 'chapters' / f'{name}.json').read_text()) for name in story['chapters']]
         startup = server_evidence(with_fabric_api) + [rf'UNALLOCATED story loaded chapters={len(chapters)} beats={sum(len(c["beats"]) for c in chapters)} endings={len(story["endings"])} format=1']
@@ -394,7 +400,8 @@ def server(with_fabric_api=False):
     )
     assert 'UNALLOCATED act=LOBBY enter' not in read(latest), 'Reload unexpectedly restarted the act'
     latest.unlink()
-    example_command = command[:1] + ['-Dunallocated.story.dir=' + str(ROOT / 'src/test/resources/story-fixtures/valid/example')] + command[1:]
+    example_command = [part for part in command if not part.startswith('-Dunallocated.story.dir=')]
+    example_command = example_command[:1] + ['-Dunallocated.story.dir=' + str(ROOT / 'src/test/resources/story-fixtures/valid/example')] + example_command[1:]
     monitor(example_command, directory, SMOKE / 'server-story-example-console.log',
             server_evidence() + [r'UNALLOCATED story loaded chapters=2 beats=7 endings=2 format=1', r'UNALLOCATED story check ok'],
             timeout=120, stop_when_ready=True, startup_required=server_evidence(),
@@ -470,6 +477,7 @@ def client_phases():
                 r'UNALLOCATED bait screamer shown',
                 r'UNALLOCATED spyglass smoke: three looks, closer each time, screamer, figure gone\.',
                 r'UNALLOCATED smoke: map tour completed\.',
+                r'UNALLOCATED smoke: launcher GUI scales, continue and new copies verified',
                 r'UNALLOCATED ending=SERVER_CLOSED',
                 r'UNALLOCATED smoke: ending save reloaded as finished; options and receipt unchanged; splash reset\.',
                 r'UNALLOCATED smoke: ending command showed vanilla disconnect and returned to title with changed splash\.',
@@ -482,7 +490,7 @@ def client_phases():
                             *[f'unallocated-interface-{effect}' for effect in
                               ('splash', 'loading', 'f3', 'advancement', 'sign', 'death')],
                             *BAIT_SCREENSHOTS],
-            'timeout': 420,
+            'timeout': 480,
         },
         'restart': {
             'evidence': [

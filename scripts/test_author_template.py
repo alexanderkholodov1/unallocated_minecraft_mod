@@ -4,7 +4,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 from zipfile import ZipFile
-from author_template import (ROOT, TEMPLATE_ENTRY, deterministic_zip, export_world, inject_template,
+from author_template import (ROOT, TEMPLATE_ENTRY, SESSION_ENTRY, MAP_RULES, deterministic_zip, export_world, inject_template,
                              nbt_read, nbt_write, read_world_zip, validate_world)
 
 
@@ -12,8 +12,9 @@ def world_entries():
     return {
         'UNALLOCATED/level.dat': nbt_write('', {'Data': (10, {
             'GameType': (3, 2), 'allowCommands': (1, 0), 'LevelName': (8, 'UNALLOCATED')})}),
-        'UNALLOCATED/data/unallocated/unallocated_session.dat': nbt_write('', {'data': (10, {
+        SESSION_ENTRY: nbt_write('', {'data': (10, {
             'armed': (1, 1), 'started': (1, 0), 'finished': (1, 0)})}),
+        'UNALLOCATED/data/minecraft/game_rules.dat': nbt_write('', {'data': (10, MAP_RULES.copy())}),
     }
 
 
@@ -35,7 +36,7 @@ class AuthorTemplateTest(unittest.TestCase):
 
     def test_unarmed_started_finished_and_cheats_are_rejected(self):
         for field, number in [('armed', 0), ('started', 1), ('finished', 1)]:
-            entries = world_entries(); path = 'UNALLOCATED/data/unallocated/unallocated_session.dat'
+            entries = world_entries(); path = SESSION_ENTRY
             name, root = nbt_read(entries[path]); root['data'][1][field] = (1, number)
             entries[path] = nbt_write(name, root)
             with self.assertRaisesRegex(ValueError, 'armed and unstarted'): validate_world(entries)
@@ -43,6 +44,15 @@ class AuthorTemplateTest(unittest.TestCase):
         root['Data'][1]['allowCommands'] = (1, 1)
         entries['UNALLOCATED/level.dat'] = nbt_write(name, root)
         with self.assertRaisesRegex(ValueError, 'cheats off'): validate_world(entries)
+
+    def test_dimension_session_path_and_map_rules_are_required(self):
+        entries = world_entries()
+        entries['UNALLOCATED/data/unallocated/unallocated_session.dat'] = entries.pop(SESSION_ENTRY)
+        with self.assertRaisesRegex(ValueError, 'Overworld'): validate_world(entries)
+        entries = world_entries(); path = 'UNALLOCATED/data/minecraft/game_rules.dat'
+        name, root = nbt_read(entries[path]); root['data'][1]['minecraft:spawn_mobs'] = (1, 1)
+        entries[path] = nbt_write(name, root)
+        with self.assertRaisesRegex(ValueError, 'map rules'): validate_world(entries)
 
     def test_missing_and_unsafe_archive_paths_are_rejected(self):
         for extra in ['UNALLOCATED/../escape', '/absolute', 'OTHER/level.dat',

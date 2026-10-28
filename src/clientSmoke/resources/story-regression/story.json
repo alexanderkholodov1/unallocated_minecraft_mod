@@ -1,0 +1,10 @@
+{
+  "format": 1,
+  "languages": ["es"],
+  "default_language": "es",
+  "language_select": "fixed",
+  "chapters": ["free_roam"],
+  "endings": {"SERVER_CLOSED": {"builtin": true}},
+  "fallback_ending": "SERVER_CLOSED",
+  "autoplay": {"time_scale": 0.25, "runs": [{"ending": "SERVER_CLOSED", "skip": []}]}
+}

@@ -25,25 +25,17 @@ public final class LauncherClient {
             var single = widgets.stream().filter(w -> w.getMessage().getString().equals(singleplayer)).findFirst();
             if (single.isEmpty()) return;
             var anchor = single.get(); int top = anchor.getY();
-            // Reserve a row above Singleplayer. Fit the existing central buttons within the footer.
-            for (var widget : widgets) {
-                if (widget.getY() >= top && widget.getX() >= width / 2 - 110 && widget.getX() <= width / 2 + 110) {
-                    widget.setY(Math.min(widget.getY() + 12, height - 30 - widget.getHeight()));
-                }
-            }
+            // Vanilla's minimum GUI height leaves a full row between its logo and menu.
             widgets.add(Button.builder(Component.translatable("menu.unallocated.play"), button -> begin(client))
-                .bounds(anchor.getX(), top - 12, anchor.getWidth(), 20).build());
+                .bounds(anchor.getX(), top - 24, anchor.getWidth(), 20).build());
         });
     }
 
     public static Path sessionFile(Path world) throws IOException {
-        Path data = world.resolve("data");
-        if (!Files.isDirectory(data)) throw new IOException("Missing world data");
-        try (var paths = Files.walk(data, 3)) {
-            var sessions = paths.filter(p -> p.getFileName().toString().equals("unallocated_session.dat")).toList();
-            if (sessions.size() != 1) throw new IOException("Expected one session marker");
-            return sessions.getFirst();
-        }
+        // 26.3 stores dimension SavedData under dimensions/, including the Overworld.
+        Path session = world.resolve("dimensions/minecraft/overworld/data/unallocated/unallocated_session.dat");
+        if (!Files.isRegularFile(session)) throw new IOException("Missing world session marker");
+        return session;
     }
 
     public static CompoundTag readSession(Path world) throws IOException {

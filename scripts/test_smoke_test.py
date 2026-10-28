@@ -114,6 +114,33 @@ class GradleSilenceTest(unittest.TestCase):
                                         Path(temp) / 'console.log', silence=.25)
             dump.assert_called_once_with(Path(temp) / 'gradle-diagnostics')
 
+    def test_partial_output_cannot_keep_a_hang_alive(self):
+        import smoke_test
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp, \
+                patch.object(smoke_test, 'dump_gradle_threads', return_value=[]), redirect_stdout(io.StringIO()):
+            with self.assertRaisesRegex(RuntimeError, 'no-output watchdog'):
+                smoke_test.watch_gradle([sys.executable, '-u', '-c',
+                    'import time\nfor i in range(30):\n print(".", end="", flush=True); time.sleep(.05)'],
+                    Path(temp) / 'console.log', silence=.25)
+
+    def test_dump_captures_each_gradle_jvm_and_keeps_other_jvms_running(self):
+        import smoke_test
+        from subprocess import CompletedProcess
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp)
+            def command(args, **kwargs):
+                if args[-1] == '-l':
+                    return CompletedProcess(args, 0, '11 org.gradle.launcher.daemon.bootstrap.GradleDaemon\n'
+                        '12 org.gradle.launcher.GradleMain\n13 game.ClientMain\n', '')
+                kwargs['stdout'].write('thread dump for ' + args[1])
+                return CompletedProcess(args, 0)
+            with patch.object(smoke_test, 'java_executable', return_value='/jdk/bin/java'), \
+                    patch.object(smoke_test.subprocess, 'run', side_effect=command) as run:
+                self.assertEqual(smoke_test.dump_gradle_threads(directory), [11, 12])
+                self.assertEqual(run.call_count, 3)
+            self.assertIn('thread dump for 11', (directory / 'gradle-11-threads.txt').read_text())
+            self.assertIn('thread dump for 12', (directory / 'gradle-12-threads.txt').read_text())
+
     def test_progress_resets_watchdog_and_exit_failure_is_preserved(self):
         import smoke_test
         with TemporaryDirectory(dir=ROOT / '.tmp') as temp, redirect_stdout(io.StringIO()):

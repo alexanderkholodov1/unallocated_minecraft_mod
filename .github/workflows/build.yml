@@ -112,7 +112,6 @@ jobs:
           path: |
             build/reports/included-jars.json
             .tmp/smoke/gradle-diagnostics/**
-            ~/.gradle/daemon/**/daemon-*.out.log
             .tmp/smoke/*-console.log
             .tmp/smoke/**/logs/**
             .tmp/smoke/**/logs-first/**

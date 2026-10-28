@@ -14,6 +14,10 @@ from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE_ENTRY = 'unallocated/template/world.zip'
 WORLD_ZIP = ROOT / 'build/template/UNALLOCATED-world.zip'
+SESSION_ENTRY = 'UNALLOCATED/dimensions/minecraft/overworld/data/unallocated/unallocated_session.dat'
+MAP_RULES = {'minecraft:spawn_mobs': (1, 0), 'minecraft:advance_time': (1, 0),
+             'minecraft:advance_weather': (1, 0), 'minecraft:keep_inventory': (1, 1),
+             'minecraft:respawn_radius': (3, 0)}
 EXCLUDED = {'playerdata', 'stats', 'advancements', 'logs'}
 
 
@@ -72,7 +76,7 @@ def value(data, key): return data[key][1]
 def validate_world(entries):
     if 'UNALLOCATED/level.dat' not in entries: raise ValueError('Template missing UNALLOCATED/level.dat')
     sessions = [name for name in entries if name.endswith('/unallocated_session.dat')]
-    if len(sessions) != 1: raise ValueError('Template needs exactly one session file')
+    if sessions != [SESSION_ENTRY]: raise ValueError('Template needs exactly one session file in the Overworld')
     _, saved = nbt_read(entries[sessions[0]])
     state = value(saved, 'data')
     if not value(state, 'armed') or value(state, 'started') or value(state, 'finished'):
@@ -81,6 +85,10 @@ def validate_world(entries):
     if value(level, 'GameType') != 2 or value(level, 'allowCommands') != 0:
         raise ValueError('Template requires Adventure and cheats off')
     if value(level, 'LevelName') != 'UNALLOCATED': raise ValueError('Wrong template level name')
+    _, saved = nbt_read(entries['UNALLOCATED/data/minecraft/game_rules.dat'])
+    rules = value(saved, 'data')
+    if any(rules.get(key) != expected for key, expected in MAP_RULES.items()):
+        raise ValueError('Template has incorrect map rules')
 
 
 def read_world_zip(raw):
