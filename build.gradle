@@ -143,7 +143,6 @@ def clientSmokeName = smokeApiVersion == 'none' ? 'client' : "client-api-${smoke
 def clientSmokeDir = layout.projectDirectory.dir(".tmp/smoke/${clientSmokeName}")
 tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRunTask) {
     // Explicit binary inputs prevent development class directories from masking packaging errors.
-    dependsOn tasks.named('jar')
     mods.setFrom(tasks.named('clientSmokeJar'))
     runDir = clientSmokeDir
     useXVFB = true
@@ -151,6 +150,9 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
     if (providers.gradleProperty('contractSmokePhase').getOrElse('first') == 'story') {
         jvmArgs.add('-Dunallocated.story.dir=' + layout.projectDirectory.dir('src/test/resources/story-fixtures/valid/example').asFile.absolutePath)
+        jvmArgs.add('-Dunallocated.story.autoplay=true')
+    }
+    if (providers.gradleProperty('contractSmokePhase').getOrElse('first') == 'play') {
         jvmArgs.add('-Dunallocated.story.autoplay=true')
     }
     if (providers.gradleProperty('smokeExpectRejection').getOrElse('false').toBoolean()) {
@@ -163,13 +165,12 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     }.join(','))
     jvmArgs.addAll('-Dunallocated.interface.debug=true', '-Dunallocated.interface.debug.quiet=true')
     jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
-    jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
-        "-Dunallocated.smoke.jar=${it.asFile.absolutePath}".toString()
-    })
+    def playerJar = layout.buildDirectory.file("libs/unallocated-${project.version}.jar")
+    jvmArgs.add("-Dunallocated.smoke.jar=${playerJar.get().asFile.absolutePath}")
     doFirst {
         clientSmokeDir.dir('temp').asFile.mkdirs()
         copy {
-            from tasks.named('jar', Jar).flatMap { it.archiveFile }
+            from playerJar
             into clientSmokeDir.dir('mods')
         }
         if (smokeApiVersion != 'none') {

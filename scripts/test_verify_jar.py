@@ -30,7 +30,10 @@ class PackagingTest(unittest.TestCase):
         self.props = {'version': 'test', 'loader_version': '0.20.1', 'minecraft_version': '26.3'}
         self.policy = json.loads((ROOT / 'fabric-api-modules.json').read_text())
         self.included_hashes = {}
-        self.entries = {LICENSE: 'Apache License', NOTICE: 'FabricMC Apache-2.0'}
+        from author_template import TEMPLATE_ENTRY, deterministic_zip
+        from test_author_template import world_entries
+        self.entries = {LICENSE: 'Apache License', NOTICE: 'FabricMC Apache-2.0',
+                        TEMPLATE_ENTRY: deterministic_zip(world_entries())}
         self.meta = {'id': 'unallocated', 'name': 'UNALLOCATED', 'version': 'test',
                      'entrypoints': {'main': ['example.Common'], 'client': ['example.Client']},
                      'depends': {'fabricloader': '>=0.20.1', 'minecraft': '26.3', 'java': '>=25'},
@@ -58,6 +61,20 @@ class PackagingTest(unittest.TestCase):
         self.entries['fabric.mod.json'] = json.dumps(self.meta)
         self.artifact.write_bytes(archive(self.entries))
         return verify(self.artifact, self.props, self.policy, self.included_hashes)
+
+    def test_missing_or_two_templates_are_rejected(self):
+        from author_template import TEMPLATE_ENTRY
+        raw = self.entries.pop(TEMPLATE_ENTRY)
+        with self.assertRaisesRegex(ValueError, 'exactly one bundled world template'):
+            self.check()
+        self.entries[TEMPLATE_ENTRY] = raw
+        self.check()
+        import warnings
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore', UserWarning)
+            with ZipFile(self.artifact, 'a') as jar: jar.writestr(TEMPLATE_ENTRY, raw)
+        with self.assertRaisesRegex(ValueError, 'Duplicate ZIP entries'):
+            verify(self.artifact, self.props, self.policy, self.included_hashes)
 
     def test_packaged_mixin_config_cannot_be_left_unregistered(self):
         self.entries['forgotten.mixins.json'] = '{}'

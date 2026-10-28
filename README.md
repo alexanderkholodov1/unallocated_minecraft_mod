@@ -2,7 +2,7 @@
 
 Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Threshold Interactive.
 
-**Versión actual: 0.1.0 — hito integrado.** Incluye el contrato antes del menú, núcleo de sesión guardado, mapa por código (lobby, colina, camino, base y mina), cebo de catalejo con susto, herramientas de interfaz, cuatro señales de audio y un epílogo que guarda y cierra la sesión. Todas las dependencias necesarias viajan dentro del JAR. El inicio desde un botón propio y la experiencia narrativa completa de 10–15 minutos siguen pendientes.
+**Versión actual: 0.2.0 — hito integrado.** Incluye el contrato antes del menú, núcleo de sesión guardado, mapa por código (lobby, colina, camino, base y mina), cebo de catalejo con susto, herramientas de interfaz, cuatro señales de audio y un epílogo que guarda y cierra la sesión. Todas las dependencias necesarias viajan dentro del JAR. El botón UNALLOCATED abre una copia del mapa preparado; la historia neutral será reemplazada por el contenido de la entrega.
 
 ## Requisitos para jugar
 
@@ -12,7 +12,7 @@ Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Th
 | Loader | **Fabric Loader 0.20.1 o posterior** para Minecraft 26.3. Compilación verificada con 0.20.1. |
 | Fabric API | **Incluida:** los siete módulos necesarios de **0.165.0+26.3** viajan dentro de nuestro JAR. **No hace falta descargar ni instalar Fabric API aparte.** |
 | Java | **Java 25**. El Minecraft Launcher oficial descarga el entorno necesario al iniciar 26.3; deja el ejecutable Java del perfil en su valor predeterminado. |
-| Archivo del mod | **`unallocated-0.1.0.jar`** de la entrega del autor. |
+| Archivo del mod | **`unallocated-0.2.0.jar`** de la entrega del autor. |
 
 Se fija Minecraft a 26.3 porque los módulos incluidos aplican mixins a sus clases internas; un hotfix podría cambiar esos objetivos. Sólo se ampliará la versión admitida después de probarlo.
 
@@ -32,7 +32,7 @@ No necesitas Simple Voice Chat, mods de rendimiento, micrófono ni servicios de 
    En macOS, si el sistema bloquea el archivo oficial, consulta [las instrucciones de Fabric para macOS](https://docs.fabricmc.net/players/installing-fabric/macos). El Java incluido en el launcher permite jugar; no siempre está disponible para abrir el instalador universal desde el escritorio o la terminal.
 
 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
-4. Consigue **`unallocated-0.1.0.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+4. Consigue **`unallocated-0.2.0.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
 5. Copia el JAR a la carpeta **`mods`** del perfil. Crea esa carpeta si no existe:
 
    | Sistema | Ubicación predeterminada | Cómo llegar |
@@ -48,18 +48,13 @@ Guías oficiales consultadas el 2026-10-26: [Windows](https://docs.fabricmc.net/
 
 ## Cómo comenzar
 
-En el primer arranque, lee las advertencias del contrato y pulsa **De acuerdo** para entrar al menú. **Leer usos de datos** es opcional. La aceptación queda solo en `<directorio del juego>/unallocated/contract.properties`: fecha y hora UTC, método, texto del campo y versión del contrato. No se envía fuera del equipo. La pantalla se omite en siguientes arranques de ese directorio. Para verla de nuevo con Minecraft cerrado, borra solo ese archivo o añade `-Dunallocated.contract.replay=true` a los argumentos JVM; replay conserva el acuerdo original. Si no se puede guardar, puedes continuar y reaparecerá al reiniciar.
+En el primer arranque, lee las advertencias del contrato y escribe **De acuerdo** o pulsa el botón de aceptación. **Leer usos de datos** es opcional. La aceptación queda solo en `<directorio del juego>/unallocated/contract.properties`: fecha y hora UTC, método, texto del campo y versión del contrato. No se envía fuera del equipo. La pantalla se omite en siguientes arranques de ese directorio. Para verla de nuevo con Minecraft cerrado, borra solo ese archivo o añade `-Dunallocated.contract.replay=true` a los argumentos JVM; replay conserva el acuerdo original. Si no se puede guardar, puedes continuar y reaparecerá al reiniciar.
 
-En el menú principal, entra a **Un jugador / Singleplayer** y crea un mundo de prueba. Usa la vista en primera persona (F5 cambia de perspectiva; algunos teclados requieren Fn+F5). El mapa se construye explícitamente con `/unallocated build all` (requiere trucos); también acepta `lobby`, `hill`, `path`, `base` o `mine`. Úsalo en un mundo de prueba vacío: reconstruye las secciones elegidas y fija el modo Aventura y las reglas del mapa. Consulta la configuración del mundo de aire y las coordenadas en [la integración del mapa](docs/map/INTEGRATION.md). La sesión narrativa completa sigue pendiente.
+En el menú principal, pulsa **UNALLOCATED**, encima de **Un jugador**. Verás **Conectando al servidor…** mientras se copia el mundo preparado a `saves/`; después se abre automáticamente en modo Aventura, sin trucos. No necesitas construir el mapa ni ejecutar comandos. Usa la vista en primera persona (F5 cambia de perspectiva; algunos teclados requieren Fn+F5).
 
-Para probar el núcleo en un mundo **desechable**, activa trucos y ejecuta `/unallocated arm`,
-luego `/unallocated act LOBBY` y `/unallocated status`. En una plantilla preparada, la sesión
-comienza automáticamente al entrar el primer jugador, directamente en LOBBY. Los mundos normales
-no se activan ni reciben un archivo de sesión. `/unallocated siguiente` sólo rescata una sesión
-activa y espera cinco segundos por acto; no necesita trucos ni puede iniciar otra sesión.
-Guardar y volver a abrir conserva el acto y el tiempo que le queda.
+Si tienes una sesión sin terminar, el botón ofrece **Continuar** o **Nueva sesión**. Continuar conserva el capítulo y el tiempo restante; una sesión nueva usa otra carpeta (`UNALLOCATED`, `UNALLOCATED (2)`, …). Una sesión terminada se conserva y el siguiente inicio crea otra copia. Si te atascas, escribe **`/unallocated siguiente`** en el chat: funciona sin trucos y está disponible después de cinco segundos en cada capítulo.
 
-Para probar el cebo con un catalejo en la mano y terreno visible delante, usa `/ubait ahead 3 40 12 true`; `/ubait clear` lo retira. Las herramientas de interfaz usan `/uinterface` con `-Dunallocated.interface.debug=true` en el perfil de prueba. El audio se prueba con `/unallocated audio ambient`, `threads`, `muffle`, `screamer` y `stop` (repite el prefijo en cada comando). En una sesión armada, `/unallocated act EPILOGUE` guarda y cierra el mundo, muestra la despedida y vuelve al título. Estos comandos de contenido requieren trucos; no componen todavía la historia automáticamente.
+Como respaldo, descarga **`UNALLOCATED-world.zip`** de la misma entrega. Con Minecraft cerrado, descomprímelo dentro de `saves/` del directorio del juego: debe quedar `saves/UNALLOCATED/level.dat`. Conserva cualquier mundo anterior con ese nombre en otra carpeta antes de descomprimir. Inicia Minecraft y abre **UNALLOCATED** desde **Un jugador**. Mantén instalado el mismo JAR; el ZIP contiene el mapa y la sesión preparada.
 
 Para confirmar que cargó, abre `logs/latest.log` dentro del directorio del juego y busca estas dos líneas (pueden llevar fecha y otros prefijos):
 
@@ -84,7 +79,7 @@ NULL_Threshold Interactive. Incluye siete módulos de [Fabric API 0.165.0+26.3](
 
 ## Developers (English)
 
-Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.0.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.2.0.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
 
 Every push and pull request runs [one build workflow](.github/workflows/build.yml). Its four Fabric API profiles are clean Loader + player JAR, external **0.161.0+26.3**, external **0.165.0+26.3**, and external **0.153.1+26.3**. The first three must build and pass the complete server/client checks; the oldest must be rejected by Loader before game initialization. `fail-fast: false` preserves evidence from every profile. Gradle dependency/assets caches, cached server downloads, image-keyed headless graphics packages and daemon reuse retain the faster CI path. Incomplete graphics caches fall back to official Ubuntu dependency resolution.
 

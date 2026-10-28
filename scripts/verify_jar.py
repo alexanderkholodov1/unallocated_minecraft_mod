@@ -57,8 +57,11 @@ def verify(artifact, properties, policy, included_hashes):
     expected = {f'META-INF/jars/{key}-{value["version"]}.jar': key
                 for key, value in modules.items()}
     require(set(included_hashes) == set(expected), 'Recorded include files differ from allowlist')
+    from author_template import TEMPLATE_ENTRY, read_world_zip
     with ZipFile(artifact) as jar:
         names = clean_archive(jar)
+        require(names.count(TEMPLATE_ENTRY) == 1, 'Expected exactly one bundled world template')
+        read_world_zip(jar.read(TEMPLATE_ENTRY))
         metadata_text = jar.read('fabric.mod.json').decode()
         require('${' not in metadata_text, 'Unexpanded metadata')
         metadata = json.loads(metadata_text)

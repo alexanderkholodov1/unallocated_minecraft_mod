@@ -5,5 +5,12 @@
   "audio.unallocated.subtitle.thread_chime": "Un hilo tintinea",
   "audio.unallocated.subtitle.breath": "El mundo contiene el aliento",
   "audio.unallocated.subtitle.screamer_impact": "Golpe repentino",
-  "audio.unallocated.subtitle.screamer_crack": "Crujido repentino"
+  "audio.unallocated.subtitle.screamer_crack": "Crujido repentino",
+  "menu.unallocated.play": "UNALLOCATED",
+  "menu.unallocated.connecting": "Conectando al servidor…",
+  "menu.unallocated.continue.title": "UNALLOCATED",
+  "menu.unallocated.continue.message": "Hay una sesión sin terminar. ¿Quieres continuar o comenzar de nuevo?",
+  "menu.unallocated.continue.yes": "Continuar",
+  "menu.unallocated.continue.new": "Nueva sesión",
+  "menu.unallocated.error": "No se pudo abrir el mundo. Descomprime UNALLOCATED-world.zip en saves/ y ábrelo desde Un jugador."
 }

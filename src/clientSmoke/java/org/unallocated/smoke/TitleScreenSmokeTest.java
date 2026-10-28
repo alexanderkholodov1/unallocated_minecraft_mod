@@ -113,7 +113,7 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
             }
             LoggerFactory.getLogger("unallocated-smoke").info(
                     "UNALLOCATED smoke: contract first start, data list, typed and clicked acceptance verified.");
-        } else if ((phase.equals("restart") || phase.equals("story"))) {
+        } else if ((phase.equals("restart") || phase.equals("story") || phase.equals("play"))) {
             context.waitForScreen(TitleScreen.class);
             if (ContractSmokeObserver.contractInitializations != 0 || !Files.isRegularFile(receipt)
                     || context.computeOnClient(client -> ContractClient.receipt().isEmpty())) {
@@ -130,6 +130,7 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
         LoggerFactory.getLogger("unallocated-smoke").info(
                 "UNALLOCATED smoke: title screen reached from player JAR.");
         if (phase.equals("story")) StorySmokeTest.run(context);
+        if (phase.equals("play")) PlaySmokeTest.run(context);
         if (phase.equals("first")) {
             CoreSessionSmokeTest.run(context);
             InterfaceEffectsSmokeTest.run(context);

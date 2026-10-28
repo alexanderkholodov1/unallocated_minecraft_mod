@@ -11,6 +11,7 @@ import signal
 import subprocess
 import sys
 import time
+import threading
 from urllib.request import Request, urlopen
 from zipfile import ZipFile
 
@@ -227,6 +228,66 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
                 process.stdin.close()
 
 
+def dump_gradle_threads(directory):
+    """Capture every Gradle JVM before terminating a silent build, including detached daemons."""
+    directory.mkdir(parents=True, exist_ok=True)
+    jcmd = str(Path(java_executable()).with_name('jcmd'))
+    pids = []
+    with (directory / 'jvms.txt').open('w') as output:
+        try:
+            listing = subprocess.run([jcmd, '-l'], capture_output=True, text=True, timeout=30)
+            output.write(listing.stdout + listing.stderr)
+            for line in listing.stdout.splitlines():
+                if 'Gradle' in line and line.split()[0].isdigit():
+                    pid = int(line.split()[0]); pids.append(pid)
+                    with (directory / f'gradle-{pid}-threads.txt').open('w') as stacks:
+                        try:
+                            subprocess.run([jcmd, str(pid), 'Thread.print'], stdout=stacks,
+                                           stderr=subprocess.STDOUT, timeout=30)
+                        except (OSError, subprocess.TimeoutExpired) as error:
+                            stacks.write(str(error))
+        except (OSError, subprocess.TimeoutExpired) as error:
+            output.write(str(error))
+    return pids
+
+
+def watch_gradle(command, console, silence=720):
+    """A complete output line resets the watchdog; partial bytes do not mask a hang."""
+    console.parent.mkdir(parents=True, exist_ok=True)
+    process = None
+    try:
+        with console.open('wb') as output, console.open('rb') as incoming:
+            process = subprocess.Popen(command, cwd=ROOT, stdout=output,
+                                       stderr=subprocess.STDOUT, start_new_session=True)
+            last_line = time.monotonic()
+            pending = b''
+            while True:
+                pending += incoming.read()
+                if b'\n' in pending:
+                    lines, pending = pending.rsplit(b'\n', 1)
+                    print(lines.decode(errors='replace'), flush=True)
+                    last_line = time.monotonic()
+                if process.poll() is not None:
+                    if pending: print(pending.decode(errors='replace'), flush=True)
+                    if process.returncode:
+                        raise RuntimeError(f'Gradle exited with status {process.returncode}')
+                    return
+                if time.monotonic() - last_line >= silence:
+                    print('UNALLOCATED Gradle watchdog: no output for 12 minutes; collecting thread stacks', flush=True)
+                    pids = dump_gradle_threads(console.parent / 'gradle-diagnostics')
+                    for pid in pids:
+                        try: os.kill(pid, signal.SIGTERM)
+                        except ProcessLookupError: pass
+                    raise RuntimeError('Gradle no-output watchdog expired')
+                time.sleep(.2)
+    finally:
+        if process is not None and process.poll() is None:
+            os.killpg(process.pid, signal.SIGTERM)
+            try: process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                os.killpg(process.pid, signal.SIGKILL); process.wait(timeout=5)
+
+
 def server(with_fabric_api=False):
     java = java_executable()
     api_version = api_version_argument(with_fabric_api)
@@ -287,11 +348,18 @@ def server(with_fabric_api=False):
                 raise
     print(f'Installed player JAR SHA-256: {expected}', flush=True)
     command = [java, '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
-    startup = server_evidence(with_fabric_api) + [r'UNALLOCATED story loaded chapters=1 beats=0 endings=1 format=1']
-    console_prefix = 'server-with-api' if with_fabric_api else 'server'
+    startup = server_evidence(with_fabric_api)
     entered = r'UNALLOCATED act=LOBBY enter t=0'
-    status = (r'UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 '
-              r'budgetTicks=8400 checkpoint=lobby\.spawn')
+    status = ''
+    if not expects_rejection(api_version):
+        story_dir = ROOT / 'src/main/resources/data/unallocated/story'
+        story = json.loads((story_dir / 'story.json').read_text())
+        chapters = [json.loads((story_dir / 'chapters' / f'{name}.json').read_text()) for name in story['chapters']]
+        startup = server_evidence(with_fabric_api) + [rf'UNALLOCATED story loaded chapters={len(chapters)} beats={sum(len(c["beats"]) for c in chapters)} endings={len(story["endings"])} format=1']
+        console_prefix = 'server-with-api' if with_fabric_api else 'server'
+        entered = r'UNALLOCATED act=LOBBY enter t=0'
+        status = (r'UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 '
+                  rf'budgetTicks={int(chapters[0]["budget_seconds"] * 20)} checkpoint={re.escape(str(chapters[0]["checkpoint"]).replace(chr(39), chr(34)))}')
     monitor(
         command, directory, SMOKE / f'{name}-console.log', startup + [entered, status, r'UNALLOCATED bait selftest passed'],
         timeout=120, stop_when_ready=not expects_rejection(api_version), startup_required=startup,
@@ -365,8 +433,29 @@ def audio_evidence():
     return required
 
 
+def play_checks(story_directory=None):
+    """Derive content expectations, without encoding chapter/ending/capture names in CI."""
+    directory = story_directory or ROOT / 'src/main/resources/data/unallocated/story'
+    story = json.loads((directory / 'story.json').read_text())
+    chapters = [json.loads((directory / 'chapters' / f'{name}.json').read_text())
+                for name in story['chapters']]
+    runs = story['autoplay']['runs']
+    evidence = [r'UNALLOCATED smoke: play all shipped runs verified']
+    screenshots = ['unallocated-title-button', 'unallocated-connecting']
+    for index, run in enumerate(runs):
+        evidence += [rf'UNALLOCATED story autoplay run={index} ending={re.escape(run["ending"])} complete',
+                     rf'UNALLOCATED smoke: play run={index} armed unstarted Adventure cheats=false first={re.escape(story["chapters"][0])}',
+                     rf'UNALLOCATED smoke: play run={index} farewell and title verified']
+        screenshots += [f'unallocated-play-farewell-{index}', f'unallocated-play-title-{index}']
+    screenshots += sorted({f'story-{beat["capture"]["name"]}' for chapter in chapters
+                           for beat in chapter['beats'] if 'capture' in beat})
+    seconds = sum(chapter['budget_seconds'] for chapter in chapters) * story['autoplay']['time_scale']
+    return {'evidence': evidence, 'screenshots': screenshots,
+            'timeout': int(120 + len(runs) * (seconds + 180))}
+
+
 def client_phases():
-    """Three real client processes share the accepted contract and options."""
+    """Four real client processes share the accepted contract and options."""
     title = r'UNALLOCATED smoke: title screen reached from player JAR\.'
     modules = r'UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified\.'
     return {
@@ -414,6 +503,7 @@ def client_phases():
                             'unallocated-story-farewell-a', 'unallocated-story-farewell-b'],
             'timeout': 300,
         },
+        'play': play_checks(),
     }
 
 
@@ -422,6 +512,96 @@ def verify_interface_screenshots(directory):
         screenshots = list(directory.rglob(f'*unallocated-interface-{effect}*.png'))
         if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
             raise RuntimeError(f'Client exited without a valid interface screenshot: {effect}')
+
+
+class VideoRecorder:
+    """Optional Xvfb capture. Graphics/test failures still belong to the normal smoke gate."""
+    def __init__(self, directory):
+        self.directory = SMOKE / 'video'
+        self.process = None
+        self.done = threading.Event()
+        self.thread = None
+        self.output = None
+
+    def unavailable(self, reason):
+        message = 'UNALLOCATED video unavailable: ' + str(reason)
+        print(message, flush=True)
+        (self.directory / 'unavailable.log').write_text(message + '\n')
+
+    def start(self):
+        self.directory.mkdir(parents=True, exist_ok=True)
+        def capture():
+            try:
+                ffmpeg = shutil.which('ffmpeg')
+                if not ffmpeg:
+                    self.unavailable('ffmpeg is missing'); return
+                display = None
+                deadline = time.monotonic() + 90
+                while not self.done.is_set() and time.monotonic() < deadline:
+                    for cmdline in Path('/proc').glob('[0-9]*/cmdline'):
+                        try: args = cmdline.read_bytes().split(b'\0')
+                        except OSError: continue
+                        if args and Path(os.fsdecode(args[0])).name == 'Xvfb':
+                            display = next((os.fsdecode(a) for a in args if re.fullmatch(rb':\d+', a)), None)
+                            if display: break
+                    if display: break
+                    self.done.wait(.25)
+                if not display:
+                    self.unavailable('Xvfb display was not found'); return
+                self.output = (self.directory / 'ffmpeg.log').open('w')
+                self.process = subprocess.Popen([ffmpeg, '-y', '-f', 'x11grab', '-framerate', '8',
+                    '-i', display, '-vf', 'scale=640:-2', '-c:v', 'libx264', '-preset', 'ultrafast',
+                    '-crf', '30', '-maxrate', '200k', '-bufsize', '400k', '-pix_fmt', 'yuv420p',
+                    '-fs', '24000000', '-t', '1800', str(self.directory / 'gameplay.mp4')],
+                    stdin=subprocess.PIPE, stdout=self.output, stderr=subprocess.STDOUT, text=True)
+            except Exception as error: self.unavailable(error)
+        self.thread = threading.Thread(target=capture, daemon=True); self.thread.start()
+
+    def stop(self):
+        self.done.set()
+        self.thread.join(timeout=5)
+        try:
+            if self.process is not None:
+                if self.process.poll() is None:
+                    self.process.communicate('q\n', timeout=15)
+                if self.process.returncode != 0: raise RuntimeError('ffmpeg exited ' + str(self.process.returncode))
+            path = self.directory / 'gameplay.mp4'
+            if not path.is_file() or path.stat().st_size < 1024: raise RuntimeError('no playable recording')
+            if path.stat().st_size > 25_000_000: raise RuntimeError('recording exceeds 25 MB')
+            print(f'UNALLOCATED video bytes={path.stat().st_size}', flush=True)
+        except Exception as error:
+            if self.process is not None and self.process.poll() is None:
+                self.process.kill(); self.process.wait(timeout=5)
+            (self.directory / 'gameplay.mp4').unlink(missing_ok=True)
+            self.unavailable(error)
+        finally:
+            if self.output: self.output.close()
+
+
+def release_bundle():
+    """Stage the exact interface consumed by release-kit, after successful clean-profile smoke."""
+    from author_template import TEMPLATE_ENTRY, WORLD_ZIP
+    props = properties(); jar = ROOT / 'build/libs' / f'unallocated-{props["version"]}.jar'
+    checksum = jar.with_suffix('.jar.sha256')
+    digest = hashlib.sha256(jar.read_bytes()).hexdigest()
+    if checksum.read_text() != f'{digest}  {jar.name}\n': raise RuntimeError('Final JAR checksum changed during smoke')
+    with ZipFile(jar) as archive:
+        if archive.read(TEMPLATE_ENTRY) != WORLD_ZIP.read_bytes(): raise RuntimeError('Release template differs from JAR')
+    output = ROOT / 'build/release'; output.mkdir(parents=True, exist_ok=False)
+    for source in (jar, checksum, WORLD_ZIP): shutil.copyfile(source, output / source.name)
+    screenshots = output / 'screenshots'; screenshots.mkdir()
+    for source in sorted((SMOKE / 'client').rglob('*.png')):
+        match = re.search(r'(story-|map-|unallocated-title-button|unallocated-connecting).*\.png$', source.name)
+        if match: shutil.copyfile(source, screenshots / match.group())
+    video = SMOKE / 'video/gameplay.mp4'
+    if video.is_file():
+        (output / 'video').mkdir(); shutil.copyfile(video, output / 'video/gameplay.mp4')
+    manifest = {'version': props['version'], 'minecraft': props['minecraft_version'],
+                'loader': props['loader_version'], 'fabric_api_bundled': True,
+                'jar': jar.name, 'sha256': digest, 'world_zip': WORLD_ZIP.name,
+                'commit': os.environ['GITHUB_SHA'], 'run': os.environ['GITHUB_RUN_ID']}
+    (output / 'release.json').write_text(json.dumps(manifest, indent=2) + '\n')
+    print('UNALLOCATED release staged: ' + json.dumps(manifest), flush=True)
 
 
 def client(with_fabric_api=None, *, include_story=False):
@@ -440,9 +620,12 @@ def client(with_fabric_api=None, *, include_story=False):
     receipt = directory / 'unallocated' / 'contract.properties'
     original = None
     for phase, checks in client_phases().items():
-        if phase == 'story' and not include_story:
+        if phase in ('story', 'play') and not include_story:
             continue  # Preserve the reusable two-process contract check; CI explicitly runs all phases.
-        monitor(
+        recorder = VideoRecorder(directory) if phase == 'play' and api_version is None else None
+        if recorder: recorder.start()
+        try:
+            monitor(
             ['gradle', '--daemon', '--console=plain', 'runClientSmoke', f'-PcontractSmokePhase={phase}',
              f'-PsmokeApiVersion={api_version or "none"}'],
             ROOT, SMOKE / f'{name}-{phase}-console.log', [
@@ -455,7 +638,15 @@ def client(with_fabric_api=None, *, include_story=False):
             # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
             # Same real game directory, new JVM, no stale log evidence.
             game_directory=directory,
-        )
+            )
+        finally:
+            if recorder: recorder.stop()
+        if include_story:  # The CI pipeline has packaged the JAR; contract-only fixtures have no build.
+            props = properties()
+            artifact = ROOT / 'build/libs' / f'unallocated-{props["version"]}.jar'
+            expected = hashlib.sha256(artifact.read_bytes()).hexdigest()
+            if artifact.with_suffix('.jar.sha256').read_text() != f'{expected}  {artifact.name}\n':
+                raise RuntimeError('Gradle changed the verified player JAR during smoke')
         for screenshot in checks['screenshots']:
             if phase == 'first' and screenshot.startswith('unallocated-contract'):
                 if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
@@ -468,8 +659,8 @@ def client(with_fabric_api=None, *, include_story=False):
             (directory / 'logs').rename(directory / 'logs-first')
         elif receipt.read_bytes() != original:
             raise RuntimeError('Second start rewrote the original acceptance')
-        if phase == 'restart' and include_story:
-            (directory / 'logs').rename(directory / 'logs-restart')
+        if phase in ('restart', 'story') and include_story:
+            (directory / 'logs').rename(directory / f'logs-{phase}')
     props = properties()
     verify_mod_directory(directory / 'mods', {
         f"unallocated-{props['version']}.jar",
@@ -478,12 +669,19 @@ def client(with_fabric_api=None, *, include_story=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('target', choices=['server', 'client', 'server-with-api'])
+    parser.add_argument('target', choices=['server', 'client', 'server-with-api', 'gradle', 'release'])
     parser.add_argument('--fabric-api-version', choices=['none'] + API_POLICY['smoke_api_versions'],
                         default='none')
-    args = parser.parse_args()
+    args, extra = parser.parse_known_args()
+    if extra and args.target != 'gradle': parser.error('Unexpected arguments')
     if os.environ.get('CI') != 'true':
         parser.error('Real-game smoke checks must run in CI, never on the scaffold host')
+    if args.target == 'release':
+        release_bundle(); return
+    if args.target == 'gradle':
+        watch_gradle(['gradle', '--daemon', '--console=plain', *[x for x in extra if x != '--']],
+                     SMOKE / 'build-console.log')
+        return
     version = api_version_argument(args.fabric_api_version)
     if args.target == 'server-with-api':
         version = version or API_VERSION

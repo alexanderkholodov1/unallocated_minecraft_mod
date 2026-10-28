@@ -103,6 +103,28 @@ class JavaHomeTest(unittest.TestCase):
                 monitor([str(gradle), '--daemon'], root, root / 'console.log', (), timeout=2)
 
 
+class GradleSilenceTest(unittest.TestCase):
+    def test_silent_process_dumps_threads_and_fails(self):
+        import smoke_test
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp, \
+                patch.object(smoke_test, 'dump_gradle_threads', return_value=[]) as dump, \
+                redirect_stdout(io.StringIO()):
+            with self.assertRaisesRegex(RuntimeError, 'no-output watchdog'):
+                smoke_test.watch_gradle([sys.executable, '-c', 'import time; time.sleep(20)'],
+                                        Path(temp) / 'console.log', silence=.25)
+            dump.assert_called_once_with(Path(temp) / 'gradle-diagnostics')
+
+    def test_progress_resets_watchdog_and_exit_failure_is_preserved(self):
+        import smoke_test
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp, redirect_stdout(io.StringIO()):
+            console = Path(temp) / 'console.log'
+            smoke_test.watch_gradle([sys.executable, '-u', '-c',
+                'import time\nfor i in range(5):\n print(i); time.sleep(.15)'], console, silence=.4)
+            self.assertIn('4', console.read_text())
+            with self.assertRaisesRegex(RuntimeError, 'status 7'):
+                smoke_test.watch_gradle([sys.executable, '-c', 'raise SystemExit(7)'], console)
+
+
 class WatchdogTest(unittest.TestCase):
     def run_fixture(self, body, required=(COMMON, DONE), **kwargs):
         (ROOT / '.tmp').mkdir(exist_ok=True)
@@ -271,7 +293,7 @@ class WatchdogTest(unittest.TestCase):
 
     def test_story_phase_requires_both_endings_and_every_capture(self):
         phases = client_phases()
-        self.assertEqual(list(phases), ['first', 'restart', 'story'])
+        self.assertEqual(list(phases), ['first', 'restart', 'story', 'play'])
         story = phases['story']
         self.assertIn('story-example-sign', story['screenshots'])
         self.assertIn('story-example-end', story['screenshots'])
@@ -279,6 +301,24 @@ class WatchdogTest(unittest.TestCase):
             self.assertIn('unallocated-story-farewell-' + letter, story['screenshots'])
         for index, ending in enumerate(('EXAMPLE_A', 'EXAMPLE_B')):
             self.assertTrue(any(f'run={index} ending={ending} complete' in line for line in story['evidence']))
+
+    def test_play_expectations_follow_synthetic_shipped_story(self):
+        import json
+        from smoke_test import play_checks
+        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
+            directory = Path(temp); (directory / 'chapters').mkdir()
+            (directory / 'story.json').write_text(json.dumps({'chapters': ['alpha', 'beta'],
+                'autoplay': {'time_scale': .5, 'runs': [{'ending': 'LEFT'}, {'ending': 'RIGHT'}]}}))
+            for chapter in ['alpha', 'beta']:
+                (directory / 'chapters' / (chapter + '.json')).write_text(json.dumps({
+                    'budget_seconds': 100, 'beats': [{'capture': {'name': chapter + '-shot'}}, {}]}))
+            checks = play_checks(directory)
+            for index, ending in enumerate(['LEFT', 'RIGHT']):
+                self.assertIn(f'UNALLOCATED story autoplay run={index} ending={ending} complete', checks['evidence'])
+                self.assertIn(f'unallocated-play-farewell-{index}', checks['screenshots'])
+            self.assertIn('story-alpha-shot', checks['screenshots'])
+            self.assertIn('story-beta-shot', checks['screenshots'])
+            self.assertEqual(checks['timeout'], 680)
 
     def test_asynchronous_audio_failure_fails(self):
         with self.assertRaisesRegex(RuntimeError, 'crash'):
