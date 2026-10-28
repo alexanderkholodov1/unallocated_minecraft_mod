@@ -253,6 +253,21 @@ def dump_gradle_threads(directory):
                             stacks.write(str(error))
         except (OSError, subprocess.TimeoutExpired) as error:
             output.write(str(error))
+    # ss emits socket rows followed by indented TCP details. Keep both for Gradle PIDs only.
+    with (directory / 'gradle-tcp.txt').open('w') as output:
+        try:
+            sockets = subprocess.run(['ss', '-tnpi'], capture_output=True, text=True, timeout=30)
+            keep = False
+            for line in sockets.stdout.splitlines():
+                if line and not line[0].isspace():
+                    keep = any(re.search(r'\bpid=' + str(pid) + r'[,)]', line) for pid in pids)
+                if keep: output.write(line + '\n')
+            if sockets.stderr: output.write(sockets.stderr)
+        except (OSError, subprocess.TimeoutExpired) as error:
+            output.write(str(error))
+    if any(re.search(r'org\.gradle\..*(?:DownloadAction|ExternalResource|HttpClientHelper|HttpResourceAccessor)',
+                     read(path)) for path in directory.glob('gradle-*-threads.txt')):
+        print('UNALLOCATED Gradle watchdog: dependency download stalled (infrastructure)', flush=True)
     return pids
 
 

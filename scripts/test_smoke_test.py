@@ -207,12 +207,26 @@ class GradleSilenceTest(unittest.TestCase):
                     return CompletedProcess(args, 0, '11 org.gradle.launcher.daemon.bootstrap.GradleDaemon\n'
                         '12 org.gradle.launcher.GradleMain\n13 game.ClientMain\n'
                         '14 /runner/gradle-9.8.2/lib/gradle-gradle-cli-main.jar --daemon\n', '')
-                kwargs['stdout'].write('thread dump for ' + args[1])
+                if args[0] == 'ss':
+                    return CompletedProcess(args, 0,
+                        'ESTAB 0 0 local:1 dependency:443 users:(("java",pid=11,fd=7))\n'
+                        '    cubic rto:200\n'
+                        'ESTAB 0 0 local:2 other:443 users:(("java",pid=13,fd=8))\n'
+                        '    cubic unrelated\n', '')
+                kwargs['stdout'].write('thread dump for ' + args[1] +
+                    '\n at org.gradle.internal.resource.transfer.DownloadAction.execute(DownloadAction.java:1)')
                 return CompletedProcess(args, 0)
             with patch.object(smoke_test, 'java_executable', return_value='/jdk/bin/java'), \
-                    patch.object(smoke_test.subprocess, 'run', side_effect=command) as run:
+                    patch.object(smoke_test.subprocess, 'run', side_effect=command) as run, \
+                    redirect_stdout(io.StringIO()) as output:
                 self.assertEqual(smoke_test.dump_gradle_threads(directory), [11, 12, 14])
-                self.assertEqual(run.call_count, 4)
+                self.assertEqual(run.call_count, 5)
+            tcp = (directory / 'gradle-tcp.txt').read_text()
+            self.assertIn('dependency:443', tcp)
+            self.assertIn('cubic rto:200', tcp)
+            self.assertNotIn('other:443', tcp)
+            self.assertNotIn('unrelated', tcp)
+            self.assertIn('dependency download stalled (infrastructure)', output.getvalue())
             self.assertIn('thread dump for 11', (directory / 'gradle-11-threads.txt').read_text())
             self.assertIn('thread dump for 12', (directory / 'gradle-12-threads.txt').read_text())
 
