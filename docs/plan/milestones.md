@@ -111,7 +111,7 @@ existing SERVER_CLOSED epilogue). The captain can upload any green `v0.2.0` arti
    open (designer's question 10); this covers a human-shaped "artefact", a vanilla mob and a composite body.
 10. **No microphone, no network service, no telemetry model** (D-01). Player behaviour reaches the story only through
     triggers (`still`, `sprint`, `sneak`, `look`, `death`, …) and counters. Shaders by third parties (DECISIONS D-08
-    answer) are not in the skeleton; vanilla post chains are offered if 26.3 exposes them (§6.5).
+    answer) are not in the skeleton; vanilla post chains are offered if 26.3 exposes them (§6.6).
 
 ---
 
@@ -122,8 +122,8 @@ done only when its CI rehearsal passes all four jobs. Sizes are builder wall-clo
 
 | N | Package | Lane | Size | Depends on | Produces for others |
 | --- | --- | --- | --- | --- | --- |
-| 1 | `story-check` | Antigravity (Claude Sonnet 4.6) or OpenCode | 45 min | — | `scripts/story_check.py`, fixtures, worked example files |
-| 2 | `story-runtime` | Codex gpt-6.1-sol, **high** | 60 min + rehearsals | 1 | runtime, action/trigger registries, `story.*` effects, autoplay, `story` client phase, `scripts/map_anchors.json` |
+| 1 | `story-check` | Antigravity (Claude Sonnet 4.6) or OpenCode | 45 min | — | `scripts/story_check.py`, fixtures, worked example files, `scripts/map_anchors.json` (names) |
+| 2 | `story-runtime` | Codex gpt-6.1-sol, **high** | 60 min + rehearsals | 1 | runtime, action/trigger registries, `story.*` effects, autoplay, `story` client phase, anchors sync test |
 | 3 | `launcher-playthrough` | Codex, **medium** | 60 min + rehearsals | 2 | title button, template in JAR, world ZIP, `play` phase over the shipped story, video, release artifact, version 0.2.0 |
 | 4 | `world-creature` | Codex, **medium** | 45 min + rehearsals | 2 (after 3 lands) | pocket dimension, `copy`, `corrupt`, `creature` actions and trigger |
 | 5 | `release-kit` | OpenCode or Antigravity | 40 min | artifact names of §4.3 (can run any time) | itch page template, upload checklist, `scripts/release_bundle.py` |
@@ -135,18 +135,18 @@ leave less than ~8 % for tomorrow's content night.
 ### 4.1 Package 1 — `story-check` (Python validator and fixtures)
 - **Delivers:** `scripts/story_check.py` (CLI `python3 scripts/story_check.py [STORY_DIR] [--anchors FILE]
   [--features FILE] [--functions DIR]`, default STORY_DIR `src/main/resources/data/unallocated/story`; exit 0 when no
-  errors; one line per finding `<file>#<json-pointer>: error|warning: <message>`), `scripts/test_story_check.py`
+  errors; one line per finding `<file>#<json-pointer>: error|warning: [<rule>] <message>`), `scripts/test_story_check.py`
   (stdlib `unittest`), fixtures `src/test/resources/story-fixtures/valid/example/` (exactly §7) and
   `src/test/resources/story-fixtures/invalid/<rule>/` (one directory per rule of §6.8, each with `EXPECT.txt` holding
-  the JSON pointer and a word of the expected error).
+  `<file>#<json-pointer> <rule>`), and `scripts/map_anchors.json` (map names transcribed from `MapLayout`).
 - **Acceptance:** all Python tests in `scripts/` pass locally and in the CI unittest step; the example is valid; every
   invalid fixture fails with exactly its expected pointer.
 
 ### 4.2 Package 2 — `story-runtime` (the engine; the critical package)
 - **Delivers:** `org.unallocated.story` (model, loader, validator, engine, registries, autoplay, debug commands),
   client handlers for the `story.*` effects (§6.6) including custom text for interface effects, data-driven endings in
-  `EpilogueAct`/ending client, the neutral default story (§6.9), `scripts/map_anchors.json` with a JUnit test keeping
-  it equal to `MapLayout`, `docs/story/RUNTIME.md` (Java extension API for packages 3–4), a client `story` phase that
+  `EpilogueAct`/ending client, the neutral default story (§6.9), a JUnit test keeping `scripts/map_anchors.json` equal to
+  `MapLayout`, `docs/story/RUNTIME.md` (Java extension API for packages 3–4), a client `story` phase that
   autoplays the §7 example (both endings) on a fresh map world.
 - **Interface to packages 3–4 (exact shape):**
   - `StoryActions.register(String do, ActionParser parser)` and `StoryTriggers.register(String type, TriggerParser
@@ -225,7 +225,7 @@ uniqueness test; no package may weaken those checks.
 | `build.gradle`, `gradle.properties` | 2 (helper JVM properties for `story`), 3 (phase property, template, `version=0.2.0`). |
 | `README.md` | 3 ("Cómo comenzar", version); captain at the hito close. |
 | `src/main/resources/data/unallocated/story/**` | 2 creates the neutral default; content packages C1–C3 replace it, one chapter file per agent. |
-| `scripts/story_check.py`, fixtures | 1 creates; 2 and 4 may correct it where it disagrees with §6 (and must update §6 in this file in the same commit if the format itself changes). |
+| `scripts/story_check.py`, `scripts/map_anchors.json`, fixtures | 1 creates; 2 and 4 may correct it where it disagrees with §6 (and must update §6 in this file in the same commit if the format itself changes). |
 | `docs/plan/milestones.md` §6 | the format is changed only by 2 or 4, in the same commit as the code, never by content packages. |
 
 ---
@@ -343,11 +343,15 @@ Server → client transport (package 2): the core's `EffectPayload(effectId, arg
 `SERVER_CLOSED` farewell), `fallback_ending` (used when the last chapter advances or expires without `end`), `build`
 (`{"forceload": [[x1, z1, x2, z2, "overworld"|"pocket"]…], "run": [commands…]}` executed once when the template is
 authored, after the map is built), `autoplay` (`{"time_scale": 0.25, "runs": [{"ending": "<ID>", "skip": [beat ids]}…]}`;
-every ending must appear in exactly one run).
+every ending must appear in exactly one run). Required: `format`, `languages`, `default_language`, `language_select`,
+`chapters`, `endings`, `fallback_ending`, `autoplay`. Optional: `agreement_fallback` (required only when some text uses
+`{agreement}`), `anchors`, `zones`, `build`. `build.run` commands run as the server console (permission level 2, no
+player, positioned at the world spawn), so they use absolute coordinates.
 
 Chapter file keys: `id`, `budget_seconds` (30–1200; on expiry `escape` runs and the chapter advances),
-`checkpoint` (position: respawn point, and where `/unallocated siguiente` lands), optional `respawn` (position, overrides
-`checkpoint` after death), `on_enter`, `on_resume` (after save/reload or reconnect), `escape`, `beats`.
+`checkpoint` (position: respawn point, and where `/unallocated siguiente` lands), `beats` (may be empty) — required;
+optional `respawn` (position, overrides `checkpoint` after death), `on_enter`, `on_resume` (after save/reload or
+reconnect), `escape` (lists of actions, default empty).
 
 Beat keys: `id`, `when` (trigger), optional `if` (`{"flags": [], "not_flags": [], "beats": [], "not_beats": []}`, all
 must hold when the trigger fires), optional `repeat` (`{"max": n, "cooldown_seconds": s}`; absent = fires once),
@@ -364,7 +368,8 @@ the remaining actions run from where they stopped and `on_resume` runs once.
 `ending-unreachable` (no `end` action and not the fallback), `flag-never-set` (used in `if`/`flag` but set nowhere),
 `bad-command` (empty, leading `/`, forbidden root), `unknown-function` (no `.mcfunction` file), `bad-time` (negative,
 `at` > 600, budget outside 30–1200), `unknown-trigger`, `unknown-action`, `chat-without-input` (or input not matching),
-`duplicate-capture`, `autoplay-ending-coverage`, `feature-off` (an `interface` SENSITIVITY/FOV/GAMMA action while
+`duplicate-capture`, `autoplay-ending-coverage`, `bad-json` (unparseable file), `bad-value` (wrong type,
+out-of-range number, bad colour or id syntax), `feature-off` (an `interface` SENSITIVITY/FOV/GAMMA action while
 `effects.options` is false, or bait `scare` while `effects.screamer` is false). Warnings (not errors): total budget
 outside 600–900 s (10–15 min), more than two `screamer` cues (AUDIO.md limit), title text over 40 characters.
 Java alone additionally checks: every `command` parses on the real dispatcher; every structure/function/texture exists;
