@@ -137,7 +137,10 @@
      "at": 0.2,
      "do": "next_chapter"
     }
-   ]
+   ],
+   "autoplay": {
+    "wait_seconds": 200
+   }
   }
  ]
 }

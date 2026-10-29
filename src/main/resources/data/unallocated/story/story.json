@@ -271,6 +271,7 @@
      "puppet.fury",
      "kernel.death",
      "kernel.caught",
+     "kernel.respawn",
      "kernel.poison"
     ]
    },
@@ -282,6 +283,7 @@
      "puppet.fury",
      "kernel.death",
      "kernel.caught",
+     "kernel.respawn",
      "kernel.complete"
     ]
    },
@@ -293,6 +295,7 @@
      "puppet.fury",
      "kernel.death",
      "kernel.caught",
+     "kernel.respawn",
      "kernel.complete",
      "kernel.poison"
     ]
