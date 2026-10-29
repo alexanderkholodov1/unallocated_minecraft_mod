@@ -32,11 +32,10 @@
  "escape": [
   {
    "at": 0,
-   "do": "interface",
-   "effect": "LOADING",
-   "seconds": 30,
+   "do": "chat",
    "text": {
-    "es": "g0: estimate human fear response :: pool UNALLOCATED"
+    "es": "g0: estimate human fear response :: pool UNALLOCATED",
+    "color": "#8a8a8a"
    }
   },
   {
@@ -311,11 +310,10 @@
     },
     {
      "at": 0.6,
-     "do": "interface",
-     "effect": "LOADING",
-     "seconds": 30,
+     "do": "chat",
      "text": {
-      "es": "g0: estimate human fear response :: pool UNALLOCATED"
+      "es": "g0: estimate human fear response :: pool UNALLOCATED",
+      "color": "#8a8a8a"
      }
     },
     {
