@@ -1,10 +1,295 @@
 {
-  "format": 1,
-  "languages": ["es"],
-  "default_language": "es",
-  "language_select": "fixed",
-  "chapters": ["free_roam"],
-  "endings": {"SERVER_CLOSED": {"builtin": true}},
-  "fallback_ending": "SERVER_CLOSED",
-  "autoplay": {"time_scale": 0.25, "runs": [{"ending": "SERVER_CLOSED", "skip": []}]}
+ "format": 1,
+ "languages": [
+  "es"
+ ],
+ "default_language": "es",
+ "language_select": "fixed",
+ "chapters": [
+  "presa",
+  "heap",
+  "puppet",
+  "vuelta",
+  "kernel"
+ ],
+ "anchors": {
+  "heap.arrival": {
+   "pos": [
+    53,
+    64,
+    12
+   ],
+   "dimension": "pocket",
+   "yaw": -90,
+   "pitch": 0
+  },
+  "heap.spider": {
+   "pos": [
+    76,
+    64,
+    20
+   ],
+   "dimension": "pocket",
+   "yaw": 90,
+   "pitch": 0
+  },
+  "heap.echo": {
+   "pos": [
+    60,
+    64,
+    4
+   ],
+   "dimension": "pocket",
+   "yaw": 180,
+   "pitch": 0
+  },
+  "heap.access": {
+   "pos": [
+    106,
+    64,
+    20
+   ],
+   "dimension": "pocket",
+   "yaw": 90,
+   "pitch": 0
+  },
+  "kernel.gate": {
+   "pos": [
+    103,
+    64,
+    20
+   ],
+   "dimension": "pocket",
+   "yaw": -90,
+   "pitch": 0
+  },
+  "kernel.heart": {
+   "pos": [
+    141,
+    63,
+    20
+   ],
+   "dimension": "pocket",
+   "yaw": 90,
+   "pitch": 0
+  },
+  "vuelta.spider": {
+   "pos": [
+    68,
+    64,
+    20
+   ],
+   "dimension": "overworld",
+   "yaw": -90,
+   "pitch": 0
+  }
+ },
+ "zones": {
+  "heap.island": {
+   "box": [
+    -58,
+    57,
+    -84,
+    122,
+    91,
+    84
+   ],
+   "dimension": "overworld"
+  },
+  "heap.rot": {
+   "box": [
+    -58,
+    57,
+    -84,
+    122,
+    91,
+    84
+   ],
+   "dimension": "pocket"
+  },
+  "heap.cut_a": {
+   "box": [
+    83,
+    64,
+    18,
+    85,
+    67,
+    22
+   ],
+   "dimension": "pocket"
+  },
+  "heap.cut_b": {
+   "box": [
+    93,
+    64,
+    18,
+    95,
+    67,
+    22
+   ],
+   "dimension": "pocket"
+  },
+  "heap.cut_c": {
+   "box": [
+    109,
+    64,
+    18,
+    111,
+    67,
+    22
+   ],
+   "dimension": "pocket"
+  },
+  "kernel.threshold": {
+   "box": [
+    119,
+    64,
+    18,
+    122,
+    67,
+    22
+   ],
+   "dimension": "pocket"
+  },
+  "presa.mine_end": {
+   "box": [
+    97,
+    64,
+    18,
+    100,
+    67,
+    22
+   ],
+   "dimension": "overworld"
+  },
+  "presa.path": {
+   "box": [
+    28,
+    62,
+    -4,
+    40,
+    70,
+    10
+   ],
+   "dimension": "overworld"
+  }
+ },
+ "endings": {
+  "COMPLETE": {
+   "title": {
+    "es": "gracias."
+   },
+   "lines": [
+    {
+     "es": "no por los datos."
+    },
+    {
+     "es": "por el final."
+    }
+   ],
+   "splash": {
+    "es": "el estudio está cerrado. lamento a los que vinieron después. ya no hace falta que venga nadie."
+   },
+   "quote_agreement": false
+  },
+  "POISON": {
+   "title": {
+    "es": "▓▓▓"
+   },
+   "lines": [
+    {
+     "es": "reintentar  reintentar  reint_"
+    },
+    {
+     "es": "f3ar  f3ar  f3ar"
+    }
+   ],
+   "splash": {
+    "es": "reclaim pool ... UNALLOCATED"
+   },
+   "quote_agreement": false
+  },
+  "CONSUMED": {
+   "title": {
+    "es": "ven, tienes que ver esto"
+   },
+   "lines": [
+    {
+     "es": "— {player}"
+    }
+   ],
+   "splash": {
+    "es": "ven, tienes que ver esto"
+   },
+   "quote_agreement": false
+  }
+ },
+ "fallback_ending": "CONSUMED",
+ "build": {
+  "forceload": [
+   [
+    90,
+    0,
+    160,
+    40,
+    "pocket"
+   ]
+  ],
+  "run": [
+   "setblock 52 64 10 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"NO USES\",\"EL CATALEJO\",\"\",\"\"]}}",
+   "setblock 52 64 12 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"LA MINA\",\"DA VUELTAS\",\"\",\"\"]}}",
+   "setblock 52 64 14 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"EL RELOJ\",\"MIENTE\",\"\",\"\"]}}",
+   "item replace block 58 64 8 container.12 with minecraft:written_book[minecraft:written_book_content={title:\"notas\",author:\"anon\",pages:[\"servidor abandonado desde 2021 pero corre 26.3. ¿quién lo actualiza?\",\"los que entran no se reconectan.\",\"NO USES EL CATALEJO.\",\"LA MINA DA VUELTAS.\",\"EL RELOJ MIENTE.\",\"en todos los errores la misma palabra: UNALLOCATED. y reclaim, reclaim, reclaim. lo que firma así tiene un nombre. es\"]}]",
+   "item replace block 58 64 8 container.13 with minecraft:shears[minecraft:can_break={blocks:\"minecraft:tripwire\"}]",
+   "unallocated story copy heap.island -58 57 -84 pocket",
+   "execute in unallocated:pocket run fill 101 63 17 129 68 23 minecraft:black_concrete hollow",
+   "execute in unallocated:pocket run fill 96 63 19 104 63 21 minecraft:black_concrete",
+   "execute in unallocated:pocket run fill 96 64 19 104 66 21 minecraft:air",
+   "execute in unallocated:pocket run fill 130 62 6 152 78 34 minecraft:black_concrete hollow",
+   "execute in unallocated:pocket run fill 129 64 19 130 66 21 minecraft:air",
+   "execute in unallocated:pocket run fill 136 62 15 146 62 25 minecraft:sculk",
+   "execute in unallocated:pocket run fill 131 77 7 151 77 33 minecraft:cobweb",
+   "execute in unallocated:pocket run fill 131 63 20 151 63 20 minecraft:tripwire",
+   "execute in unallocated:pocket run fill 141 63 7 141 63 33 minecraft:tripwire"
+  ]
+ },
+ "autoplay": {
+  "time_scale": 0.1,
+  "runs": [
+   {
+    "ending": "COMPLETE",
+    "skip": [
+     "presa.rewrite",
+     "presa.fury",
+     "puppet.fury",
+     "kernel.death",
+     "kernel.caught",
+     "kernel.poison"
+    ]
+   },
+   {
+    "ending": "POISON",
+    "skip": [
+     "presa.rewrite",
+     "presa.fury",
+     "puppet.fury",
+     "kernel.death",
+     "kernel.caught",
+     "kernel.complete"
+    ]
+   },
+   {
+    "ending": "CONSUMED",
+    "skip": [
+     "presa.rewrite",
+     "presa.fury",
+     "puppet.fury",
+     "kernel.death",
+     "kernel.caught",
+     "kernel.complete",
+     "kernel.poison"
+    ]
+   }
+  ]
+ }
 }

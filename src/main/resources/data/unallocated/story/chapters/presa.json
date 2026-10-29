@@ -1,0 +1,335 @@
+{
+ "id": "presa",
+ "budget_seconds": 360,
+ "checkpoint": "lobby.spawn",
+ "on_enter": [
+  {
+   "at": 0,
+   "do": "audio",
+   "cue": "ambient"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "give @s minecraft:spyglass"
+  },
+  {
+   "at": 2,
+   "do": "chat",
+   "text": {
+    "es": "servidor abandonado desde 2021 pero corre 26.3 — ¿quién lo actualiza? los que entran no se reconectan",
+    "color": "#8a8a8a"
+   }
+  }
+ ],
+ "on_resume": [
+  {
+   "at": 0,
+   "do": "audio",
+   "cue": "ambient"
+  }
+ ],
+ "escape": [
+  {
+   "at": 0,
+   "do": "interface",
+   "effect": "LOADING",
+   "seconds": 30,
+   "text": {
+    "es": "g0: estimate human fear response :: pool UNALLOCATED"
+   }
+  },
+  {
+   "at": 0,
+   "do": "blackout",
+   "fade_in": 0.2,
+   "hold": 1.0,
+   "fade_out": 0.6
+  }
+ ],
+ "beats": [
+  {
+   "id": "presa.hill",
+   "when": {
+    "type": "zone",
+    "zone": "hill.bait_path"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "bait",
+     "op": "place",
+     "scare": true,
+     "seed": 4114
+    }
+   ],
+   "capture": {
+    "name": "colina",
+    "at": 1
+   }
+  },
+  {
+   "id": "presa.bait_scream",
+   "when": {
+    "type": "bait",
+    "event": "screamer"
+   },
+   "actions": [
+    {
+     "at": 1.5,
+     "do": "chat",
+     "text": {
+      "es": "Can't keep up! Is the server overloaded?",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 1.5,
+     "do": "audio",
+     "cue": "muffle"
+    }
+   ]
+  },
+  {
+   "id": "presa.lost_time",
+   "when": {
+    "type": "zone",
+    "zone": "presa.path"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "blackout",
+     "fade_in": 0.05,
+     "hold": 0.3,
+     "fade_out": 0.3
+    },
+    {
+     "at": 0.1,
+     "do": "command",
+     "run": "time add 2500"
+    }
+   ]
+  },
+  {
+   "id": "presa.sprint",
+   "when": {
+    "type": "sprint",
+    "seconds": 3
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "no corras. no sirve el dato si corres."
+     },
+     "from": {
+      "es": "{player}"
+     }
+    }
+   ]
+  },
+  {
+   "id": "presa.rewrite",
+   "when": {
+    "type": "chat",
+    "pattern": "\\S",
+    "hide": true
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "vamos al pozo"
+     },
+     "from": {
+      "es": "{player}"
+     }
+    }
+   ],
+   "autoplay": {
+    "input": "vamos a la izquierda"
+   }
+  },
+  {
+   "id": "presa.fury",
+   "when": {
+    "type": "chat",
+    "pattern": "(?i)reclaimer"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "muestra inválida :: el sujeto conoce la designación",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 0.3,
+     "do": "audio",
+     "cue": "muffle"
+    },
+    {
+     "at": 0.3,
+     "do": "interface",
+     "effect": "GAMMA",
+     "seconds": 4,
+     "strength": 1
+    }
+   ],
+   "autoplay": {
+    "input": "reclaimer"
+   }
+  },
+  {
+   "id": "presa.base",
+   "when": {
+    "type": "zone",
+    "zone": "base.theft_zone"
+   },
+   "actions": [
+    {
+     "at": 8,
+     "do": "interface",
+     "effect": "SIGN",
+     "seconds": 5,
+     "generation": 2,
+     "strength": 0.5,
+     "leak": "mixed",
+     "seed": 4114,
+     "sign": {
+      "pos": [
+       53,
+       64,
+       10
+      ]
+     },
+     "text": {
+      "es": "objetivo: obtener fear de subject // retry"
+     }
+    }
+   ],
+   "capture": {
+    "name": "base",
+    "at": 1
+   }
+  },
+  {
+   "id": "presa.lag",
+   "when": {
+    "type": "after",
+    "seconds": 150
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "Can't keep up! Is the server overloaded?",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "muffle"
+    }
+   ]
+  },
+  {
+   "id": "presa.loop1",
+   "when": {
+    "type": "zone",
+    "zone": "presa.mine_end"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "command",
+     "run": "tp @s ~-14 ~ ~"
+    },
+    {
+     "at": 0.5,
+     "do": "flag",
+     "set": "loop1"
+    }
+   ],
+   "capture": {
+    "name": "mina",
+    "at": 0.6
+   }
+  },
+  {
+   "id": "presa.loop2",
+   "when": {
+    "type": "zone",
+    "zone": "presa.mine_end"
+   },
+   "if": {
+    "flags": [
+     "loop1"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "command",
+     "run": "tp @s ~-14 ~ ~"
+    },
+    {
+     "at": 0.5,
+     "do": "flag",
+     "set": "loop2"
+    }
+   ]
+  },
+  {
+   "id": "presa.fall",
+   "when": {
+    "type": "zone",
+    "zone": "presa.mine_end"
+   },
+   "if": {
+    "flags": [
+     "loop2"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "command",
+     "run": "fill ~-1 ~-1 ~-1 ~1 ~-1 ~1 minecraft:mud"
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "muffle"
+    },
+    {
+     "at": 0.6,
+     "do": "interface",
+     "effect": "LOADING",
+     "seconds": 30,
+     "text": {
+      "es": "g0: estimate human fear response :: pool UNALLOCATED"
+     }
+    },
+    {
+     "at": 0.8,
+     "do": "blackout",
+     "fade_in": 0.4,
+     "hold": 1.0,
+     "fade_out": 0.6
+    },
+    {
+     "at": 1.2,
+     "do": "next_chapter"
+    }
+   ]
+  }
+ ]
+}

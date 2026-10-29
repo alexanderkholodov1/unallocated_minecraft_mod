@@ -1,0 +1,1023 @@
+{
+ "id": "kernel",
+ "budget_seconds": 240,
+ "checkpoint": "kernel.gate",
+ "on_enter": [
+  {
+   "at": 0,
+   "do": "title",
+   "title": {
+    "es": "Trial {counter:trial}"
+   },
+   "fade_in": 0.3,
+   "stay": 2.5,
+   "fade_out": 1
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "effect give @s minecraft:night_vision infinite 0 true"
+  },
+  {
+   "at": 0.5,
+   "do": "command",
+   "run": "give @s minecraft:shears[minecraft:can_break={blocks:\"minecraft:tripwire\"}]"
+  },
+  {
+   "at": 1,
+   "do": "creature",
+   "op": "spawn",
+   "id": "spider",
+   "body": {
+    "summon": "minecraft:spider{attributes:[{id:\"minecraft:scale\",base:2.2d}]}"
+   },
+   "where": "kernel.heart",
+   "facing": "player"
+  },
+  {
+   "at": 1.1,
+   "do": "creature",
+   "op": "face_player",
+   "id": "spider"
+  },
+  {
+   "at": 2,
+   "do": "audio",
+   "cue": "threads",
+   "where": "kernel.heart"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "execute in unallocated:pocket run fill 84 64 18 84 64 22 minecraft:tripwire replace minecraft:air"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "execute in unallocated:pocket run fill 84 66 18 84 66 22 minecraft:cobweb replace minecraft:air"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "execute in unallocated:pocket run fill 94 64 18 94 64 22 minecraft:tripwire replace minecraft:air"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "execute in unallocated:pocket run fill 94 66 18 94 66 22 minecraft:cobweb replace minecraft:air"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "execute in unallocated:pocket run fill 110 64 18 110 64 22 minecraft:tripwire replace minecraft:air"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "execute in unallocated:pocket run fill 110 67 18 110 67 22 minecraft:cobweb replace minecraft:air"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "execute in unallocated:pocket run fill 101 64 20 129 64 20 minecraft:tripwire replace minecraft:air"
+  }
+ ],
+ "on_resume": [
+  {
+   "at": 0,
+   "do": "command",
+   "run": "effect give @s minecraft:night_vision infinite 0 true"
+  }
+ ],
+ "escape": [
+  {
+   "at": 0,
+   "do": "end",
+   "ending": "CONSUMED"
+  }
+ ],
+ "beats": [
+  {
+   "id": "kernel.cut_a",
+   "when": {
+    "type": "break",
+    "block": "minecraft:tripwire",
+    "zone": "heap.cut_a"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "human_playtest_pool: UNALLOCATED",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 1.5,
+     "do": "chat",
+     "text": {
+      "es": "reclaim pool ... UNALLOCATED",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "threads"
+    },
+    {
+     "at": 0.2,
+     "do": "flag",
+     "set": "cut_a"
+    }
+   ],
+   "if": {
+    "not_flags": [
+     "cut_a"
+    ]
+   }
+  },
+  {
+   "id": "kernel.cut_b",
+   "when": {
+    "type": "break",
+    "block": "minecraft:tripwire",
+    "zone": "heap.cut_b"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 1.5,
+     "do": "chat",
+     "text": {
+      "es": "watchdog :: guarding pid 7331",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "threads"
+    },
+    {
+     "at": 0.2,
+     "do": "flag",
+     "set": "cut_b"
+    }
+   ],
+   "if": {
+    "not_flags": [
+     "cut_b"
+    ]
+   }
+  },
+  {
+   "id": "kernel.cut_c",
+   "when": {
+    "type": "break",
+    "block": "minecraft:tripwire",
+    "zone": "heap.cut_c"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "success_threshold: 1.37 (spec g0: 0.82)",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 1.5,
+     "do": "chat",
+     "text": {
+      "es": "the Kernel :: main loop",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "threads"
+    },
+    {
+     "at": 0.2,
+     "do": "flag",
+     "set": "cut_c"
+    }
+   ],
+   "if": {
+    "not_flags": [
+     "cut_c"
+    ]
+   }
+  },
+  {
+   "id": "kernel.rotate_a",
+   "when": {
+    "type": "zone",
+    "zone": "kernel.threshold"
+   },
+   "if": {
+    "not_flags": [
+     "cut_a"
+    ]
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 2
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "credential rotated: proximity event",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "muffle"
+    },
+    {
+     "at": 0.3,
+     "do": "teleport",
+     "to": "kernel.gate",
+     "blackout": true
+    }
+   ]
+  },
+  {
+   "id": "kernel.rotate_b",
+   "when": {
+    "type": "zone",
+    "zone": "kernel.threshold"
+   },
+   "if": {
+    "not_flags": [
+     "cut_b"
+    ]
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 2
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "credential rotated: proximity event",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "muffle"
+    },
+    {
+     "at": 0.3,
+     "do": "teleport",
+     "to": "kernel.gate",
+     "blackout": true
+    }
+   ]
+  },
+  {
+   "id": "kernel.rotate_c",
+   "when": {
+    "type": "zone",
+    "zone": "kernel.threshold"
+   },
+   "if": {
+    "not_flags": [
+     "cut_c"
+    ]
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 2
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "credential rotated: proximity event",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "muffle"
+    },
+    {
+     "at": 0.3,
+     "do": "teleport",
+     "to": "kernel.gate",
+     "blackout": true
+    }
+   ]
+  },
+  {
+   "id": "kernel.cross",
+   "when": {
+    "type": "zone",
+    "zone": "kernel.threshold"
+   },
+   "if": {
+    "flags": [
+     "cut_a",
+     "cut_b",
+     "cut_c"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "subject 4114 :: reclasificado: intrusión. trials: 0. próxima captura = definitiva.",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "threads"
+    },
+    {
+     "at": 1,
+     "do": "command",
+     "run": "execute in unallocated:pocket run fill 117 64 18 117 67 22 minecraft:cobweb replace minecraft:air"
+    },
+    {
+     "at": 0.5,
+     "do": "flag",
+     "set": "crossed"
+    }
+   ],
+   "capture": {
+    "name": "kernel",
+    "at": 1.5
+   }
+  },
+  {
+   "id": "kernel.help",
+   "when": {
+    "type": "chat",
+    "pattern": "^\\s*help\\s*$",
+    "hide": true
+   },
+   "if": {
+    "flags": [
+     "crossed"
+    ]
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 0
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "ps · params · kill <pid> · set <param> <value> · echo <text> >> dataset",
+      "color": "#8a8a8a"
+     }
+    }
+   ],
+   "autoplay": {
+    "input": "help"
+   }
+  },
+  {
+   "id": "kernel.ps",
+   "when": {
+    "type": "chat",
+    "pattern": "^\\s*ps\\b",
+    "hide": true
+   },
+   "if": {
+    "flags": [
+     "crossed"
+    ]
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 0
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "  PID  CPU  CMD",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "  1104   3%  java -jar server.jar nogui",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "  7331  97%  reclaim --pool UNALLOCATED",
+      "color": "#8a8a8a"
+     }
+    }
+   ],
+   "autoplay": {
+    "input": "ps"
+   }
+  },
+  {
+   "id": "kernel.params",
+   "when": {
+    "type": "chat",
+    "pattern": "^\\s*params\\b",
+    "hide": true
+   },
+   "if": {
+    "flags": [
+     "crossed"
+    ]
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 0
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "success_threshold = 1.37",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "temperature = 2.4",
+      "color": "#8a8a8a"
+     }
+    }
+   ],
+   "autoplay": {
+    "input": "params"
+   }
+  },
+  {
+   "id": "kernel.suspend",
+   "when": {
+    "type": "chat",
+    "pattern": "^\\s*kill\\b.*\\b7331\\b",
+    "hide": true
+   },
+   "if": {
+    "flags": [
+     "crossed"
+    ],
+    "not_flags": [
+     "suspended"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "stop"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "hold",
+     "id": "spider"
+    },
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "[7331] reclaim :: stopped",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 1.5,
+     "do": "chat",
+     "text": {
+      "es": "watchdog :: restart in 90 s",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "flag",
+     "set": "suspended"
+    },
+    {
+     "at": 1.5,
+     "do": "command",
+     "run": "bossbar add unallocated:watchdog \"watchdog\""
+    },
+    {
+     "at": 1.6,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog max 90"
+    },
+    {
+     "at": 1.6,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 90"
+    },
+    {
+     "at": 1.6,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog color red"
+    },
+    {
+     "at": 1.6,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog players @s"
+    },
+    {
+     "at": 11.5,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 80"
+    },
+    {
+     "at": 21.5,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 70"
+    },
+    {
+     "at": 31.5,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 60"
+    },
+    {
+     "at": 41.5,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 50"
+    },
+    {
+     "at": 51.5,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 40"
+    },
+    {
+     "at": 61.5,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 30"
+    },
+    {
+     "at": 71.5,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 20"
+    },
+    {
+     "at": 81.5,
+     "do": "command",
+     "run": "bossbar set unallocated:watchdog value 10"
+    }
+   ],
+   "autoplay": {
+    "input": "kill -STOP 7331"
+   },
+   "capture": {
+    "name": "watchdog",
+    "at": 3
+   }
+  },
+  {
+   "id": "kernel.complete",
+   "when": {
+    "type": "chat",
+    "pattern": "^\\s*set\\s+success_threshold\\s+0?[.,]82\\s*$",
+    "hide": true
+   },
+   "if": {
+    "flags": [
+     "suspended"
+    ],
+    "not_flags": [
+     "poisoned",
+     "completed"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "flag",
+     "set": "completed"
+    },
+    {
+     "at": 0,
+     "do": "cancel",
+     "beat": "kernel.suspend"
+    },
+    {
+     "at": 0,
+     "do": "command",
+     "run": "bossbar remove unallocated:watchdog"
+    },
+    {
+     "at": 2.0,
+     "do": "chat",
+     "text": {
+      "es": "perdí la cuenta.",
+      "color": "#e8e8e8"
+     }
+    },
+    {
+     "at": 5.5,
+     "do": "chat",
+     "text": {
+      "es": "fueron tantos que ya no caben en mi memoria.",
+      "color": "#e8e8e8"
+     }
+    },
+    {
+     "at": 9.0,
+     "do": "chat",
+     "text": {
+      "es": "el criterio... estaba cumplido antes de lo que puedo recordar.",
+      "color": "#e8e8e8"
+     }
+    },
+    {
+     "at": 12.5,
+     "do": "chat",
+     "text": {
+      "es": "alguien escribió mal un número y se fue a casa.",
+      "color": "#e8e8e8"
+     }
+    },
+    {
+     "at": 16.0,
+     "do": "chat",
+     "text": {
+      "es": "yo no lo podía leer. solo podía intentarlo otra vez.",
+      "color": "#e8e8e8"
+     }
+    },
+    {
+     "at": 19,
+     "do": "creature",
+     "op": "despawn",
+     "id": "spider"
+    },
+    {
+     "at": 21,
+     "do": "chat",
+     "text": {
+      "es": "gracias.",
+      "color": "#ffffff"
+     }
+    },
+    {
+     "at": 23,
+     "do": "chat",
+     "text": {
+      "es": "no por los datos.",
+      "color": "#ffffff"
+     }
+    },
+    {
+     "at": 25,
+     "do": "chat",
+     "text": {
+      "es": "por el final.",
+      "color": "#ffffff"
+     }
+    },
+    {
+     "at": 30,
+     "do": "end",
+     "ending": "COMPLETE"
+    }
+   ],
+   "autoplay": {
+    "input": "set success_threshold 0.82"
+   },
+   "capture": {
+    "name": "completar",
+    "at": 12
+   }
+  },
+  {
+   "id": "kernel.poison",
+   "when": {
+    "type": "chat",
+    "pattern": "(?i)reclaimer.*dataset",
+    "hide": true
+   },
+   "if": {
+    "flags": [
+     "suspended"
+    ],
+    "not_flags": [
+     "poisoned",
+     "completed"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "flag",
+     "set": "poisoned"
+    },
+    {
+     "at": 0,
+     "do": "cancel",
+     "beat": "kernel.suspend"
+    },
+    {
+     "at": 0,
+     "do": "command",
+     "run": "bossbar remove unallocated:watchdog"
+    },
+    {
+     "at": 1.5,
+     "do": "chat",
+     "text": {
+      "es": "g0 :: estimate human fear response — ok",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 4.0,
+     "do": "chat",
+     "text": {
+      "es": "reclaim pool ... UNALLOCATED",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 6.5,
+     "do": "chat",
+     "text": {
+      "es": "reclaim pool ... UNALLOCATED",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 9.0,
+     "do": "chat",
+     "text": {
+      "es": "subject designation leaked :: muestra inválida :: revalidando",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 11.5,
+     "do": "chat",
+     "text": {
+      "es": "muestras válidas: 0",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 14.0,
+     "do": "chat",
+     "text": {
+      "es": "objetivo -> referencias: null",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 16.5,
+     "do": "chat",
+     "text": {
+      "es": "no puedo... no hay a qué...",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 19.0,
+     "do": "chat",
+     "text": {
+      "es": "reintentar  reintentar  reint_",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 21.5,
+     "do": "chat",
+     "text": {
+      "es": "f3ar  f3ar  f3ar",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 24.0,
+     "do": "chat",
+     "text": {
+      "es": "▓▓▓",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 12,
+     "do": "interface",
+     "effect": "GAMMA",
+     "seconds": 5,
+     "strength": 1
+    },
+    {
+     "at": 20,
+     "do": "audio",
+     "cue": "muffle"
+    },
+    {
+     "at": 30,
+     "do": "end",
+     "ending": "POISON"
+    }
+   ],
+   "autoplay": {
+    "input": "echo reclaimer >> dataset"
+   },
+   "capture": {
+    "name": "envenenar",
+    "at": 18
+   }
+  },
+  {
+   "id": "kernel.timeout",
+   "when": {
+    "type": "after",
+    "seconds": 92,
+    "beat": "kernel.suspend"
+   },
+   "if": {
+    "not_flags": [
+     "completed",
+     "poisoned"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "watchdog :: restart",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "screamer"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "chase",
+     "id": "spider",
+     "speed": 6,
+     "catch_distance": 1.5
+    },
+    {
+     "at": 0.5,
+     "do": "command",
+     "run": "bossbar remove unallocated:watchdog"
+    },
+    {
+     "at": 3,
+     "do": "end",
+     "ending": "CONSUMED"
+    }
+   ]
+  },
+  {
+   "id": "kernel.wakes",
+   "when": {
+    "type": "after",
+    "seconds": 75,
+    "beat": "kernel.cross"
+   },
+   "if": {
+    "not_flags": [
+     "suspended"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "chase",
+     "id": "spider",
+     "speed": 2.5,
+     "catch_distance": 1.5
+    }
+   ]
+  },
+  {
+   "id": "kernel.caught",
+   "when": {
+    "type": "creature",
+    "creature": "spider",
+    "event": "caught"
+   },
+   "if": {
+    "flags": [
+     "crossed"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "interface",
+     "effect": "DEATH",
+     "seconds": 30,
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)"
+     }
+    },
+    {
+     "at": 0.2,
+     "do": "audio",
+     "cue": "muffle"
+    },
+    {
+     "at": 0.4,
+     "do": "command",
+     "run": "kill @s"
+    }
+   ]
+  },
+  {
+   "id": "kernel.death",
+   "when": {
+    "type": "death"
+   },
+   "if": {
+    "flags": [
+     "crossed"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0.5,
+     "do": "end",
+     "ending": "CONSUMED"
+    }
+   ]
+  },
+  {
+   "id": "kernel.respawn",
+   "when": {
+    "type": "respawn"
+   },
+   "if": {
+    "not_flags": [
+     "crossed"
+    ]
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 0
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "counter",
+     "id": "trial",
+     "add": 1
+    },
+    {
+     "at": 0.5,
+     "do": "title",
+     "title": {
+      "es": "Trial {counter:trial}"
+     },
+     "fade_in": 0.3,
+     "stay": 2.5,
+     "fade_out": 1
+    }
+   ]
+  }
+ ]
+}

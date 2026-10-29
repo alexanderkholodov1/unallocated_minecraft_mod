@@ -9,7 +9,7 @@
     "epilogue": true
   },
   "effects": {
-    "options": false,
-    "screamer": false
+    "options": true,
+    "screamer": true
   }
 }
