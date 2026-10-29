@@ -1,0 +1,146 @@
+{
+ "id": "vuelta",
+ "budget_seconds": 90,
+ "checkpoint": "mine.entrance",
+ "on_enter": [
+  {
+   "at": 0,
+   "do": "audio",
+   "cue": "ambient"
+  },
+  {
+   "at": 2,
+   "do": "creature",
+   "op": "spawn",
+   "id": "spider",
+   "body": {
+    "summon": "minecraft:spider{attributes:[{id:\"minecraft:scale\",base:1.6d}]}"
+   },
+   "where": "vuelta.spider",
+   "facing": "player"
+  },
+  {
+   "at": 2.1,
+   "do": "creature",
+   "op": "chase",
+   "id": "spider",
+   "speed": 4,
+   "catch_distance": 1.5
+  }
+ ],
+ "on_resume": [
+  {
+   "at": 0,
+   "do": "audio",
+   "cue": "ambient"
+  }
+ ],
+ "escape": [
+  {
+   "at": 0,
+   "do": "interface",
+   "effect": "DEATH",
+   "seconds": 30,
+   "text": {
+    "es": "subject connection: still open. retaining (+fear)"
+   }
+  },
+  {
+   "at": 0.2,
+   "do": "audio",
+   "cue": "muffle"
+  },
+  {
+   "at": 0.4,
+   "do": "command",
+   "run": "kill @s"
+  }
+ ],
+ "beats": [
+  {
+   "id": "vuelta.see",
+   "when": {
+    "type": "chapter_start"
+   },
+   "actions": [
+    {
+     "at": 1,
+     "do": "chat",
+     "text": {
+      "es": "Can't keep up! Is the server overloaded?",
+      "color": "#8a8a8a"
+     }
+    }
+   ],
+   "capture": {
+    "name": "vuelta",
+    "at": 3
+   }
+  },
+  {
+   "id": "vuelta.caught",
+   "when": {
+    "type": "creature",
+    "creature": "spider",
+    "event": "caught"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "counter",
+     "id": "trial",
+     "set": 2
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "hold",
+     "id": "spider"
+    },
+    {
+     "at": 0.1,
+     "do": "interface",
+     "effect": "DEATH",
+     "seconds": 30,
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)"
+     }
+    },
+    {
+     "at": 0.30000000000000004,
+     "do": "audio",
+     "cue": "muffle"
+    },
+    {
+     "at": 0.5,
+     "do": "command",
+     "run": "kill @s"
+    }
+   ],
+   "autoplay": {
+    "wait_seconds": 20
+   }
+  },
+  {
+   "id": "vuelta.next",
+   "when": {
+    "type": "respawn"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "despawn",
+     "id": "spider"
+    },
+    {
+     "at": 0.2,
+     "do": "next_chapter"
+    }
+   ],
+   "autoplay": {
+    "wait_seconds": 200
+   }
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+  "acts": {
+    "contract": false,
+    "lobby": true,
+    "theft": true,
+    "loop": true,
+    "pocket": true,
+    "climax": true,
+    "epilogue": true
+  },
+  "effects": {
+    "options": true,
+    "screamer": true
+  }
+}

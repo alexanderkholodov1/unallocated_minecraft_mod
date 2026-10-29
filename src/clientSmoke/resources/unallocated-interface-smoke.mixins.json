@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "org.unallocated.client.mixin.interfacefxsmoke",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "InterfaceMouseSmokeAccessor",
+    "InterfaceLoadingSmokeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

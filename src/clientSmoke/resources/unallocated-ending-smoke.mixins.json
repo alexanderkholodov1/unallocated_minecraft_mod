@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "org.unallocated.client.mixin.endingsmoke",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["EndingConnectionSmokeMixin"],
+  "injectors": {"defaultRequire": 1}
+}

@@ -1,0 +1,202 @@
+{
+ "id": "heap",
+ "budget_seconds": 120,
+ "checkpoint": "heap.arrival",
+ "on_enter": [
+  {
+   "at": 0,
+   "do": "audio",
+   "cue": "ambient"
+  },
+  {
+   "at": 0,
+   "do": "corrupt",
+   "area": "heap.rot",
+   "rules": [
+    {
+     "from": [
+      "minecraft:grass_block"
+     ],
+     "to": [
+      "minecraft:mud",
+      "minecraft:soul_soil",
+      "minecraft:coarse_dirt"
+     ],
+     "ratio": 0.35
+    },
+    {
+     "from": [
+      "minecraft:cobblestone",
+      "minecraft:stone_bricks"
+     ],
+     "to": [
+      "minecraft:mossy_cobblestone",
+      "minecraft:cracked_stone_bricks"
+     ],
+     "ratio": 0.4
+    },
+    {
+     "from": [
+      "minecraft:glass",
+      "minecraft:glass_pane"
+     ],
+     "to": [
+      "minecraft:air"
+     ],
+     "ratio": 0.5
+    }
+   ],
+   "seed": 4114,
+   "over_seconds": 40
+  },
+  {
+   "at": 2,
+   "do": "creature",
+   "op": "spawn",
+   "id": "spider",
+   "body": {
+    "summon": "minecraft:spider{attributes:[{id:\"minecraft:scale\",base:1.6d}]}"
+   },
+   "where": "heap.spider",
+   "facing": "player"
+  },
+  {
+   "at": 2.1,
+   "do": "creature",
+   "op": "stalk",
+   "id": "spider",
+   "step": 1.5,
+   "min_distance": 6
+  }
+ ],
+ "on_resume": [
+  {
+   "at": 0,
+   "do": "audio",
+   "cue": "ambient"
+  }
+ ],
+ "escape": [
+  {
+   "at": 0,
+   "do": "interface",
+   "effect": "DEATH",
+   "seconds": 30,
+   "text": {
+    "es": "subject connection: still open. retaining (+fear)"
+   }
+  },
+  {
+   "at": 0.2,
+   "do": "audio",
+   "cue": "muffle"
+  },
+  {
+   "at": 0.4,
+   "do": "command",
+   "run": "kill @s"
+  }
+ ],
+ "beats": [
+  {
+   "id": "heap.see",
+   "when": {
+    "type": "chapter_start"
+   },
+   "actions": [
+    {
+     "at": 3,
+     "do": "audio",
+     "cue": "threads",
+     "where": "heap.spider"
+    }
+   ],
+   "capture": {
+    "name": "heap",
+    "at": 5
+   }
+  },
+  {
+   "id": "heap.hunt",
+   "when": {
+    "type": "after",
+    "seconds": 8
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "chase",
+     "id": "spider",
+     "speed": 3.5,
+     "catch_distance": 1.5
+    }
+   ]
+  },
+  {
+   "id": "heap.caught",
+   "when": {
+    "type": "creature",
+    "creature": "spider",
+    "event": "caught"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "counter",
+     "id": "trial",
+     "set": 1
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "hold",
+     "id": "spider"
+    },
+    {
+     "at": 0.1,
+     "do": "interface",
+     "effect": "DEATH",
+     "seconds": 30,
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)"
+     }
+    },
+    {
+     "at": 0.30000000000000004,
+     "do": "audio",
+     "cue": "screamer"
+    },
+    {
+     "at": 0.5,
+     "do": "command",
+     "run": "kill @s"
+    }
+   ],
+   "autoplay": {
+    "wait_seconds": 20
+   }
+  },
+  {
+   "id": "heap.next",
+   "when": {
+    "type": "respawn"
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "despawn",
+     "id": "spider"
+    },
+    {
+     "at": 0.2,
+     "do": "next_chapter"
+    }
+   ],
+   "autoplay": {
+    "wait_seconds": 200
+   }
+  }
+ ]
+}

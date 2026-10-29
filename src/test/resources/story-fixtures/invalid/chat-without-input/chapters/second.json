@@ -1,0 +1,106 @@
+{
+  "id": "second",
+  "budget_seconds": 180,
+  "checkpoint": "example.mark",
+  "on_enter": [
+    {
+      "at": 0,
+      "do": "blackout",
+      "fade_in": 0.1,
+      "hold": 0.5,
+      "fade_out": 0.4
+    },
+    {
+      "at": 0.2,
+      "do": "teleport",
+      "to": "example.mark"
+    },
+    {
+      "at": 1,
+      "do": "command",
+      "run": "effect give @s minecraft:darkness 4 0 true"
+    }
+  ],
+  "on_resume": [],
+  "escape": [
+    {
+      "at": 0,
+      "do": "end",
+      "ending": "EXAMPLE_A"
+    }
+  ],
+  "beats": [
+    {
+      "id": "second.choose_a",
+      "when": {
+        "type": "chat",
+        "pattern": "(?i)^\\[a\\]$",
+        "hide": true
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "flag",
+          "set": "example.chose_a"
+        }
+      ]
+    },
+    {
+      "id": "second.choose_b",
+      "when": {
+        "type": "zone",
+        "zone": "example.end_zone",
+        "seconds": 1
+      },
+      "if": {
+        "not_flags": [
+          "example.chose_a"
+        ]
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "flag",
+          "set": "example.chose_b"
+        }
+      ]
+    },
+    {
+      "id": "second.end_a",
+      "when": {
+        "type": "flag",
+        "flag": "example.chose_a"
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "audio",
+          "cue": "muffle"
+        },
+        {
+          "at": 1,
+          "do": "end",
+          "ending": "EXAMPLE_A"
+        }
+      ],
+      "capture": {
+        "name": "example-end",
+        "at": 0.5
+      }
+    },
+    {
+      "id": "second.end_b",
+      "when": {
+        "type": "flag",
+        "flag": "example.chose_b"
+      },
+      "actions": [
+        {
+          "at": 1,
+          "do": "end",
+          "ending": "EXAMPLE_B"
+        }
+      ]
+    }
+  ]
+}

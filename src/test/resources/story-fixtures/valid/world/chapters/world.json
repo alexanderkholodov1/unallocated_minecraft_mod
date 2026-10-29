@@ -1,0 +1,220 @@
+{
+  "id": "world",
+  "budget_seconds": 60,
+  "checkpoint": "base.entrance",
+  "on_enter": [
+    {
+      "at": 0,
+      "do": "copy",
+      "from": {
+        "section": "base"
+      },
+      "to": {
+        "pos": [
+          100,
+          60,
+          100
+        ],
+        "dimension": "pocket"
+      }
+    },
+    {
+      "at": 0,
+      "do": "corrupt",
+      "area": "world.pocket_base",
+      "rules": [
+        {
+          "from": [
+            "minecraft:cobblestone",
+            "minecraft:stone_bricks",
+            "minecraft:oak_planks"
+          ],
+          "to": [
+            "minecraft:cracked_stone_bricks"
+          ],
+          "ratio": 0.4
+        }
+      ],
+      "seed": 17,
+      "over_seconds": 16
+    },
+    {
+      "at": 1,
+      "do": "teleport",
+      "to": "world.pocket"
+    },
+    {
+      "at": 0,
+      "do": "creature",
+      "op": "spawn",
+      "id": "world.figure",
+      "body": {
+        "mannequin": {
+          "profile": "player",
+          "scale": 1
+        }
+      },
+      "where": {
+        "pos": [
+          105,
+          64,
+          110
+        ],
+        "dimension": "pocket"
+      },
+      "facing": "player"
+    },
+    {
+      "at": 0,
+      "do": "creature",
+      "op": "stalk",
+      "id": "world.figure",
+      "step": 1,
+      "min_distance": 3
+    }
+  ],
+  "beats": [
+    {
+      "id": "world.pocket",
+      "when": {
+        "type": "zone",
+        "zone": "world.pocket_base"
+      },
+      "actions": [
+        {
+          "at": 22,
+          "do": "flag",
+          "set": "world.corrupted"
+        }
+      ],
+      "capture": {
+        "name": "world-pocket",
+        "at": 20
+      }
+    },
+    {
+      "id": "world.seen",
+      "when": {
+        "type": "creature",
+        "creature": "world.figure",
+        "event": "seen",
+        "seconds": 0.5
+      },
+      "if": {
+        "flags": [
+          "world.corrupted"
+        ]
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "flag",
+          "set": "world.visible"
+        },
+        {
+          "at": 1,
+          "do": "creature",
+          "op": "hold",
+          "id": "world.figure"
+        },
+        {
+          "at": 2,
+          "do": "creature",
+          "op": "face_player",
+          "id": "world.figure"
+        },
+        {
+          "at": 5,
+          "do": "creature",
+          "op": "chase",
+          "id": "world.figure",
+          "speed": 3,
+          "catch_distance": 0.5
+        },
+        {
+          "at": 5,
+          "do": "flag",
+          "set": "world.chasing"
+        }
+      ],
+      "capture": {
+        "name": "world-creature",
+        "at": 3
+      }
+    },
+    {
+      "id": "world.near",
+      "when": {
+        "type": "creature",
+        "creature": "world.figure",
+        "event": "near",
+        "distance": 4
+      },
+      "if": {
+        "flags": [
+          "world.visible"
+        ]
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "flag",
+          "set": "world.near"
+        }
+      ]
+    },
+    {
+      "id": "world.caught",
+      "when": {
+        "type": "creature",
+        "creature": "world.figure",
+        "event": "caught"
+      },
+      "if": {
+        "flags": [
+          "world.chasing",
+          "world.near"
+        ]
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "creature",
+          "op": "despawn",
+          "id": "world.figure"
+        },
+        {
+          "at": 0,
+          "do": "teleport",
+          "to": "base.entrance"
+        },
+        {
+          "at": 1,
+          "do": "flag",
+          "set": "world.returned"
+        }
+      ]
+    },
+    {
+      "id": "world.return",
+      "when": {
+        "type": "flag",
+        "flag": "world.returned"
+      },
+      "actions": [
+        {
+          "at": 1,
+          "do": "end",
+          "ending": "SERVER_CLOSED"
+        }
+      ]
+    }
+  ],
+  "on_resume": [
+    {
+      "at": 0,
+      "do": "teleport",
+      "to": "world.pocket"
+    }
+  ]
+}

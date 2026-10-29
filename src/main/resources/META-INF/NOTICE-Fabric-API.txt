@@ -1,0 +1,13 @@
+UNALLOCATED includes Fabric API modules from Fabric API 0.165.0+26.3.
+Fabric API is developed by FabricMC and its contributors, licensed Apache-2.0.
+Source: https://github.com/FabricMC/fabric/tree/26.3
+
+Included modules: fabric-api-base, fabric-command-api-v2,
+fabric-lifecycle-events-v1, fabric-networking-api-v1,
+fabric-registry-sync-v0, fabric-resource-loader-v1, fabric-screen-api-v1.
+
+The Apache License 2.0 is reproduced in licenses/Fabric-API-Apache-2.0.txt
+(relative to this META-INF directory). Each nested module also retains its
+original LICENSE-<module-id>, metadata, author attribution and source links.
+UNALLOCATED's own code remains All-Rights-Reserved; that does not override
+the licenses of the included Fabric API modules.

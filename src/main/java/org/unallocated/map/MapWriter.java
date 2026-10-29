@@ -1,0 +1,93 @@
+package org.unallocated.map;
+
+import java.util.List;
+import java.util.ArrayList;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.Container;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
+import net.minecraft.world.level.block.entity.SignText;
+import net.minecraft.world.level.block.entity.SignTextSlot;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+
+/** Bounded, update-suppressed placement avoids order-dependent neighbour changes and item drops. */
+public final class MapWriter {
+    private final ServerLevel level;
+    private final MapLayout.Section section;
+    private final List<Runnable> signWrites = new ArrayList<>();
+    MapWriter(ServerLevel level, MapLayout.Section section) { this.level = level; this.section = section; }
+    public void put(int x, int y, int z, Block block) { put(x, y, z, block.defaultBlockState()); }
+    public void put(String landmark, BlockState state) {
+        var pos = MapLayout.landmark(landmark);
+        put(pos.getX() - section.x(), pos.getY() - section.y(), pos.getZ() - section.z(), state);
+    }
+    public void stock(String landmark, int slot, ItemStack stack) {
+        if (!(level.getBlockEntity(MapLayout.landmark(landmark)) instanceof Container container)) {
+            throw new IllegalStateException("Missing container at " + landmark);
+        }
+        container.setItem(slot, stack);
+    }
+    public void put(int x, int y, int z, BlockState state) {
+        BlockPos pos = section.at(x, y, z);
+        if (!section.bounds().contains(pos.getX(), pos.getY(), pos.getZ())) {
+            throw new IllegalArgumentException("Placement outside " + section.id() + ": " + pos);
+        }
+        place(level, pos, state);
+    }
+    static void place(ServerLevel level, BlockPos pos, BlockState state) {
+        final boolean changed;
+        try {
+            changed = level.setBlock(pos, state, Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS
+                | Block.UPDATE_SKIP_BLOCK_ENTITY_SIDEEFFECTS);
+        } catch (RuntimeException exception) {
+            throw new IllegalStateException("Map placement failed at " + pos + " for " + state, exception);
+        }
+        if (!changed && level.getBlockState(pos) != state) {
+            throw new IllegalStateException("Map placement rejected at " + pos + ": requested " + state
+                + ", actual " + level.getBlockState(pos));
+        }
+    }
+    public void fill(int x1, int y1, int z1, int x2, int y2, int z2, Block block) {
+        for (int x = x1; x <= x2; x++) for (int y = y1; y <= y2; y++) for (int z = z1; z <= z2; z++) put(x, y, z, block);
+    }
+    public void ground(int x1, int z1, int x2, int z2) {
+        fill(x1, -4, z1, x2, -2, z2, Blocks.DIRT);
+        fill(x1, -1, z1, x2, -1, z2, Blocks.GRASS_BLOCK);
+    }
+    public void sign(int x, int y, int z, Direction facing, String a, String b, String c, String d) {
+        put(x, y, z, Blocks.OAK_WALL_SIGN.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, facing));
+        var pos = section.at(x, y, z);
+        List<Component> lines = List.of(Component.literal(a), Component.literal(b), Component.literal(c), Component.literal(d));
+        var text = new SignText(lines, lines, DyeColor.BLACK, false);
+        // Configure the final entity after bulk placement/shape updates, never an intermediate one.
+        signWrites.add(() -> {
+            if (!(level.getBlockEntity(pos) instanceof SignBlockEntity sign)) {
+                throw new IllegalStateException("Missing sign block entity at " + pos + "; block=" + level.getBlockState(pos));
+            }
+            sign.setText(text, SignTextSlot.FRONT);
+            sign.setText(text, SignTextSlot.BACK);
+            sign.setWaxed(true);
+            if (!sign.getText(SignTextSlot.FRONT).equals(text) || !sign.getText(SignTextSlot.BACK).equals(text) || !sign.isWaxed()) {
+                throw new IllegalStateException("Sign write failed at " + pos + "; expected=" + List.of(a, b, c, d)
+                    + ", waxed=true; found front=" + sign.getText(SignTextSlot.FRONT).getMessages(false)
+                    + ", back=" + sign.getText(SignTextSlot.BACK).getMessages(false) + ", waxed=" + sign.isWaxed());
+            }
+        });
+    }
+    void finishSigns() { signWrites.forEach(Runnable::run); }
+    public void sign(String landmark, Direction facing, String a, String b, String c, String d) {
+        var pos = MapLayout.landmark(landmark);
+        sign(pos.getX() - section.x(), pos.getY() - section.y(), pos.getZ() - section.z(), facing, a, b, c, d);
+    }
+    public void lamp(int x, int z) {
+        fill(x, 0, z, x, 2, z, Blocks.OAK_FENCE);
+        put(x, 3, z, Blocks.LANTERN);
+    }
+}

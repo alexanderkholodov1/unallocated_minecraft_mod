@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "unallocated-client-smoke",
+  "version": "0.1.0",
+  "name": "UNALLOCATED CI client smoke test",
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "mixins": [
+    "unallocated-interface-smoke.mixins.json",
+    "unallocated-ending-smoke.mixins.json"
+  ],
+  "entrypoints": {
+    "fabric-client-gametest": [
+      "org.unallocated.smoke.TitleScreenSmokeTest"
+    ],
+    "client": [
+      "org.unallocated.smoke.ContractSmokeObserver"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "26.3",
+    "java": ">=25",
+    "unallocated": "*",
+    "fabric-client-gametest-api-v1": "*"
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/fabric-client-gametest-api-v1-6.0.11+131f8d475d.jar"
+    }
+  ]
+}

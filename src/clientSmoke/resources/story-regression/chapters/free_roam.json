@@ -1,0 +1,6 @@
+{
+  "id": "free_roam",
+  "budget_seconds": 420,
+  "checkpoint": "lobby.spawn",
+  "beats": []
+}
