@@ -137,7 +137,11 @@ public final class StoryValidator {
         }
         if (server != null) {
             var parsed = server.getCommands().getDispatcher().parse(cmd, server.createCommandSourceStack().withPermission(LevelBasedPermissionSet.GAMEMASTER));
-            if (parsed.getReader().canRead() || !parsed.getExceptions().isEmpty() || parsed.getContext().getCommand() == null)
+            // Vanilla's rule (Commands.validateParseResults): exceptions from abandoned alternative branches
+            // (e.g. tp's location branch for "tp @s ~-14 ~ ~", execute's other subcommands) do not invalidate a
+            // command that was fully consumed and resolves to an executable node.
+            // A redirect ("execute ... run <cmd>") keeps the executable node on the last child context.
+            if (parsed.getReader().canRead() || parsed.getContext().getLastChild().getCommand() == null)
                 error(f, p, "bad-command", "Server dispatcher rejected command");
             // Parsing accepts symbolic names. Resolve their real argument types without executing.
             for (var context = parsed.getContext(); context != null; context = context.getChild()) {
