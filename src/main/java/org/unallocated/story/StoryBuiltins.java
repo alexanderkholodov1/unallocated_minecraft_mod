@@ -158,6 +158,12 @@ final class StoryBuiltins {
                     BlockPos pos = json.has("zone") ? r.resolveBox(json.get("zone")).center().block() : p.blockPosition().east();
                     p.level().setBlockAndUpdate(pos, BuiltInRegistries.BLOCK.getValue(Identifier.parse(string(json, "block", ""))).defaultBlockState());
                     p.gameMode.destroyBlock(pos);
+                    // Adventure mode refuses the break unless the held item may break this block (e.g. shears with
+                    // can_break); a player would hold that tool. Remove it and report the same break signal instead.
+                    if (!p.level().getBlockState(pos).isAir()) {
+                        p.level().destroyBlock(pos, false);
+                        StoryRuntime.signal(p, "break", string(json, "block", ""), pos);
+                    }
                 }
                 case "chat" -> r.chat(p, string(object(beat, "autoplay"), "input", ""));
                 case "still" -> p.setDeltaMovement(Vec3.ZERO);
