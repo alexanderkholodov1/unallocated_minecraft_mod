@@ -45,41 +45,6 @@
    "do": "audio",
    "cue": "threads",
    "where": "kernel.heart"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 84 64 18 84 64 22 minecraft:tripwire replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 84 66 18 84 66 22 minecraft:cobweb replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 94 64 18 94 64 22 minecraft:tripwire replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 94 66 18 94 66 22 minecraft:cobweb replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 110 64 18 110 64 22 minecraft:tripwire replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 110 67 18 110 67 22 minecraft:cobweb replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 101 64 20 129 64 20 minecraft:tripwire replace minecraft:air"
   }
  ],
  "on_resume": [
@@ -367,6 +332,13 @@
      "at": 0.5,
      "do": "flag",
      "set": "crossed"
+    },
+    {
+     "at": 4,
+     "do": "actionbar",
+     "text": {
+      "es": "> help"
+     }
     }
    ],
    "capture": {
@@ -442,6 +414,14 @@
      "do": "chat",
      "text": {
       "es": "  7331  97%  reclaim --pool UNALLOCATED",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "        └ thread main: Reclaimer",
       "color": "#8a8a8a"
      }
     }
