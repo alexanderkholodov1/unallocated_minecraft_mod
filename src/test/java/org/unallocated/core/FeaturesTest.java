@@ -18,6 +18,7 @@ class FeaturesTest {
         assertTrue(features.actEnabled(Act.THEFT)); assertTrue(features.actEnabled(Act.LOOP));
         assertTrue(features.actEnabled(Act.POCKET)); assertTrue(features.actEnabled(Act.LOBBY));
         assertTrue(features.actEnabled(Act.CLIMAX));
-        assertFalse(features.enabled("effects.options")); assertFalse(features.enabled("effects.screamer"));
+        // The shipped story uses brief darkness and the spyglass screamer; the contract warns of both.
+        assertTrue(features.enabled("effects.options")); assertTrue(features.enabled("effects.screamer"));
     }
 }

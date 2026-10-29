@@ -57,11 +57,12 @@ class StoryLoaderTest {
         assertThrows(Exception.class, () -> StoryLoader.parse("{\"format\":1,\"format\":2}"));
         assertThrows(Exception.class, () -> StoryLoader.parse("{} {}"));
     }
-    @Test void shippedStoryIsNeutralAndValid() {
+    @Test void shippedStoryIsValidWithItsThreeEndings() {
         var result = load(Path.of("src/main/resources/data/unallocated/story"));
         assertTrue(result.valid(), () -> result.findings().toString());
-        assertEquals(1, result.data().chapters().size());
-        assertEquals(420, result.data().chapters().getFirst().get("budget_seconds").getAsInt());
+        assertEquals(java.util.List.of("presa", "heap", "puppet", "vuelta", "kernel"),
+            result.data().chapters().stream().map(chapter -> chapter.get("id").getAsString()).toList());
+        assertEquals(Set.of("COMPLETE", "POISON", "CONSUMED"), result.data().root().getAsJsonObject("endings").keySet());
     }
     @Test void anchorNamesExactlyMatchMapLayout() throws Exception {
         JsonObject anchors = JsonParser.parseString(Files.readString(Path.of("scripts/map_anchors.json"))).getAsJsonObject();
