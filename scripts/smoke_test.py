@@ -656,7 +656,7 @@ def release_bundle():
     if video.is_file():
         (output / 'video').mkdir(); shutil.copyfile(video, output / 'video/gameplay.mp4')
     manifest = {'version': props['version'], 'minecraft': props['minecraft_version'],
-                'loader': props['loader_version'], 'fabric_api_bundled': True,
+                'loader': props['loader_version'], 'fabric_api_bundled': API_VERSION,
                 'jar': jar.name, 'sha256': digest, 'world_zip': WORLD_ZIP.name,
                 'commit': os.environ['GITHUB_SHA'], 'run': os.environ['GITHUB_RUN_ID']}
     (output / 'release.json').write_text(json.dumps(manifest, indent=2) + '\n')

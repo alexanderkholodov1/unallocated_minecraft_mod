@@ -50,7 +50,7 @@ Puedes comprobar la descarga con la huella SHA-256: en Windows usa `certutil -ha
 
    Si configuraste un **Directorio del juego / Game Directory** distinto en el launcher, usa la carpeta `mods` dentro de ese directorio. Copia solo nuestro JAR: Fabric API ya viene dentro y el instalador de Fabric no se copia a `mods`.
 
-6. Abre el launcher y selecciona el perfil de **Fabric {{MINECRAFT}} / Loader {{LOADER}} o posterior**. Si no aparece, ve a **Instalaciones** y activa el filtro de instalaciones modificadas (**Modded**). Pulsa **Jugar / Play**.
+6. Abre el launcher y selecciona el perfil que creó el instalador, llamado **`fabric-loader-{{MINECRAFT}}`** (versión `fabric-loader-{{LOADER}}-{{MINECRAFT}}` o posterior). Si no aparece, ve a **Instalaciones** y activa el filtro de instalaciones modificadas (**Modded**). Pulsa **Jugar / Play**.
 
 ## Cómo empezar
 
