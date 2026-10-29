@@ -58,7 +58,11 @@ class StoryLoaderTest {
         assertThrows(Exception.class, () -> StoryLoader.parse("{} {}"));
     }
     @Test void shippedStoryIsValidWithItsThreeEndings() {
-        var result = load(Path.of("src/main/resources/data/unallocated/story"));
+        // Validate against the shipped switches, as the runtime does (the helper assumes both effects are off).
+        var features = org.unallocated.core.Features.load();
+        var result = StoryLoader.load(StoryLoader.directory(Path.of("src/main/resources/data/unallocated/story")), new StoryValidator(null,
+            id -> Files.isRegularFile(Path.of("src/main/resources/data", id.split(":", 2)[0], "function", id.split(":", 2)[1] + ".mcfunction")),
+            features.enabled("effects.options"), features.enabled("effects.screamer")));
         assertTrue(result.valid(), () -> result.findings().toString());
         assertEquals(java.util.List.of("presa", "heap", "puppet", "vuelta", "kernel"),
             result.data().chapters().stream().map(chapter -> chapter.get("id").getAsString()).toList());
