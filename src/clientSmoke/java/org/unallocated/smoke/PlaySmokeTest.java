@@ -106,13 +106,13 @@ final class PlaySmokeTest {
             Path copy = context.computeOnClient(client -> client.getSingleplayerServer().getWorldPath(
                 net.minecraft.world.level.storage.LevelResource.ROOT).normalize());
             if (!copies.add(copy)) throw new AssertionError("Ending reused a finished save");
-            // The story kills the player on purpose; like a judge, press Respawn on each death screen until the farewell.
+            // The story kills the player on purpose; like a judge, press "I agree" (respawn) on each death screen until the farewell.
             for (int deaths = 0; ; deaths++) {
                 context.waitFor(client -> client.gui.screen() instanceof DisconnectedScreen || client.gui.screen() instanceof DeathScreen, endingTimeout);
                 if (!context.computeOnClient(client -> client.gui.screen() instanceof DeathScreen)) break;
                 context.waitTicks(30);
                 if (index == 0 && deaths == 0) context.takeScreenshot("story-death-screen");
-                context.clickScreenButton("deathScreen.respawn");
+                context.clickScreenButton("death.unallocated.consent"); // in a session the protocol asks for consent again
                 context.waitFor(client -> !(client.gui.screen() instanceof DeathScreen), 600);
             }
             if (failure.get() != null || !complete.get()) throw new AssertionError("Shipped story did not reach expected ending", failure.get());

@@ -284,7 +284,8 @@
      "kernel.death",
      "kernel.caught",
      "kernel.respawn",
-     "kernel.poison"
+     "kernel.poison",
+     "kernel.expire"
     ]
    },
    {
@@ -296,7 +297,8 @@
      "kernel.death",
      "kernel.caught",
      "kernel.respawn",
-     "kernel.complete"
+     "kernel.complete",
+     "kernel.expire"
     ]
    },
    {
