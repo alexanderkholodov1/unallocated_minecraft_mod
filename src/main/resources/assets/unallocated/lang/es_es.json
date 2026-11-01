@@ -289,12 +289,12 @@
   "story.unallocated.sign.mine.1": "DA VUELTAS",
   "story.unallocated.sign.clock.0": "EL RELOJ",
   "story.unallocated.sign.clock.1": "MIENTE",
-  "story.unallocated.book.0": "servidor abandonado desde 2021 pero corre 26.3. ¿quién lo actualiza?",
-  "story.unallocated.book.1": "los que entran no se reconectan.",
-  "story.unallocated.book.2": "NO USES EL CATALEJO.",
-  "story.unallocated.book.3": "LA MINA DA VUELTAS.",
-  "story.unallocated.book.4": "EL RELOJ MIENTE.",
-  "story.unallocated.book.5": "en todos los errores la misma palabra: UNALLOCATED. y reclaim, reclaim, reclaim. lo que firma así tiene un nombre. es",
+  "story.unallocated.book.0": "día 1. el servidor está vacío, pero el contador del tab cambia. 0/20. luego 7/20. nadie aparece.",
+  "story.unallocated.book.1": "día 2. hay alguien en la colina. cada vez que lo miro con el catalejo está más cerca. NO USES EL CATALEJO.",
+  "story.unallocated.book.2": "día 3. la mina me devolvió dos veces al mismo tramo. LA MINA DA VUELTAS.",
+  "story.unallocated.book.3": "caminé 50 bloques y perdí 40 minutos. EL RELOJ MIENTE.",
+  "story.unallocated.book.4": "todos los errores dicen UNALLOCATED. y reclaim, reclaim, reclaim. busqué la palabra: en los clústeres, reclaim es recuperar recursos que te pertenecen.",
+  "story.unallocated.book.5": "lo que firma así tiene un nombre. lo vi en el log una sola vez. es",
   "command.unallocated.rescue.failed": "Rescate disponible sólo durante una sesión activa, tras cinco segundos en el capítulo.",
   "command.unallocated.rescue.done": "Sesión avanzada.",
   "map.unallocated.lobby_route.0": "SURVIVAL →",
@@ -387,5 +387,7 @@
   "map.unallocated.top.sunny": "Sunny",
   "map.unallocated.top.score.5": "11900 puntos",
   "map.unallocated.top.ari": "Ari",
-  "map.unallocated.top.score.6": "10415 puntos"
+  "map.unallocated.top.score.6": "10415 puntos",
+  "map.unallocated.house_of": "Casa de",
+  "map.unallocated.house_kept": "(protegida)"
 }

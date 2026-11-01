@@ -32,6 +32,19 @@ public final class UnallocatedCommand {
                             40 + Math.floorMod(StringArgumentType.getString(ctx, "name").hashCode(), 200)); return 1; })))
                     .then(Commands.literal("remove").then(Commands.argument("name", StringArgumentType.word()).executes(ctx -> {
                         org.unallocated.story.FakeRoster.remove(ctx.getSource().getPlayerOrException(), StringArgumentType.getString(ctx, "name")); return 1; }))))
+                .then(Commands.literal("arrival").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                    .then(Commands.literal("sign").then(Commands.argument("pos", net.minecraft.commands.arguments.coordinates.BlockPosArgument.blockPos()).executes(ctx -> {
+                        // LORE 3, former player: your old house carries your real computer user name.
+                        var source = ctx.getSource(); var pos = net.minecraft.commands.arguments.coordinates.BlockPosArgument.getLoadedBlockPos(ctx, "pos");
+                        String user = org.unallocated.story.StoryRuntime.get(source.getServer()).arrivalUser();
+                        if (user.isEmpty() || !(source.getLevel().getBlockEntity(pos) instanceof net.minecraft.world.level.block.entity.SignBlockEntity sign)) return 0;
+                        var lines = java.util.List.<Component>of(Component.translatable("map.unallocated.house_of"), Component.literal(user.length() > 15 ? user.substring(0, 15) : user),
+                            Component.empty(), Component.translatable("map.unallocated.house_kept"));
+                        var text = new net.minecraft.world.level.block.entity.SignText(lines, lines, net.minecraft.world.item.DyeColor.BLACK, false);
+                        sign.setText(text, net.minecraft.world.level.block.entity.SignTextSlot.FRONT); sign.setText(text, net.minecraft.world.level.block.entity.SignTextSlot.BACK); sign.setChanged();
+                        source.getLevel().sendBlockUpdated(pos, sign.getBlockState(), sign.getBlockState(), 3);
+                        return 1;
+                    }))))
                 .then(Commands.literal("revive").executes(ctx -> {
                     var runtime = org.unallocated.story.StoryRuntime.get(ctx.getSource().getServer());
                     return runtime.revive(ctx.getSource().getPlayerOrException()) ? 1 : 0;

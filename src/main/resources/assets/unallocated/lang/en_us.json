@@ -289,12 +289,12 @@
   "story.unallocated.sign.mine.1": "LOOPS",
   "story.unallocated.sign.clock.0": "THE CLOCK",
   "story.unallocated.sign.clock.1": "LIES",
-  "story.unallocated.book.0": "server abandoned since 2021 but it runs 26.3. who keeps it updated?",
-  "story.unallocated.book.1": "the ones who join never reconnect.",
-  "story.unallocated.book.2": "DON'T USE THE SPYGLASS.",
-  "story.unallocated.book.3": "THE MINE LOOPS.",
-  "story.unallocated.book.4": "THE CLOCK LIES.",
-  "story.unallocated.book.5": "every error carries the same word: UNALLOCATED. and reclaim, reclaim, reclaim. whatever signs like that has a name. it's",
+  "story.unallocated.book.0": "day 1. the server is empty, but the tab counter changes. 0/20. then 7/20. nobody shows up.",
+  "story.unallocated.book.1": "day 2. someone is standing on the hill. every time i look through the spyglass they are closer. DON'T USE THE SPYGLASS.",
+  "story.unallocated.book.2": "day 3. the mine sent me back to the same stretch twice. THE MINE LOOPS.",
+  "story.unallocated.book.3": "i walked 50 blocks and lost 40 minutes. THE CLOCK LIES.",
+  "story.unallocated.book.4": "every error says UNALLOCATED. and reclaim, reclaim, reclaim. i looked the word up: on clusters, reclaim means taking back resources that belong to you.",
+  "story.unallocated.book.5": "whatever signs like that has a name. i saw it in the log only once. it's",
   "command.unallocated.rescue.failed": "Rescue is only available during an active session, five seconds into the chapter.",
   "command.unallocated.rescue.done": "Session advanced.",
   "map.unallocated.lobby_route.0": "SURVIVAL →",
@@ -387,5 +387,7 @@
   "map.unallocated.top.sunny": "Sunny",
   "map.unallocated.top.score.5": "11900 points",
   "map.unallocated.top.ari": "Ari",
-  "map.unallocated.top.score.6": "10415 points"
+  "map.unallocated.top.score.6": "10415 points",
+  "map.unallocated.house_of": "House of",
+  "map.unallocated.house_kept": "(claim kept)"
 }

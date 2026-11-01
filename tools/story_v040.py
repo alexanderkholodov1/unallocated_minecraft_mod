@@ -93,6 +93,7 @@ server = {
         {'id': 'server.former', 'when': {'type': 'chapter_start'}, 'if': {'flags': ['arrival.former']}, 'actions': [
             chat(6, '[ValleCraft] Rango restaurado: Ayudante.', '[ValleCraft] Rank restored: Helper.', SERVER),
             cmd(6, 'scoreboard players display name rank vc {translate:"score.unallocated.rank_helper"}'),
+            cmd(0, 'unallocated arrival sign -30 66 11'),
             chat(8, '[ValleCraft] Tu casa sigue protegida a tu nombre. Nadie la ha tocado.',
                  '[ValleCraft] Your house is still claimed in your name. Nobody touched it.', SERVER)]},
         {'id': 'server.invited', 'when': {'type': 'chapter_start'}, 'if': {'flags': ['arrival.invited']}, 'actions': [
@@ -286,6 +287,7 @@ kernel = {
     'id': 'kernel', 'budget_seconds': 600, 'checkpoint': 'kernel.gate',
     'on_enter': [
         flag(0, 'no_revive'),
+        {'at': 0, 'do': 'audio', 'cue': 'ambient'},
         {'at': 0, 'do': 'title', 'title': T('the Kernel'), 'fade_in': 0.3, 'stay': 2.5, 'fade_out': 1},
         creature(1, 'spawn', body={'summon': 'unallocated:reclaimer{attributes:[{id:"minecraft:scale",base:1.15d}]}'},
                  where='kernel.heart', facing='player'),
