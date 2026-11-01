@@ -22,10 +22,10 @@
   {
    "at": 2.1,
    "do": "creature",
-   "op": "chase",
+   "op": "stalk",
    "id": "spider",
-   "speed": 4,
-   "catch_distance": 1.5
+   "step": 1.5,
+   "min_distance": 5
   }
  ],
  "on_resume": [
@@ -90,6 +90,23 @@
     "name": "vuelta",
     "at": 3
    }
+  },
+  {
+   "id": "vuelta.hunt",
+   "when": {
+    "type": "after",
+    "seconds": 8
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "chase",
+     "id": "spider",
+     "speed": 4,
+     "catch_distance": 1.5
+    }
+   ]
   },
   {
    "id": "vuelta.caught",

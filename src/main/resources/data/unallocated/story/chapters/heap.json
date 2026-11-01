@@ -133,7 +133,7 @@
    "id": "heap.hunt",
    "when": {
     "type": "after",
-    "seconds": 8
+    "seconds": 18
    },
    "actions": [
     {

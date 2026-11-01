@@ -30,7 +30,7 @@
    "op": "spawn",
    "id": "spider",
    "body": {
-    "summon": "unallocated:reclaimer{attributes:[{id:\"minecraft:scale\",base:1.3d}]}"
+    "summon": "unallocated:reclaimer{attributes:[{id:\"minecraft:scale\",base:1.15d}]}"
    },
    "where": "kernel.heart",
    "facing": "player"

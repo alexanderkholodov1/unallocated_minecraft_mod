@@ -31,7 +31,7 @@ public final class AudioSounds {
                 audio.then(Commands.literal(cue.id()).executes(context -> {
                     ServerPlayer player = context.getSource().getPlayerOrException();
                     if (cue.loud()) context.getSource().sendSuccess(
-                            () -> Component.literal("Audio: golpe fuerte y repentino (screamer)."), false);
+                            () -> Component.literal("Audio: sudden loud hit (screamer)."), false);
                     return play(player, cue, player.getEyePosition().add(2, 0, 0)) ? 1 : 0;
                 }));
             }
