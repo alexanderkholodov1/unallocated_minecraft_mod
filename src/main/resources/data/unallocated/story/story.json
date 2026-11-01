@@ -7,10 +7,9 @@
  "default_language": "es",
  "language_select": "client",
  "chapters": [
-  "presa",
+  "server",
   "heap",
   "puppet",
-  "vuelta",
   "kernel"
  ],
  "anchors": {
@@ -73,16 +72,6 @@
    "dimension": "pocket",
    "yaw": 90,
    "pitch": 0
-  },
-  "vuelta.spider": {
-   "pos": [
-    68,
-    64,
-    20
-   ],
-   "dimension": "overworld",
-   "yaw": -90,
-   "pitch": 0
   }
  },
  "zones": {
@@ -132,10 +121,10 @@
   },
   "heap.cut_c": {
    "box": [
-    109,
+    88,
     64,
     18,
-    111,
+    90,
     67,
     22
    ],
@@ -173,6 +162,17 @@
     10
    ],
    "dimension": "overworld"
+  },
+  "kernel.mouth": {
+   "box": [
+    96,
+    63,
+    18,
+    104,
+    67,
+    22
+   ],
+   "dimension": "pocket"
   }
  },
  "endings": {
@@ -261,14 +261,28 @@
    "item replace block 58 64 8 container.12 with minecraft:written_book[minecraft:written_book_content={title:\"4113\",author:\"anon\",pages:[{raw:{translate:\"story.unallocated.book.0\"}},{raw:{translate:\"story.unallocated.book.1\"}},{raw:{translate:\"story.unallocated.book.2\"}},{raw:{translate:\"story.unallocated.book.3\"}},{raw:{translate:\"story.unallocated.book.4\"}},{raw:{translate:\"story.unallocated.book.5\"}}]}]",
    "item replace block 58 64 8 container.13 with minecraft:shears[minecraft:can_break={blocks:\"unallocated:thread\"}]",
    "unallocated story copy heap.island -58 57 -84 pocket",
+   "unallocated story corrupt heap.rot 4114 heap",
    "execute in unallocated:pocket run fill 101 63 17 129 68 23 minecraft:black_concrete hollow",
    "execute in unallocated:pocket run fill 96 63 19 104 63 21 minecraft:black_concrete",
    "execute in unallocated:pocket run fill 96 64 19 104 66 21 minecraft:air",
    "execute in unallocated:pocket run fill 130 62 6 152 78 34 unallocated:rot hollow",
    "execute in unallocated:pocket run fill 129 64 19 130 66 21 minecraft:air",
    "execute in unallocated:pocket run fill 131 77 7 151 77 33 unallocated:web",
-   "execute in unallocated:pocket run fill 131 63 20 151 63 20 unallocated:thread[axis=x]",
-   "execute in unallocated:pocket run fill 141 63 7 141 63 33 unallocated:thread[axis=z]"
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}"
   ]
  },
  "autoplay": {
@@ -277,12 +291,16 @@
    {
     "ending": "COMPLETE",
     "skip": [
-     "presa.rewrite",
-     "presa.fury",
+     "server.rewrite",
+     "server.fury",
      "puppet.fury",
+     "heap.alive_again",
+     "puppet.revived",
+     "puppet.caught",
+     "puppet.blocked",
+     "puppet.alive_block",
      "kernel.death",
      "kernel.caught",
-     "kernel.respawn",
      "kernel.poison",
      "kernel.expire"
     ]
@@ -290,12 +308,16 @@
    {
     "ending": "POISON",
     "skip": [
-     "presa.rewrite",
-     "presa.fury",
+     "server.rewrite",
+     "server.fury",
      "puppet.fury",
+     "heap.alive_again",
+     "puppet.revived",
+     "puppet.caught",
+     "puppet.blocked",
+     "puppet.alive_block",
      "kernel.death",
      "kernel.caught",
-     "kernel.respawn",
      "kernel.complete",
      "kernel.expire"
     ]
@@ -303,12 +325,16 @@
    {
     "ending": "CONSUMED",
     "skip": [
-     "presa.rewrite",
-     "presa.fury",
+     "server.rewrite",
+     "server.fury",
      "puppet.fury",
+     "heap.alive_again",
+     "puppet.revived",
+     "puppet.caught",
+     "puppet.blocked",
+     "puppet.alive_block",
      "kernel.death",
      "kernel.caught",
-     "kernel.respawn",
      "kernel.complete",
      "kernel.poison"
     ]
