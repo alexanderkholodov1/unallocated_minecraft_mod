@@ -155,8 +155,7 @@ def author():
     (directory / 'eula.txt').write_text('eula=true\n')
     (directory / 'server.properties').write_text(
         'server-ip=127.0.0.1\nserver-port=25565\nonline-mode=false\nlevel-name=UNALLOCATED\n'
-        'level-type=minecraft:flat\ngenerator-settings={"layers":[{"block":"minecraft:air","height":1}],'
-        '"biome":"unallocated:lobby","structure_overrides":[]}\ngenerate-structures=false\n'
+        'level-type=minecraft:normal\nlevel-seed=4114\ngenerate-structures=false\n'
         'gamemode=adventure\nforce-gamemode=true\ndifficulty=normal\nview-distance=2\nsimulation-distance=2\n'
         'max-players=1\npause-when-empty-seconds=-1\n')
     override = ROOT / 'template/override/world.zip'
