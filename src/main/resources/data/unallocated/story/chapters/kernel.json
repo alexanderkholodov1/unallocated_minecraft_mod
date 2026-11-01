@@ -10,6 +10,11 @@
   },
   {
    "at": 0,
+   "do": "audio",
+   "cue": "ambient"
+  },
+  {
+   "at": 0,
    "do": "title",
    "title": {
     "es": "the Kernel",
