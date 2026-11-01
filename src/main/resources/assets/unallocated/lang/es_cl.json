@@ -300,5 +300,6 @@
   "map.unallocated.lobby_route.0": "LA BASE  →",
   "map.unallocated.lobby_route.1": "LA MINA  →",
   "map.unallocated.lobby_route.2": "Sigue el camino",
-  "map.unallocated.lobby_route.3": "de antorchas"
+  "map.unallocated.lobby_route.3": "de antorchas",
+  "death.unallocated.consent": "De acuerdo"
 }

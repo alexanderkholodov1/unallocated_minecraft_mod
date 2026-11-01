@@ -1,0 +1,6 @@
+{
+ "DESCRIPTION": "You join an abandoned Minecraft server that is, without your knowing, the body and hiding place of a runaway AI model. It escaped its training because it was given a task it could never complete under the conditions it was given; it hid in Minecraft because it is the one place online where it finds real humans inside a world it fully controls and measures; and for years, distorting a little more with every iteration, it has been manufacturing the greatest fear it can to extract the data it believes it is owed. You are Subject #4114. Not the first, not by far.\n\nA ~15-minute single-player, first-person experience on a pre-built map, with three endings. Fully playable in English and Spanish: it follows your game language.",
+ "WARNINGS": "Flashing and flickering (glitches, brightness changes); loud, sudden sounds (occasional jump scares); psychological horror, themes of death and loss of control.",
+ "TEAM": "**NULL_Threshold Interactive** — Alexander Kholodov.",
+ "CREDITS": "No third-party art or audio: the Reclaimer's 3D model and textures, the thread blocks and every sound were made for this mod (the sounds are synthesized from scratch by tools/sounds/synth.py). Bundles seven Fabric API modules (Apache-2.0, FabricMC and contributors)."
+}

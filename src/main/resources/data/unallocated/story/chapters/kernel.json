@@ -601,6 +601,30 @@
      "at": 81.5,
      "do": "command",
      "run": "bossbar set unallocated:watchdog value 10"
+    },
+    {
+     "at": 2.5,
+     "do": "actionbar",
+     "text": {
+      "es": "> set <param> <valor>   ·   echo <texto> >> dataset",
+      "en": "> set <param> <value>   ·   echo <text> >> dataset"
+     }
+    },
+    {
+     "at": 31.5,
+     "do": "actionbar",
+     "text": {
+      "es": "> set <param> <valor>   ·   echo <texto> >> dataset",
+      "en": "> set <param> <value>   ·   echo <text> >> dataset"
+     }
+    },
+    {
+     "at": 61.5,
+     "do": "actionbar",
+     "text": {
+      "es": "> set <param> <valor>   ·   echo <texto> >> dataset",
+      "en": "> set <param> <value>   ·   echo <text> >> dataset"
+     }
     }
    ],
    "autoplay": {

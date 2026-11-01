@@ -300,5 +300,6 @@
   "map.unallocated.lobby_route.0": "THE BASE  →",
   "map.unallocated.lobby_route.1": "THE MINE  →",
   "map.unallocated.lobby_route.2": "Follow the path",
-  "map.unallocated.lobby_route.3": "of torches"
+  "map.unallocated.lobby_route.3": "of torches",
+  "death.unallocated.consent": "I agree"
 }

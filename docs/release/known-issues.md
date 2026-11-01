@@ -1,0 +1,2 @@
+- Single-player experience.
+- Tested on Windows 11 (Intel Iris Xe, OpenGL) with an offline account, and in CI on Linux; macOS is untested.
