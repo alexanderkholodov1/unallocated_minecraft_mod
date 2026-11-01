@@ -11,7 +11,6 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.WebBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -49,10 +48,10 @@ public final class UnallocatedContent {
             Registry.register(BuiltInRegistries.SOUND_EVENT, event.location(), event);
         THREAD = block("thread", ThreadBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).noCollision().instabreak()
             .noOcclusion().sound(THREAD_SOUNDS).lightLevel(state -> 2).pushReaction(PushReaction.POPPED));
-        WEB = block("web", WebBlock::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).noCollision().forceSolidOn()
+        WEB = block("web", Block::new, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).noCollision().forceSolidOn()
             .requiresCorrectToolForDrops().strength(4.0F).noOcclusion().sound(THREAD_SOUNDS).pushReaction(PushReaction.POPPED));
         ROT = block("rot", Block::new, BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).strength(0.6F)
-            .speedFactor(0.45F).jumpFactor(0.6F).sound(ROT_SOUNDS));
+            .sound(ROT_SOUNDS)); // looks rotten, never slows or traps the player (no softlocks)
         ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, id("reclaimer"));
         RECLAIMER = Registry.register(BuiltInRegistries.ENTITY_TYPE, key, EntityType.Builder.of(ReclaimerEntity::new, MobCategory.MONSTER)
             .sized(1.6F, 3.1F).eyeHeight(2.2F).clientTrackingRange(10).noLootTable().build(key));
