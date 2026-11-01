@@ -25,9 +25,9 @@ public final class MapVerifier {
                 expect(level, "lobby.rules", Blocks.OAK_WALL_SIGN);
                 expect(level, "lobby.motd", Blocks.OAK_WALL_SIGN);
                 expect(level, "lobby.route", Blocks.OAK_WALL_SIGN);
-                signContains(level, "lobby.rules", "Cerrar las puetas");
-                signContains(level, "lobby.motd", "7 / 20 conectados");
-                signContains(level, "lobby.task", "el catalejo.");
+                signContains(level, "lobby.rules", "map.unallocated.rules.3");
+                signContains(level, "lobby.motd", "map.unallocated.motd.2");
+                signContains(level, "lobby.task", "map.unallocated.task.3");
             }
             if (id.equals("hill")) {
                 if (!level.getBlockState(MapLayout.landmark("hill.bait")).isAir()
@@ -151,6 +151,8 @@ public final class MapVerifier {
         }
     }
     private static java.util.List<String> signLines(SignText text, boolean filtered) {
-        return text.getMessages(filtered).stream().map(line -> line.getString()).toList();
+        // Lines are language keys; compare the key itself so the result never depends on a loaded language.
+        return text.getMessages(filtered).stream().map(line -> line.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents key
+            ? key.getKey() : line.getString()).toList();
     }
 }

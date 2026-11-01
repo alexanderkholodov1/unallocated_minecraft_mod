@@ -64,7 +64,7 @@ public final class MapWriter {
     public void sign(int x, int y, int z, Direction facing, String a, String b, String c, String d) {
         put(x, y, z, Blocks.OAK_WALL_SIGN.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, facing));
         var pos = section.at(x, y, z);
-        List<Component> lines = List.of(Component.literal(a), Component.literal(b), Component.literal(c), Component.literal(d));
+        List<Component> lines = java.util.stream.Stream.of(a, b, c, d).map(MapWriter::line).toList();
         var text = new SignText(lines, lines, DyeColor.BLACK, false);
         // Configure the final entity after bulk placement/shape updates, never an intermediate one.
         signWrites.add(() -> {
@@ -80,6 +80,10 @@ public final class MapWriter {
                     + ", back=" + sign.getText(SignTextSlot.BACK).getMessages(false) + ", waxed=" + sign.isWaxed());
             }
         });
+    }
+    /** Sign lines are language keys (map.unallocated.*) so each client reads them in its own language. */
+    private static Component line(String text) {
+        return text.startsWith("map.unallocated.") ? Component.translatable(text) : Component.literal(text);
     }
     void finishSigns() { signWrites.forEach(Runnable::run); }
     public void sign(String landmark, Direction facing, String a, String b, String c, String d) {

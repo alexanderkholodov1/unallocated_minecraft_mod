@@ -26,7 +26,7 @@ public final class PathSection implements MapSection {
             w.put("path.torch." + i, Blocks.TORCH.defaultBlockState());
         }
         w.fill(26, 0, 7, 26, 2, 7, Blocks.OAK_LOG);
-        w.sign("path.route", Direction.WEST, "LA BASE  →", "LA MINA detrás", "Cierra la puerta", "al llegar");
+        w.sign("path.route", Direction.WEST, "map.unallocated.route.0", "map.unallocated.route.1", "map.unallocated.route.2", "map.unallocated.route.3");
         // A small rest stop, used and left untidily; no diaries or horror set dressing.
         w.fill(6, -1, 12, 11, -1, 17, Blocks.COARSE_DIRT);
         w.put("path.campfire", Blocks.CAMPFIRE.defaultBlockState().setValue(BlockStateProperties.LIT, false));

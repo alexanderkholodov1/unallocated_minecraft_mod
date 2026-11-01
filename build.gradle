@@ -145,7 +145,7 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     // Explicit binary inputs prevent development class directories from masking packaging errors.
     mods.setFrom(tasks.named('clientSmokeJar'))
     runDir = clientSmokeDir
-    useXVFB = true
+    useXVFB = System.getProperty('os.name').toLowerCase().contains('linux')
     jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
     jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
     if (providers.gradleProperty('contractSmokePhase').getOrElse('first') in ['first', 'restart']) {

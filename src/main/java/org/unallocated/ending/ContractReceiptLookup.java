@@ -36,7 +36,7 @@ public final class ContractReceiptLookup {
         Object submission = value.getClass().getMethod("submission").invoke(value);
         Object typedText = submission.getClass().getMethod("typedText").invoke(submission);
         if (typedText instanceof String text && text.length() <= 64
-                && text.strip().equalsIgnoreCase("De acuerdo")) return Optional.of(text.strip());
+                && org.unallocated.contract.ContractSubmission.isAgreement(text)) return Optional.of(text.strip());
         return Optional.empty();
     }
 }

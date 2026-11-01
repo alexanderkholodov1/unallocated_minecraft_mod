@@ -255,10 +255,10 @@
    ]
   ],
   "run": [
-   "setblock 52 64 10 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"NO USES\",\"EL CATALEJO\",\"\",\"\"]}}",
-   "setblock 52 64 12 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"LA MINA\",\"DA VUELTAS\",\"\",\"\"]}}",
-   "setblock 52 64 14 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"EL RELOJ\",\"MIENTE\",\"\",\"\"]}}",
-   "item replace block 58 64 8 container.12 with minecraft:written_book[minecraft:written_book_content={title:\"notas\",author:\"anon\",pages:[\"servidor abandonado desde 2021 pero corre 26.3. ¿quién lo actualiza?\",\"los que entran no se reconectan.\",\"NO USES EL CATALEJO.\",\"LA MINA DA VUELTAS.\",\"EL RELOJ MIENTE.\",\"en todos los errores la misma palabra: UNALLOCATED. y reclaim, reclaim, reclaim. lo que firma así tiene un nombre. es\"]}]",
+   "setblock 52 64 10 minecraft:oak_sign[rotation=4]{front_text:{messages:[{translate:\"story.unallocated.sign.spyglass.0\"},{translate:\"story.unallocated.sign.spyglass.1\"},\"\",\"\"]}}",
+   "setblock 52 64 12 minecraft:oak_sign[rotation=4]{front_text:{messages:[{translate:\"story.unallocated.sign.mine.0\"},{translate:\"story.unallocated.sign.mine.1\"},\"\",\"\"]}}",
+   "setblock 52 64 14 minecraft:oak_sign[rotation=4]{front_text:{messages:[{translate:\"story.unallocated.sign.clock.0\"},{translate:\"story.unallocated.sign.clock.1\"},\"\",\"\"]}}",
+   "item replace block 58 64 8 container.12 with minecraft:written_book[minecraft:written_book_content={title:\"4113\",author:\"anon\",pages:[{raw:{translate:\"story.unallocated.book.0\"}},{raw:{translate:\"story.unallocated.book.1\"}},{raw:{translate:\"story.unallocated.book.2\"}},{raw:{translate:\"story.unallocated.book.3\"}},{raw:{translate:\"story.unallocated.book.4\"}},{raw:{translate:\"story.unallocated.book.5\"}}]}]",
    "item replace block 58 64 8 container.13 with minecraft:shears[minecraft:can_break={blocks:\"unallocated:thread\"}]",
    "unallocated story copy heap.island -58 57 -84 pocket",
    "execute in unallocated:pocket run fill 101 63 17 129 68 23 minecraft:black_concrete hollow",

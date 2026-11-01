@@ -33,6 +33,14 @@ API_POLICY = json.loads((ROOT / 'fabric-api-modules.json').read_text())
 API_VERSION = API_POLICY['fabric_api_version']
 
 
+def _signal_group(process, sig):
+    """Signal the whole process group on POSIX; Windows has no groups, so end the process itself."""
+    if os.name == 'nt':
+        process.kill() if sig == getattr(signal, 'SIGKILL', 9) else process.terminate()
+    else:
+        os.killpg(process.pid, sig)
+
+
 def java_executable():
     """Resolve the CI-selected JDK without ever falling back to PATH's Java."""
     configured = os.environ.get('JAVA_HOME', '').strip()
@@ -219,11 +227,11 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
     finally:
         if process is not None:
             if process.poll() is None:
-                os.killpg(process.pid, signal.SIGTERM)
+                _signal_group(process, signal.SIGTERM)
                 try:
                     process.wait(timeout=5)
                 except subprocess.TimeoutExpired:
-                    os.killpg(process.pid, signal.SIGKILL)
+                    _signal_group(process, getattr(signal, 'SIGKILL', 9))
                     process.wait(timeout=5)
             if process.stdin is not None:
                 process.stdin.close()
@@ -305,10 +313,10 @@ def watch_gradle(command, console, silence=720):
                 time.sleep(.2)
     finally:
         if process is not None and process.poll() is None:
-            os.killpg(process.pid, signal.SIGTERM)
+            _signal_group(process, signal.SIGTERM)
             try: process.wait(timeout=5)
             except subprocess.TimeoutExpired:
-                os.killpg(process.pid, signal.SIGKILL); process.wait(timeout=5)
+                _signal_group(process, getattr(signal, 'SIGKILL', 9)); process.wait(timeout=5)
 
 
 def server(with_fabric_api=False):
