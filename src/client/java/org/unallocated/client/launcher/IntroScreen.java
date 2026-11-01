@@ -1,7 +1,6 @@
 package org.unallocated.client.launcher;
 
 import java.util.List;
-import java.util.function.Supplier;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
@@ -40,8 +39,7 @@ public final class IntroScreen extends Screen {
         clearWidgets();
         if (list) {
             int w = Math.min(305, width - 40);
-            addRenderableWidget(new Button.Plain((width - w) / 2, height / 2 + 34, w, 20,
-                Component.translatable("intro.unallocated.join"), button -> join.run(), Supplier::get));
+            addRenderableWidget(Button.builder(Component.translatable("intro.unallocated.join"), button -> join.run()).bounds((width - w) / 2, height / 2 + 34, w, 20).build());
         }
     }
 

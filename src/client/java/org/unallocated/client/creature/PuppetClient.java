@@ -31,7 +31,7 @@ public final class PuppetClient {
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> set(false));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             boolean down = puppet && client.player != null && client.gui.screen() == null
-                && InputConstants.isKeyDown(client.getWindow(), InputConstants.KEY_R);
+                && InputConstants.isKeyDown(InputConstants.KEY_R);
             if (down && !rWasDown) client.gui.setScreen(new ReviveScreen());
             rWasDown = down;
         });

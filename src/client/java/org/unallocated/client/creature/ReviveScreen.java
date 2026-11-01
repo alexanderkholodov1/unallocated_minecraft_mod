@@ -1,6 +1,5 @@
 package org.unallocated.client.creature;
 
-import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
@@ -15,14 +14,12 @@ public final class ReviveScreen extends Screen {
 
     @Override
     protected void init() {
-        addRenderableWidget(new Button.Plain(width / 2 - 100, height / 4 + 72, 200, 20,
-            Component.translatable("death.unallocated.consent"), button -> {
+        addRenderableWidget(Button.builder(Component.translatable("death.unallocated.consent"), button -> {
                 Minecraft client = Minecraft.getInstance();
                 if (client.getConnection() != null) client.getConnection().sendCommand("unallocated revive");
                 onClose();
-            }, Supplier::get));
-        addRenderableWidget(new Button.Plain(width / 2 - 100, height / 4 + 96, 200, 20,
-            Component.translatable("death.unallocated.not_yet"), button -> onClose(), Supplier::get));
+            }).bounds(width / 2 - 100, height / 4 + 72, 200, 20).build());
+        addRenderableWidget(Button.builder(Component.translatable("death.unallocated.not_yet"), button -> onClose()).bounds(width / 2 - 100, height / 4 + 96, 200, 20).build());
     }
 
     @Override

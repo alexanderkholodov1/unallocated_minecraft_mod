@@ -1,7 +1,6 @@
 package org.unallocated.client.mixin.interfacefx;
 
 import java.util.List;
-import java.util.function.Supplier;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.DeathScreen;
 import net.minecraft.client.gui.screens.Screen;
@@ -26,12 +25,11 @@ abstract class InterfaceDeathPuppetMixin extends Screen {
     private void interface$stayDead(CallbackInfo info) {
         var act = org.unallocated.client.core.ClientSession.act();
         if (act == org.unallocated.core.Act.CONTRACT || act == org.unallocated.core.Act.EPILOGUE) return;
-        Button stay = addRenderableWidget(new Button.Plain(width / 2 - 100, height / 4 + 120, 200, 20,
-            Component.translatable("death.unallocated.not_yet"), button -> {
+        Button stay = addRenderableWidget(Button.builder(Component.translatable("death.unallocated.not_yet"), button -> {
                 button.active = false;
                 player.connection.sendCommand("unallocated puppet");
                 player.respawn();
-            }, Supplier::get));
+            }).bounds(width / 2 - 100, height / 4 + 120, 200, 20).build());
         stay.active = false;
         exitButtons.add(stay);
     }
