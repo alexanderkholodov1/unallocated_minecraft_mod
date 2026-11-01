@@ -192,7 +192,12 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
         "${id}=${module.version}"
     }.join(','))
     jvmArgs.addAll('-Dunallocated.interface.debug=true', '-Dunallocated.interface.debug.quiet=true')
-    jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
+    // Windows: LWJGL extracts its native libraries into the temp dir; keep that path free of spaces.
+    def smokeTemp = System.getProperty('os.name').toLowerCase().contains('windows')
+        ? new File(System.getenv('LOCALAPPDATA') ?: System.getProperty('java.io.tmpdir'), 'unallocated-smoke-temp').absolutePath
+        : clientSmokeDir.dir('temp').asFile.absolutePath
+    jvmArgs.add("-Djava.io.tmpdir=${smokeTemp}")
+    jvmArgs.add("-Dorg.lwjgl.system.SharedLibraryExtractPath=${smokeTemp}")
     def playerJar = layout.buildDirectory.file("libs/unallocated-${project.version}.jar")
     jvmArgs.add("-Dunallocated.smoke.jar=${playerJar.get().asFile.absolutePath}")
     doFirst {
