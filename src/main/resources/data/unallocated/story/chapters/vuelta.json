@@ -14,7 +14,7 @@
    "op": "spawn",
    "id": "spider",
    "body": {
-    "summon": "minecraft:spider{attributes:[{id:\"minecraft:scale\",base:1.6d}]}"
+    "summon": "unallocated:reclaimer"
    },
    "where": "vuelta.spider",
    "facing": "player"
@@ -38,11 +38,24 @@
  "escape": [
   {
    "at": 0,
+   "do": "creature",
+   "op": "despawn",
+   "id": "spider"
+  },
+  {
+   "at": 0,
+   "do": "counter",
+   "id": "trial",
+   "set": 2
+  },
+  {
+   "at": 0,
    "do": "interface",
    "effect": "DEATH",
    "seconds": 30,
    "text": {
-    "es": "subject connection: still open. retaining (+fear)"
+    "es": "subject connection: still open. retaining (+fear)",
+    "en": "subject connection: still open. retaining (+fear)"
    }
   },
   {
@@ -68,6 +81,7 @@
      "do": "chat",
      "text": {
       "es": "Can't keep up! Is the server overloaded?",
+      "en": "Can't keep up! Is the server overloaded?",
       "color": "#8a8a8a"
      }
     }
@@ -103,7 +117,8 @@
      "effect": "DEATH",
      "seconds": 30,
      "text": {
-      "es": "subject connection: still open. retaining (+fear)"
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)"
      }
     },
     {

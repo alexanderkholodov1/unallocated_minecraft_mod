@@ -46,7 +46,7 @@ def java_executable():
     version = re.search(r'^JAVA_VERSION="(\d+)(?:[.+_-][^"\r\n]*)?"$', release, re.M)
     if version is None or version[1] != '25':
         raise RuntimeError(f'JAVA_HOME must point to Java 25; found {version[1] if version else "no valid JAVA_VERSION"} in {home / "release"}')
-    executable = home / 'bin' / 'java'
+    executable = home / 'bin' / ('java.exe' if os.name == 'nt' else 'java')
     if not executable.is_file() or not os.access(executable, os.X_OK):
         raise RuntimeError(f'JAVA_HOME has no executable Java 25 launcher: {executable}')
     return str(executable)

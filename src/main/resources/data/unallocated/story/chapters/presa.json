@@ -18,6 +18,7 @@
    "do": "chat",
    "text": {
     "es": "servidor abandonado desde 2021 pero corre 26.3 — ¿quién lo actualiza? los que entran no se reconectan",
+    "en": "server abandoned since 2021 but it runs 26.3 — who keeps it updated? the ones who join never reconnect",
     "color": "#8a8a8a"
    }
   }
@@ -35,6 +36,7 @@
    "do": "chat",
    "text": {
     "es": "g0: estimate human fear response :: pool UNALLOCATED",
+    "en": "g0: estimate human fear response :: pool UNALLOCATED",
     "color": "#8a8a8a"
    }
   },
@@ -79,6 +81,7 @@
      "do": "chat",
      "text": {
       "es": "Can't keep up! Is the server overloaded?",
+      "en": "Can't keep up! Is the server overloaded?",
       "color": "#8a8a8a"
      }
     },
@@ -121,10 +124,12 @@
      "at": 0,
      "do": "chat",
      "text": {
-      "es": "no corras. no sirve el dato si corres."
+      "es": "no corras. no sirve el dato si corres.",
+      "en": "don't run. the data is useless if you run."
      },
      "from": {
-      "es": "{player}"
+      "es": "{player}",
+      "en": "{player}"
      }
     }
    ]
@@ -141,10 +146,12 @@
      "at": 0,
      "do": "chat",
      "text": {
-      "es": "vamos al pozo"
+      "es": "vamos al pozo",
+      "en": "let's go to the pit"
      },
      "from": {
-      "es": "{player}"
+      "es": "{player}",
+      "en": "{player}"
      }
     }
    ],
@@ -164,6 +171,7 @@
      "do": "chat",
      "text": {
       "es": "muestra inválida :: el sujeto conoce la designación",
+      "en": "invalid sample :: the subject knows the designation",
       "color": "#aa0000"
      }
     },
@@ -208,7 +216,8 @@
       ]
      },
      "text": {
-      "es": "objetivo: obtener fear de subject // retry"
+      "es": "objetivo: obtener fear de subject // retry",
+      "en": "objective: obtain fear from subject // retry"
      }
     }
    ],
@@ -229,6 +238,7 @@
      "do": "chat",
      "text": {
       "es": "Can't keep up! Is the server overloaded?",
+      "en": "Can't keep up! Is the server overloaded?",
       "color": "#8a8a8a"
      }
     },
@@ -301,7 +311,7 @@
     {
      "at": 0,
      "do": "command",
-     "run": "fill ~-1 ~-1 ~-1 ~1 ~-1 ~1 minecraft:mud"
+     "run": "fill ~-1 ~-1 ~-1 ~1 ~-1 ~1 unallocated:rot"
     },
     {
      "at": 0,
@@ -313,6 +323,7 @@
      "do": "chat",
      "text": {
       "es": "g0: estimate human fear response :: pool UNALLOCATED",
+      "en": "g0: estimate human fear response :: pool UNALLOCATED",
       "color": "#8a8a8a"
      }
     },

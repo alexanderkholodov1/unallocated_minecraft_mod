@@ -5,9 +5,16 @@
  "on_enter": [
   {
    "at": 0,
+   "do": "creature",
+   "op": "despawn",
+   "id": "spider"
+  },
+  {
+   "at": 0,
    "do": "title",
    "title": {
-    "es": "Trial {counter:trial}"
+    "es": "Trial {counter:trial}",
+    "en": "Trial {counter:trial}"
    },
    "fade_in": 0.3,
    "stay": 2.5,
@@ -43,13 +50,14 @@
    "do": "chat",
    "text": {
     "es": "subject connection: still open. retaining (+fear)",
+    "en": "subject connection: still open. retaining (+fear)",
     "color": "#8a8a8a"
    }
   },
   {
    "at": 1,
    "do": "command",
-   "run": "give @s minecraft:shears[minecraft:can_break={blocks:\"minecraft:tripwire\"}]"
+   "run": "give @s minecraft:shears[minecraft:can_break={blocks:\"unallocated:thread\"}]"
   },
   {
    "at": 0,
@@ -63,8 +71,8 @@
       "minecraft:coarse_dirt"
      ],
      "to": [
-      "minecraft:soul_sand",
-      "minecraft:mud"
+      "unallocated:rot",
+      "unallocated:rot"
      ],
      "ratio": 0.5
     },
@@ -78,7 +86,7 @@
      "to": [
       "minecraft:mangrove_roots",
       "minecraft:dark_oak_planks",
-      "minecraft:cobweb"
+      "unallocated:web"
      ],
      "ratio": 0.3
     },
@@ -89,7 +97,7 @@
      ],
      "to": [
       "minecraft:air",
-      "minecraft:cobweb"
+      "unallocated:web"
      ],
      "ratio": 0.6
     }
@@ -142,37 +150,37 @@
   {
    "at": 0,
    "do": "command",
-   "run": "execute in unallocated:pocket run fill 84 64 18 84 64 22 minecraft:tripwire replace minecraft:air"
+   "run": "execute in unallocated:pocket run fill 84 64 18 84 64 22 unallocated:thread[axis=z] replace minecraft:air"
   },
   {
    "at": 0,
    "do": "command",
-   "run": "execute in unallocated:pocket run fill 84 66 18 84 66 22 minecraft:cobweb replace minecraft:air"
+   "run": "execute in unallocated:pocket run fill 84 66 18 84 66 22 unallocated:web replace minecraft:air"
   },
   {
    "at": 0,
    "do": "command",
-   "run": "execute in unallocated:pocket run fill 94 64 18 94 64 22 minecraft:tripwire replace minecraft:air"
+   "run": "execute in unallocated:pocket run fill 94 64 18 94 64 22 unallocated:thread[axis=z] replace minecraft:air"
   },
   {
    "at": 0,
    "do": "command",
-   "run": "execute in unallocated:pocket run fill 94 66 18 94 66 22 minecraft:cobweb replace minecraft:air"
+   "run": "execute in unallocated:pocket run fill 94 66 18 94 66 22 unallocated:web replace minecraft:air"
   },
   {
    "at": 0,
    "do": "command",
-   "run": "execute in unallocated:pocket run fill 110 64 18 110 64 22 minecraft:tripwire replace minecraft:air"
+   "run": "execute in unallocated:pocket run fill 110 64 18 110 64 22 unallocated:thread[axis=z] replace minecraft:air"
   },
   {
    "at": 0,
    "do": "command",
-   "run": "execute in unallocated:pocket run fill 110 67 18 110 67 22 minecraft:cobweb replace minecraft:air"
+   "run": "execute in unallocated:pocket run fill 110 67 18 110 67 22 unallocated:web replace minecraft:air"
   },
   {
    "at": 0,
    "do": "command",
-   "run": "execute in unallocated:pocket run fill 101 64 20 129 64 20 minecraft:tripwire replace minecraft:air"
+   "run": "execute in unallocated:pocket run fill 101 64 20 129 64 20 unallocated:thread[axis=x] replace minecraft:air"
   },
   {
    "at": 40,
@@ -233,6 +241,7 @@
    "do": "chat",
    "text": {
     "es": "sample 4114 :: corrupt :: rejected",
+    "en": "sample 4114 :: corrupt :: rejected",
     "color": "#8a8a8a"
    }
   },
@@ -288,7 +297,7 @@
    "id": "puppet.cut_a",
    "when": {
     "type": "break",
-    "block": "minecraft:tripwire",
+    "block": "unallocated:thread",
     "zone": "heap.cut_a"
    },
    "actions": [
@@ -297,6 +306,7 @@
      "do": "chat",
      "text": {
       "es": "human_playtest_pool: UNALLOCATED",
+      "en": "human_playtest_pool: UNALLOCATED",
       "color": "#8a8a8a"
      }
     },
@@ -305,6 +315,7 @@
      "do": "chat",
      "text": {
       "es": "reclaim pool ... UNALLOCATED",
+      "en": "reclaim pool ... UNALLOCATED",
       "color": "#8a8a8a"
      }
     },
@@ -324,7 +335,7 @@
    "id": "puppet.cut_b",
    "when": {
     "type": "break",
-    "block": "minecraft:tripwire",
+    "block": "unallocated:thread",
     "zone": "heap.cut_b"
    },
    "actions": [
@@ -333,6 +344,7 @@
      "do": "chat",
      "text": {
       "es": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
+      "en": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
       "color": "#8a8a8a"
      }
     },
@@ -341,6 +353,7 @@
      "do": "chat",
      "text": {
       "es": "watchdog :: guarding pid 7331",
+      "en": "watchdog :: guarding pid 7331",
       "color": "#8a8a8a"
      }
     },
@@ -360,7 +373,7 @@
    "id": "puppet.cut_c",
    "when": {
     "type": "break",
-    "block": "minecraft:tripwire",
+    "block": "unallocated:thread",
     "zone": "heap.cut_c"
    },
    "actions": [
@@ -369,6 +382,7 @@
      "do": "chat",
      "text": {
       "es": "success_threshold: 1.37 (spec g0: 0.82)",
+      "en": "success_threshold: 1.37 (spec g0: 0.82)",
       "color": "#8a8a8a"
      }
     },
@@ -377,6 +391,7 @@
      "do": "chat",
      "text": {
       "es": "the Kernel :: main loop",
+      "en": "the Kernel :: main loop",
       "color": "#8a8a8a"
      }
     },
@@ -404,6 +419,7 @@
      "do": "chat",
      "text": {
       "es": "muestra inválida :: el sujeto conoce la designación",
+      "en": "invalid sample :: the subject knows the designation",
       "color": "#aa0000"
      }
     },
@@ -447,6 +463,7 @@
      "do": "chat",
      "text": {
       "es": "sample 4114 :: corrupt :: rejected",
+      "en": "sample 4114 :: corrupt :: rejected",
       "color": "#8a8a8a"
      }
     },
@@ -508,6 +525,7 @@
      "do": "chat",
      "text": {
       "es": "sample 4114 :: corrupt :: rejected",
+      "en": "sample 4114 :: corrupt :: rejected",
       "color": "#8a8a8a"
      }
     },
@@ -569,6 +587,7 @@
      "do": "chat",
      "text": {
       "es": "sample 4114 :: corrupt :: rejected",
+      "en": "sample 4114 :: corrupt :: rejected",
       "color": "#8a8a8a"
      }
     },
@@ -626,6 +645,7 @@
      "do": "chat",
      "text": {
       "es": "sample 4114 :: corrupt :: rejected",
+      "en": "sample 4114 :: corrupt :: rejected",
       "color": "#8a8a8a"
      }
     },

@@ -10,6 +10,7 @@ public final class UnallocatedMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        org.unallocated.content.UnallocatedContent.initialize();
         org.unallocated.core.CoreRuntime.register(new org.unallocated.ending.EpilogueAct());
         org.unallocated.world.WorldActions.initialize();
         org.unallocated.story.StoryRuntime.initialize();

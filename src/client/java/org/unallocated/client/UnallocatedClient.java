@@ -6,6 +6,8 @@ import org.unallocated.UnallocatedMod;
 public final class UnallocatedClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        org.unallocated.client.mixin.creature.EntityRenderersInvoker.unallocated$register(
+            org.unallocated.content.UnallocatedContent.RECLAIMER, org.unallocated.client.creature.ReclaimerRenderer::new);
         org.unallocated.client.core.ClientSession.initialize();
         org.unallocated.client.ending.EndingClient.initialize();
         org.unallocated.client.effects.SoundEffects.initialize();

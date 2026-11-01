@@ -77,6 +77,20 @@ public final class Creatures {
             }
         });
     }
+    /** A touched thread: every stalker in the player's dimension lunges toward them, even while seen. */
+    public static void vibration(ServerPlayer player, boolean loud) {
+        var server = player.level().getServer(); var bodies = SERVERS.get(server); if (bodies == null) return;
+        for (var body : bodies.values()) {
+            Entity entity = body.entity;
+            if (entity == null || entity.level() != player.level() || !string(body.data, "op", "").equals("stalk")) continue;
+            double step = number(body.data, "step", 1) * (loud ? 2.5 : 1.2), minimum = number(body.data, "min_distance", 3);
+            Vec3 saved = position(body);
+            var next = CreatureMotion.toward(point(saved), point(player.position()), step, minimum, false,
+                candidate -> safe(entity, saved, new Vec3(candidate.x(), candidate.y(), candidate.z()), player.position(), minimum) != null);
+            Vec3 grounded = safe(entity, saved, new Vec3(next.x(), next.y(), next.z()), player.position(), minimum);
+            if (grounded != null && !grounded.equals(saved)) { move(body, grounded); face(body, player); persist(server, body); }
+        }
+    }
     private static CreatureMotion.Point point(Vec3 value) { return new CreatureMotion.Point(value.x, value.y, value.z); }
     private static Vec3 position(Body body) { return new Vec3(number(body.data, "x", 0), number(body.data, "y", 64), number(body.data, "z", 0)); }
     private static void move(Body body, Vec3 to) {

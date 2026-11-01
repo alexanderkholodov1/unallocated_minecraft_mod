@@ -1,0 +1,113 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "unallocated:block/thread",
+    "thread": "unallocated:block/thread"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        1,
+        7.5
+      ],
+      "to": [
+        16,
+        2,
+        8.5
+      ],
+      "shade": false,
+      "light_emission": 9,
+      "faces": {
+        "up": {
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ],
+          "texture": "#thread"
+        },
+        "down": {
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ],
+          "texture": "#thread"
+        },
+        "north": {
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ],
+          "texture": "#thread"
+        },
+        "south": {
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ],
+          "texture": "#thread"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        9,
+        7.5
+      ],
+      "to": [
+        16,
+        10,
+        8.5
+      ],
+      "shade": false,
+      "light_emission": 9,
+      "faces": {
+        "up": {
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ],
+          "texture": "#thread"
+        },
+        "down": {
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ],
+          "texture": "#thread"
+        },
+        "north": {
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ],
+          "texture": "#thread"
+        },
+        "south": {
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ],
+          "texture": "#thread"
+        }
+      }
+    }
+  ]
+}

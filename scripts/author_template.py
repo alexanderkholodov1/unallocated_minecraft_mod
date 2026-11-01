@@ -168,7 +168,8 @@ def author():
     downloads.mkdir(parents=True, exist_ok=True); (directory / '.fabric').mkdir()
     for relative in ('.fabric/server', 'libraries', 'versions'):
         shared = downloads / relative; shared.mkdir(parents=True, exist_ok=True)
-        (directory / relative).symlink_to(shared, target_is_directory=True)
+        try: (directory / relative).symlink_to(shared, target_is_directory=True)
+        except OSError: shutil.copytree(shared, directory / relative)  # Windows without symlink rights
     launcher = downloads / 'fabric-server-launch.jar'
     if not launcher.is_file():
         url = f'https://meta.fabricmc.net/v2/versions/loader/{props["minecraft_version"]}/{props["loader_version"]}/1.1.2/server/jar'

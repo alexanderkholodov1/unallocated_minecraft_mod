@@ -18,8 +18,8 @@
       "minecraft:grass_block"
      ],
      "to": [
-      "minecraft:mud",
-      "minecraft:soul_soil",
+      "unallocated:rot",
+      "unallocated:rot",
       "minecraft:coarse_dirt"
      ],
      "ratio": 0.35
@@ -55,7 +55,7 @@
    "op": "spawn",
    "id": "spider",
    "body": {
-    "summon": "minecraft:spider{attributes:[{id:\"minecraft:scale\",base:1.6d}]}"
+    "summon": "unallocated:reclaimer"
    },
    "where": "heap.spider",
    "facing": "player"
@@ -79,11 +79,24 @@
  "escape": [
   {
    "at": 0,
+   "do": "creature",
+   "op": "despawn",
+   "id": "spider"
+  },
+  {
+   "at": 0,
+   "do": "counter",
+   "id": "trial",
+   "set": 1
+  },
+  {
+   "at": 0,
    "do": "interface",
    "effect": "DEATH",
    "seconds": 30,
    "text": {
-    "es": "subject connection: still open. retaining (+fear)"
+    "es": "subject connection: still open. retaining (+fear)",
+    "en": "subject connection: still open. retaining (+fear)"
    }
   },
   {
@@ -159,7 +172,8 @@
      "effect": "DEATH",
      "seconds": 30,
      "text": {
-      "es": "subject connection: still open. retaining (+fear)"
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)"
      }
     },
     {

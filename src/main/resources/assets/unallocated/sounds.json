@@ -3,8 +3,8 @@
     "subtitle": "audio.unallocated.subtitle.ambient_drone",
     "sounds": [
       {
-        "name": "minecraft:block.beacon.ambient",
-        "type": "event"
+        "name": "unallocated:ambient/drone",
+        "stream": true
       }
     ]
   },
@@ -12,8 +12,10 @@
     "subtitle": "audio.unallocated.subtitle.ambient_cave",
     "sounds": [
       {
-        "name": "minecraft:ambient.cave",
-        "type": "event"
+        "name": "unallocated:ambient/distant_1"
+      },
+      {
+        "name": "unallocated:ambient/distant_2"
       }
     ]
   },
@@ -21,8 +23,13 @@
     "subtitle": "audio.unallocated.subtitle.thread_string",
     "sounds": [
       {
-        "name": "minecraft:block.note_block.harp",
-        "type": "event"
+        "name": "unallocated:thread/vibrate_1"
+      },
+      {
+        "name": "unallocated:thread/vibrate_2"
+      },
+      {
+        "name": "unallocated:thread/vibrate_3"
       }
     ]
   },
@@ -30,8 +37,7 @@
     "subtitle": "audio.unallocated.subtitle.thread_chime",
     "sounds": [
       {
-        "name": "minecraft:block.amethyst_block.resonate",
-        "type": "event"
+        "name": "unallocated:thread/chime"
       }
     ]
   },
@@ -39,8 +45,7 @@
     "subtitle": "audio.unallocated.subtitle.breath",
     "sounds": [
       {
-        "name": "minecraft:block.beacon.deactivate",
-        "type": "event"
+        "name": "unallocated:fx/breath"
       }
     ]
   },
@@ -48,8 +53,7 @@
     "subtitle": "audio.unallocated.subtitle.screamer_impact",
     "sounds": [
       {
-        "name": "minecraft:entity.iron_golem.damage",
-        "type": "event"
+        "name": "unallocated:screamer/impact"
       }
     ]
   },
@@ -57,8 +61,128 @@
     "subtitle": "audio.unallocated.subtitle.screamer_crack",
     "sounds": [
       {
-        "name": "minecraft:block.anvil.land",
-        "type": "event"
+        "name": "unallocated:screamer/shriek"
+      }
+    ]
+  },
+  "thread.vibrate": {
+    "subtitle": "audio.unallocated.subtitle.thread_string",
+    "sounds": [
+      {
+        "name": "unallocated:thread/vibrate_1"
+      },
+      {
+        "name": "unallocated:thread/vibrate_2"
+      },
+      {
+        "name": "unallocated:thread/vibrate_3"
+      }
+    ]
+  },
+  "thread.snap": {
+    "subtitle": "audio.unallocated.subtitle.thread_snap",
+    "sounds": [
+      {
+        "name": "unallocated:thread/snap"
+      }
+    ]
+  },
+  "reclaimer.click": {
+    "subtitle": "audio.unallocated.subtitle.reclaimer_click",
+    "sounds": [
+      {
+        "name": "unallocated:reclaimer/click_1"
+      },
+      {
+        "name": "unallocated:reclaimer/click_2"
+      },
+      {
+        "name": "unallocated:reclaimer/click_3"
+      },
+      {
+        "name": "unallocated:reclaimer/click_4"
+      }
+    ]
+  },
+  "reclaimer.step": {
+    "subtitle": "audio.unallocated.subtitle.reclaimer_step",
+    "sounds": [
+      {
+        "name": "unallocated:reclaimer/step_1"
+      },
+      {
+        "name": "unallocated:reclaimer/step_2"
+      },
+      {
+        "name": "unallocated:reclaimer/step_3"
+      }
+    ]
+  },
+  "reclaimer.breath": {
+    "subtitle": "audio.unallocated.subtitle.reclaimer_breath",
+    "sounds": [
+      {
+        "name": "unallocated:reclaimer/breath"
+      }
+    ]
+  },
+  "reclaimer.roar": {
+    "subtitle": "audio.unallocated.subtitle.reclaimer_roar",
+    "sounds": [
+      {
+        "name": "unallocated:reclaimer/roar"
+      }
+    ]
+  },
+  "reclaimer.whisper": {
+    "subtitle": "audio.unallocated.subtitle.reclaimer_whisper",
+    "sounds": [
+      {
+        "name": "unallocated:reclaimer/whisper_1"
+      },
+      {
+        "name": "unallocated:reclaimer/whisper_2"
+      },
+      {
+        "name": "unallocated:reclaimer/whisper_3"
+      }
+    ]
+  },
+  "fx.glitch": {
+    "subtitle": "audio.unallocated.subtitle.glitch",
+    "sounds": [
+      {
+        "name": "unallocated:fx/glitch_1"
+      },
+      {
+        "name": "unallocated:fx/glitch_2"
+      },
+      {
+        "name": "unallocated:fx/glitch_3"
+      }
+    ]
+  },
+  "ui.heartbeat": {
+    "subtitle": "audio.unallocated.subtitle.heartbeat",
+    "sounds": [
+      {
+        "name": "unallocated:ui/heartbeat"
+      }
+    ]
+  },
+  "ui.terminal": {
+    "subtitle": "audio.unallocated.subtitle.terminal",
+    "sounds": [
+      {
+        "name": "unallocated:ui/terminal"
+      }
+    ]
+  },
+  "screamer.shriek": {
+    "subtitle": "audio.unallocated.subtitle.screamer_shriek",
+    "sounds": [
+      {
+        "name": "unallocated:screamer/shriek"
       }
     ]
   }

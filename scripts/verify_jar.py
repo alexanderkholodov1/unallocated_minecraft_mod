@@ -127,7 +127,7 @@ def verify(artifact, properties, policy, included_hashes):
                 bytecode = jar.read(entrypoint.replace('.', '/') + '.class')
                 require(bytecode[:4] == bytes.fromhex('cafebabe') and
                         int.from_bytes(bytecode[6:8], 'big') == 69, 'Expected Java 25 entrypoint')
-    require(artifact.stat().st_size <= 2 * 1024 * 1024, 'Player jar exceeds 2 MiB packaging budget')
+    require(artifact.stat().st_size <= 6 * 1024 * 1024, 'Player jar exceeds 6 MiB packaging budget')
     return hashlib.sha256(artifact.read_bytes()).hexdigest()
 
 

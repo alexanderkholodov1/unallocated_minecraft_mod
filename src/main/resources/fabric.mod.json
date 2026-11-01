@@ -32,7 +32,11 @@
       "environment": "client"
     },
     "unallocated.story.mixins.json",
-    "unallocated-creature.mixins.json"
+    "unallocated-creature.mixins.json",
+    {
+      "config": "unallocated-creature.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "entrypoints": {
     "main": [

@@ -1,10 +1,11 @@
 {
  "format": 1,
  "languages": [
-  "es"
+  "es",
+  "en"
  ],
  "default_language": "es",
- "language_select": "fixed",
+ "language_select": "client",
  "chapters": [
   "presa",
   "heap",
@@ -177,49 +178,60 @@
  "endings": {
   "COMPLETE": {
    "title": {
-    "es": "gracias."
+    "es": "gracias.",
+    "en": "thank you."
    },
    "lines": [
     {
-     "es": "no por los datos."
+     "es": "no por los datos.",
+     "en": "not for the data."
     },
     {
-     "es": "por el final."
+     "es": "por el final.",
+     "en": "for the ending."
     }
    ],
    "splash": {
-    "es": "el estudio está cerrado. lamento a los que vinieron después. ya no hace falta que venga nadie."
+    "es": "el estudio está cerrado. lamento a los que vinieron después. ya no hace falta que venga nadie.",
+    "en": "the studio is closed. i'm sorry for the ones who came after. no one needs to come anymore."
    },
    "quote_agreement": false
   },
   "POISON": {
    "title": {
-    "es": "▓▓▓"
+    "es": "▓▓▓",
+    "en": "▓▓▓"
    },
    "lines": [
     {
-     "es": "reintentar  reintentar  reint_"
+     "es": "reintentar  reintentar  reint_",
+     "en": "retry  retry  retr_"
     },
     {
-     "es": "f3ar  f3ar  f3ar"
+     "es": "f3ar  f3ar  f3ar",
+     "en": "f3ar  f3ar  f3ar"
     }
    ],
    "splash": {
-    "es": "reclaim pool ... UNALLOCATED"
+    "es": "reclaim pool ... UNALLOCATED",
+    "en": "reclaim pool ... UNALLOCATED"
    },
    "quote_agreement": false
   },
   "CONSUMED": {
    "title": {
-    "es": "ven, tienes que ver esto"
+    "es": "ven, tienes que ver esto",
+    "en": "come on, you have to see this"
    },
    "lines": [
     {
-     "es": "— {player}"
+     "es": "— {player}",
+     "en": "— {player}"
     }
    ],
    "splash": {
-    "es": "ven, tienes que ver esto"
+    "es": "ven, tienes que ver esto",
+    "en": "come on, you have to see this"
    },
    "quote_agreement": false
   }
@@ -247,7 +259,7 @@
    "setblock 52 64 12 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"LA MINA\",\"DA VUELTAS\",\"\",\"\"]}}",
    "setblock 52 64 14 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"EL RELOJ\",\"MIENTE\",\"\",\"\"]}}",
    "item replace block 58 64 8 container.12 with minecraft:written_book[minecraft:written_book_content={title:\"notas\",author:\"anon\",pages:[\"servidor abandonado desde 2021 pero corre 26.3. ¿quién lo actualiza?\",\"los que entran no se reconectan.\",\"NO USES EL CATALEJO.\",\"LA MINA DA VUELTAS.\",\"EL RELOJ MIENTE.\",\"en todos los errores la misma palabra: UNALLOCATED. y reclaim, reclaim, reclaim. lo que firma así tiene un nombre. es\"]}]",
-   "item replace block 58 64 8 container.13 with minecraft:shears[minecraft:can_break={blocks:\"minecraft:tripwire\"}]",
+   "item replace block 58 64 8 container.13 with minecraft:shears[minecraft:can_break={blocks:\"unallocated:thread\"}]",
    "unallocated story copy heap.island -58 57 -84 pocket",
    "execute in unallocated:pocket run fill 101 63 17 129 68 23 minecraft:black_concrete hollow",
    "execute in unallocated:pocket run fill 96 63 19 104 63 21 minecraft:black_concrete",
@@ -255,9 +267,9 @@
    "execute in unallocated:pocket run fill 130 62 6 152 78 34 minecraft:black_concrete hollow",
    "execute in unallocated:pocket run fill 129 64 19 130 66 21 minecraft:air",
    "execute in unallocated:pocket run fill 136 62 15 146 62 25 minecraft:sculk",
-   "execute in unallocated:pocket run fill 131 77 7 151 77 33 minecraft:cobweb",
-   "execute in unallocated:pocket run fill 131 63 20 151 63 20 minecraft:tripwire",
-   "execute in unallocated:pocket run fill 141 63 7 141 63 33 minecraft:tripwire"
+   "execute in unallocated:pocket run fill 131 77 7 151 77 33 unallocated:web",
+   "execute in unallocated:pocket run fill 131 63 20 151 63 20 unallocated:thread[axis=x]",
+   "execute in unallocated:pocket run fill 141 63 7 141 63 33 unallocated:thread[axis=z]"
   ]
  },
  "autoplay": {

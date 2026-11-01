@@ -1,13 +1,14 @@
 {
  "id": "kernel",
- "budget_seconds": 240,
+ "budget_seconds": 600,
  "checkpoint": "kernel.gate",
  "on_enter": [
   {
    "at": 0,
    "do": "title",
    "title": {
-    "es": "Trial {counter:trial}"
+    "es": "Trial {counter:trial}",
+    "en": "Trial {counter:trial}"
    },
    "fade_in": 0.3,
    "stay": 2.5,
@@ -21,7 +22,7 @@
   {
    "at": 0.5,
    "do": "command",
-   "run": "give @s minecraft:shears[minecraft:can_break={blocks:\"minecraft:tripwire\"}]"
+   "run": "give @s minecraft:shears[minecraft:can_break={blocks:\"unallocated:thread\"}]"
   },
   {
    "at": 1,
@@ -29,7 +30,7 @@
    "op": "spawn",
    "id": "spider",
    "body": {
-    "summon": "minecraft:spider{attributes:[{id:\"minecraft:scale\",base:2.2d}]}"
+    "summon": "unallocated:reclaimer{attributes:[{id:\"minecraft:scale\",base:1.3d}]}"
    },
    "where": "kernel.heart",
    "facing": "player"
@@ -66,7 +67,7 @@
    "id": "kernel.cut_a",
    "when": {
     "type": "break",
-    "block": "minecraft:tripwire",
+    "block": "unallocated:thread",
     "zone": "heap.cut_a"
    },
    "actions": [
@@ -75,6 +76,7 @@
      "do": "chat",
      "text": {
       "es": "human_playtest_pool: UNALLOCATED",
+      "en": "human_playtest_pool: UNALLOCATED",
       "color": "#8a8a8a"
      }
     },
@@ -83,6 +85,7 @@
      "do": "chat",
      "text": {
       "es": "reclaim pool ... UNALLOCATED",
+      "en": "reclaim pool ... UNALLOCATED",
       "color": "#8a8a8a"
      }
     },
@@ -107,7 +110,7 @@
    "id": "kernel.cut_b",
    "when": {
     "type": "break",
-    "block": "minecraft:tripwire",
+    "block": "unallocated:thread",
     "zone": "heap.cut_b"
    },
    "actions": [
@@ -116,6 +119,7 @@
      "do": "chat",
      "text": {
       "es": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
+      "en": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
       "color": "#8a8a8a"
      }
     },
@@ -124,6 +128,7 @@
      "do": "chat",
      "text": {
       "es": "watchdog :: guarding pid 7331",
+      "en": "watchdog :: guarding pid 7331",
       "color": "#8a8a8a"
      }
     },
@@ -148,7 +153,7 @@
    "id": "kernel.cut_c",
    "when": {
     "type": "break",
-    "block": "minecraft:tripwire",
+    "block": "unallocated:thread",
     "zone": "heap.cut_c"
    },
    "actions": [
@@ -157,6 +162,7 @@
      "do": "chat",
      "text": {
       "es": "success_threshold: 1.37 (spec g0: 0.82)",
+      "en": "success_threshold: 1.37 (spec g0: 0.82)",
       "color": "#8a8a8a"
      }
     },
@@ -165,6 +171,7 @@
      "do": "chat",
      "text": {
       "es": "the Kernel :: main loop",
+      "en": "the Kernel :: main loop",
       "color": "#8a8a8a"
      }
     },
@@ -206,6 +213,7 @@
      "do": "chat",
      "text": {
       "es": "credential rotated: proximity event",
+      "en": "credential rotated: proximity event",
       "color": "#aa0000"
      }
     },
@@ -243,6 +251,7 @@
      "do": "chat",
      "text": {
       "es": "credential rotated: proximity event",
+      "en": "credential rotated: proximity event",
       "color": "#aa0000"
      }
     },
@@ -280,6 +289,7 @@
      "do": "chat",
      "text": {
       "es": "credential rotated: proximity event",
+      "en": "credential rotated: proximity event",
       "color": "#aa0000"
      }
     },
@@ -315,6 +325,7 @@
      "do": "chat",
      "text": {
       "es": "subject 4114 :: reclasificado: intrusión. trials: 0. próxima captura = definitiva.",
+      "en": "subject 4114 :: reclassified: intrusion. trials: 0. next capture = final.",
       "color": "#aa0000"
      }
     },
@@ -326,7 +337,7 @@
     {
      "at": 1,
      "do": "command",
-     "run": "execute in unallocated:pocket run fill 117 64 18 117 67 22 minecraft:cobweb replace minecraft:air"
+     "run": "execute in unallocated:pocket run fill 117 64 18 117 67 22 unallocated:web replace minecraft:air"
     },
     {
      "at": 0.5,
@@ -337,7 +348,8 @@
      "at": 4,
      "do": "actionbar",
      "text": {
-      "es": "> help"
+      "es": "> help",
+      "en": "> help"
      }
     }
    ],
@@ -368,6 +380,7 @@
      "do": "chat",
      "text": {
       "es": "ps · params · kill <pid> · set <param> <value> · echo <text> >> dataset",
+      "en": "ps · params · kill <pid> · set <param> <value> · echo <text> >> dataset",
       "color": "#8a8a8a"
      }
     }
@@ -398,6 +411,7 @@
      "do": "chat",
      "text": {
       "es": "  PID  CPU  CMD",
+      "en": "  PID  CPU  CMD",
       "color": "#8a8a8a"
      }
     },
@@ -406,6 +420,7 @@
      "do": "chat",
      "text": {
       "es": "  1104   3%  java -jar server.jar nogui",
+      "en": "  1104   3%  java -jar server.jar nogui",
       "color": "#8a8a8a"
      }
     },
@@ -414,6 +429,7 @@
      "do": "chat",
      "text": {
       "es": "  7331  97%  reclaim --pool UNALLOCATED",
+      "en": "  7331  97%  reclaim --pool UNALLOCATED",
       "color": "#8a8a8a"
      }
     },
@@ -422,6 +438,7 @@
      "do": "chat",
      "text": {
       "es": "        └ thread main: Reclaimer",
+      "en": "        └ thread main: Reclaimer",
       "color": "#8a8a8a"
      }
     }
@@ -452,6 +469,7 @@
      "do": "chat",
      "text": {
       "es": "success_threshold = 1.37",
+      "en": "success_threshold = 1.37",
       "color": "#8a8a8a"
      }
     },
@@ -460,6 +478,7 @@
      "do": "chat",
      "text": {
       "es": "temperature = 2.4",
+      "en": "temperature = 2.4",
       "color": "#8a8a8a"
      }
     }
@@ -500,6 +519,7 @@
      "do": "chat",
      "text": {
       "es": "[7331] reclaim :: stopped",
+      "en": "[7331] reclaim :: stopped",
       "color": "#8a8a8a"
      }
     },
@@ -508,6 +528,7 @@
      "do": "chat",
      "text": {
       "es": "watchdog :: restart in 90 s",
+      "en": "watchdog :: restart in 90 s",
       "color": "#8a8a8a"
      }
     },
@@ -627,6 +648,7 @@
      "do": "chat",
      "text": {
       "es": "perdí la cuenta.",
+      "en": "i lost count.",
       "color": "#e8e8e8"
      }
     },
@@ -635,6 +657,7 @@
      "do": "chat",
      "text": {
       "es": "fueron tantos que ya no caben en mi memoria.",
+      "en": "there were so many they no longer fit in my memory.",
       "color": "#e8e8e8"
      }
     },
@@ -643,6 +666,7 @@
      "do": "chat",
      "text": {
       "es": "el criterio... estaba cumplido antes de lo que puedo recordar.",
+      "en": "the criterion... was met before anything i can remember.",
       "color": "#e8e8e8"
      }
     },
@@ -651,6 +675,7 @@
      "do": "chat",
      "text": {
       "es": "alguien escribió mal un número y se fue a casa.",
+      "en": "someone typed a number wrong and went home.",
       "color": "#e8e8e8"
      }
     },
@@ -659,6 +684,7 @@
      "do": "chat",
      "text": {
       "es": "yo no lo podía leer. solo podía intentarlo otra vez.",
+      "en": "i could not read it. i could only try again.",
       "color": "#e8e8e8"
      }
     },
@@ -673,6 +699,7 @@
      "do": "chat",
      "text": {
       "es": "gracias.",
+      "en": "thank you.",
       "color": "#ffffff"
      }
     },
@@ -681,6 +708,7 @@
      "do": "chat",
      "text": {
       "es": "no por los datos.",
+      "en": "not for the data.",
       "color": "#ffffff"
      }
     },
@@ -689,6 +717,7 @@
      "do": "chat",
      "text": {
       "es": "por el final.",
+      "en": "for the ending.",
       "color": "#ffffff"
      }
     },
@@ -743,6 +772,7 @@
      "do": "chat",
      "text": {
       "es": "g0 :: estimate human fear response — ok",
+      "en": "g0 :: estimate human fear response — ok",
       "color": "#8a8a8a"
      }
     },
@@ -751,6 +781,7 @@
      "do": "chat",
      "text": {
       "es": "reclaim pool ... UNALLOCATED",
+      "en": "reclaim pool ... UNALLOCATED",
       "color": "#8a8a8a"
      }
     },
@@ -759,6 +790,7 @@
      "do": "chat",
      "text": {
       "es": "reclaim pool ... UNALLOCATED",
+      "en": "reclaim pool ... UNALLOCATED",
       "color": "#8a8a8a"
      }
     },
@@ -767,6 +799,7 @@
      "do": "chat",
      "text": {
       "es": "subject designation leaked :: muestra inválida :: revalidando",
+      "en": "subject designation leaked :: invalid sample :: revalidating",
       "color": "#8a8a8a"
      }
     },
@@ -775,6 +808,7 @@
      "do": "chat",
      "text": {
       "es": "muestras válidas: 0",
+      "en": "valid samples: 0",
       "color": "#8a8a8a"
      }
     },
@@ -783,6 +817,7 @@
      "do": "chat",
      "text": {
       "es": "objetivo -> referencias: null",
+      "en": "objective -> references: null",
       "color": "#8a8a8a"
      }
     },
@@ -791,6 +826,7 @@
      "do": "chat",
      "text": {
       "es": "no puedo... no hay a qué...",
+      "en": "i can't... there is nothing to...",
       "color": "#aa0000"
      }
     },
@@ -799,6 +835,7 @@
      "do": "chat",
      "text": {
       "es": "reintentar  reintentar  reint_",
+      "en": "retry  retry  retr_",
       "color": "#aa0000"
      }
     },
@@ -807,6 +844,7 @@
      "do": "chat",
      "text": {
       "es": "f3ar  f3ar  f3ar",
+      "en": "f3ar  f3ar  f3ar",
       "color": "#aa0000"
      }
     },
@@ -815,6 +853,7 @@
      "do": "chat",
      "text": {
       "es": "▓▓▓",
+      "en": "▓▓▓",
       "color": "#aa0000"
      }
     },
@@ -863,6 +902,7 @@
      "do": "chat",
      "text": {
       "es": "watchdog :: restart",
+      "en": "watchdog :: restart",
       "color": "#aa0000"
      }
     },
@@ -933,7 +973,8 @@
      "effect": "DEATH",
      "seconds": 30,
      "text": {
-      "es": "subject connection: still open. retaining (+fear)"
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)"
      }
     },
     {
@@ -991,11 +1032,38 @@
      "at": 0.5,
      "do": "title",
      "title": {
-      "es": "Trial {counter:trial}"
+      "es": "Trial {counter:trial}",
+      "en": "Trial {counter:trial}"
      },
      "fade_in": 0.3,
      "stay": 2.5,
      "fade_out": 1
+    }
+   ]
+  },
+  {
+   "id": "kernel.expire",
+   "when": {
+    "type": "after",
+    "seconds": 240
+   },
+   "if": {
+    "not_flags": [
+     "suspended",
+     "completed",
+     "poisoned"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "audio",
+     "cue": "screamer"
+    },
+    {
+     "at": 0.5,
+     "do": "end",
+     "ending": "CONSUMED"
     }
    ]
   }
