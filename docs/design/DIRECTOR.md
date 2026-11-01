@@ -1,86 +1,88 @@
-# UNALLOCATED — Director por telemetría (capa bonus, 100% local)
+*Translated from the original Spanish on 2026-11-01.*
 
-*El motor del miedo es el mapa scripteado (GAMEPLAY.md). Esto es una capa extra que hace que la experiencia se sienta
-viva y "aprenda de ti". Es prescindible: si se quita o falla, el guion fijo funciona igual. **Nada sale a internet.***
+# UNALLOCATED — Telemetry director (bonus layer, 100% local)
 
----
-
-## 1. Qué es y qué no es
-
-- **Es:** un director local que lee tu comportamiento y **elige el momento y la intensidad** de los sustos
-  pregenerados, controlando la curva de tensión (calma → presión → pico → alivio falso). También alimenta la ilusión
-  de "aprende de ti".
-- **No es:** un LLM en línea, ni un servicio remoto, ni un RL que converge en una sesión de 15 min. "Parecer que
-  aprende vale más que aprender de verdad" (Alien: Isolation). Como el Director de Left 4 Dead: controla el **ritmo**,
-  no "le gana" al jugador.
+*The engine of fear is the scripted map (GAMEPLAY.md). This is an extra layer that makes the experience feel
+alive and "learn from you". It is dispensable: if removed or broken, the fixed script still works. **Nothing goes onto the internet.***
 
 ---
 
-## 2. Señales (telemetría del cliente, local)
+## 1. What it is and what it is not
 
-Por jugador, armando un perfil para la sesión:
-- Velocidad angular de cámara y picos (giros bruscos = susto).
-- Sprints, saltos repetidos, agacharse, tiempo quieto, retrocesos.
-- Duda ante umbrales (cuánto tardas en entrar a una cueva o lugar).
-- A qué miras (raycast), distancia a cebos.
-- Cambios de hotbar, daño recibido.
-- Texto del chat (para el idioma que aprende; NARRATIVA.md §5).
-
-**Calibración:** los primeros minutos tranquilos (fase presa-base) fijan tu **línea base personal**. La "señal de
-miedo" f(t) es, en la trama, la señal de recompensa del Reclaimer.
+- **It is:** a local director that reads your behavior and **chooses the timing and intensity** of pregenerated
+  scares, controlling the tension curve (calm → pressure → peak → false relief). It also feeds the illusion
+  of "learning from you".
+- **It is not:** an online LLM, a remote service, or RL that converges in a 15 min session. "Seeming to
+  learn is worth more than actually learning" (Alien: Isolation). Like the Left 4 Dead Director: it controls **pacing**,
+  it does not "beat" the player.
 
 ---
 
-## 3. Selección de sustos
+## 2. Signals (client telemetry, local)
 
-- **Director con prioridades manuales** (priors de diseño) sobre un conjunto de ~20 primitivas de susto. Un bandit
-  contextual simple (p. ej. Thompson sampling) **opcional** por encima, con restricciones: enfriamientos, no repetir
-  patrón, topes de intensidad, presupuesto por fase.
-- **Novedad forzada:** si el jugador se suprime (se queda quieto, no reacciona), el director explora estímulos nuevos
-  (auditivos, visuales, de interfaz) en vez de insistir.
-- **Selección principal por novedad y coherencia; el miedo estimado desempata.** La señal es ruidosa y hay pocos datos,
-  así que no se confía en ella como verdad, solo como sesgo.
+Per player, building a profile for the session:
+- Angular camera velocity and spikes (sudden turns = fright).
+- Sprints, repeated jumps, crouching, time standing still, backtracking.
+- Hesitation at thresholds (how long you take to enter a cave or place).
+- What you look at (raycast), distance from baits.
+- Hotbar changes, damage received.
+- Chat text (for the language it learns; NARRATIVE.md §5).
+
+**Calibration:** the first quiet minutes (baseline prey phase) establish your **personal baseline**. The "fear
+signal" f(t) is, in the plot, the Reclaimer's reward signal.
 
 ---
 
-## 4. "Aprende de ti" de verdad (lo que sí es real)
+## 3. Scare selection
 
-Tres cosas aprenden de ti dentro de la sesión, y son las que hay que priorizar porque son creíbles y baratas:
-1. **Tu Artifact imita tu trayectoria.** Se graban tus movimientos (posición, yaw/pitch, acciones) y tu eco los repite,
-   degradándose. Es imitación real, pequeña; el error acumulado es una ventaja estética (colapso/repetición).
-2. **Tu idioma entra en sus textos.** Tu nick y tus palabras del chat se incorporan a sus logs/mensajes (NARRATIVA.md
+- **Director with manual priorities** (design priors) over a set of ~20 scare primitives. A simple contextual
+  bandit (e.g. Thompson sampling) **optionally** on top, with constraints: cooldowns, no pattern
+  repetition, intensity caps, per-phase budget.
+- **Forced novelty:** if the player suppresses themselves (stands still, does not react), the director explores new stimuli
+  (auditory, visual, interface) instead of persisting.
+- **Main selection by novelty and coherence; estimated fear breaks ties.** The signal is noisy and there is little data,
+  so it is not trusted as truth, only as a bias.
+
+---
+
+## 4. Actually "learning from you" (what is real)
+
+Three things learn from you within the session, and these should be prioritized because they are believable and cheap:
+1. **Your Artifact imitates your path.** Your movements (position, yaw/pitch, actions) are recorded and your echo repeats them,
+   degrading. It is real, small-scale imitation; accumulated error is an aesthetic advantage (collapse/repetition).
+2. **Your language enters its texts.** Your nickname and chat words are incorporated into its logs/messages (NARRATIVE.md
    §5).
-3. **El Heap se afina contra ti entre muertes.** Lo que te asustó (según la telemetría) se intensifica o reaparece
-   peor; lo que ignoraste se reemplaza (GAMEPLAY.md §3).
+3. **The Heap is tuned against you between deaths.** What frightened you (according to telemetry) is intensified or returns
+   worse; what you ignored is replaced (GAMEPLAY.md §3).
 
 ---
 
-## 5. Contenido pregenerado y curado
+## 5. Pregenerated and curated content
 
-Todo lo "generado por IA" se **pregenera offline, se cura a mano y se empaqueta** en el mod. No hay generación en vivo:
-- Textos derivados (deriva g0→g5, mensajes de muerte, logs, consejos de carga, letreros que mutan).
-- "Voces"/audios, si se usan (opcional; sin dependencia de chat de voz). Si hay micrófono, a lo sumo capturar el "De
-  acuerdo" del contrato para devolverlo degradado; si no, todo por texto. **No es ruta crítica.**
-- Estructuras y pasadas de corrupción del Heap.
+Everything "AI-generated" is **pregenerated offline, curated by hand and packaged** in the mod. There is no live generation:
+- Derived texts (drift g0→g5, death messages, logs, loading tips, mutating signs).
+- "Voices"/audio, if used (optional; no voice-chat dependency). If there is a microphone, at most capture the "De
+  acuerdo" [I agree] from the contract to play it back degraded; otherwise, everything through text. **Not on the critical path.**
+- Structures and Heap corruption passes.
 
-Principio: **el modelo propone (offline), un filtro dispone**. Se corren muchas generaciones antes de entregar y se
-quedan las mejores. Sigue siendo "generado", solo que filtrado.
-
----
-
-## 6. Privacidad y seguridad
-
-- **Todo local.** La telemetría, el perfil y cualquier captura de voz/chat **no salen del equipo del jugador**. No hay
-  servidor de inferencia ni red.
-- El consentimiento del contrato cubre el uso (micrófono si se activa, chat, comportamiento, ajustes temporales), con
-  explicación clara. Mínima retención: solo lo necesario para el propósito del juego, borrado al cerrar.
-- Lo que el jugador teclea es **dato**, nunca orden para ningún modelo (no hay modelo en vivo que inyectar); el "Shell"
-  del juego es ficción scripteada (GAMEPLAY.md §6).
+Principle: **the model proposes (offline), a filter decides**. Many generations are run before delivery and
+only the best are kept. It is still "generated", just filtered.
 
 ---
 
-## 7. Degradación elegante
+## 6. Privacy and security
 
-Si la capa del director falla o se desactiva: el mapa dispara sus sustos por **triggers fijos de posición/tiempo**, y
-la experiencia sigue completa de punta a punta. Interruptor de depuración para el autor: forzar sustos, saltar actos,
-ver f(t).
+- **Everything local.** Telemetry, the profile and any voice/chat capture **never leave the player's machine**. There is no
+  inference server or network.
+- Contract consent covers its use (microphone if enabled, chat, behavior, temporary settings), with a
+  clear explanation. Minimal retention: only what is necessary for the game's purpose, deleted on closing.
+- What the player types is **data**, never an instruction for any model (there is no live model to inject into); the game's "Shell"
+  is scripted fiction (GAMEPLAY.md §6).
+
+---
+
+## 7. Graceful fallback
+
+If the director layer fails or is disabled: the map fires its scares through **fixed position/time triggers**, and
+the experience remains complete from beginning to end. Author debug toggle: force scares, skip acts,
+view f(t).

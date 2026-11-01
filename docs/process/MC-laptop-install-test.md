@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # Brief: clean-install test of UNALLOCATED on the owner's laptop (worker for the mod's lead), 2026-10-29
 
 ## Who, for whom, why
@@ -23,7 +25,7 @@ blocked.
   ~/Workspaces/mc-inputs/laptop-test/artifact`, then `python3 ~/Workspaces/mc-hito/scripts/release_bundle.py
   <artifact dir> --out ~/Workspaces/mc-inputs/laptop-test/dist` (exit 2 = only design tokens unfilled; that is fine).
 - The itch page the judges follow: `dist/itch-page.md` (from `docs/release/ITCH-PAGE.md`), and `docs/release/CHECKLIST.md`.
-- README "Instalación en casa" / "Cómo comenzar" in the worktree (Spanish).
+- README "Instalación en casa" [Installation at home] / "Cómo comenzar" [How to begin] in the worktree (Spanish).
 
 ## What to build
 `~/Workspaces/mc-inputs/laptop-test/laptop-install-test.sh <dist-dir>` run from Beacon, which:
@@ -36,7 +38,7 @@ blocked.
    cannot run headless in WSL: substitute the smallest faithful launcher (e.g. `portablemc` with an offline user, or
    the Fabric profile's own launch arguments), and say exactly what you substituted and why in the report.
 3. Starts the client under Xvfb (or WSLg if present), and drives it like a judge: the contract screen appears, type
-   `De acuerdo` and confirm; the title screen shows the **UNALLOCATED** button; click it; the world opens. Use
+   `De acuerdo` [I agree] and confirm; the title screen shows the **UNALLOCATED** button; click it; the world opens. Use
    screenshots (you can read images) to find positions; xdotool or similar for input. Capture PNGs at: contract, title
    with the button, connecting screen, in-world after load.
 4. Passes only if `logs/latest.log` shows `UNALLOCATED initialized (common).`, `UNALLOCATED initialized (client).`,

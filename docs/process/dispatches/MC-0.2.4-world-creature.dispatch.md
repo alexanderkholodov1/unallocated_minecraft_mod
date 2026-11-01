@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 **Captain's dispatch note (2026-10-28 10:15Z):** packages 0.2.1, 0.2.2, 0.2.3 and 0.2.5 are on `v0.2.0`, head
 `b77bb10` (0.2.3: the title button opens the shipped world, the `play` CI phase plays it to an ending, the judge
 release artifact with a gameplay video, the shared Gradle dependency cache and the 12-minute no-output watchdog).
@@ -63,7 +65,7 @@ the dispatch authorizes it). English in code/docs.
 ## Goal and why
 The owner decided the experience has "a monster, a pocket dimension and a climax with one of several endings" (his
 answers in `docs/plan/DECISIONS.md`; the pocket dimension and the creature with a body are his words in
-`docs/intent/Initial brainstorm.txt`, "Tematica" 1, and `docs/intent/UNALLOCATED — Plan de construcción (AI generated,
+`docs/intent/Initial brainstorm.txt`, "Tematica" [Theme] 1, and `docs/intent/UNALLOCATED — Plan de construcción (AI generated,
 Author redacted).md` §3.3 and §5.6 — read them, do not take story from anywhere else). What the pocket looks like, what
 the creature's body is and what it does are **open design questions** (designer's questions 3 and 10 in
 `~/Workspaces/mc-story/NOTAS.md`). You build the primitives that serve any reasonable answer, so tomorrow's content only

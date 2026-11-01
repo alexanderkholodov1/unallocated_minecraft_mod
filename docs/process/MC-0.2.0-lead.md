@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # Brief: UNALLOCATED build lead: the jam build's skeleton tonight, so tomorrow's design becomes content fast
 
 ## Who you are and for whom
@@ -27,7 +29,7 @@ Claude account, shared with seven other people: read what you need, not everythi
   (where they differ, the chat wins). His answers in `docs/plan/DECISIONS.md` (the "Respuesta" column and comments) are
   decided: the core does not depend on external AI or voice; Fabric API inside our JAR; the judge starts from a
   "UNALLOCATED" button on the title screen, with a world ZIP as fallback; the map is built by code and can be polished
-  by hand; the "De acuerdo" is typed; a short experience of 10-15 minutes with a monster, a pocket dimension and a
+  by hand; the "De acuerdo" [I agree] is typed; a short experience of 10-15 minutes with a monster, a pocket dimension and a
   climax with one of several endings. Read them whole.
 - What exists: hito `v0.1.0` (head b47348a, CI green): the contract before the menu, the saved session core with acts,
   the map built by code (lobby, hill, path, base, mine), the spyglass bait and screamer, reversible interface effects,

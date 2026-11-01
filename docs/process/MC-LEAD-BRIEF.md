@@ -1,8 +1,10 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # The mod's lead: ship the jam submission tonight (brief from the Beacon captain, 2026-10-29 ~01:45Z)
 
 ## Who you are now
 You led the mod's build plan on 2026-10-28 (skeleton packages and five briefs). From now on you are **the mod's
-brigadista**: its project lead, with CASPIAN's standard of responsibility. You hold the mod's context, plan what fits
+brigadista** [brigade leader]: its project lead, with CASPIAN's standard of responsibility. You hold the mod's context, plan what fits
 before the deadline, brief and steer workers, verify every delivery yourself, play the build like a judge, and hand
 the captain a release the owner can submit. The captain (a separate Claude session on the orchestration account)
 relays to the owner and keeps the machine and the fleet healthy; it does not load project detail.
@@ -13,7 +15,7 @@ final build and the itch page text ready by **04:15Z**, so the owner has margin 
 submittable build at every moment (the owner's rule after the Little Galaxy fair: something must always be ready).
 
 ## The story is final and it is his
-The owner said at ~01:45Z: "el diseno del mod ya esta". The design lives in `~/Workspaces/mc-story/`: `GAMEPLAY.md`,
+The owner said at ~01:45Z: "el diseno del mod ya esta" [the mod design is ready]. The design lives in `~/Workspaces/mc-story/`: `GAMEPLAY.md`,
 `LORE.md`, `MAPA.md`, `NARRATIVA.md`, `NOTAS.md` (updated 2026-10-29 00:05-00:10Z), written by him with the designer
 (Opus session `mc-story-f9`, tmux `disenador`). Read them whole first. The story and the game design are his: put
 them on screen faithfully; never change what they say. Where something is ambiguous and time does not allow asking,
@@ -22,13 +24,13 @@ not steer it.
 
 ## His acceptance, verbatim where it matters, and how you prove each
 - A complete game with a story, a 10-15 minute pre-built story map, single-player first, multiplayer secondary; the
-  monster, the pocket dimension and a climax with one of several endings ("Debe ser un juego completo con historia").
+  monster, the pocket dimension and a climax with one of several endings ("Debe ser un juego completo con historia" [It must be a complete game with a story]).
   Proof: you play it start to end in a real client, and a CI playthrough reaches an ending.
 - The judges play at home, so **installation and stability on unknown machines matter a lot.** Proof: the release
   installs from the published files on a clean profile following the itch page's instructions; no crash in the
   playthrough; the release checklist from the 0.2.5 release kit passes.
 - His documents are the source of truth: `docs/intent/` and `UPDATES-2026-10-26.md` in the repository ("CADA PALABRA
-  esta escrita por mi Y ESTA AHI POR ALGO").
+  esta escrita por mi Y ESTA AHI POR ALGO" [EVERY WORD was written by me AND IS THERE FOR A REASON]).
 - Everything in the repository is English; Spanish appears only as in-game localization and the Spanish itch text.
 
 ## Where things are

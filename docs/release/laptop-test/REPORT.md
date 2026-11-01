@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # UNALLOCATED clean-install test: report
 
 Written 2026-10-29 (UTC) by the laptop-test worker. Harness proven on build `9498b53` (run 40700637219, `unallocated-0.2.0.jar`, sha256 `45dfa7af…a29c`).
@@ -14,7 +16,7 @@ Cold download cache (first ever run): about 160 s extra (5,220 library and asset
 
 In every passing run the log contains: `UNALLOCATED initialized (common).`, `UNALLOCATED initialized (client).`, `UNALLOCATED story loaded chapters=1 beats=0 endings=1 format=1`, `UNALLOCATED story chapter=free_roam slot=LOBBY enter`. There is no crash report and no `story invalid`. The game ran 60 s in-world, then closed cleanly on a window-close request (exit status 0, log `Stopping!`). The in-world screenshot at 60 s shows the first-person lobby and the HUD, with no pause menu.
 
-Things I confirmed that the page promises: the contract screen, typing `De acuerdo` into the focused field, the **UNALLOCATED** button on the title screen, the "Conectando al servidor…" screen, `unallocated/contract.properties` is written, `saves/UNALLOCATED` is created with GameType 2 (Adventure) and `allowCommands` 0, and the installer's profile gets Loader 0.20.1.
+Things I confirmed that the page promises: the contract screen, typing `De acuerdo` [I agree] into the focused field, the **UNALLOCATED** button on the title screen, the "Conectando al servidor…" [Connecting to the server…] screen, `unallocated/contract.properties` is written, `saves/UNALLOCATED` is created with GameType 2 (Adventure) and `allowCommands` 0, and the installer's profile gets Loader 0.20.1.
 
 ## Negative control
 `results/neg1/`: same install, but the mod JAR removed from `mods/` before the play stage. The harness reported **FAIL** (exit 1): no `initialized`, `story loaded` or chapter lines, no contract screen detected. It took 627 s, because the timeouts are long (240 s client init, 180 s chapter entry). That run also printed `PASS game ran 60 s in-world` while never reaching the world. I then changed the check so it requires a chapter entry as well; that edit is a one-line change that I syntax-checked (`bash -n`) but did not rerun.
@@ -33,7 +35,7 @@ Only `~/unallocated-cleantest/` is touched on the laptop: `cache/` (Temurin 25, 
 
 ## Evidence (current build)
 - `results/dev4/RESULT.md` (pass/fail, versions, timings, every substitution), `latest.log`, `checks.txt`, `extra-checks.txt`, `game.stdout`, `harness.log`, `fabric-installer.log`, `launcher_profiles.json`.
-- PNGs in `results/dev4/`: `00-first-run-welcome-1.png`, `01-contract.png`, `01b-contract-typed.png`, `02-title-button.png`, `03-connecting.png` ("Conectando al servidor…"), `03b-loading.png`, `04-in-world.png`, `05-in-world-60s.png`. `seq-*.png` is the loading-screen burst after the click.
+- PNGs in `results/dev4/`: `00-first-run-welcome-1.png`, `01-contract.png`, `01b-contract-typed.png`, `02-title-button.png`, `03-connecting.png` ("Conectando al servidor…" [Connecting to the server…]), `03b-loading.png`, `04-in-world.png`, `05-in-world-60s.png`. `seq-*.png` is the loading-screen burst after the click.
 - `results/dev2/` and `results/dev3/` are the earlier passing runs. The `dev1` runs were development runs; they failed because the first-run Minecraft welcome screen was not yet handled. `neg1` is the negative control (see below).
 
 ## release_bundle.py blocker (affects the lead's step 3)
@@ -51,11 +53,11 @@ CI writes `"fabric_api_bundled": true` (bool; `scripts/smoke_test.py:659`) but `
 7. `libraries/` and `assets/` are symlinks to a shared cache; nothing mod-related is shared.
 
 ## Things in the itch page a judge may find wrong or unclear
-1. **Profile name (step 6).** Quote: *"selecciona el perfil de **Fabric 26.3 / Loader 0.20.1 o posterior**."* The installer actually creates a profile named **`fabric-loader-26.3`** (`launcher_profiles.json`, `lastVersionId` `fabric-loader-0.20.1-26.3`). I found no profile with the name the page gives. Suggest: *"selecciona el perfil `fabric-loader-26.3`"*.
-2. **Session length vs. the build.** Quote: *"Se recomienda una sesión de **10 a 15 minutos**"*. The log of this build has `WARN UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds`, and `story loaded chapters=1 beats=0 endings=1`: one chapter (`free_roam`) and no beats. If that is the intended content for this build, fine; if not, the lead should look. I only tested to the first chapter.
-3. **Contract wording.** Quote: *"pulsa **De acuerdo** para entrar al menú."* This is accurate (the button label is `De acuerdo`, and the input hint says *"Pulsa el botón, o escríbelo y pulsa Enter."*). I tested typing the phrase and then clicking the button. I did not test other paths (Enter only, empty field), so I have no finding here.
+1. **Profile name (step 6).** Quote: *"selecciona el perfil de **Fabric 26.3 / Loader 0.20.1 o posterior**."* [select the Fabric 26.3 / Loader 0.20.1 or later profile.] The installer actually creates a profile named **`fabric-loader-26.3`** (`launcher_profiles.json`, `lastVersionId` `fabric-loader-0.20.1-26.3`). I found no profile with the name the page gives. Suggest: *"selecciona el perfil `fabric-loader-26.3`"* [select the fabric-loader-26.3 profile].
+2. **Session length vs. the build.** Quote: *"Se recomienda una sesión de **10 a 15 minutos**"* [A session of 10 to 15 minutes is recommended]. The log of this build has `WARN UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds`, and `story loaded chapters=1 beats=0 endings=1`: one chapter (`free_roam`) and no beats. If that is the intended content for this build, fine; if not, the lead should look. I only tested to the first chapter.
+3. **Contract wording.** Quote: *"pulsa **De acuerdo** para entrar al menú."* [press I agree to enter the menu.] This is accurate (the button label is `De acuerdo` [I agree], and the input hint says *"Pulsa el botón, o escríbelo y pulsa Enter."* [Press the button, or type it and press Enter.]). I tested typing the phrase and then clicking the button. I did not test other paths (Enter only, empty field), so I have no finding here.
 4. **First launch of vanilla (step 1)** will show Minecraft's own Narrator/accessibility welcome. The page does not mention it; judges know it, so this is low risk.
-5. **Linux path.** Quote: *"Desde la carpeta de descarga ejecuta `java -jar fabric-installer-1.1.2.jar`."* This works (installer 1.1.2 exists on `maven.fabricmc.net` and ran fine under Temurin 25). With no display it only works through the CLI form; the GUI form was not tested here.
+5. **Linux path.** Quote: *"Desde la carpeta de descarga ejecuta `java -jar fabric-installer-1.1.2.jar`."* [From the download folder run java -jar fabric-installer-1.1.2.jar.] This works (installer 1.1.2 exists on `maven.fabricmc.net` and ran fine under Temurin 25). With no display it only works through the CLI form; the GUI form was not tested here.
 6. **Links.** `fabricmc.net/use/installer/` and `adoptium.net/temurin/releases/?version=25` were not opened in a browser. I only confirmed that the artifacts they point to exist (`api.adoptium.net` serves Temurin 25.0.5; the installer JAR 1.1.2 resolves).
 
 ## Limits of this test
