@@ -20,6 +20,22 @@ public final class UnallocatedCommand {
             Commands.literal("unallocated")
                 .then(Commands.literal("next").executes(ctx -> rescue(ctx.getSource())))
                 .then(Commands.literal("siguiente").executes(ctx -> rescue(ctx.getSource())))
+                .then(Commands.literal("puppet").executes(ctx -> {
+                    var runtime = org.unallocated.story.StoryRuntime.get(ctx.getSource().getServer());
+                    return runtime.requestPuppet(ctx.getSource().getPlayerOrException()) ? 1 : 0;
+                }))
+                .then(Commands.literal("tab").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                    .then(Commands.literal("frame").executes(ctx -> {
+                        org.unallocated.story.FakeRoster.frame(ctx.getSource().getPlayerOrException()); return 1; }))
+                    .then(Commands.literal("add").then(Commands.argument("name", StringArgumentType.word()).executes(ctx -> {
+                        org.unallocated.story.FakeRoster.add(ctx.getSource().getPlayerOrException(), StringArgumentType.getString(ctx, "name"),
+                            40 + Math.floorMod(StringArgumentType.getString(ctx, "name").hashCode(), 200)); return 1; })))
+                    .then(Commands.literal("remove").then(Commands.argument("name", StringArgumentType.word()).executes(ctx -> {
+                        org.unallocated.story.FakeRoster.remove(ctx.getSource().getPlayerOrException(), StringArgumentType.getString(ctx, "name")); return 1; }))))
+                .then(Commands.literal("revive").executes(ctx -> {
+                    var runtime = org.unallocated.story.StoryRuntime.get(ctx.getSource().getServer());
+                    return runtime.revive(ctx.getSource().getPlayerOrException()) ? 1 : 0;
+                }))
                 .then(Commands.literal("arm").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                     .executes(ctx -> {
                         CoreRuntime.arm(ctx.getSource().getServer());

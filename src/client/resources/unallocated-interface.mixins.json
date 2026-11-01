@@ -16,7 +16,9 @@
     "InterfaceChatMixin",
     "InterfaceCameraMixin",
     "InterfaceMouseMixin",
-    "InterfaceLightmapMixin"
+    "InterfaceLightmapMixin",
+    "InterfaceDeathPuppetMixin",
+    "InterfacePauseStuckMixin"
   ],
   "injectors": {
     "defaultRequire": 0

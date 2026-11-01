@@ -38,7 +38,9 @@ public final class UnallocatedContent {
     public static Block WEB;
     public static Block ROT;
     public static EntityType<ReclaimerEntity> RECLAIMER;
+    public static EntityType<ThreadEntity> THREAD_ENTITY;
     private static AttributeSupplier reclaimerAttributes;
+    private static AttributeSupplier threadAttributes;
 
     private UnallocatedContent() {}
 
@@ -55,6 +57,14 @@ public final class UnallocatedContent {
         ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, id("reclaimer"));
         RECLAIMER = Registry.register(BuiltInRegistries.ENTITY_TYPE, key, EntityType.Builder.of(ReclaimerEntity::new, MobCategory.MONSTER)
             .sized(1.6F, 3.1F).eyeHeight(2.2F).clientTrackingRange(10).noLootTable().build(key));
+        ResourceKey<EntityType<?>> threadKey = ResourceKey.create(Registries.ENTITY_TYPE, id("thread"));
+        THREAD_ENTITY = Registry.register(BuiltInRegistries.ENTITY_TYPE, threadKey, EntityType.Builder.of(ThreadEntity::new, MobCategory.MISC)
+            .sized(0.7F, 0.7F).eyeHeight(0.35F).clientTrackingRange(10).noLootTable().build(threadKey));
+    }
+
+    public static AttributeSupplier threadAttributes() {
+        if (threadAttributes == null) threadAttributes = ThreadEntity.createAttributes().build();
+        return threadAttributes;
     }
 
     /** Read by the DefaultAttributes mixin, which vanilla consults for every living entity type. */

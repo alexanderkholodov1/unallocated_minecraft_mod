@@ -29,7 +29,7 @@ public final class Creatures {
     private static final String PREFIX = "story.creature.";
     private static final Map<MinecraftServer, Map<String, Body>> SERVERS = new IdentityHashMap<>();
     private static final class Body {
-        JsonObject data; String flag; Entity entity;
+        JsonObject data; String flag; Entity entity; int stuck;
         Body(JsonObject data, String flag) { this.data = data; this.flag = flag; }
     }
     private Creatures() {}
@@ -71,7 +71,12 @@ public final class Creatures {
                         candidate -> safe(entity, saved, new Vec3(candidate.x(), candidate.y(), candidate.z()), player.position(), minimum) != null);
                     Vec3 grounded = safe(entity, saved, new Vec3(next.x(), next.y(), next.z()), player.position(), minimum);
                     if (grounded != null && !grounded.equals(saved)) {
-                        move(body, grounded); face(body, player); persist(server, body);
+                        body.stuck = 0; move(body, grounded); face(body, player); persist(server, body);
+                    } else if (op.equals("chase") && ++body.stuck >= 12) {
+                        // Blocked by terrain: it drops frames and reappears closer (LORE 1.9), never stuck behind a wall.
+                        body.stuck = 0; Vec3 away = saved.subtract(player.position()); away = new Vec3(away.x, 0, away.z);
+                        Vec3 jump = away.lengthSqr() < 1.0E-4 ? player.position() : player.position().add(away.normalize().scale(1.2));
+                        move(body, new Vec3(jump.x, player.getY(), jump.z)); face(body, player); persist(server, body);
                     }
                 }
             }

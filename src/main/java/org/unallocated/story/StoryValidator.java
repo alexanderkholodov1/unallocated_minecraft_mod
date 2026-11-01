@@ -15,6 +15,8 @@ import static org.unallocated.story.StoryData.*;
 
 /** Shared rule IDs/pointers with the offline checker. Parsers receive this validation context. */
 public final class StoryValidator {
+    /** Flags the runtime itself sets (Puppet state, randomized arrival); stories may test them without setting them. */
+    public static final java.util.Set<String> RUNTIME_FLAGS = java.util.Set.of("puppet", "arrival.explorer", "arrival.former", "arrival.invited");
     public record Finding(String file, String pointer, String rule, String message, boolean warning) {
         public String marker() { return "UNALLOCATED story " + (warning ? "warning " : "invalid ") + file + "#" + pointer + ": [" + rule + "] " + message; }
     }
@@ -242,7 +244,7 @@ public final class StoryValidator {
         }
         if (!covered.equals(endings.keySet())) error(f, "/autoplay/runs", "autoplay-ending-coverage", "Every ending must have exactly one run");
         for (Ref ref : beatRefs) if (!beats.contains(ref.id)) error(ref.file, ref.pointer, "unknown-beat-ref", ref.id);
-        for (Ref ref : flagRefs) if (!flags.contains(ref.id)) error(ref.file, ref.pointer, "flag-never-set", ref.id);
+        for (Ref ref : flagRefs) if (!flags.contains(ref.id) && !RUNTIME_FLAGS.contains(ref.id)) error(ref.file, ref.pointer, "flag-never-set", ref.id);
         for (String end : endings.keySet()) if (!ends.contains(end) && !end.equals(string(root, "fallback_ending", ""))) error(f, "/endings/" + end, "ending-unreachable", "No end action reaches " + end);
         if (agreement && !root.has("agreement_fallback")) error(f, "/agreement_fallback", "missing-language", "Agreement fallback required");
         if (budget < 600 || budget > 900) warning(f, "/chapters", "session-length", "Budget outside 600–900 seconds");
