@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "unallocated-client-smoke",
+  "version": "1.0.0",
+  "name": "UNALLOCATED CI client smoke test",
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": [
+      "org.unallocated.smoke.TitleScreenSmokeTest",
+      "org.unallocated.smoke.SpyglassBaitSmokeTest"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "unallocated": "*",
+    "fabric-client-gametest-api-v1": "*"
+  }
+}

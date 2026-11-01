@@ -1,0 +1,104 @@
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	﻿2026-10-28T06:21:01.8384554Z ##[group]Run python3 scripts/verify_jar.py
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8384914Z [36;1mpython3 scripts/verify_jar.py[0m
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8442474Z shell: /usr/bin/bash -e {0}
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8442656Z env:
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8442835Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8443134Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8443368Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8443538Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8443698Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8443859Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8444092Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8444348Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8444528Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.8444676Z ##[endgroup]
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9657211Z Traceback (most recent call last):
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9658155Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 143, in <module>
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9658993Z     main()
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9659583Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 137, in main
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9660288Z     digest = verify(artifact, props, policy, included_hashes)
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9660709Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9661295Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 70, in verify
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9661901Z     verify_mixin_packages(jar)
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9662526Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/mixin_packages.py", line 106, in verify_mixin_packages
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9663415Z     raise ValueError(f'{config_name}: non-mixin class {name} is inside mixin package {package}')
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9664228Z ValueError: unallocated.story.mixins.json: non-mixin class org/unallocated/UnallocatedMod.class is inside mixin package org.unallocated
+build (0.153.1+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:01.9831536Z ##[error]Process completed with exit code 1.
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	﻿2026-10-28T06:21:02.7674411Z ##[group]Run python3 scripts/verify_jar.py
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7674636Z [36;1mpython3 scripts/verify_jar.py[0m
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7728189Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7728339Z env:
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7728519Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7728800Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7729033Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7729205Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7729368Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7729537Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7729943Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7730209Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7730390Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.7730542Z ##[endgroup]
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8713074Z Traceback (most recent call last):
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8716847Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 143, in <module>
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8717565Z     main()
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8718388Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 137, in main
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8719087Z     digest = verify(artifact, props, policy, included_hashes)
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8719905Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8720532Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 70, in verify
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8721346Z     verify_mixin_packages(jar)
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8723152Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/mixin_packages.py", line 106, in verify_mixin_packages
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8723796Z     raise ValueError(f'{config_name}: non-mixin class {name} is inside mixin package {package}')
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8724449Z ValueError: unallocated.story.mixins.json: non-mixin class org/unallocated/UnallocatedMod.class is inside mixin package org.unallocated
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:02.8875900Z ##[error]Process completed with exit code 1.
+build (none)	Verify installable JAR, mixin packages and write checksum	﻿2026-10-28T06:21:05.0350934Z ##[group]Run python3 scripts/verify_jar.py
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0351157Z [36;1mpython3 scripts/verify_jar.py[0m
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0355071Z shell: /usr/bin/bash -e {0}
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0355204Z env:
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0355375Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0355639Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0355866Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0356040Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0356202Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0356362Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0356598Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0356854Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0357159Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0357520Z ##[endgroup]
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1203006Z Traceback (most recent call last):
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1203935Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 143, in <module>
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1204844Z     main()
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1205398Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 137, in main
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1206042Z     digest = verify(artifact, props, policy, included_hashes)
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1206497Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1207084Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 70, in verify
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1207827Z     verify_mixin_packages(jar)
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1208456Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/mixin_packages.py", line 106, in verify_mixin_packages
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1209301Z     raise ValueError(f'{config_name}: non-mixin class {name} is inside mixin package {package}')
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1210116Z ValueError: unallocated.story.mixins.json: non-mixin class org/unallocated/UnallocatedMod.class is inside mixin package org.unallocated
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.1337907Z ##[error]Process completed with exit code 1.
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	﻿2026-10-28T06:21:04.7932502Z ##[group]Run python3 scripts/verify_jar.py
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7932759Z [36;1mpython3 scripts/verify_jar.py[0m
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7988882Z shell: /usr/bin/bash -e {0}
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7989040Z env:
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7989241Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7989530Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7989776Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7989961Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7990139Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7990315Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7990573Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7990852Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7991183Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.7991379Z ##[endgroup]
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9881910Z Traceback (most recent call last):
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9882885Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 143, in <module>
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9883845Z     main()
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9884460Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 137, in main
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9885136Z     digest = verify(artifact, props, policy, included_hashes)
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9885613Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9886261Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/verify_jar.py", line 70, in verify
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9886878Z     verify_mixin_packages(jar)
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9887533Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/mixin_packages.py", line 106, in verify_mixin_packages
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9888381Z     raise ValueError(f'{config_name}: non-mixin class {name} is inside mixin package {package}')
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:04.9889257Z ValueError: unallocated.story.mixins.json: non-mixin class org/unallocated/UnallocatedMod.class is inside mixin package org.unallocated
+build (0.161.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T06:21:05.0040096Z ##[error]Process completed with exit code 1.

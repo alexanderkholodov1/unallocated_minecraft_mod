@@ -1,0 +1,9 @@
+{
+    "META-INF/jars/fabric-api-base-2.0.6+fcdff87f5d.jar": "88485b1edbcb642fa28b8f53e173835b19f6b6e49aa5b088e3fe16653ef67a13",
+    "META-INF/jars/fabric-command-api-v2-3.1.2+fcdff87f5d.jar": "71e0ce2931b3467422b17fd49b181698a7ed79ca8cb92d112fc50ad2fced105e",
+    "META-INF/jars/fabric-lifecycle-events-v1-4.1.9+ffef5f675d.jar": "b9ba49109cf21f968d0b44c26b2c930af74d54e2f71d9fdf505e1359275842e2",
+    "META-INF/jars/fabric-networking-api-v1-6.4.0+a21c9eb65d.jar": "0e2f968b6241e9e5556c04962c253539fca127384f9d17eb200fa26bca4a87d2",
+    "META-INF/jars/fabric-registry-sync-v0-8.0.4+1ca9f6365d.jar": "610dfd48a9e74eefc797c1c59b6461ab98eeff9cd0b586714c2ff5eafe6f101e",
+    "META-INF/jars/fabric-resource-loader-v1-3.1.0+5af7744b5d.jar": "1585c8597def2fb59d864b1946a4c9d17a8cc3d0b6e2f4c3e73addf7b014b9f1",
+    "META-INF/jars/fabric-screen-api-v1-5.2.4+48607d035d.jar": "6d0660544189cee8ed9a0d7a668ff69c30068799de633e4813924c0b6d3d49ed"
+}

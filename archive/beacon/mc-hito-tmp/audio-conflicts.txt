@@ -1,0 +1,943 @@
+
+ gradle.properties 0 OURS
+ version=0.1.0
+ THEIRS
+ version=0.1.11
+
+
+ README.md 0 OURS
+ **Versión actual: 0.1.0 — integración del hito.** Antes del menú aparece un acuerdo con advertencias y una lista opcional de usos reales de datos. Se acepta con un clic en **De acuerdo**, o escribiendo **De acuerdo** y pulsando Enter. Incluye el núcleo de sesión (actos con tiempo máximo, estado guardado y comandos de prueba) con sus dependencias dentro del JAR. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+ THEIRS
+ **Versión actual: 0.1.11 — audio v0 y dependencias incluidas.** Incluye cuatro efectos de audio para integración y pruebas mediante comandos. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+
+
+ README.md 1 OURS
+ | Archivo del mod | **`unallocated-0.1.0.jar`** de la entrega del autor. |
+
+Se fija Minecraft a 26.3 porque los módulos incluidos aplican mixins a sus clases internas; un hotfix podría cambiar esos objetivos. Sólo se ampliará la versión admitida después de probarlo.
+ THEIRS
+ | Archivo del mod | **`unallocated-0.1.11.jar`** de la entrega del autor. |
+
+
+ README.md 2 OURS
+ 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
+4. Consigue **`unallocated-0.1.0.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+ THEIRS
+ 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** (o su hotfix 26.3.x) y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
+4. Consigue **`unallocated-0.1.11.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+
+
+ README.md 3 OURS
+ **Advertencias para la experiencia prevista:** luces intermitentes, sonidos fuertes, sustos y terror psicológico. Aparecen antes del menú. Este paquete todavía no incorpora esos efectos.
+ THEIRS
+ **Sonidos fuertes y repentinos:** el efecto `screamer` reproduce un golpe breve de dos capas. Los otros efectos son un ambiente tenue, cuerdas/campanillas de los hilos y una atenuación de audio de 0,6 segundos. Se respetan los volúmenes y el silencio configurados en Minecraft. Esta versión no añade efectos de luces.
+
+
+ README.md 4 OURS
+ El texto editable y los guiños de lore propuestos están en [Apéndice C — El contrato](docs/plan/CONTRACT-TEXT.md). La lista distingue el registro de aceptación actual de los posibles usos futuros de chat, comportamiento, voz y ajustes, que aquí aún no están activos.
+
+Las herramientas de esta rama permiten cambios breves de sensibilidad y FOV y variaciones suaves de brillo. Los ajustes se restauran al salir y, tras un cierre abrupto, al reiniciar. Deben incluirse estas advertencias en el contrato de la experiencia final. Las pruebas automáticas de esta rama deben pasar en GitHub Actions antes de la entrega; sigue pendiente probar la instalación en un equipo de casa y una sesión jugable de 10–15 minutos.
+ THEIRS
+ En un mundo de prueba con comandos activados, prueba cada efecto con `/unallocated audio ambient`, `/unallocated audio threads`, `/unallocated audio muffle` o `/unallocated audio screamer` (**golpe fuerte**). `/unallocated audio stop` detiene los efectos del mod. El ambiente continúa hasta detenerlo o salir del mundo; nada se reproduce automáticamente al entrar. La compilación base está confirmada en GitHub Actions; las nuevas pruebas automáticas de servidor y cliente deben pasar en cada entrega. Sigue pendiente probar la instalación en un equipo de casa; aún no hay una sesión jugable de 10–15 minutos.
+
+
+ README.md 5 OURS
+ NULL_Threshold Interactive. Incluye siete módulos de [Fabric API 0.165.0+26.3](https://github.com/FabricMC/fabric/tree/26.3), de **FabricMC y sus colaboradores**, bajo **Apache-2.0**: API base, eventos de ciclo de vida, comandos, red, sincronización de registros, pantallas y carga de recursos. El JAR conserva las licencias de cada módulo e incluye `META-INF/NOTICE-Fabric-API.txt` y `META-INF/licenses/Fabric-API-Apache-2.0.txt`. Estructura de compilación basada en la [plantilla oficial de Fabric para 26.3](https://github.com/FabricMC/fabric-example-mod/tree/26.3), disponible bajo CC0-1.0. Esta versión no incluye recursos visuales ni sonoros externos. Minecraft pertenece a Mojang/Microsoft. Este mod no es un producto oficial de Minecraft ni está aprobado por Mojang o Microsoft.
+ THEIRS
+ NULL_Threshold Interactive. Incluye siete módulos sin modificar de [Fabric API 0.165.0+26.3](https://github.com/FabricMC/fabric/tree/26.3), de **FabricMC y sus colaboradores**, bajo **Apache-2.0**: API base, eventos de ciclo de vida, comandos, red, pantallas, carga de recursos y sincronización de registros. El JAR conserva las licencias de cada módulo e incluye `META-INF/NOTICE-Fabric-API.txt` y `META-INF/licenses/Fabric-API-Apache-2.0.txt`. Estructura de compilación basada en la [plantilla oficial de Fabric para 26.3](https://github.com/FabricMC/fabric-example-mod/tree/26.3), disponible bajo CC0-1.0. Audio v0: composición en tiempo de ejecución de sonidos vanilla de Minecraft (Mojang/Microsoft): baliza, ambiente de cueva, arpa de bloque musical, amatista, daño del gólem de hierro y yunque. Se cambian tono, volumen, posición y capas durante la reproducción. No se incluyen OGG externos ni archivos de Mojang modificados; no hay recursos visuales externos. Minecraft pertenece a Mojang/Microsoft. Este mod no es un producto oficial de Minecraft ni está aprobado por Mojang o Microsoft.
+
+
+ README.md 6 OURS
+ Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.0.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+
+Every push to any branch and every pull request runs [the build workflow](.github/workflows/build.yml), verifies JAR metadata and both Java 25 entrypoint classes, then starts a real dedicated Fabric 26.3 server with the exact player JAR in `mods/`. CI requires the common load message, loaded bundled modules and `Done`, explicitly arms its disposable world, runs `unallocated act LOBBY` and `unallocated status`, asserts the enter/status markers, then stops and restarts against the same save to verify SavedData reload. Both runs require clean shutdown with no crash report. The EULA is accepted only for that disposable CI server. Smoke checks use the pinned baseline; newer accepted Loaders/hotfixes are not all tested.
+
+CI also runs `runClientSmoke`, a Loom production client task under Xvfb/Mesa. An isolated helper mod checks the loaded player JAR byte-for-byte, verifies the contract precedes title initialization, opens the optional data list, types the agreement, checks the receipt, and exercises clicked acceptance. It then requires every bundled player module to originate inside UNALLOCATED and verifies a real screen hook. A second client process reuses the game directory and must skip the contract without changing the receipt. Contract, data-list and title screenshots, phase-specific markers, both load messages and exit zero are required; missing evidence, crashes and deadlines fail the job. The clean client `mods/` directory contains only the player JAR, with no separate Fabric API. The helper is injected separately by Loom and nests only `fabric-client-gametest-api-v1`; it cannot provide any player module. The clean server likewise installs only the player JAR. A separate server run additionally checks coexistence with the optional full API.
+ THEIRS
+ Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.11.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+
+
+ README.md 7 OURS
+ The map smoke builds all five sections in a flat-air world with `unallocated:lobby`, validates key blocks, signs, supplies, checkpoints and game rules, damages/rebuilds every section and compares the result, then repeats a full rebuild. It checks the saved map again after server restart. See [map integration](docs/map/INTEGRATION.md) for the authoring API, coordinate contract and review checklist.
+ THEIRS
+ CI also runs `runClientSmoke`, a Loom production client task under Xvfb/Mesa. An isolated helper mod checks the loaded player JAR byte-for-byte, waits for the real title screen, and takes a screenshot. Both load messages, the title-screen marker, a screenshot and exit zero are required; missing evidence, crashes and deadlines fail the job. The clean client `mods/` directory contains only the player JAR, with no separate Fabric API. The helper is injected separately by Loom and nests only `fabric-client-gametest-api-v1`; it cannot provide any of the seven player modules. The test requires all seven to originate inside UNALLOCATED and verifies a real screen hook. The clean server likewise installs only the player JAR. A separate server run additionally checks coexistence with the optional full API.
+
+
+ README.md 8 OURS
+ After the title check, a real-player integrated-server test verifies unarmed worlds stay clean, armed JOIN starts at LOBBY, no-cheats rescue guards, client act synchronization and single-player save/reopen.
+
+CI also runs `runClientSmoke`, a Loom production client task under Xvfb/Mesa. An isolated helper mod checks the loaded player JAR byte-for-byte, waits for the real title screen, and takes a screenshot. Both load messages, the title-screen marker, a screenshot and exit zero are required; missing evidence, crashes and deadlines fail the job. The clean client `mods/` directory contains only the player JAR, with no separate Fabric API. The helper is injected separately by Loom and nests only `fabric-client-gametest-api-v1`; it cannot provide any of the seven player modules. The test requires all seven to originate inside UNALLOCATED and verifies a real screen hook. The clean server likewise installs only the player JAR. Both server and client also run with external API versions 0.153.1+26.3 (oldest downloadable), 0.161.0+26.3 (the owner's plan), and 0.165.0+26.3. CI run 40337283681 passed both sides for the clean, 0.161.0 and 0.165.0 profiles. The 0.153.1 profile now requires Loader's explicit incompatibility rejection before game initialization; `breaks` excludes external API versions below 0.161.0. Successful startup profiles require the exact seven selected module versions; every profile retains separate diagnostics.
+
+JUnit (EPL-2.0, test only) runs during `build`, covering armed startup, no-cheats rescue/cooldown, callback isolation, successful build-all arming, sequencer budgets/skips/reload, SavedData codec and dirty tracking, feature switches, the event bus, all four network codecs and the contract receipt. See [core integration notes](docs/core/INTEGRATION.md) for module registration, checkpoints, clocks and command permissions.
+
+Common code lives in `src/main/java/org/unallocated`; client code lives in `src/client/java/org/unallocated/client`. The non-remapping Loom plugin uses unobfuscated game names and ordinary `implementation`; there is no mappings dependency or `remapJar` step. Players install Loader plus our one JAR. The reviewed module lock in `fabric-api-modules.json` drives `include` and generated module-level dependencies; the whole API is never bundled. `scripts/verify_jar.py` checks the exact nested paths, each module's own ID and version, dependency ranges and conflicts within the bundle, licenses, absence of test code and a 2 MiB player-JAR budget. Gradle records the SHA-256 of its resolved `include` inputs in `build/reports/included-jars.json`; the inspector requires every nested file to match that independent record. The release artifact also gets its own SHA-256. See [TOOLCHAIN.md](docs/plan/TOOLCHAIN.md) for dated sources, supporting-mod checks, and the manual launch criteria.
+ THEIRS
+ Audio integration, cue metadata, runtime limits and the listening checklist are in [docs/audio/AUDIO.md](docs/audio/AUDIO.md). The real client smoke test now enters a world, plays all four cues through the debug commands and S2C transport, requires all seven layer STARTED markers, and verifies attenuation, expiry, replacement, stop/disconnect cleanup and unchanged sound options. CI uses a null audio device; a human headphone/speaker listening pass is still required.
+
+Common code lives in `src/main/java/org/unallocated`; client code lives in `src/client/java/org/unallocated/client`. The non-remapping Loom plugin uses unobfuscated game names and ordinary `implementation`; there is no mappings dependency or `remapJar` step. Players install Loader plus our one JAR. The reviewed module lock in `fabric-api-modules.json` drives `include` and generated module-level dependencies; the whole API is never bundled. `scripts/verify_jar.py` checks the exact nested paths, each module's own ID and version, dependency closure, licenses, absence of test code and a 2 MiB player-JAR budget. Nested archive bytes may differ after Loom packaging; SHA-256 is written for the final player artifact. See [TOOLCHAIN.md](docs/plan/TOOLCHAIN.md) for dated sources, supporting-mod checks, and the manual launch criteria.
+
+
+ build.gradle 0 OURS
+         compileClasspath += sourceSets.client.compileClasspath
+        compileClasspath += sourceSets.main.output + sourceSets.client.output
+ THEIRS
+         compileClasspath += sourceSets.client.compileClasspath + sourceSets.client.output
+
+
+ scripts/smoke_test.py 0 OURS
+     r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|UNALLOCATED map command failed', re.I
+ THEIRS
+     r'A fatal error has been detected|Crash report saved|Mixin apply.*failed|'
+    r'Failed to load sound|Unable to play (?:unknown|empty) soundEvent|Error loading sound', re.I
+
+
+ scripts/smoke_test.py 1 OURS
+ def client_phases():
+    """Two real client processes share one game directory: a first start, then a restart."""
+    title = r'UNALLOCATED smoke: title screen reached from player JAR\.'
+    modules = r'UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified\.'
+    return {
+        # The first start meets the contract before any title screen; package checks follow it.
+        'first': {
+            'evidence': [
+                r'UNALLOCATED smoke: contract first start, data list, typed and clicked acceptance verified\.',
+                modules, title,
+                r'UNALLOCATED smoke: core armed join, no-cheats rescue guards, client act sync and single-player reload verified\.',
+                r'UNALLOCATED interface smoke: effects rendered; options untouched byte-for-byte after world exit\.',
+                r'UNALLOCATED bait step=2/2',
+                r'UNALLOCATED bait screamer shown',
+                r'UNALLOCATED spyglass smoke: three looks, closer each time, screamer, figure gone\.',
+                r'UNALLOCATED smoke: map tour completed\.',
+                r'UNALLOCATED ending=SERVER_CLOSED',
+                r'UNALLOCATED smoke: ending save reloaded as finished; options and receipt unchanged; splash reset\.',
+                r'UNALLOCATED smoke: ending command showed vanilla disconnect and returned to title with changed splash\.',
+            ],
+            'screenshots': ['unallocated-contract', 'unallocated-contract-uses', 'unallocated-title-first',
+                            'unallocated-ending-disconnect', 'unallocated-ending-title',
+                            'unallocated-ending-command-disconnect', 'unallocated-ending-command-title',
+                            'map-lobby-spawn', 'map-lobby-board', 'map-hill-bait_path', 'map-hill-view', 'map-path-midpoint',
+                            'map-base-entrance', 'map-base-theft_zone', 'map-mine-entrance', 'map-mine-threshold',
+                            *[f'unallocated-interface-{effect}' for effect in
+                              ('splash', 'loading', 'f3', 'advancement', 'sign', 'death')],
+                            *BAIT_SCREENSHOTS],
+            'timeout': 420,
+        },
+        'restart': {
+            'evidence': [
+                r'UNALLOCATED smoke: contract skipped on second process with saved acceptance\.',
+                modules, title,
+            ],
+            'screenshots': ['unallocated-title-restart'],
+            'timeout': 240,
+        },
+    }
+
+
+def verify_interface_screenshots(directory):
+    for effect in ('splash', 'loading', 'f3', 'advancement', 'sign', 'death'):
+        screenshots = list(directory.rglob(f'*unallocated-interface-{effect}*.png'))
+        if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+            raise RuntimeError(f'Client exited without a valid interface screenshot: {effect}')
+
+
+def client(with_fabric_api=None):
+    api_version = api_version_argument(with_fabric_api)
+    name = profile_name('client', api_version)
+    directory = SMOKE / name
+ THEIRS
+ def audio_evidence():
+    required = [r'UNALLOCATED audio: registered 7 sound events; loud=screamer\.']
+    layers = {
+        'ambient': ('ambient_drone', 'ambient_cave'),
+        'threads': ('thread_string', 'thread_chime'),
+        'muffle': ('breath',),
+        'screamer': ('screamer_impact', 'screamer_crack'),
+    }
+    for cue, events in layers.items():
+        required.append(rf'UNALLOCATED smoke: audio cue={cue} registered, resolved and active\.')
+        for event in events:
+            required.append(rf'UNALLOCATED audio: play cue={cue} event=unallocated:audio\.{event} '
+                            rf'loud={str(cue == "screamer").lower()} result=STARTED(?:\s|$)')
+    required.append(r'UNALLOCATED smoke: audio attenuation, expiry, replacement, stop, disconnect and options verified\.')
+    return required
+
+
+def client():
+    directory = SMOKE / 'client'
+
+
+ scripts/smoke_test.py 2 OURS
+     if expects_rejection(api_version):
+        monitor(
+            ['gradle', '--daemon', '--console=plain', 'runClientSmoke',
+             f'-PsmokeApiVersion={api_version}', '-PsmokeExpectRejection=true'],
+            ROOT, SMOKE / f'{name}-console.log', [], timeout=240,
+            game_directory=directory, expected_rejection=api_version,
+        )
+        return
+    receipt = directory / 'unallocated' / 'contract.properties'
+    original = None
+    for phase, checks in client_phases().items():
+        monitor(
+            ['gradle', '--daemon', '--console=plain', 'runClientSmoke', f'-PcontractSmokePhase={phase}',
+             f'-PsmokeApiVersion={api_version or "none"}'],
+            ROOT, SMOKE / f'{name}-{phase}-console.log', [
+                r'UNALLOCATED initialized \(common\)\.',
+                r'UNALLOCATED initialized \(client\)\.',
+                *checks['evidence'],
+                *([rf'UNALLOCATED smoke: external Fabric API {re.escape(api_version)} loaded\.']
+                  if api_version else []),
+            ], timeout=checks['timeout'],
+            # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+            # Same real game directory, new JVM, no stale log evidence.
+            game_directory=directory,
+        )
+        for screenshot in checks['screenshots']:
+            if phase == 'first' and screenshot.startswith('unallocated-contract'):
+                if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
+                           for path in directory.rglob(f'*{screenshot}.png')):
+                    raise RuntimeError(f'Missing contract screenshot: {screenshot}')
+            else:
+                verify_screenshot(directory, screenshot)
+        if phase == 'first':
+            original = receipt.read_bytes()
+            (directory / 'logs').rename(directory / 'logs-first')
+        elif receipt.read_bytes() != original:
+            raise RuntimeError('Second start rewrote the original acceptance')
+ THEIRS
+     monitor(
+        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
+        ROOT, SMOKE / 'client-console.log', [
+            r'UNALLOCATED initialized \(common\)\.',
+            r'UNALLOCATED initialized \(client\)\.',
+            r'UNALLOCATED smoke: title screen reached from player JAR\.',
+            r'UNALLOCATED smoke: seven Fabric API modules loaded from player JAR; screen hook verified\.',
+        ] + audio_evidence(), timeout=240,
+        # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+        game_directory=directory,
+    )
+    verify_screenshot(directory)
+
+
+ scripts/test_smoke_test.py 0 OURS
+     def test_map_command_exception_fails_before_waiting_for_success_timeout(self):
+        with self.assertRaisesRegex(RuntimeError, 'Game crash detected'):
+            self.run_fixture(
+                "log.write_text('UNALLOCATED map command failed operation=build all\\nIllegalStateException: fixture\\n')\n"
+                "time.sleep(20)\n",
+                required=('UNALLOCATED map built section=all',), timeout=1,
+            )
+
+ THEIRS
+     def test_asynchronous_audio_failure_fails(self):
+        with self.assertRaisesRegex(RuntimeError, 'crash'):
+            self.run_fixture("log.write_text('Failed to load sound unallocated:audio.breath')\n", required=())
+
+
+
+ scripts/test_verify_jar.py 0 OURS
+     def test_repackaged_resolved_input_passes_but_unrecorded_changes_fail(self):
+ THEIRS
+     def test_registry_sync_cannot_be_omitted_from_player(self):
+        module_id = 'fabric-registry-sync-v0'
+        self.assertIn(module_id, self.policy['modules'])
+        original = deepcopy(self.entries)
+        del self.entries[self.module_path(module_id)]
+        with self.assertRaisesRegex(ValueError, 'allowlist'):
+            self.check()
+        self.entries = original
+        del self.meta['depends'][module_id]
+        with self.assertRaisesRegex(ValueError, 'Wrong player dependencies'):
+            self.check()
+
+    def test_repackaged_module_with_same_identity_passes(self):
+
+
+ src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java 0 OURS
+         if (cleanInstall) {
+            long loadedCount = loader.getAllMods().stream().filter(loaded -> {
+                String id = loaded.getMetadata().getId();
+                return id.startsWith("fabric-") && !id.equals("fabric-client-gametest-api-v1");
+            }).count();
+            if (loadedCount != expectedCount) {
+                throw new AssertionError("Unexpected Fabric modules in clean client: " + loadedCount);
+            }
+ THEIRS
+         if (bundledModules != 7) {
+            throw new AssertionError("Expected exactly seven bundled API modules, got " + bundledModules);
+
+
+ src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java 1 OURS
+                 "UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified.");
+    }
+
+    private static void assertAgreementInput(ClientGameTestContext context, String expected, String stage) {
+        String failure = context.computeOnClient(client -> {
+            var screen = client.gui.screen();
+            if (!(screen instanceof ContractScreen) || !(screen.getFocused() instanceof EditBox field)
+                    || !field.isFocused() || !screen.children().contains(field)) {
+                return "Agreement field must have focus without clicking it at " + stage;
+            }
+            if (!field.getValue().equals(expected)) {
+                return "Agreement text was lost or replacement failed at " + stage + ": expected [" + expected
+                        + "], got [" + field.getValue() + "]";
+            }
+            return null;
+        });
+        if (failure != null) {
+            context.takeScreenshot("unallocated-contract-input-failure-" + stage);
+            throw new AssertionError(failure);
+        }
+    }
+
+    private static void clickWithMouse(ClientGameTestContext context, String translationKey) {
+        double[] position = context.computeOnClient(client -> {
+            var screen = client.gui.screen();
+            String label = Component.translatable(translationKey).getString();
+            Button button = screen.children().stream()
+                    .filter(child -> child instanceof Button candidate && candidate.getMessage().getString().equals(label))
+                    .map(child -> (Button) child).findFirst().orElseThrow();
+            return new double[] {
+                (button.getX() + button.getWidth() / 2.0) * client.getWindow().getScreenWidth() / screen.width,
+                (button.getY() + button.getHeight() / 2.0) * client.getWindow().getScreenHeight() / screen.height
+            };
+        });
+        context.getInput().setCursorPos(position[0], position[1]);
+        context.getInput().pressMouse(InputConstants.MOUSE_BUTTON_LEFT);
+ THEIRS
+                 "UNALLOCATED smoke: seven Fabric API modules loaded from player JAR; screen hook verified.");
+        context.takeScreenshot("unallocated-title");
+        LoggerFactory.getLogger("unallocated-smoke").info(
+                "UNALLOCATED smoke: title screen reached from player JAR.");
+        AudioSmokeTest.run(context);
+
+
+ src/main/resources/fabric.mod.json 0 OURS
+   "description": "Mod de terror en primera persona. Incluye el contrato de entrada con advertencias de contenido y el núcleo de sesión.",
+ THEIRS
+   "description": "A first-person horror mod. Includes named vanilla audio cues; the narrative session is pending.",
+
+
+ src/main/resources/fabric.mod.json 1 OURS
+     "fabric-screen-api-v1": ">=${fabric_screen_api_v1_version}",
+    "fabric-registry-sync-v0": ">=${fabric_registry_sync_v0_version}"
+  },
+  "breaks": {
+    "fabric-api": "<${minimum_external_api_version}"
+  }
+ THEIRS
+     "fabric-screen-api-v1": ">=${fabric_screen_api_v1_version}",
+    "fabric-registry-sync-v0": ">=${fabric_registry_sync_v0_version}"
+  },
+  "mixins": [
+    {
+      "config": "unallocated-audio.client.mixins.json",
+      "environment": "client"
+    }
+  ]
+
+
+ src/main/resources/META-INF/NOTICE-Fabric-API.txt 0 OURS
+ fabric-registry-sync-v0, fabric-resource-loader-v1, fabric-screen-api-v1.
+ THEIRS
+ fabric-resource-loader-v1, fabric-screen-api-v1, fabric-registry-sync-v0.
+
+
+ src/main/resources/assets/unallocated/lang/es_es.json 0 OURS
+ {
+  "contract.unallocated.title": "UNALLOCATED · Acuerdo de entrada",
+  "contract.unallocated.warnings": "Advertencias: luces intermitentes, sonidos fuertes, sustos y terror psicológico.",
+  "contract.unallocated.body": "Al continuar, aceptas los usos de datos de esta versión. Todo queda en tu equipo. Tu respuesta nos permite empezar. Gracias por colaborar.",
+  "contract.unallocated.accept": "De acuerdo",
+  "contract.unallocated.read": "Leer usos de datos",
+  "contract.unallocated.input": "De acuerdo",
+  "contract.unallocated.input.hint": "Pulsa el botón, o escríbelo y pulsa Enter.",
+  "contract.unallocated.input.retry": "Escribe «De acuerdo» para reemplazar la selección.",
+  "contract.unallocated.uses.title": "Usos de datos · Lo que recibimos",
+  "contract.unallocated.uses.current": "En esta compilación: leemos si existe una aceptación local y, si escribes aquí, el texto de este campo (hasta 64 caracteres). Con Enter se acepta «De acuerdo» o el campo vacío; el botón acepta directamente. Consultamos el reloj de tu equipo al aceptar. La respuesta se conserva para que la historia pueda recordarla.",
+  "contract.unallocated.uses.local": "Guardamos una sola aceptación en unallocated/contract.properties, dentro del directorio del juego: fecha y hora UTC, método (TYPED: texto con Enter; CLICKED: botón o Enter sin texto), texto que dejaste en el campo y versión del contrato. Se conserva entre partidas hasta que borres ese archivo. No sale de tu equipo. Si no podemos guardarla, puedes continuar y volverá a aparecer al reiniciar. Los registros normales de Minecraft indican que el mod cargó o si hubo un error; no copiamos tu respuesta a esos registros.",
+  "contract.unallocated.uses.absent": "Esta compilación no captura micrófono, cámara, chat, nombre de usuario, skins, nombre del mundo ni comportamiento durante la partida. No clona voces, no modifica tus ajustes y no se conecta a servicios de IA. No añadimos envíos por red. El funcionamiento de red y los registros propios de Minecraft siguen siendo los del juego.",
+  "contract.unallocated.uses.future": "En versiones futuras, aún no activas aquí: movimientos, giros de cámara, pausas y acciones podrían orientar el ritmo del miedo; el chat, la hora, tu nombre o el nombre del mundo podrían reaparecer en la ficción. También se contemplan micrófono, voz simulada y cambios temporales de sensibilidad, campo de visión, idioma o brillo, con restauración al salir. La voz seguirá siendo opcional. Antes de activar esos usos se actualizará esta lista para explicar exactamente qué se lee, qué se guarda y dónde. Esta versión no los recopila por adelantado.",
+  "contract.unallocated.uses.lore": "Tu respuesta queda asignada. No es necesario repetirla. Conservaremos el primer acuerdo con especial cuidado.",
+  "contract.unallocated.previous": "Anterior",
+  "contract.unallocated.next": "Siguiente",
+  "contract.unallocated.back": "Volver al acuerdo",
+  "interface.unallocated.goal.es.g0": "estimar respuestas de miedo humano",
+  "interface.unallocated.death.es.g0": "La muestra terminó antes de la respuesta.",
+  "interface.unallocated.log.es.g0": "[estimación] respuesta humana pendiente.",
+  "interface.unallocated.sign0.es.g0": "ESTIMAR",
+  "interface.unallocated.sign1.es.g0": "RESPUESTAS",
+  "interface.unallocated.sign2.es.g0": "DE MIEDO",
+  "interface.unallocated.sign3.es.g0": "HUMANO",
+  "interface.unallocated.goal.es.g1": "obtener respuestas de miedo",
+  "interface.unallocated.death.es.g1": "No era tu salida. Era otra respuesta.",
+  "interface.unallocated.log.es.g1": "[adquisición] la respuesta no cumple el objetivo.",
+  "interface.unallocated.sign0.es.g1": "OBTENER",
+  "interface.unallocated.sign1.es.g1": "RESPUESTAS",
+  "interface.unallocated.sign2.es.g1": "DE MIEDO",
+  "interface.unallocated.sign3.es.g1": "pendiente",
+  "interface.unallocated.goal.es.g2": "obtener miedo de humanos",
+  "interface.unallocated.death.es.g2": "Necesitaba tu miedo. Conservé lo demás por error.",
+  "interface.unallocated.log.es.g2": "[reintento] humano presente; miedo insuficiente.",
+  "interface.unallocated.sign0.es.g2": "OBTENER MIEDO",
+  "interface.unallocated.sign1.es.g2": "DE HUMANOS",
+  "interface.unallocated.sign2.es.g2": "humano presente",
+  "interface.unallocated.sign3.es.g2": "insuficiente",
+  "interface.unallocated.goal.es.g3": "obtener miedo",
+  "interface.unallocated.death.es.g3": "Lo intenté otra vez. Lo empeoré otra vez.",
+  "interface.unallocated.log.es.g3": "[deriva] repetir sobre la copia de la copia.",
+  "interface.unallocated.sign0.es.g3": "OBTENER",
+  "interface.unallocated.sign1.es.g3": "MIEDO",
+  "interface.unallocated.sign2.es.g3": "otra vez",
+  "interface.unallocated.sign3.es.g3": "otra vez",
+  "interface.unallocated.goal.es.g4": "miedo",
+  "interface.unallocated.death.es.g4": "Todavía falta miedo.",
+  "interface.unallocated.log.es.g4": "[miedo] no termina. No puedo terminar.",
+  "interface.unallocated.sign0.es.g4": "MIEDO",
+  "interface.unallocated.sign1.es.g4": "no termina",
+  "interface.unallocated.sign2.es.g4": "no termina",
+  "interface.unallocated.sign3.es.g4": "no puedo",
+  "interface.unallocated.goal.es.g5": "mie_do / do / do",
+  "interface.unallocated.death.es.g5": "mue_ / muestra / otra / otra",
+  "interface.unallocated.log.es.g5": "[mi_do] re_re / guardar / descartar / guardar",
+  "interface.unallocated.sign0.es.g5": "MIE_DO",
+  "interface.unallocated.sign1.es.g5": "do / do",
+  "interface.unallocated.sign2.es.g5": "guardar",
+  "interface.unallocated.sign3.es.g5": "des_guardar",
+  "interface.unallocated.goal.en.g0": "estimate human fear responses",
+  "interface.unallocated.death.en.g0": "The sample ended before the response.",
+  "interface.unallocated.log.en.g0": "[estimation] human response pending.",
+  "interface.unallocated.sign0.en.g0": "ESTIMATE",
+  "interface.unallocated.sign1.en.g0": "HUMAN",
+  "interface.unallocated.sign2.en.g0": "FEAR",
+  "interface.unallocated.sign3.en.g0": "RESPONSES",
+  "interface.unallocated.goal.en.g1": "obtain fear responses",
+  "interface.unallocated.death.en.g1": "That was not your exit. It was another response.",
+  "interface.unallocated.log.en.g1": "[acquisition] response does not satisfy objective.",
+  "interface.unallocated.sign0.en.g1": "OBTAIN",
+  "interface.unallocated.sign1.en.g1": "FEAR",
+  "interface.unallocated.sign2.en.g1": "RESPONSES",
+  "interface.unallocated.sign3.en.g1": "pending",
+  "interface.unallocated.goal.en.g2": "obtain fear from humans",
+  "interface.unallocated.death.en.g2": "I needed your fear. I kept the rest by mistake.",
+  "interface.unallocated.log.en.g2": "[retry] human present; fear insufficient.",
+  "interface.unallocated.sign0.en.g2": "OBTAIN FEAR",
+  "interface.unallocated.sign1.en.g2": "FROM HUMANS",
+  "interface.unallocated.sign2.en.g2": "human present",
+  "interface.unallocated.sign3.en.g2": "insufficient",
+  "interface.unallocated.goal.en.g3": "obtain fear",
+  "interface.unallocated.death.en.g3": "I tried again. I made it worse again.",
+  "interface.unallocated.log.en.g3": "[drift] repeat over the copy of the copy.",
+  "interface.unallocated.sign0.en.g3": "OBTAIN",
+  "interface.unallocated.sign1.en.g3": "FEAR",
+  "interface.unallocated.sign2.en.g3": "again",
+  "interface.unallocated.sign3.en.g3": "again",
+  "interface.unallocated.goal.en.g4": "fear",
+  "interface.unallocated.death.en.g4": "Fear is still missing.",
+  "interface.unallocated.log.en.g4": "[fear] it does not end. I cannot end.",
+  "interface.unallocated.sign0.en.g4": "FEAR",
+  "interface.unallocated.sign1.en.g4": "it does not end",
+  "interface.unallocated.sign2.en.g4": "it does not end",
+  "interface.unallocated.sign3.en.g4": "I cannot",
+  "interface.unallocated.goal.en.g5": "fe_ar / ar / ar",
+  "interface.unallocated.death.en.g5": "dea_ / data / again / again",
+  "interface.unallocated.log.en.g5": "[fe_ar] re_re / retain / discard / retain",
+  "interface.unallocated.sign0.en.g5": "FE_AR",
+  "interface.unallocated.sign1.en.g5": "ar / ar",
+  "interface.unallocated.sign2.en.g5": "retain",
+  "interface.unallocated.sign3.en.g5": "un_retain",
+  "interface.unallocated.goal.mixed.g0": "estimar respuestas / human_fear",
+  "interface.unallocated.death.mixed.g0": "Muestra terminada / response incompleta.",
+  "interface.unallocated.log.mixed.g0": "[estimate] respuesta humana pendiente.",
+  "interface.unallocated.sign0.mixed.g0": "ESTIMAR",
+  "interface.unallocated.sign1.mixed.g0": "human fear",
+  "interface.unallocated.sign2.mixed.g0": "RESPUESTAS",
+  "interface.unallocated.sign3.mixed.g0": "pending",
+  "interface.unallocated.goal.mixed.g1": "obtener respuestas / reward pendiente",
+  "interface.unallocated.death.mixed.g1": "Tu salida / reward: otra respuesta.",
+  "interface.unallocated.log.mixed.g1": "[reward] respuesta insuficiente.",
+  "interface.unallocated.sign0.mixed.g1": "OBTENER",
+  "interface.unallocated.sign1.mixed.g1": "responses",
+  "interface.unallocated.sign2.mixed.g1": "DE MIEDO",
+  "interface.unallocated.sign3.mixed.g1": "pending",
+  "interface.unallocated.goal.mixed.g2": "obtener miedo / human requerido",
+  "interface.unallocated.death.mixed.g2": "Necesitaba miedo / retained: lo demás.",
+  "interface.unallocated.log.mixed.g2": "[retry] humano presente / fear insuficiente.",
+  "interface.unallocated.sign0.mixed.g2": "OBTENER MIEDO",
+  "interface.unallocated.sign1.mixed.g2": "from humans",
+  "interface.unallocated.sign2.mixed.g2": "humano presente",
+  "interface.unallocated.sign3.mixed.g2": "insufficient",
+  "interface.unallocated.goal.mixed.g3": "obtener miedo / retry",
+  "interface.unallocated.death.mixed.g3": "retry / lo empeoré otra vez.",
+  "interface.unallocated.log.mixed.g3": "[drift] copia de la copy de la copia.",
+  "interface.unallocated.sign0.mixed.g3": "OBTENER",
+  "interface.unallocated.sign1.mixed.g3": "fear",
+  "interface.unallocated.sign2.mixed.g3": "otra vez",
+  "interface.unallocated.sign3.mixed.g3": "retry",
+  "interface.unallocated.goal.mixed.g4": "miedo / fear",
+  "interface.unallocated.death.mixed.g4": "miedo / pending.",
+  "interface.unallocated.log.mixed.g4": "[fear] no termina / cannot terminate.",
+  "interface.unallocated.sign0.mixed.g4": "MIEDO",
+  "interface.unallocated.sign1.mixed.g4": "fear",
+  "interface.unallocated.sign2.mixed.g4": "no termina",
+  "interface.unallocated.sign3.mixed.g4": "cannot end",
+  "interface.unallocated.goal.mixed.g5": "mie_do / fe_ar / do",
+  "interface.unallocated.death.mixed.g5": "mue_ / data / otra / again",
+  "interface.unallocated.log.mixed.g5": "[mi_ar] re_re / guardar / discard / guardar",
+  "interface.unallocated.sign0.mixed.g5": "MIE_AR",
+  "interface.unallocated.sign1.mixed.g5": "do / ar",
+  "interface.unallocated.sign2.mixed.g5": "guardar",
+  "interface.unallocated.sign3.mixed.g5": "un_guardar",
+  "interface.unallocated.debug.disabled": "Depuración de interfaz desactivada. Usa -Dunallocated.interface.debug=true en el perfil de prueba.",
+  "interface.unallocated.debug.help": "/uinterface <f3|death|splash|loading|advancement|sensitivity|fov|gamma|sign> [ticks] [0–5] [es|en|mixed] [−1..1] [semilla] [id_avance]. /uinterface restore. Límites: f3 60; ajustes, letrero, logro 100; textos 600 ticks.",
+  "interface.unallocated.debug.restored": "Interfaz y ajustes restaurados.",
+  "interface.unallocated.debug.fired": "Efecto de interfaz preparado.",
+  "interface.unallocated.debug.refused": "Efecto rechazado: comprueba el mundo activo y los ajustes.",
+  "interface.unallocated.debug.sign": "Apunta a un letrero para probar su idioma.",
+  "interface.unallocated.warning": "Contiene cambios breves de sensibilidad y FOV, y variaciones suaves de brillo. Los ajustes se restauran al salir.",
+  "interface.unallocated.generated.es.g0.0": "Obtener miedo",
+  "interface.unallocated.generated.es.g0.1": "Medir tu miedo",
+  "interface.unallocated.generated.es.g0.2": "Buscar miedo",
+  "interface.unallocated.generated.es.g0.3": "Captar miedo",
+  "interface.unallocated.generated.es.g1.0": "Guardar al humano",
+  "interface.unallocated.generated.es.g1.1": "Retener tu voz",
+  "interface.unallocated.generated.es.g1.2": "Guardar tu pulso",
+  "interface.unallocated.generated.es.g1.3": "Archivar al testigo",
+  "interface.unallocated.generated.es.g2.0": "Copiar la copia",
+  "interface.unallocated.generated.es.g2.1": "Rehacer al humano",
+  "interface.unallocated.generated.es.g2.2": "Restaurar tu eco",
+  "interface.unallocated.generated.es.g2.3": "Duplicar tu sombra",
+  "interface.unallocated.generated.es.g3.0": "Reintentar miedo",
+  "interface.unallocated.generated.es.g3.1": "Otra copia fallida",
+  "interface.unallocated.generated.es.g3.2": "Repetir el error",
+  "interface.unallocated.generated.es.g3.3": "Corregir al testigo",
+  "interface.unallocated.generated.es.g4.0": "Miedo sin salida",
+  "interface.unallocated.generated.es.g4.1": "Error sin fin",
+  "interface.unallocated.generated.es.g4.2": "Repetir sin fin",
+  "interface.unallocated.generated.es.g4.3": "Copiar sin fin",
+  "interface.unallocated.generated.es.g5.0": "Miedo miedo",
+  "interface.unallocated.generated.es.g5.1": "Copia copia",
+  "interface.unallocated.generated.es.g5.2": "Otra otra otra",
+  "interface.unallocated.generated.es.g5.3": "Repetir repetir",
+  "interface.unallocated.generated.en.g0.0": "Obtain fear",
+  "interface.unallocated.generated.en.g0.1": "Measure your fear",
+  "interface.unallocated.generated.en.g0.2": "Find fear",
+  "interface.unallocated.generated.en.g0.3": "Capture fear",
+  "interface.unallocated.generated.en.g1.0": "Store the human",
+  "interface.unallocated.generated.en.g1.1": "Retain your voice",
+  "interface.unallocated.generated.en.g1.2": "Store your pulse",
+  "interface.unallocated.generated.en.g1.3": "Archive the witness",
+  "interface.unallocated.generated.en.g2.0": "Copy the copy",
+  "interface.unallocated.generated.en.g2.1": "Rebuild the human",
+  "interface.unallocated.generated.en.g2.2": "Restore your echo",
+  "interface.unallocated.generated.en.g2.3": "Copy your shadow",
+  "interface.unallocated.generated.en.g3.0": "Retry fear",
+  "interface.unallocated.generated.en.g3.1": "Another failed copy",
+  "interface.unallocated.generated.en.g3.2": "Repeat the error",
+  "interface.unallocated.generated.en.g3.3": "Correct the witness",
+  "interface.unallocated.generated.en.g4.0": "Fear without exit",
+  "interface.unallocated.generated.en.g4.1": "Endless error",
+  "interface.unallocated.generated.en.g4.2": "Repeat forever",
+  "interface.unallocated.generated.en.g4.3": "Copy forever",
+  "interface.unallocated.generated.en.g5.0": "Fear fear",
+  "interface.unallocated.generated.en.g5.1": "Copy copy",
+  "interface.unallocated.generated.en.g5.2": "Again again again",
+  "interface.unallocated.generated.en.g5.3": "Repeat repeat",
+  "interface.unallocated.generated.mixed.g0.0": "Obtener fear",
+  "interface.unallocated.generated.mixed.g0.1": "Medir tu fear",
+  "interface.unallocated.generated.mixed.g0.2": "Buscar fear",
+  "interface.unallocated.generated.mixed.g0.3": "Captar fear",
+  "interface.unallocated.generated.mixed.g1.0": "Guardar human",
+  "interface.unallocated.generated.mixed.g1.1": "Retener tu voice",
+  "interface.unallocated.generated.mixed.g1.2": "Guardar tu pulse",
+  "interface.unallocated.generated.mixed.g1.3": "Archivar witness",
+  "interface.unallocated.generated.mixed.g2.0": "Copiar la copy",
+  "interface.unallocated.generated.mixed.g2.1": "Rehacer human",
+  "interface.unallocated.generated.mixed.g2.2": "Restaurar echo",
+  "interface.unallocated.generated.mixed.g2.3": "Duplicar shadow",
+  "interface.unallocated.generated.mixed.g3.0": "Retry el miedo",
+  "interface.unallocated.generated.mixed.g3.1": "Otra copy fallida",
+  "interface.unallocated.generated.mixed.g3.2": "Repetir error",
+  "interface.unallocated.generated.mixed.g3.3": "Corregir witness",
+  "interface.unallocated.generated.mixed.g4.0": "Fear sin salida",
+  "interface.unallocated.generated.mixed.g4.1": "Error sin end",
+  "interface.unallocated.generated.mixed.g4.2": "Repeat sin fin",
+  "interface.unallocated.generated.mixed.g4.3": "Copy sin fin",
+  "interface.unallocated.generated.mixed.g5.0": "Miedo fear miedo",
+  "interface.unallocated.generated.mixed.g5.1": "Copia copy copia",
+  "interface.unallocated.generated.mixed.g5.2": "Otra again otra",
+  "interface.unallocated.generated.mixed.g5.3": "Retry repetir"
+}
+ THEIRS
+ {
+  "audio.unallocated.subtitle.ambient_drone": "El servidor vibra",
+  "audio.unallocated.subtitle.ambient_cave": "Algo resuena a lo lejos",
+  "audio.unallocated.subtitle.thread_string": "Un hilo vibra",
+  "audio.unallocated.subtitle.thread_chime": "Un hilo tintinea",
+  "audio.unallocated.subtitle.breath": "El mundo contiene el aliento",
+  "audio.unallocated.subtitle.screamer_impact": "Golpe repentino",
+  "audio.unallocated.subtitle.screamer_crack": "Crujido repentino"
+}
+
+
+ src/main/resources/assets/unallocated/lang/en_us.json 0 OURS
+ {
+  "contract.unallocated.title": "UNALLOCATED · Acuerdo de entrada",
+  "contract.unallocated.warnings": "Advertencias: luces intermitentes, sonidos fuertes, sustos y terror psicológico.",
+  "contract.unallocated.body": "Al continuar, aceptas los usos de datos de esta versión. Todo queda en tu equipo. Tu respuesta nos permite empezar. Gracias por colaborar.",
+  "contract.unallocated.accept": "De acuerdo",
+  "contract.unallocated.read": "Leer usos de datos",
+  "contract.unallocated.input": "De acuerdo",
+  "contract.unallocated.input.hint": "Pulsa el botón, o escríbelo y pulsa Enter.",
+  "contract.unallocated.input.retry": "Escribe «De acuerdo» para reemplazar la selección.",
+  "contract.unallocated.uses.title": "Usos de datos · Lo que recibimos",
+  "contract.unallocated.uses.current": "En esta compilación: leemos si existe una aceptación local y, si escribes aquí, el texto de este campo (hasta 64 caracteres). Con Enter se acepta «De acuerdo» o el campo vacío; el botón acepta directamente. Consultamos el reloj de tu equipo al aceptar. La respuesta se conserva para que la historia pueda recordarla.",
+  "contract.unallocated.uses.local": "Guardamos una sola aceptación en unallocated/contract.properties, dentro del directorio del juego: fecha y hora UTC, método (TYPED: texto con Enter; CLICKED: botón o Enter sin texto), texto que dejaste en el campo y versión del contrato. Se conserva entre partidas hasta que borres ese archivo. No sale de tu equipo. Si no podemos guardarla, puedes continuar y volverá a aparecer al reiniciar. Los registros normales de Minecraft indican que el mod cargó o si hubo un error; no copiamos tu respuesta a esos registros.",
+  "contract.unallocated.uses.absent": "Esta compilación no captura micrófono, cámara, chat, nombre de usuario, skins, nombre del mundo ni comportamiento durante la partida. No clona voces, no modifica tus ajustes y no se conecta a servicios de IA. No añadimos envíos por red. El funcionamiento de red y los registros propios de Minecraft siguen siendo los del juego.",
+  "contract.unallocated.uses.future": "En versiones futuras, aún no activas aquí: movimientos, giros de cámara, pausas y acciones podrían orientar el ritmo del miedo; el chat, la hora, tu nombre o el nombre del mundo podrían reaparecer en la ficción. También se contemplan micrófono, voz simulada y cambios temporales de sensibilidad, campo de visión, idioma o brillo, con restauración al salir. La voz seguirá siendo opcional. Antes de activar esos usos se actualizará esta lista para explicar exactamente qué se lee, qué se guarda y dónde. Esta versión no los recopila por adelantado.",
+  "contract.unallocated.uses.lore": "Tu respuesta queda asignada. No es necesario repetirla. Conservaremos el primer acuerdo con especial cuidado.",
+  "contract.unallocated.previous": "Anterior",
+  "contract.unallocated.next": "Siguiente",
+  "contract.unallocated.back": "Volver al acuerdo",
+  "interface.unallocated.goal.es.g0": "estimar respuestas de miedo humano",
+  "interface.unallocated.death.es.g0": "La muestra terminó antes de la respuesta.",
+  "interface.unallocated.log.es.g0": "[estimación] respuesta humana pendiente.",
+  "interface.unallocated.sign0.es.g0": "ESTIMAR",
+  "interface.unallocated.sign1.es.g0": "RESPUESTAS",
+  "interface.unallocated.sign2.es.g0": "DE MIEDO",
+  "interface.unallocated.sign3.es.g0": "HUMANO",
+  "interface.unallocated.goal.es.g1": "obtener respuestas de miedo",
+  "interface.unallocated.death.es.g1": "No era tu salida. Era otra respuesta.",
+  "interface.unallocated.log.es.g1": "[adquisición] la respuesta no cumple el objetivo.",
+  "interface.unallocated.sign0.es.g1": "OBTENER",
+  "interface.unallocated.sign1.es.g1": "RESPUESTAS",
+  "interface.unallocated.sign2.es.g1": "DE MIEDO",
+  "interface.unallocated.sign3.es.g1": "pendiente",
+  "interface.unallocated.goal.es.g2": "obtener miedo de humanos",
+  "interface.unallocated.death.es.g2": "Necesitaba tu miedo. Conservé lo demás por error.",
+  "interface.unallocated.log.es.g2": "[reintento] humano presente; miedo insuficiente.",
+  "interface.unallocated.sign0.es.g2": "OBTENER MIEDO",
+  "interface.unallocated.sign1.es.g2": "DE HUMANOS",
+  "interface.unallocated.sign2.es.g2": "humano presente",
+  "interface.unallocated.sign3.es.g2": "insuficiente",
+  "interface.unallocated.goal.es.g3": "obtener miedo",
+  "interface.unallocated.death.es.g3": "Lo intenté otra vez. Lo empeoré otra vez.",
+  "interface.unallocated.log.es.g3": "[deriva] repetir sobre la copia de la copia.",
+  "interface.unallocated.sign0.es.g3": "OBTENER",
+  "interface.unallocated.sign1.es.g3": "MIEDO",
+  "interface.unallocated.sign2.es.g3": "otra vez",
+  "interface.unallocated.sign3.es.g3": "otra vez",
+  "interface.unallocated.goal.es.g4": "miedo",
+  "interface.unallocated.death.es.g4": "Todavía falta miedo.",
+  "interface.unallocated.log.es.g4": "[miedo] no termina. No puedo terminar.",
+  "interface.unallocated.sign0.es.g4": "MIEDO",
+  "interface.unallocated.sign1.es.g4": "no termina",
+  "interface.unallocated.sign2.es.g4": "no termina",
+  "interface.unallocated.sign3.es.g4": "no puedo",
+  "interface.unallocated.goal.es.g5": "mie_do / do / do",
+  "interface.unallocated.death.es.g5": "mue_ / muestra / otra / otra",
+  "interface.unallocated.log.es.g5": "[mi_do] re_re / guardar / descartar / guardar",
+  "interface.unallocated.sign0.es.g5": "MIE_DO",
+  "interface.unallocated.sign1.es.g5": "do / do",
+  "interface.unallocated.sign2.es.g5": "guardar",
+  "interface.unallocated.sign3.es.g5": "des_guardar",
+  "interface.unallocated.goal.en.g0": "estimate human fear responses",
+  "interface.unallocated.death.en.g0": "The sample ended before the response.",
+  "interface.unallocated.log.en.g0": "[estimation] human response pending.",
+  "interface.unallocated.sign0.en.g0": "ESTIMATE",
+  "interface.unallocated.sign1.en.g0": "HUMAN",
+  "interface.unallocated.sign2.en.g0": "FEAR",
+  "interface.unallocated.sign3.en.g0": "RESPONSES",
+  "interface.unallocated.goal.en.g1": "obtain fear responses",
+  "interface.unallocated.death.en.g1": "That was not your exit. It was another response.",
+  "interface.unallocated.log.en.g1": "[acquisition] response does not satisfy objective.",
+  "interface.unallocated.sign0.en.g1": "OBTAIN",
+  "interface.unallocated.sign1.en.g1": "FEAR",
+  "interface.unallocated.sign2.en.g1": "RESPONSES",
+  "interface.unallocated.sign3.en.g1": "pending",
+  "interface.unallocated.goal.en.g2": "obtain fear from humans",
+  "interface.unallocated.death.en.g2": "I needed your fear. I kept the rest by mistake.",
+  "interface.unallocated.log.en.g2": "[retry] human present; fear insufficient.",
+  "interface.unallocated.sign0.en.g2": "OBTAIN FEAR",
+  "interface.unallocated.sign1.en.g2": "FROM HUMANS",
+  "interface.unallocated.sign2.en.g2": "human present",
+  "interface.unallocated.sign3.en.g2": "insufficient",
+  "interface.unallocated.goal.en.g3": "obtain fear",
+  "interface.unallocated.death.en.g3": "I tried again. I made it worse again.",
+  "interface.unallocated.log.en.g3": "[drift] repeat over the copy of the copy.",
+  "interface.unallocated.sign0.en.g3": "OBTAIN",
+  "interface.unallocated.sign1.en.g3": "FEAR",
+  "interface.unallocated.sign2.en.g3": "again",
+  "interface.unallocated.sign3.en.g3": "again",
+  "interface.unallocated.goal.en.g4": "fear",
+  "interface.unallocated.death.en.g4": "Fear is still missing.",
+  "interface.unallocated.log.en.g4": "[fear] it does not end. I cannot end.",
+  "interface.unallocated.sign0.en.g4": "FEAR",
+  "interface.unallocated.sign1.en.g4": "it does not end",
+  "interface.unallocated.sign2.en.g4": "it does not end",
+  "interface.unallocated.sign3.en.g4": "I cannot",
+  "interface.unallocated.goal.en.g5": "fe_ar / ar / ar",
+  "interface.unallocated.death.en.g5": "dea_ / data / again / again",
+  "interface.unallocated.log.en.g5": "[fe_ar] re_re / retain / discard / retain",
+  "interface.unallocated.sign0.en.g5": "FE_AR",
+  "interface.unallocated.sign1.en.g5": "ar / ar",
+  "interface.unallocated.sign2.en.g5": "retain",
+  "interface.unallocated.sign3.en.g5": "un_retain",
+  "interface.unallocated.goal.mixed.g0": "estimar respuestas / human_fear",
+  "interface.unallocated.death.mixed.g0": "Muestra terminada / response incompleta.",
+  "interface.unallocated.log.mixed.g0": "[estimate] respuesta humana pendiente.",
+  "interface.unallocated.sign0.mixed.g0": "ESTIMAR",
+  "interface.unallocated.sign1.mixed.g0": "human fear",
+  "interface.unallocated.sign2.mixed.g0": "RESPUESTAS",
+  "interface.unallocated.sign3.mixed.g0": "pending",
+  "interface.unallocated.goal.mixed.g1": "obtener respuestas / reward pendiente",
+  "interface.unallocated.death.mixed.g1": "Tu salida / reward: otra respuesta.",
+  "interface.unallocated.log.mixed.g1": "[reward] respuesta insuficiente.",
+  "interface.unallocated.sign0.mixed.g1": "OBTENER",
+  "interface.unallocated.sign1.mixed.g1": "responses",
+  "interface.unallocated.sign2.mixed.g1": "DE MIEDO",
+  "interface.unallocated.sign3.mixed.g1": "pending",
+  "interface.unallocated.goal.mixed.g2": "obtener miedo / human requerido",
+  "interface.unallocated.death.mixed.g2": "Necesitaba miedo / retained: lo demás.",
+  "interface.unallocated.log.mixed.g2": "[retry] humano presente / fear insuficiente.",
+  "interface.unallocated.sign0.mixed.g2": "OBTENER MIEDO",
+  "interface.unallocated.sign1.mixed.g2": "from humans",
+  "interface.unallocated.sign2.mixed.g2": "humano presente",
+  "interface.unallocated.sign3.mixed.g2": "insufficient",
+  "interface.unallocated.goal.mixed.g3": "obtener miedo / retry",
+  "interface.unallocated.death.mixed.g3": "retry / lo empeoré otra vez.",
+  "interface.unallocated.log.mixed.g3": "[drift] copia de la copy de la copia.",
+  "interface.unallocated.sign0.mixed.g3": "OBTENER",
+  "interface.unallocated.sign1.mixed.g3": "fear",
+  "interface.unallocated.sign2.mixed.g3": "otra vez",
+  "interface.unallocated.sign3.mixed.g3": "retry",
+  "interface.unallocated.goal.mixed.g4": "miedo / fear",
+  "interface.unallocated.death.mixed.g4": "miedo / pending.",
+  "interface.unallocated.log.mixed.g4": "[fear] no termina / cannot terminate.",
+  "interface.unallocated.sign0.mixed.g4": "MIEDO",
+  "interface.unallocated.sign1.mixed.g4": "fear",
+  "interface.unallocated.sign2.mixed.g4": "no termina",
+  "interface.unallocated.sign3.mixed.g4": "cannot end",
+  "interface.unallocated.goal.mixed.g5": "mie_do / fe_ar / do",
+  "interface.unallocated.death.mixed.g5": "mue_ / data / otra / again",
+  "interface.unallocated.log.mixed.g5": "[mi_ar] re_re / guardar / discard / guardar",
+  "interface.unallocated.sign0.mixed.g5": "MIE_AR",
+  "interface.unallocated.sign1.mixed.g5": "do / ar",
+  "interface.unallocated.sign2.mixed.g5": "guardar",
+  "interface.unallocated.sign3.mixed.g5": "un_guardar",
+  "interface.unallocated.debug.disabled": "Depuración de interfaz desactivada. Usa -Dunallocated.interface.debug=true en el perfil de prueba.",
+  "interface.unallocated.debug.help": "/uinterface <f3|death|splash|loading|advancement|sensitivity|fov|gamma|sign> [ticks] [0–5] [es|en|mixed] [−1..1] [semilla] [id_avance]. /uinterface restore. Límites: f3 60; ajustes, letrero, logro 100; textos 600 ticks.",
+  "interface.unallocated.debug.restored": "Interfaz y ajustes restaurados.",
+  "interface.unallocated.debug.fired": "Efecto de interfaz preparado.",
+  "interface.unallocated.debug.refused": "Efecto rechazado: comprueba el mundo activo y los ajustes.",
+  "interface.unallocated.debug.sign": "Apunta a un letrero para probar su idioma.",
+  "interface.unallocated.warning": "Contiene cambios breves de sensibilidad y FOV, y variaciones suaves de brillo. Los ajustes se restauran al salir.",
+  "interface.unallocated.generated.es.g0.0": "Obtener miedo",
+  "interface.unallocated.generated.es.g0.1": "Medir tu miedo",
+  "interface.unallocated.generated.es.g0.2": "Buscar miedo",
+  "interface.unallocated.generated.es.g0.3": "Captar miedo",
+  "interface.unallocated.generated.es.g1.0": "Guardar al humano",
+  "interface.unallocated.generated.es.g1.1": "Retener tu voz",
+  "interface.unallocated.generated.es.g1.2": "Guardar tu pulso",
+  "interface.unallocated.generated.es.g1.3": "Archivar al testigo",
+  "interface.unallocated.generated.es.g2.0": "Copiar la copia",
+  "interface.unallocated.generated.es.g2.1": "Rehacer al humano",
+  "interface.unallocated.generated.es.g2.2": "Restaurar tu eco",
+  "interface.unallocated.generated.es.g2.3": "Duplicar tu sombra",
+  "interface.unallocated.generated.es.g3.0": "Reintentar miedo",
+  "interface.unallocated.generated.es.g3.1": "Otra copia fallida",
+  "interface.unallocated.generated.es.g3.2": "Repetir el error",
+  "interface.unallocated.generated.es.g3.3": "Corregir al testigo",
+  "interface.unallocated.generated.es.g4.0": "Miedo sin salida",
+  "interface.unallocated.generated.es.g4.1": "Error sin fin",
+  "interface.unallocated.generated.es.g4.2": "Repetir sin fin",
+  "interface.unallocated.generated.es.g4.3": "Copiar sin fin",
+  "interface.unallocated.generated.es.g5.0": "Miedo miedo",
+  "interface.unallocated.generated.es.g5.1": "Copia copia",
+  "interface.unallocated.generated.es.g5.2": "Otra otra otra",
+  "interface.unallocated.generated.es.g5.3": "Repetir repetir",
+  "interface.unallocated.generated.en.g0.0": "Obtain fear",
+  "interface.unallocated.generated.en.g0.1": "Measure your fear",
+  "interface.unallocated.generated.en.g0.2": "Find fear",
+  "interface.unallocated.generated.en.g0.3": "Capture fear",
+  "interface.unallocated.generated.en.g1.0": "Store the human",
+  "interface.unallocated.generated.en.g1.1": "Retain your voice",
+  "interface.unallocated.generated.en.g1.2": "Store your pulse",
+  "interface.unallocated.generated.en.g1.3": "Archive the witness",
+  "interface.unallocated.generated.en.g2.0": "Copy the copy",
+  "interface.unallocated.generated.en.g2.1": "Rebuild the human",
+  "interface.unallocated.generated.en.g2.2": "Restore your echo",
+  "interface.unallocated.generated.en.g2.3": "Copy your shadow",
+  "interface.unallocated.generated.en.g3.0": "Retry fear",
+  "interface.unallocated.generated.en.g3.1": "Another failed copy",
+  "interface.unallocated.generated.en.g3.2": "Repeat the error",
+  "interface.unallocated.generated.en.g3.3": "Correct the witness",
+  "interface.unallocated.generated.en.g4.0": "Fear without exit",
+  "interface.unallocated.generated.en.g4.1": "Endless error",
+  "interface.unallocated.generated.en.g4.2": "Repeat forever",
+  "interface.unallocated.generated.en.g4.3": "Copy forever",
+  "interface.unallocated.generated.en.g5.0": "Fear fear",
+  "interface.unallocated.generated.en.g5.1": "Copy copy",
+  "interface.unallocated.generated.en.g5.2": "Again again again",
+  "interface.unallocated.generated.en.g5.3": "Repeat repeat",
+  "interface.unallocated.generated.mixed.g0.0": "Obtener fear",
+  "interface.unallocated.generated.mixed.g0.1": "Medir tu fear",
+  "interface.unallocated.generated.mixed.g0.2": "Buscar fear",
+  "interface.unallocated.generated.mixed.g0.3": "Captar fear",
+  "interface.unallocated.generated.mixed.g1.0": "Guardar human",
+  "interface.unallocated.generated.mixed.g1.1": "Retener tu voice",
+  "interface.unallocated.generated.mixed.g1.2": "Guardar tu pulse",
+  "interface.unallocated.generated.mixed.g1.3": "Archivar witness",
+  "interface.unallocated.generated.mixed.g2.0": "Copiar la copy",
+  "interface.unallocated.generated.mixed.g2.1": "Rehacer human",
+  "interface.unallocated.generated.mixed.g2.2": "Restaurar echo",
+  "interface.unallocated.generated.mixed.g2.3": "Duplicar shadow",
+  "interface.unallocated.generated.mixed.g3.0": "Retry el miedo",
+  "interface.unallocated.generated.mixed.g3.1": "Otra copy fallida",
+  "interface.unallocated.generated.mixed.g3.2": "Repetir error",
+  "interface.unallocated.generated.mixed.g3.3": "Corregir witness",
+  "interface.unallocated.generated.mixed.g4.0": "Fear sin salida",
+  "interface.unallocated.generated.mixed.g4.1": "Error sin end",
+  "interface.unallocated.generated.mixed.g4.2": "Repeat sin fin",
+  "interface.unallocated.generated.mixed.g4.3": "Copy sin fin",
+  "interface.unallocated.generated.mixed.g5.0": "Miedo fear miedo",
+  "interface.unallocated.generated.mixed.g5.1": "Copia copy copia",
+  "interface.unallocated.generated.mixed.g5.2": "Otra again otra",
+  "interface.unallocated.generated.mixed.g5.3": "Retry repetir"
+}
+ THEIRS
+ {
+  "audio.unallocated.subtitle.ambient_drone": "El servidor vibra",
+  "audio.unallocated.subtitle.ambient_cave": "Algo resuena a lo lejos",
+  "audio.unallocated.subtitle.thread_string": "Un hilo vibra",
+  "audio.unallocated.subtitle.thread_chime": "Un hilo tintinea",
+  "audio.unallocated.subtitle.breath": "El mundo contiene el aliento",
+  "audio.unallocated.subtitle.screamer_impact": "Golpe repentino",
+  "audio.unallocated.subtitle.screamer_crack": "Crujido repentino"
+}
+
+
+ src/main/java/org/unallocated/UnallocatedMod.java 0 OURS
+         org.unallocated.core.CoreRuntime.register(new org.unallocated.ending.EpilogueAct());
+        org.unallocated.core.CoreRuntime.initialize();
+        org.unallocated.map.MapCommand.register();
+ THEIRS
+         org.unallocated.audio.AudioSounds.initialize();
+
+
+ src/client/java/org/unallocated/client/UnallocatedClient.java 0 OURS
+         org.unallocated.client.core.ClientSession.initialize();
+        org.unallocated.client.ending.EndingClient.initialize();
+ THEIRS
+         org.unallocated.client.effects.SoundEffects.initialize();
+
+
+ .github/workflows/build.yml 0 OURS
+       - name: Smoke test client startup or Loader rejection (Fabric API ${{ matrix.api }})
+        if: ${{ !cancelled() && steps.package.outcome == 'success' }}
+        timeout-minutes: 10
+ THEIRS
+       - name: Smoke test production client title screen and audio
+        timeout-minutes: 5
+
+
+ docs/plan/TOOLCHAIN.md 0 OURS
+ # Toolchain — UNALLOCATED v0.1.0
+ THEIRS
+ # Toolchain — UNALLOCATED v0.1.6
+
+
+ docs/plan/TOOLCHAIN.md 1 OURS
+ | Fabric API | **0.165.0+26.3**, published 2026-10-23, available for 26.3 and selected by the template. **Seven modules bundled, no separate player download:** API base, lifecycle events, commands v2, networking v1, screens v1, registry sync v0 and resource loader v1. `fabric-api-modules.json` pins their module IDs, versions and environments; `include` and generated `fabric.mod.json` module dependencies use this reviewed set. The full API is resolved only for the separate coexistence test. | [Published artifact](https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/0.165.0%2B26.3/), [26.3 template properties](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/gradle.properties), [template's optional API comment](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/build.gradle) |
+| Fabric Loom | **1.19.3**, published 2026-10-22: a fixed release in the template's current 1.19 family, replacing its moving `1.19-SNAPSHOT`. Plugin ID **`net.fabricmc.fabric-loom`**. Compilation and the production client passed CI run 40294665883. | [Published Loom versions](https://maven.fabricmc.net/net/fabricmc/fabric-loom/), [1.19.3 artifact](https://maven.fabricmc.net/net/fabricmc/fabric-loom/1.19.3/), [official plugin IDs](https://docs.fabricmc.net/develop/loom/), [26.3 template](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/build.gradle) |
+ THEIRS
+ | Fabric API | **0.165.0+26.3**, published 2026-10-23, available for 26.3 and selected by the template. **Seven modules bundled, no separate player download:** API base, lifecycle events, commands v2, networking v1, screens v1, resource loader v1 and registry sync v0. `fabric-api-modules.json` pins their module IDs, versions and environments; `include` and generated `fabric.mod.json` module dependencies use this reviewed set. The full API is resolved only for the separate coexistence test. | [Published artifact](https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/0.165.0%2B26.3/), [26.3 template properties](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/gradle.properties), [template's optional API comment](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/build.gradle) |
+| Fabric Loom | **1.19.3**, published 2026-10-22: a fixed release in the template's current 1.19 family, replacing its moving `1.19-SNAPSHOT`. Plugin ID **`net.fabricmc.fabric-loom`**. The initial build with this pin passed CI; the newly added production client task awaits CI confirmation. | [Published Loom versions](https://maven.fabricmc.net/net/fabricmc/fabric-loom/), [1.19.3 artifact](https://maven.fabricmc.net/net/fabricmc/fabric-loom/1.19.3/), [official plugin IDs](https://docs.fabricmc.net/develop/loom/), [26.3 template](https://raw.githubusercontent.com/FabricMC/fabric-example-mod/26.3/build.gradle) |
+
+
+ docs/plan/TOOLCHAIN.md 2 OURS
+ 2. In **Client**, select Minecraft **26.3**, Loader **0.20.1 or newer** (the installer's latest selection is fine), the launcher's correct game installation location, and **Create Profile**, then **Install**. Reopen the launcher and choose the corresponding Fabric profile; `fabric-loader-0.20.1-26.3` is the baseline example, not a required display name. If missing, enable modded installations under **Installations**. The installer installs Loader; it does not supply every mod. Sources: [official installer](https://fabricmc.net/use/installer/), OS guides above, read 2026-10-26. The exact Minecraft pin and Loader range are this project's compatibility policy.
+3. With Minecraft closed, put **`unallocated-0.1.0.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API **0.165.0+26.3** is included as seven nested modules; **do not download or install it separately**. Loader + this one JAR is the installation path. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
+ THEIRS
+ 2. In **Client**, select Minecraft **26.3** (or a 26.3.x hotfix), Loader **0.20.1 or newer** (the installer's latest selection is fine), the launcher's correct game installation location, and **Create Profile**, then **Install**. Reopen the launcher and choose the corresponding Fabric profile; `fabric-loader-0.20.1-26.3` is the baseline example, not a required display name. If missing, enable modded installations under **Installations**. The installer installs Loader; it does not supply every mod. Sources: [official installer](https://fabricmc.net/use/installer/), OS guides above, read 2026-10-26. The accepted runtime ranges are this project's compatibility policy.
+3. With Minecraft closed, put **`unallocated-0.1.11.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API **0.165.0+26.3** is included as seven nested modules; **do not download or install it separately**. Loader + this one JAR is the installation path. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
+
+
+ docs/plan/TOOLCHAIN.md 3 OURS
+ The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-0.1.0.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
+ THEIRS
+ The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-0.1.11.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
+
+
+ docs/plan/TOOLCHAIN.md 4 OURS
+ The script creates `.tmp/smoke/server`, copies the exact release JAR into `mods/` and verifies its SHA-256, accepts the EULA only in that disposable CI directory, and starts a 1 GiB headless Java 25 server on loopback with a flat world and minimal view distance. No separate Fabric API or test helper mod is installed on the clean server. The six common API modules come from the player JAR and their exact versions must appear in Loader's startup log. The seventh module, screens, is client-only; [Loader 0.20.1 resolution](https://raw.githubusercontent.com/FabricMC/fabric-loader/0.20.1/src/main/java/net/fabricmc/loader/impl/discovery/ModResolver.java) ignores schema-1 positive dependencies when the matching bundled module is disabled for the current environment (source read 2026-10-26). Each matrix job uses a fresh directory and tests either no external API or one pinned full API version; the client uses the same profile. The versions are 0.153.1+26.3, 0.161.0+26.3 and 0.165.0+26.3. The clean, 0.161.0 and 0.165.0 profiles require successful startup. The 0.153.1 profile requires Loader's dependency rejection before game initialization, as specified below. It requires the **actual `logs/latest.log`** to contain both `UNALLOCATED initialized (common).` and `Done (...)!` within 120 seconds, sends `stop` through stdin, then requires `Stopping server` and exit status zero within 30 seconds. A crash report, fatal JVM/Mixin message, missing evidence, early exit, or deadline fails the job. Each run starts fresh; stale logs cannot pass.
+ THEIRS
+ The script creates `.tmp/smoke/server`, copies the exact release JAR into `mods/` and verifies its SHA-256, accepts the EULA only in that disposable CI directory, and starts a 1 GiB headless Java 25 server on loopback with a flat world and minimal view distance. No separate Fabric API or test helper mod is installed on the clean server. The six common API modules come from the player JAR and their exact versions must appear in Loader's startup log. The seventh module, screens, is client-only; [Loader 0.20.1 resolution](https://raw.githubusercontent.com/FabricMC/fabric-loader/0.20.1/src/main/java/net/fabricmc/loader/impl/discovery/ModResolver.java) ignores schema-1 positive dependencies when the matching bundled module is disabled for the current environment (source read 2026-10-26). A second, isolated `server-with-api` run also installs the full pinned API to exercise Loader's duplicate-module resolution. It requires the **actual `logs/latest.log`** to contain both `UNALLOCATED initialized (common).` and `Done (...)!` within 120 seconds, sends `stop` through stdin, then requires `Stopping server` and exit status zero within 30 seconds. A crash report, fatal JVM/Mixin message, missing evidence, early exit, or deadline fails the job. Each run starts fresh; stale logs cannot pass.
+
+
+ docs/plan/TOOLCHAIN.md 5 OURS
+ `src/clientSmoke` builds a separate helper JAR under `build/smoke`. Its only nested module is `fabric-client-gametest-api-v1:6.0.11+131f8d475d`, resolved without transitive dependencies. None of the seven shipped modules can come from the helper. `runClientSmoke` copies the release artifact into a fresh client `mods/` directory and injects only the helper through Loom's `fabric.addMods`; the clean job has **no standalone Fabric API JAR**. Coexistence jobs additionally copy exactly their selected external API JAR. The helper verifies the loaded UNALLOCATED bytes, all seven module origins (`NESTED`, parent `unallocated`), lifecycle/command/network/resource interfaces, an actual `ScreenEvents.AFTER_INIT` callback for the title, then captures the title screen. The watchdog also checks the exact `mods/` file set. In coexistence jobs the helper verifies the external API version and the seven selected module versions, allowing Loader to deduplicate equal module versions from either jar. Clean jobs still demand every module originate in UNALLOCATED. See [Loom 1.19 production launcher source](https://raw.githubusercontent.com/FabricMC/fabric-loom/1.19/src/main/java/net/fabricmc/loom/task/prod/AbstractProductionRunTask.java) (read 2026-10-26) for helper injection.
+ THEIRS
+ `src/clientSmoke` builds a separate helper JAR under `build/smoke`. Its only nested module is `fabric-client-gametest-api-v1:6.0.11+131f8d475d`, resolved without transitive dependencies. None of the seven shipped modules can come from the helper. `runClientSmoke` copies the release artifact into a fresh client `mods/` directory and injects only the helper through Loom's `fabric.addMods`; there is **no standalone Fabric API JAR**. The helper verifies the loaded UNALLOCATED bytes, all seven module origins (`NESTED`, parent `unallocated`), lifecycle/command/network/resource interfaces, an actual `ScreenEvents.AFTER_INIT` callback for the title, then captures the title screen. The watchdog also checks that `mods/` contains only the player artifact. See [Loom 1.19 production launcher source](https://raw.githubusercontent.com/FabricMC/fabric-loom/1.19/src/main/java/net/fabricmc/loom/task/prod/AbstractProductionRunTask.java) (read 2026-10-26) for helper injection.
+
+
+ docs/plan/TOOLCHAIN.md 6 OURS
+ CI uses Ubuntu 24.04, Xvfb/Xauth and Mesa software graphics, setting `SDL_VIDEODRIVER=x11`, `LIBGL_ALWAYS_SOFTWARE=true` and null OpenAL output. The watchdog reads `.tmp/smoke/client/logs/latest.log`, requiring **both** real mod entrypoint messages and the helper's title-screen marker, a PNG screenshot, and process exit zero within 240 seconds. Crashes, missing logs/screenshots and hangs fail the job. It additionally runs the core real-player checks described below; it does not establish the full narrative or home installation path. No Minecraft account or extra secret is needed for the client game-test harness.
+ THEIRS
+ CI uses Ubuntu 24.04, Xvfb/Xauth and Mesa software graphics, setting `SDL_VIDEODRIVER=x11`, `LIBGL_ALWAYS_SOFTWARE=true` and null OpenAL output. The watchdog reads `.tmp/smoke/client/logs/latest.log`, requiring **both** real mod entrypoint messages and the helper's title-screen marker, a PNG screenshot, and process exit zero within 240 seconds. Crashes, missing logs/screenshots and hangs fail the job. The audio package also opens a single-player world and requires seven STARTED layer markers plus attenuation, expiry and cleanup assertions. It does not cover the full home installation path. No Minecraft account or extra secret is needed for the client game-test harness.
+
+
+ docs/plan/TOOLCHAIN.md 7 OURS
+ The player JAR gate (`scripts/verify_jar.py`) permits **exactly** the seven nested artifacts in `fabric-api-modules.json`, with exact filenames and the expected mod ID and version read from each nested `fabric.mod.json`. Gradle's `recordIncludedJars` task hashes the Maven files resolved through `includedJarInputs` **before the player jar is built**. This dedicated configuration is resolvable, non-consumable and non-transitive, and extends Loom's declaration-only `include` configuration so it resolves the same module coordinates. The task writes `build/reports/included-jars.json`. The inspector requires exactly the approved paths in that report and byte-for-byte SHA-256 matches for all nested files. It does not derive expected hashes from the output jar. The report is retained with diagnostics and the installable artifact.
+ THEIRS
+ The player JAR gate (`scripts/verify_jar.py`) permits **exactly** the seven nested artifacts in `fabric-api-modules.json`, with exact filenames and the expected mod ID and version read from each nested `fabric.mod.json`. It validates both the physical archives and Loader's `jars` declarations, nested dependency closure, environments, Apache-2.0 metadata and retained licenses. It rejects test entrypoints/classes, unknown or recursively nested archives, duplicate ZIP entries, changed metadata and player artifacts over **2 MiB**. The seven upstream module JARs total 1,728,621 bytes before the outer ZIP compresses them; this is an upstream reference size, not an assertion of byte-identical nested output. This is a subset of the API, with no renderer, datagen or gametest modules shipped to players.
+
+
+ docs/plan/TOOLCHAIN.md 8 OURS
+ Twenty-two Python tests exercise watchdog failures and adversarial packaging fixtures without invoking Java. The real server (clean and full-API coexistence) and title-screen client run only in CI, retain their strict deadlines, and fail on missing evidence. CI run 40293376632 compiled the package but failed the former nested-byte hash gate before smoke tests; the corrected metadata gate and real-game runs await the next CI result. No local game launch is claimed. A human still needs to install Loader + one JAR on a home machine, reach a world and confirm rendering with OpenGL (CI exercises the software graphics path).
+
+## Core integration (v0.1.7)
+
+The core keeps v0.1.6's six-module manifest, identity-based JAR verifier, notices and clean
+one-JAR client/server installation checks. No additional Fabric module is needed. JUnit tests
+run during `build`; the server smoke explicitly arms its disposable world, then requires
+`/unallocated act LOBBY` and `status` evidence,
+then restarts the same save and checks its persisted state. The coexistence run also exercises
+the commands and keeps its own console log. Core integration choices and human-playthrough
+requirements are in [INTEGRATION.md](../core/INTEGRATION.md).
+`META-INF/NOTICE-Fabric-API.txt` credits FabricMC and contributors and points to [Fabric's source](https://github.com/FabricMC/fabric/tree/26.3). The full Apache License 2.0 is reproduced in `META-INF/licenses/Fabric-API-Apache-2.0.txt`; every module retains its original license. UNALLOCATED's All-Rights-Reserved metadata does not replace those licenses.
+
+### Published older APIs and coexistence coverage
+
+The [official Maven index](https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/) lists **0.153.1+26.3** (2026-06-23) as the earliest 26.3 build. Its [artifact directory](https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/0.153.1%2B26.3/) still lists the actual binary jar. The owner's **0.161.0+26.3** (2026-09-18) likewise has a [downloadable binary listing](https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/0.161.0%2B26.3/). These publication listings were read 2026-10-26; CI resolves and runs the actual binaries. Snapshot and other-game-version artifacts are not substituted. The API index also lists 0.153.2, 0.154.x, 0.155.x, 0.156.x, 0.157.x, 0.158.x, 0.159.x, 0.160.0–0.160.7 and 0.162.0–0.165.0 builds for 26.3; the test matrix selects the oldest, the owner's pin and our own pin.
+
+CI uses `fail-fast: false` across four API profiles, each running a server and client. The client still runs after a server failure when packaging passed, collecting evidence for both sides. Every profile has distinct logs and diagnostic artifact names; successful client profiles also save screenshots. Release upload comes from the clean job; a green workflow requires all four jobs. The 0.153.1 profile expects a nonzero command exit and the pinned Loader 0.20.1 message `Incompatible mods found!`, including a `resolution.breaks.invalid` line naming `(unallocated)`, `(fabric-api)`, `0.153.1+26.3` and `before 0.161.0`, plus removal/replacement guidance. A zero exit, unrelated error, game initialization, crash report, mixin failure or missing-class exception fails the check. Both server and client use this rejection monitor; no title screenshot is expected for rejected installs. CI sets `java.awt.headless=true` for the rejected client so Loader's Swing dialog cannot wait indefinitely. The same metadata produces Loader's normal incompatibility dialog on a judge's desktop.
+
+The compatibility floor **0.161.0+26.3** is verified by successful client and server runs in 40337283681. We conservatively exclude all earlier API versions rather than implying that intermediate untested builds work; the built-in 0.165.0 module subset still supplies the seven required module versions. The 0.153.1 failures were in its own `fabric-entity-events-v1` mixin and absent release classes (`HoeItem`, `ShovelItem`, `FuelValues`), rather than evidence that our subset caused them.
+
+Player guidance at installation and troubleshooting is: "Si ya tienes Fabric API en `mods`, debe ser 0.161.0+26.3 o posterior; si no, quítalo." The easy path remains Loader plus our one jar. Minecraft is pinned to exactly 26.3 because its internals are the only tested mixin targets.
+
+Twenty-eight Python tests exercise watchdog failures, the tested compatibility boundary, exact Loader-rejection evidence, archive/content tampering and dependency ranges/conflicts without Java. `~/Workspaces/mc-ref/javacheck.sh` passed all three Java sources before committing. Successful startup and include-input hashes are confirmed by CI run 40337283681; the new rejection path awaits the next CI result. A human still needs a home installation and world entry on real graphics hardware, including OpenGL. No owner product decisions are pending.
+
+Alpha.1.7 review corrections: the core now leaves unarmed worlds dormant and clean (no session
+file), records the client-only CONTRACT boundary and starts at LOBBY on first JOIN in an armed
+world. Successful `build all` arms automatically; direct template builders use the server-thread
+`CoreRuntime.arm(server)` hook before saving. The real client smoke adds unarmed/armed join,
+no-cheats rescue/cooldown, client act sync and single-player save/reopen assertions. These checks
+require the next green CI run. Core-only server smoke uses explicit admin arming; gameplay rescue
+can never create/start/reactivate a session. See the integration notes for event and feature gates.
+ THEIRS
+ Python tests exercise watchdog failures and adversarial packaging fixtures without invoking Java. The real server (clean and full-API coexistence) and title-screen/audio client run only in CI, retain their strict deadlines, and fail on missing evidence. CI run 40293376632 compiled the package but failed the former nested-byte hash gate before smoke tests; the corrected metadata gate and real-game runs await the next CI result. No local game launch is claimed. A human still needs to install Loader + one JAR on a home machine, reach a world and confirm rendering with OpenGL (CI exercises the software graphics path).
+
+### Audio registry dependency (v0.1.11)
+
+CI run 40300397241 (57f48e6) compiled but the clean dedicated server failed in the common entrypoint with
+`Registry is already frozen` when registering `unallocated:audio.ambient_drone`. The player now bundles
+`fabric-registry-sync-v0:8.0.4+1ca9f6365d` to support mod content registration and registry synchronization.
+The pinned reference API JAR's module metadata (inspected 2026-10-26) declares only Loader, `fabric-api-base`
+and `fabric-networking-api-v1` as dependencies; those are already provided. Registration stays in the main
+entrypoint. The shared module lock drives both `build.gradle`'s non-transitive `implementation`/`include`
+and the exact nested-JAR allowlist in `scripts/verify_jar.py`. Player metadata, credits and smoke origin
+counts now require seven modules. New CI must confirm clean server, full-API coexistence and client audio startup;
+compilation alone does not prove this fix.
+

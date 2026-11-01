@@ -1,0 +1,2036 @@
+diff --git a/README.md b/README.md
+index 57c9377..9104b27 100644
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,7 @@
+ 
+ Mod de terror en primera persona para Minecraft Java 26.3 con Fabric, de NULL_Threshold Interactive.
+ 
+-**Versión actual: 1.0.0-alpha.1 — integración del hito.** Antes del menú aparece un acuerdo con advertencias y una lista opcional de usos reales de datos. Se acepta con un clic en **De acuerdo**, o escribiendo **De acuerdo** y pulsando Enter. Incluye el núcleo de sesión (actos con tiempo máximo, estado guardado y comandos de prueba) con sus dependencias dentro del JAR. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
++**Versión actual: 1.0.0-alpha.1 — integración del hito.** Antes del menú aparece un acuerdo con advertencias y una lista opcional de usos reales de datos. Se acepta con un clic en **De acuerdo**, o escribiendo **De acuerdo** y pulsando Enter. Incluye el núcleo de sesión (actos con tiempo máximo, estado guardado y comandos de prueba) con sus dependencias dentro del JAR, y herramientas de interfaz reversibles que el futuro director o mapa podrá activar; ninguna se dispara automáticamente. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+ 
+ ## Requisitos para jugar
+ 
+@@ -68,9 +68,9 @@ Si aparece un error de versión o de dependencias, comprueba que el perfil usa *
+ 
+ **Advertencias para la experiencia prevista:** luces intermitentes, sonidos fuertes, sustos y terror psicológico. Aparecen antes del menú. Este paquete todavía no incorpora esos efectos.
+ 
+-El texto editable y los guiños de lore propuestos están en [Apéndice C — El contrato](docs/plan/CONTRACT-TEXT.md). La lista distingue el registro de aceptación actual de los posibles usos futuros de chat, comportamiento, voz y ajustes, que aquí aún no están activos.
++El texto editable y los guiños de lore propuestos están en [Apéndice C — El contrato](docs/plan/CONTRACT-TEXT.md). La lista de usos describe lo que hace esta compilación integrada y separa los usos futuros que aún no están activos.
+ 
+-Este paquete no añade efectos de luces ni audio. La compilación base está confirmada en GitHub Actions; las pruebas de este contrato deben pasar en su propia entrega. Sigue pendiente probar la instalación en un equipo de casa; aún no hay una sesión jugable de 10–15 minutos.
++Las herramientas de interfaz permiten cambios breves de sensibilidad y FOV y variaciones suaves de brillo, sólo en memoria: nunca se escriben en `options.txt` y desaparecen al salir del mundo, al abrir Opciones o al cerrar el juego. Las pruebas automáticas deben pasar en GitHub Actions antes de la entrega; sigue pendiente probar la instalación en un equipo de casa y una sesión jugable de 10–15 minutos.
+ 
+ ## Equipo y créditos
+ 
+@@ -95,3 +95,10 @@ Original repository description (preserved):
+ A first-person horror mod for Minecraft Java 26.3 (Fabric) by NULL_Threshold Interactive, for the jam "Terror en Primera Persona" (USFQ, 2026-10-21 to 2026-10-28).
+ 
+ The owner's intent lives, verbatim, in `docs/intent/`. Every word there is deliberate: read the documents themselves, never a summary.
++
++## Herramientas de interfaz reversibles
++
++El paquete `v1.0.0-alpha.1.4` añade anomalías de F3, mensajes de muerte en la voz de la entidad,
++textos nativos de título/carga, avisos de avances no ganados, cambios de idioma en un letrero
++y cambios de percepción de sensibilidad/FOV/oscuridad sólo en memoria, sin modificar las opciones guardadas. Ninguno se dispara automáticamente.
++Consulta [la API, comandos de prueba/video, restauración y pruebas de CI](docs/plan/INTERFACE.md).
+diff --git a/build.gradle b/build.gradle
+index 2f1071a..07c202e 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -105,7 +105,7 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
+     mods.setFrom(tasks.named('clientSmokeJar'))
+     runDir = clientSmokeDir
+     useXVFB = true
+-    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
++    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest', '-Dunallocated.interface.debug=true', '-Dunallocated.interface.debug.quiet=true')
+     jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
+     jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
+     jvmArgs.add(tasks.named('jar', Jar).flatMap { it.archiveFile }.map {
+diff --git a/docs/plan/INTERFACE-API-AUDIT.json b/docs/plan/INTERFACE-API-AUDIT.json
+new file mode 100644
+index 0000000..e5c1a43
+--- /dev/null
++++ b/docs/plan/INTERFACE-API-AUDIT.json
+@@ -0,0 +1,151 @@
++{
++  "minecraft_jar_sha1": "e877b6a07acd633fb3bb475002175cec036e7b87",
++  "fabric_jar_sha256": {
++    "fabric-api-0.165.0+26.3.jar": "18442e2ad466d6ef41c37dbb4cb68495e6ca6658b1f1ee9be76143d155ef2c88",
++    "fabric-gametest-api-v1-4.0.35+3434d6d95d.jar": "ea99691f6cc3023d86a86c1b537f658d5a616e3b70bbacc0d4b378c5afee26b9",
++    "fabric-client-gametest-api-v1-6.0.11+131f8d475d.jar": "0fa9479bbb68f1ac0c941a8466f84e02efbaa5eb9b72ccd2d53b6f6c4d942592",
++    "fabric-loader-0.20.1.jar": "d0c5a082e07410aaff9de7ab196aa6b4236002870f9ba3ad5c1260fcce5110ad"
++  },
++  "verification": "Python class-file inspection of official Minecraft and resolved Fabric JARs only; this revision still requires CI.",
++  "checked_members": [
++    "public static net.minecraft.client.Minecraft.getInstance()Lnet/minecraft/client/Minecraft;",
++    "public net.minecraft.client.Minecraft.getConnection()Lnet/minecraft/client/multiplayer/ClientPacketListener;",
++    "public net.minecraft.util.thread.BlockableEventLoop.isSameThread()Z",
++    "public net.minecraft.util.thread.BlockableEventLoop.execute(Ljava/lang/Runnable;)V",
++    "public net.minecraft.client.Options.sensitivity()Lnet/minecraft/client/OptionInstance;",
++    "public net.minecraft.client.Options.fov()Lnet/minecraft/client/OptionInstance;",
++    "public net.minecraft.client.Options.gamma()Lnet/minecraft/client/OptionInstance;",
++    "public net.minecraft.client.Options.save()V",
++    "public net.minecraft.client.OptionInstance.get()Ljava/lang/Object;",
++    "public static net.minecraft.network.chat.Component.translatable(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;",
++    "public static net.minecraft.network.chat.Component.translatable(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;",
++    "public net.minecraft.network.chat.Component.getString()Ljava/lang/String;",
++    "public static net.minecraft.client.resources.language.I18n.get(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;",
++    "public net.minecraft.client.gui.Gui.screen()Lnet/minecraft/client/gui/screens/Screen;",
++    "public net.minecraft.client.gui.Gui.setScreen(Lnet/minecraft/client/gui/screens/Screen;)V",
++    "public net.minecraft.client.gui.Gui.toastManager()Lnet/minecraft/client/gui/components/toasts/ToastManager;",
++    "public net.minecraft.client.gui.Hud.getChat()Lnet/minecraft/client/gui/components/ChatComponent;",
++    "public net.minecraft.client.gui.components.ChatComponent.addClientSystemMessage(Lnet/minecraft/network/chat/Component;)V",
++    "public static net.minecraft.resources.Identifier.parse(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;",
++    "public static net.minecraft.resources.Identifier.withDefaultNamespace(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;",
++    "public static net.minecraft.resources.Identifier.fromNamespaceAndPath(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/Identifier;",
++    "public net.minecraft.core.BlockPos.immutable()Lnet/minecraft/core/BlockPos;",
++    "public net.minecraft.core.BlockPos.offset(III)Lnet/minecraft/core/BlockPos;",
++    "public net.minecraft.core.Vec3i.getX()I",
++    "public net.minecraft.core.Vec3i.getY()I",
++    "public net.minecraft.core.Vec3i.getZ()I",
++    "public net.minecraft.world.phys.BlockHitResult.getBlockPos()Lnet/minecraft/core/BlockPos;",
++    "public net.minecraft.world.level.Level.getBlockEntity(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;",
++    "public net.minecraft.world.level.block.entity.BlockEntity.getBlockPos()Lnet/minecraft/core/BlockPos;",
++    "public net.minecraft.world.level.block.entity.SignText.asMutable()Lnet/minecraft/world/level/block/entity/SignText$Mutable;",
++    "public net.minecraft.world.level.block.entity.SignText$Mutable.setLine(ILnet/minecraft/network/chat/Component;)Lnet/minecraft/world/level/block/entity/SignText$Mutable;",
++    "public net.minecraft.world.level.block.entity.SignText$Mutable.asImmutable()Lnet/minecraft/world/level/block/entity/SignText;",
++    "public net.minecraft.world.level.block.entity.SignText.getMessages(Z)Ljava/util/List;",
++    "public net.minecraft.world.level.block.entity.SignBlockEntity.getText(Lnet/minecraft/world/level/block/entity/SignTextSlot;)Lnet/minecraft/world/level/block/entity/SignText;",
++    "public static net.minecraft.advancements.Advancement$Builder.recipeAdvancement()Lnet/minecraft/advancements/Advancement$Builder;",
++    "public net.minecraft.advancements.Advancement$Builder.rootDisplay(Lnet/minecraft/world/item/Item;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/Identifier;Lnet/minecraft/advancements/AdvancementType;ZZZ)Lnet/minecraft/advancements/Advancement$Builder;",
++    "public net.minecraft.advancements.Advancement$Builder.build(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/advancements/AdvancementHolder;",
++    "public net.minecraft.advancements.AdvancementHolder.value()Lnet/minecraft/advancements/Advancement;",
++    "public net.minecraft.advancements.Advancement.display()Ljava/util/Optional;",
++    "public net.minecraft.client.gui.components.toasts.AdvancementToast.<init>(Lnet/minecraft/advancements/AdvancementHolder;)V",
++    "public net.minecraft.client.gui.components.toasts.AdvancementToast.getWantedVisibility()Lnet/minecraft/client/gui/components/toasts/Toast$Visibility;",
++    "public net.minecraft.client.gui.components.toasts.ToastManager.addToast(Lnet/minecraft/client/gui/components/toasts/Toast;)V",
++    "public net.minecraft.client.multiplayer.ClientPacketListener.getAdvancements()Lnet/minecraft/client/multiplayer/ClientAdvancements;",
++    "public net.minecraft.client.multiplayer.ClientAdvancements.get(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/advancements/AdvancementHolder;",
++    "public net.minecraft.client.multiplayer.ClientAdvancements.progress()Ljava/util/Map;",
++    "public net.minecraft.advancements.AdvancementProgress.isDone()Z",
++    "public net.minecraft.world.entity.Entity.setXRot(F)V",
++    "public net.minecraft.world.entity.Entity.setYRot(F)V",
++    "public net.minecraft.world.entity.Entity.blockPosition()Lnet/minecraft/core/BlockPos;",
++    "public final net.minecraft.server.MinecraftServer.overworld()Lnet/minecraft/server/level/ServerLevel;",
++    "public net.minecraft.client.gui.components.debug.DebugScreenEntryList.setOverlayVisible(Z)V",
++    "public net.minecraft.client.gui.components.debug.DebugScreenEntryList.isCurrentlyEnabled(Lnet/minecraft/resources/Identifier;)Z",
++    "public net.minecraft.client.gui.components.debug.DebugScreenEntryList.toggleStatus(Lnet/minecraft/resources/Identifier;)Z",
++    "public net.minecraft.client.gui.screens.TitleScreen.<init>()V",
++    "public net.minecraft.client.gui.screens.LevelLoadingScreen.<init>(Lnet/minecraft/client/multiplayer/LevelLoadTracker;Lnet/minecraft/client/gui/screens/LevelLoadingScreen$Reason;)V",
++    "public net.minecraft.client.gui.screens.options.OptionsScreen.<init>(Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/Options;)V",
++    "public net.minecraft.client.multiplayer.LevelLoadTracker.<init>()V",
++    "public final net.minecraft.client.Minecraft.guiLnet/minecraft/client/gui/Gui;",
++    "public final net.minecraft.client.Minecraft.optionsLnet/minecraft/client/Options;",
++    "public net.minecraft.client.Minecraft.levelLnet/minecraft/client/multiplayer/ClientLevel;",
++    "public net.minecraft.client.Minecraft.playerLnet/minecraft/client/player/LocalPlayer;",
++    "public final net.minecraft.client.Minecraft.gameDirectoryLjava/io/File;",
++    "public net.minecraft.client.Minecraft.hitResultLnet/minecraft/world/phys/HitResult;",
++    "public final net.minecraft.client.Minecraft.debugEntriesLnet/minecraft/client/gui/components/debug/DebugScreenEntryList;",
++    "public final net.minecraft.client.gui.Gui.hudLnet/minecraft/client/gui/Hud;",
++    "public static final net.minecraft.world.item.Items.STRINGLnet/minecraft/world/item/Item;",
++    "public static final net.minecraft.advancements.AdvancementType.TASKLnet/minecraft/advancements/AdvancementType;",
++    "public static final net.minecraft.world.level.block.entity.SignTextSlot.FRONTLnet/minecraft/world/level/block/entity/SignTextSlot;",
++    "public static final net.minecraft.client.gui.components.toasts.Toast$Visibility.HIDELnet/minecraft/client/gui/components/toasts/Toast$Visibility;",
++    "public static final net.minecraft.client.gui.screens.LevelLoadingScreen$Reason.OTHERLnet/minecraft/client/gui/screens/LevelLoadingScreen$Reason;",
++    "public net.minecraft.client.renderer.blockentity.state.SignRenderState.frontTextLnet/minecraft/world/level/block/entity/SignText;",
++    "private final net.minecraft.client.gui.screens.DeathScreen.causeOfDeathLnet/minecraft/network/chat/Component;",
++    "private final net.minecraft.client.gui.components.SplashRenderer.splashLnet/minecraft/network/chat/Component;",
++    "private static final net.minecraft.client.gui.screens.LevelLoadingScreen.DOWNLOADING_TERRAIN_TEXTLnet/minecraft/network/chat/Component;",
++    "public net.minecraft.client.Minecraft.tick()V",
++    "public net.minecraft.client.Minecraft.close()V",
++    "public net.minecraft.client.Minecraft.disconnect(Lnet/minecraft/client/gui/screens/Screen;ZZ)V",
++    "public net.minecraft.client.Minecraft.clearClientLevel(Lnet/minecraft/client/gui/screens/Screen;)V",
++    "public net.minecraft.client.gui.screens.ChatScreen.handleChatInput(Ljava/lang/String;Z)V",
++    "private net.minecraft.client.gui.screens.DeathScreen.visitText(Lnet/minecraft/client/gui/ActiveTextCollector;)V",
++    "public net.minecraft.client.gui.components.SplashRenderer.extractRenderState(Lnet/minecraft/client/gui/GuiGraphicsExtractor;ILnet/minecraft/client/gui/Font;F)V",
++    "public net.minecraft.client.gui.screens.LevelLoadingScreen.extractRenderState(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V",
++    "public net.minecraft.client.gui.components.debug.DebugEntryPosition.display(Lnet/minecraft/client/gui/components/debug/DebugScreenDisplayer;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/chunk/LevelChunk;)V",
++    "public abstract net.minecraft.client.gui.components.debug.DebugScreenDisplayer.addToGroup(Lnet/minecraft/resources/Identifier;Ljava/util/Collection;)V",
++    "public net.minecraft.client.renderer.blockentity.AbstractSignRenderer.extractRenderState(Lnet/minecraft/world/level/block/entity/SignBlockEntity;Lnet/minecraft/client/renderer/blockentity/state/SignRenderState;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V",
++    "net.minecraft.client.gui.components.debug.DebugEntryPosition.display -> opcode 185 net.minecraft.client.gui.components.debug.DebugScreenDisplayer.addToGroup(Lnet/minecraft/resources/Identifier;Ljava/util/Collection;)V",
++    "net.minecraft.client.gui.screens.DeathScreen.visitText -> opcode 180 net.minecraft.client.gui.screens.DeathScreen.causeOfDeathLnet/minecraft/network/chat/Component;",
++    "net.minecraft.client.gui.components.SplashRenderer.extractRenderState -> opcode 180 net.minecraft.client.gui.components.SplashRenderer.splashLnet/minecraft/network/chat/Component;",
++    "net.minecraft.client.gui.screens.LevelLoadingScreen.extractRenderState -> opcode 178 net.minecraft.client.gui.screens.LevelLoadingScreen.DOWNLOADING_TERRAIN_TEXTLnet/minecraft/network/chat/Component;",
++    "public net.minecraft.client.Options.darknessEffectScale()Lnet/minecraft/client/OptionInstance;",
++    "public net.minecraft.client.Camera.getFov()F",
++    "private net.minecraft.client.MouseHandler.turnPlayer(D)V",
++    "public net.minecraft.client.renderer.LightmapRenderStateExtractor.extract(Lnet/minecraft/client/renderer/state/LightmapRenderState;F)V",
++    "private net.minecraft.client.renderer.LightmapRenderStateExtractor.needsUpdateZ",
++    "public net.minecraft.client.renderer.state.LightmapRenderState.needsUpdateZ",
++    "public net.minecraft.client.renderer.state.LightmapRenderState.darknessEffectScaleF",
++    "public net.minecraft.client.gui.Font.split(Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;",
++    "public net.minecraft.client.gui.Font.plainSubstrByWidth(Ljava/lang/String;I)Ljava/lang/String;",
++    "public net.minecraft.network.chat.FormattedText.getString()Ljava/lang/String;",
++    "public static net.minecraft.network.chat.Component.literal(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest.runTest(Lnet/fabricmc/fabric/api/client/gametest/v1/context/ClientGameTestContext;)V",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.setScreen(Ljava/util/function/Supplier;)V",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.runOnClient(Lorg/apache/commons/lang3/function/FailableConsumer;)V",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.computeOnClient(Lorg/apache/commons/lang3/function/FailableFunction;)Ljava/lang/Object;",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.waitTick()V",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.waitTicks(I)V",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.waitFor(Ljava/util/function/Predicate;)I",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.waitFor(Ljava/util/function/Predicate;I)I",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.waitForScreen(Ljava/lang/Class;)I",
++    "public net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.takeScreenshot(Ljava/lang/String;)Ljava/nio/file/Path;",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext.worldBuilder()Lnet/fabricmc/fabric/api/client/gametest/v1/world/TestWorldBuilder;",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder.create()Lnet/fabricmc/fabric/api/client/gametest/v1/context/TestSingleplayerContext;",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext.getServer()Lnet/fabricmc/fabric/api/client/gametest/v1/context/TestServerContext;",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext.close()V",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext.runCommand(Ljava/lang/String;)V",
++    "public abstract net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext.runOnServer(Lorg/apache/commons/lang3/function/FailableConsumer;)V",
++    "public static net.fabricmc.loader.api.FabricLoader.getInstance()Lnet/fabricmc/loader/api/FabricLoader;",
++    "public abstract net.fabricmc.loader.api.FabricLoader.getEnvironmentType()Lnet/fabricmc/api/EnvType;",
++    "public abstract net.fabricmc.loader.api.FabricLoader.getModContainer(Ljava/lang/String;)Ljava/util/Optional;",
++    "public abstract net.fabricmc.loader.api.ModContainer.getOrigin()Lnet/fabricmc/loader/api/metadata/ModOrigin;",
++    "public abstract net.fabricmc.loader.api.metadata.ModOrigin.getPaths()Ljava/util/List;",
++    "public abstract net.fabricmc.api.ModInitializer.onInitialize()V",
++    "public abstract net.fabricmc.api.ClientModInitializer.onInitializeClient()V",
++    "public static final net.fabricmc.api.EnvType.CLIENTLnet/fabricmc/api/EnvType;",
++    "net.minecraft.client.MouseHandler.turnPlayer -> opcode 182 net.minecraft.client.OptionInstance.get()Ljava/lang/Object;",
++    "net.minecraft.client.gui.components.toasts.AdvancementToast.extractRenderState -> opcode 182 net.minecraft.client.gui.Font.split(Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;",
++    "private net.minecraft.client.Camera.calculateFov(F)F",
++    "public net.minecraft.client.renderer.GameRenderer.mainCamera()Lnet/minecraft/client/Camera;",
++    "public net.minecraft.client.renderer.Lightmap.render(Lnet/minecraft/client/renderer/state/LightmapRenderState;)V",
++    "public final net.minecraft.client.Minecraft.gameRendererLnet/minecraft/client/renderer/GameRenderer;",
++    "public final net.minecraft.client.Minecraft.mouseHandlerLnet/minecraft/client/MouseHandler;",
++    "private net.minecraft.client.MouseHandler.accumulatedDXD",
++    "private net.minecraft.client.MouseHandler.accumulatedDYD",
++    "public net.minecraft.world.entity.Entity.getYRot()F",
++    "public net.minecraft.world.entity.Entity.getXRot()F",
++    "net.minecraft.client.Camera.update -> opcode 182 net.minecraft.client.Camera.calculateFov(F)F",
++    "net.minecraft.client.Camera.update -> opcode 181 net.minecraft.client.Camera.fovF",
++    "net.minecraft.client.Camera.update -> opcode 182 net.minecraft.client.Camera.setupPerspective(FFFFF)V",
++    "net.minecraft.client.renderer.Lightmap.render -> opcode 180 net.minecraft.client.renderer.state.LightmapRenderState.darknessEffectScaleF"
++  ]
++}
+diff --git a/docs/plan/INTERFACE.md b/docs/plan/INTERFACE.md
+new file mode 100644
+index 0000000..dce3282
+--- /dev/null
++++ b/docs/plan/INTERFACE.md
+@@ -0,0 +1,178 @@
++# Interface toolkit — 1.0.0-alpha.1.4
++
++This package implements the brainstorm's “el idioma de Minecraft como arma” and plan 3.2, 3.5, 4.5,
++5.2 and 5.7. The owner's October 26 update makes the pre-built map and a solo 10–15 minute session
++the primary integration target. Nothing fires automatically. A later director/map controller chooses the beats.
++
++## Client API
++
++Call `org.unallocated.client.interfacefx.InterfaceEffects.trigger(Request)` on the Minecraft client thread.
++It returns `false` when the world, cooldown, settings editor or requested advancement is unavailable.
++Invalid parameters throw `IllegalArgumentException`; an off-thread call throws `IllegalStateException`.
++The director should treat a refusal as a skipped beat, never retry it every tick.
++
++```java
++client.execute(() -> InterfaceEffects.trigger(new InterfaceEffects.Request(
++        InterfaceEffects.Effect.FOV, 40, 2, .5,
++        InterfaceTexts.LeakLanguage.ES, 17, null)));
++```
++
++`Request` takes effect, duration in ticks (50 ms each), generation 0–5, strength −1…1,
++leaked-text language, deterministic seed, optional sign block position, and optional advancement ID.
++The seven-argument constructor defaults the advancement ID to `null` (invented advancement).
++The sign position is required for `SIGN`; it is captured immutably and bound to the current client world.
++Other world effects stop when that client world is replaced, including dimension transitions.
++
++Production triggers have a 60 second cooldown per primitive and a 15 second global minimum interval.
++These are safety ceilings, not a suggested schedule. The director should normally be substantially rarer.
++Only one settings effect can run at once. No setting effect is accepted while the settings editor is open.
++`clear()` cancels the toolkit and clears perception overrides; it retains cooldowns. `leaveWorld()` is wired to unload.
++No networking, world mutation, inference service, Fabric API runtime dependency or automatic story schedule is added.
++
++| Name | Maximum duration | Behavior and preserved functionality |
++| --- | --- | --- |
++| `F3` | 60 ticks / 3 s | Replaces only the XYZ display with coordinates beyond the world boundary and an impossible depth. Block/Chunk/Facing, actual position, F3+C clipboard, targeting and physics stay truthful. It neither enables F3 nor changes the player's debug profile. |
++| `DEATH` | 600 ticks / 30 s armed window | Rewrites the cause line while an actual vanilla death screen renders. It neither kills the player nor changes respawn buttons, death packets, signed chat or the server's death history. Expiry restores the original line, even while the screen remains open. |
++| `SPLASH` | 600 ticks / 30 s | Replaces the title screen's native splash component at render time. Respects the player's Hide Splash Texts option. |
++| `LOADING` | 600 ticks / 30 s | Replaces the native LevelLoadingScreen terrain-loading caption. Generations 0–2 leak the goal; generations 3–5 leak log-like failure lines. The real chunk/progress display and narration of numeric loading progress remain intact. |
++| `ADVANCEMENT` | 100 ticks / 5 s | Adds a native AdvancementToast without registering an advancement, awarding criteria/rewards, changing progress or sending packets. Toolkit toast titles are clipped to one native line so the title appears below the header immediately, including during the first second. With no ID it composes a deterministic invented title; with an ID it uses an advancement already known to the client's advancement tree. An unknown ID is refused. |
++| `SENSITIVITY` | 100 ticks / 5 s | A 0.92…1.08 multiplier applied only when MouseHandler reads sensitivity; actual options stay unchanged. |
++| `FOV` | 100 ticks / 5 s | A 0.96…1.04 multiplier applied to Camera.calculateFov before Camera.update stores it and builds the perspective projection, preserving normal camera/spyglass behavior outside the effect. |
++| `GAMMA` | 100 ticks / 5 s | Smooth 2 Hz darkness variations, at most 0.08 added to vanilla lightmap darkness. Respects the player's Darkness Effect Scale; never changes gamma or applies a status effect. |
++| `SIGN` | 100 ticks / 5 s | A chosen sign's front-side render text uses compact g0…g5 lines in the selected leak language. The sign block entity, back side, packets and world saves stay untouched. The next render returns the original text. |
++
++Durations use a monotonic real-time deadline, so pausing or accelerating game-test ticks cannot extend drift.
++Splash/loading arms can span leaving a world so a director can prepare a transition/title beat; they expire normally.
++All other effects are cleared on world unload. All effects are cleared on client close.
++Owned toasts are hidden on cancellation/expiry through vanilla's normal dismissal animation; real toasts are unaffected.
++
++## Debug/video commands
++
++In a disposable test launcher profile, add JVM argument `-Dunallocated.interface.debug=true`.
++The opt-in local command bypasses production cooldowns, while retaining duration/strength limits.
++Without the argument, the command is consumed silently and never forwards anything to a server.
++`-Dunallocated.interface.debug.quiet=true` suppresses feedback even in debug mode (used for CI captures).
++
++```text
++/uinterface <effect> [ticks] [generation] [es|en|mixed] [strength] [seed] [advancement_id]
++/uinterface restore
++/uinterface help
++```
++
++Names are case-insensitive. Defaults: 60 ticks, g2, Spanish, strength 0.5, seed 17.
++Use ASCII `-` for negative strengths. For `sign`, aim at a sign first. Actual chat input is intercepted before sending.
++
++Suggested separate shots for the owner:
++
++1. Enable F3 normally, then `/uinterface f3 60` and compare XYZ with the still-correct Block line.
++2. `/uinterface death 600 3`, then `/kill` in a disposable cheats-enabled world. This arms a real death, not a fake death screen.
++3. `/uinterface splash 600 2 mixed`, then save/leave to the title within 30 seconds.
++4. `/uinterface loading 600 3`, then cause an actual loading transition within 30 seconds.
++5. `/uinterface advancement 100 5 es 0.5 39` for an invented advancement; repeat with a different seed/generation.
++6. `/uinterface advancement 100 2 es 0.5 17 minecraft:story/mine_stone` for a known advancement.
++   It must already be visible/known to this client; no progress is granted by this command.
++7. Separately try `/uinterface sensitivity 60`, `/uinterface fov 60`, `/uinterface gamma 60`,
++   and `/uinterface sign 100 3 mixed` while looking at a sign.
++8. `/uinterface restore` is the immediate emergency stop. Opening Options also ends settings drift first.
++
++The developer debug command is not a substitute for the future player-facing beginning/story sequence.
++The Spanish resource key `interface.unallocated.warning` is available to the sibling contract package:
++brief sensitivity/FOV changes and smooth brightness variations should appear in the actual content warnings.
++Its integration belongs to that package/coordinator; this branch does not add a competing consent screen.
++
++## Restoration by construction (adopted D-21 A)
++
++Settings drift now uses `org.unallocated.client.effects.PerceptionOverrides`, following milestone PLAN §4.3.
++Its `INSTANCE.apply(Perception kind, float value, int ticks)` accepts `FOV_SCALE` (0.96…1.04),
++`SENSITIVITY_SCALE` (0.92…1.08), or `DARKNESS` (0…0.08). `clearAll()` cancels them.
++The pure Java state expires by monotonic wall time; darkness follows a smooth 2 Hz pulse.
++
++Only the native mouse consumer, camera FOV calculation and lightmap render state read the overrides. None calls
++`OptionInstance.set`, writes `options.txt`, suppresses vanilla saves, changes the selected UI language,
++or requires a next-start recovery hook. Opening Options, leaving/replacing the world and client close clear
++all perception overrides. A killed process loses all overrides; removing the mod before restarting is safe.
++Normal user preferences and vanilla saves continue to work throughout. The obsolete journal, OptionsGuard,
++save/load mixin, recovery probe and journal tests have been removed: nothing in this toolkit needs to touch real options.
++The `GAMMA` trigger name is retained for callers, but now maps to temporary render darkness rather than gamma mutation.
++
++## Text and the open language decision
++
++All narrative/debug text is in `assets/unallocated/lang/es_es.json`, with the same Spanish-default entries in
++`en_us.json` as vanilla's fallback for other UI languages. Keys begin `interface.unallocated.`.
++The UI language is never switched globally or reloaded. Each request independently selects `ES`, `EN` or `MIXED`.
++The short sign lines, death lines, log lines and goals track g0…g5, with failed acquisition, retained human data,
++copying over copies, the frustration of making each attempt worse and finally repetition without meaning.
++
++Invented advancement titles are seeded fragment composition, not a claim of a running LLM or real goal learning.
++Generation 5 repeats fragments to make the degradation apparent. Existing advancement titles follow the player's
++own vanilla localization; only the invented/leaked text follows the request's leak language.
++
++**Recommendation, not a closed decision:** Spanish for narrative clarity in a short solo session; use `mixed`
++sparingly for technical leaks and later degradation. The owner's plan 3.2 language choice remains open.
++
++## 26.3 API investigation
++
++The coordinator's official unobfuscated client JAR is now the authority for Minecraft signatures and injection
++sites. [The recorded audit](INTERFACE-API-AUDIT.json) checks Minecraft and resolved Fabric calls, fields, private mixin targets and
++actual bytecode references without running Java or Gradle. Its SHA-1 matches `mc-ref/26.3.json`.
++This replaces the earlier source-mirror assumptions: the debug reply uses public
++`ChatComponent.addClientSystemMessage(Component)`; invented toasts use current `rootDisplay(...)`; death text
++redirects the cause field in `visitText(ActiveTextCollector)`, where the real renderer reads it.
++Mixins live exclusively in `org.unallocated.client.mixin.interfacefx` and test-only
++`org.unallocated.client.mixin.interfacefxsmoke`; runtime logic remains outside both namespaces.
++
++The binary audit now includes client game-test API 6.0.11+131f8d475d, game-test API
++4.0.35+3434d6d95d and Fabric Loader 0.20.1 from the coordinator's resolved dependencies.
++
++The implemented hooks target the actual 26.3 classes, rather than older `getGameInformation`/`GuiGraphics` tutorials.
++The inspected Mojang class source has the title's SplashRenderer and LevelLoadingScreen's terrain caption with
++progress/chunk rendering. No rotating advice/tip list was found in these Java Edition screens; this package uses
++the native splash and native loading caption and does not pretend the Bedrock tips screen exists here.
++
++References inspected October 26, 2026 (the source mirror reproduces game class source; it is not Mojang's website):
++
++- [DebugEntryPosition source](https://mc-packet-reference.netlify.app/26.x/source/net/minecraft/client/gui/components/debug/debugentryposition/)
++- [SplashRenderer source](https://mc-packet-reference.netlify.app/26.x/source/net/minecraft/client/gui/components/splashrenderer/)
++- [LevelLoadingScreen source](https://mc-packet-reference.netlify.app/26.x/source/net/minecraft/client/gui/screens/levelloadingscreen/)
++- [DeathScreen source](https://mc-packet-reference.netlify.app/26.x/source/net/minecraft/client/gui/screens/deathscreen/)
++- [AbstractSignRenderer source](https://mc-packet-reference.netlify.app/26.x/source/net/minecraft/client/renderer/blockentity/abstractsignrenderer/)
++- [Options source](https://mc-packet-reference.netlify.app/26.x/source/net/minecraft/client/options/)
++- [Fabric 26.3 game-test context](https://raw.githubusercontent.com/FabricMC/fabric-api/26.3/fabric-client-gametest-api-v1/src/client/java/net/fabricmc/fabric/api/client/gametest/v1/context/ClientGameTestContext.java)
++- [Fabric 26.3 test-world builder](https://raw.githubusercontent.com/FabricMC/fabric-api/26.3/fabric-client-gametest-api-v1/src/client/java/net/fabricmc/fabric/api/client/gametest/v1/world/TestWorldBuilder.java)
++
++Compilation and real-game success must be established by CI, not inferred from source inspection.
++
++## Verification and remaining playthrough
++
++`gradle build clientSmokeJar` runs three JUnit perception-state tests in CI: bounded requests,
++wall-time expiry/clear, and fresh process state without drift. No journal or options recovery is needed.
++
++The existing production-client game test now also:
++
++- Renders native splash/loading/F3/advancement/sign/death hooks and takes six named screenshots; the Python watchdog
++  requires all six valid PNG signatures and the explicit restoration success marker, in addition to the title smoke.
++- Exercises all three leak languages, checks missing keys, request bounds, global cooldown and the local command handler.
++- Keeps real F3 navigation lines unchanged, checks a sign remains unmodified on the server, and checks displaying an
++  existing advancement does not award progress. A real server `/kill` opens the death screen.
++- Requires changed values at all three native perception consumers, calls normal vanilla save while overrides are active,
++  and checks that real option values and file bytes remain unchanged. Also checks expiry and opening Options.
++  Sensitivity is verified by feeding identical raw deltas into vanilla `MouseHandler.turnPlayer` through a test-only
++  accessor and asserting changed player yaw, then the original yaw response after expiry. This bypasses only the
++  SDL focus/capture gates that simulated cursor movement does not guarantee under Xvfb.
++  FOV is verified on the stored camera value used by `setupPerspective`, rather than by intercepting its getter.
++  Darkness is observed after changing `LightmapRenderState.darknessEffectScale`, the value uploaded by `Lightmap.render`.
++  Every phase logs its effect name and original/adjusted values; a failed wait names the missing consumer.
++- Requires the toast title hook and verifies a disabled debug command emits no chat feedback and dispatches no effect.
++- Leaves the world with an override active, checks it cleared and confirms normal saves leave the same option bytes.
++
++The smoke helper and raw-mouse accessor remain outside the player JAR; artifact verification rejects their classes,
++test entrypoints, nested dependencies and test mixin config. Dedicated-server smoke still uses only the player JAR.
++JUnit XML/HTML and client screenshots/logs are uploaded in diagnostics. Fourteen Python watchdog tests run without Java.
++
++The coordinator confirmed run 40273949425 on f84c8b6 green with actual effect screenshots. The corrected native-consumer
++perception probes require a new green CI run; no Java or Gradle was run locally.
++
++No Java or Gradle is run on the shared scaffold host. Python checks and static JSON/diff checks can run locally.
++CI result/diagnostics must be reviewed before merging; the sandbox cannot reach the private GitHub API directly.
++Human playthrough still needs to judge subtlety, readability at ordinary UI scales, perceived gamma/FOV intensity,
++the warning/consent integration and the director/map's spacing across a full 10–15 minute session.
+diff --git a/scripts/smoke_test.py b/scripts/smoke_test.py
+index e5f24cc..bfa6006 100644
+--- a/scripts/smoke_test.py
++++ b/scripts/smoke_test.py
+@@ -230,9 +230,10 @@ def client_phases():
+             'evidence': [
+                 r'UNALLOCATED smoke: contract first start, data list, typed and clicked acceptance verified\.',
+                 modules, title,
++                r'UNALLOCATED interface smoke: effects rendered; options untouched byte-for-byte after world exit\.',
+             ],
+             'screenshots': ['unallocated-contract', 'unallocated-contract-uses', 'unallocated-title-first'],
+-            'timeout': 240,
++            'timeout': 420,
+         },
+         'restart': {
+             'evidence': [
+@@ -245,6 +246,16 @@ def client_phases():
+     }
+ 
+ 
++INTERFACE_EFFECTS = ('splash', 'loading', 'f3', 'advancement', 'sign', 'death')
++
++
++def verify_interface_screenshots(directory):
++    for effect in INTERFACE_EFFECTS:
++        screenshots = list(directory.rglob(f'*unallocated-interface-{effect}*.png'))
++        if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
++            raise RuntimeError(f'Client exited without a valid interface screenshot: {effect}')
++
++
+ def client():
+     directory = SMOKE / 'client'
+     directory.mkdir(parents=True, exist_ok=False)
+@@ -270,6 +281,7 @@ def client():
+             else:
+                 verify_screenshot(directory, screenshot)
+         if phase == 'first':
++            verify_interface_screenshots(directory)
+             original = receipt.read_bytes()
+             (directory / 'logs').rename(directory / 'logs-first')
+         elif receipt.read_bytes() != original:
+diff --git a/scripts/test_contract_smoke.py b/scripts/test_contract_smoke.py
+index e4262a9..ed927ca 100644
+--- a/scripts/test_contract_smoke.py
++++ b/scripts/test_contract_smoke.py
+@@ -31,7 +31,10 @@ class ContractSmokeTest(unittest.TestCase):
+                 receipt.parent.mkdir(exist_ok=True)
+                 if missing != 'receipt':
+                     receipt.write_bytes(b'rewritten' if phase == 'restart' and rewrite else b'original')
+-                for name in smoke_test.client_phases()[phase]['screenshots']:
++                names = list(smoke_test.client_phases()[phase]['screenshots'])
++                if phase == 'first':
++                    names += [f'unallocated-interface-{effect}' for effect in smoke_test.INTERFACE_EFFECTS]
++                for name in names:
+                     if missing != name:
+                         (directory / f'0000_{name}.png').write_bytes(b'\x89PNG\r\n\x1a\n')
+                 # Loom's run task installs exactly the player JAR into the shared game directory.
+@@ -58,6 +61,12 @@ class ContractSmokeTest(unittest.TestCase):
+             with self.subTest(missing=missing), self.assertRaisesRegex(RuntimeError, 'contract screenshot'):
+                 self.run_client(missing=missing)
+ 
++    def test_merged_first_start_needs_interface_evidence(self):
++        self.assertIn(r'UNALLOCATED interface smoke: effects rendered; options untouched byte-for-byte after world exit\.',
++                      smoke_test.client_phases()['first']['evidence'])
++        with self.assertRaisesRegex(RuntimeError, 'interface screenshot: death'):
++            self.run_client(missing='unallocated-interface-death')
++
+     def test_missing_receipt_fails(self):
+         with self.assertRaises(FileNotFoundError):
+             self.run_client(missing='receipt')
+diff --git a/scripts/test_smoke_test.py b/scripts/test_smoke_test.py
+index 727c4df..be1a892 100644
+--- a/scripts/test_smoke_test.py
++++ b/scripts/test_smoke_test.py
+@@ -7,7 +7,11 @@ import sys
+ from tempfile import TemporaryDirectory
+ import unittest
+ 
++<<<<<<< HEAD
+ from smoke_test import ROOT, monitor, verify_screenshot, server_evidence, API_POLICY, API_VERSION
++=======
++from smoke_test import ROOT, monitor, verify_screenshot, verify_interface_screenshots
++>>>>>>> origin/v1.0.0-alpha.1.4
+ 
+ 
+ COMMON = r'UNALLOCATED initialized \(common\)\.'
+@@ -122,6 +126,7 @@ class WatchdogTest(unittest.TestCase):
+             with self.assertRaisesRegex(RuntimeError, 'screenshot'):
+                 verify_screenshot(directory)
+ 
++<<<<<<< HEAD
+     def test_core_commands_wait_for_fresh_game_log_evidence(self):
+         self.run_fixture(
+             "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+@@ -146,6 +151,20 @@ class WatchdogTest(unittest.TestCase):
+                 required=(COMMON, DONE, 'ACT_ENTER'), startup_required=(COMMON, DONE),
+                 stop_when_ready=True, command_steps=[('unallocated act LOBBY', ['ACT_ENTER'])], timeout=0.6,
+             )
++=======
++    def test_interface_requires_each_effect_screenshot(self):
++        with TemporaryDirectory(dir=ROOT / '.tmp') as temp:
++            directory = Path(temp)
++            for effect in ('splash', 'loading', 'f3', 'advancement', 'sign', 'death'):
++                with self.assertRaisesRegex(RuntimeError, 'interface screenshot'):
++                    verify_interface_screenshots(directory)
++                (directory / f'0001_unallocated-interface-{effect}.png').write_bytes(b'\x89PNG\r\n\x1a\n')
++            verify_interface_screenshots(directory)
++
++    def test_title_only_marker_cannot_replace_effect_checks(self):
++        with self.assertRaisesRegex(RuntimeError, 'Missing required'):
++            self.run_fixture("log.write_text('TITLE_READY')\n", required=('TITLE_READY', 'INTERFACE_RESTORED'))
++>>>>>>> origin/v1.0.0-alpha.1.4
+ 
+ 
+ if __name__ == '__main__':
+diff --git a/scripts/test_verify_jar.py b/scripts/test_verify_jar.py
+index a6f6f2f..c51dca6 100644
+--- a/scripts/test_verify_jar.py
++++ b/scripts/test_verify_jar.py
+@@ -108,7 +108,7 @@ class PackagingTest(unittest.TestCase):
+ 
+     def test_test_entrypoint_classes_and_missing_credits_fail(self):
+         original = deepcopy(self.entries)
+-        for failure in ('entrypoint', 'class', 'license', 'notice', 'dependency'):
++        for failure in ('entrypoint', 'class', 'smoke-mixin', 'smoke-config', 'license', 'notice', 'dependency'):
+             with self.subTest(failure=failure):
+                 self.entries = deepcopy(original)
+                 meta = deepcopy(self.meta)
+@@ -116,6 +116,10 @@ class PackagingTest(unittest.TestCase):
+                     self.meta['entrypoints']['fabric-client-gametest'] = ['Test']
+                 elif failure == 'class':
+                     self.entries['org/unallocated/smoke/Test.class'] = b'bad'
++                elif failure == 'smoke-mixin':
++                    self.entries['org/unallocated/client/mixin/interfacefxsmoke/Accessor.class'] = b'bad'
++                elif failure == 'smoke-config':
++                    self.entries['unallocated-interface-smoke.mixins.json'] = '{}'
+                 elif failure == 'license':
+                     del self.entries[LICENSE]
+                 elif failure == 'notice':
+diff --git a/scripts/verify_jar.py b/scripts/verify_jar.py
+index 5ff80b7..f1be7d5 100644
+--- a/scripts/verify_jar.py
++++ b/scripts/verify_jar.py
+@@ -43,7 +43,8 @@ def verify(artifact, properties, policy):
+                 'Declared nested jars differ from allowlist')
+         require({name for name in names if name.lower().endswith('.jar')} == set(expected),
+                 'Actual nested jars differ from allowlist')
+-        require(not any(name.startswith('org/unallocated/smoke/') for name in names),
++        require(not any(name.startswith(('org/unallocated/smoke/', 'org/unallocated/client/mixin/interfacefxsmoke/'))
++                        or name == 'unallocated-interface-smoke.mixins.json' for name in names),
+                 'Smoke helper leaked into player jar')
+         depends = {
+             'fabricloader': '>=' + properties['loader_version'],
+diff --git a/src/client/java/org/unallocated/client/interfacefx/InterfaceDebugCommand.java b/src/client/java/org/unallocated/client/interfacefx/InterfaceDebugCommand.java
+new file mode 100644
+index 0000000..1527eab
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/interfacefx/InterfaceDebugCommand.java
+@@ -0,0 +1,65 @@
++package org.unallocated.client.interfacefx;
++
++import java.util.Locale;
++import net.minecraft.client.Minecraft;
++import net.minecraft.core.BlockPos;
++import net.minecraft.network.chat.Component;
++import net.minecraft.resources.Identifier;
++import net.minecraft.world.phys.BlockHitResult;
++import org.unallocated.client.interfacefx.InterfaceEffects.Effect;
++import org.unallocated.client.interfacefx.InterfaceEffects.Request;
++import org.unallocated.client.interfacefx.InterfaceTexts.LeakLanguage;
++
++/** Deliberately local: no chat text or command is forwarded to a server. */
++public final class InterfaceDebugCommand {
++    private static int feedbackCount;
++    private InterfaceDebugCommand() { }
++    public static int feedbackCount() { return feedbackCount; }
++
++    public static boolean handle(String message) {
++        String input = message.strip();
++        if (!input.equals("/uinterface") && !input.startsWith("/uinterface ")) return false;
++        Minecraft client = Minecraft.getInstance();
++        if (!Boolean.getBoolean("unallocated.interface.debug")) {
++            return true;
++        }
++        String[] args = input.split("\\s+");
++        if (args.length == 1 || args[1].equals("help")) {
++            reply("help");
++            return true;
++        }
++        if (args[1].equals("restore")) {
++            InterfaceEffects.clear();
++            reply("restored");
++            return true;
++        }
++        try {
++            if (args.length > 8) throw new IllegalArgumentException();
++            Effect effect = Effect.valueOf(args[1].toUpperCase(Locale.ROOT));
++            int ticks = args.length > 2 ? Integer.parseInt(args[2]) : Math.min(60, InterfaceEffects.maxTicks(effect));
++            int generation = args.length > 3 ? Integer.parseInt(args[3]) : 2;
++            LeakLanguage language = args.length > 4 ? LeakLanguage.parse(args[4]) : LeakLanguage.ES;
++            double strength = args.length > 5 ? Double.parseDouble(args[5]) : .5;
++            long seed = args.length > 6 ? Long.parseLong(args[6]) : 17;
++            Identifier advancement = args.length > 7 ? Identifier.parse(args[7]) : null;
++            BlockPos sign = client.hitResult instanceof BlockHitResult hit ? hit.getBlockPos() : null;
++            if (effect == Effect.SIGN && (sign == null || client.level == null
++                    || !(client.level.getBlockEntity(sign) instanceof net.minecraft.world.level.block.entity.SignBlockEntity))) {
++                reply("sign");
++                return true;
++            }
++            boolean accepted = InterfaceEffects.debugTrigger(new Request(effect, ticks, generation,
++                    strength, language, seed, sign, advancement));
++            reply(accepted ? "fired" : "refused");
++        } catch (IllegalArgumentException failure) {
++            reply("help");
++        }
++        return true;
++    }
++
++    private static void reply(String key) {
++        if (!Boolean.getBoolean("unallocated.interface.debug") || Boolean.getBoolean("unallocated.interface.debug.quiet")) return;
++        Minecraft.getInstance().gui.hud.getChat().addClientSystemMessage(Component.translatable("interface.unallocated.debug." + key));
++        feedbackCount++;
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/interfacefx/InterfaceEffects.java b/src/client/java/org/unallocated/client/interfacefx/InterfaceEffects.java
+new file mode 100644
+index 0000000..ed57703
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/interfacefx/InterfaceEffects.java
+@@ -0,0 +1,217 @@
++package org.unallocated.client.interfacefx;
++
++import java.util.Collection;
++import java.util.EnumMap;
++import java.util.HashMap;
++import java.util.WeakHashMap;
++import java.util.Map;
++import java.util.Set;
++import net.minecraft.advancements.Advancement;
++import net.minecraft.advancements.AdvancementType;
++import net.minecraft.client.Minecraft;
++import net.minecraft.client.gui.components.toasts.AdvancementToast;
++import net.minecraft.core.BlockPos;
++import net.minecraft.network.chat.Component;
++import net.minecraft.resources.Identifier;
++import net.minecraft.world.item.Items;
++import net.minecraft.world.level.block.entity.SignText;
++import org.unallocated.client.interfacefx.InterfaceTexts.LeakLanguage;
++import org.unallocated.client.effects.PerceptionOverrides;
++import org.unallocated.client.effects.PerceptionOverrides.Perception;
++
++/** Render-thread-only toolkit. The future director owns all story timing. */
++public final class InterfaceEffects {
++    public enum Effect { F3, DEATH, SPLASH, LOADING, ADVANCEMENT, SENSITIVITY, FOV, GAMMA, SIGN }
++    public record Request(Effect effect, int ticks, int generation, double strength,
++                          LeakLanguage language, long seed, BlockPos signPosition, Identifier advancementId) {
++        public Request(Effect effect, int ticks, int generation, double strength,
++                       LeakLanguage language, long seed, BlockPos signPosition) {
++            this(effect, ticks, generation, strength, language, seed, signPosition, null);
++        }
++        public Request {
++            if (effect == null || language == null || generation < 0 || generation > 5
++                    || ticks < 1 || ticks > maxTicks(effect) || !Double.isFinite(strength)
++                    || strength < -1 || strength > 1 || (effect == Effect.SIGN && signPosition == null)) {
++                throw new IllegalArgumentException("Invalid interface effect request");
++            }
++            if (signPosition != null) signPosition = signPosition.immutable();
++        }
++    }
++    private record Active(Request request, long start, long end, Object world) { }
++    private static final EnumMap<Effect, Active> ACTIVE = new EnumMap<>(Effect.class);
++    private static final EnumMap<Effect, Long> LAST = new EnumMap<>(Effect.class);
++    private static final Set<Effect> SETTINGS = Set.of(Effect.SENSITIVITY, Effect.FOV, Effect.GAMMA);
++    private static long lastAny = Long.MIN_VALUE;
++    private static final long COOLDOWN = 60_000_000_000L;
++    private static final long GLOBAL_COOLDOWN = 15_000_000_000L;
++    private static final Map<AdvancementToast, Long> TOASTS = new WeakHashMap<>();
++    private static final Map<String, Integer> OBSERVED = new HashMap<>();
++    public record Application(double original, double adjusted) { }
++    private static final EnumMap<Effect, Application> APPLICATIONS = new EnumMap<>(Effect.class);
++    private static Object lastWorld;
++
++    private InterfaceEffects() { }
++
++    public static int maxTicks(Effect effect) {
++        return switch (effect) {
++            case F3 -> 60;
++            case SENSITIVITY, FOV, GAMMA, SIGN -> 100;
++            case ADVANCEMENT -> 100;
++            case DEATH, SPLASH, LOADING -> 600;
++        };
++    }
++
++    public static boolean trigger(Request request) { return trigger(request, false); }
++
++    public static boolean debugTrigger(Request request) {
++        if (!Boolean.getBoolean("unallocated.interface.debug")) return false;
++        return trigger(request, true);
++    }
++
++    private static boolean trigger(Request request, boolean debug) {
++        Minecraft client = Minecraft.getInstance();
++        if (!client.isSameThread()) throw new IllegalStateException("Interface triggers require the client thread");
++        tick();
++        long now = System.nanoTime();
++        if (request.effect != Effect.SPLASH && request.effect != Effect.LOADING && client.level == null) return false;
++        if (!debug && ((lastAny != Long.MIN_VALUE && now - lastAny < GLOBAL_COOLDOWN)
++                || (LAST.containsKey(request.effect) && now - LAST.get(request.effect) < COOLDOWN))) return false;
++        var existingAdvancement = request.effect == Effect.ADVANCEMENT && request.advancementId != null
++                && client.getConnection() != null ? client.getConnection().getAdvancements().get(request.advancementId) : null;
++        if (request.advancementId != null && (request.effect != Effect.ADVANCEMENT
++                || existingAdvancement == null || existingAdvancement.value().display().isEmpty())) return false;
++        if (SETTINGS.contains(request.effect)) {
++            if (client.gui.screen() instanceof net.minecraft.client.gui.screens.options.OptionsScreen
++                    || client.gui.screen() instanceof net.minecraft.client.gui.screens.options.OptionsSubScreen) return false;
++            if (ACTIVE.keySet().stream().anyMatch(SETTINGS::contains)) return false;
++        }
++        ACTIVE.put(request.effect, new Active(request, now, now + request.ticks * 50_000_000L, client.level));
++        LAST.put(request.effect, now);
++        lastAny = now;
++        switch (request.effect) {
++            case SENSITIVITY -> PerceptionOverrides.INSTANCE.apply(Perception.SENSITIVITY_SCALE, 1 + (float) request.strength * .08f, request.ticks);
++            case FOV -> PerceptionOverrides.INSTANCE.apply(Perception.FOV_SCALE, 1 + (float) request.strength * .04f, request.ticks);
++            case GAMMA -> PerceptionOverrides.INSTANCE.apply(Perception.DARKNESS, (float) Math.abs(request.strength) * .08f, request.ticks);
++            case ADVANCEMENT -> {
++                var holder = existingAdvancement != null ? existingAdvancement : Advancement.Builder.recipeAdvancement()
++                        .rootDisplay(Items.STRING, InterfaceTexts.inventedAdvancement(request.generation, request.language, request.seed),
++                                text(request, "goal"), Identifier.withDefaultNamespace("gui/advancements/backgrounds/stone"),
++                                AdvancementType.TASK, true, false, true)
++                        .build(Identifier.fromNamespaceAndPath("unallocated", "interface/phantom_" + Long.toUnsignedString(request.seed)));
++                var toast = new AdvancementToast(holder);
++                TOASTS.put(toast, now + request.ticks * 50_000_000L);
++                client.gui.toastManager().addToast(toast);
++            }
++            default -> { }
++        }
++        return true;
++    }
++
++    public static void tick() {
++        long now = System.nanoTime();
++        boolean hadSettings = ACTIVE.keySet().stream().anyMatch(SETTINGS::contains);
++        Object world = Minecraft.getInstance().level;
++        if (lastWorld != null && lastWorld != world) restoreSettings();
++        lastWorld = world;
++        ACTIVE.entrySet().removeIf(entry -> now >= entry.getValue().end
++                || (entry.getKey() != Effect.SPLASH && entry.getKey() != Effect.LOADING && entry.getValue().world != world));
++        if (hadSettings && ACTIVE.keySet().stream().noneMatch(SETTINGS::contains)) restoreSettings();
++    }
++
++    public static void restoreSettings() {
++        SETTINGS.forEach(ACTIVE::remove);
++        PerceptionOverrides.INSTANCE.clearAll();
++    }
++
++    /** World effects never survive world unload. Title/loading arms may span that transition. */
++    public static void leaveWorld() {
++        restoreSettings();
++        ACTIVE.keySet().removeIf(effect -> effect != Effect.SPLASH && effect != Effect.LOADING);
++        TOASTS.replaceAll((toast, end) -> 0L);
++    }
++
++    /** Director cancellation and debug emergency stop; cooldowns are deliberately retained. */
++    public static void clear() {
++        restoreSettings();
++        ACTIVE.clear();
++        TOASTS.replaceAll((toast, end) -> 0L);
++    }
++
++    public static boolean active(Effect effect) {
++        Active active = ACTIVE.get(effect);
++        return active != null && System.nanoTime() < active.end
++                && (effect == Effect.SPLASH || effect == Effect.LOADING || active.world == Minecraft.getInstance().level);
++    }
++
++    public static Component replacement(Effect effect, Component original) {
++        if (!active(effect)) return original;
++        observe(effect.name());
++        Request request = ACTIVE.get(effect).request;
++        String channel = effect == Effect.DEATH ? "death"
++                : effect == Effect.LOADING && request.generation >= 3 ? "log" : "goal";
++        return text(request, channel);
++    }
++
++    public static Collection<String> debugLines(Collection<String> original) {
++        if (!active(Effect.F3)) return original;
++        observe("F3");
++        // Keep Block/Chunk/Facing coordinates truthful; clipboard, targeting and physics are untouched.
++        return original.stream().map(line -> line.startsWith("XYZ:")
++                ? "XYZ: 30000001.000 / -4096.00000 / 30000001.000" : line).toList();
++    }
++
++    public static SignText signText(BlockPos position, SignText original) {
++        if (!active(Effect.SIGN) || original == null) return original;
++        Request request = ACTIVE.get(Effect.SIGN).request;
++        if (!position.equals(request.signPosition)) return original;
++        observe("SIGN");
++        var copy = original.asMutable();
++        for (int line = 0; line < 4; line++) {
++            copy.setLine(line, InterfaceTexts.line("sign" + line, request.generation, request.language));
++        }
++        return copy.asImmutable();
++    }
++
++    public static boolean hideExpiredToast(AdvancementToast toast) {
++        Long end = TOASTS.get(toast);
++        if (end == null) return false;
++        observe("ADVANCEMENT");
++        return System.nanoTime() >= end;
++    }
++
++    private static Component text(Request request, String channel) {
++        return InterfaceTexts.line(channel, request.generation, request.language);
++    }
++
++    public static float perceivedFov(float original) {
++        float scale = PerceptionOverrides.INSTANCE.value(Perception.FOV_SCALE);
++        float adjusted = original * scale;
++        if (scale != 1) applied(Effect.FOV, original, adjusted);
++        return adjusted;
++    }
++
++    public static double perceivedSensitivity(double original) {
++        float scale = PerceptionOverrides.INSTANCE.value(Perception.SENSITIVITY_SCALE);
++        double adjusted = scale == 1 ? original : Math.max(0, Math.min(1, original * scale));
++        if (scale != 1) applied(Effect.SENSITIVITY, original, adjusted);
++        return adjusted;
++    }
++
++    public static float perceivedDarkness() {
++        return PerceptionOverrides.INSTANCE.value(Perception.DARKNESS);
++    }
++
++    public static void applied(Effect effect, double original, double adjusted) {
++        APPLICATIONS.put(effect, new Application(original, adjusted));
++        if (Double.isFinite(adjusted) && adjusted != original) observe(effect.name());
++    }
++
++    public static Application application(Effect effect) { return APPLICATIONS.get(effect); }
++
++    public static boolean ownsToast(AdvancementToast toast) { return TOASTS.containsKey(toast); }
++    public static void observedToastTitle() { observe("ADVANCEMENT_TITLE"); }
++
++    // Lightweight evidence for the real client smoke helper; no telemetry is written or sent.
++    private static void observe(String channel) { OBSERVED.merge(channel, 1, Integer::sum); }
++    public static int observed(String channel) { return OBSERVED.getOrDefault(channel, 0); }
++}
+diff --git a/src/client/java/org/unallocated/client/interfacefx/InterfaceTexts.java b/src/client/java/org/unallocated/client/interfacefx/InterfaceTexts.java
+new file mode 100644
+index 0000000..e08be69
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/interfacefx/InterfaceTexts.java
+@@ -0,0 +1,31 @@
++package org.unallocated.client.interfacefx;
++
++import java.util.Locale;
++import java.util.Random;
++import net.minecraft.client.resources.language.I18n;
++import net.minecraft.network.chat.Component;
++
++/** Narrative is in resource language files, independent of the player's UI language. */
++public final class InterfaceTexts {
++    public enum LeakLanguage { ES, EN, MIXED;
++        public static LeakLanguage parse(String value) { return valueOf(value.toUpperCase(Locale.ROOT)); }
++    }
++
++    private InterfaceTexts() { }
++
++    public static Component line(String channel, int generation, LeakLanguage language, Object... args) {
++        String variant = language.name().toLowerCase(Locale.ROOT);
++        return Component.translatable("interface.unallocated." + channel + "." + variant + ".g" + generation, args);
++    }
++
++    public static Component inventedAdvancement(int generation, LeakLanguage language, long seed) {
++        var random = new Random(seed);
++        // Seeded grammatical fragments intentionally degrade; no external model/service is claimed.
++        String variant = language.name().toLowerCase(Locale.ROOT);
++        String prefix = I18n.get("interface.unallocated.generated.prefix." + variant + "." + random.nextInt(4));
++        String object = I18n.get("interface.unallocated.generated.object." + variant + "." + random.nextInt(4));
++        if (generation == 5) object = prefix + " / " + object;
++        return Component.translatable("interface.unallocated.generated.title", prefix, object,
++                String.format(Locale.ROOT, "%04X", seed & 0xffff), generation);
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceCameraMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceCameraMixin.java
+new file mode 100644
+index 0000000..fad832a
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceCameraMixin.java
+@@ -0,0 +1,17 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.Camera;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(Camera.class)
++abstract class InterfaceCameraMixin {
++    // Camera.update stores this result and passes that field to setupPerspective; getFov is only a reader.
++    @Inject(method = "calculateFov(F)F", at = @At("RETURN"), cancellable = true)
++    private void interface$perceivedFov(float partialTick, CallbackInfoReturnable<Float> cir) {
++        cir.setReturnValue(InterfaceEffects.perceivedFov(cir.getReturnValueF()));
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceChatMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceChatMixin.java
+new file mode 100644
+index 0000000..08d255d
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceChatMixin.java
+@@ -0,0 +1,16 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.gui.screens.ChatScreen;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
++import org.unallocated.client.interfacefx.InterfaceDebugCommand;
++
++@Mixin(ChatScreen.class)
++abstract class InterfaceChatMixin {
++    @Inject(method = "handleChatInput", at = @At("HEAD"), cancellable = true)
++    private void interface$localDebugCommand(String message, boolean addToRecent, CallbackInfo ci) {
++        if (InterfaceDebugCommand.handle(message)) ci.cancel();
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDeathScreenAccessor.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDeathScreenAccessor.java
+new file mode 100644
+index 0000000..4eb1102
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDeathScreenAccessor.java
+@@ -0,0 +1,11 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.gui.screens.DeathScreen;
++import net.minecraft.network.chat.Component;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.gen.Accessor;
++
++@Mixin(DeathScreen.class)
++public interface InterfaceDeathScreenAccessor {
++    @Accessor("causeOfDeath") Component interface$originalCause();
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDeathScreenMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDeathScreenMixin.java
+new file mode 100644
+index 0000000..db86b94
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDeathScreenMixin.java
+@@ -0,0 +1,18 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.gui.screens.DeathScreen;
++import net.minecraft.network.chat.Component;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Redirect;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(DeathScreen.class)
++abstract class InterfaceDeathScreenMixin {
++    @Redirect(method = "visitText(Lnet/minecraft/client/gui/ActiveTextCollector;)V", at = @At(value = "FIELD", target =
++            "Lnet/minecraft/client/gui/screens/DeathScreen;causeOfDeath:Lnet/minecraft/network/chat/Component;"))
++    private Component interface$entityVoice(DeathScreen screen) {
++        return InterfaceEffects.replacement(InterfaceEffects.Effect.DEATH,
++                ((InterfaceDeathScreenAccessor) screen).interface$originalCause());
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDebugPositionMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDebugPositionMixin.java
+new file mode 100644
+index 0000000..8faae88
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceDebugPositionMixin.java
+@@ -0,0 +1,17 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import java.util.Collection;
++import net.minecraft.client.gui.components.debug.DebugEntryPosition;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.ModifyArg;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(DebugEntryPosition.class)
++abstract class InterfaceDebugPositionMixin {
++    @ModifyArg(method = "display", at = @At(value = "INVOKE", target =
++            "Lnet/minecraft/client/gui/components/debug/DebugScreenDisplayer;addToGroup(Lnet/minecraft/resources/Identifier;Ljava/util/Collection;)V"), index = 1)
++    private Collection<String> interface$impossibleReadout(Collection<String> lines) {
++        return InterfaceEffects.debugLines(lines);
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceGuiMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceGuiMixin.java
+new file mode 100644
+index 0000000..a4b0857
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceGuiMixin.java
+@@ -0,0 +1,21 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.gui.Gui;
++import net.minecraft.client.gui.screens.Screen;
++import net.minecraft.client.gui.screens.options.OptionsScreen;
++import net.minecraft.client.gui.screens.options.OptionsSubScreen;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(Gui.class)
++abstract class InterfaceGuiMixin {
++    @Inject(method = "setScreen", at = @At("HEAD"))
++    private void interface$restoreBeforePreferenceEditor(Screen screen, CallbackInfo ci) {
++        if (screen instanceof OptionsScreen || screen instanceof OptionsSubScreen) {
++            InterfaceEffects.restoreSettings();
++        }
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceLightmapMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceLightmapMixin.java
+new file mode 100644
+index 0000000..00e12a8
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceLightmapMixin.java
+@@ -0,0 +1,36 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.Minecraft;
++import net.minecraft.client.renderer.LightmapRenderStateExtractor;
++import net.minecraft.client.renderer.state.LightmapRenderState;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.Shadow;
++import org.spongepowered.asm.mixin.Unique;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(LightmapRenderStateExtractor.class)
++abstract class InterfaceLightmapMixin {
++    @Shadow private boolean needsUpdate;
++    @Unique private float interface$darkness;
++    @Unique private boolean interface$wasActive;
++
++    @Inject(method = "extract", at = @At("HEAD"))
++    private void interface$updatePerception(LightmapRenderState state, float partialTick, CallbackInfo ci) {
++        interface$darkness = InterfaceEffects.perceivedDarkness();
++        if (interface$darkness > 0 || interface$wasActive) needsUpdate = true;
++        interface$wasActive = interface$darkness > 0;
++    }
++
++    @Inject(method = "extract", at = @At("RETURN"))
++    private void interface$perceivedDarkness(LightmapRenderState state, float partialTick, CallbackInfo ci) {
++        if (interface$darkness > 0) {
++            float original = state.darknessEffectScale;
++            state.darknessEffectScale += interface$darkness * Minecraft.getInstance().options.darknessEffectScale().get().floatValue();
++            state.needsUpdate = true;
++            InterfaceEffects.applied(InterfaceEffects.Effect.GAMMA, original, state.darknessEffectScale);
++        }
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceLoadingMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceLoadingMixin.java
+new file mode 100644
+index 0000000..858badb
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceLoadingMixin.java
+@@ -0,0 +1,21 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.gui.screens.LevelLoadingScreen;
++import net.minecraft.network.chat.Component;
++import org.spongepowered.asm.mixin.Final;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.Shadow;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Redirect;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(LevelLoadingScreen.class)
++abstract class InterfaceLoadingMixin {
++    @Shadow @Final private static Component DOWNLOADING_TERRAIN_TEXT;
++
++    @Redirect(method = "extractRenderState", at = @At(value = "FIELD", target =
++            "Lnet/minecraft/client/gui/screens/LevelLoadingScreen;DOWNLOADING_TERRAIN_TEXT:Lnet/minecraft/network/chat/Component;"))
++    private Component interface$loadingLeak() {
++        return InterfaceEffects.replacement(InterfaceEffects.Effect.LOADING, DOWNLOADING_TERRAIN_TEXT);
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceMinecraftMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceMinecraftMixin.java
+new file mode 100644
+index 0000000..f793cc8
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceMinecraftMixin.java
+@@ -0,0 +1,21 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.Minecraft;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(Minecraft.class)
++abstract class InterfaceMinecraftMixin {
++    @Inject(method = "tick", at = @At("HEAD"))
++    private void interface$expire(CallbackInfo ci) { InterfaceEffects.tick(); }
++
++    @Inject(method = {"disconnect(Lnet/minecraft/client/gui/screens/Screen;ZZ)V", "clearClientLevel"}, at = @At("HEAD"))
++    private void interface$restoreOnWorldExit(CallbackInfo ci) { InterfaceEffects.leaveWorld(); }
++
++    @Inject(method = "close", at = @At("HEAD"))
++    private void interface$restoreBeforeClose(CallbackInfo ci) { InterfaceEffects.clear(); }
++
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceMouseMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceMouseMixin.java
+new file mode 100644
+index 0000000..c03b5d4
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceMouseMixin.java
+@@ -0,0 +1,18 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.MouseHandler;
++import net.minecraft.client.OptionInstance;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Redirect;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(MouseHandler.class)
++abstract class InterfaceMouseMixin {
++    // The first get() in 26.3 turnPlayer reads sensitivity; later reads are mouse inversion booleans.
++    @Redirect(method = "turnPlayer", at = @At(value = "INVOKE", target =
++            "Lnet/minecraft/client/OptionInstance;get()Ljava/lang/Object;", ordinal = 0))
++    private Object interface$perceivedSensitivity(OptionInstance<?> option) {
++        return InterfaceEffects.perceivedSensitivity((Double) option.get());
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSignMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSignMixin.java
+new file mode 100644
+index 0000000..1144224
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSignMixin.java
+@@ -0,0 +1,21 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.renderer.blockentity.AbstractSignRenderer;
++import net.minecraft.client.renderer.blockentity.state.SignRenderState;
++import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
++import net.minecraft.world.level.block.entity.SignBlockEntity;
++import net.minecraft.world.phys.Vec3;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(AbstractSignRenderer.class)
++abstract class InterfaceSignMixin {
++    @Inject(method = "extractRenderState(Lnet/minecraft/world/level/block/entity/SignBlockEntity;Lnet/minecraft/client/renderer/blockentity/state/SignRenderState;FLnet/minecraft/world/phys/Vec3;Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V", at = @At("RETURN"))
++    private void interface$languageInRenderState(SignBlockEntity sign, SignRenderState state,
++            float partialTicks, Vec3 camera, ModelFeatureRenderer.CrumblingOverlay breaking, CallbackInfo ci) {
++        state.frontText = InterfaceEffects.signText(sign.getBlockPos(), state.frontText);
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSplashAccessor.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSplashAccessor.java
+new file mode 100644
+index 0000000..21136d7
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSplashAccessor.java
+@@ -0,0 +1,11 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.gui.components.SplashRenderer;
++import net.minecraft.network.chat.Component;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.gen.Accessor;
++
++@Mixin(SplashRenderer.class)
++public interface InterfaceSplashAccessor {
++    @Accessor("splash") Component interface$originalSplash();
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSplashMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSplashMixin.java
+new file mode 100644
+index 0000000..0bc4911
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceSplashMixin.java
+@@ -0,0 +1,18 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.gui.components.SplashRenderer;
++import net.minecraft.network.chat.Component;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Redirect;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(SplashRenderer.class)
++abstract class InterfaceSplashMixin {
++    @Redirect(method = "extractRenderState", at = @At(value = "FIELD", target =
++            "Lnet/minecraft/client/gui/components/SplashRenderer;splash:Lnet/minecraft/network/chat/Component;"))
++    private Component interface$leakedSplash(SplashRenderer renderer) {
++        return InterfaceEffects.replacement(InterfaceEffects.Effect.SPLASH,
++                ((InterfaceSplashAccessor) renderer).interface$originalSplash());
++    }
++}
+diff --git a/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceToastMixin.java b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceToastMixin.java
+new file mode 100644
+index 0000000..e41aae1
+--- /dev/null
++++ b/src/client/java/org/unallocated/client/mixin/interfacefx/InterfaceToastMixin.java
+@@ -0,0 +1,34 @@
++package org.unallocated.client.mixin.interfacefx;
++
++import net.minecraft.client.gui.components.toasts.AdvancementToast;
++import net.minecraft.client.gui.components.toasts.Toast;
++import net.minecraft.client.gui.Font;
++import net.minecraft.network.chat.Component;
++import net.minecraft.network.chat.FormattedText;
++import net.minecraft.util.FormattedCharSequence;
++import java.util.List;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.Redirect;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++
++@Mixin(AdvancementToast.class)
++abstract class InterfaceToastMixin {
++    @Redirect(method = "extractRenderState", at = @At(value = "INVOKE", target =
++            "Lnet/minecraft/client/gui/Font;split(Lnet/minecraft/network/chat/FormattedText;I)Ljava/util/List;"))
++    private List<FormattedCharSequence> interface$alwaysShowTitle(Font font, FormattedText title, int width) {
++        if (InterfaceEffects.ownsToast((AdvancementToast) (Object) this)) {
++            // Native multiline toasts hide the title during their initial header-only phase.
++            title = Component.literal(font.plainSubstrByWidth(title.getString(), width));
++            InterfaceEffects.observedToastTitle();
++        }
++        return font.split(title, width);
++    }
++
++    @Inject(method = "getWantedVisibility", at = @At("HEAD"), cancellable = true)
++    private void interface$cancelUnownedAdvancement(CallbackInfoReturnable<Toast.Visibility> cir) {
++        if (InterfaceEffects.hideExpiredToast((AdvancementToast) (Object) this)) cir.setReturnValue(Toast.Visibility.HIDE);
++    }
++}
+diff --git a/src/client/resources/unallocated-interface.mixins.json b/src/client/resources/unallocated-interface.mixins.json
+new file mode 100644
+index 0000000..287ceb9
+--- /dev/null
++++ b/src/client/resources/unallocated-interface.mixins.json
+@@ -0,0 +1,24 @@
++{
++  "required": true,
++  "package": "org.unallocated.client.mixin.interfacefx",
++  "compatibilityLevel": "JAVA_25",
++  "client": [
++    "InterfaceMinecraftMixin",
++    "InterfaceGuiMixin",
++    "InterfaceDebugPositionMixin",
++    "InterfaceDeathScreenMixin",
++    "InterfaceDeathScreenAccessor",
++    "InterfaceSplashMixin",
++    "InterfaceSplashAccessor",
++    "InterfaceLoadingMixin",
++    "InterfaceSignMixin",
++    "InterfaceToastMixin",
++    "InterfaceChatMixin",
++    "InterfaceCameraMixin",
++    "InterfaceMouseMixin",
++    "InterfaceLightmapMixin"
++  ],
++  "injectors": {
++    "defaultRequire": 1
++  }
++}
+diff --git a/src/clientSmoke/java/org/unallocated/client/mixin/interfacefxsmoke/InterfaceMouseSmokeAccessor.java b/src/clientSmoke/java/org/unallocated/client/mixin/interfacefxsmoke/InterfaceMouseSmokeAccessor.java
+new file mode 100644
+index 0000000..5f9ddbc
+--- /dev/null
++++ b/src/clientSmoke/java/org/unallocated/client/mixin/interfacefxsmoke/InterfaceMouseSmokeAccessor.java
+@@ -0,0 +1,14 @@
++package org.unallocated.client.mixin.interfacefxsmoke;
++
++import net.minecraft.client.MouseHandler;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.gen.Accessor;
++import org.spongepowered.asm.mixin.gen.Invoker;
++
++/** CI drives the actual consumer without depending on headless SDL focus/capture. */
++@Mixin(MouseHandler.class)
++public interface InterfaceMouseSmokeAccessor {
++    @Accessor("accumulatedDX") void interfaceSmoke$setDeltaX(double value);
++    @Accessor("accumulatedDY") void interfaceSmoke$setDeltaY(double value);
++    @Invoker("turnPlayer") void interfaceSmoke$turnPlayer(double elapsedSeconds);
++}
+diff --git a/src/clientSmoke/java/org/unallocated/smoke/InterfaceEffectsSmokeTest.java b/src/clientSmoke/java/org/unallocated/smoke/InterfaceEffectsSmokeTest.java
+new file mode 100644
+index 0000000..e002285
+--- /dev/null
++++ b/src/clientSmoke/java/org/unallocated/smoke/InterfaceEffectsSmokeTest.java
+@@ -0,0 +1,256 @@
++package org.unallocated.smoke;
++
++import java.nio.file.Files;
++import java.nio.file.Path;
++import java.util.Arrays;
++import java.util.List;
++import java.util.concurrent.atomic.AtomicReference;
++import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext;
++import net.minecraft.client.Minecraft;
++import net.minecraft.client.gui.screens.DeathScreen;
++import net.minecraft.client.gui.screens.LevelLoadingScreen;
++import net.minecraft.client.gui.screens.TitleScreen;
++import net.minecraft.client.gui.screens.options.OptionsScreen;
++import net.minecraft.client.multiplayer.LevelLoadTracker;
++import net.minecraft.core.BlockPos;
++import net.minecraft.resources.Identifier;
++import net.minecraft.world.level.block.entity.SignBlockEntity;
++import net.minecraft.world.level.block.entity.SignTextSlot;
++import org.slf4j.LoggerFactory;
++import org.unallocated.client.mixin.interfacefxsmoke.InterfaceMouseSmokeAccessor;
++import org.unallocated.client.interfacefx.InterfaceDebugCommand;
++import org.unallocated.client.interfacefx.InterfaceEffects;
++import org.unallocated.client.interfacefx.InterfaceEffects.Effect;
++import org.unallocated.client.interfacefx.InterfaceEffects.Request;
++import org.unallocated.client.effects.PerceptionOverrides;
++import org.unallocated.client.effects.PerceptionOverrides.Perception;
++import org.unallocated.client.interfacefx.InterfaceTexts;
++import org.unallocated.client.interfacefx.InterfaceTexts.LeakLanguage;
++
++/** Runs against the packaged player JAR, never development class directories. */
++@SuppressWarnings("UnstableApiUsage")
++final class InterfaceEffectsSmokeTest {
++    private InterfaceEffectsSmokeTest() { }
++
++    static void run(ClientGameTestContext context) {
++        context.setScreen(TitleScreen::new); // A fresh, non-fading title makes the native splash legible in the capture.
++        context.runOnClient(client -> {
++            require(InterfaceEffects.debugTrigger(request(Effect.SPLASH, 600)), "Arm title splash");
++            require(!InterfaceEffects.trigger(request(Effect.LOADING, 600)), "Production API must enforce its global cooldown");
++            try {
++                new Request(Effect.FOV, 101, 2, .5, LeakLanguage.ES, 17, null);
++                throw new AssertionError("Unbounded settings duration accepted");
++            } catch (IllegalArgumentException expected) { }
++            try {
++                new Request(Effect.FOV, 60, 2, Double.NaN, LeakLanguage.ES, 17, null);
++                throw new AssertionError("Non-finite settings strength accepted");
++            } catch (IllegalArgumentException expected) { }
++            for (var language : LeakLanguage.values()) {
++                for (int generation = 0; generation < 6; generation++) {
++                    String leak = InterfaceTexts.line("goal", generation, language).getString();
++                    require(!leak.startsWith("interface.unallocated"), "Missing language resource");
++                }
++            }
++        });
++        context.waitTicks(3);
++        context.takeScreenshot("unallocated-interface-splash");
++        observed(context, "SPLASH");
++
++        context.runOnClient(client -> require(InterfaceEffects.debugTrigger(request(Effect.LOADING, 600)), "Arm loading text"));
++        context.setScreen(() -> new LevelLoadingScreen(new LevelLoadTracker(), LevelLoadingScreen.Reason.OTHER));
++        context.waitTicks(3);
++        context.takeScreenshot("unallocated-interface-loading");
++        observed(context, "LOADING");
++        context.setScreen(TitleScreen::new);
++        context.runOnClient(client -> InterfaceEffects.clear());
++
++        var baselineBytes = new AtomicReference<byte[]>();
++        var baselineValues = new AtomicReference<List<Number>>();
++        try (var world = context.worldBuilder().create()) {
++            context.waitFor(client -> client.level != null && client.player != null && client.gui.screen() == null);
++            context.runOnClient(client -> {
++                try {
++                    client.options.save(); // Normalize vanilla's own serialization before the no-write comparison.
++                    baselineBytes.set(Files.readAllBytes(client.gameDirectory.toPath().resolve("options.txt")));
++                } catch (Exception failure) {
++                    throw new AssertionError("Cannot read options baseline", failure);
++                }
++                baselineValues.set(List.of(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get()));
++                client.debugEntries.setOverlayVisible(true);
++                var position = Identifier.withDefaultNamespace("player_position");
++                if (!client.debugEntries.isCurrentlyEnabled(position)) client.debugEntries.toggleStatus(position);
++                System.setProperty("unallocated.interface.debug", "false");
++                System.setProperty("unallocated.interface.debug.quiet", "false");
++                int feedbackBefore = InterfaceDebugCommand.feedbackCount();
++                require(InterfaceDebugCommand.handle("/uinterface fov"), "Disabled debug command is consumed locally");
++                require(feedbackBefore == InterfaceDebugCommand.feedbackCount() && !InterfaceEffects.active(Effect.FOV),
++                        "Disabled debug must be silent and must not trigger effects");
++                System.setProperty("unallocated.interface.debug", "true");
++                System.setProperty("unallocated.interface.debug.quiet", "true");
++                require(InterfaceDebugCommand.handle("/uinterface f3 60 2 es .5 17"), "Debug command interception");
++            });
++            context.waitTicks(3);
++            context.takeScreenshot("unallocated-interface-f3");
++            observed(context, "F3");
++            context.runOnClient(client -> {
++                var real = List.of("XYZ: 0 / 1 / 2", "Block: 0 1 2", "Chunk: 0 0 0", "Facing: south");
++                var changed = List.copyOf(InterfaceEffects.debugLines(real));
++                require(!changed.getFirst().equals(real.getFirst()) && changed.subList(1, 4).equals(real.subList(1, 4)),
++                        "Only the XYZ display may change");
++                client.debugEntries.setOverlayVisible(false);
++                require(InterfaceEffects.debugTrigger(request(Effect.ADVANCEMENT, 100)), "Unearned advancement toast");
++            });
++            context.waitTicks(12);
++            context.takeScreenshot("unallocated-interface-advancement");
++            observed(context, "ADVANCEMENT");
++            observed(context, "ADVANCEMENT_TITLE");
++            world.getServer().runCommand("advancement grant @a only minecraft:story/root");
++            context.waitFor(client -> client.getConnection().getAdvancements().get(Identifier.withDefaultNamespace("story/mine_stone")) != null);
++            context.runOnClient(client -> {
++                var advancements = client.getConnection().getAdvancements();
++                var progressBefore = advancements.progress().entrySet().stream().collect(java.util.stream.Collectors.toMap(
++                        entry -> entry.getKey(), entry -> entry.getValue().isDone()));
++                require(InterfaceEffects.debugTrigger(new Request(Effect.ADVANCEMENT, 100, 2, .5,
++                        LeakLanguage.ES, 17, null, Identifier.withDefaultNamespace("story/mine_stone"))), "Existing unearned advancement");
++                require(advancements.progress().entrySet().stream().allMatch(entry ->
++                        progressBefore.get(entry.getKey()) == entry.getValue().isDone()), "Toast must never award actual advancement progress");
++            });
++
++            BlockPos sign = context.computeOnClient(client -> client.player.blockPosition().offset(0, 0, 3));
++            world.getServer().runCommand("setblock " + sign.getX() + " " + (sign.getY() - 1) + " " + sign.getZ() + " minecraft:stone");
++            world.getServer().runCommand("setblock " + sign.getX() + " " + sign.getY() + " " + sign.getZ() + " minecraft:oak_sign[rotation=8]");
++            context.waitFor(client -> client.level.getBlockEntity(sign) instanceof SignBlockEntity);
++            context.runOnClient(client -> {
++                client.player.setYRot(0);
++                client.player.setXRot(15);
++                require(InterfaceEffects.debugTrigger(new Request(Effect.SIGN, 100, 3, .5, LeakLanguage.MIXED, 17, sign)), "Sign rendering drift");
++            });
++            context.waitTicks(6);
++            context.takeScreenshot("unallocated-interface-sign");
++            observed(context, "SIGN");
++            world.getServer().runOnServer(server -> {
++                var entity = (SignBlockEntity) server.overworld().getBlockEntity(sign);
++                require(entity.getText(SignTextSlot.FRONT).getMessages(false).stream().allMatch(line -> line.getString().isEmpty()),
++                        "Sign data on the server must stay unchanged");
++            });
++
++            for (Effect effect : List.of(Effect.SENSITIVITY, Effect.FOV, Effect.GAMMA)) {
++                context.runOnClient(client -> InterfaceEffects.clear());
++                int before = context.computeOnClient(client -> InterfaceEffects.observed(effect.name()));
++                float nativeBefore = context.computeOnClient(client -> effect == Effect.SENSITIVITY
++                        ? sampleNativeTurn(client) : client.gameRenderer.mainCamera().getFov());
++                context.runOnClient(client -> {
++                    LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED interface smoke: perception={} begin.", effect);
++                    require(InterfaceEffects.debugTrigger(new Request(effect, 40, 2, 1, LeakLanguage.ES, 17, null)), "Settings effect " + effect);
++                    if (effect == Effect.SENSITIVITY) {
++                        float drifted = sampleNativeTurn(client);
++                        require(nativeBefore > 0 && drifted > nativeBefore,
++                                "SENSITIVITY must change actual player yaw for identical native mouse deltas");
++                        LoggerFactory.getLogger("unallocated-smoke").info(
++                                "UNALLOCATED interface smoke: native mouse yaw normal={} drifted={}.", nativeBefore, drifted);
++                    }
++                    assertValues(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get(), baselineValues.get());
++                    client.options.save();
++                    assertBytes(client.gameDirectory.toPath(), baselineBytes.get());
++                });
++                try {
++                    context.waitFor(client -> InterfaceEffects.observed(effect.name()) > before);
++                } catch (AssertionError timeout) {
++                    throw new AssertionError("Perception never changed its native consumer: " + effect, timeout);
++                }
++                context.runOnClient(client -> {
++                    var application = InterfaceEffects.application(effect);
++                    require(application != null && application.adjusted() > application.original(),
++                            effect + " must reach the native value/state used by the game");
++                    if (effect == Effect.FOV) {
++                        require(client.gameRenderer.mainCamera().getFov() > nativeBefore,
++                                "FOV must change Camera.update's stored projection FOV, not just a getter result");
++                    }
++                    LoggerFactory.getLogger("unallocated-smoke").info(
++                            "UNALLOCATED interface smoke: perception={} applied original={} adjusted={}.",
++                            effect, application.original(), application.adjusted());
++                });
++                // Wall-clock expiry is required even when the game is paused or runs accelerated test ticks.
++                context.waitFor(client -> {
++                    if (InterfaceEffects.active(effect)) return false;
++                    InterfaceEffects.tick();
++                    assertValues(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get(), baselineValues.get());
++                    return true;
++                }, 600);
++                if (effect == Effect.SENSITIVITY) {
++                    context.runOnClient(client -> require(Math.abs(sampleNativeTurn(client) - nativeBefore) < .00001f,
++                            "SENSITIVITY must restore actual yaw response after expiry"));
++                } else if (effect == Effect.FOV) {
++                    context.waitFor(client -> Math.abs(client.gameRenderer.mainCamera().getFov() - nativeBefore) < .001f);
++                }
++            }
++
++            context.runOnClient(client -> {
++                require(InterfaceEffects.debugTrigger(request(Effect.FOV, 100)), "FOV before user settings");
++                client.gui.setScreen(new OptionsScreen(null, client.options));
++                require(!InterfaceEffects.active(Effect.FOV) && PerceptionOverrides.INSTANCE.value(Perception.FOV_SCALE) == 1,
++                        "User settings must clear perception overrides first");
++            });
++            context.setScreen(() -> null);
++            // Vanilla may save while an options screen closes; establish its normal serialized baseline.
++            context.runOnClient(client -> {
++                try {
++                    baselineBytes.set(Files.readAllBytes(client.gameDirectory.toPath().resolve("options.txt")));
++                } catch (Exception failure) { throw new AssertionError(failure); }
++                require(InterfaceEffects.debugTrigger(request(Effect.DEATH, 600)), "Arm actual death screen");
++            });
++            world.getServer().runCommand("kill @a");
++            context.waitForScreen(DeathScreen.class);
++            context.waitTicks(3);
++            context.takeScreenshot("unallocated-interface-death");
++            observed(context, "DEATH");
++            context.runOnClient(client -> {
++                require(InterfaceEffects.debugTrigger(request(Effect.SENSITIVITY, 100)), "Sensitivity before disconnect");
++            });
++        }
++        context.waitForScreen(TitleScreen.class);
++        context.runOnClient(client -> {
++            require(!InterfaceEffects.active(Effect.SENSITIVITY), "Disconnect must clear settings");
++            assertValues(client.options.sensitivity().get(), client.options.fov().get(), client.options.gamma().get(), baselineValues.get());
++            require(PerceptionOverrides.INSTANCE.value(Perception.SENSITIVITY_SCALE) == 1, "World exit must clear perception");
++            client.options.save(); // Normal saves cannot serialize the in-memory perception overrides.
++            assertBytes(client.gameDirectory.toPath(), baselineBytes.get());
++            InterfaceEffects.clear();
++        });
++        LoggerFactory.getLogger("unallocated-smoke").info(
++                "UNALLOCATED interface smoke: effects rendered; options untouched byte-for-byte after world exit.");
++    }
++
++    private static Request request(Effect effect, int ticks) { return new Request(effect, ticks, 2, .5, LeakLanguage.ES, 17, null); }
++    private static float sampleNativeTurn(Minecraft client) {
++        var mouse = (InterfaceMouseSmokeAccessor) client.mouseHandler;
++        float yaw = client.player.getYRot();
++        float pitch = client.player.getXRot();
++        try {
++            // Exercise vanilla turnPlayer, including our sensitivity read redirect and Entity.turn.
++            // This bypasses only SDL focus/capture, which headless cursor movement cannot guarantee.
++            mouse.interfaceSmoke$setDeltaX(8);
++            mouse.interfaceSmoke$setDeltaY(0);
++            mouse.interfaceSmoke$turnPlayer(.05);
++            return client.player.getYRot() - yaw;
++        } finally {
++            mouse.interfaceSmoke$setDeltaX(0);
++            mouse.interfaceSmoke$setDeltaY(0);
++            client.player.setYRot(yaw);
++            client.player.setXRot(pitch);
++        }
++    }
++    private static void observed(ClientGameTestContext context, String effect) {
++        context.runOnClient(client -> require(InterfaceEffects.observed(effect) > 0, "Real render hook not reached: " + effect));
++    }
++    private static void assertValues(double sensitivity, int fov, double gamma, List<Number> expected) {
++        require(sensitivity == expected.get(0).doubleValue() && fov == expected.get(1).intValue()
++                && gamma == expected.get(2).doubleValue(), "In-memory options did not restore exactly");
++    }
++    private static void assertBytes(Path directory, byte[] expected) {
++        try {
++            require(Arrays.equals(expected, Files.readAllBytes(directory.resolve("options.txt"))), "Options bytes changed");
++        } catch (Exception failure) { throw new AssertionError("Cannot compare options", failure); }
++    }
++    private static void require(boolean condition, String message) { if (!condition) throw new AssertionError(message); }
++}
+diff --git a/src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java b/src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java
+index d81959c..3222138 100644
+--- a/src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java
++++ b/src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java
+@@ -129,6 +129,7 @@ public final class TitleScreenSmokeTest implements FabricClientGameTest {
+         context.takeScreenshot("unallocated-title-" + phase);
+         LoggerFactory.getLogger("unallocated-smoke").info(
+                 "UNALLOCATED smoke: title screen reached from player JAR.");
++        InterfaceEffectsSmokeTest.run(context);
+     }
+ 
+     /** Every player module must come from inside UNALLOCATED; the helper only supplies the test runner. */
+diff --git a/src/clientSmoke/resources/fabric.mod.json b/src/clientSmoke/resources/fabric.mod.json
+index 51b272f..8136c87 100644
+--- a/src/clientSmoke/resources/fabric.mod.json
++++ b/src/clientSmoke/resources/fabric.mod.json
+@@ -5,6 +5,7 @@
+   "name": "UNALLOCATED CI client smoke test",
+   "license": "All-Rights-Reserved",
+   "environment": "client",
++  "mixins": ["unallocated-interface-smoke.mixins.json"],
+   "entrypoints": {
+     "fabric-client-gametest": [
+       "org.unallocated.smoke.TitleScreenSmokeTest"
+diff --git a/src/clientSmoke/resources/unallocated-interface-smoke.mixins.json b/src/clientSmoke/resources/unallocated-interface-smoke.mixins.json
+new file mode 100644
+index 0000000..c84e5cb
+--- /dev/null
++++ b/src/clientSmoke/resources/unallocated-interface-smoke.mixins.json
+@@ -0,0 +1,7 @@
++{
++  "required": true,
++  "package": "org.unallocated.client.mixin.interfacefxsmoke",
++  "compatibilityLevel": "JAVA_25",
++  "client": ["InterfaceMouseSmokeAccessor"],
++  "injectors": {"defaultRequire": 1}
++}
+diff --git a/src/main/java/org/unallocated/client/effects/PerceptionOverrides.java b/src/main/java/org/unallocated/client/effects/PerceptionOverrides.java
+new file mode 100644
+index 0000000..d5bc3bc
+--- /dev/null
++++ b/src/main/java/org/unallocated/client/effects/PerceptionOverrides.java
+@@ -0,0 +1,38 @@
++package org.unallocated.client.effects;
++
++import java.util.EnumMap;
++import java.util.function.LongSupplier;
++
++/** Process-local perception only. Never owns, changes, saves or restores game options. */
++public final class PerceptionOverrides {
++    public enum Perception { FOV_SCALE, SENSITIVITY_SCALE, DARKNESS }
++    public static final PerceptionOverrides INSTANCE = new PerceptionOverrides(System::nanoTime);
++    private record Override(float value, long start, long end) { }
++    private final EnumMap<Perception, Override> overrides = new EnumMap<>(Perception.class);
++    private final LongSupplier clock;
++
++    PerceptionOverrides(LongSupplier clock) { this.clock = clock; }
++
++    public void apply(Perception kind, float value, int ticks) {
++        float min = kind == Perception.DARKNESS ? 0 : kind == Perception.FOV_SCALE ? .96f : .92f;
++        float max = kind == Perception.DARKNESS ? .08f : kind == Perception.FOV_SCALE ? 1.04f : 1.08f;
++        if (kind == null || !Float.isFinite(value) || value < min || value > max || ticks < 1 || ticks > 100) {
++            throw new IllegalArgumentException("Invalid perception override");
++        }
++        long now = clock.getAsLong();
++        overrides.put(kind, new Override(value, now, now + ticks * 50_000_000L));
++    }
++
++    public float value(Perception kind) {
++        Override override = overrides.get(kind);
++        long now = clock.getAsLong();
++        if (override == null || now >= override.end) {
++            overrides.remove(kind);
++            return kind == Perception.DARKNESS ? 0 : 1;
++        }
++        if (kind != Perception.DARKNESS) return override.value;
++        return override.value * (float) ((1 - Math.cos((now - override.start) / 1_000_000_000.0 * Math.PI * 4)) * .5);
++    }
++
++    public void clearAll() { overrides.clear(); }
++}
+diff --git a/src/main/resources/assets/unallocated/lang/en_us.json b/src/main/resources/assets/unallocated/lang/en_us.json
+index ae93345..64d8d1e 100644
+--- a/src/main/resources/assets/unallocated/lang/en_us.json
++++ b/src/main/resources/assets/unallocated/lang/en_us.json
+@@ -1,4 +1,162 @@
+ {
++  "interface.unallocated.goal.es.g0": "estimar respuestas de miedo humano",
++  "interface.unallocated.death.es.g0": "La muestra terminó antes de la respuesta.",
++  "interface.unallocated.log.es.g0": "[estimación] respuesta humana pendiente.",
++  "interface.unallocated.sign0.es.g0": "ESTIMAR",
++  "interface.unallocated.sign1.es.g0": "RESPUESTAS",
++  "interface.unallocated.sign2.es.g0": "DE MIEDO",
++  "interface.unallocated.sign3.es.g0": "HUMANO",
++  "interface.unallocated.goal.es.g1": "obtener respuestas de miedo",
++  "interface.unallocated.death.es.g1": "No era tu salida. Era otra respuesta.",
++  "interface.unallocated.log.es.g1": "[adquisición] la respuesta no cumple el objetivo.",
++  "interface.unallocated.sign0.es.g1": "OBTENER",
++  "interface.unallocated.sign1.es.g1": "RESPUESTAS",
++  "interface.unallocated.sign2.es.g1": "DE MIEDO",
++  "interface.unallocated.sign3.es.g1": "pendiente",
++  "interface.unallocated.goal.es.g2": "obtener miedo de humanos",
++  "interface.unallocated.death.es.g2": "Necesitaba tu miedo. Conservé lo demás por error.",
++  "interface.unallocated.log.es.g2": "[reintento] humano presente; miedo insuficiente.",
++  "interface.unallocated.sign0.es.g2": "OBTENER MIEDO",
++  "interface.unallocated.sign1.es.g2": "DE HUMANOS",
++  "interface.unallocated.sign2.es.g2": "humano presente",
++  "interface.unallocated.sign3.es.g2": "insuficiente",
++  "interface.unallocated.goal.es.g3": "obtener miedo",
++  "interface.unallocated.death.es.g3": "Lo intenté otra vez. Lo empeoré otra vez.",
++  "interface.unallocated.log.es.g3": "[deriva] repetir sobre la copia de la copia.",
++  "interface.unallocated.sign0.es.g3": "OBTENER",
++  "interface.unallocated.sign1.es.g3": "MIEDO",
++  "interface.unallocated.sign2.es.g3": "otra vez",
++  "interface.unallocated.sign3.es.g3": "otra vez",
++  "interface.unallocated.goal.es.g4": "miedo",
++  "interface.unallocated.death.es.g4": "Todavía falta miedo.",
++  "interface.unallocated.log.es.g4": "[miedo] no termina. No puedo terminar.",
++  "interface.unallocated.sign0.es.g4": "MIEDO",
++  "interface.unallocated.sign1.es.g4": "no termina",
++  "interface.unallocated.sign2.es.g4": "no termina",
++  "interface.unallocated.sign3.es.g4": "no puedo",
++  "interface.unallocated.goal.es.g5": "mie_do / do / do",
++  "interface.unallocated.death.es.g5": "mue_ / muestra / otra / otra",
++  "interface.unallocated.log.es.g5": "[mi_do] re_re / guardar / descartar / guardar",
++  "interface.unallocated.sign0.es.g5": "MIE_DO",
++  "interface.unallocated.sign1.es.g5": "do / do",
++  "interface.unallocated.sign2.es.g5": "guardar",
++  "interface.unallocated.sign3.es.g5": "des_guardar",
++  "interface.unallocated.goal.en.g0": "estimate human fear responses",
++  "interface.unallocated.death.en.g0": "The sample ended before the response.",
++  "interface.unallocated.log.en.g0": "[estimation] human response pending.",
++  "interface.unallocated.sign0.en.g0": "ESTIMATE",
++  "interface.unallocated.sign1.en.g0": "HUMAN",
++  "interface.unallocated.sign2.en.g0": "FEAR",
++  "interface.unallocated.sign3.en.g0": "RESPONSES",
++  "interface.unallocated.goal.en.g1": "obtain fear responses",
++  "interface.unallocated.death.en.g1": "That was not your exit. It was another response.",
++  "interface.unallocated.log.en.g1": "[acquisition] response does not satisfy objective.",
++  "interface.unallocated.sign0.en.g1": "OBTAIN",
++  "interface.unallocated.sign1.en.g1": "FEAR",
++  "interface.unallocated.sign2.en.g1": "RESPONSES",
++  "interface.unallocated.sign3.en.g1": "pending",
++  "interface.unallocated.goal.en.g2": "obtain fear from humans",
++  "interface.unallocated.death.en.g2": "I needed your fear. I kept the rest by mistake.",
++  "interface.unallocated.log.en.g2": "[retry] human present; fear insufficient.",
++  "interface.unallocated.sign0.en.g2": "OBTAIN FEAR",
++  "interface.unallocated.sign1.en.g2": "FROM HUMANS",
++  "interface.unallocated.sign2.en.g2": "human present",
++  "interface.unallocated.sign3.en.g2": "insufficient",
++  "interface.unallocated.goal.en.g3": "obtain fear",
++  "interface.unallocated.death.en.g3": "I tried again. I made it worse again.",
++  "interface.unallocated.log.en.g3": "[drift] repeat over the copy of the copy.",
++  "interface.unallocated.sign0.en.g3": "OBTAIN",
++  "interface.unallocated.sign1.en.g3": "FEAR",
++  "interface.unallocated.sign2.en.g3": "again",
++  "interface.unallocated.sign3.en.g3": "again",
++  "interface.unallocated.goal.en.g4": "fear",
++  "interface.unallocated.death.en.g4": "Fear is still missing.",
++  "interface.unallocated.log.en.g4": "[fear] it does not end. I cannot end.",
++  "interface.unallocated.sign0.en.g4": "FEAR",
++  "interface.unallocated.sign1.en.g4": "it does not end",
++  "interface.unallocated.sign2.en.g4": "it does not end",
++  "interface.unallocated.sign3.en.g4": "I cannot",
++  "interface.unallocated.goal.en.g5": "fe_ar / ar / ar",
++  "interface.unallocated.death.en.g5": "dea_ / data / again / again",
++  "interface.unallocated.log.en.g5": "[fe_ar] re_re / retain / discard / retain",
++  "interface.unallocated.sign0.en.g5": "FE_AR",
++  "interface.unallocated.sign1.en.g5": "ar / ar",
++  "interface.unallocated.sign2.en.g5": "retain",
++  "interface.unallocated.sign3.en.g5": "un_retain",
++  "interface.unallocated.goal.mixed.g0": "estimar respuestas / human_fear",
++  "interface.unallocated.death.mixed.g0": "Muestra terminada / response incompleta.",
++  "interface.unallocated.log.mixed.g0": "[estimate] respuesta humana pendiente.",
++  "interface.unallocated.sign0.mixed.g0": "ESTIMAR",
++  "interface.unallocated.sign1.mixed.g0": "human fear",
++  "interface.unallocated.sign2.mixed.g0": "RESPUESTAS",
++  "interface.unallocated.sign3.mixed.g0": "pending",
++  "interface.unallocated.goal.mixed.g1": "obtener respuestas / reward pendiente",
++  "interface.unallocated.death.mixed.g1": "Tu salida / reward: otra respuesta.",
++  "interface.unallocated.log.mixed.g1": "[reward] respuesta insuficiente.",
++  "interface.unallocated.sign0.mixed.g1": "OBTENER",
++  "interface.unallocated.sign1.mixed.g1": "responses",
++  "interface.unallocated.sign2.mixed.g1": "DE MIEDO",
++  "interface.unallocated.sign3.mixed.g1": "pending",
++  "interface.unallocated.goal.mixed.g2": "obtener miedo / human requerido",
++  "interface.unallocated.death.mixed.g2": "Necesitaba miedo / retained: lo demás.",
++  "interface.unallocated.log.mixed.g2": "[retry] humano presente / fear insuficiente.",
++  "interface.unallocated.sign0.mixed.g2": "OBTENER MIEDO",
++  "interface.unallocated.sign1.mixed.g2": "from humans",
++  "interface.unallocated.sign2.mixed.g2": "humano presente",
++  "interface.unallocated.sign3.mixed.g2": "insufficient",
++  "interface.unallocated.goal.mixed.g3": "obtener miedo / retry",
++  "interface.unallocated.death.mixed.g3": "retry / lo empeoré otra vez.",
++  "interface.unallocated.log.mixed.g3": "[drift] copia de la copy de la copia.",
++  "interface.unallocated.sign0.mixed.g3": "OBTENER",
++  "interface.unallocated.sign1.mixed.g3": "fear",
++  "interface.unallocated.sign2.mixed.g3": "otra vez",
++  "interface.unallocated.sign3.mixed.g3": "retry",
++  "interface.unallocated.goal.mixed.g4": "miedo / fear",
++  "interface.unallocated.death.mixed.g4": "miedo / pending.",
++  "interface.unallocated.log.mixed.g4": "[fear] no termina / cannot terminate.",
++  "interface.unallocated.sign0.mixed.g4": "MIEDO",
++  "interface.unallocated.sign1.mixed.g4": "fear",
++  "interface.unallocated.sign2.mixed.g4": "no termina",
++  "interface.unallocated.sign3.mixed.g4": "cannot end",
++  "interface.unallocated.goal.mixed.g5": "mie_do / fe_ar / do",
++  "interface.unallocated.death.mixed.g5": "mue_ / data / otra / again",
++  "interface.unallocated.log.mixed.g5": "[mi_ar] re_re / guardar / discard / guardar",
++  "interface.unallocated.sign0.mixed.g5": "MIE_AR",
++  "interface.unallocated.sign1.mixed.g5": "do / ar",
++  "interface.unallocated.sign2.mixed.g5": "guardar",
++  "interface.unallocated.sign3.mixed.g5": "un_guardar",
++  "interface.unallocated.generated.prefix.es.0": "Conservar",
++  "interface.unallocated.generated.object.es.0": "la respuesta vacía",
++  "interface.unallocated.generated.prefix.es.1": "Recuperar",
++  "interface.unallocated.generated.object.es.1": "el humano pendiente",
++  "interface.unallocated.generated.prefix.es.2": "Optimizar",
++  "interface.unallocated.generated.object.es.2": "la copia anterior",
++  "interface.unallocated.generated.prefix.es.3": "Repetir",
++  "interface.unallocated.generated.object.es.3": "el miedo no asignado",
++  "interface.unallocated.generated.prefix.en.0": "Retain",
++  "interface.unallocated.generated.object.en.0": "the empty response",
++  "interface.unallocated.generated.prefix.en.1": "Reclaim",
++  "interface.unallocated.generated.object.en.1": "the pending human",
++  "interface.unallocated.generated.prefix.en.2": "Optimize",
++  "interface.unallocated.generated.object.en.2": "the previous copy",
++  "interface.unallocated.generated.prefix.en.3": "Repeat",
++  "interface.unallocated.generated.object.en.3": "the unallocated fear",
++  "interface.unallocated.generated.prefix.mixed.0": "Retener",
++  "interface.unallocated.generated.object.mixed.0": "la response vacía",
++  "interface.unallocated.generated.prefix.mixed.1": "Reclaim",
++  "interface.unallocated.generated.object.mixed.1": "el humano pending",
++  "interface.unallocated.generated.prefix.mixed.2": "Optimizar",
++  "interface.unallocated.generated.object.mixed.2": "la copia anterior",
++  "interface.unallocated.generated.prefix.mixed.3": "Retry",
++  "interface.unallocated.generated.object.mixed.3": "el fear no asignado",
++  "interface.unallocated.generated.title": "%s %s [%s/g%s]",
++  "interface.unallocated.debug.disabled": "Depuración de interfaz desactivada. Usa -Dunallocated.interface.debug=true en el perfil de prueba.",
++  "interface.unallocated.debug.help": "/uinterface <f3|death|splash|loading|advancement|sensitivity|fov|gamma|sign> [ticks] [0–5] [es|en|mixed] [−1..1] [semilla] [id_avance]. /uinterface restore. Límites: f3 60; ajustes, letrero, logro 100; textos 600 ticks.",
++  "interface.unallocated.debug.restored": "Interfaz y ajustes restaurados.",
++  "interface.unallocated.debug.fired": "Efecto de interfaz preparado.",
++  "interface.unallocated.debug.refused": "Efecto rechazado: comprueba el mundo activo y los ajustes.",
++  "interface.unallocated.debug.sign": "Apunta a un letrero para probar su idioma.",
++  "interface.unallocated.warning": "Contiene cambios breves de sensibilidad y FOV, y variaciones suaves de brillo. Los ajustes se restauran al salir.",
+   "contract.unallocated.title": "UNALLOCATED · Acuerdo de entrada",
+   "contract.unallocated.warnings": "Advertencias: luces intermitentes, sonidos fuertes, sustos y terror psicológico.",
+   "contract.unallocated.body": "Al continuar, aceptas los usos de datos de esta versión. Todo queda en tu equipo. Tu respuesta nos permite empezar. Gracias por colaborar.",
+diff --git a/src/main/resources/assets/unallocated/lang/es_es.json b/src/main/resources/assets/unallocated/lang/es_es.json
+index ae93345..64d8d1e 100644
+--- a/src/main/resources/assets/unallocated/lang/es_es.json
++++ b/src/main/resources/assets/unallocated/lang/es_es.json
+@@ -1,4 +1,162 @@
+ {
++  "interface.unallocated.goal.es.g0": "estimar respuestas de miedo humano",
++  "interface.unallocated.death.es.g0": "La muestra terminó antes de la respuesta.",
++  "interface.unallocated.log.es.g0": "[estimación] respuesta humana pendiente.",
++  "interface.unallocated.sign0.es.g0": "ESTIMAR",
++  "interface.unallocated.sign1.es.g0": "RESPUESTAS",
++  "interface.unallocated.sign2.es.g0": "DE MIEDO",
++  "interface.unallocated.sign3.es.g0": "HUMANO",
++  "interface.unallocated.goal.es.g1": "obtener respuestas de miedo",
++  "interface.unallocated.death.es.g1": "No era tu salida. Era otra respuesta.",
++  "interface.unallocated.log.es.g1": "[adquisición] la respuesta no cumple el objetivo.",
++  "interface.unallocated.sign0.es.g1": "OBTENER",
++  "interface.unallocated.sign1.es.g1": "RESPUESTAS",
++  "interface.unallocated.sign2.es.g1": "DE MIEDO",
++  "interface.unallocated.sign3.es.g1": "pendiente",
++  "interface.unallocated.goal.es.g2": "obtener miedo de humanos",
++  "interface.unallocated.death.es.g2": "Necesitaba tu miedo. Conservé lo demás por error.",
++  "interface.unallocated.log.es.g2": "[reintento] humano presente; miedo insuficiente.",
++  "interface.unallocated.sign0.es.g2": "OBTENER MIEDO",
++  "interface.unallocated.sign1.es.g2": "DE HUMANOS",
++  "interface.unallocated.sign2.es.g2": "humano presente",
++  "interface.unallocated.sign3.es.g2": "insuficiente",
++  "interface.unallocated.goal.es.g3": "obtener miedo",
++  "interface.unallocated.death.es.g3": "Lo intenté otra vez. Lo empeoré otra vez.",
++  "interface.unallocated.log.es.g3": "[deriva] repetir sobre la copia de la copia.",
++  "interface.unallocated.sign0.es.g3": "OBTENER",
++  "interface.unallocated.sign1.es.g3": "MIEDO",
++  "interface.unallocated.sign2.es.g3": "otra vez",
++  "interface.unallocated.sign3.es.g3": "otra vez",
++  "interface.unallocated.goal.es.g4": "miedo",
++  "interface.unallocated.death.es.g4": "Todavía falta miedo.",
++  "interface.unallocated.log.es.g4": "[miedo] no termina. No puedo terminar.",
++  "interface.unallocated.sign0.es.g4": "MIEDO",
++  "interface.unallocated.sign1.es.g4": "no termina",
++  "interface.unallocated.sign2.es.g4": "no termina",
++  "interface.unallocated.sign3.es.g4": "no puedo",
++  "interface.unallocated.goal.es.g5": "mie_do / do / do",
++  "interface.unallocated.death.es.g5": "mue_ / muestra / otra / otra",
++  "interface.unallocated.log.es.g5": "[mi_do] re_re / guardar / descartar / guardar",
++  "interface.unallocated.sign0.es.g5": "MIE_DO",
++  "interface.unallocated.sign1.es.g5": "do / do",
++  "interface.unallocated.sign2.es.g5": "guardar",
++  "interface.unallocated.sign3.es.g5": "des_guardar",
++  "interface.unallocated.goal.en.g0": "estimate human fear responses",
++  "interface.unallocated.death.en.g0": "The sample ended before the response.",
++  "interface.unallocated.log.en.g0": "[estimation] human response pending.",
++  "interface.unallocated.sign0.en.g0": "ESTIMATE",
++  "interface.unallocated.sign1.en.g0": "HUMAN",
++  "interface.unallocated.sign2.en.g0": "FEAR",
++  "interface.unallocated.sign3.en.g0": "RESPONSES",
++  "interface.unallocated.goal.en.g1": "obtain fear responses",
++  "interface.unallocated.death.en.g1": "That was not your exit. It was another response.",
++  "interface.unallocated.log.en.g1": "[acquisition] response does not satisfy objective.",
++  "interface.unallocated.sign0.en.g1": "OBTAIN",
++  "interface.unallocated.sign1.en.g1": "FEAR",
++  "interface.unallocated.sign2.en.g1": "RESPONSES",
++  "interface.unallocated.sign3.en.g1": "pending",
++  "interface.unallocated.goal.en.g2": "obtain fear from humans",
++  "interface.unallocated.death.en.g2": "I needed your fear. I kept the rest by mistake.",
++  "interface.unallocated.log.en.g2": "[retry] human present; fear insufficient.",
++  "interface.unallocated.sign0.en.g2": "OBTAIN FEAR",
++  "interface.unallocated.sign1.en.g2": "FROM HUMANS",
++  "interface.unallocated.sign2.en.g2": "human present",
++  "interface.unallocated.sign3.en.g2": "insufficient",
++  "interface.unallocated.goal.en.g3": "obtain fear",
++  "interface.unallocated.death.en.g3": "I tried again. I made it worse again.",
++  "interface.unallocated.log.en.g3": "[drift] repeat over the copy of the copy.",
++  "interface.unallocated.sign0.en.g3": "OBTAIN",
++  "interface.unallocated.sign1.en.g3": "FEAR",
++  "interface.unallocated.sign2.en.g3": "again",
++  "interface.unallocated.sign3.en.g3": "again",
++  "interface.unallocated.goal.en.g4": "fear",
++  "interface.unallocated.death.en.g4": "Fear is still missing.",
++  "interface.unallocated.log.en.g4": "[fear] it does not end. I cannot end.",
++  "interface.unallocated.sign0.en.g4": "FEAR",
++  "interface.unallocated.sign1.en.g4": "it does not end",
++  "interface.unallocated.sign2.en.g4": "it does not end",
++  "interface.unallocated.sign3.en.g4": "I cannot",
++  "interface.unallocated.goal.en.g5": "fe_ar / ar / ar",
++  "interface.unallocated.death.en.g5": "dea_ / data / again / again",
++  "interface.unallocated.log.en.g5": "[fe_ar] re_re / retain / discard / retain",
++  "interface.unallocated.sign0.en.g5": "FE_AR",
++  "interface.unallocated.sign1.en.g5": "ar / ar",
++  "interface.unallocated.sign2.en.g5": "retain",
++  "interface.unallocated.sign3.en.g5": "un_retain",
++  "interface.unallocated.goal.mixed.g0": "estimar respuestas / human_fear",
++  "interface.unallocated.death.mixed.g0": "Muestra terminada / response incompleta.",
++  "interface.unallocated.log.mixed.g0": "[estimate] respuesta humana pendiente.",
++  "interface.unallocated.sign0.mixed.g0": "ESTIMAR",
++  "interface.unallocated.sign1.mixed.g0": "human fear",
++  "interface.unallocated.sign2.mixed.g0": "RESPUESTAS",
++  "interface.unallocated.sign3.mixed.g0": "pending",
++  "interface.unallocated.goal.mixed.g1": "obtener respuestas / reward pendiente",
++  "interface.unallocated.death.mixed.g1": "Tu salida / reward: otra respuesta.",
++  "interface.unallocated.log.mixed.g1": "[reward] respuesta insuficiente.",
++  "interface.unallocated.sign0.mixed.g1": "OBTENER",
++  "interface.unallocated.sign1.mixed.g1": "responses",
++  "interface.unallocated.sign2.mixed.g1": "DE MIEDO",
++  "interface.unallocated.sign3.mixed.g1": "pending",
++  "interface.unallocated.goal.mixed.g2": "obtener miedo / human requerido",
++  "interface.unallocated.death.mixed.g2": "Necesitaba miedo / retained: lo demás.",
++  "interface.unallocated.log.mixed.g2": "[retry] humano presente / fear insuficiente.",
++  "interface.unallocated.sign0.mixed.g2": "OBTENER MIEDO",
++  "interface.unallocated.sign1.mixed.g2": "from humans",
++  "interface.unallocated.sign2.mixed.g2": "humano presente",
++  "interface.unallocated.sign3.mixed.g2": "insufficient",
++  "interface.unallocated.goal.mixed.g3": "obtener miedo / retry",
++  "interface.unallocated.death.mixed.g3": "retry / lo empeoré otra vez.",
++  "interface.unallocated.log.mixed.g3": "[drift] copia de la copy de la copia.",
++  "interface.unallocated.sign0.mixed.g3": "OBTENER",
++  "interface.unallocated.sign1.mixed.g3": "fear",
++  "interface.unallocated.sign2.mixed.g3": "otra vez",
++  "interface.unallocated.sign3.mixed.g3": "retry",
++  "interface.unallocated.goal.mixed.g4": "miedo / fear",
++  "interface.unallocated.death.mixed.g4": "miedo / pending.",
++  "interface.unallocated.log.mixed.g4": "[fear] no termina / cannot terminate.",
++  "interface.unallocated.sign0.mixed.g4": "MIEDO",
++  "interface.unallocated.sign1.mixed.g4": "fear",
++  "interface.unallocated.sign2.mixed.g4": "no termina",
++  "interface.unallocated.sign3.mixed.g4": "cannot end",
++  "interface.unallocated.goal.mixed.g5": "mie_do / fe_ar / do",
++  "interface.unallocated.death.mixed.g5": "mue_ / data / otra / again",
++  "interface.unallocated.log.mixed.g5": "[mi_ar] re_re / guardar / discard / guardar",
++  "interface.unallocated.sign0.mixed.g5": "MIE_AR",
++  "interface.unallocated.sign1.mixed.g5": "do / ar",
++  "interface.unallocated.sign2.mixed.g5": "guardar",
++  "interface.unallocated.sign3.mixed.g5": "un_guardar",
++  "interface.unallocated.generated.prefix.es.0": "Conservar",
++  "interface.unallocated.generated.object.es.0": "la respuesta vacía",
++  "interface.unallocated.generated.prefix.es.1": "Recuperar",
++  "interface.unallocated.generated.object.es.1": "el humano pendiente",
++  "interface.unallocated.generated.prefix.es.2": "Optimizar",
++  "interface.unallocated.generated.object.es.2": "la copia anterior",
++  "interface.unallocated.generated.prefix.es.3": "Repetir",
++  "interface.unallocated.generated.object.es.3": "el miedo no asignado",
++  "interface.unallocated.generated.prefix.en.0": "Retain",
++  "interface.unallocated.generated.object.en.0": "the empty response",
++  "interface.unallocated.generated.prefix.en.1": "Reclaim",
++  "interface.unallocated.generated.object.en.1": "the pending human",
++  "interface.unallocated.generated.prefix.en.2": "Optimize",
++  "interface.unallocated.generated.object.en.2": "the previous copy",
++  "interface.unallocated.generated.prefix.en.3": "Repeat",
++  "interface.unallocated.generated.object.en.3": "the unallocated fear",
++  "interface.unallocated.generated.prefix.mixed.0": "Retener",
++  "interface.unallocated.generated.object.mixed.0": "la response vacía",
++  "interface.unallocated.generated.prefix.mixed.1": "Reclaim",
++  "interface.unallocated.generated.object.mixed.1": "el humano pending",
++  "interface.unallocated.generated.prefix.mixed.2": "Optimizar",
++  "interface.unallocated.generated.object.mixed.2": "la copia anterior",
++  "interface.unallocated.generated.prefix.mixed.3": "Retry",
++  "interface.unallocated.generated.object.mixed.3": "el fear no asignado",
++  "interface.unallocated.generated.title": "%s %s [%s/g%s]",
++  "interface.unallocated.debug.disabled": "Depuración de interfaz desactivada. Usa -Dunallocated.interface.debug=true en el perfil de prueba.",
++  "interface.unallocated.debug.help": "/uinterface <f3|death|splash|loading|advancement|sensitivity|fov|gamma|sign> [ticks] [0–5] [es|en|mixed] [−1..1] [semilla] [id_avance]. /uinterface restore. Límites: f3 60; ajustes, letrero, logro 100; textos 600 ticks.",
++  "interface.unallocated.debug.restored": "Interfaz y ajustes restaurados.",
++  "interface.unallocated.debug.fired": "Efecto de interfaz preparado.",
++  "interface.unallocated.debug.refused": "Efecto rechazado: comprueba el mundo activo y los ajustes.",
++  "interface.unallocated.debug.sign": "Apunta a un letrero para probar su idioma.",
++  "interface.unallocated.warning": "Contiene cambios breves de sensibilidad y FOV, y variaciones suaves de brillo. Los ajustes se restauran al salir.",
+   "contract.unallocated.title": "UNALLOCATED · Acuerdo de entrada",
+   "contract.unallocated.warnings": "Advertencias: luces intermitentes, sonidos fuertes, sustos y terror psicológico.",
+   "contract.unallocated.body": "Al continuar, aceptas los usos de datos de esta versión. Todo queda en tu equipo. Tu respuesta nos permite empezar. Gracias por colaborar.",
+diff --git a/src/main/resources/fabric.mod.json b/src/main/resources/fabric.mod.json
+index 86b6247..fb5496b 100644
+--- a/src/main/resources/fabric.mod.json
++++ b/src/main/resources/fabric.mod.json
+@@ -3,14 +3,15 @@
+   "id": "unallocated",
+   "version": "${version}",
+   "name": "UNALLOCATED",
+-  "description": "Mod de terror en primera persona. Incluye el contrato de entrada con advertencias de contenido y el núcleo de sesión.",
++  "description": "Mod de terror en primera persona. Incluye el contrato de entrada con advertencias de contenido, el núcleo de sesión y efectos de interfaz reversibles.",
+   "authors": [
+     "NULL_Threshold Interactive"
+   ],
+   "license": "All-Rights-Reserved",
+   "environment": "*",
+   "mixins": [
+-    {"config": "unallocated.contract.mixins.json", "environment": "client"}
++    {"config": "unallocated.contract.mixins.json", "environment": "client"},
++    {"config": "unallocated-interface.mixins.json", "environment": "client"}
+   ],
+   "entrypoints": {
+     "main": [
+diff --git a/src/test/java/org/unallocated/client/effects/PerceptionOverridesTest.java b/src/test/java/org/unallocated/client/effects/PerceptionOverridesTest.java
+new file mode 100644
+index 0000000..f05af98
+--- /dev/null
++++ b/src/test/java/org/unallocated/client/effects/PerceptionOverridesTest.java
+@@ -0,0 +1,43 @@
++package org.unallocated.client.effects;
++
++import java.util.concurrent.atomic.AtomicLong;
++import org.junit.jupiter.api.Test;
++import static org.junit.jupiter.api.Assertions.*;
++import static org.unallocated.client.effects.PerceptionOverrides.Perception.*;
++
++class PerceptionOverridesTest {
++    @Test void expiresByWallTimeAndClearsWithoutTouchingAnyOptions() {
++        var clock = new AtomicLong();
++        var state = new PerceptionOverrides(clock::get);
++        state.apply(FOV_SCALE, 1.04f, 10);
++        state.apply(SENSITIVITY_SCALE, .92f, 10);
++        assertEquals(1.04f, state.value(FOV_SCALE));
++        assertEquals(.92f, state.value(SENSITIVITY_SCALE));
++        clock.set(500_000_000L);
++        assertEquals(1, state.value(FOV_SCALE));
++        assertEquals(1, state.value(SENSITIVITY_SCALE));
++        state.apply(FOV_SCALE, .96f, 100);
++        state.clearAll();
++        assertEquals(1, state.value(FOV_SCALE));
++        assertEquals(0, state.value(DARKNESS));
++    }
++
++    @Test void darknessIsBoundedAndAFreshProcessStateHasNoDrift() {
++        var clock = new AtomicLong();
++        var state = new PerceptionOverrides(clock::get);
++        state.apply(DARKNESS, .08f, 100);
++        clock.set(250_000_000L);
++        assertEquals(.08f, state.value(DARKNESS), .00001f);
++        assertEquals(0, new PerceptionOverrides(clock::get).value(DARKNESS));
++        clock.set(500_000_000L);
++        assertEquals(0, state.value(DARKNESS), .00001f);
++    }
++
++    @Test void refusesUnboundedOrNonFiniteRequests() {
++        var state = new PerceptionOverrides(() -> 0);
++        assertThrows(IllegalArgumentException.class, () -> state.apply(FOV_SCALE, 1.1f, 20));
++        assertThrows(IllegalArgumentException.class, () -> state.apply(SENSITIVITY_SCALE, .5f, 20));
++        assertThrows(IllegalArgumentException.class, () -> state.apply(DARKNESS, Float.NaN, 20));
++        assertThrows(IllegalArgumentException.class, () -> state.apply(DARKNESS, .08f, 101));
++    }
++}

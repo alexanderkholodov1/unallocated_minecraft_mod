@@ -1,0 +1,296 @@
+
+ gradle.properties 0 OURS
+ version=0.1.0
+ THEIRS
+ version=0.1.1
+
+
+ README.md 0 OURS
+ **Versión actual: 0.1.0 — integración del hito.** Antes del menú aparece un acuerdo con advertencias y una lista opcional de usos reales de datos. Se acepta con un clic en **De acuerdo**, o escribiendo **De acuerdo** y pulsando Enter. Incluye el núcleo de sesión (actos con tiempo máximo, estado guardado y comandos de prueba) con sus dependencias dentro del JAR. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+ THEIRS
+ **Versión actual: 0.1.1 — base técnica.** Esta versión únicamente carga el mod y escribe dos mensajes en el registro. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+
+
+ README.md 1 OURS
+ | Archivo del mod | **`unallocated-0.1.0.jar`** de la entrega del autor. |
+
+Se fija Minecraft a 26.3 porque los módulos incluidos aplican mixins a sus clases internas; un hotfix podría cambiar esos objetivos. Sólo se ampliará la versión admitida después de probarlo.
+ THEIRS
+ | Archivo del mod | **`unallocated-0.1.1.jar`** de la entrega del autor. |
+
+
+ README.md 2 OURS
+ 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
+4. Consigue **`unallocated-0.1.0.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+ THEIRS
+ 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** (o su hotfix 26.3.x) y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
+4. Consigue **`unallocated-0.1.1.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+
+
+ README.md 3 OURS
+ Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.0.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+
+Every push to any branch and every pull request runs [the build workflow](.github/workflows/build.yml), verifies JAR metadata and both Java 25 entrypoint classes, then starts a real dedicated Fabric 26.3 server with the exact player JAR in `mods/`. CI requires the common load message, loaded bundled modules and `Done`, explicitly arms its disposable world, runs `unallocated act LOBBY` and `unallocated status`, asserts the enter/status markers, then stops and restarts against the same save to verify SavedData reload. Both runs require clean shutdown with no crash report. The EULA is accepted only for that disposable CI server. Smoke checks use the pinned baseline; newer accepted Loaders/hotfixes are not all tested.
+ THEIRS
+ Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.1.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+
+
+ build.gradle 0 OURS
+     testImplementation platform('org.junit:junit-bom:5.13.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    bundledFabric.modules.keySet().each { moduleId ->
+        def module = fabricApi.module(moduleId, bundledFabric.fabric_api_version)
+        implementation(module) { transitive = false }
+        include(module) { transitive = false }
+    }
+}
+
+// Loom's include configuration declares dependencies but cannot itself be resolved.
+// Inherit those same declarations so the hash inputs cannot drift from the bundled modules.
+configurations {
+    includedJarInputs {
+        canBeConsumed = false
+        canBeResolved = true
+        transitive = false
+        extendsFrom configurations.include
+    }
+ THEIRS
+     // Initialization and logging do not require Fabric API.
+    testImplementation platform('org.junit:junit-bom:5.13.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    maxHeapSize = '256m'
+    def unitTestTemp = layout.projectDirectory.dir('.tmp/unit').asFile
+    systemProperty 'java.io.tmpdir', unitTestTemp.absolutePath
+    doFirst { unitTestTemp.mkdirs() }
+
+
+ scripts/smoke_test.py 0 OURS
+             shutdown_timeout=30, game_directory=None, command_steps=(), startup_required=None,
+            expected_rejection=None):
+    """Require clean game evidence or a specific pre-startup Loader dependency rejection."""
+ THEIRS
+             shutdown_timeout=30, game_directory=None, ready=(), ready_commands=()):
+    """Require actual game log evidence, exit zero, and no crash; stop servers via stdin.
+
+    Once every `ready` pattern is in the game log, `ready_commands` are typed into the server console (once).
+    """
+
+
+ scripts/smoke_test.py 1 OURS
+     step_index = 0
+    step_sent = False
+    step_log_start = 0
+ THEIRS
+     commands_sent = not ready_commands
+
+
+ scripts/smoke_test.py 2 OURS
+                 ready = all(re.search(pattern, game_log) for pattern in (startup_required or required))
+                if ready and step_index < len(command_steps):
+                    command, evidence = command_steps[step_index]
+                    if not step_sent:
+                        step_log_start = len(game_log)
+                        process.stdin.write(command + '\n')
+                        process.stdin.flush()
+                        step_sent = True
+                    elif all(re.search(pattern, game_log[step_log_start:]) for pattern in evidence):
+                        step_index += 1
+                        step_sent = False
+                if stop_when_ready and not stop_sent and step_index == len(command_steps) and all(
+ THEIRS
+                 failed = SELFTEST_FAILED.search(game_log)
+                if failed:
+                    raise RuntimeError(f'In-game self-test failed: {failed.group(0)}')
+                if not commands_sent and all(re.search(pattern, game_log) for pattern in ready):
+                    for line in ready_commands:
+                        process.stdin.write(line + '\n')
+                    process.stdin.flush()
+                    commands_sent = True
+                    print(f'Sent console commands: {list(ready_commands)}', flush=True)
+                if stop_when_ready and commands_sent and not stop_sent and all(
+
+
+ scripts/smoke_test.py 3 OURS
+     command = ['java', '-Xms256M', '-Xmx1G', '-Djava.awt.headless=true', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui']
+    startup = server_evidence(with_fabric_api)
+    console_prefix = 'server-with-api' if with_fabric_api else 'server'
+    entered = r'UNALLOCATED act=LOBBY enter t=0'
+    status = (r'UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 '
+              r'budgetTicks=6000 checkpoint=lobby\.spawn')
+    monitor(
+        command, directory, SMOKE / f'{name}-console.log', startup + [entered, status],
+        timeout=120, stop_when_ready=not expects_rejection(api_version), startup_required=startup,
+        command_steps=[] if expects_rejection(api_version) else [
+            ('unallocated arm', [r'UNALLOCATED session armed']),
+            ('unallocated act LOBBY', [entered]), ('unallocated status', [status])],
+        expected_rejection=api_version if expects_rejection(api_version) else None,
+    )
+    if with_fabric_api:
+        return  # Coexistence check stays a single process; clean one-JAR smoke proves reload.
+    # A second real server process must load SavedData, not a leftover Java/static object.
+    # Preserve the first log as evidence and require entirely fresh startup/reload markers.
+    latest = directory / 'logs' / 'latest.log'
+    shutil.copyfile(latest, directory / 'logs' / 'core-before-reload.log')
+    latest.unlink()
+ THEIRS
+     ready = [r'UNALLOCATED initialized \(common\)\.', r'Done \([^\r\n]*\)!']
+
+
+ scripts/smoke_test.py 4 OURS
+         command, directory, SMOKE / 'server-reload-console.log', startup + [status],
+        timeout=120, stop_when_ready=True, startup_required=startup,
+        command_steps=[('unallocated status', [status])],
+ THEIRS
+         ['java', '-Xms256M', '-Xmx1G', f'-Djava.io.tmpdir={temp}', '-jar', str(launcher), 'nogui'],
+        directory, SMOKE / 'server-console.log',
+        # The spyglass bait's self-test makes, dresses, moves and removes its figure on this real server.
+        ready + [r'UNALLOCATED bait selftest passed'],
+        timeout=120, stop_when_ready=True, ready=ready, ready_commands=['ubait selftest'],
+
+
+ scripts/smoke_test.py 5 OURS
+ def verify_screenshot(directory, name='unallocated-title'):
+ THEIRS
+ BAIT_SCREENSHOTS = (
+    'unallocated-bait-1-plain-view', 'unallocated-bait-2-first-sighting',
+    'unallocated-bait-3-closer', 'unallocated-bait-4-screamer',
+)
+
+
+def verify_screenshot(directory, name='unallocated-title'):
+
+
+ scripts/smoke_test.py 6 OURS
+         raise RuntimeError(f'Client exited without a valid screenshot: {name}')
+ THEIRS
+         raise RuntimeError(f'Client exited without a valid {name} screenshot')
+
+
+ scripts/smoke_test.py 7 OURS
+     if expects_rejection(api_version):
+        monitor(
+            ['gradle', '--daemon', '--console=plain', 'runClientSmoke',
+             f'-PsmokeApiVersion={api_version}', '-PsmokeExpectRejection=true'],
+            ROOT, SMOKE / f'{name}-console.log', [], timeout=240,
+            game_directory=directory, expected_rejection=api_version,
+        )
+        return
+    receipt = directory / 'unallocated' / 'contract.properties'
+    original = None
+    for phase, checks in client_phases().items():
+        monitor(
+            ['gradle', '--daemon', '--console=plain', 'runClientSmoke', f'-PcontractSmokePhase={phase}',
+             f'-PsmokeApiVersion={api_version or "none"}'],
+            ROOT, SMOKE / f'{name}-{phase}-console.log', [
+                r'UNALLOCATED initialized \(common\)\.',
+                r'UNALLOCATED initialized \(client\)\.',
+                *checks['evidence'],
+                *([rf'UNALLOCATED smoke: external Fabric API {re.escape(api_version)} loaded\.']
+                  if api_version else []),
+            ], timeout=checks['timeout'],
+            # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+            # Same real game directory, new JVM, no stale log evidence.
+            game_directory=directory,
+        )
+        for screenshot in checks['screenshots']:
+            if phase == 'first' and screenshot.startswith('unallocated-contract'):
+                if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
+                           for path in directory.rglob(f'*{screenshot}.png')):
+                    raise RuntimeError(f'Missing contract screenshot: {screenshot}')
+            else:
+                verify_screenshot(directory, screenshot)
+        if phase == 'first':
+            original = receipt.read_bytes()
+            (directory / 'logs').rename(directory / 'logs-first')
+        elif receipt.read_bytes() != original:
+            raise RuntimeError('Second start rewrote the original acceptance')
+    props = properties()
+    verify_mod_directory(directory / 'mods', {
+        f"unallocated-{props['version']}.jar",
+    } | ({f'fabric-api-{api_version}.jar'} if api_version else set()))
+ THEIRS
+     monitor(
+        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
+        ROOT, SMOKE / 'client-console.log', [
+            r'UNALLOCATED initialized \(common\)\.',
+            r'UNALLOCATED initialized \(client\)\.',
+            r'UNALLOCATED smoke: title screen reached from player JAR\.',
+            r'UNALLOCATED bait step=2/2',
+            r'UNALLOCATED bait screamer shown',
+            r'UNALLOCATED spyglass smoke: three looks, closer each time, screamer, figure gone\.',
+        ], timeout=360,  # includes creating and playing a single-player world for the spyglass bait
+        # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+        game_directory=directory,
+    )
+    verify_screenshot(directory)
+    for name in BAIT_SCREENSHOTS:
+        verify_screenshot(directory, name)
+
+
+ src/clientSmoke/resources/fabric.mod.json 0 OURS
+       "org.unallocated.smoke.TitleScreenSmokeTest"
+    ],
+    "client": [
+      "org.unallocated.smoke.ContractSmokeObserver"
+ THEIRS
+       "org.unallocated.smoke.TitleScreenSmokeTest",
+      "org.unallocated.smoke.SpyglassBaitSmokeTest"
+
+
+ src/main/resources/fabric.mod.json 0 OURS
+   "mixins": [
+    {"config": "unallocated.contract.mixins.json", "environment": "client"},
+    {"config": "unallocated-interface.mixins.json", "environment": "client"}
+  ],
+ THEIRS
+   "mixins": [
+    "unallocated.bait.mixins.json",
+    {"config": "unallocated.bait.client.mixins.json", "environment": "client"}
+  ],
+
+
+ .github/workflows/build.yml 0 OURS
+     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        # Oldest API must be rejected by Loader; the other three profiles must start.
+        api: ['none', '0.153.1+26.3', '0.161.0+26.3', '0.165.0+26.3']
+ THEIRS
+     timeout-minutes: 16
+
+
+ .github/workflows/build.yml 1 OURS
+       - name: Smoke test client startup or Loader rejection (Fabric API ${{ matrix.api }})
+        if: ${{ !cancelled() && steps.package.outcome == 'success' }}
+        timeout-minutes: 10
+ THEIRS
+       - name: Smoke test production client to title screen
+        timeout-minutes: 8
+
+
+ docs/plan/TOOLCHAIN.md 0 OURS
+ # Toolchain — UNALLOCATED v0.1.0
+ THEIRS
+ # Toolchain — UNALLOCATED v0.1.1
+
+
+ docs/plan/TOOLCHAIN.md 1 OURS
+ 2. In **Client**, select Minecraft **26.3**, Loader **0.20.1 or newer** (the installer's latest selection is fine), the launcher's correct game installation location, and **Create Profile**, then **Install**. Reopen the launcher and choose the corresponding Fabric profile; `fabric-loader-0.20.1-26.3` is the baseline example, not a required display name. If missing, enable modded installations under **Installations**. The installer installs Loader; it does not supply every mod. Sources: [official installer](https://fabricmc.net/use/installer/), OS guides above, read 2026-10-26. The exact Minecraft pin and Loader range are this project's compatibility policy.
+3. With Minecraft closed, put **`unallocated-0.1.0.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API **0.165.0+26.3** is included as seven nested modules; **do not download or install it separately**. Loader + this one JAR is the installation path. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
+ THEIRS
+ 2. In **Client**, select Minecraft **26.3** (or a 26.3.x hotfix), Loader **0.20.1 or newer** (the installer's latest selection is fine), the launcher's correct game installation location, and **Create Profile**, then **Install**. Reopen the launcher and choose the corresponding Fabric profile; `fabric-loader-0.20.1-26.3` is the baseline example, not a required display name. If missing, enable modded installations under **Installations**. The installer installs Loader; it does not supply every mod. Sources: [official installer](https://fabricmc.net/use/installer/), OS guides above, read 2026-10-26. The accepted runtime ranges are this project's compatibility policy.
+3. With Minecraft closed, put **`unallocated-0.1.1.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API is **not required** by this skeleton. The available API for future use is **0.165.0+26.3**, not a build for another game version. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
+
+
+ docs/plan/TOOLCHAIN.md 2 OURS
+ The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-0.1.0.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
+ THEIRS
+ The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-0.1.1.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
+

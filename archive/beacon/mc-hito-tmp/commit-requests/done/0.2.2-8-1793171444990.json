@@ -1,0 +1,1 @@
+{"paths": ["scripts/smoke_test.py", "scripts/test_smoke_test.py"], "message": "0.2.0.2: start the smoke server with JAVA_HOME's Java, never PATH's"}

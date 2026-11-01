@@ -1,0 +1,1 @@
+{"paths": ["docs/integration/MILESTONE-v0.1.0.md", "fabric-api-modules.json", "scripts/install_headless_graphics.sh", "src/main/java/org/unallocated/bait/SpyglassBaitSelfTest.java"], "message": "0.1.0.15: wait for bait entity activation and recover incomplete graphics caches"}

@@ -1,0 +1,176 @@
+build (0.165.0+26.3)	Build mod	﻿2026-10-26T16:06:11.4656501Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4657480Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3[0m
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4952824Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4953304Z env:
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4953871Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4955413Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4956184Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4956751Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4957287Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4957833Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4958620Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4959478Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4960105Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:11.4960617Z ##[endgroup]
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:12.7736800Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.3745199Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793030778098.json
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.3774037Z 
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.3792892Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4745626Z 
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4782568Z FAILURE: Build failed with an exception.
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4858897Z 
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4885360Z * Where:
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4895815Z Build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle' line: 23
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4915062Z 
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4935312Z * What went wrong:
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4936112Z Groovy DSL script compilation problem
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4958555Z   Could not compile build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle'.
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4960335Z     Location: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle:23
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4961530Z > startup failed:
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4962924Z   build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle': 23: Unexpected input: '{' @ line 23, column 14.
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4964474Z      dependencies {
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4965425Z                   ^
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4966053Z   
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4966641Z   1 error
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4967068Z 
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4967259Z 
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4967611Z * Try:
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4968328Z > Run with --stacktrace option to get the stack trace.
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4969303Z > Run with --info or --debug option to get more log output.
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4970439Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4971537Z > Get more help at https://help.gradle.org.
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4972148Z 
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:20.4972516Z BUILD FAILED in 8s
+build (0.165.0+26.3)	Build mod	2026-10-26T16:06:21.2404564Z ##[error]Process completed with exit code 1.
+build (0.161.0+26.3)	Build mod	﻿2026-10-26T16:06:28.8232917Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.161.0+26.3
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8233778Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.161.0+26.3[0m
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8388156Z shell: /usr/bin/bash -e {0}
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8388686Z env:
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8389047Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8389560Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8390001Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8390338Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8390656Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8390971Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8391425Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8391913Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8392306Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:28.8392601Z ##[endgroup]
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:30.4063497Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.3097540Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793030797919.json
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.3106088Z 
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.3140541Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4088701Z 
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4127019Z FAILURE: Build failed with an exception.
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4152744Z 
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4176513Z * Where:
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4177836Z Build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle' line: 23
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4196081Z 
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4216412Z * What went wrong:
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4217198Z Groovy DSL script compilation problem
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4236828Z   Could not compile build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle'.
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4256650Z     Location: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle:23
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4268354Z > startup failed:
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4296951Z   build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle': 23: Unexpected input: '{' @ line 23, column 14.
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4298435Z      dependencies {
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4312931Z                   ^
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4324042Z   
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4356234Z   1 error
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4356683Z 
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4357387Z 
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4376361Z * Try:
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4396449Z > Run with --stacktrace option to get the stack trace.
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4416429Z > Run with --info or --debug option to get more log output.
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4417634Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4436457Z > Get more help at https://help.gradle.org.
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4446313Z 
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.4448672Z BUILD FAILED in 11s
+build (0.161.0+26.3)	Build mod	2026-10-26T16:06:40.8396601Z ##[error]Process completed with exit code 1.
+build (0.153.1+26.3)	Build mod	﻿2026-10-26T16:06:34.7680619Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.153.1+26.3
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7681353Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.153.1+26.3[0m
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7896830Z shell: /usr/bin/bash -e {0}
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7897093Z env:
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7897379Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7897802Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7898164Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7898447Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7898711Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7898976Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7899352Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7899771Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7900103Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:34.7900349Z ##[endgroup]
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:36.4873126Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6892435Z 
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6893476Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793030804405.json
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6914531Z FAILURE: Build failed with an exception.
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6914819Z 
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6924628Z 
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6925435Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6926891Z * Where:
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6927631Z Build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle' line: 23
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6928379Z 
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6928670Z * What went wrong:
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6929151Z Groovy DSL script compilation problem
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6930062Z   Could not compile build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle'.
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6931197Z     Location: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle:23
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6932005Z > startup failed:
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6932941Z   build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle': 23: Unexpected input: '{' @ line 23, column 14.
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6934229Z      dependencies {
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6954571Z                   ^
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6954852Z   
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6955038Z   1 error
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6955146Z 
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6955151Z 
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6955227Z * Try:
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6955483Z > Run with --stacktrace option to get the stack trace.
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6955835Z > Run with --info or --debug option to get more log output.
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6956244Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6956627Z > Get more help at https://help.gradle.org.
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6956820Z 
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:46.6956907Z BUILD FAILED in 11s
+build (0.153.1+26.3)	Build mod	2026-10-26T16:06:47.2078440Z ##[error]Process completed with exit code 1.
+build (none)	Build mod	﻿2026-10-26T16:06:25.3701050Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none
+build (none)	Build mod	2026-10-26T16:06:25.3701973Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none[0m
+build (none)	Build mod	2026-10-26T16:06:25.3957182Z shell: /usr/bin/bash -e {0}
+build (none)	Build mod	2026-10-26T16:06:25.3957572Z env:
+build (none)	Build mod	2026-10-26T16:06:25.3957981Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (none)	Build mod	2026-10-26T16:06:25.3958622Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (none)	Build mod	2026-10-26T16:06:25.3959161Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Build mod	2026-10-26T16:06:25.3959569Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Build mod	2026-10-26T16:06:25.3959964Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Build mod	2026-10-26T16:06:25.3960355Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Build mod	2026-10-26T16:06:25.3960918Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Build mod	2026-10-26T16:06:25.3961528Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Build mod	2026-10-26T16:06:25.3962009Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Build mod	2026-10-26T16:06:25.3962373Z ##[endgroup]
+build (none)	Build mod	2026-10-26T16:06:26.6896607Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (none)	Build mod	2026-10-26T16:06:35.8894652Z 
+build (none)	Build mod	2026-10-26T16:06:35.8895855Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793030792688.json
+build (none)	Build mod	2026-10-26T16:06:35.8897669Z FAILURE: Build failed with an exception.
+build (none)	Build mod	2026-10-26T16:06:35.8898113Z 
+build (none)	Build mod	2026-10-26T16:06:35.8916344Z 
+build (none)	Build mod	2026-10-26T16:06:35.8917422Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (none)	Build mod	2026-10-26T16:06:35.8919561Z * Where:
+build (none)	Build mod	2026-10-26T16:06:35.8920602Z Build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle' line: 23
+build (none)	Build mod	2026-10-26T16:06:35.8921510Z 
+build (none)	Build mod	2026-10-26T16:06:35.8921819Z * What went wrong:
+build (none)	Build mod	2026-10-26T16:06:35.8922452Z Groovy DSL script compilation problem
+build (none)	Build mod	2026-10-26T16:06:35.8923713Z   Could not compile build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle'.
+build (none)	Build mod	2026-10-26T16:06:35.8925809Z     Location: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle:23
+build (none)	Build mod	2026-10-26T16:06:35.8926942Z > startup failed:
+build (none)	Build mod	2026-10-26T16:06:35.8928206Z   build file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build.gradle': 23: Unexpected input: '{' @ line 23, column 14.
+build (none)	Build mod	2026-10-26T16:06:35.8929581Z      dependencies {
+build (none)	Build mod	2026-10-26T16:06:35.8930235Z                   ^
+build (none)	Build mod	2026-10-26T16:06:35.8930819Z   
+build (none)	Build mod	2026-10-26T16:06:35.8931372Z   1 error
+build (none)	Build mod	2026-10-26T16:06:35.8931762Z 
+build (none)	Build mod	2026-10-26T16:06:35.8931877Z 
+build (none)	Build mod	2026-10-26T16:06:35.8932163Z * Try:
+build (none)	Build mod	2026-10-26T16:06:35.8932897Z > Run with --stacktrace option to get the stack trace.
+build (none)	Build mod	2026-10-26T16:06:35.8933822Z > Run with --info or --debug option to get more log output.
+build (none)	Build mod	2026-10-26T16:06:35.8935166Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (none)	Build mod	2026-10-26T16:06:35.8936255Z > Get more help at https://help.gradle.org.
+build (none)	Build mod	2026-10-26T16:06:35.8936811Z 
+build (none)	Build mod	2026-10-26T16:06:35.8937118Z BUILD FAILED in 10s
+build (none)	Build mod	2026-10-26T16:06:36.3391909Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "01930f8 0.2.0.2: retain validated context and resolve registered trigger and command references"
+}

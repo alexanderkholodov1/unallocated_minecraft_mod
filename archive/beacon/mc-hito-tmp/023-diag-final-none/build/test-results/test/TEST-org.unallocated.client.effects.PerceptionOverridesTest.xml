@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.client.effects.PerceptionOverridesTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-28T09:08:40.222Z" hostname="runnervmtai0g" time="0.025">
+  <properties/>
+  <testcase name="darknessIsBoundedAndAFreshProcessStateHasNoDrift()" classname="org.unallocated.client.effects.PerceptionOverridesTest" time="0.009"/>
+  <testcase name="expiresByWallTimeAndClearsWithoutTouchingAnyOptions()" classname="org.unallocated.client.effects.PerceptionOverridesTest" time="0.005"/>
+  <testcase name="refusesUnboundedOrNonFiniteRequests()" classname="org.unallocated.client.effects.PerceptionOverridesTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+remote: 
+remote: Create a pull request for 'rehearsal/story3-1a712a3' on GitHub by visiting:        
+remote:      https://github.com/alexanderkholodov1/unallocated_minecraft_mod/pull/new/rehearsal/story3-1a712a3        
+remote: 
+rehearse: alexanderkholodov1/unallocated_minecraft_mod 1a712a3 on rehearsal/story3-1a712a3
+rehearse: run 40803808941
+{"sha":"1a712a3b96a061aa2b659618deff0973e53b0fa0","api":"none","status":"failure"}
+{"sha":"1a712a3b96a061aa2b659618deff0973e53b0fa0","api":"0.153.1+26.3","status":"failure"}
+{"sha":"1a712a3b96a061aa2b659618deff0973e53b0fa0","api":"0.161.0+26.3","status":"failure"}
+{"sha":"1a712a3b96a061aa2b659618deff0973e53b0fa0","api":"0.165.0+26.3","status":"failure"}
+rehearse: FAIL 1a712a3 (0/4 jobs passed); logs: gh run view 40803808941 -R alexanderkholodov1/unallocated_minecraft_mod --log

@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "9a61623 0.2.0.2: start the smoke server with JAVA_HOME's Java, never PATH's"
+}

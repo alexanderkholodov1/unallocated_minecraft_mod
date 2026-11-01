@@ -1,0 +1,28 @@
+[03:02:17Z] page says: Minecraft=26.3 Loader>=0.20.1 installer=1.1.2 java=25 jar=unallocated-0.2.0.jar
+[03:02:17Z] SHA-256 matches the page (1fb9e54f24bdec9277ffca33fcb7fe373cc49a3af01ab2926b4b6f4c3188a318)
+openjdk version "25.0.5" 2026-10-20 LTS
+[03:02:17Z] running Fabric installer 1.1.2: client -mcversion 26.3 -loader 0.20.1 -dir /home/alexamaze/unallocated-cleantest/final-v0.2.0/mc
+[03:02:20Z] installer refused (no launcher_profiles.json: the real launcher writes it in page step 1); creating the minimal file and retrying
+[03:02:22Z] installer wrote profile version fabric-loader-0.20.1-26.3
+[launch 03:02:23Z] 26.3.json not present; fetching from Mojang manifest
+[launch 03:02:25Z] 5220 libraries+assets to verify/download
+[launch 03:02:32Z] downloaded 66 files in 7s
+[03:02:34Z] starting client (Xvfb :77 854x480, software GL, OpenAL null device)
+[03:02:54Z] client initialized after 20s
+[03:03:02Z] frame stable
+[03:03:02Z] screenshot 00-first-run-welcome-1.png (mean=125.5 hash=85dedf2817186613d9046c2d667d6eac)
+[03:03:03Z] dismissed Minecraft first-run welcome screen (1)
+[03:03:32Z] screenshot 00-first-run-welcome-2.png (mean=71.2 hash=f7828a96a26be2eeddb52a834f1a7631)
+[03:03:33Z] dismissed Minecraft first-run welcome screen (2)
+[03:03:39Z] screenshot 01-contract.png (mean=41.3 hash=2b69dc02a0284bba0f76f42ebf071615)
+[03:03:41Z] screenshot 01b-contract-typed.png (mean=41.6 hash=c177e681231125e828c6b01f511dadeb)
+[03:03:42Z] clicked accept at 427,446
+[03:03:48Z] screenshot 02-title-button.png (mean=90.7 hash=79c43d7086e89be8efbbac592a567f6a)
+[03:03:49Z] clicked UNALLOCATED at 427,188
+[03:03:59Z] chapter entered after 10s from click
+[03:04:04Z] screenshot 04-in-world.png (mean=116.2 hash=95cdceae852b2c0f3725b97cb8c98a7a)
+[03:05:04Z] screenshot 05-in-world-60s.png (mean=128.5 hash=72da45913bfca4cac272fd056f5f47ad)
+[03:05:04Z] game still running after 60 s in-world
+close sent to 2 window(s)
+game exit status: 0
+[03:05:08Z] VERDICT: PASS

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "unallocated",
+  "version": "${version}",
+  "name": "UNALLOCATED",
+  "description": "First-person horror with reversible client interface effects.",
+  "authors": [
+    "NULL_Threshold Interactive"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "mixins": [
+    { "config": "unallocated-interface.mixins.json", "environment": "client" }
+  ],
+  "entrypoints": {
+    "main": [
+      "org.unallocated.UnallocatedMod"
+    ],
+    "client": [
+      "org.unallocated.client.UnallocatedClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=25"
+  }
+}

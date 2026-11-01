@@ -1,0 +1,562 @@
+public class net.minecraft.server.level.ServerPlayer  [client-26.3.jar]
+  extends net.minecraft.world.entity.player.Player
+  field  private static final org.slf4j.Logger LOGGER
+  field  private static final int NEUTRAL_MOB_DEATH_NOTIFICATION_RADII_XZ
+  field  private static final int NEUTRAL_MOB_DEATH_NOTIFICATION_RADII_Y
+  field  private static final int FLY_STAT_RECORDING_SPEED
+  field  public static final double BLOCK_INTERACTION_DISTANCE_VERIFICATION_BUFFER
+  field  public static final double ENTITY_INTERACTION_DISTANCE_VERIFICATION_BUFFER
+  field  public static final int ENDER_PEARL_TICKET_RADIUS
+  field  public static final java.lang.String ENDER_PEARLS_TAG
+  field  public static final java.lang.String ENDER_PEARL_DIMENSION_TAG
+  field  public static final java.lang.String TAG_DIMENSION
+  field  private static final net.minecraft.world.entity.ai.attributes.AttributeModifier CREATIVE_BLOCK_INTERACTION_RANGE_MODIFIER
+  field  private static final net.minecraft.world.entity.ai.attributes.AttributeModifier CREATIVE_ENTITY_INTERACTION_RANGE_MODIFIER
+  field  private static final net.minecraft.network.chat.Component SPAWN_SET_MESSAGE
+  field  private static final net.minecraft.world.entity.ai.attributes.AttributeModifier WAYPOINT_TRANSMIT_RANGE_CROUCH_MODIFIER
+  field  private static final boolean DEFAULT_SEEN_CREDITS
+  field  private static final boolean DEFAULT_SPAWN_EXTRA_PARTICLES_ON_FALL
+  field  public net.minecraft.server.network.ServerGamePacketListenerImpl connection
+  field  private final net.minecraft.server.MinecraftServer server
+  field  public final net.minecraft.server.level.ServerPlayerGameMode gameMode
+  field  private final net.minecraft.server.PlayerAdvancements advancements
+  field  private final net.minecraft.stats.ServerStatsCounter stats
+  field  private float lastRecordedHealthAndAbsorption
+  field  private int lastRecordedFoodLevel
+  field  private int lastRecordedAirLevel
+  field  private int lastRecordedArmor
+  field  private int lastRecordedLevel
+  field  private int lastRecordedExperience
+  field  private float lastSentHealth
+  field  private int lastSentFood
+  field  private boolean lastFoodSaturationZero
+  field  private int lastSentExp
+  field  private net.minecraft.world.entity.player.ChatVisiblity chatVisibility
+  field  private net.minecraft.server.level.ParticleStatus particleStatus
+  field  private boolean canChatColor
+  field  private long lastActionTime
+  field  private net.minecraft.world.entity.Entity camera
+  field  private boolean isChangingDimension
+  field  public boolean seenCredits
+  field  private final net.minecraft.stats.ServerRecipeBook recipeBook
+  field  private net.minecraft.world.phys.Vec3 levitationStartPos
+  field  private int levitationStartTime
+  field  private boolean disconnected
+  field  private int requestedViewDistance
+  field  private java.lang.String language
+  field  private net.minecraft.world.phys.Vec3 startingToFallPosition
+  field  private net.minecraft.world.phys.Vec3 enteredNetherPosition
+  field  private net.minecraft.world.phys.Vec3 enteredLavaOnVehiclePosition
+  field  private net.minecraft.world.phys.Vec3 currentExplosionImpactPos
+  field  private net.minecraft.world.entity.Entity currentExplosionCause
+  field  private net.minecraft.core.SectionPos lastSectionPos
+  field  private net.minecraft.server.level.ChunkTrackingView chunkTrackingView
+  field  private net.minecraft.server.level.ServerPlayer$RespawnConfig respawnConfig
+  field  private final net.minecraft.server.network.TextFilter textFilter
+  field  private boolean textFilteringEnabled
+  field  private boolean allowsListing
+  field  private boolean spawnExtraParticlesOnFall
+  field  private net.minecraft.world.entity.monster.warden.WardenSpawnTracker wardenSpawnTracker
+  field  private net.minecraft.core.BlockPos raidOmenPosition
+  field  private net.minecraft.world.phys.Vec3 lastKnownClientMovement
+  field  private net.minecraft.world.entity.player.Input lastClientInput
+  field  private final java.util.Set enderPearls
+  field  private boolean postEffectsDirty
+  field  private long timeEntitySatOnShoulder
+  field  private net.minecraft.nbt.CompoundTag shoulderEntityLeft
+  field  private net.minecraft.nbt.CompoundTag shoulderEntityRight
+  field  private final net.minecraft.world.inventory.ContainerSynchronizer containerSynchronizer
+  field  private final net.minecraft.world.inventory.ContainerListener containerListener
+  field  private net.minecraft.network.chat.RemoteChatSession chatSession
+  field  public final java.lang.Object object
+  field  private final net.minecraft.commands.CommandSource commandSource
+  field  private java.util.Set requestedDebugSubscriptions
+  field  private int containerCounter
+  field  public boolean wonGame
+  method public void <init>(net.minecraft.server.MinecraftServer, net.minecraft.server.level.ServerLevel, com.mojang.authlib.GameProfile, net.minecraft.server.level.ClientInformation)
+  method public net.minecraft.core.BlockPos adjustSpawnLocation(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos)
+  method protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput)
+  method protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput)
+  method private void saveParentVehicle(net.minecraft.world.level.storage.ValueOutput)
+  method public void loadAndSpawnParentVehicle(net.minecraft.world.level.storage.ValueInput)
+  method private void saveEnderPearls(net.minecraft.world.level.storage.ValueOutput)
+  method public void loadAndSpawnEnderPearls(net.minecraft.world.level.storage.ValueInput)
+  method private void loadAndSpawnEnderPearl(net.minecraft.world.level.storage.ValueInput)
+  method public void setExperiencePoints(int)
+  method public void setExperienceLevels(int)
+  method public void giveExperienceLevels(int)
+  method public void onEnchantmentPerformed(net.minecraft.world.item.ItemStack, int)
+  method private void initMenu(net.minecraft.world.inventory.AbstractContainerMenu)
+  method public void initInventoryMenu()
+  method public void onEnterCombat()
+  method public void onLeaveCombat()
+  method public void onInsideBlock(net.minecraft.world.level.block.state.BlockState)
+  method protected net.minecraft.world.item.ItemCooldowns createItemCooldowns()
+  method public void tick()
+  method private void updatePlayerAttributes()
+  method public void doTick()
+  method private void synchronizeSpecialItemUpdates(net.minecraft.world.item.ItemStack)
+  method protected void tickRegeneration()
+  method public void handleShoulderEntities()
+  method private void playShoulderEntityAmbientSound(net.minecraft.nbt.CompoundTag)
+  method public boolean setEntityOnShoulder(net.minecraft.nbt.CompoundTag)
+  method protected void removeEntitiesOnShoulder()
+  method private void respawnEntityOnShoulder(net.minecraft.nbt.CompoundTag)
+  method public void resetFallDistance()
+  method public void trackStartFallingPosition()
+  method public void trackEnteredOrExitedLavaOnVehicle()
+  method private void updateScoreForCriteria(net.minecraft.world.scores.criteria.ObjectiveCriteria, int)
+  method public void die(net.minecraft.world.damagesource.DamageSource)
+  method private void tellNeutralMobsThatIDied()
+  method public void awardKillScore(net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource)
+  method private void handleTeamKill(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.ScoreHolder, java.util.Map)
+  method public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float)
+  method public boolean canHarmPlayer(net.minecraft.world.entity.player.Player)
+  method private boolean isPvpAllowed()
+  method public net.minecraft.world.level.portal.TeleportTransition findRespawnPositionAndUseSpawnBlock(boolean, net.minecraft.world.level.portal.TeleportTransition$PostTeleportTransition)
+  method public boolean isReceivingWaypoints()
+  method protected void onAttributeUpdated(net.minecraft.core.Holder)
+  method public void sendPostEffects()
+  method public boolean addPostEffect(net.minecraft.resources.Identifier)
+  method public boolean clearPostEffects()
+  method public java.util.List getPostEffects()
+  method public boolean removePostEffect(net.minecraft.resources.Identifier)
+  method private static java.util.Optional findRespawnAndUseSpawnBlock(net.minecraft.server.level.ServerLevel, net.minecraft.server.level.ServerPlayer$RespawnConfig, boolean)
+  method public void showEndCredits()
+  method public net.minecraft.server.level.ServerPlayer teleport(net.minecraft.world.level.portal.TeleportTransition)
+  method public void forceSetRotation(float, boolean, float, boolean)
+  method private void triggerDimensionChangeTriggers(net.minecraft.server.level.ServerLevel)
+  method public boolean broadcastToPlayer(net.minecraft.server.level.ServerPlayer)
+  method public void take(net.minecraft.world.entity.Entity, int)
+  method public com.mojang.datafixers.util.Either startSleepInBed(net.minecraft.world.level.block.AbstractBedBlock, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.attribute.BedRule, net.minecraft.core.BlockPos)
+  method public boolean startSleeping(net.minecraft.core.BlockPos)
+  method private boolean bedInRange(net.minecraft.core.BlockPos, net.minecraft.core.Direction)
+  method private boolean isReachableBedBlock(net.minecraft.core.BlockPos)
+  method private boolean bedBlocked(net.minecraft.core.BlockPos, net.minecraft.core.Direction)
+  method public void stopSleepInBed(boolean, boolean)
+  method public boolean isInvulnerableTo(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource)
+  method protected void onChangedBlock(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos)
+  method protected void checkFallDamage(double, boolean, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos)
+  method public void onExplosionHit(net.minecraft.world.entity.Entity)
+  method protected void pushEntities()
+  method public void openTextEdit(net.minecraft.world.level.block.entity.SignBlockEntity, net.minecraft.world.level.block.entity.SignTextSlot)
+  method public void openDialog(net.minecraft.core.Holder)
+  method private void nextContainerCounter()
+  method public java.util.OptionalInt openMenu(net.minecraft.world.MenuProvider)
+  method public void sendMerchantOffers(int, net.minecraft.world.item.trading.MerchantOffers, int, int, boolean, boolean)
+  method public void openHorseInventory(net.minecraft.world.entity.animal.equine.AbstractHorse, net.minecraft.world.Container)
+  method public void openNautilusInventory(net.minecraft.world.entity.animal.nautilus.AbstractNautilus, net.minecraft.world.Container)
+  method public void openItemGui(net.minecraft.world.item.ItemStack, net.minecraft.world.InteractionHand)
+  method public void openCommandBlock(net.minecraft.world.level.block.entity.CommandBlockEntity)
+  method public void closeContainer()
+  method public void doCloseContainer()
+  method public void rideTick()
+  method public void checkMovementStatistics(double, double, double)
+  method private void checkRidingStatistics(double, double, double)
+  method private static boolean didNotMove(double, double, double)
+  method public void awardStat(net.minecraft.stats.Stat, int)
+  method public void resetStat(net.minecraft.stats.Stat)
+  method public int awardRecipes(java.util.Collection)
+  method public void triggerRecipeCrafted(net.minecraft.world.item.crafting.RecipeHolder, java.util.List)
+  method public void awardRecipesByKey(java.util.List)
+  method public int resetRecipes(java.util.Collection)
+  method public void jumpFromGround()
+  method public void giveExperiencePoints(int)
+  method public void disconnect()
+  method public boolean hasDisconnected()
+  method public void resetSentInfo()
+  method protected void completeUsingItem()
+  method public void lookAt(net.minecraft.commands.arguments.EntityAnchorArgument$Anchor, net.minecraft.world.phys.Vec3)
+  method public void lookAt(net.minecraft.commands.arguments.EntityAnchorArgument$Anchor, net.minecraft.world.entity.Entity, net.minecraft.commands.arguments.EntityAnchorArgument$Anchor)
+  method public void restoreFrom(net.minecraft.server.level.ServerPlayer, boolean)
+  method private void transferInventoryXpAndScore(net.minecraft.world.entity.player.Player)
+  method protected void onEffectAdded(net.minecraft.world.effect.MobEffectInstance, net.minecraft.world.entity.Entity)
+  method protected void onEffectUpdated(net.minecraft.world.effect.MobEffectInstance, boolean, net.minecraft.world.entity.Entity)
+  method protected void onEffectsRemoved(java.util.Collection)
+  method public void teleportTo(double, double, double)
+  method public void teleportRelative(double, double, double)
+  method public boolean teleportTo(net.minecraft.server.level.ServerLevel, double, double, double, java.util.Set, float, float, boolean)
+  method public void snapTo(double, double, double)
+  method public void crit(net.minecraft.world.entity.Entity)
+  method public void magicCrit(net.minecraft.world.entity.Entity)
+  method public void onUpdateAbilities()
+  method public net.minecraft.server.level.ServerLevel level()
+  method public boolean setGameMode(net.minecraft.world.level.GameType)
+  method public net.minecraft.world.level.GameType gameMode()
+  method public net.minecraft.commands.CommandSource commandSource()
+  method public net.minecraft.commands.CommandSourceStack createCommandSourceStack()
+  method public void sendSystemMessage(net.minecraft.network.chat.Component)
+  method public void sendOverlayMessage(net.minecraft.network.chat.Component)
+  method public void sendBuildLimitMessage(boolean, int)
+  method public void sendSpawnProtectionMessage(net.minecraft.core.BlockPos)
+  method public void sendSystemMessage(net.minecraft.network.chat.Component, boolean)
+  method public void sendChatMessage(net.minecraft.network.chat.OutgoingChatMessage, boolean, net.minecraft.network.chat.ChatType$Bound)
+  method public java.lang.String getIpAddress()
+  method public void updateOptions(net.minecraft.server.level.ClientInformation)
+  method public net.minecraft.server.level.ClientInformation clientInformation()
+  method public boolean canChatInColor()
+  method public net.minecraft.world.entity.player.ChatVisiblity getChatVisibility()
+  method private boolean acceptsSystemMessages(boolean)
+  method private boolean acceptsChatMessages()
+  method public int requestedViewDistance()
+  method public void sendServerStatus(net.minecraft.network.protocol.status.ServerStatus)
+  method public net.minecraft.server.permissions.PermissionSet permissions()
+  method public void resetLastActionTime()
+  method public net.minecraft.stats.ServerStatsCounter getStats()
+  method public net.minecraft.stats.ServerRecipeBook getRecipeBook()
+  method protected void updateInvisibilityStatus()
+  method public net.minecraft.world.entity.Entity getCamera()
+  method public void setCamera(net.minecraft.world.entity.Entity)
+  method protected void processPortalCooldown()
+  method public long getLastActionTime()
+  method public net.minecraft.network.chat.Component getTabListDisplayName()
+  method public int getTabListOrder()
+  method public boolean isChangingDimension()
+  method public void hasChangedDimension()
+  method public net.minecraft.server.PlayerAdvancements getAdvancements()
+  method public net.minecraft.server.level.ServerPlayer$RespawnConfig getRespawnConfig()
+  method public void copyRespawnPosition(net.minecraft.server.level.ServerPlayer)
+  method public void setRespawnPosition(net.minecraft.server.level.ServerPlayer$RespawnConfig, boolean)
+  method public net.minecraft.core.SectionPos getLastSectionPos()
+  method public void setLastSectionPos(net.minecraft.core.SectionPos)
+  method public net.minecraft.server.level.ChunkTrackingView getChunkTrackingView()
+  method public void setChunkTrackingView(net.minecraft.server.level.ChunkTrackingView)
+  method public net.minecraft.world.entity.item.ItemEntity drop(net.minecraft.world.item.ItemStack, boolean, net.minecraft.util.Prediction)
+  method public net.minecraft.server.network.TextFilter getTextFilter()
+  method public void setServerLevel(net.minecraft.server.level.ServerLevel)
+  method private static net.minecraft.world.level.GameType readPlayerMode(net.minecraft.world.level.storage.ValueInput, java.lang.String)
+  method private net.minecraft.world.level.GameType calculateGameModeForNewPlayer(net.minecraft.world.level.GameType)
+  method private void storeGameTypes(net.minecraft.world.level.storage.ValueOutput)
+  method public boolean isTextFilteringEnabled()
+  method public boolean shouldFilterMessageTo(net.minecraft.server.level.ServerPlayer)
+  method public boolean mayInteract(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos)
+  method protected void updateUsingItem(net.minecraft.world.item.ItemStack)
+  method public void drop(boolean)
+  method public void handleExtraItemsCreatedOnUse(net.minecraft.world.item.ItemStack)
+  method public boolean allowsListing()
+  method public net.minecraft.world.entity.monster.warden.WardenSpawnTracker getWardenSpawnTracker()
+  method public void setSpawnExtraParticlesOnFall(boolean)
+  method public void onItemPickup(net.minecraft.world.entity.item.ItemEntity)
+  method public void setChatSession(net.minecraft.network.chat.RemoteChatSession)
+  method public net.minecraft.network.chat.RemoteChatSession getChatSession()
+  method public void indicateDamage(double, double)
+  method public boolean startRiding(net.minecraft.world.entity.Entity, boolean, boolean)
+  method public void removeVehicle()
+  method public net.minecraft.network.protocol.game.CommonPlayerSpawnInfo createCommonSpawnInfo(net.minecraft.server.level.ServerLevel)
+  method public void setRaidOmenPosition(net.minecraft.core.BlockPos)
+  method public void clearRaidOmenPosition()
+  method public net.minecraft.core.BlockPos getRaidOmenPosition()
+  method public net.minecraft.world.phys.Vec3 getKnownMovement()
+  method public net.minecraft.world.phys.Vec3 getKnownSpeed()
+  method public void setKnownMovement(net.minecraft.world.phys.Vec3)
+  method protected float getEnchantedDamage(net.minecraft.world.entity.Entity, float, net.minecraft.world.damagesource.DamageSource)
+  method public void onEquippedItemBroken(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.EquipmentSlot)
+  method public net.minecraft.world.entity.player.Input getLastClientInput()
+  method public void setLastClientInput(net.minecraft.world.entity.player.Input)
+  method public net.minecraft.world.phys.Vec3 getLastClientMoveIntent()
+  method public void registerEnderPearl(net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl)
+  method public void deregisterEnderPearl(net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl)
+  method public java.util.Set getEnderPearls()
+  method public net.minecraft.nbt.CompoundTag getShoulderEntityLeft()
+  method protected void setShoulderEntityLeft(net.minecraft.nbt.CompoundTag)
+  method public net.minecraft.nbt.CompoundTag getShoulderEntityRight()
+  method protected void setShoulderEntityRight(net.minecraft.nbt.CompoundTag)
+  method public long registerAndUpdateEnderPearlTicket(net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl)
+  method public static long placeEnderPearlTicket(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.ChunkPos)
+  method public void requestDebugSubscriptions(java.util.Set)
+  method public java.util.Set debugSubscriptions()
+  method public void swingAndResetAttackStrength(net.minecraft.world.InteractionHand, net.minecraft.world.item.component.SwingAnimation, boolean)
+public class net.minecraft.commands.CommandSourceStack  [client-26.3.jar]
+  extends java.lang.Object
+  implements net.minecraft.commands.SharedSuggestionProvider
+  implements net.minecraft.commands.ExecutionCommandSource
+  field  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_PLAYER
+  field  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_ENTITY
+  field  private final net.minecraft.commands.CommandSource source
+  field  private final net.minecraft.world.phys.Vec3 worldPosition
+  field  private final net.minecraft.server.level.ServerLevel level
+  field  private final net.minecraft.server.permissions.PermissionSet permissions
+  field  private final net.minecraft.commands.CommandSourceStack$NamesProvider namesProvider
+  field  private final net.minecraft.server.MinecraftServer server
+  field  private final boolean silent
+  field  private final net.minecraft.world.entity.Entity entity
+  field  private final net.minecraft.commands.CommandResultCallback resultCallback
+  field  private final net.minecraft.commands.arguments.EntityAnchorArgument$Anchor anchor
+  field  private final net.minecraft.world.phys.Vec2 rotation
+  field  private final net.minecraft.commands.CommandSigningContext signingContext
+  field  private final net.minecraft.util.TaskChainer chatMessageChainer
+  method public void <init>(net.minecraft.commands.CommandSource, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec2, net.minecraft.server.level.ServerLevel, net.minecraft.server.permissions.PermissionSet, net.minecraft.server.MinecraftServer, net.minecraft.world.entity.Entity)
+  method public void <init>(net.minecraft.commands.CommandSource, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec2, net.minecraft.server.level.ServerLevel, net.minecraft.server.permissions.PermissionSet, net.minecraft.network.chat.Component, net.minecraft.server.MinecraftServer)
+  method private void <init>(net.minecraft.commands.CommandSource, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec2, net.minecraft.server.level.ServerLevel, net.minecraft.server.permissions.PermissionSet, net.minecraft.commands.CommandSourceStack$NamesProvider, net.minecraft.server.MinecraftServer, net.minecraft.world.entity.Entity)
+  method private void <init>(net.minecraft.commands.CommandSource, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec2, net.minecraft.server.level.ServerLevel, net.minecraft.server.permissions.PermissionSet, net.minecraft.commands.CommandSourceStack$NamesProvider, net.minecraft.server.MinecraftServer, net.minecraft.world.entity.Entity, boolean, net.minecraft.commands.CommandResultCallback, net.minecraft.commands.arguments.EntityAnchorArgument$Anchor, net.minecraft.commands.CommandSigningContext, net.minecraft.util.TaskChainer)
+  method public net.minecraft.commands.CommandSourceStack withSource(net.minecraft.commands.CommandSource)
+  method public net.minecraft.commands.CommandSourceStack withEntity(net.minecraft.world.entity.Entity)
+  method public net.minecraft.commands.CommandSourceStack withPosition(net.minecraft.world.phys.Vec3)
+  method public net.minecraft.commands.CommandSourceStack withRotation(net.minecraft.world.phys.Vec2)
+  method public net.minecraft.commands.CommandSourceStack withCallback(net.minecraft.commands.CommandResultCallback)
+  method public net.minecraft.commands.CommandSourceStack withCallback(net.minecraft.commands.CommandResultCallback, java.util.function.BinaryOperator)
+  method public net.minecraft.commands.CommandSourceStack withSuppressedOutput()
+  method public net.minecraft.commands.CommandSourceStack withPermission(net.minecraft.server.permissions.PermissionSet)
+  method public net.minecraft.commands.CommandSourceStack withMaximumPermission(net.minecraft.server.permissions.PermissionSet)
+  method public net.minecraft.commands.CommandSourceStack withAnchor(net.minecraft.commands.arguments.EntityAnchorArgument$Anchor)
+  method public net.minecraft.commands.CommandSourceStack withLevel(net.minecraft.server.level.ServerLevel)
+  method public net.minecraft.commands.CommandSourceStack facing(net.minecraft.world.entity.Entity, net.minecraft.commands.arguments.EntityAnchorArgument$Anchor)
+  method public net.minecraft.commands.CommandSourceStack facing(net.minecraft.world.phys.Vec3)
+  method public net.minecraft.commands.CommandSourceStack withSigningContext(net.minecraft.commands.CommandSigningContext, net.minecraft.util.TaskChainer)
+  method public net.minecraft.network.chat.Component getDisplayName()
+  method public java.lang.String getTextName()
+  method public net.minecraft.server.permissions.PermissionSet permissions()
+  method public net.minecraft.world.phys.Vec3 getPosition()
+  method public net.minecraft.server.level.ServerLevel getLevel()
+  method public net.minecraft.world.entity.Entity getEntity()
+  method public net.minecraft.world.entity.Entity getEntityOrException()
+  method public net.minecraft.server.level.ServerPlayer getPlayerOrException()
+  method public net.minecraft.server.level.ServerPlayer getPlayer()
+  method public boolean isPlayer()
+  method public net.minecraft.world.phys.Vec2 getRotation()
+  method public net.minecraft.server.MinecraftServer getServer()
+  method public net.minecraft.commands.arguments.EntityAnchorArgument$Anchor getAnchor()
+  method public net.minecraft.commands.CommandSigningContext getSigningContext()
+  method public net.minecraft.util.TaskChainer getChatMessageChainer()
+  method public boolean shouldFilterMessageTo(net.minecraft.server.level.ServerPlayer)
+  method public void sendChatMessage(net.minecraft.network.chat.OutgoingChatMessage, boolean, net.minecraft.network.chat.ChatType$Bound)
+  method public void sendSystemMessage(net.minecraft.network.chat.Component)
+  method public void sendSuccess(java.util.function.Supplier, boolean)
+  method private void broadcastToAdmins(net.minecraft.network.chat.Component)
+  method public void sendFailure(net.minecraft.network.chat.Component)
+  method public net.minecraft.commands.CommandResultCallback callback()
+  method public java.util.Collection getOnlinePlayerNames()
+  method public java.util.Collection getAllTeams()
+  method public java.util.stream.Stream getAvailableSounds()
+  method public java.util.stream.Stream getAvailablePostEffects()
+  method public java.util.concurrent.CompletableFuture customSuggestion(com.mojang.brigadier.context.CommandContext)
+  method public java.util.concurrent.CompletableFuture suggestRegistryElements(net.minecraft.resources.ResourceKey, net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType, com.mojang.brigadier.suggestion.SuggestionsBuilder, com.mojang.brigadier.context.CommandContext, java.util.function.Predicate)
+  method private java.util.Optional getLookup(net.minecraft.resources.ResourceKey)
+  method public java.util.Set levels()
+  method public net.minecraft.core.RegistryAccess registryAccess()
+  method public net.minecraft.world.flag.FeatureFlagSet enabledFeatures()
+  method public com.mojang.brigadier.CommandDispatcher dispatcher()
+  method public void handleError(com.mojang.brigadier.exceptions.CommandExceptionType, com.mojang.brigadier.Message, boolean, net.minecraft.commands.execution.TraceCallbacks)
+  method public boolean isSilent()
+public class net.minecraft.server.level.ServerPlayerGameMode  [client-26.3.jar]
+  extends java.lang.Object
+  field  private static final double FLIGHT_DISABLE_RANGE
+  field  private static final org.slf4j.Logger LOGGER
+  field  protected net.minecraft.server.level.ServerLevel level
+  field  protected final net.minecraft.server.level.ServerPlayer player
+  field  private net.minecraft.world.level.GameType gameModeForPlayer
+  field  private net.minecraft.world.level.GameType previousGameModeForPlayer
+  field  private boolean isDestroyingBlock
+  field  private int destroyProgressStart
+  field  private net.minecraft.core.BlockPos destroyPos
+  field  private net.minecraft.core.Direction destroyDirection
+  field  private int gameTicks
+  field  private boolean hasDelayedDestroy
+  field  private net.minecraft.core.BlockPos delayedDestroyPos
+  field  private int delayedTickStart
+  field  private int lastSentState
+  method public void <init>(net.minecraft.server.level.ServerPlayer)
+  method public boolean changeGameModeForPlayer(net.minecraft.world.level.GameType)
+  method protected void setGameModeForPlayer(net.minecraft.world.level.GameType, net.minecraft.world.level.GameType)
+  method private boolean isInRangeOfGround()
+  method public net.minecraft.world.level.GameType getGameModeForPlayer()
+  method public net.minecraft.world.level.GameType getPreviousGameModeForPlayer()
+  method public boolean isSurvival()
+  method public boolean isCreative()
+  method public void tick()
+  method private float incrementDestroyProgress(net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos, int)
+  method private void debugLogging(net.minecraft.core.BlockPos, boolean, int, java.lang.String)
+  method public void handleBlockBreakAction(net.minecraft.core.BlockPos, net.minecraft.network.protocol.game.ServerboundPlayerActionPacket$Action, net.minecraft.core.Direction, int, int)
+  method private void abortDestroyBlock(net.minecraft.core.BlockPos, int)
+  method public void destroyAndAck(net.minecraft.core.BlockPos, int, java.lang.String)
+  method public boolean destroyBlock(net.minecraft.core.BlockPos)
+  method public net.minecraft.world.InteractionResult useItem(net.minecraft.server.level.ServerPlayer, net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, net.minecraft.world.InteractionHand)
+  method public net.minecraft.world.InteractionResult useItemOn(net.minecraft.server.level.ServerPlayer, net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, net.minecraft.world.InteractionHand, net.minecraft.world.phys.BlockHitResult)
+  method public void setLevel(net.minecraft.server.level.ServerLevel)
+public class net.minecraft.server.network.ServerGamePacketListenerImpl  [client-26.3.jar]
+  extends net.minecraft.server.network.ServerCommonPacketListenerImpl
+  implements net.minecraft.network.protocol.game.ServerGamePacketListener
+  implements net.minecraft.server.network.ServerPlayerConnection
+  implements net.minecraft.network.TickablePacketListener
+  implements net.minecraft.network.protocol.game.GameProtocols$Context
+  field  private static final org.slf4j.Logger LOGGER
+  field  private static final int NO_BLOCK_UPDATES_TO_ACK
+  field  private static final int TRACKED_MESSAGE_DISCONNECT_THRESHOLD
+  field  private static final int MAXIMUM_FLYING_TICKS
+  field  private static final int ATTACK_INDICATOR_TOLERANCE_TICKS
+  field  public static final int CLIENT_LOADED_TIMEOUT_TIME
+  field  private static final int MIN_SUPPORTED_BLOCKS_RESEND_TICKS
+  field  private static final int MAX_DISTANCE_TO_VALID_POSITION
+  field  private static final int INVALID_POSITION_CORRECTION_MAX_INTERVAL_TICKS
+  field  private static final net.minecraft.network.chat.Component CHAT_VALIDATION_FAILED
+  field  private static final net.minecraft.network.chat.Component INVALID_COMMAND_SIGNATURE
+  field  public net.minecraft.server.level.ServerPlayer player
+  field  public final net.minecraft.server.network.PlayerChunkSender chunkSender
+  field  private int tickCount
+  field  private int ackBlockChangesUpTo
+  field  private final net.minecraft.util.TickThrottler dropSpamThrottler
+  field  private final net.minecraft.util.TickThrottler chatSpamThrottler
+  field  private final net.minecraft.util.TickThrottler commandSpamThrottler
+  field  private double firstGoodX
+  field  private double firstGoodY
+  field  private double firstGoodZ
+  field  private double lastGoodX
+  field  private double lastGoodY
+  field  private double lastGoodZ
+  field  private net.minecraft.world.entity.Entity lastVehicle
+  field  private double vehicleFirstGoodX
+  field  private double vehicleFirstGoodY
+  field  private double vehicleFirstGoodZ
+  field  private double vehicleLastGoodX
+  field  private double vehicleLastGoodY
+  field  private double vehicleLastGoodZ
+  field  private net.minecraft.world.phys.Vec3 awaitingPositionFromClient
+  field  private int awaitingTeleport
+  field  private int awaitingTeleportTime
+  field  private boolean clientIsFloating
+  field  private int aboveGroundTickCount
+  field  private boolean clientVehicleIsFloating
+  field  private int aboveGroundVehicleTickCount
+  field  private int receivedMovePacketCount
+  field  private int knownMovePacketCount
+  field  private boolean receivedMovementThisTick
+  field  private boolean receivedPositionThisTick
+  field  private net.minecraft.network.chat.RemoteChatSession chatSession
+  field  private net.minecraft.network.chat.SignedMessageChain$Decoder signedMessageDecoder
+  field  private final net.minecraft.network.chat.LastSeenMessagesValidator lastSeenMessages
+  field  private int nextChatIndex
+  field  private final net.minecraft.network.chat.MessageSignatureCache messageSignatureCache
+  field  private final net.minecraft.util.FutureChain chatMessageChain
+  field  private boolean waitingForSwitchToConfig
+  field  private boolean waitingForRespawn
+  field  private int clientLoadedTimeoutTimer
+  field  private int lastSupportedBlocksSend
+  field  private final net.minecraft.server.network.ServerCommandSuggestionsProvider commandSuggestionsProvider
+  field  private int vehiclePositionLastResetAt
+  method public void <init>(net.minecraft.server.MinecraftServer, net.minecraft.network.Connection, net.minecraft.server.level.ServerPlayer, net.minecraft.server.network.CommonListenerCookie)
+  method public void tick()
+  method private boolean tickPlayer()
+  method private int getMaximumFlyingTicks(net.minecraft.world.entity.Entity)
+  method public void resetFlyingTicks()
+  method public void resetPosition()
+  method public boolean isAcceptingMessages()
+  method public boolean shouldHandleMessage(net.minecraft.network.protocol.Packet)
+  method protected com.mojang.authlib.GameProfile playerProfile()
+  method private java.util.concurrent.CompletableFuture filterTextPacket(java.lang.Object, java.util.function.BiFunction)
+  method private java.util.concurrent.CompletableFuture filterTextPacket(java.lang.String)
+  method private java.util.concurrent.CompletableFuture filterTextPacket(java.util.List)
+  method public void handlePlayerInput(net.minecraft.network.protocol.game.ServerboundPlayerInputPacket)
+  method private static boolean containsInvalidValues(double, double, double, float, float)
+  method private static double clampHorizontal(double)
+  method private static double clampVertical(double)
+  method public void handleMoveVehicle(net.minecraft.network.protocol.game.ServerboundMoveVehiclePacket)
+  method private boolean noBlocksAround(net.minecraft.world.entity.Entity)
+  method public void handleAcceptTeleportPacket(net.minecraft.network.protocol.game.ServerboundAcceptTeleportationPacket)
+  method public void handleAcceptPlayerLoad(net.minecraft.network.protocol.game.ServerboundPlayerLoadedPacket)
+  method public void handleRecipeBookSeenRecipePacket(net.minecraft.network.protocol.game.ServerboundRecipeBookSeenRecipePacket)
+  method public void handleBundleItemSelectedPacket(net.minecraft.network.protocol.game.ServerboundSelectBundleItemPacket)
+  method public void handleRecipeBookChangeSettingsPacket(net.minecraft.network.protocol.game.ServerboundRecipeBookChangeSettingsPacket)
+  method public void handleSeenAdvancements(net.minecraft.network.protocol.game.ServerboundSeenAdvancementsPacket)
+  method public void handleCustomCommandSuggestions(net.minecraft.network.protocol.game.ServerboundCommandSuggestionPacket)
+  method public void handleSetCommandBlock(net.minecraft.network.protocol.game.ServerboundSetCommandBlockPacket)
+  method public void handleSetCommandMinecart(net.minecraft.network.protocol.game.ServerboundSetCommandMinecartPacket)
+  method public void handlePickItemFromBlock(net.minecraft.network.protocol.game.ServerboundPickItemFromBlockPacket)
+  method private static void addBlockDataToItem(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.item.ItemStack)
+  method public void handlePickItemFromEntity(net.minecraft.network.protocol.game.ServerboundPickItemFromEntityPacket)
+  method private void tryPickItem(net.minecraft.world.item.ItemStack)
+  method public void handleRenameItem(net.minecraft.network.protocol.game.ServerboundRenameItemPacket)
+  method public void handleSetBeaconPacket(net.minecraft.network.protocol.game.ServerboundSetBeaconPacket)
+  method public void handleSetGameRule(net.minecraft.network.protocol.game.ServerboundSetGameRulePacket)
+  method private void setGameRuleValue(net.minecraft.world.level.gamerules.GameRules, net.minecraft.world.level.gamerules.GameRule, java.lang.String)
+  method private void broadcastGameRuleChangeToOperators(net.minecraft.world.level.gamerules.GameRule, java.lang.Object)
+  method public void handleSetStructureBlock(net.minecraft.network.protocol.game.ServerboundSetStructureBlockPacket)
+  method public void handleSetTestBlock(net.minecraft.network.protocol.game.ServerboundSetTestBlockPacket)
+  method public void handleTestInstanceBlockAction(net.minecraft.network.protocol.game.ServerboundTestInstanceBlockActionPacket)
+  method public void handleSetJigsawBlock(net.minecraft.network.protocol.game.ServerboundSetJigsawBlockPacket)
+  method public void handleJigsawGenerate(net.minecraft.network.protocol.game.ServerboundJigsawGeneratePacket)
+  method public void handleSelectTrade(net.minecraft.network.protocol.game.ServerboundSelectTradePacket)
+  method public void handleEditBook(net.minecraft.network.protocol.game.ServerboundEditBookPacket)
+  method private void updateBookContents(java.util.List, int)
+  method private void signBook(net.minecraft.server.network.FilteredText, java.util.List, int)
+  method private net.minecraft.server.network.Filterable filterableFromOutgoing(net.minecraft.server.network.FilteredText)
+  method public void handleEntityTagQuery(net.minecraft.network.protocol.game.ServerboundEntityTagQueryPacket)
+  method public void handleContainerSlotStateChanged(net.minecraft.network.protocol.game.ServerboundContainerSlotStateChangedPacket)
+  method public void handleBlockEntityTagQuery(net.minecraft.network.protocol.game.ServerboundBlockEntityTagQueryPacket)
+  method public void handleMovePlayer(net.minecraft.network.protocol.game.ServerboundMovePlayerPacket)
+  method private void handlePlayerPositionChange(double, double, double, float, float, boolean, boolean)
+  method private boolean shouldCheckPlayerMovement(boolean)
+  method private void forceSendPlayerSupportBlocks()
+  method private boolean updateAwaitingTeleport()
+  method private boolean isEntityCollidingWithAnythingNew(net.minecraft.world.level.LevelReader, net.minecraft.world.entity.Entity, net.minecraft.world.phys.AABB, double, double, double)
+  method public void teleport(double, double, double, float, float)
+  method public void teleport(net.minecraft.world.entity.PositionMoveRotation, java.util.Set)
+  method public void handlePlayerAction(net.minecraft.network.protocol.game.ServerboundPlayerActionPacket)
+  method private static boolean wasBlockPlacementAttempt(net.minecraft.server.level.ServerPlayer, net.minecraft.world.item.ItemStack)
+  method public void handleUseItemOn(net.minecraft.network.protocol.game.ServerboundUseItemOnPacket)
+  method public void handleUseItem(net.minecraft.network.protocol.game.ServerboundUseItemPacket)
+  method public void handleTeleportToEntityPacket(net.minecraft.network.protocol.game.ServerboundTeleportToEntityPacket)
+  method public void handlePaddleBoat(net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket)
+  method public void onDisconnect(net.minecraft.network.DisconnectionDetails)
+  method private void removePlayerFromWorld()
+  method public void ackBlockChangesUpTo(int)
+  method public void handleSetCarriedItem(net.minecraft.network.protocol.game.ServerboundSetCarriedItemPacket)
+  method public void handleChat(net.minecraft.network.protocol.game.ServerboundChatPacket)
+  method public void handleChatCommand(net.minecraft.network.protocol.game.ServerboundChatCommandPacket)
+  method private void performUnsignedChatCommand(java.lang.String)
+  method public void handleSignedChatCommand(net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket)
+  method private void performSignedChatCommand(net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket, net.minecraft.network.chat.LastSeenMessages)
+  method private void handleMessageDecodeFailure(net.minecraft.network.chat.SignedMessageChain$DecodeException)
+  method private java.util.Map collectSignedArguments(net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket, net.minecraft.network.chat.SignableCommand, net.minecraft.network.chat.LastSeenMessages)
+  method private java.util.Map collectUnsignedArguments(java.util.List)
+  method private static net.minecraft.network.chat.SignedMessageChain$DecodeException createSignedArgumentMismatchException(java.lang.String, java.util.List, java.util.List)
+  method private com.mojang.brigadier.ParseResults parseCommand(java.lang.String)
+  method private void tryHandleChat(java.lang.String, boolean, java.lang.Runnable)
+  method private java.util.Optional unpackAndApplyLastSeen(net.minecraft.network.chat.LastSeenMessages$Update)
+  method private static boolean isChatMessageIllegal(java.lang.String)
+  method private net.minecraft.network.chat.PlayerChatMessage getSignedMessage(net.minecraft.network.protocol.game.ServerboundChatPacket, net.minecraft.network.chat.LastSeenMessages)
+  method private void broadcastChatMessage(net.minecraft.network.chat.PlayerChatMessage)
+  method private void detectRateSpam(net.minecraft.util.TickThrottler)
+  method private void detectCommandRateSpam()
+  method private void detectChatRateSpam()
+  method public void handleChatAck(net.minecraft.network.protocol.game.ServerboundChatAckPacket)
+  method public void handlePunch(net.minecraft.network.protocol.game.ServerboundPunchPacket)
+  method public void handlePlayerCommand(net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket)
+  method public void sendPlayerChatMessage(net.minecraft.network.chat.PlayerChatMessage, net.minecraft.network.chat.ChatType$Bound)
+  method public void sendDisguisedChatMessage(net.minecraft.network.chat.Component, net.minecraft.network.chat.ChatType$Bound)
+  method public java.net.SocketAddress getRemoteAddress()
+  method public void switchToConfig()
+  method public void handlePingRequest(net.minecraft.network.protocol.ping.ServerboundPingRequestPacket)
+  method public void handleAttack(net.minecraft.network.protocol.game.ServerboundAttackPacket)
+  method public void handleInteract(net.minecraft.network.protocol.game.ServerboundInteractPacket)
+  method public void handleSpectatorAction(net.minecraft.network.protocol.game.ServerboundSpectatorActionPacket)
+  method public void handleClientCommand(net.minecraft.network.protocol.game.ServerboundClientCommandPacket)
+  method private void sendGameRuleValues()
+  method private static void addGameRuleValue(net.minecraft.world.level.gamerules.GameRules, java.util.Map, net.minecraft.world.level.gamerules.GameRule)
+  method public void handleContainerClose(net.minecraft.network.protocol.game.ServerboundContainerClosePacket)
+  method public void handleContainerClick(net.minecraft.network.protocol.game.ServerboundContainerClickPacket)
+  method public void handlePlaceRecipe(net.minecraft.network.protocol.game.ServerboundPlaceRecipePacket)
+  method public void handleContainerButtonClick(net.minecraft.network.protocol.game.ServerboundContainerButtonClickPacket)
+  method public void handleSetCreativeModeSlot(net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket)
+  method public void handleSignUpdate(net.minecraft.network.protocol.game.ServerboundSignUpdatePacket)
+  method private void updateSignText(net.minecraft.network.protocol.game.ServerboundSignUpdatePacket, java.util.List)
+  method public void handlePlayerAbilities(net.minecraft.network.protocol.game.ServerboundPlayerAbilitiesPacket)
+  method public void handleClientInformation(net.minecraft.network.protocol.common.ServerboundClientInformationPacket)
+  method public void handleChangeDifficulty(net.minecraft.network.protocol.game.ServerboundChangeDifficultyPacket)
+  method public void handleChangeGameMode(net.minecraft.network.protocol.game.ServerboundChangeGameModePacket)
+  method public void handleLockDifficulty(net.minecraft.network.protocol.game.ServerboundLockDifficultyPacket)
+  method public void handleChatSessionUpdate(net.minecraft.network.protocol.game.ServerboundChatSessionUpdatePacket)
+  method public void handleConfigurationAcknowledged(net.minecraft.network.protocol.game.ServerboundConfigurationAcknowledgedPacket)
+  method public void handleChunkBatchReceived(net.minecraft.network.protocol.game.ServerboundChunkBatchReceivedPacket)
+  method public void handleDebugSubscriptionRequest(net.minecraft.network.protocol.game.ServerboundDebugSubscriptionRequestPacket)
+  method private void resetPlayerChatState(net.minecraft.network.chat.RemoteChatSession)
+  method public void handleCustomPayload(net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket)
+  method public void handleClientTickEnd(net.minecraft.network.protocol.game.ServerboundClientTickEndPacket)
+  method private void handlePlayerKnownMovement(net.minecraft.world.phys.Vec3)
+  method public boolean hasInfiniteMaterials()
+  method public boolean canUseCommandBlocks()
+  method public net.minecraft.server.level.ServerPlayer getPlayer()
+  method public boolean hasClientLoaded()
+  method public void tickClientLoadTimeout()
+  method private void markClientLoaded()
+  method public void markClientUnloadedAfterDeath()
+  method private void restartClientLoadTimerAfterRespawn()

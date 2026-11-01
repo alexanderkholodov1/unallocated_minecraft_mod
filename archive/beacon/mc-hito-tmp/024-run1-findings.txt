@@ -1,0 +1,30 @@
+56:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1120971Z [13:16:00] [Test thread/ERROR]: Client gametests failed with an exception
+66:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1127012Z [13:16:00] [Render thread/ERROR]: Minecraft has crashed!
+67:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1127646Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timed out waiting for predicate
+68:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1128237Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+82:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1136032Z > Task :runClientSmoke FAILED
+97:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1139720Z BUILD FAILED in 1m 50s
+155:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1182510Z [13:16:00] [Test thread/ERROR]: Client gametests failed with an exception
+165:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1187302Z [13:16:00] [Render thread/ERROR]: Minecraft has crashed!
+166:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1187746Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timed out waiting for predicate
+167:build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:16:01.1188318Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+248:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2819905Z [13:17:23] [Test thread/ERROR]: Client gametests failed with an exception
+258:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2826121Z [13:17:23] [Render thread/ERROR]: Minecraft has crashed!
+259:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2826576Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timeout loading world
+260:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2827307Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+274:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2834620Z > Task :runClientSmoke FAILED
+289:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2838356Z BUILD FAILED in 1m 30s
+347:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2878799Z [13:17:23] [Test thread/ERROR]: Client gametests failed with an exception
+357:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2882432Z [13:17:23] [Render thread/ERROR]: Minecraft has crashed!
+358:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2882714Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timeout loading world
+359:build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:17:24.2883074Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+440:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1911366Z [13:18:41] [Test thread/ERROR]: Client gametests failed with an exception
+450:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1919289Z [13:18:41] [Render thread/ERROR]: Minecraft has crashed!
+451:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1919877Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timeout loading world
+452:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1920630Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+466:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1930713Z > Task :runClientSmoke FAILED
+481:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1935822Z BUILD FAILED in 1m 56s
+539:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1984050Z [13:18:41] [Test thread/ERROR]: Client gametests failed with an exception
+549:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1990383Z [13:18:41] [Render thread/ERROR]: Minecraft has crashed!
+550:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1990935Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timeout loading world
+551:build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:18:42.1991558Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)

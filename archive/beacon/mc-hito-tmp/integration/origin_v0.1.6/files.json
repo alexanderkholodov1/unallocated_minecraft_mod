@@ -1,0 +1,15 @@
+[
+  ".github/workflows/build.yml",
+  "README.md",
+  "build.gradle",
+  "docs/plan/TOOLCHAIN.md",
+  "fabric-api-modules.json",
+  "gradle.properties",
+  "scripts/smoke_test.py",
+  "scripts/test_smoke_test.py",
+  "scripts/test_verify_jar.py",
+  "scripts/verify_jar.py",
+  "src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java",
+  "src/main/resources/META-INF/NOTICE-Fabric-API.txt",
+  "src/main/resources/fabric.mod.json"
+]

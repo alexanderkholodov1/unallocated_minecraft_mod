@@ -1,0 +1,373 @@
+﻿2026-10-28T09:53:24.2766838Z Current runner version: '2.338.0'
+2026-10-28T09:53:24.2806077Z ##[group]Runner Image Provisioner
+2026-10-28T09:53:24.2807514Z Hosted Compute Agent
+2026-10-28T09:53:24.2808474Z Version: 20261021.618
+2026-10-28T09:53:24.2809730Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-28T09:53:24.2810993Z Build Date: 2026-10-21T00:45:21Z
+2026-10-28T09:53:24.2812304Z Worker ID: {8ebd28e7-d659-4ecd-bbeb-a3c891bf05a1}
+2026-10-28T09:53:24.2813600Z Region: eastus2
+2026-10-28T09:53:24.2814505Z Cloud: Azure
+2026-10-28T09:53:24.2815618Z ##[endgroup]
+2026-10-28T09:53:24.2818267Z ##[group]Operating System
+2026-10-28T09:53:24.2819504Z Ubuntu
+2026-10-28T09:53:24.2820533Z 24.04.5
+2026-10-28T09:53:24.2821459Z LTS
+2026-10-28T09:53:24.2822349Z ##[endgroup]
+2026-10-28T09:53:24.2823390Z ##[group]Runner Image
+2026-10-28T09:53:24.2824564Z Image: ubuntu-24.04
+2026-10-28T09:53:24.2825543Z Version: 20261025.353.1
+2026-10-28T09:53:24.2828142Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-28T09:53:24.2830932Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-10-28T09:53:24.2832876Z ##[endgroup]
+2026-10-28T09:53:24.2834808Z ##[group]GITHUB_TOKEN Permissions
+2026-10-28T09:53:24.2838371Z Contents: read
+2026-10-28T09:53:24.2839354Z Metadata: read
+2026-10-28T09:53:24.2840489Z ##[endgroup]
+2026-10-28T09:53:24.2843766Z Secret source: Actions
+2026-10-28T09:53:24.2845522Z Cache mode: write
+2026-10-28T09:53:24.2847019Z Prepare workflow directory
+2026-10-28T09:53:24.3342361Z Prepare all required actions
+2026-10-28T09:53:24.3413981Z Getting action download info
+2026-10-28T09:53:24.6350537Z Download action repository 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' (SHA:08c6903cd8c0fde910a37f88322edcfb5dd907a8)
+2026-10-28T09:53:24.7532788Z Download action repository 'actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e' (SHA:f2beeb24e141e01a676f977032f5a29d81c9e27e)
+2026-10-28T09:53:25.0503268Z Download action repository 'gradle/actions@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2' (SHA:4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2)
+2026-10-28T09:53:25.9002389Z Download action repository 'actions/cache@5a3ec84eff668545956fd18022155c47e93e2684' (SHA:5a3ec84eff668545956fd18022155c47e93e2684)
+2026-10-28T09:53:26.0972131Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-28T09:53:26.4440819Z Complete job name: build (0.165.0+26.3)
+2026-10-28T09:53:26.5545468Z ##[group]Run actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+2026-10-28T09:53:26.5548017Z with:
+2026-10-28T09:53:26.5549310Z   persist-credentials: false
+2026-10-28T09:53:26.5550992Z   repository: alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T09:53:26.5560601Z   token: ***
+2026-10-28T09:53:26.5561891Z   ssh-strict: true
+2026-10-28T09:53:26.5563126Z   ssh-user: git
+2026-10-28T09:53:26.5564373Z   clean: true
+2026-10-28T09:53:26.5565671Z   sparse-checkout-cone-mode: true
+2026-10-28T09:53:26.5567443Z   fetch-depth: 1
+2026-10-28T09:53:26.5568709Z   fetch-tags: false
+2026-10-28T09:53:26.5569973Z   show-progress: true
+2026-10-28T09:53:26.5571253Z   lfs: false
+2026-10-28T09:53:26.5572484Z   submodules: false
+2026-10-28T09:53:26.5573842Z   set-safe-directory: true
+2026-10-28T09:53:26.5575574Z ##[endgroup]
+2026-10-28T09:53:26.9287669Z Syncing repository: alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T09:53:26.9291751Z ##[group]Getting Git version info
+2026-10-28T09:53:26.9294854Z Working directory is '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+2026-10-28T09:53:26.9300816Z [command]/usr/bin/git version
+2026-10-28T09:53:26.9502169Z git version 2.56.0
+2026-10-28T09:53:26.9535191Z ##[endgroup]
+2026-10-28T09:53:26.9548336Z Temporarily overriding HOME='/home/runner/work/_temp/cd5ec8a0-8251-4772-b191-d46629f1cc19' before making global git config changes
+2026-10-28T09:53:26.9554452Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-28T09:53:26.9581706Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T09:53:26.9600184Z Deleting the contents of '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+2026-10-28T09:53:26.9607550Z ##[group]Initializing the repository
+2026-10-28T09:53:26.9623073Z [command]/usr/bin/git init /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T09:53:26.9775686Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-28T09:53:26.9781583Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-28T09:53:26.9786351Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-28T09:53:26.9791846Z hint: call:
+2026-10-28T09:53:26.9793065Z hint:
+2026-10-28T09:53:26.9794601Z hint: 	git config --global init.defaultBranch <name>
+2026-10-28T09:53:26.9815124Z hint:
+2026-10-28T09:53:26.9817370Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-28T09:53:26.9820671Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-28T09:53:26.9823199Z hint:
+2026-10-28T09:53:26.9824435Z hint: 	git branch -m <name>
+2026-10-28T09:53:26.9827678Z hint:
+2026-10-28T09:53:26.9829848Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-28T09:53:26.9843537Z Initialized empty Git repository in /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.git/
+2026-10-28T09:53:26.9854686Z [command]/usr/bin/git remote add origin https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T09:53:26.9929814Z ##[endgroup]
+2026-10-28T09:53:26.9932734Z ##[group]Disabling automatic garbage collection
+2026-10-28T09:53:26.9935747Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-28T09:53:27.0050344Z ##[endgroup]
+2026-10-28T09:53:27.0052346Z ##[group]Setting up auth
+2026-10-28T09:53:27.0054330Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T09:53:27.0116160Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T09:53:27.0697247Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T09:53:27.0754979Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T09:53:27.1038882Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-28T09:53:27.1100530Z ##[endgroup]
+2026-10-28T09:53:27.1111522Z ##[group]Fetching the repository
+2026-10-28T09:53:27.1117944Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b77bb1006ce23cc9261869133178ad2203b48dc3:refs/remotes/origin/rehearsal/w-b77bb10
+2026-10-28T09:53:27.4466473Z From https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T09:53:27.4686988Z  * [new ref]         b77bb1006ce23cc9261869133178ad2203b48dc3 -> origin/rehearsal/w-b77bb10
+2026-10-28T09:53:27.4719190Z ##[endgroup]
+2026-10-28T09:53:27.4722098Z ##[group]Determining the checkout info
+2026-10-28T09:53:27.4724872Z ##[endgroup]
+2026-10-28T09:53:27.4727343Z [command]/usr/bin/git sparse-checkout disable
+2026-10-28T09:53:27.4733204Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-28T09:53:27.4740515Z ##[group]Checking out the ref
+2026-10-28T09:53:27.4743560Z [command]/usr/bin/git checkout --progress --force -B rehearsal/w-b77bb10 refs/remotes/origin/rehearsal/w-b77bb10
+2026-10-28T09:53:27.6689665Z Switched to a new branch 'rehearsal/w-b77bb10'
+2026-10-28T09:53:27.6694464Z branch 'rehearsal/w-b77bb10' set up to track 'origin/rehearsal/w-b77bb10'.
+2026-10-28T09:53:27.6738439Z ##[endgroup]
+2026-10-28T09:53:27.6787117Z [command]/usr/bin/git log -1 --format=%H
+2026-10-28T09:53:27.6801067Z b77bb1006ce23cc9261869133178ad2203b48dc3
+2026-10-28T09:53:27.6860603Z ##[group]Removing auth
+2026-10-28T09:53:27.6910570Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T09:53:27.6927635Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T09:53:27.6938078Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T09:53:27.6941378Z http.https://github.com/.extraheader
+2026-10-28T09:53:27.6946524Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-28T09:53:27.6955329Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T09:53:27.7329291Z ##[endgroup]
+2026-10-28T09:53:27.7882025Z ##[group]Run actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e
+2026-10-28T09:53:27.7883295Z with:
+2026-10-28T09:53:27.7883812Z   distribution: temurin
+2026-10-28T09:53:27.7884444Z   java-version: 25
+2026-10-28T09:53:27.7885025Z   java-package: jdk
+2026-10-28T09:53:27.7885617Z   check-latest: false
+2026-10-28T09:53:27.7886604Z   server-id: github
+2026-10-28T09:53:27.7887219Z   server-username: GITHUB_ACTOR
+2026-10-28T09:53:27.7887980Z   server-password: GITHUB_TOKEN
+2026-10-28T09:53:27.7888722Z   overwrite-settings: true
+2026-10-28T09:53:27.7889412Z   job-status: success
+2026-10-28T09:53:27.7900655Z   token: ***
+2026-10-28T09:53:27.7901224Z ##[endgroup]
+2026-10-28T09:53:28.0008805Z ##[group]Installed distributions
+2026-10-28T09:53:28.0117809Z Resolved Java 25.0.5+8 from tool-cache
+2026-10-28T09:53:28.0135545Z Setting Java 25.0.5+8 as the default
+2026-10-28T09:53:28.0138971Z (node:2090) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T09:53:28.0150398Z Creating toolchains.xml for JDK version 25 from temurin
+2026-10-28T09:53:28.0162552Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T09:53:28.0389519Z Writing to /home/runner/.m2/toolchains.xml
+2026-10-28T09:53:28.0426459Z 
+2026-10-28T09:53:28.0447063Z Java configuration:
+2026-10-28T09:53:28.0486870Z   Distribution: temurin
+2026-10-28T09:53:28.0506852Z   Version: 25.0.5+8
+2026-10-28T09:53:28.0547512Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:28.0576530Z 
+2026-10-28T09:53:28.0598922Z ##[endgroup]
+2026-10-28T09:53:28.0666928Z Creating settings.xml with server-id: github
+2026-10-28T09:53:28.0696600Z Writing to /home/runner/.m2/settings.xml
+2026-10-28T09:53:28.1269219Z ##[group]Run gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2
+2026-10-28T09:53:28.1271277Z with:
+2026-10-28T09:53:28.1271989Z   gradle-version: 9.8.2
+2026-10-28T09:53:28.1272922Z   cache-disabled: true
+2026-10-28T09:53:28.1273818Z   cache-read-only: true
+2026-10-28T09:53:28.1274749Z   cache-write-only: false
+2026-10-28T09:53:28.1275944Z   cache-overwrite-existing: false
+2026-10-28T09:53:28.1277098Z   cache-cleanup: on-success
+2026-10-28T09:53:28.1278332Z   gradle-home-cache-includes: caches
+notifications
+
+2026-10-28T09:53:28.1279790Z   add-job-summary: always
+2026-10-28T09:53:28.1280841Z   add-job-summary-as-pr-comment: never
+2026-10-28T09:53:28.1282082Z   dependency-graph: disabled
+2026-10-28T09:53:28.1283447Z   dependency-graph-report-dir: dependency-graph-reports
+2026-10-28T09:53:28.1285171Z   dependency-graph-continue-on-failure: true
+2026-10-28T09:53:28.1286656Z   build-scan-publish: false
+2026-10-28T09:53:28.1287636Z   validate-wrappers: true
+2026-10-28T09:53:28.1288725Z   allow-snapshot-wrappers: false
+2026-10-28T09:53:28.1290224Z   gradle-home-cache-strict-match: false
+2026-10-28T09:53:28.1291633Z   workflow-job-context: {
+  "api": "0.165.0+26.3"
+}
+2026-10-28T09:53:28.1308620Z   github-token: ***
+2026-10-28T09:53:28.1309430Z env:
+2026-10-28T09:53:28.1310717Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:28.1313230Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:28.1315156Z ##[endgroup]
+2026-10-28T09:53:30.2075462Z Cache is disabled: will not restore state from previous builds.
+2026-10-28T09:53:30.2093783Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+2026-10-28T09:53:30.2307144Z ##[group]All Gradle Wrapper jars are valid
+2026-10-28T09:53:30.2309011Z 
+2026-10-28T09:53:30.2309868Z ##[endgroup]
+2026-10-28T09:53:30.3223699Z ##[group]Provision Gradle 9.8.2
+2026-10-28T09:53:34.7126893Z Gradle version 9.8.2 is already available on PATH. Not installing.
+2026-10-28T09:53:34.7128815Z ##[endgroup]
+2026-10-28T09:53:34.8037929Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+2026-10-28T09:53:34.8038391Z with:
+2026-10-28T09:53:34.8038623Z   path: ~/.gradle/caches
+2026-10-28T09:53:34.8039195Z   key: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8
+2026-10-28T09:53:34.8039820Z   enableCrossOsArchive: false
+2026-10-28T09:53:34.8040089Z   fail-on-cache-miss: false
+2026-10-28T09:53:34.8040336Z   lookup-only: false
+2026-10-28T09:53:34.8040562Z   save-always: false
+2026-10-28T09:53:34.8040767Z env:
+2026-10-28T09:53:34.8041071Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:34.8041568Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:34.8041994Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:53:34.8042310Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:53:34.8042606Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:53:34.8042945Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:53:34.8043391Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:53:34.8043881Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:53:34.8044206Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:53:34.8044492Z ##[endgroup]
+2026-10-28T09:53:34.9328227Z (node:2199) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T09:53:34.9330377Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T09:53:35.0786106Z Cache not found for input keys: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8
+2026-10-28T09:53:35.1623587Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+2026-10-28T09:53:35.1624028Z with:
+2026-10-28T09:53:35.1624284Z   path: .gradle/loom-cache
+.tmp/smoke-downloads
+
+2026-10-28T09:53:35.1624824Z   key: minecraft-v1-Linux-X64-c9ba4cc954069f5b3fdfa13df18c0fa68cd99e3d49a2539d1628be751bb551fb
+2026-10-28T09:53:35.1625376Z   enableCrossOsArchive: false
+2026-10-28T09:53:35.1625642Z   fail-on-cache-miss: false
+2026-10-28T09:53:35.1626241Z   lookup-only: false
+2026-10-28T09:53:35.1626544Z   save-always: false
+2026-10-28T09:53:35.1626768Z env:
+2026-10-28T09:53:35.1627078Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:35.1627575Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:35.1628032Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:53:35.1628348Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:53:35.1628649Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:53:35.1629001Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:53:35.1629452Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:53:35.1629934Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:53:35.1630544Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:53:35.1630812Z ##[endgroup]
+2026-10-28T09:53:35.2871082Z (node:2225) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T09:53:35.2872814Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T09:53:35.3727484Z Cache not found for input keys: minecraft-v1-Linux-X64-c9ba4cc954069f5b3fdfa13df18c0fa68cd99e3d49a2539d1628be751bb551fb
+2026-10-28T09:53:35.3839240Z ##[group]Run python3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3
+2026-10-28T09:53:35.3840183Z [36;1mpython3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3[0m
+2026-10-28T09:53:35.3850185Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:53:35.3850446Z env:
+2026-10-28T09:53:35.3850765Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:35.3851288Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:35.3851719Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:53:35.3865421Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:53:35.3866252Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:53:35.3866766Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:53:35.3867520Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:53:35.3868092Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:53:35.3868438Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:53:35.3868720Z ##[endgroup]
+2026-10-28T09:53:37.2664947Z Starting a Gradle Daemon (subsequent builds will be faster)
+2026-10-28T10:05:37.3737628Z UNALLOCATED Gradle watchdog: no output for 12 minutes; collecting thread stacks
+2026-10-28T10:05:38.7667274Z Traceback (most recent call last):
+2026-10-28T10:05:38.7668728Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 732, in <module>
+2026-10-28T10:05:38.7669963Z     main()
+2026-10-28T10:05:38.7670988Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 719, in main
+2026-10-28T10:05:38.7672356Z     watch_gradle(['gradle', '--daemon', '--console=plain', *[x for x in extra if x != '--']],
+2026-10-28T10:05:38.7673732Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 289, in watch_gradle
+2026-10-28T10:05:38.7674950Z     raise RuntimeError('Gradle no-output watchdog expired')
+2026-10-28T10:05:38.7676010Z RuntimeError: Gradle no-output watchdog expired
+2026-10-28T10:05:38.7834547Z ##[error]Process completed with exit code 1.
+2026-10-28T10:05:38.7964059Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-28T10:05:38.7964488Z with:
+2026-10-28T10:05:38.7964840Z   name: smoke-diagnostics-b77bb1006ce23cc9261869133178ad2203b48dc3-0.165.0+26.3
+2026-10-28T10:05:38.7965297Z   include-hidden-files: true
+2026-10-28T10:05:38.7967349Z   path: build/reports/included-jars.json
+.tmp/smoke/gradle-diagnostics/**
+.tmp/smoke/*-console.log
+.tmp/smoke/**/logs/**
+.tmp/smoke/**/logs-first/**
+.tmp/smoke/**/logs-restart/**
+.tmp/smoke/**/logs-story/**
+.tmp/smoke/video/**
+build/template/**
+.tmp/smoke/**/crash-reports/**
+.tmp/smoke/**/hs_err_pid*.log
+.tmp/smoke/**/screenshots/**
+.tmp/smoke/**/screenshots-before-play/**
+.tmp/smoke/client/unallocated/contract.properties
+hs_err_pid*.log
+build/test-results/**
+build/reports/tests/**
+
+2026-10-28T10:05:38.7969078Z   if-no-files-found: warn
+2026-10-28T10:05:38.7969316Z   retention-days: 7
+2026-10-28T10:05:38.7969541Z   compression-level: 6
+2026-10-28T10:05:38.7969797Z   overwrite: false
+2026-10-28T10:05:38.7970000Z env:
+2026-10-28T10:05:38.7970307Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:05:38.7970797Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:05:38.7971418Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:05:38.7971728Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:05:38.7972026Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:05:38.7972327Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:05:38.7972774Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:05:38.7973255Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:05:38.7973580Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:05:38.7973852Z ##[endgroup]
+2026-10-28T10:05:38.9928458Z (node:2562) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:05:38.9947170Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:05:39.0102227Z With the provided path, there will be 5 files uploaded
+2026-10-28T10:05:39.0104338Z Artifact name is valid!
+2026-10-28T10:05:39.0104938Z Root directory input is valid!
+2026-10-28T10:05:39.2636878Z Beginning upload of artifact content to blob storage
+2026-10-28T10:05:39.3087503Z (node:2562) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T10:05:39.3292743Z Uploaded bytes 18002
+2026-10-28T10:05:39.3433862Z Finished uploading artifact content to blob storage!
+2026-10-28T10:05:39.3435642Z SHA256 digest of uploaded artifact zip is ac363603b5e2f40bfe636f47f78fcde0405be05264331e5fa3d54f9e8b988921
+2026-10-28T10:05:39.3438878Z Finalizing artifact upload
+2026-10-28T10:05:39.8157055Z Artifact smoke-diagnostics-b77bb1006ce23cc9261869133178ad2203b48dc3-0.165.0+26.3.zip successfully finalized. Artifact ID 12807003207
+2026-10-28T10:05:39.8161376Z Artifact smoke-diagnostics-b77bb1006ce23cc9261869133178ad2203b48dc3-0.165.0+26.3 has been successfully uploaded! Final size is 18002 bytes. Artifact ID is 12807003207
+2026-10-28T10:05:39.8168503Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40667754056/artifacts/12807003207
+2026-10-28T10:05:39.8384443Z ##[group]Run mkdir -p .tmp/verdict
+2026-10-28T10:05:39.8384820Z [36;1mmkdir -p .tmp/verdict[0m
+2026-10-28T10:05:39.8385342Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "b77bb1006ce23cc9261869133178ad2203b48dc3" "0.165.0+26.3" "failure" \[0m
+2026-10-28T10:05:39.8386273Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+2026-10-28T10:05:39.8386594Z [36;1mcat .tmp/verdict/verdict.json[0m
+2026-10-28T10:05:39.8391812Z shell: /usr/bin/bash -e {0}
+2026-10-28T10:05:39.8392068Z env:
+2026-10-28T10:05:39.8392392Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:05:39.8392907Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:05:39.8393338Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:05:39.8393683Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:05:39.8393988Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:05:39.8394301Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:05:39.8394783Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:05:39.8395274Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:05:39.8395610Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:05:39.8396270Z ##[endgroup]
+2026-10-28T10:05:39.8453793Z {"sha":"b77bb1006ce23cc9261869133178ad2203b48dc3","api":"0.165.0+26.3","status":"failure"}
+2026-10-28T10:05:39.8509223Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-28T10:05:39.8509750Z with:
+2026-10-28T10:05:39.8510063Z   name: rehearsal-verdict-3
+2026-10-28T10:05:39.8510413Z   include-hidden-files: true
+2026-10-28T10:05:39.8510764Z   path: .tmp/verdict/verdict.json
+2026-10-28T10:05:39.8511130Z   retention-days: 3
+2026-10-28T10:05:39.8511454Z   if-no-files-found: warn
+2026-10-28T10:05:39.8511985Z   compression-level: 6
+2026-10-28T10:05:39.8512306Z   overwrite: false
+2026-10-28T10:05:39.8512612Z env:
+2026-10-28T10:05:39.8513013Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:05:39.8513579Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:05:39.8514091Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:05:39.8514501Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:05:39.8514889Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:05:39.8515308Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:05:39.8516179Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:05:39.8516754Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:05:39.8517162Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:05:39.8517523Z ##[endgroup]
+2026-10-28T10:05:40.0353043Z (node:2578) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:05:40.0354715Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:05:40.0492512Z With the provided path, there will be 1 file uploaded
+2026-10-28T10:05:40.0533785Z Artifact name is valid!
+2026-10-28T10:05:40.0556557Z Root directory input is valid!
+2026-10-28T10:05:40.2752047Z Beginning upload of artifact content to blob storage
+2026-10-28T10:05:40.3039414Z (node:2578) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T10:05:40.3266638Z Uploaded bytes 225
+2026-10-28T10:05:40.3407342Z Finished uploading artifact content to blob storage!
+2026-10-28T10:05:40.3408764Z SHA256 digest of uploaded artifact zip is d2244d62508c9a6a05d0e7c5005ee960a537703c1a9b6dea3cc6d9cb35af0e83
+2026-10-28T10:05:40.3412828Z Finalizing artifact upload
+2026-10-28T10:05:40.8251711Z Artifact rehearsal-verdict-3.zip successfully finalized. Artifact ID 12807003210
+2026-10-28T10:05:40.8253510Z Artifact rehearsal-verdict-3 has been successfully uploaded! Final size is 225 bytes. Artifact ID is 12807003210
+2026-10-28T10:05:40.8260550Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40667754056/artifacts/12807003210
+2026-10-28T10:05:40.8531646Z Post job cleanup.
+2026-10-28T10:05:41.1324030Z In post-action step
+2026-10-28T10:05:41.1341604Z Cache is disabled: will not save state for later builds.
+2026-10-28T10:05:41.1342494Z Generating Job Summary
+2026-10-28T10:05:41.1363362Z Completed post-action step
+2026-10-28T10:05:41.1679359Z Post job cleanup.
+2026-10-28T10:05:41.3356168Z (node:2602) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:05:41.3357846Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:05:41.3780157Z Post job cleanup.
+2026-10-28T10:05:41.5146934Z [command]/usr/bin/git version
+2026-10-28T10:05:41.5227200Z git version 2.56.0
+2026-10-28T10:05:41.5282432Z Temporarily overriding HOME='/home/runner/work/_temp/cbfba74a-b78d-4aa0-b888-21efeca10a0e' before making global git config changes
+2026-10-28T10:05:41.5308544Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-28T10:05:41.5327405Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T10:05:41.5416912Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T10:05:41.5497684Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T10:05:41.5927262Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T10:05:41.5975034Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T10:05:41.6640454Z Cleaning up orphan processes
+2026-10-28T10:05:41.7052589Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

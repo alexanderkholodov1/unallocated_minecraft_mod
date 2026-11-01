@@ -1,0 +1,1 @@
+{"paths": ["src/main/java/org/unallocated/story/StoryRuntime.java", "src/clientSmoke/java/org/unallocated/smoke/WorldSmokeTest.java", "scripts/smoke_test.py", "docs/story/RUNTIME.md"], "message": "0.2.0.4: defer chapter entry until the joining player is registered"}

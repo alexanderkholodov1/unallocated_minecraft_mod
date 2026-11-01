@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "9498b53 0.2.0.4: retain received farewell details across late generic channel closure"
+}

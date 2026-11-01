@@ -1,0 +1,286 @@
+build (0.153.1+26.3)	Build mod	﻿2026-10-28T06:04:05.3692143Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.153.1+26.3
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3692713Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.153.1+26.3[0m
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3699357Z shell: /usr/bin/bash -e {0}
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3699513Z env:
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3699694Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3699987Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3700239Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3700424Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3700597Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3700770Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3701032Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3701317Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3701531Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:05.3701855Z ##[endgroup]
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:06.8976753Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:36.5979077Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:36.5999451Z > Configure project :
+build (0.153.1+26.3)	Build mod	2026-10-28T06:04:36.6021332Z Fabric Loom: 1.19.3
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:01.6940406Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:01.6941257Z Note: Some input files use or override a deprecated API.
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:01.6953307Z Note: Recompile with -Xlint:deprecation for details.
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:01.6953663Z > Task :compileJava
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:10.2940621Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:10.2959762Z > Task :processResources
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:10.2971508Z > Task :classes
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:12.0935387Z > Task :compileClientJava
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:12.0935989Z > Task :processClientResources
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:12.0936286Z > Task :processIncludeJars
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:12.1954787Z > Task :recordIncludedJars
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:12.4936677Z > Task :clientClasses
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:12.5935070Z > Task :jar
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:13.4936919Z > Task :compileClientSmokeJava
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:13.4937652Z > Task :assemble
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:13.4937997Z > Task :processClientSmokeResources
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:13.4938374Z > Task :clientSmokeClasses
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:13.5935750Z > Task :clientSmokeJar
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:17.7942430Z > Task :compileTestJava
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:17.8940086Z > Task :processTestResources
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:17.8943968Z > Task :testClasses
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:24.7965266Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:24.7966194Z > Task :test
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:24.7996662Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:24.7997192Z FeaturesTest > bundledOptionalContentIsOff() FAILED
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:24.8024149Z     org.opentest4j.AssertionFailedError at FeaturesTest.java:18
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:24.9948949Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:24.9949532Z 87 tests completed, 1 failed
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2933280Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2938560Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2939017Z > Task :test FAILED
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2939694Z FAILURE: Build failed with an exception.
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2939906Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2939981Z * What went wrong:
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2940179Z Execution failed for task ':test'.
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2940767Z > There were failing tests. See the report at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/tests/test/index.html
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2941268Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2941332Z * Try:
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2941602Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2941873Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2941945Z BUILD FAILED in 1m 19s
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2942388Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793167464262.json
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2942880Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2943337Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.2943954Z 13 actionable tasks: 13 executed
+build (0.153.1+26.3)	Build mod	2026-10-28T06:05:25.6550175Z ##[error]Process completed with exit code 1.
+build (0.165.0+26.3)	Build mod	﻿2026-10-28T06:04:13.9743121Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:13.9744254Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3[0m
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0000002Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0000371Z env:
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0000756Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0001391Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0001923Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0002305Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0002663Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0003031Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0003580Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0004181Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0004943Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.0005279Z ##[endgroup]
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8160930Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8180728Z Welcome to Gradle 9.8.2!
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8204895Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8222524Z Here are the highlights of this release:
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8225179Z  - Java 27 support
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8245156Z  - Maven mirror settings reuse
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8250540Z  - Linked problem locations in build output
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8274821Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8295215Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:14.8296041Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:15.3255986Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:37.7161493Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:37.7185515Z > Configure project :
+build (0.165.0+26.3)	Build mod	2026-10-28T06:04:37.7205356Z Fabric Loom: 1.19.3
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:12.9166050Z Note: Some input files use or override a deprecated API.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:12.9166628Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:12.9186043Z Note: Recompile with -Xlint:deprecation for details.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:12.9186750Z > Task :compileJava
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:28.7158982Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:28.7166821Z > Task :processResources
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:28.7184689Z > Task :classes
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:31.9155438Z > Task :compileClientJava
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:31.9156404Z > Task :processClientResources
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:32.0152708Z > Task :processIncludeJars
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:32.1164658Z > Task :recordIncludedJars
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:32.3175717Z > Task :clientClasses
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:32.6155427Z > Task :jar
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:33.9153553Z > Task :compileClientSmokeJava
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:33.9154881Z > Task :assemble
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:33.9195143Z > Task :processClientSmokeResources
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:33.9208146Z > Task :clientSmokeClasses
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:34.0160957Z > Task :clientSmokeJar
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:38.2378177Z > Task :compileTestJava
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:38.3224035Z > Task :processTestResources
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:38.3225471Z > Task :testClasses
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:47.5175248Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:47.5179718Z > Task :test
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:47.5204985Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:47.5207469Z FeaturesTest > bundledOptionalContentIsOff() FAILED
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:47.5230011Z     org.opentest4j.AssertionFailedError at FeaturesTest.java:18
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:47.9152272Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:47.9166457Z 87 tests completed, 1 failed
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1160601Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1160681Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1175540Z > Task :test FAILED
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1224096Z FAILURE: Build failed with an exception.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1225396Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793167463679.json
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1226271Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1265121Z * What went wrong:
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1265938Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1305646Z Execution failed for task ':test'.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1307098Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1315658Z > There were failing tests. See the report at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/tests/test/index.html
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1330420Z 13 actionable tasks: 13 executed
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1354710Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1355425Z * Try:
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1375490Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1394915Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.1415108Z BUILD FAILED in 1m 34s
+build (0.165.0+26.3)	Build mod	2026-10-28T06:05:48.5430332Z ##[error]Process completed with exit code 1.
+build (0.161.0+26.3)	Build mod	﻿2026-10-28T06:04:22.7615326Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.161.0+26.3
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7616294Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.161.0+26.3[0m
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7899483Z shell: /usr/bin/bash -e {0}
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7899828Z env:
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7900215Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7900846Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7901384Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7901768Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7902131Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7902500Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7903060Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7903686Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7904186Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:22.7904552Z ##[endgroup]
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5847407Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5863257Z Welcome to Gradle 9.8.2!
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5869356Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5889551Z Here are the highlights of this release:
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5901709Z  - Java 27 support
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5909448Z  - Maven mirror settings reuse
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5929482Z  - Linked problem locations in build output
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5949092Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5959583Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:23.5969251Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:24.2772023Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:47.5789621Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:47.5808266Z > Configure project :
+build (0.161.0+26.3)	Build mod	2026-10-28T06:04:47.5831175Z Fabric Loom: 1.19.3
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:19.7768975Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:19.7810110Z Note: Some input files use or override a deprecated API.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:19.7810856Z > Task :compileJava
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:19.7829556Z Note: Recompile with -Xlint:deprecation for details.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:32.5767591Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:32.5800008Z > Task :processResources
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:32.5833431Z > Task :classes
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:35.2772165Z > Task :compileClientJava
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:35.2795417Z > Task :processClientResources
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:35.3789213Z > Task :processIncludeJars
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:35.4788687Z > Task :recordIncludedJars
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:35.7779864Z > Task :clientClasses
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:36.1769610Z > Task :jar
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:37.1769276Z > Task :compileClientSmokeJava
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:37.1819290Z > Task :assemble
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:37.1859316Z > Task :processClientSmokeResources
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:37.1886087Z > Task :clientSmokeClasses
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:37.1939354Z > Task :clientSmokeJar
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:40.4768469Z > Task :compileTestJava
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:40.5776353Z > Task :processTestResources
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:40.5799664Z > Task :testClasses
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.3800077Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.3818673Z > Task :test
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.3866890Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.3889525Z FeaturesTest > bundledOptionalContentIsOff() FAILED
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.3917555Z     org.opentest4j.AssertionFailedError at FeaturesTest.java:18
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.7767202Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.7768033Z 87 tests completed, 1 failed
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9789659Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9849285Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9849735Z > Task :test FAILED
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9850280Z FAILURE: Build failed with an exception.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9859889Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793167473195.json
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9879091Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9879117Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9882991Z * What went wrong:
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9884238Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9899649Z Execution failed for task ':test'.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9900550Z 13 actionable tasks: 13 executed
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9902417Z > There were failing tests. See the report at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/tests/test/index.html
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9906184Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9906525Z * Try:
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9907390Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9908144Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:47.9908463Z BUILD FAILED in 1m 25s
+build (0.161.0+26.3)	Build mod	2026-10-28T06:05:48.4128377Z ##[error]Process completed with exit code 1.
+build (none)	Build mod	﻿2026-10-28T06:04:14.6785401Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none
+build (none)	Build mod	2026-10-28T06:04:14.6786269Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none[0m
+build (none)	Build mod	2026-10-28T06:04:14.7270417Z shell: /usr/bin/bash -e {0}
+build (none)	Build mod	2026-10-28T06:04:14.7270711Z env:
+build (none)	Build mod	2026-10-28T06:04:14.7270976Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (none)	Build mod	2026-10-28T06:04:14.7271379Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (none)	Build mod	2026-10-28T06:04:14.7271708Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Build mod	2026-10-28T06:04:14.7271963Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Build mod	2026-10-28T06:04:14.7272193Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Build mod	2026-10-28T06:04:14.7272430Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Build mod	2026-10-28T06:04:14.7272767Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Build mod	2026-10-28T06:04:14.7273148Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Build mod	2026-10-28T06:04:14.7273475Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Build mod	2026-10-28T06:04:14.7273701Z ##[endgroup]
+build (none)	Build mod	2026-10-28T06:04:15.3578841Z 
+build (none)	Build mod	2026-10-28T06:04:15.3619568Z Welcome to Gradle 9.8.2!
+build (none)	Build mod	2026-10-28T06:04:15.3638674Z 
+build (none)	Build mod	2026-10-28T06:04:15.3660977Z Here are the highlights of this release:
+build (none)	Build mod	2026-10-28T06:04:15.3678992Z  - Java 27 support
+build (none)	Build mod	2026-10-28T06:04:15.3719320Z  - Maven mirror settings reuse
+build (none)	Build mod	2026-10-28T06:04:15.3749637Z  - Linked problem locations in build output
+build (none)	Build mod	2026-10-28T06:04:15.3760439Z 
+build (none)	Build mod	2026-10-28T06:04:15.3789214Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+build (none)	Build mod	2026-10-28T06:04:15.3806882Z 
+build (none)	Build mod	2026-10-28T06:04:15.7529195Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (none)	Build mod	2026-10-28T06:04:35.9548974Z 
+build (none)	Build mod	2026-10-28T06:04:35.9557828Z > Configure project :
+build (none)	Build mod	2026-10-28T06:04:35.9578939Z Fabric Loom: 1.19.3
+build (none)	Build mod	2026-10-28T06:05:01.5531931Z 
+build (none)	Build mod	2026-10-28T06:05:01.5557759Z Note: Some input files use or override a deprecated API.
+build (none)	Build mod	2026-10-28T06:05:01.5558207Z > Task :compileJava
+build (none)	Build mod	2026-10-28T06:05:01.5590100Z Note: Recompile with -Xlint:deprecation for details.
+build (none)	Build mod	2026-10-28T06:05:11.2528045Z 
+build (none)	Build mod	2026-10-28T06:05:11.2549401Z > Task :processResources
+build (none)	Build mod	2026-10-28T06:05:11.2568928Z > Task :classes
+build (none)	Build mod	2026-10-28T06:05:13.4540681Z > Task :compileClientJava
+build (none)	Build mod	2026-10-28T06:05:13.4541262Z > Task :processClientResources
+build (none)	Build mod	2026-10-28T06:05:13.5544558Z > Task :processIncludeJars
+build (none)	Build mod	2026-10-28T06:05:13.6536519Z > Task :recordIncludedJars
+build (none)	Build mod	2026-10-28T06:05:13.8529467Z > Task :clientClasses
+build (none)	Build mod	2026-10-28T06:05:14.0549595Z > Task :jar
+build (none)	Build mod	2026-10-28T06:05:15.0528059Z > Task :compileClientSmokeJava
+build (none)	Build mod	2026-10-28T06:05:15.0530043Z > Task :assemble
+build (none)	Build mod	2026-10-28T06:05:15.0530492Z > Task :processClientSmokeResources
+build (none)	Build mod	2026-10-28T06:05:15.0531067Z > Task :clientSmokeClasses
+build (none)	Build mod	2026-10-28T06:05:15.0549185Z > Task :clientSmokeJar
+build (none)	Build mod	2026-10-28T06:05:17.8539458Z > Task :compileTestJava
+build (none)	Build mod	2026-10-28T06:05:17.9531800Z > Task :processTestResources
+build (none)	Build mod	2026-10-28T06:05:17.9532703Z > Task :testClasses
+build (none)	Build mod	2026-10-28T06:05:24.9536956Z 
+build (none)	Build mod	2026-10-28T06:05:24.9549389Z > Task :test
+build (none)	Build mod	2026-10-28T06:05:24.9549782Z 
+build (none)	Build mod	2026-10-28T06:05:24.9550166Z FeaturesTest > bundledOptionalContentIsOff() FAILED
+build (none)	Build mod	2026-10-28T06:05:24.9550850Z     org.opentest4j.AssertionFailedError at FeaturesTest.java:18
+build (none)	Build mod	2026-10-28T06:05:25.2527329Z 
+build (none)	Build mod	2026-10-28T06:05:25.2528984Z 87 tests completed, 1 failed
+build (none)	Build mod	2026-10-28T06:05:25.4527408Z 
+build (none)	Build mod	2026-10-28T06:05:25.4539445Z > Task :test FAILED
+build (none)	Build mod	2026-10-28T06:05:25.4559086Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793167463142.json
+build (none)	Build mod	2026-10-28T06:05:25.5542913Z 
+build (none)	Build mod	2026-10-28T06:05:25.5542999Z 
+build (none)	Build mod	2026-10-28T06:05:25.5559439Z FAILURE: Build failed with an exception.
+build (none)	Build mod	2026-10-28T06:05:25.5572226Z 
+build (none)	Build mod	2026-10-28T06:05:25.5579144Z * What went wrong:
+build (none)	Build mod	2026-10-28T06:05:25.5598983Z Execution failed for task ':test'.
+build (none)	Build mod	2026-10-28T06:05:25.5600022Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (none)	Build mod	2026-10-28T06:05:25.5619337Z > There were failing tests. See the report at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/tests/test/index.html
+build (none)	Build mod	2026-10-28T06:05:25.5638722Z 
+build (none)	Build mod	2026-10-28T06:05:25.5638927Z 13 actionable tasks: 13 executed
+build (none)	Build mod	2026-10-28T06:05:25.5658912Z * Try:
+build (none)	Build mod	2026-10-28T06:05:25.5659593Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (none)	Build mod	2026-10-28T06:05:25.5678708Z 
+build (none)	Build mod	2026-10-28T06:05:25.5698897Z BUILD FAILED in 1m 10s
+build (none)	Build mod	2026-10-28T06:05:25.9047015Z ##[error]Process completed with exit code 1.

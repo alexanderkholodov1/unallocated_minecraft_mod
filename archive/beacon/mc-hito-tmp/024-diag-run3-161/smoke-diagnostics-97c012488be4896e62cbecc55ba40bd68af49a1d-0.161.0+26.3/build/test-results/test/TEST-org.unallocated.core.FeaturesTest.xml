@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.core.FeaturesTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-28T13:41:51.565Z" hostname="runnervm48cm3" time="0.007">
+  <properties/>
+  <testcase name="nestedSwitchesAndMissingKeys()" classname="org.unallocated.core.FeaturesTest" time="0.004"/>
+  <testcase name="bundledStorySlotsAreEnabled()" classname="org.unallocated.core.FeaturesTest" time="0.001"/>
+  <testcase name="malformedSwitchesFailClosed()" classname="org.unallocated.core.FeaturesTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,3 @@
+client never initialized (rc=1)
+contract screen not detected (background pixel is 49 35 31
+no LOBBY chapter entry (rc=1)

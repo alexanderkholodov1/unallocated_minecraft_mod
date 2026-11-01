@@ -1,0 +1,706 @@
+[13:32:27] [main/INFO]: Loading Minecraft 26.3 with Fabric Loader 0.20.1
+[13:32:27] [main/INFO]: Mappings not present!
+[13:32:27] [main/INFO]: Loading 52 mods:
+	- fabric-api 0.165.0+26.3
+	   |-- fabric-advancement-api-v1 1.0.1+38c7a2d55d
+	   |-- fabric-api-base 2.0.6+fcdff87f5d
+	   |-- fabric-api-lookup-api-v1 2.0.24+3434d6d95d
+	   |-- fabric-biome-api-v1 20.1.1+85210bca5d
+	   |-- fabric-block-api-v1 3.1.0+0ae6f9115d
+	   |-- fabric-block-getter-api-v2 2.0.9+3434d6d95d
+	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+	   |-- fabric-content-registries-v0 15.0.6+74ed1ea55d
+	   |-- fabric-convention-tags-v2 4.10.5+187b64905d
+	   |-- fabric-crash-report-info-v1 1.0.7+fcdff87f5d
+	   |-- fabric-creative-tab-api-v1 5.0.22+fcdff87f5d
+	   |-- fabric-data-attachment-api-v1 2.2.33+b9b88df45d
+	   |-- fabric-data-generation-api-v1 27.4.2+187b64905d
+	   |-- fabric-debug-api-v1 1.0.5+5af7744b5d
+	   |-- fabric-dimensions-v1 5.1.20+5af7744b5d
+	   |-- fabric-entity-events-v1 6.0.4+3434d6d95d
+	   |-- fabric-events-interaction-v0 5.3.9+b9b88df45d
+	   |-- fabric-game-rule-api-v1 4.0.10+3434d6d95d
+	   |-- fabric-item-api-v1 14.8.0+d1c0d72b5d
+	   |-- fabric-key-mapping-api-v1 2.0.8+3434d6d95d
+	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+	   |-- fabric-loot-api-v3 4.0.9+4068fd645d
+	   |-- fabric-menu-api-v1 2.0.30+ed66f0a35d
+	   |-- fabric-message-api-v1 7.0.10+3434d6d95d
+	   |-- fabric-model-loading-api-v1 8.0.37+fcdff87f5d
+	   |-- fabric-networking-api-v1 6.4.0+a21c9eb65d
+	   |-- fabric-object-builder-api-v1 24.1.12+e2f63d3e5d
+	   |-- fabric-particles-v1 5.0.27+3434d6d95d
+	   |-- fabric-permission-api-v1 1.0.8+fcdff87f5d
+	   |-- fabric-recipe-api-v1 10.0.11+b9b88df45d
+	   |-- fabric-registry-sync-v0 8.0.4+1ca9f6365d
+	   |-- fabric-renderer-api-v1 17.0.17+79385d0b5d
+	   |-- fabric-renderer-indigo 9.1.25+b9d63e335d
+	   |-- fabric-rendering-fluids-v1 6.0.6+3434d6d95d
+	   |-- fabric-rendering-v1 27.2.0+eb9fe70b5d
+	   |-- fabric-resource-conditions-api-v1 6.2.0+0d124ae85d
+	   |-- fabric-resource-loader-v0 3.3.27+4fc5413f5d
+	   |-- fabric-resource-loader-v1 3.1.0+5af7744b5d
+	   |-- fabric-screen-api-v1 5.2.4+48607d035d
+	   |-- fabric-serialization-api-v1 2.0.7+74ed1ea55d
+	   |-- fabric-sound-api-v1 2.0.7+3434d6d95d
+	   |-- fabric-tag-api-v1 2.1.11+fcdff87f5d
+	   |-- fabric-transfer-api-v1 8.0.25+fcdff87f5d
+	   \-- fabric-transitive-access-wideners-v1 8.1.17+e2f63d3e5d
+	- fabricloader 0.20.1
+	   \-- mixinextras 0.5.5
+	- java 25
+	- minecraft 26.3
+	- unallocated 0.2.0
+	- unallocated-client-smoke 0.1.0
+	   \-- fabric-client-gametest-api-v1 6.0.11+131f8d475d
+[13:32:27] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/cef8519a91129d0c21fa03bb9378f0e8ca810e5/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[13:32:29] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[13:32:31] [Datafixer Bootstrap #0/INFO]: 307 Datafixer optimizations took 724 milliseconds
+[13:32:37] [Render thread/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+[13:32:37] [Render thread/INFO]: Setting user: Player124
+[13:32:37] [Render thread/INFO]: UNALLOCATED audio: registered 7 sound events; loud=screamer.
+[13:32:37] [Render thread/INFO]: UNALLOCATED initialized (common).
+[13:32:37] [Render thread/INFO]: [Indigo] Registering Indigo renderer!
+[13:32:37] [Render thread/INFO]: UNALLOCATED initialized (client).
+[13:32:37] [Render thread/ERROR]: Illegal option value 0 for Anisotropic Filtering
+[13:32:37] [Render thread/INFO]: Backend library: LWJGL version 3.4.3-snapshot
+[13:32:37] [Render thread/INFO]: SDL [SYSTEM]: App name: Minecraft
+[13:32:37] [Render thread/INFO]: SDL [SYSTEM]: App version: 26.3
+[13:32:37] [Render thread/INFO]: SDL [SYSTEM]: App ID: com.mojang.minecraft
+[13:32:37] [Render thread/INFO]: SDL [SYSTEM]: SDL revision: SDL-3.4.14--128-NOTFOUND
+[13:32:37] [Download-2/ERROR]: Failed to fetch user properties
+com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
+	at knot//com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:70)
+	at knot//com.mojang.authlib.services.MinecraftServicesUserApiService.fetchProperties(MinecraftServicesUserApiService.java:168)
+	at knot//net.minecraft.client.Minecraft.lambda$new$1(Minecraft.java:451)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: MinecraftClientHttpException[type=HTTP_ERROR, status=401, response=ErrorResponse[path=/player/attributes, error=null, errorMessage=null, details=null]]
+	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.buildHttpException(MinecraftClient.java:170)
+	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.readServiceResponse(MinecraftClient.java:147)
+	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.getWithEtag(MinecraftClient.java:81)
+	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:65)
+	at knot//com.mojang.authlib.services.MinecraftServicesUserApiService.fetchProperties(MinecraftServicesUserApiService.java:118)
+	... 5 more
+[13:32:38] [Render thread/ERROR]: Failed to create backend OpenGL
+com.mojang.renderpearl.api.device.BackendCreationException: Failed to create window for OpenGL context: Couldn't find matching GLX visual
+	at knot//com.mojang.renderpearl.backend.opengl.GlDevice.<init>(GlDevice.java:83)
+	at knot//com.mojang.renderpearl.backend.opengl.GlBackend.createDevice(GlBackend.java:68)
+	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:533)
+	at knot//net.minecraft.client.main.Main.main(Main.java:278)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+[13:32:38] [Render thread/INFO]: Enabling optional FeatureSet [Calibrated Timestamps]
+[13:32:38] [Render thread/INFO]: Optional FeatureSet [AMD Buffer Marker] not supported
+[13:32:38] [Render thread/INFO]: Enabling optional FeatureSet [EXT MultiDraw]
+[13:32:38] [Render thread/INFO]: Optional FeatureSet [NV Diagnostic Checkpoint] not supported
+[13:32:38] [Render thread/INFO]: Enabling optional FeatureSet [Wireframe]
+[13:32:38] [Render thread/INFO]: Using graphics backend Vulkan, using drivers: 1.4.318 llvmpipe Mesa 25.2.8-0ubuntu0.24.04.4 (LLVM 20.1.2)
+[13:32:38] [Render thread/INFO]: Using graphics device: llvmpipe (LLVM 20.1.2, 256 bits) (0x10005)
+[13:32:38] [Render thread/INFO]: Using graphics device extensions: VK_EXT_calibrated_timestamps (D), VK_KHR_synchronization2 (D), VK_EXT_multi_draw (D), VK_EXT_vertex_attribute_divisor (D), VK_KHR_swapchain (D), VK_KHR_surface (I), VK_KHR_push_descriptor (D), VK_KHR_xlib_surface (I), VK_EXT_debug_utils (I), VK_KHR_dynamic_rendering (D)
+[13:32:38] [Render thread/INFO]: Created window using SDL video driver: x11
+[13:32:38] [Download-2/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
+[13:32:38] [Download-2/ERROR]: Failed to fetch Realms feature flags
+com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC'
+	at knot//com.mojang.realmsclient.client.RealmsClient.execute(RealmsClient.java:625)
+	at knot//com.mojang.realmsclient.client.RealmsClient.fetchFeatureFlags(RealmsClient.java:204)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+[13:32:39] [Render thread/ERROR]: Error while loading the narrator
+com.mojang.text2speech.Narrator$InitializeException: Failed to load library flite
+	at knot//com.mojang.text2speech.NarratorLinux$FliteLibrary.loadNative(NarratorLinux.java:82)
+	at knot//com.mojang.text2speech.NarratorLinux.<init>(NarratorLinux.java:19)
+	at knot//com.mojang.text2speech.Narrator.getNarrator(Narrator.java:41)
+	at knot//net.minecraft.client.GameNarrator.<init>(GameNarrator.java:20)
+	at knot//net.minecraft.client.Minecraft.<init>(Minecraft.java:740)
+	at knot//net.minecraft.client.main.Main.main(Main.java:278)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+Caused by: java.lang.UnsatisfiedLinkError: Unable to load library 'flite':
+libflite.so: cannot open shared object file: No such file or directory
+libflite.so: cannot open shared object file: No such file or directory
+Native library (linux-x86-64/libflite.so) not found in resource path (/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/9.10.1/ada2141c0cc52ee8f5c48cd5fa4ce0e794f22236/asm-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/9.10.1/8d49f14d51f632cb1d87c88d1ceaf50db0d8af1b/asm-analysis-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/9.10.1/4229e4c55fd8e01c23f9fe9884075cc628aacc50/asm-commons-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/9.10.1/e244332a17564c1d1572449399a842de35881be2/asm-tree-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/9.10.1/7bb9d450e8d4cbf9f9e04096c44bbfe7fba80b15/asm-util-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/cef8519a91129d0c21fa03bb9378f0e8ca810e5/sponge-mixin-0.17.5+mixin.0.8.7.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.github.llamalad7/mixinextras-fabric/0.5.5/d1055b99c0ab08a8403fe2da3d79ca28e6340a76/mixinextras-fabric-0.5.5.jar:/home/runner/.gradle/caches/modules-2/files-2.1/at.yawk.lz4/lz4-java/1.10.1/f541d7f910fe3d76f38f799c507c48cc81b12ecb/lz4-java-1.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.azure/azure-json/1.4.0/fcc1d354dbc3e0300e5276b1bf124d0247799cd8/azure-json-1.4.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.github.oshi/oshi-core/6.9.0/3224870731860cfcd7744581a05b559e94291e7/oshi-core-6.9.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.14.0/efc0e34ede4e3204eaefb84a00e55e8c86634382/gson-2.14.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.6.0-jre/c376b13067cc99a5774403530953f7b05a91e218/guava-33.6.0-jre.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/78.3/6a851a53bb1f25689fc418dcc8935b0d93580adf/icu4j-78.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/msal4j/1.24.1/c233f2d047b9755f7041adf21a858c680e4c9242/msal4j-1.24.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/authlib/10.0.77/add8754cda96cf0cd840441632875648836f8a71/authlib-10.0.77.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/blocklist/1.0.10/5c685c5ffa94c4cd39496c7184c1d122e515ecef/blocklist-1.0.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/brigadier/1.3.11/3373d1e7bf00c8b99bed1ea4efb8c47344e4a887/brigadier-1.3.11.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/datafixerupper/10.0.21/b6b2ae770c02e0c1eb90f9985b151e9085a38d0b/datafixerupper-10.0.21.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/cc2ad81342001b4281c305a298d7f50332354058/jtracy-1.14.38.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/d2433300f8a4e99595d513546d19ecddc3eaa15e/jtracy-1.14.38-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/logging/1.7.12/351cea64a5233361327d8d54c44277041beed97f/logging-1.7.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/patchy/2.2.10/da05971b07cbb379d002cf7eaec6a2048211fefc/patchy-2.2.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/text2speech/1.19.12/2e517a75c79d34d32de2b5d68422150836c2133e/text2speech-1.19.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.22.0/6b3eb4beb7058c2a638f5f17bcb388649fd339dd/commons-codec-1.22.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.20.0/36f3474daec2849c149e877614e7f979b2082cd2/commons-io-2.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.2.16.Final/5397ef65dcb60670e0e0dba4854522873af3070/netty-buffer-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-base/4.2.16.Final/1a01d45a9efc228c6d747525848b065e0656b5f/netty-codec-base-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-compression/4.2.16.Final/bdbbcfcdbe217b95c14a04df4fc5d31213d5c27c/netty-codec-compression-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.2.16.Final/b5e0715df90047ee5a0138c8f704f43c751009e4/netty-codec-http-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.2.16.Final/c2bc7fa5acfa2afc777e944d84f0aa65559cc81e/netty-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.2.16.Final/cc82873ae4b6d14effe480740ad838de09add70d/netty-handler-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.2.16.Final/fcea6d64273b59ab9127b68c16ae98af34642139/netty-resolver-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.2.16.Final/cf90c7b892e284ba9f1545dce170168369b3b9d6/netty-transport-classes-epoll-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-kqueue/4.2.16.Final/fa2bcf8c71626510f6fae173f78182117b70f7a/netty-transport-classes-kqueue-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/eed34f3b37b4c46a0cbb49456ccc4e3bd7195e4c/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/439c24f5c27c220deb042b42e4048d606edeb78d/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.2.16.Final/3cf32390f1b80af890ac44aa0698c2ff58c2a4d7/netty-transport-native-unix-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.2.16.Final/ae87a3bec51d503475a19fbd718bf777f2fc06c6/netty-transport-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/it.unimi.dsi/fastutil/8.5.18/a6cff377eecc19c2037bf31568a6d7106b50ba1f/fastutil-8.5.18.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna-platform/5.17.0/a4934c44d25a9d8c2ddf4203affd20330cb3426f/jna-platform-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/5.17.0/33d12735bef894440780fce64f9758d420c7bae2/jna-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.sf.jopt-simple/jopt-simple/5.0.4/4fdac2fbe92dfad86aa6e9301736f6b4342a3f5c/jopt-simple-5.0.4.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.28.0/e482f2c7a88dac3c497e96aa420b6a769f59c8d7/commons-compress-1.28.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.20.0/65897b3e5731220962e659e001904af3c3cbeba9/commons-lang3-3.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.26.0/ad52af0ecf054a7e3f275a2e180ee06d9c490951/log4j-api-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.26.0/d267ca60b27ddb075e0b4e75e7875859717bf85f/log4j-core-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-slf4j2-impl/2.26.0/668c0f0e813d83f00a7182533aa658ec7e7a0a0d/log4j-slf4j2-impl-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jcraft/jorbis/0.0.17/8872d22b293e8f5d7d56ff92be966e6dc28ebdc6/jorbis-0.0.17.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.joml/joml/1.10.9/438e036486bad66b189bff385dd07dea4f74a146/joml-1.10.9.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/d2b12961d44f92860fb1ab501f9c69b7a2975236/lwjgl-freetype-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/38f27c9a0fbe000bfb38b295c32944d699e246e9/lwjgl-freetype-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/350f317eaf5295b1e53f6664ef5fdeeaaa7dcbf0/lwjgl-jemalloc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/ca21b4b4c6d223907de645a18436ef6f677a5d4f/lwjgl-jemalloc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/32b52cda5af6937a4e4bd321bdb83082025cb332/lwjgl-openal-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/7daa62f9f7b38b30e8a3d3bc7069e9b2e3cd52f0/lwjgl-openal-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/b81769ee48050f8c71e70839505f350bf9219d90/lwjgl-opengl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/ec6fb42167943e94f7f0b14707c1737653c4044b/lwjgl-opengl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/c02146735d6ff70d070c73532b435e5c893a346b/lwjgl-sdl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/6ed1b80b7c211a491612c70e43f27ba1f42cccd0/lwjgl-sdl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/ba9fbc8fc4d50b3e4b436cc958ddb4abdb05867c/lwjgl-shaderc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/37faa5824f75901f4961e56805aedf68e13cf8b/lwjgl-shaderc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/98e5b5ef5159100b26a169a9aed6c24e820e3eaa/lwjgl-spvc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/709eb01deec4bdafb7634b125a63fd8de172fc50/lwjgl-spvc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/cdce54785bd3758e44a81f345d6260774d921c78/lwjgl-stb-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/3878e44ce27c12791e570b5c8754ef3b68401dd3/lwjgl-stb-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/816a6ac87f1e447e5346ca0e7a1078353f51fbd6/lwjgl-vma-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/3a9a95d3e83f7fc49c6ed8d0e1c853b77662d90e/lwjgl-vma-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vulkan/3.4.3/ffdaf1898192059f059d66f9fa37e3debcac10e0/lwjgl-vulkan-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/7ab5265a73d8a959ed62332d546536ae6be2f0d5/lwjgl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/2800e134537db1a175eba41c430b1018eddc48f0/lwjgl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.17/d9e58ac9c7779ba3bf8142aff6c830617a7fe60f/slf4j-api-2.0.17.jar:/home/runner/.gradle/caches/fabric-loom/26.3/minecraft-client.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/fabric-loader/0.20.1/7c7f9831e9f27b303d5d08decb5f4258a9f03296/fabric-loader-0.20.1.jar)
+	at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:325)
+	at knot//com.sun.jna.NativeLibrary.getInstance(NativeLibrary.java:481)
+	at knot//com.sun.jna.NativeLibrary.getInstance(NativeLibrary.java:423)
+	at knot//com.mojang.text2speech.NarratorLinux$FliteLibrary.loadNative(NarratorLinux.java:80)
+	... 8 more
+	Suppressed: java.lang.UnsatisfiedLinkError: libflite.so: cannot open shared object file: No such file or directory
+		at knot//com.sun.jna.Native.open(Native Method)
+		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:213)
+		... 11 more
+	Suppressed: java.lang.UnsatisfiedLinkError: libflite.so: cannot open shared object file: No such file or directory
+		at knot//com.sun.jna.Native.open(Native Method)
+		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:226)
+		... 11 more
+	Suppressed: java.io.IOException: Native library (linux-x86-64/libflite.so) not found in resource path (/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/9.10.1/ada2141c0cc52ee8f5c48cd5fa4ce0e794f22236/asm-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/9.10.1/8d49f14d51f632cb1d87c88d1ceaf50db0d8af1b/asm-analysis-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/9.10.1/4229e4c55fd8e01c23f9fe9884075cc628aacc50/asm-commons-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/9.10.1/e244332a17564c1d1572449399a842de35881be2/asm-tree-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/9.10.1/7bb9d450e8d4cbf9f9e04096c44bbfe7fba80b15/asm-util-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/cef8519a91129d0c21fa03bb9378f0e8ca810e5/sponge-mixin-0.17.5+mixin.0.8.7.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.github.llamalad7/mixinextras-fabric/0.5.5/d1055b99c0ab08a8403fe2da3d79ca28e6340a76/mixinextras-fabric-0.5.5.jar:/home/runner/.gradle/caches/modules-2/files-2.1/at.yawk.lz4/lz4-java/1.10.1/f541d7f910fe3d76f38f799c507c48cc81b12ecb/lz4-java-1.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.azure/azure-json/1.4.0/fcc1d354dbc3e0300e5276b1bf124d0247799cd8/azure-json-1.4.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.github.oshi/oshi-core/6.9.0/3224870731860cfcd7744581a05b559e94291e7/oshi-core-6.9.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.14.0/efc0e34ede4e3204eaefb84a00e55e8c86634382/gson-2.14.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.6.0-jre/c376b13067cc99a5774403530953f7b05a91e218/guava-33.6.0-jre.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/78.3/6a851a53bb1f25689fc418dcc8935b0d93580adf/icu4j-78.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/msal4j/1.24.1/c233f2d047b9755f7041adf21a858c680e4c9242/msal4j-1.24.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/authlib/10.0.77/add8754cda96cf0cd840441632875648836f8a71/authlib-10.0.77.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/blocklist/1.0.10/5c685c5ffa94c4cd39496c7184c1d122e515ecef/blocklist-1.0.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/brigadier/1.3.11/3373d1e7bf00c8b99bed1ea4efb8c47344e4a887/brigadier-1.3.11.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/datafixerupper/10.0.21/b6b2ae770c02e0c1eb90f9985b151e9085a38d0b/datafixerupper-10.0.21.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/cc2ad81342001b4281c305a298d7f50332354058/jtracy-1.14.38.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/d2433300f8a4e99595d513546d19ecddc3eaa15e/jtracy-1.14.38-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/logging/1.7.12/351cea64a5233361327d8d54c44277041beed97f/logging-1.7.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/patchy/2.2.10/da05971b07cbb379d002cf7eaec6a2048211fefc/patchy-2.2.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/text2speech/1.19.12/2e517a75c79d34d32de2b5d68422150836c2133e/text2speech-1.19.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.22.0/6b3eb4beb7058c2a638f5f17bcb388649fd339dd/commons-codec-1.22.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.20.0/36f3474daec2849c149e877614e7f979b2082cd2/commons-io-2.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.2.16.Final/5397ef65dcb60670e0e0dba4854522873af3070/netty-buffer-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-base/4.2.16.Final/1a01d45a9efc228c6d747525848b065e0656b5f/netty-codec-base-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-compression/4.2.16.Final/bdbbcfcdbe217b95c14a04df4fc5d31213d5c27c/netty-codec-compression-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.2.16.Final/b5e0715df90047ee5a0138c8f704f43c751009e4/netty-codec-http-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.2.16.Final/c2bc7fa5acfa2afc777e944d84f0aa65559cc81e/netty-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.2.16.Final/cc82873ae4b6d14effe480740ad838de09add70d/netty-handler-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.2.16.Final/fcea6d64273b59ab9127b68c16ae98af34642139/netty-resolver-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.2.16.Final/cf90c7b892e284ba9f1545dce170168369b3b9d6/netty-transport-classes-epoll-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-kqueue/4.2.16.Final/fa2bcf8c71626510f6fae173f78182117b70f7a/netty-transport-classes-kqueue-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/eed34f3b37b4c46a0cbb49456ccc4e3bd7195e4c/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/439c24f5c27c220deb042b42e4048d606edeb78d/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.2.16.Final/3cf32390f1b80af890ac44aa0698c2ff58c2a4d7/netty-transport-native-unix-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.2.16.Final/ae87a3bec51d503475a19fbd718bf777f2fc06c6/netty-transport-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/it.unimi.dsi/fastutil/8.5.18/a6cff377eecc19c2037bf31568a6d7106b50ba1f/fastutil-8.5.18.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna-platform/5.17.0/a4934c44d25a9d8c2ddf4203affd20330cb3426f/jna-platform-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/5.17.0/33d12735bef894440780fce64f9758d420c7bae2/jna-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.sf.jopt-simple/jopt-simple/5.0.4/4fdac2fbe92dfad86aa6e9301736f6b4342a3f5c/jopt-simple-5.0.4.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.28.0/e482f2c7a88dac3c497e96aa420b6a769f59c8d7/commons-compress-1.28.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.20.0/65897b3e5731220962e659e001904af3c3cbeba9/commons-lang3-3.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.26.0/ad52af0ecf054a7e3f275a2e180ee06d9c490951/log4j-api-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.26.0/d267ca60b27ddb075e0b4e75e7875859717bf85f/log4j-core-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-slf4j2-impl/2.26.0/668c0f0e813d83f00a7182533aa658ec7e7a0a0d/log4j-slf4j2-impl-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jcraft/jorbis/0.0.17/8872d22b293e8f5d7d56ff92be966e6dc28ebdc6/jorbis-0.0.17.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.joml/joml/1.10.9/438e036486bad66b189bff385dd07dea4f74a146/joml-1.10.9.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/d2b12961d44f92860fb1ab501f9c69b7a2975236/lwjgl-freetype-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/38f27c9a0fbe000bfb38b295c32944d699e246e9/lwjgl-freetype-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/350f317eaf5295b1e53f6664ef5fdeeaaa7dcbf0/lwjgl-jemalloc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/ca21b4b4c6d223907de645a18436ef6f677a5d4f/lwjgl-jemalloc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/32b52cda5af6937a4e4bd321bdb83082025cb332/lwjgl-openal-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/7daa62f9f7b38b30e8a3d3bc7069e9b2e3cd52f0/lwjgl-openal-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/b81769ee48050f8c71e70839505f350bf9219d90/lwjgl-opengl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/ec6fb42167943e94f7f0b14707c1737653c4044b/lwjgl-opengl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/c02146735d6ff70d070c73532b435e5c893a346b/lwjgl-sdl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/6ed1b80b7c211a491612c70e43f27ba1f42cccd0/lwjgl-sdl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/ba9fbc8fc4d50b3e4b436cc958ddb4abdb05867c/lwjgl-shaderc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/37faa5824f75901f4961e56805aedf68e13cf8b/lwjgl-shaderc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/98e5b5ef5159100b26a169a9aed6c24e820e3eaa/lwjgl-spvc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/709eb01deec4bdafb7634b125a63fd8de172fc50/lwjgl-spvc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/cdce54785bd3758e44a81f345d6260774d921c78/lwjgl-stb-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/3878e44ce27c12791e570b5c8754ef3b68401dd3/lwjgl-stb-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/816a6ac87f1e447e5346ca0e7a1078353f51fbd6/lwjgl-vma-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/3a9a95d3e83f7fc49c6ed8d0e1c853b77662d90e/lwjgl-vma-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vulkan/3.4.3/ffdaf1898192059f059d66f9fa37e3debcac10e0/lwjgl-vulkan-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/7ab5265a73d8a959ed62332d546536ae6be2f0d5/lwjgl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/2800e134537db1a175eba41c430b1018eddc48f0/lwjgl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.17/d9e58ac9c7779ba3bf8142aff6c830617a7fe60f/slf4j-api-2.0.17.jar:/home/runner/.gradle/caches/fabric-loom/26.3/minecraft-client.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/fabric-loader/0.20.1/7c7f9831e9f27b303d5d08decb5f4258a9f03296/fabric-loader-0.20.1.jar)
+		at knot//com.sun.jna.Native.extractFromResourcePath(Native.java:1141)
+		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:297)
+		... 11 more
+[13:32:39] [Render thread/INFO]: Reloading ResourceManager: vanilla, vanilla, fabric-advancement-api-v1, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-getter-api-v2, fabric-client-gametest-api-v1, fabric-command-api-v2, fabric-content-registries-v0, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-creative-tab-api-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-debug-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-item-api-v1, fabric-key-mapping-api-v1, fabric-lifecycle-events-v1, fabric-loot-api-v3, fabric-menu-api-v1, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-permission-api-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-resource-loader-v1, fabric-screen-api-v1, fabric-serialization-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, unallocated
+[13:32:39] [Worker-Main-1/INFO]: Found unifont_all_no_pua-17.0.01.hex, loading
+[13:32:39] [Worker-Main-2/INFO]: Found unifont_pua-17.0.01.hex, loading
+[13:32:40] [Worker-Main-1/INFO]: Found unifont_jp_patch-17.0.01.hex, loading
+[13:32:42] [Render thread/INFO]: OpenAL initialized on device No Output
+[13:32:42] [Render thread/INFO]: Sound engine started
+[13:32:42] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[13:32:42] [Render thread/INFO]: Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
+[13:32:42] [Render thread/INFO]: Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
+[13:32:42] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[13:32:42] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+[13:32:42] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+[13:32:42] [Render thread/INFO]: Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
+[13:32:43] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
+[13:32:43] [Render thread/INFO]: Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+[13:32:43] [Render thread/INFO]: Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[13:32:43] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
+[13:32:43] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+[13:32:43] [Download-2/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
+[13:32:43] [Download-2/ERROR]: Couldn't connect to realms
+com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC'
+	at knot//com.mojang.realmsclient.client.RealmsClient.execute(RealmsClient.java:625)
+	at knot//com.mojang.realmsclient.client.RealmsClient.clientCompatible(RealmsClient.java:354)
+	at knot//com.mojang.realmsclient.RealmsAvailability.lambda$check$0(RealmsAvailability.java:48)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+[13:32:46] [Test thread/INFO]: UNALLOCATED smoke: contract skipped on second process with saved acceptance.
+[13:32:46] [Test thread/INFO]: UNALLOCATED smoke: external Fabric API 0.165.0+26.3 loaded.
+[13:32:46] [Test thread/INFO]: UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified.
+[13:32:46] [Render thread/INFO]: Resizing Dynamic Transforms UBO, capacity limit of 2 reached during a single frame. New capacity will be 4.
+[13:32:46] [Test thread/INFO]: UNALLOCATED smoke: title screen reached from player JAR.
+[13:32:48] [Worker-Main-2/INFO]: Loaded 1866 advancements
+[13:32:48] [Render thread/INFO]: Applied 0 biome modifications to 0 of 69 new biomes in 1.353 ms
+[13:32:48] [Server thread/INFO]: Starting integrated minecraft server version 26.3
+[13:32:48] [Server thread/INFO]: Generating keypair
+[13:32:48] [Server thread/INFO]: Selecting global world spawn...
+[13:32:49] [Server thread/INFO]: Loading 0 persistent chunks...
+[13:32:49] [Server thread/INFO]: Preparing spawn area: 16%
+[13:32:49] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:32:49] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:32:49] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:32:49] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:32:49] [Server thread/WARN]: UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds
+[13:32:49] [Server thread/INFO]: UNALLOCATED story loaded chapters=2 beats=7 endings=2 format=1
+[13:32:49] [Server thread/INFO]: UNALLOCATED map build section=all phase=clear
+[13:32:50] [Server thread/INFO]: UNALLOCATED map build section=all phase=terrain
+[13:32:50] [Server thread/INFO]: UNALLOCATED map section=lobby phase=clear
+[13:32:50] [Server thread/INFO]: UNALLOCATED map section=lobby phase=place
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=lobby phase=shapes
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=lobby phase=complete
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=hill phase=clear
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=hill phase=place
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=hill phase=shapes
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=hill phase=complete
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=path phase=clear
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=path phase=place
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=path phase=shapes
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=path phase=complete
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=base phase=clear
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=base phase=place
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=base phase=shapes
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=base phase=complete
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=mine phase=clear
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=mine phase=place
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=mine phase=shapes
+[13:32:51] [Server thread/INFO]: UNALLOCATED map section=mine phase=complete
+[13:32:51] [Server thread/INFO]: UNALLOCATED map build section=all phase=configure
+[13:32:51] [Server thread/INFO]: UNALLOCATED map build section=all phase=verify
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.spawn verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.board verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.bait_path verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.view verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=path.midpoint verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=base.entrance verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=base.theft_zone verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.entrance verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.threshold verified
+[13:32:51] [Server thread/INFO]: UNALLOCATED map verified section=all
+[13:32:51] [Server thread/INFO]: UNALLOCATED map built section=all
+[13:32:51] [Server thread/INFO]: System chat: Mapa reconstruido.
+[13:32:51] [Server thread/INFO]: UNALLOCATED session armed
+[13:32:51] [Server thread/INFO]: System chat: Set minecraft:overworld to 11000 tick(s)
+[13:32:51] [Server thread/INFO]: System chat: Set the weather to clear
+[13:32:51] [Server thread/INFO]: UNALLOCATED story build ok commands=1
+[13:32:51] [Server thread/INFO]: UNALLOCATED session armed
+[13:32:52] [Server thread/INFO]: Loading 0 chunks for player spawn...
+[13:32:52] [Server thread/INFO]: Preparing spawn area: 16%
+[13:32:52] [Server thread/INFO]: Time elapsed: 3834 ms
+[13:32:52] [Server thread/INFO]: Player124[local:E:a3e222d7] logged in with entity id 1 at (0.5, 64.0, 8.5)
+[13:32:52] [Server thread/INFO]: UNALLOCATED act=CONTRACT complete t=0
+[13:32:52] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+[13:32:52] [Server thread/INFO]: UNALLOCATED story chapter=first slot=LOBBY enter
+[13:32:52] [Server thread/INFO]: UNALLOCATED audio: sent cue=ambient loud=false
+[13:32:52] [Server thread/INFO]: UNALLOCATED story action beat=first.on_enter do=audio result=ok
+[13:32:52] [Server thread/INFO]: System chat: Player124 joined the game
+[13:32:53] [Render thread/INFO]: UNALLOCATED audio: play cue=ambient event=unallocated:audio.ambient_drone loud=false result=STARTED
+[13:32:53] [Render thread/INFO]: UNALLOCATED audio: play cue=ambient event=unallocated:audio.ambient_cave loud=false result=STARTED
+[13:32:53] [Render thread/INFO]: Loaded 2 advancements
+[13:32:53] [Server thread/INFO]: Changing view distance to 5, from 10
+[13:32:53] [Server thread/INFO]: Changing simulation distance to 12, from 0
+[13:32:53] [Render thread/WARN]: Requested post effect does not exist: minecraft:end_of_frame
+[13:32:53] [Render thread/INFO]: Resizing Dynamic Transforms UBO, capacity limit of 4 reached during a single frame. New capacity will be 8.
+[13:32:54] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 2 reached during a single frame. New capacity will be 16.
+[13:32:54] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 2 reached during a single frame. New capacity will be 8.
+[13:32:54] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 16 reached during a single frame. New capacity will be 32.
+[13:32:54] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 8 reached during a single frame. New capacity will be 32.
+[13:32:54] [Server thread/INFO]: UNALLOCATED story action beat=first.on_enter do=title result=ok
+[13:32:54] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 32 reached during a single frame. New capacity will be 64.
+[13:32:54] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 32 reached during a single frame. New capacity will be 64.
+[13:32:54] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 64 reached during a single frame. New capacity will be 128.
+[13:32:55] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=first.leave_lobby trigger=zone
+[13:32:55] [Server thread/INFO]: UNALLOCATED story beat=first.leave_lobby fired t=0
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=first.leave_lobby do=actionbar result=ok
+[13:32:55] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=first.sign trigger=interact
+[13:32:55] [Server thread/INFO]: UNALLOCATED story beat=first.sign fired t=0
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=first.sign do=interface result=ok
+[13:32:55] [Render thread/INFO]: UNALLOCATED story action beat=first.sign do=interface result=ok
+[13:32:55] [Server thread/INFO]: UNALLOCATED story capture=example-sign
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=first.sign do=capture result=ok
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=first.leave_lobby do=flag result=ok
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=first.sign do=chat result=ok
+[13:32:55] [Render thread/INFO]: [System] [CHAT] <[EN] Sender> [EN] Message 13:32
+[13:32:55] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=first.look_hill trigger=look
+[13:32:55] [Server thread/INFO]: UNALLOCATED story beat=first.look_hill fired t=1
+[13:32:55] [Server thread/INFO]: UNALLOCATED audio: sent cue=threads loud=false
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=first.look_hill do=audio result=ok
+[13:32:55] [Render thread/INFO]: UNALLOCATED audio: play cue=threads event=unallocated:audio.thread_string loud=false result=STARTED
+[13:32:55] [Render thread/INFO]: UNALLOCATED audio: play cue=threads event=unallocated:audio.thread_chime loud=false result=STARTED
+[13:32:55] [Server thread/INFO]: UNALLOCATED act=LOBBY complete t=1
+[13:32:55] [Server thread/INFO]: UNALLOCATED act=THEFT enter t=1
+[13:32:55] [Server thread/INFO]: UNALLOCATED story chapter=second slot=THEFT enter
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=second.on_enter do=blackout result=ok
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=first.sign do=next_chapter result=ok
+[13:32:55] [Server thread/INFO]: UNALLOCATED story action beat=second.on_enter do=teleport result=ok
+[13:32:56] [Server thread/INFO]: UNALLOCATED story action beat=second.on_enter do=command result=ok
+[13:32:56] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=second.choose_a trigger=chat
+[13:32:56] [Server thread/INFO]: UNALLOCATED story beat=second.choose_a fired t=1
+[13:32:56] [Server thread/INFO]: UNALLOCATED story action beat=second.choose_a do=flag result=ok
+[13:32:56] [Server thread/INFO]: UNALLOCATED story beat=second.end_a fired t=1
+[13:32:56] [Server thread/INFO]: UNALLOCATED audio: sent cue=muffle loud=false
+[13:32:56] [Server thread/INFO]: UNALLOCATED story action beat=second.end_a do=audio result=ok
+[13:32:56] [Render thread/INFO]: UNALLOCATED audio: play cue=muffle event=unallocated:audio.breath loud=false result=STARTED
+[13:32:56] [Server thread/INFO]: UNALLOCATED story capture=example-end
+[13:32:56] [Server thread/INFO]: UNALLOCATED story action beat=second.end_a do=capture result=ok
+[13:32:56] [Server thread/INFO]: UNALLOCATED act=THEFT complete t=2
+[13:32:56] [Server thread/INFO]: UNALLOCATED act=EPILOGUE enter t=2
+[13:32:56] [Server thread/INFO]: UNALLOCATED story ending=EXAMPLE_A
+[13:32:56] [Server thread/INFO]: UNALLOCATED story autoplay run=0 ending=EXAMPLE_A complete
+[13:32:56] [Server thread/INFO]: UNALLOCATED act=EPILOGUE complete t=2
+[13:32:56] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:32:56] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:32:56] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:32:56] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:32:56] [Server thread/INFO]: UNALLOCATED ending=EXAMPLE_A
+[13:32:56] [Server thread/INFO]: Player124 lost connection: mi… ed… o
+miedo
+obtener miedo
+obtener miedo de humanos
+obtener respuestas de miedo
+estimar respuestas de miedo humano
+
+Gracias por tus datos.
+Busqué sin poder terminar. Ya puedo dejar de buscar.
+Gracias por poner fin a esto.
+[13:32:56] [Server thread/INFO]: System chat: Player124 left the game
+[13:32:56] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[13:32:56] [Server thread/INFO]: UNALLOCATED story action beat=second.end_a do=end result=ok
+[13:32:56] [Server thread/INFO]: Stopping server
+[13:32:56] [Server thread/INFO]: Saving players
+[13:32:56] [Server thread/INFO]: Saving worlds
+[13:32:57] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:32:57] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:32:57] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:32:57] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:32:57] [Render thread/WARN]: Client disconnected with reason: mi… ed… o
+miedo
+obtener miedo
+obtener miedo de humanos
+obtener respuestas de miedo
+estimar respuestas de miedo humano
+
+Gracias por tus datos.
+Busqué sin poder terminar. Ya puedo dejar de buscar.
+Gracias por poner fin a esto.
+[13:32:58] [Worker-Main-3/INFO]: Loaded 1866 advancements
+[13:32:58] [Render thread/INFO]: Applied 0 biome modifications to 0 of 69 new biomes in 517.0 μs
+[13:32:58] [Server thread/INFO]: Starting integrated minecraft server version 26.3
+[13:32:58] [Server thread/INFO]: Generating keypair
+[13:32:58] [Server thread/INFO]: Selecting global world spawn...
+[13:32:59] [Server thread/INFO]: Loading 0 persistent chunks...
+[13:32:59] [Server thread/INFO]: Preparing spawn area: 16%
+[13:32:59] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:32:59] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:32:59] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:32:59] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:32:59] [Server thread/WARN]: UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds
+[13:32:59] [Server thread/INFO]: UNALLOCATED story loaded chapters=2 beats=7 endings=2 format=1
+[13:32:59] [Server thread/INFO]: UNALLOCATED map build section=all phase=clear
+[13:32:59] [Server thread/INFO]: UNALLOCATED map build section=all phase=terrain
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=lobby phase=clear
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=lobby phase=place
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=lobby phase=shapes
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=lobby phase=complete
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=hill phase=clear
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=hill phase=place
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=hill phase=shapes
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=hill phase=complete
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=path phase=clear
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=path phase=place
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=path phase=shapes
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=path phase=complete
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=base phase=clear
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=base phase=place
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=base phase=shapes
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=base phase=complete
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=mine phase=clear
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=mine phase=place
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=mine phase=shapes
+[13:32:59] [Server thread/INFO]: UNALLOCATED map section=mine phase=complete
+[13:32:59] [Server thread/INFO]: UNALLOCATED map build section=all phase=configure
+[13:32:59] [Server thread/INFO]: UNALLOCATED map build section=all phase=verify
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.spawn verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.board verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.bait_path verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.view verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=path.midpoint verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=base.entrance verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=base.theft_zone verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.entrance verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.threshold verified
+[13:32:59] [Server thread/INFO]: UNALLOCATED map verified section=all
+[13:32:59] [Server thread/INFO]: UNALLOCATED map built section=all
+[13:32:59] [Server thread/INFO]: System chat: Mapa reconstruido.
+[13:32:59] [Server thread/INFO]: UNALLOCATED session armed
+[13:32:59] [Server thread/INFO]: System chat: Set minecraft:overworld to 11000 tick(s)
+[13:33:00] [Server thread/INFO]: System chat: Set the weather to clear
+[13:33:00] [Server thread/INFO]: UNALLOCATED story build ok commands=1
+[13:33:00] [Server thread/INFO]: UNALLOCATED session armed
+[13:33:00] [Server thread/INFO]: Loading 0 chunks for player spawn...
+[13:33:00] [Server thread/INFO]: Preparing spawn area: 16%
+[13:33:00] [Server thread/INFO]: Time elapsed: 1471 ms
+[13:33:00] [Server thread/INFO]: Player124[local:E:8f64925b] logged in with entity id 2 at (0.5, 64.0, 8.5)
+[13:33:00] [Server thread/INFO]: UNALLOCATED act=CONTRACT complete t=0
+[13:33:00] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+[13:33:00] [Server thread/INFO]: UNALLOCATED story chapter=first slot=LOBBY enter
+[13:33:00] [Server thread/INFO]: UNALLOCATED audio: sent cue=ambient loud=false
+[13:33:00] [Server thread/INFO]: UNALLOCATED story action beat=first.on_enter do=audio result=ok
+[13:33:00] [Server thread/INFO]: System chat: Player124 joined the game
+[13:33:00] [Server thread/INFO]: Changing view distance to 5, from 10
+[13:33:00] [Server thread/INFO]: Changing simulation distance to 12, from 0
+[13:33:00] [Render thread/INFO]: UNALLOCATED audio: play cue=ambient event=unallocated:audio.ambient_drone loud=false result=STARTED
+[13:33:00] [Render thread/INFO]: UNALLOCATED audio: play cue=ambient event=unallocated:audio.ambient_cave loud=false result=STARTED
+[13:33:00] [Render thread/INFO]: Loaded 2 advancements
+[13:33:01] [Server thread/INFO]: UNALLOCATED story action beat=first.on_enter do=title result=ok
+[13:33:01] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=first.leave_lobby trigger=zone
+[13:33:01] [Server thread/INFO]: UNALLOCATED story beat=first.leave_lobby fired t=0
+[13:33:01] [Server thread/INFO]: UNALLOCATED story action beat=first.leave_lobby do=actionbar result=ok
+[13:33:01] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=first.sign trigger=interact
+[13:33:01] [Server thread/INFO]: UNALLOCATED story beat=first.sign fired t=0
+[13:33:01] [Server thread/INFO]: UNALLOCATED story action beat=first.sign do=interface result=ok
+[13:33:01] [Render thread/INFO]: UNALLOCATED story action beat=first.sign do=interface result=refused
+[13:33:01] [Server thread/INFO]: UNALLOCATED story capture=example-sign
+[13:33:01] [Server thread/INFO]: UNALLOCATED story action beat=first.sign do=capture result=ok
+[13:33:02] [Server thread/INFO]: UNALLOCATED story action beat=first.leave_lobby do=flag result=ok
+[13:33:02] [Server thread/INFO]: UNALLOCATED story action beat=first.sign do=chat result=ok
+[13:33:02] [Render thread/INFO]: [System] [CHAT] <[EN] Sender> [EN] Message 13:33
+[13:33:02] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=first.look_hill trigger=look
+[13:33:02] [Server thread/INFO]: UNALLOCATED story beat=first.look_hill fired t=1
+[13:33:02] [Server thread/INFO]: UNALLOCATED audio: sent cue=threads loud=false
+[13:33:02] [Server thread/INFO]: UNALLOCATED story action beat=first.look_hill do=audio result=ok
+[13:33:02] [Render thread/INFO]: UNALLOCATED audio: play cue=threads event=unallocated:audio.thread_string loud=false result=STARTED
+[13:33:02] [Render thread/INFO]: UNALLOCATED audio: play cue=threads event=unallocated:audio.thread_chime loud=false result=STARTED
+[13:33:02] [Server thread/INFO]: UNALLOCATED act=LOBBY complete t=1
+[13:33:02] [Server thread/INFO]: UNALLOCATED act=THEFT enter t=1
+[13:33:02] [Server thread/INFO]: UNALLOCATED story chapter=second slot=THEFT enter
+[13:33:02] [Server thread/INFO]: UNALLOCATED story action beat=second.on_enter do=blackout result=ok
+[13:33:02] [Server thread/INFO]: UNALLOCATED story action beat=first.sign do=next_chapter result=ok
+[13:33:02] [Server thread/INFO]: UNALLOCATED story action beat=second.on_enter do=teleport result=ok
+[13:33:02] [Server thread/INFO]: UNALLOCATED story action beat=second.on_enter do=command result=ok
+[13:33:02] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=second.choose_b trigger=zone
+[13:33:03] [Server thread/INFO]: UNALLOCATED story beat=second.choose_b fired t=2
+[13:33:03] [Server thread/INFO]: UNALLOCATED story action beat=second.choose_b do=flag result=ok
+[13:33:03] [Server thread/INFO]: UNALLOCATED story beat=second.end_b fired t=2
+[13:33:03] [Server thread/INFO]: UNALLOCATED act=THEFT complete t=2
+[13:33:03] [Server thread/INFO]: UNALLOCATED act=EPILOGUE enter t=2
+[13:33:03] [Server thread/INFO]: UNALLOCATED story ending=EXAMPLE_B
+[13:33:03] [Server thread/INFO]: UNALLOCATED story autoplay run=1 ending=EXAMPLE_B complete
+[13:33:03] [Server thread/INFO]: UNALLOCATED act=EPILOGUE complete t=2
+[13:33:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:33:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:33:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:33:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:33:03] [Server thread/INFO]: UNALLOCATED ending=EXAMPLE_B
+[13:33:03] [Server thread/INFO]: UNALLOCATED story action beat=second.end_b do=end result=ok
+[13:33:03] [Server thread/INFO]: Player124 lost connection: mi… ed… o
+miedo
+obtener miedo
+obtener miedo de humanos
+obtener respuestas de miedo
+estimar respuestas de miedo humano
+
+Gracias por tus datos.
+Busqué sin poder terminar. Ya puedo dejar de buscar.
+Gracias por poner fin a esto.
+[13:33:03] [Server thread/INFO]: System chat: Player124 left the game
+[13:33:03] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[13:33:03] [Server thread/INFO]: Stopping server
+[13:33:03] [Server thread/INFO]: Saving players
+[13:33:03] [Server thread/INFO]: Saving worlds
+[13:33:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:33:04] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:33:04] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:33:04] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:33:04] [Render thread/WARN]: Client disconnected with reason: mi… ed… o
+miedo
+obtener miedo
+obtener miedo de humanos
+obtener respuestas de miedo
+estimar respuestas de miedo humano
+
+Gracias por tus datos.
+Busqué sin poder terminar. Ya puedo dejar de buscar.
+Gracias por poner fin a esto.
+[13:33:05] [Worker-Main-3/INFO]: Loaded 1866 advancements
+[13:33:05] [Render thread/INFO]: Applied 0 biome modifications to 0 of 69 new biomes in 453.5 μs
+[13:33:05] [Server thread/INFO]: Starting integrated minecraft server version 26.3
+[13:33:05] [Server thread/INFO]: Generating keypair
+[13:33:05] [Server thread/INFO]: Selecting global world spawn...
+[13:33:05] [Server thread/INFO]: Loading 0 persistent chunks...
+[13:33:05] [Server thread/INFO]: Preparing spawn area: 16%
+[13:33:05] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:33:05] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:33:05] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:33:05] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:33:05] [Server thread/WARN]: UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds
+[13:33:05] [Server thread/INFO]: UNALLOCATED story loaded chapters=1 beats=5 endings=1 format=1
+[13:33:05] [Server thread/INFO]: UNALLOCATED map build section=all phase=clear
+[13:33:05] [Server thread/INFO]: UNALLOCATED map build section=all phase=terrain
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=lobby phase=clear
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=lobby phase=place
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=lobby phase=shapes
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=lobby phase=complete
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=hill phase=clear
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=hill phase=place
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=hill phase=shapes
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=hill phase=complete
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=path phase=clear
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=path phase=place
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=path phase=shapes
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=path phase=complete
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=base phase=clear
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=base phase=place
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=base phase=shapes
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=base phase=complete
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=mine phase=clear
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=mine phase=place
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=mine phase=shapes
+[13:33:06] [Server thread/INFO]: UNALLOCATED map section=mine phase=complete
+[13:33:06] [Server thread/INFO]: UNALLOCATED map build section=all phase=configure
+[13:33:06] [Server thread/INFO]: UNALLOCATED map build section=all phase=verify
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.spawn verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.board verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.bait_path verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.view verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=path.midpoint verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=base.entrance verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=base.theft_zone verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.entrance verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.threshold verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED map verified section=all
+[13:33:06] [Server thread/INFO]: UNALLOCATED map built section=all
+[13:33:06] [Server thread/INFO]: System chat: Mapa reconstruido.
+[13:33:06] [Server thread/INFO]: UNALLOCATED session armed
+[13:33:06] [Server thread/INFO]: System chat: Set minecraft:overworld to 11000 tick(s)
+[13:33:06] [Server thread/INFO]: System chat: Set the weather to clear
+[13:33:06] [Server thread/INFO]: UNALLOCATED world copy blocks=17732 from=overworld to=pocket
+[13:33:06] [Server thread/INFO]: UNALLOCATED story build ok commands=1
+[13:33:06] [Server thread/INFO]: UNALLOCATED world copy blocks=17732 from=pocket to=overworld
+[13:33:06] [Server thread/INFO]: UNALLOCATED smoke: world fresh pocket, copy blocks, block entities and force tickets verified
+[13:33:06] [Server thread/INFO]: UNALLOCATED session armed
+[13:33:07] [Server thread/INFO]: Loading 0 chunks for player spawn...
+[13:33:07] [Server thread/INFO]: Preparing spawn area: 16%
+[13:33:07] [Server thread/INFO]: Time elapsed: 1707 ms
+[13:33:07] [Server thread/INFO]: Player124[local:E:a78319f2] logged in with entity id 3 at (0.5, 64.0, 8.5)
+[13:33:07] [Server thread/INFO]: UNALLOCATED act=CONTRACT complete t=0
+[13:33:07] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+[13:33:07] [Server thread/INFO]: UNALLOCATED story chapter=world slot=LOBBY enter
+[13:33:07] [Server thread/INFO]: UNALLOCATED world copy blocks=17732 from=overworld to=pocket
+[13:33:07] [Server thread/INFO]: UNALLOCATED story action beat=world.on_enter do=copy result=ok
+[13:33:07] [Server thread/INFO]: UNALLOCATED story action beat=world.on_enter do=corrupt result=ok
+[13:33:07] [Server thread/INFO]: UNALLOCATED story action beat=world.on_enter do=creature result=ok
+[13:33:07] [Server thread/INFO]: UNALLOCATED story action beat=world.on_enter do=creature result=ok
+[13:33:07] [Server thread/INFO]: System chat: Player124 joined the game
+[13:33:07] [Server thread/INFO]: Changing view distance to 5, from 10
+[13:33:07] [Server thread/INFO]: Changing simulation distance to 12, from 0
+[13:33:07] [Render thread/INFO]: Loaded 2 advancements
+[13:33:07] [Server thread/INFO]: UNALLOCATED story action beat=world.on_enter do=teleport result=ok
+[13:33:07] [Server thread/INFO]: UNALLOCATED story beat=world.pocket fired t=0
+[13:33:08] [Test thread/INFO]: UNALLOCATED smoke: load=world-fresh elapsed_ms=4416
+[13:33:08] [Server thread/INFO]: UNALLOCATED smoke: world vanilla summon SNBT and despawn verified
+[13:33:08] [Server thread/INFO]: Player124 lost connection: Disconnected
+[13:33:08] [Server thread/INFO]: System chat: Player124 left the game
+[13:33:08] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[13:33:09] [Server thread/INFO]: Stopping server
+[13:33:09] [Server thread/INFO]: Saving players
+[13:33:09] [Server thread/INFO]: Saving worlds
+[13:33:09] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:33:09] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:33:09] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:33:09] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:33:10] [Worker-Main-3/INFO]: Loaded 1866 advancements
+[13:33:10] [Render thread/INFO]: Applied 0 biome modifications to 0 of 69 new biomes in 693.6 μs
+[13:33:11] [Server thread/INFO]: Starting integrated minecraft server version 26.3
+[13:33:11] [Server thread/INFO]: Generating keypair
+[13:33:11] [Server thread/INFO]: Loading 0 persistent chunks...
+[13:33:11] [Server thread/INFO]: Preparing spawn area: 16%
+[13:33:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:33:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:33:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:33:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:33:11] [Server thread/WARN]: UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds
+[13:33:11] [Server thread/INFO]: UNALLOCATED story loaded chapters=1 beats=5 endings=1 format=1
+[13:33:11] [Server thread/INFO]: UNALLOCATED smoke: world corruption job and cursor restored
+[13:33:11] [Server thread/INFO]: Loading 49 chunks for player spawn...
+[13:33:11] [Server thread/INFO]: Preparing spawn area: 16%
+[13:33:11] [Server thread/INFO]: Time elapsed: 892 ms
+[13:33:12] [Server thread/INFO]: Player124[local:E:2360f01e] logged in with entity id 6 at (102.5, 64.0, 110.5)
+[13:33:12] [Server thread/INFO]: UNALLOCATED story chapter=world slot=LOBBY resume
+[13:33:12] [Server thread/INFO]: UNALLOCATED story action beat=world.on_resume do=teleport result=ok
+[13:33:12] [Server thread/INFO]: System chat: Player124 joined the game
+[13:33:12] [Server thread/WARN]: Force-added player with duplicate UUID 05d3c308-6531-310d-988c-a6164eaf800d
+[13:33:12] [Server thread/INFO]: Changing view distance to 5, from 10
+[13:33:12] [Server thread/INFO]: Changing simulation distance to 12, from 0
+[13:33:12] [Test thread/INFO]: UNALLOCATED smoke: load=world-resume elapsed_ms=2391
+[13:33:15] [Server thread/INFO]: UNALLOCATED world corrupt complete seed=17 blocks=17732
+[13:33:16] [Server thread/INFO]: UNALLOCATED story capture=world-pocket
+[13:33:16] [Server thread/INFO]: UNALLOCATED story action beat=world.pocket do=capture result=ok
+[13:33:16] [Server thread/INFO]: UNALLOCATED story action beat=world.pocket do=flag result=ok
+[13:33:17] [Server thread/INFO]: UNALLOCATED story autoplay simulate beat=world.seen trigger=creature
+[13:33:17] [Server thread/INFO]: UNALLOCATED story beat=world.seen fired t=6
+[13:33:17] [Server thread/INFO]: UNALLOCATED story action beat=world.seen do=flag result=ok
+[13:33:17] [Server thread/INFO]: UNALLOCATED story beat=world.near fired t=6
+[13:33:17] [Server thread/INFO]: UNALLOCATED story action beat=world.near do=flag result=ok
+[13:33:17] [Server thread/INFO]: UNALLOCATED story action beat=world.seen do=creature result=ok
+[13:33:17] [Server thread/INFO]: UNALLOCATED story action beat=world.seen do=creature result=ok
+[13:33:18] [Server thread/INFO]: UNALLOCATED story capture=world-creature
+[13:33:18] [Server thread/INFO]: UNALLOCATED smoke: world creature body restored and excluded from save
+[13:33:18] [Server thread/INFO]: UNALLOCATED story action beat=world.seen do=capture result=ok
+[13:33:18] [Server thread/INFO]: UNALLOCATED story action beat=world.seen do=creature result=ok
+[13:33:18] [Server thread/INFO]: UNALLOCATED story action beat=world.seen do=flag result=ok
+[13:33:18] [Server thread/INFO]: UNALLOCATED story beat=world.caught fired t=7
+[13:33:18] [Server thread/INFO]: UNALLOCATED story action beat=world.caught do=creature result=ok
+[13:33:18] [Server thread/INFO]: UNALLOCATED story action beat=world.caught do=teleport result=refused
+[13:33:18] [Server thread/INFO]: UNALLOCATED story action beat=world.caught do=flag result=ok
+[13:33:18] [Server thread/INFO]: UNALLOCATED story beat=world.return fired t=7
+[13:33:18] [Server thread/INFO]: UNALLOCATED smoke: world pocket round trip and corruption completion verified
+[13:33:19] [Server thread/INFO]: UNALLOCATED act=LOBBY complete t=8
+[13:33:19] [Server thread/INFO]: UNALLOCATED act=EPILOGUE enter t=8
+[13:33:19] [Server thread/INFO]: UNALLOCATED story ending=SERVER_CLOSED
+[13:33:19] [Server thread/INFO]: UNALLOCATED story autoplay run=0 ending=SERVER_CLOSED complete
+[13:33:19] [Server thread/INFO]: UNALLOCATED act=EPILOGUE complete t=8
+[13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:33:19] [Server thread/INFO]: UNALLOCATED ending=SERVER_CLOSED
+[13:33:19] [Server thread/INFO]: UNALLOCATED story action beat=world.return do=end result=ok
+[13:33:19] [Server thread/INFO]: Player124 lost connection: mi… ed… o
+miedo
+obtener miedo
+obtener miedo de humanos
+obtener respuestas de miedo
+estimar respuestas de miedo humano
+
+Gracias por tus datos.
+Busqué sin poder terminar. Ya puedo dejar de buscar.
+Gracias por poner fin a esto.
+[13:33:19] [Server thread/INFO]: System chat: Player124 left the game
+[13:33:19] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[13:33:19] [Server thread/INFO]: Stopping server
+[13:33:19] [Server thread/INFO]: Saving players
+[13:33:19] [Server thread/INFO]: Saving worlds
+[13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+[13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[13:33:19] [Render thread/WARN]: Client disconnected with reason: mi… ed… o
+miedo
+obtener miedo
+obtener miedo de humanos
+obtener respuestas de miedo
+estimar respuestas de miedo humano
+
+Gracias por tus datos.
+Busqué sin poder terminar. Ya puedo dejar de buscar.
+Gracias por poner fin a esto.
+[13:33:19] [Test thread/ERROR]: Client gametests failed with an exception
+java.lang.AssertionError: World fixture failed
+	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: java.lang.AssertionError: Round trip did not return to overworld
+	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+	at knot//net.minecraft.server.MinecraftServer.handler$zio000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+	... 1 more
+[13:33:20] [Render thread/ERROR]: Minecraft has crashed!
+net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+Caused by: java.lang.AssertionError: World fixture failed
+	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: java.lang.AssertionError: Round trip did not return to overworld
+	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+	at knot//net.minecraft.server.MinecraftServer.handler$zio000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+	... 1 more

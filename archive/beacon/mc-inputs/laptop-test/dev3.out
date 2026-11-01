@@ -1,0 +1,59 @@
+== copying release files to a fresh laptop run directory ~/unallocated-cleantest/dev3
+== installing harness tools
+== running stage 'all' on the laptop (foreground)
+[02:10:32Z] page says: Minecraft=26.3 Loader>=0.20.1 installer=1.1.2 java=25 jar=unallocated-0.2.0.jar
+[02:10:32Z] SHA-256 matches the page (45dfa7afe5bb34701b4f1bf8391b2bef7d0f78e7eda0bd6dc89abae8a715a29c)
+openjdk version "25.0.5" 2026-10-20 LTS
+[02:10:32Z] running Fabric installer 1.1.2: client -mcversion 26.3 -loader 0.20.1 -dir /home/alexamaze/unallocated-cleantest/dev3/mc
+  installer: Exception in thread "main" java.lang.RuntimeException: Failed to install Client
+  installer: 	at net.fabricmc.installer.Main.main(Main.java:91)
+  installer: Caused by: java.io.FileNotFoundException: Could not find a valid launcher profile .json
+  installer: 	at net.fabricmc.installer.client.ClientHandler.installCli(ClientHandler.java:213)
+  installer: 	at net.fabricmc.installer.Main.main(Main.java:89)
+[02:10:35Z] installer refused (no launcher_profiles.json: the real launcher writes it in page step 1); creating the minimal file and retrying
+[02:10:37Z] installer wrote profile version fabric-loader-0.20.1-26.3
+[launch 02:10:37Z] 26.3.json not present; fetching from Mojang manifest
+[launch 02:10:40Z] 5220 libraries+assets to verify/download
+[launch 02:10:48Z] downloaded 66 files in 8s
+total 1368
+drwxr-xr-x 2 alexamaze alexamaze    4096 Oct 28 21:10 .
+drwxr-xr-x 5 alexamaze alexamaze    4096 Oct 28 21:10 ..
+-rw-r--r-- 1 alexamaze alexamaze 1389292 Oct 28 21:10 unallocated-0.2.0.jar
+[02:10:50Z] starting client (Xvfb :77 854x480, software GL, OpenAL null device)
+[02:11:13Z] client initialized after 23s
+[02:12:21Z] frame stable
+[02:12:22Z] screenshot 00-first-run-welcome-1.png (mean=70.3 hash=8123cf2161f1ef3f928eb472ffd0231a)
+[02:12:23Z] dismissed Minecraft first-run welcome screen (1)
+[02:12:27Z] screenshot 01-contract.png (mean=41.0 hash=ab0bb60f2ba07f6a7f007e83b7d08f42)
+[02:12:29Z] screenshot 01b-contract-typed.png (mean=41.3 hash=975c6e3ac8a059a223ca80019057fc99)
+[02:12:30Z] clicked accept at 427,446
+[02:12:36Z] screenshot 02-title-button.png (mean=90.4 hash=51404fa49d7c73379cf7fd512c2b6fcd)
+[02:12:37Z] clicked UNALLOCATED at 427,188
+[02:12:45Z] chapter entered after 8s from click
+[02:12:50Z] screenshot 04-in-world.png (mean=120.2 hash=ed1166d7cb8201bf4de3806ece7b500b)
+[02:13:50Z] screenshot 05-in-world-60s.png (mean=131.0 hash=8d196372110ac0d66f7bee83ce487ebd)
+[02:13:50Z] game still running after 60 s in-world
+close sent to 2 window(s)
+game exit status: 0
+PASS  log: initialized (common)
+PASS  log: initialized (client)
+PASS  log: story loaded
+PASS  log: chapter entry slot=LOBBY
+PASS  no 'story invalid'
+PASS  no crash report
+PASS  game ran 60 s in-world
+PASS  clean quit
+page claim OK: unallocated/contract.properties exists
+saves/ has: UNALLOCATED
+ERROR line (x count):       1 [21:11:13] [Download-2/ERROR]: Failed to fetch user properties
+ERROR line (x count):       1 [21:11:13] [Render thread/ERROR]: Failed to create backend OpenGL
+ERROR line (x count):       1 [21:11:15] [Download-2/ERROR]: Failed to fetch Realms feature flags
+ERROR line (x count):       1 [21:11:15] [Render thread/ERROR]: Error while loading the narrator
+ERROR line (x count):       1 [21:12:24] [Render thread/ERROR]: Error while loading the narrator
+ERROR line (x count):       1 [21:12:30] [Download-3/ERROR]: Couldn't connect to realms
+mod warning/error: [21:12:42] [Server thread/WARN]: UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds
+[02:13:57Z] VERDICT: PASS
+== elapsed 206s; copying evidence back
+wrote /home/alexamaze/Workspaces/mc-inputs/laptop-test/results/dev3/RESULT.md
+== VERDICT: PASS  (see /home/alexamaze/Workspaces/mc-inputs/laptop-test/results/dev3/RESULT.md)
+exit=0

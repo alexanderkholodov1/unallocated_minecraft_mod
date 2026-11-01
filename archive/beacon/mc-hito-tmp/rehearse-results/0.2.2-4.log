@@ -1,0 +1,616 @@
+remote: 
+remote: Create a pull request for 'rehearsal/w-01930f8' on GitHub by visiting:        
+remote:      https://github.com/alexanderkholodov1/unallocated_minecraft_mod/pull/new/rehearsal/w-01930f8        
+remote: 
+rehearse: alexanderkholodov1/unallocated_minecraft_mod 01930f8 on rehearsal/w-01930f8
+rehearse: run 40642414776
+{"sha":"01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f","api":"none","status":"failure"}
+{"sha":"01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f","api":"0.153.1+26.3","status":"cancelled"}
+{"sha":"01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f","api":"0.161.0+26.3","status":"failure"}
+{"sha":"01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f","api":"0.165.0+26.3","status":"failure"}
+rehearse: WARNING run conclusion is 'cancelled' (a rehearsal must never be red; check the workflow's rehearsal mode)
+rehearse: FAIL 01930f8 (0/4 jobs passed); logs: gh run view 40642414776 -R alexanderkholodov1/unallocated_minecraft_mod --log
+=== job 122663358933
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	.tmp/smoke-downloads
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2952092Z   key: minecraft-v1-Linux-X64-977fd8de351f3272e642f202418dba70c38324c3b05d96a0b5fba708839a21b0
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2952642Z   enableCrossOsArchive: false
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2952905Z   fail-on-cache-miss: false
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2953146Z   lookup-only: false
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2953358Z   save-always: false
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2953565Z env:
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2953860Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2954351Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2954768Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2955095Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2955387Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2955683Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2956172Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2956646Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2956974Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.2957258Z ##[endgroup]
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.4130958Z (node:2230) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.4132883Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.153.1+26.3)	Cache Loom project and smoke server downloads	2026-10-28T06:12:21.6106460Z Cache not found for input keys: minecraft-v1-Linux-X64-977fd8de351f3272e642f202418dba70c38324c3b05d96a0b5fba708839a21b0
+build (0.153.1+26.3)	Build mod	﻿2026-10-28T06:12:21.6253078Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.153.1+26.3
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6254018Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.153.1+26.3[0m
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6262705Z shell: /usr/bin/bash -e {0}
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6262986Z env:
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6263304Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6263833Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6264272Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6264586Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6264876Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6265168Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6265606Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6266092Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6266459Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:21.6266947Z ##[endgroup]
+build (0.153.1+26.3)	Build mod	2026-10-28T06:12:23.4111278Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.153.1+26.3)	Build mod	2026-10-28T06:18:35.4133732Z ##[error]The operation was canceled.
+build (0.153.1+26.3)	Upload smoke diagnostics	﻿2026-10-28T06:18:35.4253652Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4254084Z with:
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4254435Z   name: smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-0.153.1+26.3
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4254882Z   include-hidden-files: true
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4256019Z   path: build/reports/included-jars.json
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/*-console.log
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs/**
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs-first/**
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/crash-reports/**
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/hs_err_pid*.log
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/screenshots/**
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/client/unallocated/contract.properties
+build (0.153.1+26.3)	Upload smoke diagnostics	hs_err_pid*.log
+build (0.153.1+26.3)	Upload smoke diagnostics	build/test-results/**
+build (0.153.1+26.3)	Upload smoke diagnostics	build/reports/tests/**
+build (0.153.1+26.3)	Upload smoke diagnostics	
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4257178Z   if-no-files-found: warn
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4257408Z   retention-days: 7
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4257618Z   compression-level: 6
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4257849Z   overwrite: false
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4258043Z env:
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4258337Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4258810Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4259256Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4259872Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4260228Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4260525Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4260959Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4261435Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4261751Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.4262018Z ##[endgroup]
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.6670943Z (node:2449) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.6694878Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.153.1+26.3)	Upload smoke diagnostics	2026-10-28T06:18:35.6843978Z ##[warning]No files were found with the provided path: build/reports/included-jars.json
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/*-console.log
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs/**
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs-first/**
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/crash-reports/**
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/hs_err_pid*.log
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/**/screenshots/**
+build (0.153.1+26.3)	Upload smoke diagnostics	.tmp/smoke/client/unallocated/contract.properties
+build (0.153.1+26.3)	Upload smoke diagnostics	hs_err_pid*.log
+build (0.153.1+26.3)	Upload smoke diagnostics	build/test-results/**
+build (0.153.1+26.3)	Upload smoke diagnostics	build/reports/tests/**. No artifacts will be uploaded.
+build (0.153.1+26.3)	Record rehearsal verdict	﻿2026-10-28T06:18:35.7291815Z ##[group]Run mkdir -p .tmp/verdict
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7292433Z [36;1mmkdir -p .tmp/verdict[0m
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7293349Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f" "0.153.1+26.3" "cancelled" \[0m
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7294325Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7294813Z [36;1mcat .tmp/verdict/verdict.json[0m
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7302774Z shell: /usr/bin/bash -e {0}
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7303209Z env:
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7303727Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7304606Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7305355Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7305890Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7306395Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7306917Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7307707Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7308648Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7309205Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7336802Z ##[endgroup]
+build (0.153.1+26.3)	Record rehearsal verdict	2026-10-28T06:18:35.7454292Z {"sha":"01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f","api":"0.153.1+26.3","status":"cancelled"}
+build (0.153.1+26.3)	Upload rehearsal verdict	﻿2026-10-28T06:18:35.7533933Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7534910Z with:
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7535283Z   name: rehearsal-verdict-1
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7535737Z   include-hidden-files: true
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7536189Z   path: .tmp/verdict/verdict.json
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7536644Z   retention-days: 3
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7537024Z   if-no-files-found: warn
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7537430Z   compression-level: 6
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7537834Z   overwrite: false
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7538189Z env:
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7538694Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7539797Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7540524Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7541037Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7541523Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7542016Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7542767Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7543594Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7544137Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.7544582Z ##[endgroup]
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.9731589Z (node:2468) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.9741757Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.9902427Z With the provided path, there will be 1 file uploaded
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.9960096Z Artifact name is valid!
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:35.9980583Z Root directory input is valid!
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.2920907Z Beginning upload of artifact content to blob storage
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.3284689Z (node:2468) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.3788740Z Uploaded bytes 224
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.4045415Z Finished uploading artifact content to blob storage!
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.4050722Z SHA256 digest of uploaded artifact zip is c8f43adbeb7c4049af92eb4055d4fb4fdccad38522ffdc18f0b5709e3d796f9f
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.4063465Z Finalizing artifact upload
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.8585380Z Artifact rehearsal-verdict-1.zip successfully finalized. Artifact ID 12796720293
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.8587481Z Artifact rehearsal-verdict-1 has been successfully uploaded! Final size is 224 bytes. Artifact ID is 12796720293
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:18:36.8610851Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40642414776/artifacts/12796720293
+build (0.153.1+26.3)	Post Set up Java 25	﻿2026-10-28T06:18:36.8821306Z Post job cleanup.
+build (0.153.1+26.3)	Post Set up Java 25	2026-10-28T06:18:37.0301211Z (node:2480) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.153.1+26.3)	Post Set up Java 25	2026-10-28T06:18:37.0302648Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.153.1+26.3)	Post Check out source	﻿2026-10-28T06:18:37.0583726Z Post job cleanup.
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.1857871Z [command]/usr/bin/git version
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.1990333Z git version 2.56.0
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.2107811Z Temporarily overriding HOME='/home/runner/work/_temp/a96ebc1e-350d-4274-b6fa-4aaed3d20ebd' before making global git config changes
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.2140302Z Adding repository directory to the temporary git global config as a safe directory
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.2160695Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.2231715Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.2400867Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.2932209Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:18:37.3081597Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.153.1+26.3)	Complete job	﻿2026-10-28T06:18:37.3580120Z Cleaning up orphan processes
+build (0.153.1+26.3)	Complete job	2026-10-28T06:18:37.3787616Z Terminate orphan process: pid (2244) (java)
+build (0.153.1+26.3)	Complete job	2026-10-28T06:18:37.3834119Z Terminate orphan process: pid (2278) (java)
+build (0.153.1+26.3)	Complete job	2026-10-28T06:18:37.4002185Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+=== job 122663359162
+build (none)	Build mod	2026-10-28T06:13:30.9210328Z * Try:
+build (none)	Build mod	2026-10-28T06:13:30.9210720Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (none)	Build mod	2026-10-28T06:13:30.9211281Z 
+build (none)	Build mod	2026-10-28T06:13:30.9211291Z 
+build (none)	Build mod	2026-10-28T06:13:30.9219704Z BUILD FAILED in 1m 12s
+build (none)	Build mod	2026-10-28T06:13:30.9221713Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (none)	Build mod	2026-10-28T06:13:30.9228350Z 13 actionable tasks: 13 executed
+build (none)	Build mod	2026-10-28T06:13:31.2979859Z ##[error]Process completed with exit code 1.
+build (none)	Upload smoke diagnostics	﻿2026-10-28T06:13:31.3074457Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3074713Z with:
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3074900Z   name: smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-none
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3075128Z   include-hidden-files: true
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3075738Z   path: build/reports/included-jars.json
+build (none)	Upload smoke diagnostics	.tmp/smoke/*-console.log
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/logs/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/logs-first/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/crash-reports/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/hs_err_pid*.log
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/screenshots/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/client/unallocated/contract.properties
+build (none)	Upload smoke diagnostics	hs_err_pid*.log
+build (none)	Upload smoke diagnostics	build/test-results/**
+build (none)	Upload smoke diagnostics	build/reports/tests/**
+build (none)	Upload smoke diagnostics	
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3076368Z   if-no-files-found: warn
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3076498Z   retention-days: 7
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3076622Z   compression-level: 6
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3076743Z   overwrite: false
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3076856Z env:
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3077022Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3077285Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3077716Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3077890Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3078055Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3078227Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3078478Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3078743Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3078924Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.3079073Z ##[endgroup]
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.4367020Z (node:2430) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.4367960Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.4599296Z With the provided path, there will be 42 files uploaded
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.4603062Z Artifact name is valid!
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.4603676Z Root directory input is valid!
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.8194835Z Beginning upload of artifact content to blob storage
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:31.8595675Z (node:2430) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:32.0981544Z Uploaded bytes 45837
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:32.1412832Z Finished uploading artifact content to blob storage!
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:32.1414976Z SHA256 digest of uploaded artifact zip is d3563ca82f1a6137b5ef55d61b89639dcd6f3968923f296ad0ac7ef7d6c23d49
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:32.1416866Z Finalizing artifact upload
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:32.6319976Z Artifact smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-none.zip successfully finalized. Artifact ID 12795889054
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:32.6321211Z Artifact smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-none has been successfully uploaded! Final size is 45837 bytes. Artifact ID is 12795889054
+build (none)	Upload smoke diagnostics	2026-10-28T06:13:32.6322198Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40642414776/artifacts/12795889054
+build (none)	Record rehearsal verdict	﻿2026-10-28T06:13:32.6400307Z ##[group]Run mkdir -p .tmp/verdict
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6400532Z [36;1mmkdir -p .tmp/verdict[0m
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6401165Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f" "none" "failure" \[0m
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6401511Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6401682Z [36;1mcat .tmp/verdict/verdict.json[0m
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6405975Z shell: /usr/bin/bash -e {0}
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6406121Z env:
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6406303Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6406583Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6406827Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6407013Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6407199Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6407371Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6407620Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6407930Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6408114Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6408268Z ##[endgroup]
+build (none)	Record rehearsal verdict	2026-10-28T06:13:32.6456534Z {"sha":"01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f","api":"none","status":"failure"}
+build (none)	Upload rehearsal verdict	﻿2026-10-28T06:13:32.6496416Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6496667Z with:
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6496794Z   name: rehearsal-verdict-0
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6496947Z   include-hidden-files: true
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6497104Z   path: .tmp/verdict/verdict.json
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6497254Z   retention-days: 3
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6497381Z   if-no-files-found: warn
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6497669Z   compression-level: 6
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6497800Z   overwrite: false
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6497921Z env:
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6498095Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6498370Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6498605Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6498785Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6498951Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6499120Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6499397Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6499668Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6499855Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.6500010Z ##[endgroup]
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.7808911Z (node:2445) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.7809936Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.7863415Z With the provided path, there will be 1 file uploaded
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.8048677Z Artifact name is valid!
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:32.8049622Z Root directory input is valid!
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.0937461Z Beginning upload of artifact content to blob storage
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.1076962Z (node:2445) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.2926587Z Uploaded bytes 216
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.3384454Z Finished uploading artifact content to blob storage!
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.3385508Z SHA256 digest of uploaded artifact zip is c97048d36cba40c2761d6394b709cbe5847e0e3192043e70375c451b33a9a321
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.3385989Z Finalizing artifact upload
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.8821755Z Artifact rehearsal-verdict-0.zip successfully finalized. Artifact ID 12796445650
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.8831777Z Artifact rehearsal-verdict-0 has been successfully uploaded! Final size is 216 bytes. Artifact ID is 12796445650
+build (none)	Upload rehearsal verdict	2026-10-28T06:13:33.8835034Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40642414776/artifacts/12796445650
+build (none)	Post Install Gradle and cache dependencies	﻿2026-10-28T06:13:33.9022835Z Post job cleanup.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.0952227Z In post-action step
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.0958969Z ##[group]Stopping Gradle daemons
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.0980833Z Stopping Gradle daemons for /usr/share/gradle-9.8.2
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.1019016Z [command]/usr/share/gradle-9.8.2/bin/gradle --stop
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.8588857Z Stopping Daemon(s)
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.8589849Z 1 Daemon stopped
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.8940396Z ##[endgroup]
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.8972669Z Not performing cache-cleanup due to build failure
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:34.8992075Z ##[group]Caching Gradle state
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.0557575Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.0744992Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.1403056Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.7935519Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.7944702Z Sent 87748 of 87748 (100.0%), 0.3 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.7946114Z Sent 133096 of 133096 (100.0%), 0.4 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.9939936Z Saved cache entry with key gradle-instrumented-jars-v1-6b8035503e4a508859afeb82d6c10d70 from /home/runner/.gradle/caches/jars-*/*/ in 955ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.3703413Z Sent 11361007 of 11361007 (100.0%), 20.3 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.6018881Z Saved cache entry with key gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14 from /home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/ in 1502ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.9521930Z Sent 46006272 of 97767933 (47.1%), 43.9 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.9568943Z Saved cache entry with key gradle-groovy-dsl-v1-d89bd31318f6cc95ee3175acfe67a5f7 from /home/runner/.gradle/caches/*/groovy-dsl/*/ in 1902ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:37.9517351Z Sent 97767933 of 97767933 (100.0%), 46.6 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:38.5279513Z Saved cache entry with key gradle-dependencies-v1-fca2d0fd67c428db239e5da767994ef5 from /home/runner/.gradle/caches/modules-*/files-*/*/*/*/* in 3522ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:38.6025202Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:40.3152416Z Sent 19580871 of 220907463 (8.9%), 18.7 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:40.9944178Z Sent 220907463 of 220907463 (100.0%), 125.4 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.2353909Z Saved cache entry with key gradle-home-v1|Linux-X64|build[466b54b410d7a3bddc3439bcbceeb060]-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 2642ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.2355496Z ##[endgroup]
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.2356185Z Generating Job Summary
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.2366746Z Completed post-action step
+build (none)	Post Set up Java 25	﻿2026-10-28T06:13:41.2576927Z Post job cleanup.
+build (none)	Post Set up Java 25	2026-10-28T06:13:41.3594357Z (node:2548) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Post Set up Java 25	2026-10-28T06:13:41.3595578Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Post Check out source	﻿2026-10-28T06:13:41.3821567Z Post job cleanup.
+build (none)	Post Check out source	2026-10-28T06:13:41.4702207Z [command]/usr/bin/git version
+build (none)	Post Check out source	2026-10-28T06:13:41.4812301Z git version 2.56.0
+build (none)	Post Check out source	2026-10-28T06:13:41.4892320Z Temporarily overriding HOME='/home/runner/work/_temp/06e4ba87-2e30-4dbf-a1f8-11c32957c232' before making global git config changes
+build (none)	Post Check out source	2026-10-28T06:13:41.4942785Z Adding repository directory to the temporary git global config as a safe directory
+build (none)	Post Check out source	2026-10-28T06:13:41.4951812Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (none)	Post Check out source	2026-10-28T06:13:41.5183988Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (none)	Post Check out source	2026-10-28T06:13:41.5264097Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (none)	Post Check out source	2026-10-28T06:13:41.5659840Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (none)	Post Check out source	2026-10-28T06:13:41.5706612Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (none)	Complete job	﻿2026-10-28T06:13:41.6065549Z Cleaning up orphan processes
+build (none)	Complete job	2026-10-28T06:13:41.6298243Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+=== job 122663359250
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9511181Z Execution failed for task ':test'.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9512062Z > There were failing tests. See the report at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/tests/test/index.html
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9512807Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9513303Z * Try:
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9513739Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9514323Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9514452Z BUILD FAILED in 1m 5s
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9514648Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9530696Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:31.9531660Z 13 actionable tasks: 13 executed
+build (0.165.0+26.3)	Build mod	2026-10-28T06:13:32.3356557Z ##[error]Process completed with exit code 1.
+build (0.165.0+26.3)	Upload smoke diagnostics	﻿2026-10-28T06:13:32.3460979Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3461314Z with:
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3461597Z   name: smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-0.165.0+26.3
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3461938Z   include-hidden-files: true
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3462804Z   path: build/reports/included-jars.json
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/*-console.log
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs-first/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/crash-reports/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/hs_err_pid*.log
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/screenshots/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/client/unallocated/contract.properties
+build (0.165.0+26.3)	Upload smoke diagnostics	hs_err_pid*.log
+build (0.165.0+26.3)	Upload smoke diagnostics	build/test-results/**
+build (0.165.0+26.3)	Upload smoke diagnostics	build/reports/tests/**
+build (0.165.0+26.3)	Upload smoke diagnostics	
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3463704Z   if-no-files-found: warn
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3463897Z   retention-days: 7
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3464079Z   compression-level: 6
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3464267Z   overwrite: false
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3464434Z env:
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3464677Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3465051Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3465412Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3465654Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3465891Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3466127Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3466467Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3466827Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3467091Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.3467300Z ##[endgroup]
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.4847660Z (node:2431) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.4848816Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.5099783Z With the provided path, there will be 42 files uploaded
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.5120773Z Artifact name is valid!
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.5123217Z Root directory input is valid!
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.8759642Z Beginning upload of artifact content to blob storage
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:32.9337511Z (node:2431) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:33.2530784Z Uploaded bytes 45755
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:33.3175844Z Finished uploading artifact content to blob storage!
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:33.3180451Z SHA256 digest of uploaded artifact zip is 36869a4251efe2e5dc289ffc9914ab94eeab97da5baa2dca75eaf839716a4370
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:33.3181623Z Finalizing artifact upload
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:33.8103125Z Artifact smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-0.165.0+26.3.zip successfully finalized. Artifact ID 12796415735
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:33.8104929Z Artifact smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-0.165.0+26.3 has been successfully uploaded! Final size is 45755 bytes. Artifact ID is 12796415735
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:33.8106758Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40642414776/artifacts/12796415735
+build (0.165.0+26.3)	Record rehearsal verdict	﻿2026-10-28T06:13:33.8205193Z ##[group]Run mkdir -p .tmp/verdict
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8205509Z [36;1mmkdir -p .tmp/verdict[0m
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8205922Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f" "0.165.0+26.3" "failure" \[0m
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8206532Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8206791Z [36;1mcat .tmp/verdict/verdict.json[0m
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8263045Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8263273Z env:
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8263531Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8263934Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8264270Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8264529Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8264771Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8265017Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8265380Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8265801Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8266062Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8266294Z ##[endgroup]
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:33.8362387Z {"sha":"01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f","api":"0.165.0+26.3","status":"failure"}
+build (0.165.0+26.3)	Upload rehearsal verdict	﻿2026-10-28T06:13:33.8408076Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8408406Z with:
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8408587Z   name: rehearsal-verdict-3
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8408810Z   include-hidden-files: true
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8409030Z   path: .tmp/verdict/verdict.json
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8409250Z   retention-days: 3
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8409445Z   if-no-files-found: warn
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8409642Z   compression-level: 6
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8410217Z   overwrite: false
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8410391Z env:
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8410637Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8411041Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8411372Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8411646Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8411887Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8412130Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8412513Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8412889Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8413147Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.8413364Z ##[endgroup]
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.9807918Z (node:2446) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.9809077Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.9870514Z With the provided path, there will be 1 file uploaded
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.9872384Z Artifact name is valid!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:33.9872947Z Root directory input is valid!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:34.3571857Z Beginning upload of artifact content to blob storage
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:34.3723573Z (node:2446) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:34.6038979Z Uploaded bytes 223
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:34.6677048Z Finished uploading artifact content to blob storage!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:34.6678286Z SHA256 digest of uploaded artifact zip is 04164de42e9840c43485a12f455c9223a718f179513140695c338194f45b0381
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:34.6680565Z Finalizing artifact upload
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:35.1482817Z Artifact rehearsal-verdict-3.zip successfully finalized. Artifact ID 12796128330
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:35.1483851Z Artifact rehearsal-verdict-3 has been successfully uploaded! Final size is 223 bytes. Artifact ID is 12796128330
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:35.1485121Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40642414776/artifacts/12796128330
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	﻿2026-10-28T06:13:35.1700284Z Post job cleanup.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.3760719Z In post-action step
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.3761759Z ##[group]Stopping Gradle daemons
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.3859062Z Stopping Gradle daemons for /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:35.3885803Z [command]/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle --stop
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.1740781Z Stopping Daemon(s)
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.1761136Z 1 Daemon stopped
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.1857607Z ##[endgroup]
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.2143277Z Not performing cache-cleanup due to build failure
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.2144571Z ##[group]Caching Gradle state
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.3644872Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.3989099Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.4872154Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.5816554Z Failed to save cache entry with path '/home/runner/.gradle/caches/jars-*/*/' and key: gradle-instrumented-jars-v1-6b8035503e4a508859afeb82d6c10d70: ReserveCacheError: Unable to reserve cache with key gradle-instrumented-jars-v1-6b8035503e4a508859afeb82d6c10d70, another job may be creating this cache.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.6113719Z Failed to save cache entry with path '/home/runner/.gradle/caches/*/groovy-dsl/*/' and key: gradle-groovy-dsl-v1-d89bd31318f6cc95ee3175acfe67a5f7: ReserveCacheError: Unable to reserve cache with key gradle-groovy-dsl-v1-d89bd31318f6cc95ee3175acfe67a5f7, another job may be creating this cache.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.6827839Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:36.9857030Z Failed to save cache entry with path '/home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/' and key: gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14: ReserveCacheError: Unable to reserve cache with key gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14, another job may be creating this cache.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:37.2335668Z Failed to save cache entry with path '/home/runner/.gradle/caches/modules-*/files-*/*/*/*/*' and key: gradle-dependencies-v1-fca2d0fd67c428db239e5da767994ef5: ReserveCacheError: Unable to reserve cache with key gradle-dependencies-v1-fca2d0fd67c428db239e5da767994ef5, another job may be creating this cache.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:37.3060925Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:39.1481055Z Sent 0 of 221132915 (0.0%), 0.0 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:40.1487013Z Sent 86915187 of 221132915 (39.3%), 41.4 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.1493920Z Sent 154024051 of 221132915 (69.7%), 48.9 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.3601565Z Sent 221132915 of 221132915 (100.0%), 65.6 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.6341137Z Saved cache entry with key gradle-home-v1|Linux-X64|build[60541f95834898db84b07f2d7cae7ab0]-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 4336ms
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.6350864Z ##[endgroup]
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.6351389Z Generating Job Summary
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:41.6362475Z Completed post-action step
+build (0.165.0+26.3)	Post Set up Java 25	﻿2026-10-28T06:13:41.6535984Z Post job cleanup.
+build (0.165.0+26.3)	Post Set up Java 25	2026-10-28T06:13:41.7639103Z (node:2549) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Post Set up Java 25	2026-10-28T06:13:41.7641101Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Post Check out source	﻿2026-10-28T06:13:41.7898433Z Post job cleanup.
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.8895272Z [command]/usr/bin/git version
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.8943405Z git version 2.55.0
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.9008251Z Temporarily overriding HOME='/home/runner/work/_temp/81ef6ce1-3455-417e-b469-49eae23831dd' before making global git config changes
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.9009518Z Adding repository directory to the temporary git global config as a safe directory
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.9010798Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.9086650Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.9142614Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.9466784Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:13:41.9516947Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.165.0+26.3)	Complete job	﻿2026-10-28T06:13:42.0004011Z Cleaning up orphan processes
+build (0.165.0+26.3)	Complete job	2026-10-28T06:13:42.0256281Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+=== job 122663359266
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0336529Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0339470Z FAILURE: Build failed with an exception.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0339972Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0340229Z * What went wrong:
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0340730Z Execution failed for task ':test'.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0342589Z > There were failing tests. See the report at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/tests/test/index.html
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0344391Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0344655Z * Try:
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0345382Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0346189Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0359324Z BUILD FAILED in 1m 18s
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.0359784Z 13 actionable tasks: 13 executed
+build (0.161.0+26.3)	Build mod	2026-10-28T06:13:45.4381009Z ##[error]Process completed with exit code 1.
+build (0.161.0+26.3)	Upload smoke diagnostics	﻿2026-10-28T06:13:45.4506636Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4507068Z with:
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4507425Z   name: smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-0.161.0+26.3
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4507874Z   include-hidden-files: true
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4509006Z   path: build/reports/included-jars.json
+build (0.161.0+26.3)	Upload smoke diagnostics	.tmp/smoke/*-console.log
+build (0.161.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs/**
+build (0.161.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs-first/**
+build (0.161.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/crash-reports/**
+build (0.161.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/hs_err_pid*.log
+build (0.161.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/screenshots/**
+build (0.161.0+26.3)	Upload smoke diagnostics	.tmp/smoke/client/unallocated/contract.properties
+build (0.161.0+26.3)	Upload smoke diagnostics	hs_err_pid*.log
+build (0.161.0+26.3)	Upload smoke diagnostics	build/test-results/**
+build (0.161.0+26.3)	Upload smoke diagnostics	build/reports/tests/**
+build (0.161.0+26.3)	Upload smoke diagnostics	
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4510191Z   if-no-files-found: warn
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4510425Z   retention-days: 7
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4510633Z   compression-level: 6
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4510850Z   overwrite: false
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4511049Z env:
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4511337Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4511820Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4512265Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4512567Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4512853Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4513143Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4513573Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4514044Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4514727Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.4514993Z ##[endgroup]
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.6292256Z (node:2531) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.6293909Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.7247611Z With the provided path, there will be 42 files uploaded
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.7249928Z Artifact name is valid!
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:45.7250731Z Root directory input is valid!
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:46.1265168Z Beginning upload of artifact content to blob storage
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:46.2240970Z (node:2531) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:46.5637983Z Uploaded bytes 45901
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:46.6321339Z Finished uploading artifact content to blob storage!
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:46.6322774Z SHA256 digest of uploaded artifact zip is 72e7baed0c39b998adce5e51c9025839d11d4cf8fb2b89cd1916140ac6e733d1
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:46.6324536Z Finalizing artifact upload
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:47.1244697Z Artifact smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-0.161.0+26.3.zip successfully finalized. Artifact ID 12796455636
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:47.1247161Z Artifact smoke-diagnostics-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f-0.161.0+26.3 has been successfully uploaded! Final size is 45901 bytes. Artifact ID is 12796455636
+build (0.161.0+26.3)	Upload smoke diagnostics	2026-10-28T06:13:47.1252176Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40642414776/artifacts/12796455636
+build (0.161.0+26.3)	Record rehearsal verdict	﻿2026-10-28T06:13:47.1393355Z ##[group]Run mkdir -p .tmp/verdict
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1393718Z [36;1mmkdir -p .tmp/verdict[0m
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1394569Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f" "0.161.0+26.3" "failure" \[0m
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1395346Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1395638Z [36;1mcat .tmp/verdict/verdict.json[0m
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1458389Z shell: /usr/bin/bash -e {0}
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1458644Z env:
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1458957Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1459485Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1459916Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1460230Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1460529Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1460833Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1461285Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1461814Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1462138Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1462414Z ##[endgroup]
+build (0.161.0+26.3)	Record rehearsal verdict	2026-10-28T06:13:47.1563541Z {"sha":"01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f","api":"0.161.0+26.3","status":"failure"}
+build (0.161.0+26.3)	Upload rehearsal verdict	﻿2026-10-28T06:13:47.1613594Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1614030Z with:
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1614727Z   name: rehearsal-verdict-2
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1615000Z   include-hidden-files: true
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1615262Z   path: .tmp/verdict/verdict.json
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1615524Z   retention-days: 3
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1615743Z   if-no-files-found: warn
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1615977Z   compression-level: 6
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1616198Z   overwrite: false
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1616404Z env:
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1616701Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1617211Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1617636Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1617972Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1618268Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1618573Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1619043Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1619532Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1619866Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.1620143Z ##[endgroup]
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.3311865Z (node:2547) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.3313382Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.3405323Z With the provided path, there will be 1 file uploaded
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.3406610Z Artifact name is valid!
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.3407172Z Root directory input is valid!
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.7325301Z Beginning upload of artifact content to blob storage
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.7564456Z (node:2547) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:47.9738334Z Uploaded bytes 223
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:48.0390116Z Finished uploading artifact content to blob storage!
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:48.0391525Z SHA256 digest of uploaded artifact zip is 343c47a58159e21382ee058a58e35603a11027c074eafd20372001e28aee1851
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:48.0393759Z Finalizing artifact upload
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:48.5489532Z Artifact rehearsal-verdict-2.zip successfully finalized. Artifact ID 12796455639
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:48.5491600Z Artifact rehearsal-verdict-2 has been successfully uploaded! Final size is 223 bytes. Artifact ID is 12796455639
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:13:48.5496870Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40642414776/artifacts/12796455639
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	﻿2026-10-28T06:13:48.5734911Z Post job cleanup.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:48.8376642Z In post-action step
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:48.8389800Z ##[group]Stopping Gradle daemons
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:48.8391139Z Stopping Gradle daemons for /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:48.8410114Z [command]/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle --stop
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:49.8181565Z Stopping Daemon(s)
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:49.8182561Z 1 Daemon stopped
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:49.8257290Z ##[endgroup]
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:49.8265068Z Not performing cache-cleanup due to build failure
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:49.8266400Z ##[group]Caching Gradle state
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:50.0638933Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:50.1084840Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:50.2491616Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:50.3073028Z Failed to save cache entry with path '/home/runner/.gradle/caches/jars-*/*/' and key: gradle-instrumented-jars-v1-6b8035503e4a508859afeb82d6c10d70: ReserveCacheError: Unable to reserve cache with key gradle-instrumented-jars-v1-6b8035503e4a508859afeb82d6c10d70, another job may be creating this cache.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:50.3686632Z Failed to save cache entry with path '/home/runner/.gradle/caches/*/groovy-dsl/*/' and key: gradle-groovy-dsl-v1-d89bd31318f6cc95ee3175acfe67a5f7: ReserveCacheError: Unable to reserve cache with key gradle-groovy-dsl-v1-d89bd31318f6cc95ee3175acfe67a5f7, another job may be creating this cache.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:50.4945665Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:50.6967488Z Failed to save cache entry with path '/home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/' and key: gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14: ReserveCacheError: Unable to reserve cache with key gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14, another job may be creating this cache.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:51.1360971Z Failed to save cache entry with path '/home/runner/.gradle/caches/modules-*/files-*/*/*/*/*' and key: gradle-dependencies-v1-fca2d0fd67c428db239e5da767994ef5: ReserveCacheError: Unable to reserve cache with key gradle-dependencies-v1-fca2d0fd67c428db239e5da767994ef5, another job may be creating this cache.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:51.2047181Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:53.2689014Z Sent 19806602 of 221133194 (9.0%), 18.8 MBs/sec
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:54.1575981Z Sent 221133194 of 221133194 (100.0%), 111.3 MBs/sec
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:54.4066471Z Saved cache entry with key gradle-home-v1|Linux-X64|build[57d4720e86cd4f2403e3bcae02ec38d4]-01930f8327e9c7c10b37f95a8b6eb80cebb8ad7f from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 3211ms
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:54.4068551Z ##[endgroup]
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:54.4068979Z Generating Job Summary
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:13:54.4084980Z Completed post-action step
+build (0.161.0+26.3)	Post Set up Java 25	﻿2026-10-28T06:13:54.4267413Z Post job cleanup.
+build (0.161.0+26.3)	Post Set up Java 25	2026-10-28T06:13:54.5625289Z (node:2650) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.161.0+26.3)	Post Set up Java 25	2026-10-28T06:13:54.5627253Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.161.0+26.3)	Post Check out source	﻿2026-10-28T06:13:54.5910398Z Post job cleanup.
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.7151106Z [command]/usr/bin/git version
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.7270014Z git version 2.55.0
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.7277481Z Temporarily overriding HOME='/home/runner/work/_temp/d9154774-cd01-4da9-a139-3803c225668a' before making global git config changes
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.7279605Z Adding repository directory to the temporary git global config as a safe directory
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.7281393Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.7474046Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.7477666Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.7813485Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:13:54.8287696Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.161.0+26.3)	Complete job	﻿2026-10-28T06:13:54.8539931Z Cleaning up orphan processes
+build (0.161.0+26.3)	Complete job	2026-10-28T06:13:54.8932902Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

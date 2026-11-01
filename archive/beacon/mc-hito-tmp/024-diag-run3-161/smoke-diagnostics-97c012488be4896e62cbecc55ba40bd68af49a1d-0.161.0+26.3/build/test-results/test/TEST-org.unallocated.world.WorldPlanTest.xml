@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.world.WorldPlanTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-28T13:41:51.874Z" hostname="runnervm48cm3" time="0.229">
+  <properties/>
+  <testcase name="timedCorruptionSpreadsEvenlyAndFinishesAtTheRequestedActiveTick()" classname="org.unallocated.world.WorldPlanTest" time="0.001"/>
+  <testcase name="corruptionIsDeterministicAcrossSeedsBatchesAndResumeWithRespectedRatio()" classname="org.unallocated.world.WorldPlanTest" time="0.004"/>
+  <testcase name="copyBatchesCoverNegativeChunkBoundariesAndRespectEvenTinyLimits()" classname="org.unallocated.world.WorldPlanTest" time="0.174"/>
+  <testcase name="overlappingCopyOrderingPreservesEverySourceAcrossBatchBoundaries()" classname="org.unallocated.world.WorldPlanTest" time="0.049"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

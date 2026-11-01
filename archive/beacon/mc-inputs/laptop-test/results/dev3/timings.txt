@@ -1,0 +1,11 @@
+sha_ok 0
+java_ready 0
+fabric_installed 5
+vanilla_ready 16
+mod_copied 16
+client_initialized 41
+contract_accepted 118
+button_clicked 125
+chapter_entered 133
+held_60s 198
+quit_clean 204

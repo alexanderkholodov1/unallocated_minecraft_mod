@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "fa5ae4e 0.2.0.4: capture stalled Gradle download connections and correct cache docs"
+}

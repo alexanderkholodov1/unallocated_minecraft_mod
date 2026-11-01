@@ -1,0 +1,8 @@
+PASS  log: initialized (common)
+PASS  log: initialized (client)
+PASS  log: story loaded
+PASS  log: chapter entry slot=LOBBY
+PASS  no 'story invalid'
+PASS  no crash report
+PASS  game ran 60 s in-world
+PASS  clean quit

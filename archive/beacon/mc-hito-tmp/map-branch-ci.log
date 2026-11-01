@@ -1,0 +1,190 @@
+build	Smoke test production client and photograph map checkpoints	﻿2026-10-26T15:56:42.3492402Z ##[group]Run python3 scripts/smoke_test.py client
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3492890Z [36;1mpython3 scripts/smoke_test.py client[0m
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3560125Z shell: /usr/bin/bash -e {0}
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3560634Z env:
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3561321Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3562464Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3563441Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3564154Z   GRADLE_USER_HOME: /home/runner/.gradle
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3564776Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3565217Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3565867Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3566609Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3567078Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3567483Z   LIBGL_ALWAYS_SOFTWARE: true
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3567871Z   SDL_VIDEODRIVER: x11
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3568182Z   ALSOFT_DRIVERS: null
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:56:42.3568488Z ##[endgroup]
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4801684Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-console.log ---
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4804862Z [15:58:01] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4807776Z [15:58:01] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4810807Z [15:58:01] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4812945Z [15:58:01] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 2 reached during a single frame. New capacity will be 16.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4815059Z [15:58:01] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 2 reached during a single frame. New capacity will be 8.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4817080Z [15:58:02] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4819290Z [15:58:02] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4821116Z [15:58:02] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 16 reached during a single frame. New capacity will be 32.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4822643Z [15:58:02] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 8 reached during a single frame. New capacity will be 16.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4824071Z [15:58:02] [Render thread/INFO]: World loading finished: ClientLevel screen: null
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4824771Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.spawn verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4825473Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.board verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4826485Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.bait_path verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4827576Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.view verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4828702Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=path.midpoint verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4830199Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=base.entrance verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4831357Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=base.theft_zone verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4832442Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.entrance verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4833471Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.threshold verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4834468Z [15:58:02] [Server thread/INFO]: UNALLOCATED map verified section=all
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4836286Z [15:58:02] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 16 reached during a single frame. New capacity will be 32.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4838278Z [15:58:03] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 32 reached during a single frame. New capacity will be 64.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4840458Z [15:58:03] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 32 reached during a single frame. New capacity will be 64.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4842349Z [15:58:04] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 64 reached during a single frame. New capacity will be 128.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4844260Z [15:58:06] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 64 reached during a single frame. New capacity will be 128.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4846077Z [15:58:18] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 7767ms or 155 ticks behind
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4847404Z [15:59:05] [Server thread/INFO]: Player962 lost connection: Disconnected
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4848482Z [15:59:05] [Server thread/INFO]: System chat: Player962 left the game
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4850017Z [15:59:05] [Server thread/INFO]: Stopping singleplayer server as player logged out
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4851218Z [15:59:05] [Server thread/INFO]: Stopping server
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4852028Z [15:59:05] [Server thread/INFO]: Saving players
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4852825Z [15:59:05] [Server thread/INFO]: Saving worlds
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4853876Z [15:59:06] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4855316Z [15:59:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4856713Z [15:59:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4857950Z [15:59:07] [Test thread/ERROR]: Client gametests failed with an exception
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4859239Z java.lang.AssertionError: Timed out waiting for predicate
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4860842Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:200)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4863231Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.TestServerConnectionImpl.waitForChunksRender(TestServerConnectionImpl.java:63)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4865557Z 	at knot//net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.waitForChunksRender(TestServerConnection.java:83)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4867755Z 	at knot//net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.waitForChunksRender(TestServerConnection.java:72)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4870319Z 	at knot//org.unallocated.smoke.MapTourSmokeTest.run(MapTourSmokeTest.java:75)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4871604Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:82)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4873248Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4875140Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4876269Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4876953Z [15:59:07] [Render thread/ERROR]: Minecraft has crashed!
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4877867Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timed out waiting for predicate
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4878949Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4880444Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4881540Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4882385Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4883536Z Caused by: java.lang.AssertionError: Timed out waiting for predicate
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4884803Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:200)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4886729Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.TestServerConnectionImpl.waitForChunksRender(TestServerConnectionImpl.java:63)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4888785Z 	at knot//net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.waitForChunksRender(TestServerConnection.java:83)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4892593Z 	at knot//net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.waitForChunksRender(TestServerConnection.java:72)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4893455Z 	at knot//org.unallocated.smoke.MapTourSmokeTest.run(MapTourSmokeTest.java:75)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4894115Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:82)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4894949Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4896530Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4897208Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4897463Z 
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4897579Z > Task :runClientSmoke FAILED
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4898325Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_7-1793030207682.json
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4899459Z 
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4899675Z FAILURE: Build failed with an exception.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4900030Z 
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4900180Z * What went wrong:
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4900826Z Execution failed for task ':runClientSmoke' (registered in build file 'build.gradle').
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4901763Z > Process 'command 'xvfb-run'' finished with non-zero exit value 1
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4902338Z 
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4902492Z * Try:
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4902977Z > Run with --stacktrace option to get the stack trace.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4903601Z > Run with --info or --debug option to get more log output.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4904078Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4904544Z > Get more help at https://help.gradle.org.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4904762Z 
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4904861Z BUILD FAILED in 2m 25s
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4905124Z 10 actionable tasks: 2 executed, 8 up-to-date
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4905703Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client/logs/latest.log ---
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4906568Z [15:57:57] [Render thread/INFO]: World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4907687Z [15:57:57] [Render thread/INFO]: World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4908540Z [15:57:57] [Render thread/INFO]: World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4910566Z [15:57:58] [Render thread/INFO]: World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4911662Z [15:57:58] [Server thread/INFO]: Loading 0 chunks for player spawn...
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4912085Z [15:57:58] [Server thread/INFO]: Preparing spawn area: 16%
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4912884Z [15:57:58] [Server thread/INFO]: Time elapsed: 6352 ms
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4913970Z [15:57:59] [Render thread/INFO]: World loading finished: null screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4915358Z [15:57:59] [Server thread/INFO]: Player962[local:E:c886c8b5] logged in with entity id 1 at (0.5, 64.0, 8.5)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4916282Z [15:57:59] [Server thread/INFO]: System chat: Player962 joined the game
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4916965Z [15:57:59] [Server thread/INFO]: Changing view distance to 8, from 10
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4917928Z [15:57:59] [Server thread/INFO]: Changing simulation distance to 12, from 0
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4919338Z [15:58:00] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4920674Z [15:58:00] [Render thread/WARN]: Requested post effect does not exist: minecraft:end_of_frame
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4921490Z [15:58:00] [Render thread/INFO]: Loaded 2 advancements
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4922556Z [15:58:00] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4924141Z [15:58:00] [Render thread/INFO]: Resizing Dynamic Transforms UBO, capacity limit of 4 reached during a single frame. New capacity will be 8.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4925775Z [15:58:00] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4927455Z [15:58:01] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4929449Z [15:58:01] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4931185Z [15:58:01] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4932868Z [15:58:01] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 2 reached during a single frame. New capacity will be 16.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4934523Z [15:58:01] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 2 reached during a single frame. New capacity will be 8.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4936200Z [15:58:02] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4937882Z [15:58:02] [Render thread/INFO]: World loading finished: ClientLevel screen: net.minecraft.client.gui.screens.LevelLoadingScreen@5cefbdcf
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4939901Z [15:58:02] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 16 reached during a single frame. New capacity will be 32.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4941675Z [15:58:02] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 8 reached during a single frame. New capacity will be 16.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4943015Z [15:58:02] [Render thread/INFO]: World loading finished: ClientLevel screen: null
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4943959Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.spawn verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4944950Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=lobby.board verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4946357Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.bait_path verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4947285Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=hill.view verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4948211Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=path.midpoint verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4949434Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=base.entrance verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4950395Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=base.theft_zone verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4951362Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.entrance verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4952285Z [15:58:02] [Server thread/INFO]: UNALLOCATED map checkpoint=mine.threshold verified
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4953163Z [15:58:02] [Server thread/INFO]: UNALLOCATED map verified section=all
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4953853Z [15:58:02] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 16 reached during a single frame. New capacity will be 32.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4955293Z [15:58:03] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 32 reached during a single frame. New capacity will be 64.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4957072Z [15:58:03] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 32 reached during a single frame. New capacity will be 64.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4958026Z [15:58:04] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 64 reached during a single frame. New capacity will be 128.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4958944Z [15:58:06] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 64 reached during a single frame. New capacity will be 128.
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4960496Z [15:58:18] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 7767ms or 155 ticks behind
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4961068Z [15:59:05] [Server thread/INFO]: Player962 lost connection: Disconnected
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4961506Z [15:59:05] [Server thread/INFO]: System chat: Player962 left the game
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4961972Z [15:59:05] [Server thread/INFO]: Stopping singleplayer server as player logged out
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4962398Z [15:59:05] [Server thread/INFO]: Stopping server
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4962730Z [15:59:05] [Server thread/INFO]: Saving players
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4963052Z [15:59:05] [Server thread/INFO]: Saving worlds
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4963519Z [15:59:06] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4964634Z [15:59:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4965827Z [15:59:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4966779Z [15:59:07] [Test thread/ERROR]: Client gametests failed with an exception
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4967514Z java.lang.AssertionError: Timed out waiting for predicate
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4968741Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:200)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4970927Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.TestServerConnectionImpl.waitForChunksRender(TestServerConnectionImpl.java:63)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4972921Z 	at knot//net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.waitForChunksRender(TestServerConnection.java:83)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4974826Z 	at knot//net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.waitForChunksRender(TestServerConnection.java:72)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4975676Z 	at knot//org.unallocated.smoke.MapTourSmokeTest.run(MapTourSmokeTest.java:75)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4976303Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:82)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4977652Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4979866Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4981061Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4981727Z [15:59:07] [Render thread/ERROR]: Minecraft has crashed!
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4982722Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timed out waiting for predicate
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4984043Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4985441Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4986240Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4986765Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4987286Z Caused by: java.lang.AssertionError: Timed out waiting for predicate
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4988032Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:200)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4989634Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.TestServerConnectionImpl.waitForChunksRender(TestServerConnectionImpl.java:63)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4991814Z 	at knot//net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.waitForChunksRender(TestServerConnection.java:83)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4993660Z 	at knot//net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection.waitForChunksRender(TestServerConnection.java:72)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4995155Z 	at knot//org.unallocated.smoke.MapTourSmokeTest.run(MapTourSmokeTest.java:75)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4996320Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:82)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4997923Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.4999864Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5001092Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5864207Z Traceback (most recent call last):
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5865952Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 267, in <module>
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5867594Z     main()
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5868693Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 263, in main
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5870352Z     {'server': server, 'client': client, 'server-with-api': lambda: server(True)}[args.target]()
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5871638Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 237, in client
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5872642Z     monitor(
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5873524Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 117, in monitor
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5874799Z     raise RuntimeError(f'Game command exited with status {process.returncode}')
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.5875596Z RuntimeError: Game command exited with status 1
+build	Smoke test production client and photograph map checkpoints	2026-10-26T15:59:08.6047694Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.story.StorySchedulingTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-28T08:41:40.704Z" hostname="runnervmtai0g" time="0.019">
+  <properties/>
+  <testcase name="nextAndEndCancelEveryOldChapterActionIncludingTies()" classname="org.unallocated.story.StorySchedulingTest" time="0.006"/>
+  <testcase name="cancellationOnlyRemovesNamedBeatAndRepeatedSchedulesAreIndependent()" classname="org.unallocated.story.StorySchedulingTest" time="0.001"/>
+  <testcase name="repeatCooldownAndEveryGuardAreSaved()" classname="org.unallocated.story.StorySchedulingTest" time="0.004"/>
+  <testcase name="fakeTicksKeepAtTiesFileOrderAndResumeRemainingDelay()" classname="org.unallocated.story.StorySchedulingTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

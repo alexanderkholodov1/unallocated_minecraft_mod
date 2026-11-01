@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.contract.ContractSessionTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-28T13:12:54.568Z" hostname="runnervm48cm3" time="0.059">
+  <properties/>
+  <testcase name="invalidTypedSubmissionAndOversizeInputAreRejected()" classname="org.unallocated.contract.ContractSessionTest" time="0.007"/>
+  <testcase name="deletingTheReceiptReopensTheAgreementOnNextStartup()" classname="org.unallocated.contract.ContractSessionTest" time="0.013"/>
+  <testcase name="failedWriteStillAcceptsThisSessionAndDoesNotInventPersistence()" classname="org.unallocated.contract.ContractSessionTest" time="0.002"/>
+  <testcase name="replayAndDuplicateAcceptancePreserveTheOriginalReceipt()" classname="org.unallocated.contract.ContractSessionTest" time="0.004"/>
+  <testcase name="firstStartThenClickThenSecondStart()" classname="org.unallocated.contract.ContractSessionTest" time="0.002"/>
+  <testcase name="typedTextIsPreservedExactlyAndNotNormalizedInTheReceipt()" classname="org.unallocated.contract.ContractSessionTest" time="0.002"/>
+  <testcase name="clickRecordsEvenUnfinishedTextWithoutRequiringItToMatch()" classname="org.unallocated.contract.ContractSessionTest" time="0.002"/>
+  <testcase name="nonUtf8ReceiptIsReplacedByAcceptanceAndSkippedOnNextStart()" classname="org.unallocated.contract.ContractSessionTest" time="0.003"/>
+  <testcase name="invalidReceiptsCannotSkipTheAgreement()" classname="org.unallocated.contract.ContractSessionTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

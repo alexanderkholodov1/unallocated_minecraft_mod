@@ -1,0 +1,1 @@
+{"paths": ["scripts/smoke_test.py", "scripts/test_smoke_test.py", "docs/plan/TOOLCHAIN.md"], "message": "0.2.0.4: capture stalled Gradle download connections and correct cache docs"}

@@ -1,0 +1,12 @@
+[
+  ".github/workflows/build.yml",
+  "README.md",
+  "build.gradle",
+  "docs/plan/TOOLCHAIN.md",
+  "fabric-api-modules.json",
+  "gradle.properties",
+  "scripts/install_headless_graphics.sh",
+  "scripts/smoke_test.py",
+  "scripts/test_smoke_test.py",
+  "src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java"
+]

@@ -1,0 +1,1 @@
+{"paths": ["docs/integration/MILESTONE-v0.1.0.md", "scripts/test_verify_jar.py", "scripts/verify_jar.py", "src/main/resources/fabric.mod.json", "scripts/test_integration.py"], "message": "0.1.0.16: enforce the complete production mixin union and reject silently unwired packaged configs"}

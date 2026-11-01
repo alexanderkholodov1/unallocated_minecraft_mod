@@ -1,0 +1,1 @@
+{"paths": ["docs/audio/AUDIO.md", "docs/integration/MILESTONE-v0.1.0.md", "src/client/java/org/unallocated/client/effects/AudioLayerSound.java", "src/clientSmoke/java/org/unallocated/smoke/AudioSmokeTest.java"], "message": "0.1.0.23: keep stopped audio layers silent during late engine ticks and gain refreshes"}

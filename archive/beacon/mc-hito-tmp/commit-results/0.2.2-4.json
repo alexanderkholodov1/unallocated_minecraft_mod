@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "3523403 0.2.0.2: preserve story metadata during reload and fix smoke snapshot errors"
+}
