@@ -6,6 +6,30 @@ base {
     archivesName = 'unallocated'
 }
 
+// The version is never edited by hand. One rule, mirrored by scripts/smoke_test.py properties():
+// UNALLOCATED_VERSION, else a vX.Y.Z branch (CI or local), else the newest unallocated-X.Y.Z release tag, else gradle.properties.
+def gitOutput = { List<String> args ->
+    try {
+        def process = (['git'] + args).execute(null, projectDir)
+        process.waitFor()
+        return process.exitValue() == 0 ? process.inputStream.text.trim() : ''
+    } catch (Exception ignored) {
+        return ''
+    }
+}
+def resolveModVersion = { String fallback ->
+    def explicit = System.getenv('UNALLOCATED_VERSION')
+    if (explicit) return explicit
+    def names = [System.getenv('GITHUB_HEAD_REF'), System.getenv('GITHUB_REF_NAME'), gitOutput(['rev-parse', '--abbrev-ref', 'HEAD'])]
+    def tags = gitOutput(['tag', '--list', 'unallocated-*', '--sort=-v:refname']).split(/\s+/).collect { it.replaceFirst(/^unallocated-/, 'v') }
+    for (name in names + tags) {
+        def match = (name ?: '') =~ /^v(\d+\.\d+\.\d+)$/
+        if (match.matches()) return match.group(1)
+    }
+    return fallback
+}
+version = resolveModVersion(project.version.toString())
+
 loom {
     splitEnvironmentSourceSets()
 

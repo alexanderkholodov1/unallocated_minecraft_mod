@@ -115,11 +115,34 @@ def server_evidence(with_fabric_api=False):
     return required
 
 
+def _git(*args):
+    try:
+        result = subprocess.run(['git', *args], cwd=ROOT, capture_output=True, text=True, timeout=10)
+        return result.stdout.strip() if result.returncode == 0 else ''
+    except (OSError, subprocess.SubprocessError):
+        return ''
+
+
+def mod_version(fallback):
+    """Same rule as build.gradle: UNALLOCATED_VERSION, a vX.Y.Z branch, the newest unallocated-X.Y.Z release tag, else gradle.properties."""
+    if os.environ.get('UNALLOCATED_VERSION'):
+        return os.environ['UNALLOCATED_VERSION']
+    names = [os.environ.get('GITHUB_HEAD_REF'), os.environ.get('GITHUB_REF_NAME'), _git('rev-parse', '--abbrev-ref', 'HEAD')]
+    tags = ['v' + tag.removeprefix('unallocated-') for tag in _git('tag', '--list', 'unallocated-*', '--sort=-v:refname').split()]
+    for name in names + tags:
+        match = re.fullmatch(r'v(\d+\.\d+\.\d+)', name or '')
+        if match:
+            return match.group(1)
+    return fallback
+
+
 def properties():
-    return dict(
+    values = dict(
         line.split('=', 1) for line in (ROOT / 'gradle.properties').read_text().splitlines()
         if line and not line.startswith('#') and '=' in line
     )
+    values['version'] = mod_version(values.get('version', ''))
+    return values
 
 
 def read(path):
