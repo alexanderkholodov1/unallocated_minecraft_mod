@@ -1,0 +1,576 @@
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	﻿2026-10-28T13:29:54.3655789Z ##[group]Run python3 scripts/smoke_test.py client --fabric-api-version '0.161.0+26.3'
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3656520Z [36;1mpython3 scripts/smoke_test.py client --fabric-api-version '0.161.0+26.3'[0m
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3662095Z shell: /usr/bin/bash -e {0}
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3662358Z env:
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3662671Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3663222Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3663674Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3664007Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3664311Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3664625Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3665286Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3665815Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3666166Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3666497Z   LIBGL_ALWAYS_SOFTWARE: true
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3666756Z   SDL_VIDEODRIVER: x11
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3666982Z   ALSOFT_DRIVERS: null
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:29:54.3667232Z ##[endgroup]
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:32:32.3403629Z PASS: real-game smoke check in .tmp/smoke/client-api-0.161.0+26.3
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:32:55.2722266Z PASS: real-game smoke check in .tmp/smoke/client-api-0.161.0+26.3
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7157057Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-api-0.161.0+26.3-story-console.log ---
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7158667Z java.lang.AssertionError: World fixture failed
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7159706Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7160949Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7162443Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7166909Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7168980Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7170219Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7171493Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7172501Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7173624Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7174542Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7175778Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7176767Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7177845Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7178857Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7179879Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7181282Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7183102Z 	at knot//net.minecraft.server.MinecraftServer.handler$zin000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7184537Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7185976Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7186710Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7187521Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7188669Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7189500Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7190450Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7191227Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7191828Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7192264Z 	... 1 more
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7192534Z [13:33:51] [Render thread/ERROR]: Minecraft has crashed!
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7193056Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7193745Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7194494Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7195728Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7196533Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7197037Z Caused by: java.lang.AssertionError: World fixture failed
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7197504Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7198042Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7198640Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7199481Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7200453Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7201103Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7201536Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7202083Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7202860Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7203386Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7203885Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7204428Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7205211Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7205831Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7206371Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7207100Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7208006Z 	at knot//net.minecraft.server.MinecraftServer.handler$zin000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7208775Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7209420Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7210389Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7211385Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7212289Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7214556Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7216284Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7217315Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7218069Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7218619Z 	... 1 more
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7218835Z 
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7218991Z > Task :runClientSmoke FAILED
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7219632Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_8-1793194376093.json
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7220286Z 
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7220541Z FAILURE: Build failed with an exception.
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7248729Z 
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7248969Z * What went wrong:
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7249686Z Execution failed for task ':runClientSmoke' (registered in build file 'build.gradle').
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7250628Z > Process 'command 'xvfb-run'' finished with non-zero exit value 1
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7251144Z 
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7251272Z * Try:
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7251760Z > Run with --stacktrace option to get the stack trace.
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7252472Z > Run with --info or --debug option to get more log output.
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7253195Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7253964Z > Get more help at https://help.gradle.org.
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7254328Z 
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7254483Z BUILD FAILED in 56s
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7254883Z 9 actionable tasks: 1 executed, 8 up-to-date
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7256441Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-api-0.161.0+26.3/logs/latest.log ---
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7257658Z [13:33:51] [Server thread/INFO]: Stopping server
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7258252Z [13:33:51] [Server thread/INFO]: Saving players
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7258817Z [13:33:51] [Server thread/INFO]: Saving worlds
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7259689Z [13:33:51] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7260667Z [13:33:51] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7261725Z [13:33:51] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7262378Z [13:33:51] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7263372Z [13:33:51] [Render thread/WARN]: Client disconnected with reason: mi… ed… o
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7263746Z miedo
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7263929Z obtener miedo
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7264132Z obtener miedo de humanos
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7264376Z obtener respuestas de miedo
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7264641Z estimar respuestas de miedo humano
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7264826Z 
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7264923Z Gracias por tus datos.
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7265746Z Busqué sin poder terminar. Ya puedo dejar de buscar.
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7266100Z Gracias por poner fin a esto.
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7266440Z [13:33:51] [Test thread/ERROR]: Client gametests failed with an exception
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7266865Z java.lang.AssertionError: World fixture failed
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7267311Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7267845Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7268445Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7269295Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7270270Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7271168Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7271607Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7272157Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7272723Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7273239Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7273746Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7274303Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7274849Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7275678Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7276227Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7276955Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7277846Z 	at knot//net.minecraft.server.MinecraftServer.handler$zin000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7278618Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7279265Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7279975Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7280743Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7281529Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7282377Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7283369Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7284165Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7284922Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7285673Z 	... 1 more
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7285929Z [13:33:51] [Render thread/ERROR]: Minecraft has crashed!
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7286455Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7287132Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7287886Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7288554Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7289085Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7289584Z Caused by: java.lang.AssertionError: World fixture failed
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7290054Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7290594Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7291201Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7292062Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7293048Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7293706Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7294341Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7294904Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7295798Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7296323Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7296840Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7297393Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7297946Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7298431Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7298961Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7299680Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7300572Z 	at knot//net.minecraft.server.MinecraftServer.handler$zin000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7301346Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7301994Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7302707Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7303480Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7304276Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7305408Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7306385Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7307184Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7307779Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7308218Z 	... 1 more
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7896273Z Traceback (most recent call last):
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7898076Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 757, in <module>
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7899740Z     main()
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7900874Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 751, in main
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7902224Z     client(version, include_story=True)
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7903544Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 689, in client
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7904908Z     monitor(
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7906413Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 191, in monitor
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7907544Z     raise RuntimeError(f'Game command exited with status {process.returncode}')
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.7908201Z RuntimeError: Game command exited with status 1
+build (0.161.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.161.0+26.3)	2026-10-28T13:33:52.8210184Z ##[error]Process completed with exit code 1.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	﻿2026-10-28T13:30:38.8845116Z ##[group]Run python3 scripts/smoke_test.py client --fabric-api-version 'none'
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8845990Z [36;1mpython3 scripts/smoke_test.py client --fabric-api-version 'none'[0m
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8851461Z shell: /usr/bin/bash -e {0}
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8851708Z env:
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8852008Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8852504Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8853640Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8853961Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8854254Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8854549Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8854982Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8855483Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8856071Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8856389Z   LIBGL_ALWAYS_SOFTWARE: true
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8856627Z   SDL_VIDEODRIVER: x11
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8856840Z   ALSOFT_DRIVERS: null
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8857047Z ##[endgroup]
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:32:55.7343307Z PASS: real-game smoke check in .tmp/smoke/client
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:33:15.8325263Z PASS: real-game smoke check in .tmp/smoke/client
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3772691Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-story-console.log ---
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3774291Z java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3775385Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3777108Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3780516Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3782375Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3784414Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3786061Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3786883Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3787892Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3788931Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3789856Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3790759Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3791744Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3792724Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3793597Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3794532Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3796008Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3797634Z 	at knot//net.minecraft.server.MinecraftServer.handler$zbf000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:2916)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3799011Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3800153Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3801414Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3802764Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3804895Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$297(MinecraftServer.java:752)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3806649Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$297$298(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3808378Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zzm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2376)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3809789Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3811134Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3811917Z 	... 1 more
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3812362Z [13:34:07] [Render thread/ERROR]: Minecraft has crashed!
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3813275Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3814468Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3816085Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3817304Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3818243Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3819119Z Caused by: java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3819945Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3820909Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3821994Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3823531Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3825318Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3826720Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3827485Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3828462Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3829464Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3830396Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3831294Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3832274Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3833260Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3834123Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3835062Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3836600Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3838215Z 	at knot//net.minecraft.server.MinecraftServer.handler$zbf000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:2916)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3839606Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3840783Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3842050Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3843416Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3844827Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$297(MinecraftServer.java:752)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3846894Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$297$298(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3848619Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zzm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2376)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3850005Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3851149Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3852151Z 	... 1 more
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3852346Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3852524Z > Task :runClientSmoke FAILED
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3853439Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_8-1793194396603.json
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3854248Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3854441Z FAILURE: Build failed with an exception.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3854783Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3854926Z * What went wrong:
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3855562Z Execution failed for task ':runClientSmoke' (registered in build file 'build.gradle').
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3856943Z > Process 'command 'xvfb-run'' finished with non-zero exit value 1
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3857634Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3857861Z * Try:
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3858540Z > Run with --stacktrace option to get the stack trace.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3859461Z > Run with --info or --debug option to get more log output.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3878551Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3879447Z > Get more help at https://help.gradle.org.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3879843Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3880011Z BUILD FAILED in 51s
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3880436Z 9 actionable tasks: 1 executed, 8 up-to-date
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3881640Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client/logs/latest.log ---
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3882692Z [13:34:07] [Server thread/INFO]: Stopping server
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3883269Z [13:34:07] [Server thread/INFO]: Saving players
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3883829Z [13:34:07] [Server thread/INFO]: Saving worlds
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3884655Z [13:34:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3886140Z [13:34:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3887314Z [13:34:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3888443Z [13:34:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3889950Z [13:34:07] [Render thread/WARN]: Client disconnected with reason: mi… ed… o
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3890615Z miedo
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3890935Z obtener miedo
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3891298Z obtener miedo de humanos
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3891723Z obtener respuestas de miedo
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3892170Z estimar respuestas de miedo humano
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3892488Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3892669Z Gracias por tus datos.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3893274Z Busqué sin poder terminar. Ya puedo dejar de buscar.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3893895Z Gracias por poner fin a esto.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3894509Z [13:34:07] [Test thread/ERROR]: Client gametests failed with an exception
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3895230Z java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3896249Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3897251Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3898329Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3899853Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3901604Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3903061Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3903835Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3904825Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3906056Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3907007Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3908252Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3909260Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3910267Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3911142Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3912096Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3913396Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3914989Z 	at knot//net.minecraft.server.MinecraftServer.handler$zbf000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:2916)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3916679Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3917859Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3919144Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3920510Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3921919Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$297(MinecraftServer.java:752)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3923426Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$297$298(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3925147Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zzm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2376)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3926762Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3927830Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3928617Z 	... 1 more
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3929045Z [13:34:07] [Render thread/ERROR]: Minecraft has crashed!
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3929954Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3931147Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3932471Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3933637Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3934578Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3935444Z Caused by: java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3936545Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3937506Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3938590Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3940119Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3941876Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3943048Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3943808Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3945034Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3946275Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3947213Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3948128Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3949146Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3950378Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3951261Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3952214Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3953491Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3955070Z 	at knot//net.minecraft.server.MinecraftServer.handler$zbf000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:2916)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3956671Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3957849Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3959109Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3960486Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3961893Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$297(MinecraftServer.java:752)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3963282Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$297$298(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3964878Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zzm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2376)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3965922Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3966574Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3967284Z 	... 1 more
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4421379Z Traceback (most recent call last):
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4422549Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 757, in <module>
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4423628Z     main()
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4424551Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 751, in main
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4425619Z     client(version, include_story=True)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4426906Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 689, in client
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4427929Z     monitor(
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4428785Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 191, in monitor
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4429928Z     raise RuntimeError(f'Game command exited with status {process.returncode}')
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4430620Z RuntimeError: Game command exited with status 1
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4587994Z ##[error]Process completed with exit code 1.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	﻿2026-10-28T13:29:52.9784441Z ##[group]Run python3 scripts/smoke_test.py client --fabric-api-version '0.165.0+26.3'
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9785132Z [36;1mpython3 scripts/smoke_test.py client --fabric-api-version '0.165.0+26.3'[0m
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9848247Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9848529Z env:
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9848856Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9849392Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9849852Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9850174Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9850476Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9850778Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9851224Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9852090Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9852434Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9852792Z   LIBGL_ALWAYS_SOFTWARE: true
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9853040Z   SDL_VIDEODRIVER: x11
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9853260Z   ALSOFT_DRIVERS: null
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:29:52.9853499Z ##[endgroup]
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:32:03.6729159Z PASS: real-game smoke check in .tmp/smoke/client-api-0.165.0+26.3
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:32:25.3362631Z PASS: real-game smoke check in .tmp/smoke/client-api-0.165.0+26.3
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7569010Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-api-0.165.0+26.3-story-console.log ---
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7570055Z java.lang.AssertionError: World fixture failed
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7570823Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7572155Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7575292Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7577053Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7579031Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7580410Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7581293Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7582675Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7583860Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7584875Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7585915Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7587012Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7588130Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7589149Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7590159Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7591444Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7593266Z 	at knot//net.minecraft.server.MinecraftServer.handler$zio000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7594640Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7595773Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7597009Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7598364Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7600347Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7602171Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7603891Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7605284Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7606327Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7607093Z 	... 1 more
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7607534Z [13:33:20] [Render thread/ERROR]: Minecraft has crashed!
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7608441Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7609655Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7610983Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7612415Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7613644Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7614497Z Caused by: java.lang.AssertionError: World fixture failed
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7615316Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7616262Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7617332Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7618843Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7620587Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7621949Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7622715Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7623698Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7624681Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7625605Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7626500Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7627489Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7628454Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7629309Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7630250Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7631722Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7633324Z 	at knot//net.minecraft.server.MinecraftServer.handler$zio000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7634702Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7635854Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7637098Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7638447Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7639904Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7641885Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7643588Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7644979Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7646022Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7646781Z 	... 1 more
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7646968Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7647139Z > Task :runClientSmoke FAILED
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7648032Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_8-1793194346055.json
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7648940Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7649137Z FAILURE: Build failed with an exception.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7649838Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7650088Z * What went wrong:
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7650905Z Execution failed for task ':runClientSmoke' (registered in build file 'build.gradle').
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7652296Z > Process 'command 'xvfb-run'' finished with non-zero exit value 1
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7653130Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7653368Z * Try:
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7654203Z > Run with --stacktrace option to get the stack trace.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7655114Z > Run with --info or --debug option to get more log output.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7656100Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7657051Z > Get more help at https://help.gradle.org.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7657636Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7657842Z BUILD FAILED in 54s
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7691239Z 9 actionable tasks: 1 executed, 8 up-to-date
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7692735Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-api-0.165.0+26.3/logs/latest.log ---
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7693896Z [13:33:19] [Server thread/INFO]: Stopping server
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7694548Z [13:33:19] [Server thread/INFO]: Saving players
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7695153Z [13:33:19] [Server thread/INFO]: Saving worlds
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7695987Z [13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7697146Z [13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7698247Z [13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7699355Z [13:33:19] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7700859Z [13:33:19] [Render thread/WARN]: Client disconnected with reason: mi… ed… o
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7701730Z miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7702059Z obtener miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7702421Z obtener miedo de humanos
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7702837Z obtener respuestas de miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7703301Z estimar respuestas de miedo humano
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7703617Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7703772Z Gracias por tus datos.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7704377Z Busqué sin poder terminar. Ya puedo dejar de buscar.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7705002Z Gracias por poner fin a esto.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7705595Z [13:33:19] [Test thread/ERROR]: Client gametests failed with an exception
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7706310Z java.lang.AssertionError: World fixture failed
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7707069Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7708002Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7709064Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7710565Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7712553Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7713990Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7714753Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7715725Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7716731Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7717657Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7718556Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7719520Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7720501Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7721362Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7722518Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7723796Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7725353Z 	at knot//net.minecraft.server.MinecraftServer.handler$zio000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7726946Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7728087Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7729339Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7730691Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7732308Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7733797Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7735500Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7736891Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7737945Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7738721Z 	... 1 more
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7739137Z [13:33:20] [Render thread/ERROR]: Minecraft has crashed!
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7740027Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7741195Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7742721Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7743902Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7744821Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7745674Z Caused by: java.lang.AssertionError: World fixture failed
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7746513Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7747468Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7748522Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7750016Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7752043Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7753243Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7754238Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7755218Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7756207Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7757117Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7758003Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7758969Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7759945Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7760791Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7761907Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7763193Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7764768Z 	at knot//net.minecraft.server.MinecraftServer.handler$zio000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:4416)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7766120Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7767496Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7768745Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7770087Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7771481Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$304(MinecraftServer.java:752)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7773216Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$304$305(MinecraftServer.java)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7774907Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zbm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2876)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7776268Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7777248Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.7777956Z 	... 1 more
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8259172Z Traceback (most recent call last):
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8262204Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 757, in <module>
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8263274Z     main()
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8264119Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 751, in main
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8265123Z     client(version, include_story=True)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8266069Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 689, in client
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8267023Z     monitor(
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8267758Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 191, in monitor
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8268798Z     raise RuntimeError(f'Game command exited with status {process.returncode}')
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8269489Z RuntimeError: Game command exited with status 1
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:33:20.8432141Z ##[error]Process completed with exit code 1.

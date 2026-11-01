@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "22164e9 0.2.0.2: retry and wait longer for dependency downloads on CI"
+}

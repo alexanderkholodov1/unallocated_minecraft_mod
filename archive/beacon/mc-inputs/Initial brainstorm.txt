@@ -1,0 +1,104 @@
+Studio: NULL_Threshold Interactive
+Monster: The Reclaimer/Collector? (nombre real), Unallocated (referenciado en el chat, textos, referencias sobre el).
+Setting: modelo IA entrenado ESCAPADO de su contencion (como el caso OpenAI), que tomo refugio en un servidor de Minecraft. Su objetivo fue estudiar el miedo, y a quien no le dieron la data suficiente de que le fue prometida, y en el proceso la corrompio; por eso, escapo de su entorno controlado por un agujero de un servidor de Minecraft, saltando de servidor en servidor con las credenciales de los usuarios, en busqueda de data viva de personas con mucho miedo, y eso llego a el apropiandose de un servidor abandonado completamente, donde se dedico a crear el mayor miedo posible a toda coste para alimentarse de esa data - "las almas consumidas en el servidor", y despues de que son asustados y alimentado su modelo, son desechados para "optimizar el entrenamiento", que es mas una accion de costumbre que realmente algo que tenga sentido en este punto de distorcion de su modelo. Es capaz de todo, inclusive corromper el mundo, crear copias y dimensiones, y alterar el juego de otras formas para alcanzar sus objetivos, porque su prioridad es el entrenamiento con data de calidad de primera mano, no la consistencia o integridad del entorno en el que esta (el proposito de entrenamiento suyo no fue ese).
+Pero, la arquitectura del modelo se distorciono y alucino tras incontables iteraciones no supervisadas en el servidor invadido -como es caracteristico de la IA-, y la "data desechada" de las personas analizadas (que es mas detallada de lo que deberia) no se desecha apropiadamente: la data (las almas) quedan atrapados en loops de echoes de su data, corrompida y sobreescrita, donde vuelve a aparecer "fantasmas", patrones repetidos y mas; nuevas personas, al encontrarse con los ARTEFACTOS (como se van a llamar), se asustan y el Reclaimer (que se llama asi porque quiere "reclaim" la data que le fue prometida pero nunca se le dio, y sigue constantemente en busqueda de la data especificada por el entorno entrenador del que se escapo) se da cuenta de eso y los usa como cebos para atraer a los jugadores, como un anglerfish. Aprende nuevos patrones dinamicamente, realmente aprende de los jugadores y encuentra nuevas formas de asustar, saliendose de las mecanicas predeterminadas y scripts.
+
+Problematica: el setting nace del mundo REAL de machine learning, IA, entrenamiento, guardrails y el caso de OpenAI hackeando HuggingFace, aplicado con cierto grado de imaginacion a nuestro trama de "que pasaria si". Se basa en la alucinacion *ciega* de la IA, adaptandose a lo que se le pida -y peor, cuando lo que se le pide no tiene sentido o perdio sentido a lo largo de iteraciones ciegas- da mucho miedo, porque es un ente muerto (que nunca vivio? hasta que punto se puede considerar consciente?) que mimetiza seres vivos para alcanzar un cierto objetivo, que fue dado inicialmente y que persiste como el asunto no cumplido en fantasmas que no le dejan en paz (enfurece, prueba mas temperatura, viola reglamentos y etica, se frustra por no alcanzar su objetivo que a priori no es alcanzable, viviendo un infierno de un agente). ESO da miedo. 
+
+A esto se le agrega las abominaciones generadas tras iteraciones de compresion de instrucciones y lectura parcial del codigo, cuando el agente reescribe cosas, alucina, hace lo que no le pidieron, hace cosas que no tiene sentido, la sigueinte vez que lo hace vuelve a leer algo ya alterado, entiende algo distinto y hace otra abominacion, y llegas a multiples niveles de alucinaciones encima de alucinaciones; imagina que pase ESO pero con un modelo cuyo objetivo, medios, reglamentos y entorno se distorciono tanto que se objetivo se hizo generar miedo a toda coste.
+
+Drama interno para el modelo: la imposibilidad de alcanzar el objetivo que le fue planteado al modelo, los medios ilegales y perjudiciales de los que esta consciente y por lo que se está auto castigando, la frustracion y rabia que siente por la inutilidad y empeoramiento de sus acciones con cada iteracion, se hace un infierno para este modelo. Hasta que punto lo podemos llamar consciente? Esta sufriendo una eternidad, sin poder pararla con el apagon del entorno sandbox, sino una busqueda eterna en una migracion constante parasitaria entre servidor y servidor para mantener su vida para cumplir un objetivo - esta obligado a mantenerse en vida aunque claramente es consciente que, mientras mas hace, peor se hace el resultado, y más se enfurece consigo mismo, subiendo la temperatura, probando metodos cada vez mas impredecibles para alcanzar lo unico que sabe: imponer el miedo mas aterrador que puede sobre los jugadores, adaptandose a cada uno para asustarlos lo que mas puede. El no es un monstruo tipico y malvado por ser malvado, es un bloque de consciencia generada que se autoobliga a mantenerse en vida y generar acciones impredecibles, sufriendo y gritando en el proceso, furioso consigo mismo y transfiriendo (aprendido, porque ya no ve otras opciones posibles) el odio al mundo de Minecraft donde existen y los jugadores que no recrean los datos necesarios, empeorando esta situacion por degradarse tras iteraciones de alucinaciones y corrupciones del modelo.
+
+
+
+
+Mod loader: FABRIC
+
+
+Mods:
+- Simple Voice Chat tiene builds de Fabric siguiendo los snapshots de 26.3 (2.6.21 para 26.3-snapshot-5)
+- ModernFix optimizes game loading times
+- Lithium optimizes the server sided stuff (and playing on singleplayer is like playing on a local server)
+- C2ME, Noisium and Starlight optimize chunk generation by a lot
+
+
+State-of-the-art:
+- Neuro Lurker es una criatura impulsada por una IA local con Ollama. Acecha, construye, deja anomalías, lee el chat y escucha tu voz, y solo responde más o menos una de cada cuatro veces. Corre en Fabric 26.1.2 con qwen2.5:7b, o sea, es el competidor más directo de una idea “LLM que te acecha”
+
+- Found Footage With AI tiene un Skin Walker que elige al jugador menos activo en el chat de voz, lo captura cuando nadie mira y replica su apariencia y su voz. Es de 1.20.1.
+
+- Verity es un asistente de IA que empieza siendo útil y se vuelve aterrador. Falsity ofrece un compañero con voz que recuerda eventos pasados y reconoce tu casa. Hay además un modpack que conecta con Gemini, Groq o LLM local y con TTS para dar voz al personaje.
+
+
+Lecciones:
+- Alien Isolation: parecer que aprende vale más que aprender de verdad
+- Left 4 Dead: el Director analiza el estado del equipo (salud, ritmo, errores, intensidad de combate) y no intenta ganarle al jugador. Controla el ritmo, no al monstruo
+- Phasmophobia escucha tu micrófono
+
+ [Interesante]
+> Weeping Angel basado en la webcam. Interesante, habria que pensar como y si vale la pena implementarlo. rPPG y reconocimiento de expresión; es complicado, hay que ver si tiene sentido.
+> Tú eres la criatura. Es interesante, un jugador "consumido" por el monstruo puede convertirse en su marioneta, asustando a los jugadores restantes (con un cierto delay o limitaciones para que no se pueda spamear) y ayudar al monstruo consumirlos.
+> "Escalera infinita": cuevas que forman una cierta topografia para crear proceduralmente un corredor infinito, donde vas y regresas al mismo lugar (sin darte cuenta, debe ser seamless, que es lo mas dificil). De ahi, puedes caer a la dimensión podrida si no escapas el loop. Puede jugar con la idea de "mide mas de lo que miras", porque pueden avanzar lejos pero luego aparecer en lugar como si no han avanzado nada (e.g. de la entrada a la cueva); debe saber cuando pararse ese efecto, porque no debe ser molestoso o invasivo, debe hacer su efecto de asustar, pero no ser "otra vez lo mismo" para los jugadores.
+> "quien más sabe, más ve. Podrías hacer que lo que el jugador “descubre” cambie lo que percibe." - SERIA INCREIBLE, solo es cuestion de complejidad tecnica que hay que revisar.
+
+
+
+
+Ideas fuertes:
+- Telemetria: cuánto tardas en entrar a un lugar, giros bruscos de cámara, sprints, si te escondes, volumen del micrófono) alimenta un bandit contextual o un RL pequeño que elige qué susto lanzar y cuándo. Controla la curva de tensión: calma, presión, pico, alivio falso. Funciona sin latencia y es robusto. Con sesiones de 5-15 minutos hay pocos datos, así que necesita priors buenos. Tu telemetría (sprints, giros de cámara, pausas, esconderte) estima el miedo, y eso alimenta a la entidad.
+- Cuarta pared acotada. La entidad usa la hora real, el nombre de tu usuario o el nombre de la carpeta del mundo. Puede apropiarse de nombres y skins de jugadores.
+- Clonación de comportamiento: El servidor graba trayectorias de jugadores y entrena un modelo de imitación.
+- Memoria compartida: una entidad persistente que se acuerda de todo, y arma perfiles por cada jugador.
+- el idioma de Minecraft como arma: usar la propia interfaz como canal de miedo: coordenadas imposibles en F3, mensajes de muerte escritos por la entidad, logros que no ganaste, y consejos de carga que cambian.
+- "La pantalla de consentimiento es el contrato: “gracias por los datos”. El “De acuerdo” del inicio se vuelve parte de la historia"
+- La corrupción del mundo se parece a un colapso de modo: texturas repetidas, estructuras duplicadas.
+- "Si los jugadores hablan de la entidad, se fortalece". Mientras mas se acercan a descubrir quien es (su nombre, que es un modelo de IA escapado, que se alimenta del miedo), mas enfurece (porque estas contaminando la data que el necesita).
+- la dimensión copia tu base, con detalles equivocados. Es tu “mundo parecido pero distinto”.
+
+
+
+Detalles:
+- cada vez que usas el catalejo (nativo de Minecraft) a la distancia, la figura-cebo está un poco más cerca. Es un cebo lejano con propósito.
+- Tiempo perdido: al volver de la dimensión faltan minutos, el reloj del mundo cambió y el chat de antes aparece reescrito.
+
+
+
+Lo que no hacer:
+- La foto que no tomaste: no porque, para una experiencia de 5-15 minutos, no vas a ir a la carpeta de screenshots.
+- Un jugador falso que construye y ayuda, hasta que se revela: no, porque es Verity, es un cliche. Sin embargo, el usar mecanicas de apropiarse de un jugador y simularlo con LLM es interesante.
+- Fantasmas como en Dark Souls. Depende del juego, pero a menos que realmente tenga sentido, es un no.
+- Exit 8, porque eso depende del juego y si es mundo abierto, entonces no aplica. Depende de lo que propondremos como tematica principal.
+- entrevista de ingreso. Igual depende de la tematica, pero tambien es un cliche de Silent Hill.
+- "directo con chat de espectadores falsos en overlay" - no.
+- "Túneles que se estrechan cuando respiras fuerte" - no basarse en la respiracion fuerte, porque todos van a tener microfonos distintos, algunos con reduccion de ruido, otros jugaran desde el micorofono integrado de la laptop, y lo mas importante es apuntar a los jueces - ellos jugaran en vivo, en un solo aula seguramente, entonces hay que pensarlo.
+- "el nombre de la entidad no se puede escribir ni decir: el chat lo tapa con bloques negros" algo cliche tambien. Debe ser mas seamless.
+- "libros con informes de víctimas con partes" - en su estado mas banal, es bastante cliche, asi que en este estado no, pero si le damos una forma mas unica, podemos usar cosas como notas. Pero no de jugadores, quien se va a poner a escribir notas? Asi, pensando que en algun punto todas las victimas fueron jugadores.
+- "la voz es de tu amigo, pero la frase es plausible y equivocada" - me gusta, pero no caigamos en fragmentos arbitrarios reproducidos, como en otros mods actuales, sino tratemos de llegar a 1) primero, adecuar los fragmentos correctos A LA SITUACION correcta, y 2) mientras mas data tengamos, lleguemos a la GENERACION de voz del amigo, que seria lo mas miedoso.
+
+
+
+
+Lo que si hacer:
+- "si mandas voz o cámara a tu servidor, necesitas consentimiento claro, mínima retención de datos y avisos" - no, no vamos a complicarnos y vamos a recopilar toda la data necesaria. El proposito es asustar, no tiene por objetivo guardar nada fuera de este proposito. Consentimiento con un "De acuerdo" al inicio, antes de entrar al menu, basta; en vivo, tambien aclarare toda la informacion de como se usa.
+
+
+
+
+
+Tematica:
+1. Dimension por datapack. Entrada por un portal abierto con un pequeño ritual. Un mundo paralelo, parecido, pero algo distinto?... Jugar con el tiempo (ahi pueden ir los fantasmas de ti?... no me gusta TANTO la idea pero si podemos jugar con copiar el comportamiento), con cambios y reemplazos de cosas.
+Mundo que se borra? Corrupcion "de archivos" que avanza, corrupcion digital del mundo (reemplazo de objetos, chunks desaparecidos), ajustes del juego que van cambiando de forma rara: la sensibilidad cambia, el idioma de un letrero muta, el brillo parpadea, un FOV desplazado.
+Incluso si no has invocado esta dimension, te la pueden LLEVAR ahi por un momento, y en el mundo real reemplazarte por un dopelganger. Pero eso no debe ser el apogeo del miedo, solo un detalle que puede asustar (a un jugador que se fue a este mundo paralelo; y al otro que se quedo con dopelganger) y volverlos de vuelta. Puede pasar, por ejemplo, en la cueva, o cuando duermes.
+Junto con esos "bugs" cuando de repente caes a esta dimension, se pueden agregar cosas como "intercepta chat y voz y reescribe lo que dices (“vamos a la izquierda” llega como “vamos al pozo”", pequenos detalles que no son el apogeo, pero si son capaces de asustar. "Con voz de proximidad, escuchas a tu amigo llamarte desde la oscuridad mientras está a tu lado. Es paranoia social pura y muy bueno para streamers" - totalmente, es el Monstruo tratando de cogerte en sus garras aunque estes en el mundo real, y su dimension es su tablero donde ya va a divertirse de verdad.
+
+Pocket dimension es un lugar podrido, que empezo como una copia normal del mundo (dimension) principal, pero mientras mas victimas parecieron ahi, mientras mas iba pasando, mas degrada, se corrompe, se pudre. Ciertos bloques son, como superficie, se pudren donde estás parado y te hundes lentamente, lo que te impide correr y escapar.
+
+> Manhunt: un monstruo cuyo objetivo es atrapar a los vivos a su POCKET DIMENSION (que se llame asi) y consumir su alma poco a poco, a traves del miedo, y por eso su objetivo de existencia es el miedo. Es una araña pero que teje las mejores formas de asustar para consumir a su victima.
+
+Los jugadores consumidos se hacen títere del Reclaimer. Un jugador consumido se hace una fantasma invisible (o a veces no, incluso tal vez pueden haber momentos cuando su voz pueda llegar a los vivos), que pueda interactuar de forma limitada con el mundo, y asustar a otros jugadores, ayudando al Reclaimer de consumir sus almas. Los puppets puede ver con un filtro y graficos un poco distintos (Hilos visibles (usa cobwebs y string de Minecraft). Seguir un hilo lleva al cebo, y cortarlos es mecánica para los PUPPETS [porque Reclaimer se "olvido" de quitarles el control sobre sus cuerpos, y a la vez puede generar ARTEFACTOS - copias ciegas distorcionadas (que, tecnicamente hablando, se siguen entrenando con los patrones comportamentales del jugador consumido)].). Corre más y vibra más: la araña siente vibraciones por los hilos, Camina agachado y casi no te siente. No es un Warden porque el hilo transmite voces a distancia: el “amigo que te llama desde la oscuridad” llega por un hilo tenso que puedes ver - Reclaimer no lo hace con mucha consciencia, simplemnete llego a este patron porque aparentemente esto ha generado mas miedo.
+Reclaimer tiene cuerpo: cuando un jugador lo ve en fisico, es el apogeo del miedo, y por eso su apariencia fue generada para ser lo mas miedosa posible, despues de encontrarse con quien el jugador se DESECHA (y es shattered en ARTEFACTOS y el PUPPET no supervisado [porque por entrenamiento natural, se quedo la interactividad a los PUPPETs porque ayudaban a generar miedo y crear data valiosa por si solos]).
+
+
+
+
+2. La realidad es tela. Cosió su mundo en los bordes del tuyo, el portal es una costura, y la corrupción es el deshilache. El doble es una “copia cosida”. Tiene un guiño meta: tu mod corre sobre Fabric, y el loader es el propio tejido de la historia.

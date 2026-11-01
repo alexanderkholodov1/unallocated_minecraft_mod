@@ -1,0 +1,1 @@
+{"paths": ["README.md", "docs/core/INTEGRATION.md", "docs/ending/INTEGRATION.md", "docs/integration/MILESTONE-v0.1.0.md", "docs/plan/TOOLCHAIN.md", "scripts/test_verify_jar.py", "scripts/verify_jar.py", "src/main/java/org/unallocated/ending/EndingController.java"], "message": "0.1.0.17: document the integrated build and retain every package packaging safeguard"}

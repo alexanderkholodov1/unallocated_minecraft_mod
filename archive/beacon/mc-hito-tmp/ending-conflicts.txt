@@ -1,0 +1,214 @@
+
+ gradle.properties 0 OURS
+ version=0.1.0
+ THEIRS
+ version=0.1.10
+
+
+ README.md 0 OURS
+ **Versión actual: 0.1.0 — integración del hito.** Antes del menú aparece un acuerdo con advertencias y una lista opcional de usos reales de datos. Se acepta con un clic en **De acuerdo**, o escribiendo **De acuerdo** y pulsando Enter. Incluye el núcleo de sesión (actos con tiempo máximo, estado guardado y comandos de prueba) con sus dependencias dentro del JAR. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+ THEIRS
+ **Versión actual: 0.1.7 — núcleo de sesión con dependencias incluidas.** Incluye actos con tiempo máximo, estado guardado y comandos de prueba. La experiencia narrativa para un jugador de 10–15 minutos y su mapa todavía están pendientes.
+
+
+ README.md 1 OURS
+ | Archivo del mod | **`unallocated-0.1.0.jar`** de la entrega del autor. |
+
+Se fija Minecraft a 26.3 porque los módulos incluidos aplican mixins a sus clases internas; un hotfix podría cambiar esos objetivos. Sólo se ampliará la versión admitida después de probarlo.
+ THEIRS
+ | Archivo del mod | **`unallocated-0.1.7.jar`** de la entrega del autor. |
+
+
+ README.md 2 OURS
+ 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
+4. Consigue **`unallocated-0.1.0.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+ THEIRS
+ 3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: 26.3** (o su hotfix 26.3.x) y **Loader Version: 0.20.1 o posterior**; puedes dejar el Loader más reciente seleccionado por el instalador. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
+4. Consigue **`unallocated-0.1.7.jar`** de la entrega del autor. Si recibiste un ZIP de GitHub Actions, descomprime primero ese ZIP: dentro están el JAR y su archivo de comprobación `.sha256`. Conserva el JAR sin descomprimir.
+
+
+ README.md 3 OURS
+ Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.0.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+
+Every push to any branch and every pull request runs [the build workflow](.github/workflows/build.yml), verifies JAR metadata and both Java 25 entrypoint classes, then starts a real dedicated Fabric 26.3 server with the exact player JAR in `mods/`. CI requires the common load message, loaded bundled modules and `Done`, explicitly arms its disposable world, runs `unallocated act LOBBY` and `unallocated status`, asserts the enter/status markers, then stops and restarts against the same save to verify SavedData reload. Both runs require clean shutdown with no crash report. The EULA is accepted only for that disposable CI server. Smoke checks use the pinned baseline; newer accepted Loaders/hotfixes are not all tested.
+
+CI also runs `runClientSmoke`, a Loom production client task under Xvfb/Mesa. An isolated helper mod checks the loaded player JAR byte-for-byte, verifies the contract precedes title initialization, opens the optional data list, types the agreement, checks the receipt, and exercises clicked acceptance. It then requires every bundled player module to originate inside UNALLOCATED and verifies a real screen hook. A second client process reuses the game directory and must skip the contract without changing the receipt. Contract, data-list and title screenshots, phase-specific markers, both load messages and exit zero are required; missing evidence, crashes and deadlines fail the job. The clean client `mods/` directory contains only the player JAR, with no separate Fabric API. The helper is injected separately by Loom and nests only `fabric-client-gametest-api-v1`; it cannot provide any player module. The clean server likewise installs only the player JAR. A separate server run additionally checks coexistence with the optional full API.
+ THEIRS
+ Use **JDK 25**, **Gradle 9.8.2** and pinned **Loom 1.19.3**. On a development machine with enough RAM, run `gradle --no-daemon --console=plain build`; output: `build/libs/unallocated-0.1.7.jar`. This repository intentionally has no Gradle wrapper binary: CI installs Gradle using the pinned `setup-gradle` action. **Do not run Java/Gradle builds on the constrained scaffold machine.**
+
+
+ build.gradle 0 OURS
+         compileClasspath += sourceSets.client.compileClasspath
+        compileClasspath += sourceSets.main.output + sourceSets.client.output
+ THEIRS
+         compileClasspath += sourceSets.client.compileClasspath + sourceSets.main.output + sourceSets.client.output
+
+
+ scripts/smoke_test.py 0 OURS
+ BAIT_SCREENSHOTS = (
+    'unallocated-bait-1-plain-view', 'unallocated-bait-2-first-sighting',
+    'unallocated-bait-3-closer', 'unallocated-bait-4-screamer',
+)
+
+
+def verify_screenshot(directory, name='unallocated-title'):
+    # Fabric can prepend a numeric counter; one capture cannot substitute for another.
+    names = (name,) if isinstance(name, str) else name
+    for expected in names:
+        screenshots = list(directory.rglob(f'*{expected}.png'))
+        if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+            raise RuntimeError(f'Client exited without a valid screenshot: {expected}')
+ THEIRS
+ def verify_screenshot(directory, name="unallocated-title"):
+    # Fabric can prepend a numeric counter, e.g. 0000_unallocated-title.png.
+    screenshots = list(directory.rglob(f'*{name}*.png'))
+    if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n') for path in screenshots):
+        raise RuntimeError(f'Client exited without a valid screenshot: {name}')
+
+
+ scripts/smoke_test.py 1 OURS
+     if expects_rejection(api_version):
+        monitor(
+            ['gradle', '--daemon', '--console=plain', 'runClientSmoke',
+             f'-PsmokeApiVersion={api_version}', '-PsmokeExpectRejection=true'],
+            ROOT, SMOKE / f'{name}-console.log', [], timeout=240,
+            game_directory=directory, expected_rejection=api_version,
+        )
+        return
+    receipt = directory / 'unallocated' / 'contract.properties'
+    original = None
+    for phase, checks in client_phases().items():
+        monitor(
+            ['gradle', '--daemon', '--console=plain', 'runClientSmoke', f'-PcontractSmokePhase={phase}',
+             f'-PsmokeApiVersion={api_version or "none"}'],
+            ROOT, SMOKE / f'{name}-{phase}-console.log', [
+                r'UNALLOCATED initialized \(common\)\.',
+                r'UNALLOCATED initialized \(client\)\.',
+                *checks['evidence'],
+                *([rf'UNALLOCATED smoke: external Fabric API {re.escape(api_version)} loaded\.']
+                  if api_version else []),
+            ], timeout=checks['timeout'],
+            # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+            # Same real game directory, new JVM, no stale log evidence.
+            game_directory=directory,
+        )
+        for screenshot in checks['screenshots']:
+            if phase == 'first' and screenshot.startswith('unallocated-contract'):
+                if not any(path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
+                           for path in directory.rglob(f'*{screenshot}.png')):
+                    raise RuntimeError(f'Missing contract screenshot: {screenshot}')
+            else:
+                verify_screenshot(directory, screenshot)
+        if phase == 'first':
+            original = receipt.read_bytes()
+            (directory / 'logs').rename(directory / 'logs-first')
+        elif receipt.read_bytes() != original:
+            raise RuntimeError('Second start rewrote the original acceptance')
+ THEIRS
+     monitor(
+        ['gradle', '--no-daemon', '--console=plain', 'runClientSmoke'],
+        ROOT, SMOKE / 'client-console.log', [
+            r'UNALLOCATED initialized \(common\)\.',
+            r'UNALLOCATED initialized \(client\)\.',
+            r'UNALLOCATED smoke: title screen reached from player JAR\.',
+            r'UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified\.',
+            r'UNALLOCATED ending=SERVER_CLOSED',
+            r'UNALLOCATED smoke: ending save reloaded as finished; options and receipt unchanged; splash reset\.',
+            r'UNALLOCATED smoke: ending command showed vanilla disconnect and returned to title with changed splash\.',
+        ], timeout=300,
+        # The launcher/Gradle command runs at repo root; game evidence lives in runDir.
+        game_directory=directory,
+    )
+    for name in ("unallocated-title", "unallocated-ending-disconnect", "unallocated-ending-title",
+                 "unallocated-ending-command-disconnect", "unallocated-ending-command-title"):
+        verify_screenshot(directory, name)
+
+
+ src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java 0 OURS
+                 "UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified.");
+    }
+
+    private static void assertAgreementInput(ClientGameTestContext context, String expected, String stage) {
+        String failure = context.computeOnClient(client -> {
+            var screen = client.gui.screen();
+            if (!(screen instanceof ContractScreen) || !(screen.getFocused() instanceof EditBox field)
+                    || !field.isFocused() || !screen.children().contains(field)) {
+                return "Agreement field must have focus without clicking it at " + stage;
+            }
+            if (!field.getValue().equals(expected)) {
+                return "Agreement text was lost or replacement failed at " + stage + ": expected [" + expected
+                        + "], got [" + field.getValue() + "]";
+            }
+            return null;
+        });
+        if (failure != null) {
+            context.takeScreenshot("unallocated-contract-input-failure-" + stage);
+            throw new AssertionError(failure);
+        }
+    }
+
+    private static void clickWithMouse(ClientGameTestContext context, String translationKey) {
+        double[] position = context.computeOnClient(client -> {
+            var screen = client.gui.screen();
+            String label = Component.translatable(translationKey).getString();
+            Button button = screen.children().stream()
+                    .filter(child -> child instanceof Button candidate && candidate.getMessage().getString().equals(label))
+                    .map(child -> (Button) child).findFirst().orElseThrow();
+            return new double[] {
+                (button.getX() + button.getWidth() / 2.0) * client.getWindow().getScreenWidth() / screen.width,
+                (button.getY() + button.getHeight() / 2.0) * client.getWindow().getScreenHeight() / screen.height
+            };
+        });
+        context.getInput().setCursorPos(position[0], position[1]);
+        context.getInput().pressMouse(InputConstants.MOUSE_BUTTON_LEFT);
+ THEIRS
+                 "UNALLOCATED smoke: six Fabric API modules loaded from player JAR; screen hook verified.");
+        context.takeScreenshot("unallocated-title");
+        LoggerFactory.getLogger("unallocated-smoke").info(
+                "UNALLOCATED smoke: title screen reached from player JAR.");
+        EndingSmokeTest.run(context);
+
+
+ .github/workflows/build.yml 0 OURS
+       - name: Smoke test client startup or Loader rejection (Fabric API ${{ matrix.api }})
+        if: ${{ !cancelled() && steps.package.outcome == 'success' }}
+        timeout-minutes: 10
+ THEIRS
+       - name: Smoke test production client ending, saved world and title return
+        timeout-minutes: 6
+
+
+ docs/core/INTEGRATION.md 0 OURS
+ Dedicated smoke explicitly arms a disposable test world before its debug act/status/save/restart
+checks. The real client helper now opens an **unarmed** world with a player, issues no-cheats
+siguiente and verifies no session file after saving; arms before reopening, checks immediate
+LOBBY on JOIN and client synchronization; checks delayed rescue and repeated-command rejection;
+then reopens the single-player save and verifies CLIMAX progress and finished-session rejection.
+It checks the exact production player JAR first. These new game assertions must pass CI; a local
+type-check alone does not prove game behavior.
+ THEIRS
+ This branch merges v0.1.6's six-module manifest, identity-based JAR verifier and clean
+one-JAR smoke harness. The core uses only modules already in that allowlist and does not
+maintain a separate include list or nested-archive hash policy. The optional full-API coexistence
+check retains its own diagnostics and exercises the core commands without repeating reload.
+
+
+ docs/plan/TOOLCHAIN.md 0 OURS
+ # Toolchain — UNALLOCATED v0.1.0
+ THEIRS
+ # Toolchain — UNALLOCATED v0.1.7
+
+
+ docs/plan/TOOLCHAIN.md 1 OURS
+ 2. In **Client**, select Minecraft **26.3**, Loader **0.20.1 or newer** (the installer's latest selection is fine), the launcher's correct game installation location, and **Create Profile**, then **Install**. Reopen the launcher and choose the corresponding Fabric profile; `fabric-loader-0.20.1-26.3` is the baseline example, not a required display name. If missing, enable modded installations under **Installations**. The installer installs Loader; it does not supply every mod. Sources: [official installer](https://fabricmc.net/use/installer/), OS guides above, read 2026-10-26. The exact Minecraft pin and Loader range are this project's compatibility policy.
+3. With Minecraft closed, put **`unallocated-0.1.0.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API **0.165.0+26.3** is included as seven nested modules; **do not download or install it separately**. Loader + this one JAR is the installation path. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
+ THEIRS
+ 2. In **Client**, select Minecraft **26.3** (or a 26.3.x hotfix), Loader **0.20.1 or newer** (the installer's latest selection is fine), the launcher's correct game installation location, and **Create Profile**, then **Install**. Reopen the launcher and choose the corresponding Fabric profile; `fabric-loader-0.20.1-26.3` is the baseline example, not a required display name. If missing, enable modded installations under **Installations**. The installer installs Loader; it does not supply every mod. Sources: [official installer](https://fabricmc.net/use/installer/), OS guides above, read 2026-10-26. The accepted runtime ranges are this project's compatibility policy.
+3. With Minecraft closed, put **`unallocated-0.1.7.jar`** in the selected profile's `mods` directory. Extract the CI artifact ZIP first; do not extract the mod JAR. Fabric API **0.165.0+26.3** is included as six nested modules; **do not download or install it separately**. Loader + this one JAR is the installation path. General mod placement source: [Fabric Installing Mods](https://docs.fabricmc.net/players/installing-mods), read 2026-10-26.
+
+
+ docs/plan/TOOLCHAIN.md 2 OURS
+ The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-0.1.0.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
+ THEIRS
+ The repository intentionally has no wrapper scripts/JAR. On a development machine with adequate memory, install JDK 25 and Gradle 9.8.2, then run `gradle --no-daemon --console=plain build`. The production JAR is `build/libs/unallocated-0.1.7.jar`; the non-remapping plugin does not require `remapJar`. Do not run this here.
+

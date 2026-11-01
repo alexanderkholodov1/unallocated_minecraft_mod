@@ -1,0 +1,26 @@
+== copying release files to a fresh laptop run directory ~/unallocated-cleantest/dev1
+== installing harness tools
+== running stage 'install' on the laptop (foreground)
+[01:56:31Z] page says: Minecraft=26.3 Loader>=0.20.1 installer=1.1.2 java=25 jar=unallocated-0.2.0.jar
+[01:56:31Z] SHA-256 matches the page (45dfa7afe5bb34701b4f1bf8391b2bef7d0f78e7eda0bd6dc89abae8a715a29c)
+[01:56:31Z] downloading Temurin 25 (cached afterwards)
+openjdk version "25.0.5" 2026-10-20 LTS
+[01:56:37Z] running Fabric installer 1.1.2: client -mcversion 26.3 -loader 0.20.1 -dir /home/alexamaze/unallocated-cleantest/dev1/mc
+  installer: Exception in thread "main" java.lang.RuntimeException: Failed to install Client
+  installer: 	at net.fabricmc.installer.Main.main(Main.java:91)
+  installer: Caused by: java.io.FileNotFoundException: Could not find a valid launcher profile .json
+  installer: 	at net.fabricmc.installer.client.ClientHandler.installCli(ClientHandler.java:213)
+  installer: 	at net.fabricmc.installer.Main.main(Main.java:89)
+[01:56:39Z] installer refused (no launcher_profiles.json: the real launcher writes it in page step 1); creating the minimal file and retrying
+[01:56:40Z] installer wrote profile version fabric-loader-0.20.1-26.3
+[launch 20:56:40] 26.3.json not present; fetching from Mojang manifest
+[launch 20:56:45] 5220 libraries+assets to verify/download
+[launch 20:59:08] downloaded 5213 files in 143s
+total 1368
+drwxr-xr-x 2 alexamaze alexamaze    4096 Oct 28 20:59 .
+drwxr-xr-x 5 alexamaze alexamaze    4096 Oct 28 20:56 ..
+-rw-r--r-- 1 alexamaze alexamaze 1389292 Oct 28 20:59 unallocated-0.2.0.jar
+== elapsed 158s; copying evidence back
+wrote /home/alexamaze/Workspaces/mc-inputs/laptop-test/results/dev1/RESULT.md
+== VERDICT: NONE  (see /home/alexamaze/Workspaces/mc-inputs/laptop-test/results/dev1/RESULT.md)
+exit=3

@@ -1,0 +1,555 @@
+build (0.153.1+26.3)	Install headless client graphics	﻿2026-10-26T16:08:38.4542667Z ##[group]Run bash scripts/install_headless_graphics.sh
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4543119Z [36;1mbash scripts/install_headless_graphics.sh[0m
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4578835Z shell: /usr/bin/bash -e {0}
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4579147Z env:
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4579503Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4580035Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4580491Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4580846Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4581171Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4581523Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4582206Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4582752Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4583117Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.4583432Z ##[endgroup]
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.6274025Z Reading package lists...
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.9378630Z Building dependency tree...
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:38.9389727Z Reading state information...
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:39.1180399Z E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+build (0.153.1+26.3)	Install headless client graphics	2026-10-26T16:08:39.1209824Z ##[error]Process completed with exit code 100.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	﻿2026-10-26T16:08:45.1169821Z ##[group]Run python3 scripts/smoke_test.py server --fabric-api-version '0.161.0+26.3'
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1170384Z [36;1mpython3 scripts/smoke_test.py server --fabric-api-version '0.161.0+26.3'[0m
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1226536Z shell: /usr/bin/bash -e {0}
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1226786Z env:
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1227095Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1227513Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1227875Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1228155Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1228421Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1228689Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1229066Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1229469Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1229751Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1230047Z ##[endgroup]
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.1806091Z Using pinned official Fabric server launcher (download on cache miss): https://meta.fabricmc.net/v2/versions/loader/26.3/0.20.1/1.1.2/server/jar
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:08:45.3438349Z Installed player JAR SHA-256: 4af792c51298e9cd462f0805d90382e52aed714dc3b413baf6c18f2d231375ea
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6663403Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-api-0.161.0+26.3-console.log ---
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6696483Z 	   |-- fabric-block-getter-api-v2 2.0.9+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6732403Z 	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6785036Z 	   |-- fabric-content-registries-v0 15.0.4+74ed1ea55d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6816527Z 	   |-- fabric-convention-tags-v2 4.10.3+6b5b47fd5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6834693Z 	   |-- fabric-crash-report-info-v1 1.0.7+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6849468Z 	   |-- fabric-creative-tab-api-v1 5.0.21+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6865807Z 	   |-- fabric-data-attachment-api-v1 2.2.30+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6882287Z 	   |-- fabric-data-generation-api-v1 27.2.4+427eab975d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6903188Z 	   |-- fabric-debug-api-v1 1.0.4+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6923150Z 	   |-- fabric-dimensions-v1 5.1.19+47f74c985d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6955764Z 	   |-- fabric-entity-events-v1 6.0.4+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6982781Z 	   |-- fabric-events-interaction-v0 5.3.6+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.6983781Z 	   |-- fabric-game-rule-api-v1 4.0.10+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7002280Z 	   |-- fabric-item-api-v1 14.7.0+cf6bc2db5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7025990Z 	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7042302Z 	   |-- fabric-loot-api-v3 4.0.8+4068fd645d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7042911Z 	   |-- fabric-menu-api-v1 2.0.27+ed66f0a35d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7043369Z 	   |-- fabric-message-api-v1 7.0.10+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7046315Z 	   |-- fabric-object-builder-api-v1 24.1.9+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7046849Z 	   |-- fabric-particles-v1 5.0.24+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7047328Z 	   |-- fabric-permission-api-v1 1.0.8+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7047790Z 	   |-- fabric-recipe-api-v1 10.0.8+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7048239Z 	   |-- fabric-rendering-fluids-v1 6.0.6+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7048771Z 	   |-- fabric-resource-conditions-api-v1 6.1.5+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7049273Z 	   |-- fabric-resource-loader-v0 3.3.26+4fc5413f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7049749Z 	   |-- fabric-serialization-api-v1 2.0.7+74ed1ea55d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7050200Z 	   |-- fabric-tag-api-v1 2.1.10+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7050705Z 	   |-- fabric-transfer-api-v1 8.0.25+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7051231Z 	   \-- fabric-transitive-access-wideners-v1 8.1.16+52268a0e5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7092425Z 	- fabricloader 0.20.1
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7109191Z 	   \-- mixinextras 0.5.5
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7129665Z 	- java 25
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7152309Z 	- minecraft 26.3
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7162820Z 	- unallocated 0.1.0
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7172352Z 	   |-- fabric-api-base 2.0.6+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7182964Z 	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7208100Z 	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7219342Z 	   |-- fabric-networking-api-v1 6.4.0+a21c9eb65d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7241698Z 	   |-- fabric-registry-sync-v0 8.0.4+1ca9f6365d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7244844Z 	   \-- fabric-resource-loader-v1 3.1.0+5af7744b5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7274875Z [16:08:48] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-api-0.161.0+26.3/libraries/net/fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7283441Z [16:08:49] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7299087Z WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7313813Z WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.joml.MemUtil$MemUtilUnsafe (file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke-downloads/26.3-0.20.1-1.1.2/libraries/org/joml/joml/1.10.9/joml-1.10.9.jar)
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7333011Z WARNING: Please consider reporting this to the maintainers of class org.joml.MemUtil$MemUtilUnsafe
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7334163Z WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7334813Z [16:08:58] [main/INFO]: UNALLOCATED initialized (common).
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7335691Z [16:08:58] [main/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7336784Z [16:09:00] [Worker-Main-1/INFO]: No existing world data, creating new world
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7337408Z [16:09:00] [Worker-Main-1/ERROR]: No key layers in MapLike[{}]
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7352837Z [16:09:02] [Worker-Main-1/INFO]: Loaded 1866 advancements
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7373042Z [16:09:02] [main/INFO]: Applied 0 biome modifications to 0 of 67 new biomes in 1.690 ms
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7385341Z [16:09:02] [Server thread/INFO]: Starting minecraft server version 26.3
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7403336Z [16:09:02] [Server thread/INFO]: Loading properties
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7416494Z [16:09:02] [Server thread/INFO]: Default game type: SURVIVAL
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7416995Z [16:09:02] [Server thread/INFO]: Generating keypair
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7417579Z [16:09:02] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:25565
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7418239Z [16:09:02] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7418986Z [16:09:02] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7423877Z [16:09:02] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7433320Z [16:09:02] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7444017Z [16:09:02] [Server thread/INFO]: Preparing level "smoke-world"
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7459645Z [16:09:03] [Server thread/INFO]: Selecting global world spawn...
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7475186Z [16:09:03] [Server thread/INFO]: Loading 0 persistent chunks...
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7492416Z [16:09:03] [Server thread/INFO]: Preparing spawn area: 100%
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7509957Z [16:09:03] [Server thread/INFO]: Time elapsed: 682 ms
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7526138Z [16:09:03] [Server thread/INFO]: Done (0.862s)! For help, type "help"
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7541739Z [16:09:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:overworld
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7557420Z [16:09:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_end
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7563226Z [16:09:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_nether
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7583064Z [16:09:03] [Server thread/INFO]: UNALLOCATED session armed
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7613053Z [16:09:03] [Server thread/INFO]: System chat: Mundo preparado; la sesión comenzará al entrar un jugador.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7620276Z [16:09:04] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7620875Z [16:09:04] [Server thread/INFO]: System chat: Acto: LOBBY
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7636547Z [16:09:04] [Server thread/INFO]: UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 budgetTicks=6000 checkpoint=lobby.spawn armed=true flags=[] counters={}
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7644901Z [16:09:04] [Server thread/INFO]: System chat: Estado de sesión: LOBBY · 0 s · punto de control: lobby.spawn
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7645823Z [16:09:05] [Server thread/INFO]: UNALLOCATED bait selftest started at 0, -60, 0
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7646533Z [16:09:05] [Server thread/INFO]: System chat: Autoprueba del cebo en marcha.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7647385Z [16:09:05] [Server thread/INFO]: UNALLOCATED bait selftest figure at 0.5 -60.0 0.5, 1 problems
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7648158Z [16:09:05] [Server thread/ERROR]: UNALLOCATED bait selftest FAILED: not found in level
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7653113Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-api-0.161.0+26.3/logs/latest.log ---
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7654032Z 	   |-- fabric-api-base 2.0.6+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7654483Z 	   |-- fabric-api-lookup-api-v1 2.0.24+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7654933Z 	   |-- fabric-biome-api-v1 20.0.9+74ed1ea55d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7655362Z 	   |-- fabric-block-api-v1 3.1.0+0ae6f9115d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7656378Z 	   |-- fabric-block-getter-api-v2 2.0.9+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7656822Z 	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7657283Z 	   |-- fabric-content-registries-v0 15.0.4+74ed1ea55d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7657766Z 	   |-- fabric-convention-tags-v2 4.10.3+6b5b47fd5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7658250Z 	   |-- fabric-crash-report-info-v1 1.0.7+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7658920Z 	   |-- fabric-creative-tab-api-v1 5.0.21+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7659387Z 	   |-- fabric-data-attachment-api-v1 2.2.30+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7659852Z 	   |-- fabric-data-generation-api-v1 27.2.4+427eab975d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7660296Z 	   |-- fabric-debug-api-v1 1.0.4+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7660721Z 	   |-- fabric-dimensions-v1 5.1.19+47f74c985d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7661159Z 	   |-- fabric-entity-events-v1 6.0.4+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7661621Z 	   |-- fabric-events-interaction-v0 5.3.6+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7677770Z 	   |-- fabric-game-rule-api-v1 4.0.10+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7678277Z 	   |-- fabric-item-api-v1 14.7.0+cf6bc2db5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7678741Z 	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7679192Z 	   |-- fabric-loot-api-v3 4.0.8+4068fd645d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7679632Z 	   |-- fabric-menu-api-v1 2.0.27+ed66f0a35d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7680107Z 	   |-- fabric-message-api-v1 7.0.10+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7680584Z 	   |-- fabric-object-builder-api-v1 24.1.9+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7681048Z 	   |-- fabric-particles-v1 5.0.24+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7681500Z 	   |-- fabric-permission-api-v1 1.0.8+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7682143Z 	   |-- fabric-recipe-api-v1 10.0.8+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7682599Z 	   |-- fabric-rendering-fluids-v1 6.0.6+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7683123Z 	   |-- fabric-resource-conditions-api-v1 6.1.5+3434d6d95d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7683638Z 	   |-- fabric-resource-loader-v0 3.3.26+4fc5413f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7684117Z 	   |-- fabric-serialization-api-v1 2.0.7+74ed1ea55d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7684563Z 	   |-- fabric-tag-api-v1 2.1.10+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7684996Z 	   |-- fabric-transfer-api-v1 8.0.25+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7685514Z 	   \-- fabric-transitive-access-wideners-v1 8.1.16+52268a0e5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7686272Z 	- fabricloader 0.20.1
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7686611Z 	   \-- mixinextras 0.5.5
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7686937Z 	- java 25
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7687203Z 	- minecraft 26.3
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7687519Z 	- unallocated 0.1.0
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7687865Z 	   |-- fabric-api-base 2.0.6+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7688290Z 	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7688743Z 	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7689214Z 	   |-- fabric-networking-api-v1 6.4.0+a21c9eb65d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7689660Z 	   |-- fabric-registry-sync-v0 8.0.4+1ca9f6365d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7690125Z 	   \-- fabric-resource-loader-v1 3.1.0+5af7744b5d
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7691728Z [16:08:48] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-api-0.161.0+26.3/libraries/net/fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7712601Z [16:08:49] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7713476Z [16:08:58] [main/INFO]: UNALLOCATED initialized (common).
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7714617Z [16:08:58] [main/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7715613Z [16:09:00] [Worker-Main-1/INFO]: No existing world data, creating new world
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7716221Z [16:09:00] [Worker-Main-1/ERROR]: No key layers in MapLike[{}]
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7716752Z [16:09:02] [Worker-Main-1/INFO]: Loaded 1866 advancements
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7717361Z [16:09:02] [main/INFO]: Applied 0 biome modifications to 0 of 67 new biomes in 1.690 ms
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7718036Z [16:09:02] [Server thread/INFO]: Starting minecraft server version 26.3
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7718588Z [16:09:02] [Server thread/INFO]: Loading properties
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7719110Z [16:09:02] [Server thread/INFO]: Default game type: SURVIVAL
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7719592Z [16:09:02] [Server thread/INFO]: Generating keypair
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7720129Z [16:09:02] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:25565
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7720782Z [16:09:02] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7721528Z [16:09:02] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7722830Z [16:09:02] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7724026Z [16:09:02] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7724731Z [16:09:02] [Server thread/INFO]: Preparing level "smoke-world"
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7725290Z [16:09:03] [Server thread/INFO]: Selecting global world spawn...
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7725842Z [16:09:03] [Server thread/INFO]: Loading 0 persistent chunks...
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7726356Z [16:09:03] [Server thread/INFO]: Preparing spawn area: 100%
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7726851Z [16:09:03] [Server thread/INFO]: Time elapsed: 682 ms
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7727385Z [16:09:03] [Server thread/INFO]: Done (0.862s)! For help, type "help"
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7728096Z [16:09:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:overworld
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7728939Z [16:09:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_end
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7729785Z [16:09:03] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_nether
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7730535Z [16:09:03] [Server thread/INFO]: UNALLOCATED session armed
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7731441Z [16:09:03] [Server thread/INFO]: System chat: Mundo preparado; la sesión comenzará al entrar un jugador.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7748523Z [16:09:04] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7749104Z [16:09:04] [Server thread/INFO]: System chat: Acto: LOBBY
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7750130Z [16:09:04] [Server thread/INFO]: UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 budgetTicks=6000 checkpoint=lobby.spawn armed=true flags=[] counters={}
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7754956Z [16:09:04] [Server thread/INFO]: System chat: Estado de sesión: LOBBY · 0 s · punto de control: lobby.spawn
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7756014Z [16:09:05] [Server thread/INFO]: UNALLOCATED bait selftest started at 0, -60, 0
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7756699Z [16:09:05] [Server thread/INFO]: System chat: Autoprueba del cebo en marcha.
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7757423Z [16:09:05] [Server thread/INFO]: UNALLOCATED bait selftest figure at 0.5 -60.0 0.5, 1 problems
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:05.7758185Z [16:09:05] [Server thread/ERROR]: UNALLOCATED bait selftest FAILED: not found in level
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3415845Z Traceback (most recent call last):
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3417013Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 409, in <module>
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3418100Z     main()
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3418966Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 405, in main
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3420696Z     {'server': server, 'client': client, 'server-with-api': server}[args.target](version)
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3421683Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 269, in server
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3423038Z     monitor(
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3423931Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 139, in monitor
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3425119Z     raise RuntimeError(f'In-game self-test failed: {failed.group(0)}')
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3426107Z RuntimeError: In-game self-test failed: UNALLOCATED bait selftest FAILED: not found in level
+build (0.161.0+26.3)	Smoke test dedicated server (Fabric API 0.161.0+26.3)	2026-10-26T16:09:06.3574631Z ##[error]Process completed with exit code 1.
+build (none)	Smoke test dedicated server (Fabric API none)	﻿2026-10-26T16:08:24.9757633Z ##[group]Run python3 scripts/smoke_test.py server --fabric-api-version 'none'
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9758147Z [36;1mpython3 scripts/smoke_test.py server --fabric-api-version 'none'[0m
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9814201Z shell: /usr/bin/bash -e {0}
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9814461Z env:
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9814760Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9815216Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9815591Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9816072Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9816345Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9816617Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9817000Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9817409Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9817698Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:24.9817986Z ##[endgroup]
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:25.0360678Z Using pinned official Fabric server launcher (download on cache miss): https://meta.fabricmc.net/v2/versions/loader/26.3/0.20.1/1.1.2/server/jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:25.1806929Z Installed player JAR SHA-256: 4af792c51298e9cd462f0805d90382e52aed714dc3b413baf6c18f2d231375ea
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.3887075Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-console.log ---
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.3921384Z Unpacking io/netty/netty-buffer/4.2.16.Final/netty-buffer-4.2.16.Final.jar (libraries:io.netty:netty-buffer:4.2.16.Final) to libraries/io/netty/netty-buffer/4.2.16.Final/netty-buffer-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.3948267Z Unpacking io/netty/netty-codec-base/4.2.16.Final/netty-codec-base-4.2.16.Final.jar (libraries:io.netty:netty-codec-base:4.2.16.Final) to libraries/io/netty/netty-codec-base/4.2.16.Final/netty-codec-base-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.3977504Z Unpacking io/netty/netty-codec-compression/4.2.16.Final/netty-codec-compression-4.2.16.Final.jar (libraries:io.netty:netty-codec-compression:4.2.16.Final) to libraries/io/netty/netty-codec-compression/4.2.16.Final/netty-codec-compression-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.3996915Z Unpacking io/netty/netty-codec-http/4.2.16.Final/netty-codec-http-4.2.16.Final.jar (libraries:io.netty:netty-codec-http:4.2.16.Final) to libraries/io/netty/netty-codec-http/4.2.16.Final/netty-codec-http-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4012757Z Unpacking io/netty/netty-common/4.2.16.Final/netty-common-4.2.16.Final.jar (libraries:io.netty:netty-common:4.2.16.Final) to libraries/io/netty/netty-common/4.2.16.Final/netty-common-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4056923Z Unpacking io/netty/netty-handler/4.2.16.Final/netty-handler-4.2.16.Final.jar (libraries:io.netty:netty-handler:4.2.16.Final) to libraries/io/netty/netty-handler/4.2.16.Final/netty-handler-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4077570Z Unpacking io/netty/netty-resolver/4.2.16.Final/netty-resolver-4.2.16.Final.jar (libraries:io.netty:netty-resolver:4.2.16.Final) to libraries/io/netty/netty-resolver/4.2.16.Final/netty-resolver-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4084659Z Unpacking io/netty/netty-transport/4.2.16.Final/netty-transport-4.2.16.Final.jar (libraries:io.netty:netty-transport:4.2.16.Final) to libraries/io/netty/netty-transport/4.2.16.Final/netty-transport-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4107331Z Unpacking io/netty/netty-transport-classes-epoll/4.2.16.Final/netty-transport-classes-epoll-4.2.16.Final.jar (libraries:io.netty:netty-transport-classes-epoll:4.2.16.Final) to libraries/io/netty/netty-transport-classes-epoll/4.2.16.Final/netty-transport-classes-epoll-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4117464Z Unpacking io/netty/netty-transport-classes-kqueue/4.2.16.Final/netty-transport-classes-kqueue-4.2.16.Final.jar (libraries:io.netty:netty-transport-classes-kqueue:4.2.16.Final) to libraries/io/netty/netty-transport-classes-kqueue/4.2.16.Final/netty-transport-classes-kqueue-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4137184Z Unpacking io/netty/netty-transport-native-epoll/4.2.16.Final/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar (libraries:io.netty:netty-transport-native-epoll:4.2.16.Final:linux-x86_64) to libraries/io/netty/netty-transport-native-epoll/4.2.16.Final/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4158027Z Unpacking io/netty/netty-transport-native-epoll/4.2.16.Final/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar (libraries:io.netty:netty-transport-native-epoll:4.2.16.Final:linux-aarch_64) to libraries/io/netty/netty-transport-native-epoll/4.2.16.Final/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4177339Z Unpacking io/netty/netty-transport-native-kqueue/4.2.16.Final/netty-transport-native-kqueue-4.2.16.Final-osx-x86_64.jar (libraries:io.netty:netty-transport-native-kqueue:4.2.16.Final:osx-x86_64) to libraries/io/netty/netty-transport-native-kqueue/4.2.16.Final/netty-transport-native-kqueue-4.2.16.Final-osx-x86_64.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4198033Z Unpacking io/netty/netty-transport-native-kqueue/4.2.16.Final/netty-transport-native-kqueue-4.2.16.Final-osx-aarch_64.jar (libraries:io.netty:netty-transport-native-kqueue:4.2.16.Final:osx-aarch_64) to libraries/io/netty/netty-transport-native-kqueue/4.2.16.Final/netty-transport-native-kqueue-4.2.16.Final-osx-aarch_64.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4217511Z Unpacking io/netty/netty-transport-native-unix-common/4.2.16.Final/netty-transport-native-unix-common-4.2.16.Final.jar (libraries:io.netty:netty-transport-native-unix-common:4.2.16.Final) to libraries/io/netty/netty-transport-native-unix-common/4.2.16.Final/netty-transport-native-unix-common-4.2.16.Final.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4237209Z Unpacking it/unimi/dsi/fastutil/8.5.18/fastutil-8.5.18.jar (libraries:it.unimi.dsi:fastutil:8.5.18) to libraries/it/unimi/dsi/fastutil/8.5.18/fastutil-8.5.18.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4246511Z Unpacking net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar (libraries:net.java.dev.jna:jna:5.17.0) to libraries/net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4263591Z Unpacking net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar (libraries:net.java.dev.jna:jna-platform:5.17.0) to libraries/net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4277668Z Unpacking net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar (libraries:net.sf.jopt-simple:jopt-simple:5.0.4) to libraries/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4296912Z Unpacking org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar (libraries:org.apache.commons:commons-lang3:3.20.0) to libraries/org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4317047Z Unpacking org/apache/logging/log4j/log4j-api/2.26.0/log4j-api-2.26.0.jar (libraries:org.apache.logging.log4j:log4j-api:2.26.0) to libraries/org/apache/logging/log4j/log4j-api/2.26.0/log4j-api-2.26.0.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4320651Z Unpacking org/apache/logging/log4j/log4j-core/2.26.0/log4j-core-2.26.0.jar (libraries:org.apache.logging.log4j:log4j-core:2.26.0) to libraries/org/apache/logging/log4j/log4j-core/2.26.0/log4j-core-2.26.0.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4337183Z Unpacking org/apache/logging/log4j/log4j-slf4j2-impl/2.26.0/log4j-slf4j2-impl-2.26.0.jar (libraries:org.apache.logging.log4j:log4j-slf4j2-impl:2.26.0) to libraries/org/apache/logging/log4j/log4j-slf4j2-impl/2.26.0/log4j-slf4j2-impl-2.26.0.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4355326Z Unpacking org/joml/joml/1.10.9/joml-1.10.9.jar (libraries:org.joml:joml:1.10.9) to libraries/org/joml/joml/1.10.9/joml-1.10.9.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4376716Z Unpacking org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar (libraries:org.jspecify:jspecify:1.0.0) to libraries/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4397206Z Unpacking org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar (libraries:org.slf4j:slf4j-api:2.0.17) to libraries/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4406237Z Starting net.fabricmc.loader.impl.game.minecraft.BundlerClassPathCapture
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4416340Z [16:08:28] [main/INFO]: Loading Minecraft 26.3 with Fabric Loader 0.20.1
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4433076Z [16:08:28] [main/INFO]: Mappings not present!
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4456193Z [16:08:28] [main/INFO]: Loading 11 mods:
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4467858Z 	- fabricloader 0.20.1
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4494804Z 	   \-- mixinextras 0.5.5
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4496178Z 	- java 25
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4516685Z 	- minecraft 26.3
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4526015Z 	- unallocated 0.1.0
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4536249Z 	   |-- fabric-api-base 2.0.6+fcdff87f5d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4557483Z 	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4576208Z 	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4590207Z 	   |-- fabric-networking-api-v1 6.4.0+a21c9eb65d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4616190Z 	   |-- fabric-registry-sync-v0 8.0.4+1ca9f6365d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4616952Z 	   \-- fabric-resource-loader-v1 3.1.0+5af7744b5d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4638155Z [16:08:28] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server/libraries/net/fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4656877Z [16:08:29] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4669593Z WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4688122Z WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.joml.MemUtil$MemUtilUnsafe (file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke-downloads/26.3-0.20.1-1.1.2/libraries/org/joml/joml/1.10.9/joml-1.10.9.jar)
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4701872Z WARNING: Please consider reporting this to the maintainers of class org.joml.MemUtil$MemUtilUnsafe
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4716415Z WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4734173Z [16:08:36] [main/INFO]: UNALLOCATED initialized (common).
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4752687Z [16:08:36] [main/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4764674Z [16:08:37] [Worker-Main-1/INFO]: No existing world data, creating new world
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4776260Z [16:08:37] [Worker-Main-1/ERROR]: No key layers in MapLike[{}]
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4796235Z [16:08:39] [Worker-Main-1/INFO]: Loaded 1866 advancements
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4816338Z [16:08:39] [Server thread/INFO]: Starting minecraft server version 26.3
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4824341Z [16:08:39] [Server thread/INFO]: Loading properties
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4836674Z [16:08:39] [Server thread/INFO]: Default game type: SURVIVAL
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4854483Z [16:08:39] [Server thread/INFO]: Generating keypair
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4876469Z [16:08:39] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:25565
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4889098Z [16:08:39] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4906286Z [16:08:39] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4926491Z [16:08:39] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4936405Z [16:08:39] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4956239Z [16:08:39] [Server thread/INFO]: Preparing level "smoke-world"
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4976228Z [16:08:39] [Server thread/INFO]: Selecting global world spawn...
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4996202Z [16:08:40] [Server thread/INFO]: Loading 0 persistent chunks...
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.4997176Z [16:08:40] [Server thread/INFO]: Preparing spawn area: 100%
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5016182Z [16:08:40] [Server thread/INFO]: Time elapsed: 491 ms
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5036283Z [16:08:40] [Server thread/INFO]: Done (0.701s)! For help, type "help"
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5051268Z [16:08:40] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:overworld
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5076848Z [16:08:40] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_end
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5078136Z [16:08:40] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_nether
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5096196Z [16:08:40] [Server thread/INFO]: UNALLOCATED session armed
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5116665Z [16:08:40] [Server thread/INFO]: System chat: Mundo preparado; la sesión comenzará al entrar un jugador.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5136147Z [16:08:40] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5136882Z [16:08:40] [Server thread/INFO]: System chat: Acto: LOBBY
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5156700Z [16:08:41] [Server thread/INFO]: UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 budgetTicks=6000 checkpoint=lobby.spawn armed=true flags=[] counters={}
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5176840Z [16:08:41] [Server thread/INFO]: System chat: Estado de sesión: LOBBY · 0 s · punto de control: lobby.spawn
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5196271Z [16:08:42] [Server thread/INFO]: UNALLOCATED bait selftest started at 0, -60, 0
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5197185Z [16:08:42] [Server thread/INFO]: System chat: Autoprueba del cebo en marcha.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5216306Z [16:08:42] [Server thread/INFO]: UNALLOCATED bait selftest figure at 0.5 -60.0 0.5, 1 problems
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5236364Z [16:08:42] [Server thread/ERROR]: UNALLOCATED bait selftest FAILED: not found in level
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5256550Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server/logs/latest.log ---
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5257640Z [16:08:28] [main/INFO]: Loading Minecraft 26.3 with Fabric Loader 0.20.1
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5286274Z [16:08:28] [main/INFO]: Mappings not present!
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5302371Z [16:08:28] [main/INFO]: Loading 11 mods:
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5326042Z 	- fabricloader 0.20.1
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5326548Z 	   \-- mixinextras 0.5.5
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5346102Z 	- java 25
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5366123Z 	- minecraft 26.3
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5385900Z 	- unallocated 0.1.0
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5386419Z 	   |-- fabric-api-base 2.0.6+fcdff87f5d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5386925Z 	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5387411Z 	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5387896Z 	   |-- fabric-networking-api-v1 6.4.0+a21c9eb65d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5388359Z 	   |-- fabric-registry-sync-v0 8.0.4+1ca9f6365d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5389384Z 	   \-- fabric-resource-loader-v1 3.1.0+5af7744b5d
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5397621Z [16:08:28] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server/libraries/net/fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5416467Z [16:08:29] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5436101Z [16:08:36] [main/INFO]: UNALLOCATED initialized (common).
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5456378Z [16:08:36] [main/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5457338Z [16:08:37] [Worker-Main-1/INFO]: No existing world data, creating new world
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5481521Z [16:08:37] [Worker-Main-1/ERROR]: No key layers in MapLike[{}]
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5490744Z [16:08:39] [Worker-Main-1/INFO]: Loaded 1866 advancements
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5506281Z [16:08:39] [Server thread/INFO]: Starting minecraft server version 26.3
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5563725Z [16:08:39] [Server thread/INFO]: Loading properties
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5586262Z [16:08:39] [Server thread/INFO]: Default game type: SURVIVAL
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5606939Z [16:08:39] [Server thread/INFO]: Generating keypair
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5647274Z [16:08:39] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:25565
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5687346Z [16:08:39] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5706504Z [16:08:39] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5734323Z [16:08:39] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5754178Z [16:08:39] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5775482Z [16:08:39] [Server thread/INFO]: Preparing level "smoke-world"
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5790913Z [16:08:39] [Server thread/INFO]: Selecting global world spawn...
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5805161Z [16:08:40] [Server thread/INFO]: Loading 0 persistent chunks...
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5822139Z [16:08:40] [Server thread/INFO]: Preparing spawn area: 100%
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5830810Z [16:08:40] [Server thread/INFO]: Time elapsed: 491 ms
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5851973Z [16:08:40] [Server thread/INFO]: Done (0.701s)! For help, type "help"
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5872104Z [16:08:40] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:overworld
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5891043Z [16:08:40] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_end
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5907482Z [16:08:40] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_nether
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5925267Z [16:08:40] [Server thread/INFO]: UNALLOCATED session armed
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5941191Z [16:08:40] [Server thread/INFO]: System chat: Mundo preparado; la sesión comenzará al entrar un jugador.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5956320Z [16:08:40] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5972919Z [16:08:40] [Server thread/INFO]: System chat: Acto: LOBBY
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.5989046Z [16:08:41] [Server thread/INFO]: UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 budgetTicks=6000 checkpoint=lobby.spawn armed=true flags=[] counters={}
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.6000067Z [16:08:41] [Server thread/INFO]: System chat: Estado de sesión: LOBBY · 0 s · punto de control: lobby.spawn
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.6016947Z [16:08:42] [Server thread/INFO]: UNALLOCATED bait selftest started at 0, -60, 0
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.6037007Z [16:08:42] [Server thread/INFO]: System chat: Autoprueba del cebo en marcha.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.6054350Z [16:08:42] [Server thread/INFO]: UNALLOCATED bait selftest figure at 0.5 -60.0 0.5, 1 problems
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:42.6069875Z [16:08:42] [Server thread/ERROR]: UNALLOCATED bait selftest FAILED: not found in level
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5962385Z Traceback (most recent call last):
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5963603Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 409, in <module>
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5964580Z     main()
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5965337Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 405, in main
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5966648Z     {'server': server, 'client': client, 'server-with-api': server}[args.target](version)
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5967570Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 269, in server
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5968358Z     monitor(
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5969030Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 139, in monitor
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5969935Z     raise RuntimeError(f'In-game self-test failed: {failed.group(0)}')
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.5970708Z RuntimeError: In-game self-test failed: UNALLOCATED bait selftest FAILED: not found in level
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-26T16:08:43.6116503Z ##[error]Process completed with exit code 1.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	﻿2026-10-26T16:08:31.7444313Z ##[group]Run python3 scripts/smoke_test.py server --fabric-api-version '0.165.0+26.3'
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7444863Z [36;1mpython3 scripts/smoke_test.py server --fabric-api-version '0.165.0+26.3'[0m
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7501153Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7501405Z env:
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7501697Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7502327Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7502694Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7502980Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7503251Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7503523Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7503915Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7504335Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7504820Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.7505108Z ##[endgroup]
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.8080736Z Using pinned official Fabric server launcher (download on cache miss): https://meta.fabricmc.net/v2/versions/loader/26.3/0.20.1/1.1.2/server/jar
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:31.9702707Z Installed player JAR SHA-256: 4af792c51298e9cd462f0805d90382e52aed714dc3b413baf6c18f2d231375ea
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9146537Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-api-0.165.0+26.3-console.log ---
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9162490Z 	   |-- fabric-api-lookup-api-v1 2.0.24+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9184923Z 	   |-- fabric-biome-api-v1 20.1.1+85210bca5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9213513Z 	   |-- fabric-block-api-v1 3.1.0+0ae6f9115d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9222447Z 	   |-- fabric-block-getter-api-v2 2.0.9+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9292723Z 	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9299321Z 	   |-- fabric-content-registries-v0 15.0.6+74ed1ea55d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9362565Z 	   |-- fabric-convention-tags-v2 4.10.5+187b64905d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9392812Z 	   |-- fabric-crash-report-info-v1 1.0.7+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9432510Z 	   |-- fabric-creative-tab-api-v1 5.0.22+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9442693Z 	   |-- fabric-data-attachment-api-v1 2.2.33+b9b88df45d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9482402Z 	   |-- fabric-data-generation-api-v1 27.4.2+187b64905d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9502907Z 	   |-- fabric-debug-api-v1 1.0.5+5af7744b5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9542701Z 	   |-- fabric-dimensions-v1 5.1.20+5af7744b5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9563023Z 	   |-- fabric-entity-events-v1 6.0.4+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9601530Z 	   |-- fabric-events-interaction-v0 5.3.9+b9b88df45d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9634155Z 	   |-- fabric-game-rule-api-v1 4.0.10+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9656467Z 	   |-- fabric-item-api-v1 14.8.0+d1c0d72b5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9692511Z 	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9699364Z 	   |-- fabric-loot-api-v3 4.0.9+4068fd645d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9732816Z 	   |-- fabric-menu-api-v1 2.0.30+ed66f0a35d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9770746Z 	   |-- fabric-message-api-v1 7.0.10+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9801135Z 	   |-- fabric-networking-api-v1 6.4.0+a21c9eb65d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9823494Z 	   |-- fabric-object-builder-api-v1 24.1.12+e2f63d3e5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9833006Z 	   |-- fabric-particles-v1 5.0.27+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9833610Z 	   |-- fabric-permission-api-v1 1.0.8+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9834122Z 	   |-- fabric-recipe-api-v1 10.0.11+b9b88df45d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9834642Z 	   |-- fabric-registry-sync-v0 8.0.4+1ca9f6365d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9837863Z 	   |-- fabric-rendering-fluids-v1 6.0.6+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9838527Z 	   |-- fabric-resource-conditions-api-v1 6.2.0+0d124ae85d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9839148Z 	   |-- fabric-resource-loader-v0 3.3.27+4fc5413f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9839749Z 	   |-- fabric-resource-loader-v1 3.1.0+5af7744b5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9840282Z 	   |-- fabric-serialization-api-v1 2.0.7+74ed1ea55d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9841260Z 	   |-- fabric-tag-api-v1 2.1.11+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9841793Z 	   |-- fabric-transfer-api-v1 8.0.25+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9842673Z 	   \-- fabric-transitive-access-wideners-v1 8.1.17+e2f63d3e5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9843291Z 	- fabricloader 0.20.1
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9843750Z 	   \-- mixinextras 0.5.5
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9844205Z 	- java 25
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9844613Z 	- minecraft 26.3
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9845034Z 	- unallocated 0.1.0
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9846669Z [16:08:35] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-api-0.165.0+26.3/libraries/net/fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9848943Z [16:08:36] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9850234Z WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9852026Z WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.joml.MemUtil$MemUtilUnsafe (file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke-downloads/26.3-0.20.1-1.1.2/libraries/org/joml/joml/1.10.9/joml-1.10.9.jar)
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9853780Z WARNING: Please consider reporting this to the maintainers of class org.joml.MemUtil$MemUtilUnsafe
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9854732Z WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9855493Z [16:08:45] [main/INFO]: UNALLOCATED initialized (common).
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9856488Z [16:08:45] [main/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9857532Z [16:08:47] [Worker-Main-1/INFO]: No existing world data, creating new world
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9858241Z [16:08:47] [Worker-Main-1/ERROR]: No key layers in MapLike[{}]
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9858891Z [16:08:48] [Worker-Main-1/INFO]: Loaded 1866 advancements
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9859618Z [16:08:48] [main/INFO]: Applied 0 biome modifications to 0 of 67 new biomes in 3.251 ms
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9860404Z [16:08:48] [Server thread/INFO]: Starting minecraft server version 26.3
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9861052Z [16:08:48] [Server thread/INFO]: Loading properties
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9861671Z [16:08:48] [Server thread/INFO]: Default game type: SURVIVAL
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9862429Z [16:08:48] [Server thread/INFO]: Generating keypair
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9863064Z [16:08:49] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:25565
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9863776Z [16:08:49] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9864573Z [16:08:49] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9865854Z [16:08:49] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9867086Z [16:08:49] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9867883Z [16:08:49] [Server thread/INFO]: Preparing level "smoke-world"
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9868544Z [16:08:49] [Server thread/INFO]: Selecting global world spawn...
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9869213Z [16:08:49] [Server thread/INFO]: Loading 0 persistent chunks...
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9869866Z [16:08:50] [Server thread/INFO]: Preparing spawn area: 100%
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9870491Z [16:08:50] [Server thread/INFO]: Time elapsed: 707 ms
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9871136Z [16:08:50] [Server thread/INFO]: Done (0.883s)! For help, type "help"
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9872132Z [16:08:50] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:overworld
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9873126Z [16:08:50] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_end
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9874290Z [16:08:50] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_nether
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9875109Z [16:08:50] [Server thread/INFO]: UNALLOCATED session armed
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9876313Z [16:08:50] [Server thread/INFO]: System chat: Mundo preparado; la sesión comenzará al entrar un jugador.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9877179Z [16:08:50] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9877827Z [16:08:50] [Server thread/INFO]: System chat: Acto: LOBBY
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9878972Z [16:08:51] [Server thread/INFO]: UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 budgetTicks=6000 checkpoint=lobby.spawn armed=true flags=[] counters={}
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9882534Z [16:08:51] [Server thread/INFO]: System chat: Estado de sesión: LOBBY · 0 s · punto de control: lobby.spawn
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9883791Z [16:08:51] [Server thread/INFO]: UNALLOCATED bait selftest started at 0, -60, 0
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9884786Z [16:08:51] [Server thread/INFO]: System chat: Autoprueba del cebo en marcha.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9885634Z [16:08:51] [Server thread/INFO]: UNALLOCATED bait selftest figure at 0.5 -60.0 0.5, 1 problems
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9886519Z [16:08:51] [Server thread/ERROR]: UNALLOCATED bait selftest FAILED: not found in level
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9887642Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-api-0.165.0+26.3/logs/latest.log ---
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9888602Z [16:08:35] [main/INFO]: Loading 43 mods:
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9889126Z 	- fabric-api 0.165.0+26.3
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9889640Z 	   |-- fabric-advancement-api-v1 1.0.1+38c7a2d55d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9890203Z 	   |-- fabric-api-base 2.0.6+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9890883Z 	   |-- fabric-api-lookup-api-v1 2.0.24+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9891491Z 	   |-- fabric-biome-api-v1 20.1.1+85210bca5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9892143Z 	   |-- fabric-block-api-v1 3.1.0+0ae6f9115d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9892706Z 	   |-- fabric-block-getter-api-v2 2.0.9+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9893280Z 	   |-- fabric-command-api-v2 3.1.2+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9893861Z 	   |-- fabric-content-registries-v0 15.0.6+74ed1ea55d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9894449Z 	   |-- fabric-convention-tags-v2 4.10.5+187b64905d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9895031Z 	   |-- fabric-crash-report-info-v1 1.0.7+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9895632Z 	   |-- fabric-creative-tab-api-v1 5.0.22+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9896237Z 	   |-- fabric-data-attachment-api-v1 2.2.33+b9b88df45d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9896853Z 	   |-- fabric-data-generation-api-v1 27.4.2+187b64905d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9897420Z 	   |-- fabric-debug-api-v1 1.0.5+5af7744b5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9897957Z 	   |-- fabric-dimensions-v1 5.1.20+5af7744b5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9898516Z 	   |-- fabric-entity-events-v1 6.0.4+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9899105Z 	   |-- fabric-events-interaction-v0 5.3.9+b9b88df45d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9899728Z 	   |-- fabric-game-rule-api-v1 4.0.10+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9900298Z 	   |-- fabric-item-api-v1 14.8.0+d1c0d72b5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9900861Z 	   |-- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9901423Z 	   |-- fabric-loot-api-v3 4.0.9+4068fd645d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9902129Z 	   |-- fabric-menu-api-v1 2.0.30+ed66f0a35d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9902634Z 	   |-- fabric-message-api-v1 7.0.10+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9903197Z 	   |-- fabric-networking-api-v1 6.4.0+a21c9eb65d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9903792Z 	   |-- fabric-object-builder-api-v1 24.1.12+e2f63d3e5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9904383Z 	   |-- fabric-particles-v1 5.0.27+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9904945Z 	   |-- fabric-permission-api-v1 1.0.8+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9905515Z 	   |-- fabric-recipe-api-v1 10.0.11+b9b88df45d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9906082Z 	   |-- fabric-registry-sync-v0 8.0.4+1ca9f6365d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9906658Z 	   |-- fabric-rendering-fluids-v1 6.0.6+3434d6d95d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9907272Z 	   |-- fabric-resource-conditions-api-v1 6.2.0+0d124ae85d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9908062Z 	   |-- fabric-resource-loader-v0 3.3.27+4fc5413f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9908650Z 	   |-- fabric-resource-loader-v1 3.1.0+5af7744b5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9909254Z 	   |-- fabric-serialization-api-v1 2.0.7+74ed1ea55d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9909829Z 	   |-- fabric-tag-api-v1 2.1.11+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9910396Z 	   |-- fabric-transfer-api-v1 8.0.25+fcdff87f5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9911041Z 	   \-- fabric-transitive-access-wideners-v1 8.1.17+e2f63d3e5d
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9911646Z 	- fabricloader 0.20.1
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9912225Z 	   \-- mixinextras 0.5.5
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9912560Z 	- java 25
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9912832Z 	- minecraft 26.3
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9913128Z 	- unallocated 0.1.0
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9914611Z [16:08:35] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/server-api-0.165.0+26.3/libraries/net/fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/sponge-mixin-0.17.5+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9916733Z [16:08:36] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9917591Z [16:08:45] [main/INFO]: UNALLOCATED initialized (common).
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9918446Z [16:08:45] [main/INFO]: Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9919369Z [16:08:47] [Worker-Main-1/INFO]: No existing world data, creating new world
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9919951Z [16:08:47] [Worker-Main-1/ERROR]: No key layers in MapLike[{}]
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9920464Z [16:08:48] [Worker-Main-1/INFO]: Loaded 1866 advancements
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9921065Z [16:08:48] [main/INFO]: Applied 0 biome modifications to 0 of 67 new biomes in 3.251 ms
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9921735Z [16:08:48] [Server thread/INFO]: Starting minecraft server version 26.3
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9922476Z [16:08:48] [Server thread/INFO]: Loading properties
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9922974Z [16:08:48] [Server thread/INFO]: Default game type: SURVIVAL
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9923456Z [16:08:48] [Server thread/INFO]: Generating keypair
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9923997Z [16:08:49] [Server thread/INFO]: Starting Minecraft server on 127.0.0.1:25565
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9924639Z [16:08:49] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9925375Z [16:08:49] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9926554Z [16:08:49] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9927760Z [16:08:49] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9928472Z [16:08:49] [Server thread/INFO]: Preparing level "smoke-world"
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9929007Z [16:08:49] [Server thread/INFO]: Selecting global world spawn...
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9929549Z [16:08:49] [Server thread/INFO]: Loading 0 persistent chunks...
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9930064Z [16:08:50] [Server thread/INFO]: Preparing spawn area: 100%
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9930538Z [16:08:50] [Server thread/INFO]: Time elapsed: 707 ms
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9931050Z [16:08:50] [Server thread/INFO]: Done (0.883s)! For help, type "help"
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9931760Z [16:08:50] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:overworld
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9952802Z [16:08:50] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_end
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9953676Z [16:08:50] [Server thread/INFO]: Saving chunks for level 'ServerLevel[smoke-world]'/minecraft:the_nether
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9954370Z [16:08:50] [Server thread/INFO]: UNALLOCATED session armed
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9955255Z [16:08:50] [Server thread/INFO]: System chat: Mundo preparado; la sesión comenzará al entrar un jugador.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9956169Z [16:08:50] [Server thread/INFO]: UNALLOCATED act=LOBBY enter t=0
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9956687Z [16:08:50] [Server thread/INFO]: System chat: Acto: LOBBY
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9957693Z [16:08:51] [Server thread/INFO]: UNALLOCATED status act=LOBBY started=true finished=false elapsedTicks=0 budgetTicks=6000 checkpoint=lobby.spawn armed=true flags=[] counters={}
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9959052Z [16:08:51] [Server thread/INFO]: System chat: Estado de sesión: LOBBY · 0 s · punto de control: lobby.spawn
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9959841Z [16:08:51] [Server thread/INFO]: UNALLOCATED bait selftest started at 0, -60, 0
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9960502Z [16:08:51] [Server thread/INFO]: System chat: Autoprueba del cebo en marcha.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9961194Z [16:08:51] [Server thread/INFO]: UNALLOCATED bait selftest figure at 0.5 -60.0 0.5, 1 problems
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:51.9962071Z [16:08:51] [Server thread/ERROR]: UNALLOCATED bait selftest FAILED: not found in level
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8873202Z Traceback (most recent call last):
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8873996Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 409, in <module>
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8874689Z     main()
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8875271Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 405, in main
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8876094Z     {'server': server, 'client': client, 'server-with-api': server}[args.target](version)
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8877310Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 269, in server
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8878130Z     monitor(
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8878957Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 139, in monitor
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8879919Z     raise RuntimeError(f'In-game self-test failed: {failed.group(0)}')
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.8880799Z RuntimeError: In-game self-test failed: UNALLOCATED bait selftest FAILED: not found in level
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-26T16:08:52.9034633Z ##[error]Process completed with exit code 1.

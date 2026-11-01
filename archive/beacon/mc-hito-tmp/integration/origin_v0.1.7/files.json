@@ -1,0 +1,21 @@
+[
+  "README.md",
+  "build.gradle",
+  "docs/core/INTEGRATION.md",
+  "docs/plan/TOOLCHAIN.md",
+  "fabric-api-modules.json",
+  "gradle.properties",
+  "scripts/smoke_test.py",
+  "scripts/test_smoke_test.py",
+  "src/clientSmoke/java/org/unallocated/smoke/CoreSessionSmokeTest.java",
+  "src/clientSmoke/java/org/unallocated/smoke/TitleScreenSmokeTest.java",
+  "src/main/java/org/unallocated/core/ActSequencer.java",
+  "src/main/java/org/unallocated/core/CoreRuntime.java",
+  "src/main/java/org/unallocated/core/SessionState.java",
+  "src/main/java/org/unallocated/debug/BuildArming.java",
+  "src/main/java/org/unallocated/debug/UnallocatedCommand.java",
+  "src/main/resources/assets/unallocated/features.json",
+  "src/test/java/org/unallocated/core/ActSequencerTest.java",
+  "src/test/java/org/unallocated/core/SessionStateTest.java",
+  "src/test/java/org/unallocated/debug/BuildArmingTest.java"
+]

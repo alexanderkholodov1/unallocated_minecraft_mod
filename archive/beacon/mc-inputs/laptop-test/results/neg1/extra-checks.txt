@@ -1,0 +1,9 @@
+page claim NOT met: unallocated/contract.properties missing
+world check failed: [Errno 2] No such file or directory: '/home/alexamaze/unallocated-cleantest/neg1/mc/saves/UNALLOCATED/level.dat'
+installer profile name(s): ['fabric-loader-26.3']
+ERROR line (x count):       1 [21:17:37] [Download-2/ERROR]: Failed to fetch user properties
+ERROR line (x count):       1 [21:17:37] [Render thread/ERROR]: Failed to create backend OpenGL
+ERROR line (x count):       1 [21:17:38] [Download-1/ERROR]: Failed to fetch Realms feature flags
+ERROR line (x count):       1 [21:17:38] [Render thread/ERROR]: Error while loading the narrator
+ERROR line (x count):       1 [21:21:39] [Download-3/ERROR]: Couldn't connect to realms
+ERROR line (x count):       1 [21:21:39] [Render thread/ERROR]: Error while loading the narrator

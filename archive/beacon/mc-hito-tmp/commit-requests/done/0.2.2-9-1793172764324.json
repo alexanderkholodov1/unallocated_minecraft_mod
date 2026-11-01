@@ -1,0 +1,1 @@
+{"paths": ["gradle.properties"], "message": "0.2.0.2: retry and wait longer for dependency downloads on CI"}

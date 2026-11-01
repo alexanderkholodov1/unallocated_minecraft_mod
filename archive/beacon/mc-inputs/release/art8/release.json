@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "minecraft": "26.3",
+  "loader": "0.20.1",
+  "fabric_api_bundled": "0.165.0+26.3",
+  "jar": "unallocated-0.2.0.jar",
+  "sha256": "e78fca1c657330353f44898244fd68f507bae0c830a6b2b2977eb0b52964a076",
+  "world_zip": "UNALLOCATED-world.zip",
+  "commit": "e005c49d6156f8597cf827e2a599a18a8ee70487",
+  "run": "40808054371"
+}

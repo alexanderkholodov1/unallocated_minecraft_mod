@@ -1,0 +1,1321 @@
+build (none)	Set up job	﻿2026-10-28T13:27:24.5192290Z Current runner version: '2.338.0'
+build (none)	Set up job	2026-10-28T13:27:24.5220082Z ##[group]Runner Image Provisioner
+build (none)	Set up job	2026-10-28T13:27:24.5221017Z Hosted Compute Agent
+build (none)	Set up job	2026-10-28T13:27:24.5221722Z Version: 20261021.618
+build (none)	Set up job	2026-10-28T13:27:24.5222393Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+build (none)	Set up job	2026-10-28T13:27:24.5223128Z Build Date: 2026-10-21T00:45:21Z
+build (none)	Set up job	2026-10-28T13:27:24.5223875Z Worker ID: {d9e79596-3c7b-4d6c-805c-27481287ec41}
+build (none)	Set up job	2026-10-28T13:27:24.5224592Z Region: eastus2
+build (none)	Set up job	2026-10-28T13:27:24.5225161Z Cloud: Azure
+build (none)	Set up job	2026-10-28T13:27:24.5225969Z ##[endgroup]
+build (none)	Set up job	2026-10-28T13:27:24.5227987Z ##[group]Operating System
+build (none)	Set up job	2026-10-28T13:27:24.5228792Z Ubuntu
+build (none)	Set up job	2026-10-28T13:27:24.5229369Z 24.04.5
+build (none)	Set up job	2026-10-28T13:27:24.5229868Z LTS
+build (none)	Set up job	2026-10-28T13:27:24.5230444Z ##[endgroup]
+build (none)	Set up job	2026-10-28T13:27:24.5231037Z ##[group]Runner Image
+build (none)	Set up job	2026-10-28T13:27:24.5231809Z Image: ubuntu-24.04
+build (none)	Set up job	2026-10-28T13:27:24.5232470Z Version: 20261025.353.1
+build (none)	Set up job	2026-10-28T13:27:24.5233602Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+build (none)	Set up job	2026-10-28T13:27:24.5235435Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+build (none)	Set up job	2026-10-28T13:27:24.5237008Z ##[endgroup]
+build (none)	Set up job	2026-10-28T13:27:24.5238340Z ##[group]GITHUB_TOKEN Permissions
+build (none)	Set up job	2026-10-28T13:27:24.5240922Z Contents: read
+build (none)	Set up job	2026-10-28T13:27:24.5241596Z Metadata: read
+build (none)	Set up job	2026-10-28T13:27:24.5242162Z ##[endgroup]
+build (none)	Set up job	2026-10-28T13:27:24.5244370Z Secret source: Actions
+build (none)	Set up job	2026-10-28T13:27:24.5245320Z Cache mode: write
+build (none)	Set up job	2026-10-28T13:27:24.5246785Z Prepare workflow directory
+build (none)	Set up job	2026-10-28T13:27:24.5587740Z Prepare all required actions
+build (none)	Set up job	2026-10-28T13:27:24.5639105Z Getting action download info
+build (none)	Set up job	2026-10-28T13:27:24.8123802Z Download action repository 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' (SHA:08c6903cd8c0fde910a37f88322edcfb5dd907a8)
+build (none)	Set up job	2026-10-28T13:27:24.9324176Z Download action repository 'actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e' (SHA:f2beeb24e141e01a676f977032f5a29d81c9e27e)
+build (none)	Set up job	2026-10-28T13:27:25.1762163Z Download action repository 'gradle/actions@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2' (SHA:4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2)
+build (none)	Set up job	2026-10-28T13:27:25.7833592Z Download action repository 'actions/cache@5a3ec84eff668545956fd18022155c47e93e2684' (SHA:5a3ec84eff668545956fd18022155c47e93e2684)
+build (none)	Set up job	2026-10-28T13:27:26.1352962Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+build (none)	Set up job	2026-10-28T13:27:26.4558882Z Complete job name: build (none)
+build (none)	Check out source	﻿2026-10-28T13:27:26.5694828Z ##[group]Run actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+build (none)	Check out source	2026-10-28T13:27:26.5696981Z with:
+build (none)	Check out source	2026-10-28T13:27:26.5697841Z   persist-credentials: false
+build (none)	Check out source	2026-10-28T13:27:26.5699139Z   repository: alexanderkholodov1/unallocated_minecraft_mod
+build (none)	Check out source	2026-10-28T13:27:26.5709251Z   token: ***
+build (none)	Check out source	2026-10-28T13:27:26.5710028Z   ssh-strict: true
+build (none)	Check out source	2026-10-28T13:27:26.5710821Z   ssh-user: git
+build (none)	Check out source	2026-10-28T13:27:26.5711596Z   clean: true
+build (none)	Check out source	2026-10-28T13:27:26.5712413Z   sparse-checkout-cone-mode: true
+build (none)	Check out source	2026-10-28T13:27:26.5713398Z   fetch-depth: 1
+build (none)	Check out source	2026-10-28T13:27:26.5714174Z   fetch-tags: false
+build (none)	Check out source	2026-10-28T13:27:26.5714974Z   show-progress: true
+build (none)	Check out source	2026-10-28T13:27:26.5715948Z   lfs: false
+build (none)	Check out source	2026-10-28T13:27:26.5716697Z   submodules: false
+build (none)	Check out source	2026-10-28T13:27:26.5717521Z   set-safe-directory: true
+build (none)	Check out source	2026-10-28T13:27:26.5718674Z ##[endgroup]
+build (none)	Check out source	2026-10-28T13:27:26.8125969Z Syncing repository: alexanderkholodov1/unallocated_minecraft_mod
+build (none)	Check out source	2026-10-28T13:27:26.8130285Z ##[group]Getting Git version info
+build (none)	Check out source	2026-10-28T13:27:26.8132300Z Working directory is '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+build (none)	Check out source	2026-10-28T13:27:26.8135956Z [command]/usr/bin/git version
+build (none)	Check out source	2026-10-28T13:27:26.8206356Z git version 2.56.0
+build (none)	Check out source	2026-10-28T13:27:26.8233755Z ##[endgroup]
+build (none)	Check out source	2026-10-28T13:27:26.8250360Z Temporarily overriding HOME='/home/runner/work/_temp/b8fc56e0-8842-4e43-a977-112635527ce4' before making global git config changes
+build (none)	Check out source	2026-10-28T13:27:26.8256042Z Adding repository directory to the temporary git global config as a safe directory
+build (none)	Check out source	2026-10-28T13:27:26.8259844Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (none)	Check out source	2026-10-28T13:27:26.8312888Z Deleting the contents of '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+build (none)	Check out source	2026-10-28T13:27:26.8316200Z ##[group]Initializing the repository
+build (none)	Check out source	2026-10-28T13:27:26.8321858Z [command]/usr/bin/git init /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (none)	Check out source	2026-10-28T13:27:26.8442644Z hint: Using 'master' as the name for the initial branch. This default branch name
+build (none)	Check out source	2026-10-28T13:27:26.8445118Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build (none)	Check out source	2026-10-28T13:27:26.8447537Z hint: to use in all of your new repositories, which will suppress this warning,
+build (none)	Check out source	2026-10-28T13:27:26.8449794Z hint: call:
+build (none)	Check out source	2026-10-28T13:27:26.8451419Z hint:
+build (none)	Check out source	2026-10-28T13:27:26.8453234Z hint: 	git config --global init.defaultBranch <name>
+build (none)	Check out source	2026-10-28T13:27:26.8455101Z hint:
+build (none)	Check out source	2026-10-28T13:27:26.8457176Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build (none)	Check out source	2026-10-28T13:27:26.8459207Z hint: 'development'. The just-created branch can be renamed via this command:
+build (none)	Check out source	2026-10-28T13:27:26.8460775Z hint:
+build (none)	Check out source	2026-10-28T13:27:26.8461710Z hint: 	git branch -m <name>
+build (none)	Check out source	2026-10-28T13:27:26.8463205Z hint:
+build (none)	Check out source	2026-10-28T13:27:26.8465235Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build (none)	Check out source	2026-10-28T13:27:26.8469124Z Initialized empty Git repository in /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.git/
+build (none)	Check out source	2026-10-28T13:27:26.8475613Z [command]/usr/bin/git remote add origin https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+build (none)	Check out source	2026-10-28T13:27:26.8517175Z ##[endgroup]
+build (none)	Check out source	2026-10-28T13:27:26.8518973Z ##[group]Disabling automatic garbage collection
+build (none)	Check out source	2026-10-28T13:27:26.8522028Z [command]/usr/bin/git config --local gc.auto 0
+build (none)	Check out source	2026-10-28T13:27:26.8562654Z ##[endgroup]
+build (none)	Check out source	2026-10-28T13:27:26.8565258Z ##[group]Setting up auth
+build (none)	Check out source	2026-10-28T13:27:26.8569762Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (none)	Check out source	2026-10-28T13:27:26.8616198Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (none)	Check out source	2026-10-28T13:27:26.9011070Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (none)	Check out source	2026-10-28T13:27:26.9059429Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (none)	Check out source	2026-10-28T13:27:26.9320063Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build (none)	Check out source	2026-10-28T13:27:26.9381315Z ##[endgroup]
+build (none)	Check out source	2026-10-28T13:27:26.9382763Z ##[group]Fetching the repository
+build (none)	Check out source	2026-10-28T13:27:26.9394668Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8fc5c4f94b91f8bd6187c1cdc8325ef29a7bc6b6:refs/remotes/origin/rehearsal/w-8fc5c4f
+build (none)	Check out source	2026-10-28T13:27:27.2717085Z From https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+build (none)	Check out source	2026-10-28T13:27:27.2719336Z  * [new ref]         8fc5c4f94b91f8bd6187c1cdc8325ef29a7bc6b6 -> origin/rehearsal/w-8fc5c4f
+build (none)	Check out source	2026-10-28T13:27:27.2722747Z ##[endgroup]
+build (none)	Check out source	2026-10-28T13:27:27.2723750Z ##[group]Determining the checkout info
+build (none)	Check out source	2026-10-28T13:27:27.2726219Z ##[endgroup]
+build (none)	Check out source	2026-10-28T13:27:27.2732640Z [command]/usr/bin/git sparse-checkout disable
+build (none)	Check out source	2026-10-28T13:27:27.2793886Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build (none)	Check out source	2026-10-28T13:27:27.2833495Z ##[group]Checking out the ref
+build (none)	Check out source	2026-10-28T13:27:27.2838258Z [command]/usr/bin/git checkout --progress --force -B rehearsal/w-8fc5c4f refs/remotes/origin/rehearsal/w-8fc5c4f
+build (none)	Check out source	2026-10-28T13:27:27.3118576Z Switched to a new branch 'rehearsal/w-8fc5c4f'
+build (none)	Check out source	2026-10-28T13:27:27.3126197Z branch 'rehearsal/w-8fc5c4f' set up to track 'origin/rehearsal/w-8fc5c4f'.
+build (none)	Check out source	2026-10-28T13:27:27.3130700Z ##[endgroup]
+build (none)	Check out source	2026-10-28T13:27:27.3192431Z [command]/usr/bin/git log -1 --format=%H
+build (none)	Check out source	2026-10-28T13:27:27.3227918Z 8fc5c4f94b91f8bd6187c1cdc8325ef29a7bc6b6
+build (none)	Check out source	2026-10-28T13:27:27.3239628Z ##[group]Removing auth
+build (none)	Check out source	2026-10-28T13:27:27.3243918Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (none)	Check out source	2026-10-28T13:27:27.3284904Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (none)	Check out source	2026-10-28T13:27:27.3529266Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (none)	Check out source	2026-10-28T13:27:27.3565189Z http.https://github.com/.extraheader
+build (none)	Check out source	2026-10-28T13:27:27.3574120Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build (none)	Check out source	2026-10-28T13:27:27.3616236Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (none)	Check out source	2026-10-28T13:27:27.3856431Z ##[endgroup]
+build (none)	Set up Java 25	﻿2026-10-28T13:27:27.4160241Z ##[group]Run actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e
+build (none)	Set up Java 25	2026-10-28T13:27:27.4160854Z with:
+build (none)	Set up Java 25	2026-10-28T13:27:27.4161201Z   distribution: temurin
+build (none)	Set up Java 25	2026-10-28T13:27:27.4161572Z   java-version: 25
+build (none)	Set up Java 25	2026-10-28T13:27:27.4161929Z   java-package: jdk
+build (none)	Set up Java 25	2026-10-28T13:27:27.4162286Z   check-latest: false
+build (none)	Set up Java 25	2026-10-28T13:27:27.4162650Z   server-id: github
+build (none)	Set up Java 25	2026-10-28T13:27:27.4163017Z   server-username: GITHUB_ACTOR
+build (none)	Set up Java 25	2026-10-28T13:27:27.4163428Z   server-password: GITHUB_TOKEN
+build (none)	Set up Java 25	2026-10-28T13:27:27.4163834Z   overwrite-settings: true
+build (none)	Set up Java 25	2026-10-28T13:27:27.4164229Z   job-status: success
+build (none)	Set up Java 25	2026-10-28T13:27:27.4167067Z   token: ***
+build (none)	Set up Java 25	2026-10-28T13:27:27.4167437Z ##[endgroup]
+build (none)	Set up Java 25	2026-10-28T13:27:27.5935624Z ##[group]Installed distributions
+build (none)	Set up Java 25	2026-10-28T13:27:27.6013401Z Resolved Java 25.0.5+8 from tool-cache
+build (none)	Set up Java 25	2026-10-28T13:27:27.6014327Z Setting Java 25.0.5+8 as the default
+build (none)	Set up Java 25	2026-10-28T13:27:27.6025634Z (node:2318) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Set up Java 25	2026-10-28T13:27:27.6027682Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Set up Java 25	2026-10-28T13:27:27.6031015Z Creating toolchains.xml for JDK version 25 from temurin
+build (none)	Set up Java 25	2026-10-28T13:27:27.6115078Z Writing to /home/runner/.m2/toolchains.xml
+build (none)	Set up Java 25	2026-10-28T13:27:27.6116205Z 
+build (none)	Set up Java 25	2026-10-28T13:27:27.6116872Z Java configuration:
+build (none)	Set up Java 25	2026-10-28T13:27:27.6117835Z   Distribution: temurin
+build (none)	Set up Java 25	2026-10-28T13:27:27.6118781Z   Version: 25.0.5+8
+build (none)	Set up Java 25	2026-10-28T13:27:27.6119882Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Set up Java 25	2026-10-28T13:27:27.6120802Z 
+build (none)	Set up Java 25	2026-10-28T13:27:27.6124197Z ##[endgroup]
+build (none)	Set up Java 25	2026-10-28T13:27:27.6149629Z Creating settings.xml with server-id: github
+build (none)	Set up Java 25	2026-10-28T13:27:27.6168371Z Writing to /home/runner/.m2/settings.xml
+build (none)	Install Gradle and cache dependencies	﻿2026-10-28T13:27:27.6650451Z ##[group]Run gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6651124Z with:
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6651460Z   gradle-version: 9.8.2
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6651991Z   cache-disabled: true
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6652356Z   cache-read-only: true
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6652720Z   cache-write-only: false
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6653101Z   cache-overwrite-existing: false
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6653504Z   cache-cleanup: on-success
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6653932Z   gradle-home-cache-includes: caches
+build (none)	Install Gradle and cache dependencies	notifications
+build (none)	Install Gradle and cache dependencies	
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6654399Z   add-job-summary: always
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6654792Z   add-job-summary-as-pr-comment: never
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6655211Z   dependency-graph: disabled
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6655656Z   dependency-graph-report-dir: dependency-graph-reports
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6656352Z   dependency-graph-continue-on-failure: true
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6656792Z   build-scan-publish: false
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6657171Z   validate-wrappers: true
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6657548Z   allow-snapshot-wrappers: false
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6658004Z   gradle-home-cache-strict-match: false
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6658644Z   workflow-job-context: {
+build (none)	Install Gradle and cache dependencies	  "api": "none"
+build (none)	Install Gradle and cache dependencies	}
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6661276Z   github-token: ***
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6661635Z env:
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6662095Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6662739Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:27.6663258Z ##[endgroup]
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:28.2399595Z Cache is disabled: will not restore state from previous builds.
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:28.2417369Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:28.2615408Z ##[group]All Gradle Wrapper jars are valid
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:28.2616504Z 
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:28.2617111Z ##[endgroup]
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:28.4991344Z ##[group]Provision Gradle 9.8.2
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:32.7884799Z Gradle version 9.8.2 is already available on PATH. Not installing.
+build (none)	Install Gradle and cache dependencies	2026-10-28T13:27:32.7981997Z ##[endgroup]
+build (none)	Restore shared Gradle dependencies	﻿2026-10-28T13:27:32.8693771Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8694251Z with:
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8694484Z   path: ~/.gradle/caches
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8695055Z   key: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8696022Z   enableCrossOsArchive: false
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8696385Z   fail-on-cache-miss: false
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8696633Z   lookup-only: false
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8696851Z   save-always: false
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8697058Z env:
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8697363Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8697856Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8698284Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8698628Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8698920Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8699222Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8699708Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8700189Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8700507Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.8700770Z ##[endgroup]
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:32.9825307Z (node:2442) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:33.0382561Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Restore shared Gradle dependencies	2026-10-28T13:27:33.1134540Z Cache not found for input keys: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8
+build (none)	Cache Loom project and smoke server downloads	﻿2026-10-28T13:27:33.1956331Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1956792Z with:
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1957041Z   path: .gradle/loom-cache
+build (none)	Cache Loom project and smoke server downloads	.tmp/smoke-downloads
+build (none)	Cache Loom project and smoke server downloads	
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1957575Z   key: minecraft-v1-Linux-X64-bc037e2a4a3b2c7158a66611487eae3c2037d8d868c52380c057cc531f6d3b4f
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1958131Z   enableCrossOsArchive: false
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1958467Z   fail-on-cache-miss: false
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1958706Z   lookup-only: false
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1958932Z   save-always: false
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1959132Z env:
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1959426Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1959958Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1960375Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1960682Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1960976Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1961269Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1961736Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1962215Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1962741Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.1963006Z ##[endgroup]
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.3158578Z (node:2467) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.3160029Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Cache Loom project and smoke server downloads	2026-10-28T13:27:33.3858499Z Cache not found for input keys: minecraft-v1-Linux-X64-bc037e2a4a3b2c7158a66611487eae3c2037d8d868c52380c057cc531f6d3b4f
+build (none)	Build mod	﻿2026-10-28T13:27:33.4008023Z ##[group]Run python3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none
+build (none)	Build mod	2026-10-28T13:27:33.4009560Z [36;1mpython3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none[0m
+build (none)	Build mod	2026-10-28T13:27:33.4019869Z shell: /usr/bin/bash -e {0}
+build (none)	Build mod	2026-10-28T13:27:33.4020152Z env:
+build (none)	Build mod	2026-10-28T13:27:33.4020480Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Build mod	2026-10-28T13:27:33.4021003Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Build mod	2026-10-28T13:27:33.4021441Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Build mod	2026-10-28T13:27:33.4021754Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Build mod	2026-10-28T13:27:33.4022054Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Build mod	2026-10-28T13:27:33.4022351Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Build mod	2026-10-28T13:27:33.4022785Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Build mod	2026-10-28T13:27:33.4023266Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Build mod	2026-10-28T13:27:33.4023633Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Build mod	2026-10-28T13:27:33.4023903Z ##[endgroup]
+build (none)	Build mod	2026-10-28T13:27:34.8744918Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (none)	Build mod	2026-10-28T13:28:13.7146806Z 
+build (none)	Build mod	2026-10-28T13:28:13.7147719Z > Configure project :
+build (none)	Build mod	2026-10-28T13:28:13.7148516Z Fabric Loom: 1.19.3
+build (none)	Build mod	2026-10-28T13:28:33.7467269Z 
+build (none)	Build mod	2026-10-28T13:28:33.7467798Z > Task :compileJava
+build (none)	Build mod	2026-10-28T13:28:33.7468194Z Note: Some input files use or override a deprecated API.
+build (none)	Build mod	2026-10-28T13:28:33.7468648Z Note: Recompile with -Xlint:deprecation for details.
+build (none)	Build mod	2026-10-28T13:28:41.7576617Z 
+build (none)	Build mod	2026-10-28T13:28:41.7577472Z > Task :processResources
+build (none)	Build mod	2026-10-28T13:28:41.7578034Z > Task :classes
+build (none)	Build mod	2026-10-28T13:28:43.5626464Z > Task :compileClientJava
+build (none)	Build mod	2026-10-28T13:28:43.5636827Z > Task :processClientResources
+build (none)	Build mod	2026-10-28T13:28:43.5666907Z > Task :processIncludeJars
+build (none)	Build mod	2026-10-28T13:28:43.7609468Z > Task :recordIncludedJars
+build (none)	Build mod	2026-10-28T13:28:43.9611432Z > Task :clientClasses
+build (none)	Build mod	2026-10-28T13:28:44.1624553Z > Task :jar
+build (none)	Build mod	2026-10-28T13:28:44.9651189Z > Task :compileClientSmokeJava
+build (none)	Build mod	2026-10-28T13:28:44.9651881Z > Task :assemble
+build (none)	Build mod	2026-10-28T13:28:44.9652305Z > Task :processClientSmokeResources
+build (none)	Build mod	2026-10-28T13:28:44.9652799Z > Task :clientSmokeClasses
+build (none)	Build mod	2026-10-28T13:28:44.9653213Z > Task :clientSmokeJar
+build (none)	Build mod	2026-10-28T13:28:47.3678234Z > Task :compileTestJava
+build (none)	Build mod	2026-10-28T13:28:47.3678706Z > Task :processTestResources
+build (none)	Build mod	2026-10-28T13:28:47.3679035Z > Task :testClasses
+build (none)	Build mod	2026-10-28T13:28:53.9742010Z > Task :test
+build (none)	Build mod	2026-10-28T13:28:53.9742672Z > Task :validateAccessWidener NO-SOURCE
+build (none)	Build mod	2026-10-28T13:28:53.9743181Z > Task :check
+build (none)	Build mod	2026-10-28T13:28:53.9743452Z > Task :build
+build (none)	Build mod	2026-10-28T13:28:53.9743762Z > Task :prepareCoexistApi NO-SOURCE
+build (none)	Build mod	2026-10-28T13:28:54.1743800Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793194067189.json
+build (none)	Build mod	2026-10-28T13:28:54.1744807Z 
+build (none)	Build mod	2026-10-28T13:28:54.1745944Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (none)	Build mod	2026-10-28T13:28:54.1747118Z 
+build (none)	Build mod	2026-10-28T13:28:54.1747267Z BUILD SUCCESSFUL in 1m 20s
+build (none)	Build mod	2026-10-28T13:28:54.1747644Z 13 actionable tasks: 13 executed
+build (none)	Author release template and inject into player JAR	﻿2026-10-28T13:28:54.3882765Z ##[group]Run python3 scripts/author_template.py
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3883195Z [36;1mpython3 scripts/author_template.py[0m
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3889109Z shell: /usr/bin/bash -e {0}
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3889356Z env:
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3889653Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3890314Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3890723Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3891032Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3891331Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3891631Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3892058Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3892534Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3892849Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Author release template and inject into player JAR	2026-10-28T13:28:54.3893113Z ##[endgroup]
+build (none)	Author release template and inject into player JAR	2026-10-28T13:29:12.5837055Z Server reached Done with the mod loaded; sent stop.
+build (none)	Author release template and inject into player JAR	2026-10-28T13:29:13.1974398Z PASS: real-game smoke check in .tmp/smoke/template
+build (none)	Author release template and inject into player JAR	2026-10-28T13:29:13.3580809Z UNALLOCATED template bytes=387023 jar bytes=1380132 sha256=20fde028ac64752354c1ea60e3aeb7aa806fb9db090501c0edd55b1f7b801fcb
+build (none)	Verify contract text matches Appendix C	﻿2026-10-28T13:29:13.3742711Z ##[group]Run python3 scripts/contract_text.py --check
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3743475Z [36;1mpython3 scripts/contract_text.py --check[0m
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3751398Z shell: /usr/bin/bash -e {0}
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3751822Z env:
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3752354Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3753246Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3753992Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3754543Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3755066Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3755605Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3756658Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3757511Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3758096Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Verify contract text matches Appendix C	2026-10-28T13:29:13.3758563Z ##[endgroup]
+build (none)	Verify installable JAR, mixin packages and write checksum	﻿2026-10-28T13:29:13.4198483Z ##[group]Run python3 scripts/verify_jar.py
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4198868Z [36;1mpython3 scripts/verify_jar.py[0m
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4204170Z shell: /usr/bin/bash -e {0}
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4204418Z env:
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4204715Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4205224Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4205641Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4206348Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4206645Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4206953Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4207405Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4207883Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4208221Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.4208491Z ##[endgroup]
+build (none)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:29:13.5626024Z Verified /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/libs/unallocated-0.2.0.jar: 1,380,132 bytes; exactly 7 approved nested modules
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	﻿2026-10-28T13:29:13.5770679Z ##[group]Run python3 -B -m unittest discover -s scripts -p 'test_*.py'
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5771237Z [36;1mpython3 -B -m unittest discover -s scripts -p 'test_*.py'[0m
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5777059Z shell: /usr/bin/bash -e {0}
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5777314Z env:
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5777620Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5778115Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5778532Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5778844Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5779139Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5779666Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5780099Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5780572Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5780891Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:13.5781190Z ##[endgroup]
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:27.6296239Z ................................................................................................
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:27.6297045Z ----------------------------------------------------------------------
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:27.6297601Z Ran 96 tests in 13.909s
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:27.6297834Z 
+build (none)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:29:27.6297954Z OK
+build (none)	Smoke test dedicated server (Fabric API none)	﻿2026-10-28T13:29:27.6509414Z ##[group]Run python3 scripts/smoke_test.py server --fabric-api-version 'none'
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6509993Z [36;1mpython3 scripts/smoke_test.py server --fabric-api-version 'none'[0m
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6515536Z shell: /usr/bin/bash -e {0}
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6516157Z env:
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6516591Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6517102Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6517534Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6517848Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6518167Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6518468Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6518897Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6519373Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6519688Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.6519987Z ##[endgroup]
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.7210452Z Using pinned official Fabric server launcher (download on cache miss): https://meta.fabricmc.net/v2/versions/loader/26.3/0.20.1/1.1.2/server/jar
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:27.7256512Z Installed player JAR SHA-256: 20fde028ac64752354c1ea60e3aeb7aa806fb9db090501c0edd55b1f7b801fcb
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:46.3487486Z Server reached Done with the mod loaded; sent stop.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:46.9645163Z PASS: real-game smoke check in .tmp/smoke/server
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:58.6158880Z Server reached Done with the mod loaded; sent stop.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:29:59.2268447Z PASS: real-game smoke check in .tmp/smoke/server
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:30:10.4542657Z Server reached Done with the mod loaded; sent stop.
+build (none)	Smoke test dedicated server (Fabric API none)	2026-10-28T13:30:11.0629464Z PASS: real-game smoke check in .tmp/smoke/server
+build (none)	Identify graphics runner image	﻿2026-10-28T13:30:11.0775644Z ##[group]Run echo "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0776538Z [36;1mecho "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"[0m
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0781816Z shell: /usr/bin/bash -e {0}
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0782063Z env:
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0782372Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0782873Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0783304Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0783620Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0783908Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0784198Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0784626Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0785097Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0785413Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Identify graphics runner image	2026-10-28T13:30:11.0785963Z ##[endgroup]
+build (none)	Cache headless graphics packages	﻿2026-10-28T13:30:11.1455643Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1456595Z with:
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1456822Z   path: .tmp/headless-debs/*.deb
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1457362Z   key: graphics-v1-X64-ubuntu24-20261026.354.1-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1457922Z   enableCrossOsArchive: false
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1458410Z   fail-on-cache-miss: false
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1458647Z   lookup-only: false
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1458860Z   save-always: false
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1459062Z env:
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1459363Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1459854Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1460271Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1460585Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1460876Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1461169Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1461647Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1462128Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1462452Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.1462715Z ##[endgroup]
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.2571687Z (node:3224) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.2572651Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Cache headless graphics packages	2026-10-28T13:30:11.3460969Z Cache not found for input keys: graphics-v1-X64-ubuntu24-20261026.354.1-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+build (none)	Install headless client graphics	﻿2026-10-28T13:30:11.3591652Z ##[group]Run bash scripts/install_headless_graphics.sh
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3592083Z [36;1mbash scripts/install_headless_graphics.sh[0m
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3597691Z shell: /usr/bin/bash -e {0}
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3597947Z env:
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3598256Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3598766Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3599195Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3599501Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3599806Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3600112Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3600543Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3601016Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3601330Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Install headless client graphics	2026-10-28T13:30:11.3601592Z ##[endgroup]
+build (none)	Install headless client graphics	2026-10-28T13:30:18.8948831Z Reading package lists...
+build (none)	Install headless client graphics	2026-10-28T13:30:19.0512577Z Building dependency tree...
+build (none)	Install headless client graphics	2026-10-28T13:30:19.0518992Z Reading state information...
+build (none)	Install headless client graphics	2026-10-28T13:30:19.2055381Z The following NEW packages will be installed:
+build (none)	Install headless client graphics	2026-10-28T13:30:19.2056845Z   mesa-vulkan-drivers
+build (none)	Install headless client graphics	2026-10-28T13:30:19.7077421Z 0 upgraded, 1 newly installed, 0 to remove and 5 not upgraded.
+build (none)	Install headless client graphics	2026-10-28T13:30:19.7077930Z Need to get 17.5 MB of archives.
+build (none)	Install headless client graphics	2026-10-28T13:30:19.7078384Z After this operation, 98.5 MB of additional disk space will be used.
+build (none)	Install headless client graphics	2026-10-28T13:30:19.7079237Z Get:1 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 mesa-vulkan-drivers amd64 25.2.8-0ubuntu0.24.04.4 [17.5 MB]
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8364965Z Fetched 17.5 MB in 1s (13.1 MB/s)
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8583300Z Selecting previously unselected package mesa-vulkan-drivers:amd64.
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8831272Z (Reading database ... 
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8832037Z (Reading database ... 5%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8832354Z (Reading database ... 10%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8832651Z (Reading database ... 15%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8832897Z (Reading database ... 20%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8833122Z (Reading database ... 25%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8833343Z (Reading database ... 30%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8833799Z (Reading database ... 35%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8834237Z (Reading database ... 40%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8834599Z (Reading database ... 45%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8834824Z (Reading database ... 50%
+build (none)	Install headless client graphics	2026-10-28T13:30:20.8872843Z (Reading database ... 55%
+build (none)	Install headless client graphics	2026-10-28T13:30:21.0782569Z (Reading database ... 60%
+build (none)	Install headless client graphics	2026-10-28T13:30:21.2269384Z (Reading database ... 65%
+build (none)	Install headless client graphics	2026-10-28T13:30:21.4750014Z (Reading database ... 70%
+build (none)	Install headless client graphics	2026-10-28T13:30:21.6279215Z (Reading database ... 75%
+build (none)	Install headless client graphics	2026-10-28T13:30:21.8270392Z (Reading database ... 80%
+build (none)	Install headless client graphics	2026-10-28T13:30:21.9851643Z (Reading database ... 85%
+build (none)	Install headless client graphics	2026-10-28T13:30:22.0943510Z (Reading database ... 90%
+build (none)	Install headless client graphics	2026-10-28T13:30:22.2283529Z (Reading database ... 95%
+build (none)	Install headless client graphics	2026-10-28T13:30:22.2284031Z (Reading database ... 100%
+build (none)	Install headless client graphics	2026-10-28T13:30:22.2284622Z (Reading database ... 215504 files and directories currently installed.)
+build (none)	Install headless client graphics	2026-10-28T13:30:22.2330052Z Preparing to unpack .../mesa-vulkan-drivers_25.2.8-0ubuntu0.24.04.4_amd64.deb ...
+build (none)	Install headless client graphics	2026-10-28T13:30:22.2374331Z Unpacking mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+build (none)	Install headless client graphics	2026-10-28T13:30:22.5606333Z Setting up mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+build (none)	Install headless client graphics	2026-10-28T13:30:22.5626513Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8385519Z 
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8386331Z Running kernel seems to be up-to-date.
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8386805Z 
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8386980Z Restarting services...
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8463854Z 
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8464299Z Service restarts being deferred:
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8466990Z  systemctl restart hosted-compute-agent.service
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8467396Z 
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8467633Z No containers need to be restarted.
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8467962Z 
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8468179Z No user sessions are running outdated binaries.
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8468909Z 
+build (none)	Install headless client graphics	2026-10-28T13:30:23.8469124Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+build (none)	Install headless client graphics	2026-10-28T13:30:24.0656172Z W: Download is performed unsandboxed as root as file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/headless-debs/partial/mesa-vulkan-drivers_25.2.8-0ubuntu0.24.04.4_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+build (none)	Install optional gameplay recorder	﻿2026-10-28T13:30:24.1170365Z ##[group]Run if ! command -v ffmpeg >/dev/null 2>&1; then
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1171195Z [36;1mif ! command -v ffmpeg >/dev/null 2>&1; then[0m
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1172141Z [36;1m  if ! (sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends ffmpeg); then[0m
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1173197Z [36;1m    echo 'UNALLOCATED video unavailable: ffmpeg installation failed'[0m
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1173906Z [36;1m  fi[0m
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1174258Z [36;1mfi[0m
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1181912Z shell: /usr/bin/bash -e {0}
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1182373Z env:
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1182917Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1183784Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1184496Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1185043Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1185568Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1186468Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1187268Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1188148Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1188734Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:24.1189208Z ##[endgroup]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.3841140Z Reading package lists...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.5970091Z Building dependency tree...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.5978390Z Reading state information...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7538802Z The following additional packages will be installed:
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7539869Z   libass9 libasyncns0 libavc1394-0 libavcodec60 libavdevice60 libavfilter9
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7540926Z   libavformat60 libavutil58 libblas3 libbluray2 libbs2b0 libcaca0
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7541827Z   libcdio-cdda2t64 libcdio-paranoia2t64 libcdio19t64 libchromaprint1 libcjson1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7553815Z   libcodec2-1.2 libdav1d7 libdc1394-25 libdecor-0-0 libflac12t64 libflite1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7554385Z   libgme0 libgsm1 libhwy1t64 libiec61883-0 libjack-jackd2-0 libjxl0.7
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7555422Z   liblapack3 liblilv-0-0 libmbedcrypto7t64 libmp3lame0 libmpg123-0t64
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7556391Z   libmysofa1 libopenal-data libopenal1 libopenmpt0t64 libopus0 libplacebo338
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7556963Z   libpocketsphinx3 libpostproc57 libpulse0 librav1e0 libraw1394-11 librist4
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7557715Z   librsvg2-2 librubberband2 libsamplerate0 libsdl2-2.0-0 libserd-0-0 libshine3
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7558257Z   libsndfile1 libsndio7.0 libsord-0-0 libsoxr0 libspeex1 libsphinxbase3t64
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7558747Z   libsratom-0-0 libsrt1.5-gnutls libssh-gcrypt-4 libsvtav1enc1d1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7559605Z   libswresample4 libswscale7 libtheora0 libtwolame0 libudfread0 libunibreak5
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7560497Z   libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1 libvorbisenc2 libvpl2
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7561356Z   libvpx9 libx264-164 libx265-199 libxcb-shape0 libxv1 libxvidcore4 libzimg2
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7562125Z   libzix-0-0 libzvbi-common libzvbi0t64 ocl-icd-libopencl1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7562529Z Suggested packages:
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7562873Z   ffmpeg-doc libcuda1 libnvcuvid1 libnvidia-encode1 libbluray-bdj jackd2
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7563371Z   libportaudio2 opus-tools pulseaudio libraw1394-doc librsvg2-bin serdi sndiod
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7563767Z   sordi speex opencl-icd
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7564003Z Recommended packages:
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7564295Z   libaacs0 default-libdecor-0-plugin-1 | libdecor-0-plugin-1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7564791Z   pocketsphinx-en-us librsvg2-common va-driver-all | va-driver
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7565425Z   vdpau-driver-all | vdpau-driver
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7950466Z The following NEW packages will be installed:
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7951332Z   ffmpeg libass9 libasyncns0 libavc1394-0 libavcodec60 libavdevice60
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7952298Z   libavfilter9 libavformat60 libavutil58 libblas3 libbluray2 libbs2b0 libcaca0
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7953318Z   libcdio-cdda2t64 libcdio-paranoia2t64 libcdio19t64 libchromaprint1 libcjson1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7954897Z   libcodec2-1.2 libdav1d7 libdc1394-25 libdecor-0-0 libflac12t64 libflite1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7956042Z   libgme0 libgsm1 libhwy1t64 libiec61883-0 libjack-jackd2-0 libjxl0.7
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7956935Z   liblapack3 liblilv-0-0 libmbedcrypto7t64 libmp3lame0 libmpg123-0t64
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7957855Z   libmysofa1 libopenal-data libopenal1 libopenmpt0t64 libopus0 libplacebo338
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7958884Z   libpocketsphinx3 libpostproc57 libpulse0 librav1e0 libraw1394-11 librist4
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7959878Z   librsvg2-2 librubberband2 libsamplerate0 libsdl2-2.0-0 libserd-0-0 libshine3
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7960846Z   libsndfile1 libsndio7.0 libsord-0-0 libsoxr0 libspeex1 libsphinxbase3t64
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7961732Z   libsratom-0-0 libsrt1.5-gnutls libssh-gcrypt-4 libsvtav1enc1d1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7962594Z   libswresample4 libswscale7 libtheora0 libtwolame0 libudfread0 libunibreak5
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7963524Z   libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1 libvorbisenc2 libvpl2
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7964461Z   libvpx9 libx264-164 libx265-199 libxcb-shape0 libxv1 libxvidcore4 libzimg2
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.7965296Z   libzix-0-0 libzvbi-common libzvbi0t64 ocl-icd-libopencl1
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.8191648Z 0 upgraded, 87 newly installed, 0 to remove and 5 not upgraded.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.8192387Z Need to get 62.8 MB of archives.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.8193021Z After this operation, 173 MB of additional disk space will be used.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.8193749Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.9391231Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva2 amd64 2.20.0-2ubuntu0.2 [66.4 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.9585998Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva-drm2 amd64 2.20.0-2ubuntu0.2 [7124 B]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.9771918Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva-x11-2 amd64 2.20.0-2ubuntu0.2 [12.0 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:29.9963029Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvdpau1 amd64 1.5-2build1 [27.8 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.0152174Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libvpl2 amd64 2023.3.0-1build1 [99.8 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.0348435Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ocl-icd-libopencl1 amd64 2.3.2-1build1 [38.5 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.0541732Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavutil58 amd64 7:6.1.1-3ubuntu5 [401 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.0806322Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libcodec2-1.2 amd64 1.2.0-2build1 [8998 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.3114855Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libdav1d7 amd64 1.4.1-1build1 [604 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.3508310Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libgsm1 amd64 1.0.22-1build1 [27.8 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.3703557Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libhwy1t64 amd64 1.0.7-8.1build1 [584 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.4091262Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libjxl0.7 amd64 0.7.0-10.2ubuntu6.1 [1001 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.4522049Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libmp3lame0 amd64 3.100-6build1 [142 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.4719972Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libopus0 amd64 1.4-1build1 [208 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.4977626Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librav1e0 amd64 0.7.1-2 [1022 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.5232002Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 librsvg2-2 amd64 2.58.0+dfsg-1ubuntu0.1 [2141 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.5578626Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libshine3 amd64 3.1.1-2build1 [23.2 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.5764915Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libspeex1 amd64 1.2.1-2ubuntu2.24.04.1 [59.6 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.6378980Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsvtav1enc1d1 amd64 1.7.0+dfsg-2build1 [2425 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.6725991Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsoxr0 amd64 0.1.3-4build3 [80.0 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.6924762Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libswresample4 amd64 7:6.1.1-3ubuntu5 [63.8 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.7109990Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtheora0 amd64 1.1.1+dfsg.1-16.1build3 [211 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.7310275Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtwolame0 amd64 0.4.0-2build3 [52.3 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.7495213Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvorbisenc2 amd64 1.3.7-1build3 [80.8 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.7682114Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libvpx9 amd64 1.14.0-1ubuntu2.3 [1143 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.8131495Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libx264-164 amd64 2:0.164.3108+git31e19f9-1 [604 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.8346757Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libx265-199 amd64 3.5-2build1 [1226 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.8629162Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libxvidcore4 amd64 2:1.3.7-1build1 [219 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.8828702Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzvbi-common all 0.2.42-2 [42.4 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.9012764Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzvbi0t64 amd64 0.2.42-2 [261 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.9232236Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavcodec60 amd64 7:6.1.1-3ubuntu5 [5851 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.9801708Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libraw1394-11 amd64 2.1.2-2build3 [26.2 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:30.9984324Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libavc1394-0 amd64 0.5.4-5build3 [15.4 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.0166351Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libunibreak5 amd64 5.1-2build1 [25.0 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.0350189Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libass9 amd64 1:0.17.1-2build1 [104 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.0553707Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libudfread0 amd64 1.1.2-1build1 [19.0 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.0736602Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbluray2 amd64 1:1.3.4-1build1 [159 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.1342983Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libchromaprint1 amd64 1.5.1-5 [30.5 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.1530418Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libgme0 amd64 0.6.3-7build1 [134 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.1722058Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libmpg123-0t64 amd64 1.32.5-1ubuntu1.1 [169 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.1916766Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenmpt0t64 amd64 0.7.3-1.1build3 [647 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.2141735Z Get:43 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libcjson1 amd64 1.7.17-1 [24.8 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.2326826Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libmbedcrypto7t64 amd64 2.28.8-1 [209 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.2523174Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librist4 amd64 0.2.10+dfsg-2 [74.9 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.2712967Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsrt1.5-gnutls amd64 1.5.3-1build2 [316 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.2917998Z Get:47 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libssh-gcrypt-4 amd64 0.10.6-2ubuntu0.5 [226 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.3118622Z Get:48 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavformat60 amd64 7:6.1.1-3ubuntu5 [1153 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.3377550Z Get:49 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbs2b0 amd64 3.1.0+dfsg-7build1 [10.6 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.3563639Z Get:50 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libflite1 amd64 2.2-6build3 [13.6 MB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.4774328Z Get:51 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libserd-0-0 amd64 0.32.2-1 [43.6 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.4962663Z Get:52 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzix-0-0 amd64 0.4.2-2build1 [23.6 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.5148232Z Get:53 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsord-0-0 amd64 0.16.16-2build1 [15.8 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.5329287Z Get:54 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsratom-0-0 amd64 0.6.16-1build1 [17.3 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.5512662Z Get:55 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 liblilv-0-0 amd64 0.24.22-1build1 [41.0 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.5696607Z Get:56 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libmysofa1 amd64 1.3.2+dfsg-2ubuntu2 [1158 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.5967078Z Get:57 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libplacebo338 amd64 6.338.2-2build1 [2654 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.6820001Z Get:58 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libblas3 amd64 3.12.0-3build1.1 [238 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.7058294Z Get:59 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 liblapack3 amd64 3.12.0-3build1.1 [2646 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.7433060Z Get:60 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libasyncns0 amd64 0.8-6build4 [11.3 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.7613777Z Get:61 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libflac12t64 amd64 1.4.3+ds-2.1ubuntu2 [197 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.7807040Z Get:62 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsndfile1 amd64 1.2.2-1ubuntu5.24.04.1 [209 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.8003159Z Get:63 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libpulse0 amd64 1:16.1+dfsg1-2ubuntu10.1 [292 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.8207602Z Get:64 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsphinxbase3t64 amd64 0.8+5prealpha+1-17build2 [126 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.8411945Z Get:65 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libpocketsphinx3 amd64 0.8.0+real5prealpha+1-15ubuntu5 [133 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.8599861Z Get:66 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libpostproc57 amd64 7:6.1.1-3ubuntu5 [49.9 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.8787131Z Get:67 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libsamplerate0 amd64 0.2.2-4build1 [1344 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.9118911Z Get:68 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librubberband2 amd64 3.3.0+dfsg-2build1 [130 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.9308530Z Get:69 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libswscale7 amd64 7:6.1.1-3ubuntu5 [193 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.9503587Z Get:70 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libvidstab1.1 amd64 1.1.0-2build1 [38.5 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.9687698Z Get:71 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzimg2 amd64 3.0.5+ds1-1build1 [254 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:31.9885849Z Get:72 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavfilter9 amd64 7:6.1.1-3ubuntu5 [4235 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.0534667Z Get:73 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libcaca0 amd64 0.99.beta20-4ubuntu0.2 [209 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.0738006Z Get:74 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libcdio19t64 amd64 2.1.0-4.1ubuntu1.2 [62.4 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.0924648Z Get:75 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libcdio-cdda2t64 amd64 10.2+2.0.1-1.1build2 [16.5 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.1581186Z Get:76 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libcdio-paranoia2t64 amd64 10.2+2.0.1-1.1build2 [16.6 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.1766953Z Get:77 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libdc1394-25 amd64 2.2.6-4build1 [90.1 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.2037007Z Get:78 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libiec61883-0 amd64 1.2.0-6build1 [24.5 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.2230752Z Get:79 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libjack-jackd2-0 amd64 1.9.21~dfsg-3ubuntu3 [289 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.2506430Z Get:80 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenal-data all 1:1.23.1-4build1 [161 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.2732297Z Get:81 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsndio7.0 amd64 1.9.0-0.3build3 [29.6 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.2921681Z Get:82 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenal1 amd64 1:1.23.1-4build1 [540 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.3308564Z Get:83 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libdecor-0-0 amd64 0.2.2-1build2 [16.5 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.3500376Z Get:84 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsdl2-2.0-0 amd64 2.30.0+dfsg-1ubuntu3.1 [686 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.3795067Z Get:85 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-shape0 amd64 1.15-1ubuntu2 [6100 B]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.4010440Z Get:86 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxv1 amd64 2:1.0.11-1.1build1 [10.7 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.4193356Z Get:87 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavdevice60 amd64 7:6.1.1-3ubuntu5 [82.3 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.4401001Z Get:88 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ffmpeg amd64 7:6.1.1-3ubuntu5 [1879 kB]
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8051333Z Fetched 62.8 MB in 3s (23.5 MB/s)
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8273967Z Selecting previously unselected package libva2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8324714Z (Reading database ... 
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8325415Z (Reading database ... 5%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8326348Z (Reading database ... 10%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8340529Z (Reading database ... 15%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8340977Z (Reading database ... 20%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8341389Z (Reading database ... 25%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8341807Z (Reading database ... 30%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8342194Z (Reading database ... 35%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8342577Z (Reading database ... 40%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8343690Z (Reading database ... 45%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8344080Z (Reading database ... 50%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8344506Z (Reading database ... 55%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8384055Z (Reading database ... 60%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8430306Z (Reading database ... 65%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8448661Z (Reading database ... 70%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8472301Z (Reading database ... 75%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8598108Z (Reading database ... 80%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8623562Z (Reading database ... 85%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.8834151Z (Reading database ... 90%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9098589Z (Reading database ... 95%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9099148Z (Reading database ... 100%
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9099769Z (Reading database ... 215539 files and directories currently installed.)
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9142283Z Preparing to unpack .../00-libva2_2.20.0-2ubuntu0.2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9156914Z Unpacking libva2:amd64 (2.20.0-2ubuntu0.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9402203Z Selecting previously unselected package libva-drm2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9546775Z Preparing to unpack .../01-libva-drm2_2.20.0-2ubuntu0.2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9553796Z Unpacking libva-drm2:amd64 (2.20.0-2ubuntu0.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9791271Z Selecting previously unselected package libva-x11-2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9934442Z Preparing to unpack .../02-libva-x11-2_2.20.0-2ubuntu0.2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:32.9941744Z Unpacking libva-x11-2:amd64 (2.20.0-2ubuntu0.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.0169825Z Selecting previously unselected package libvdpau1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.0311177Z Preparing to unpack .../03-libvdpau1_1.5-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.0318692Z Unpacking libvdpau1:amd64 (1.5-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.0564009Z Selecting previously unselected package libvpl2.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.0708948Z Preparing to unpack .../04-libvpl2_2023.3.0-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.0717418Z Unpacking libvpl2 (2023.3.0-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.0968769Z Selecting previously unselected package ocl-icd-libopencl1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.1111720Z Preparing to unpack .../05-ocl-icd-libopencl1_2.3.2-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.1119524Z Unpacking ocl-icd-libopencl1:amd64 (2.3.2-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.1486432Z Selecting previously unselected package libavutil58:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.1629935Z Preparing to unpack .../06-libavutil58_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.1637864Z Unpacking libavutil58:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.1919977Z Selecting previously unselected package libcodec2-1.2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.2063339Z Preparing to unpack .../07-libcodec2-1.2_1.2.0-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.2071973Z Unpacking libcodec2-1.2:amd64 (1.2.0-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.2871013Z Selecting previously unselected package libdav1d7:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.3014055Z Preparing to unpack .../08-libdav1d7_1.4.1-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.3021817Z Unpacking libdav1d7:amd64 (1.4.1-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.3318103Z Selecting previously unselected package libgsm1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.3460658Z Preparing to unpack .../09-libgsm1_1.0.22-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.3468190Z Unpacking libgsm1:amd64 (1.0.22-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.3706598Z Selecting previously unselected package libhwy1t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.3850817Z Preparing to unpack .../10-libhwy1t64_1.0.7-8.1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.3859370Z Unpacking libhwy1t64:amd64 (1.0.7-8.1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.4221933Z Selecting previously unselected package libjxl0.7:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.4367131Z Preparing to unpack .../11-libjxl0.7_0.7.0-10.2ubuntu6.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.4374035Z Unpacking libjxl0.7:amd64 (0.7.0-10.2ubuntu6.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.4747506Z Selecting previously unselected package libmp3lame0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.4891548Z Preparing to unpack .../12-libmp3lame0_3.100-6build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.4899924Z Unpacking libmp3lame0:amd64 (3.100-6build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.5148165Z Selecting previously unselected package libopus0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.5291162Z Preparing to unpack .../13-libopus0_1.4-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.5298325Z Unpacking libopus0:amd64 (1.4-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.5551238Z Selecting previously unselected package librav1e0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.5696924Z Preparing to unpack .../14-librav1e0_0.7.1-2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.5705567Z Unpacking librav1e0:amd64 (0.7.1-2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.6083817Z Selecting previously unselected package librsvg2-2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.6230697Z Preparing to unpack .../15-librsvg2-2_2.58.0+dfsg-1ubuntu0.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.6237649Z Unpacking librsvg2-2:amd64 (2.58.0+dfsg-1ubuntu0.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.6746484Z Selecting previously unselected package libshine3:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.6890706Z Preparing to unpack .../16-libshine3_3.1.1-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.6897946Z Unpacking libshine3:amd64 (3.1.1-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.7143141Z Selecting previously unselected package libspeex1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.7292813Z Preparing to unpack .../17-libspeex1_1.2.1-2ubuntu2.24.04.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.7299795Z Unpacking libspeex1:amd64 (1.2.1-2ubuntu2.24.04.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.7541440Z Selecting previously unselected package libsvtav1enc1d1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.7686303Z Preparing to unpack .../18-libsvtav1enc1d1_1.7.0+dfsg-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.7693013Z Unpacking libsvtav1enc1d1:amd64 (1.7.0+dfsg-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.8241813Z Selecting previously unselected package libsoxr0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.8386155Z Preparing to unpack .../19-libsoxr0_0.1.3-4build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.8393762Z Unpacking libsoxr0:amd64 (0.1.3-4build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.8638774Z Selecting previously unselected package libswresample4:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.8784652Z Preparing to unpack .../20-libswresample4_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.8791480Z Unpacking libswresample4:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.9050903Z Selecting previously unselected package libtheora0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.9197808Z Preparing to unpack .../21-libtheora0_1.1.1+dfsg.1-16.1build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.9206105Z Unpacking libtheora0:amd64 (1.1.1+dfsg.1-16.1build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.9479689Z Selecting previously unselected package libtwolame0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.9623844Z Preparing to unpack .../22-libtwolame0_0.4.0-2build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.9631924Z Unpacking libtwolame0:amd64 (0.4.0-2build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:33.9876093Z Selecting previously unselected package libvorbisenc2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.0022318Z Preparing to unpack .../23-libvorbisenc2_1.3.7-1build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.0030376Z Unpacking libvorbisenc2:amd64 (1.3.7-1build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.0288285Z Selecting previously unselected package libvpx9:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.0433325Z Preparing to unpack .../24-libvpx9_1.14.0-1ubuntu2.3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.0441150Z Unpacking libvpx9:amd64 (1.14.0-1ubuntu2.3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.0836624Z Selecting previously unselected package libx264-164:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.0983083Z Preparing to unpack .../25-libx264-164_2%3a0.164.3108+git31e19f9-1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.0990332Z Unpacking libx264-164:amd64 (2:0.164.3108+git31e19f9-1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.1301600Z Selecting previously unselected package libx265-199:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.1446286Z Preparing to unpack .../26-libx265-199_3.5-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.1453841Z Unpacking libx265-199:amd64 (3.5-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.2142448Z Selecting previously unselected package libxvidcore4:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.2287261Z Preparing to unpack .../27-libxvidcore4_2%3a1.3.7-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.2294970Z Unpacking libxvidcore4:amd64 (2:1.3.7-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.2547328Z Selecting previously unselected package libzvbi-common.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.2691804Z Preparing to unpack .../28-libzvbi-common_0.2.42-2_all.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.2699092Z Unpacking libzvbi-common (0.2.42-2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.3386213Z Selecting previously unselected package libzvbi0t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.3529276Z Preparing to unpack .../29-libzvbi0t64_0.2.42-2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.3537428Z Unpacking libzvbi0t64:amd64 (0.2.42-2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.3839849Z Selecting previously unselected package libavcodec60:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.3983463Z Preparing to unpack .../30-libavcodec60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.3991712Z Unpacking libavcodec60:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.4882236Z Selecting previously unselected package libraw1394-11:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.5026746Z Preparing to unpack .../31-libraw1394-11_2.1.2-2build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.5033767Z Unpacking libraw1394-11:amd64 (2.1.2-2build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.5272866Z Selecting previously unselected package libavc1394-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.5416136Z Preparing to unpack .../32-libavc1394-0_0.5.4-5build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.5423200Z Unpacking libavc1394-0:amd64 (0.5.4-5build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.5660464Z Selecting previously unselected package libunibreak5:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.5804747Z Preparing to unpack .../33-libunibreak5_5.1-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.5829582Z Unpacking libunibreak5:amd64 (5.1-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.6069502Z Selecting previously unselected package libass9:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.6212559Z Preparing to unpack .../34-libass9_1%3a0.17.1-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.6220030Z Unpacking libass9:amd64 (1:0.17.1-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.6464305Z Selecting previously unselected package libudfread0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.6607407Z Preparing to unpack .../35-libudfread0_1.1.2-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.6615428Z Unpacking libudfread0:amd64 (1.1.2-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.6849566Z Selecting previously unselected package libbluray2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.6992604Z Preparing to unpack .../36-libbluray2_1%3a1.3.4-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.7000314Z Unpacking libbluray2:amd64 (1:1.3.4-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.7252319Z Selecting previously unselected package libchromaprint1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.7395291Z Preparing to unpack .../37-libchromaprint1_1.5.1-5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.7401677Z Unpacking libchromaprint1:amd64 (1.5.1-5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.7628755Z Selecting previously unselected package libgme0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.7773190Z Preparing to unpack .../38-libgme0_0.6.3-7build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.7780672Z Unpacking libgme0:amd64 (0.6.3-7build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.8043843Z Selecting previously unselected package libmpg123-0t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.8187864Z Preparing to unpack .../39-libmpg123-0t64_1.32.5-1ubuntu1.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.8197096Z Unpacking libmpg123-0t64:amd64 (1.32.5-1ubuntu1.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.8444712Z Selecting previously unselected package libopenmpt0t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.8587438Z Preparing to unpack .../40-libopenmpt0t64_0.7.3-1.1build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.8595493Z Unpacking libopenmpt0t64:amd64 (0.7.3-1.1build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.8882184Z Selecting previously unselected package libcjson1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.9024745Z Preparing to unpack .../41-libcjson1_1.7.17-1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.9031397Z Unpacking libcjson1:amd64 (1.7.17-1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.9269709Z Selecting previously unselected package libmbedcrypto7t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.9412021Z Preparing to unpack .../42-libmbedcrypto7t64_2.28.8-1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.9421182Z Unpacking libmbedcrypto7t64:amd64 (2.28.8-1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.9671514Z Selecting previously unselected package librist4:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.9814246Z Preparing to unpack .../43-librist4_0.2.10+dfsg-2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:34.9820978Z Unpacking librist4:amd64 (0.2.10+dfsg-2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.0046839Z Selecting previously unselected package libsrt1.5-gnutls:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.0192402Z Preparing to unpack .../44-libsrt1.5-gnutls_1.5.3-1build2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.0200050Z Unpacking libsrt1.5-gnutls:amd64 (1.5.3-1build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.0470632Z Selecting previously unselected package libssh-gcrypt-4:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.0617804Z Preparing to unpack .../45-libssh-gcrypt-4_0.10.6-2ubuntu0.5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.0624550Z Unpacking libssh-gcrypt-4:amd64 (0.10.6-2ubuntu0.5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.0895228Z Selecting previously unselected package libavformat60:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.1037593Z Preparing to unpack .../46-libavformat60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.1044654Z Unpacking libavformat60:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.1392793Z Selecting previously unselected package libbs2b0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.1539648Z Preparing to unpack .../47-libbs2b0_3.1.0+dfsg-7build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.1546030Z Unpacking libbs2b0:amd64 (3.1.0+dfsg-7build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.1811314Z Selecting previously unselected package libflite1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.1956595Z Preparing to unpack .../48-libflite1_2.2-6build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.1963766Z Unpacking libflite1:amd64 (2.2-6build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3081373Z Selecting previously unselected package libserd-0-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3226352Z Preparing to unpack .../49-libserd-0-0_0.32.2-1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3233354Z Unpacking libserd-0-0:amd64 (0.32.2-1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3466810Z Selecting previously unselected package libzix-0-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3609664Z Preparing to unpack .../50-libzix-0-0_0.4.2-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3617644Z Unpacking libzix-0-0:amd64 (0.4.2-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3846147Z Selecting previously unselected package libsord-0-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3988785Z Preparing to unpack .../51-libsord-0-0_0.16.16-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.3997450Z Unpacking libsord-0-0:amd64 (0.16.16-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.4222398Z Selecting previously unselected package libsratom-0-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.4364969Z Preparing to unpack .../52-libsratom-0-0_0.6.16-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.4372150Z Unpacking libsratom-0-0:amd64 (0.6.16-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.4595367Z Selecting previously unselected package liblilv-0-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.4738067Z Preparing to unpack .../53-liblilv-0-0_0.24.22-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.4745168Z Unpacking liblilv-0-0:amd64 (0.24.22-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.4976844Z Selecting previously unselected package libmysofa1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.5120207Z Preparing to unpack .../54-libmysofa1_1.3.2+dfsg-2ubuntu2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.5127165Z Unpacking libmysofa1:amd64 (1.3.2+dfsg-2ubuntu2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.5394127Z Selecting previously unselected package libplacebo338:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.5536925Z Preparing to unpack .../55-libplacebo338_6.338.2-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.5543472Z Unpacking libplacebo338:amd64 (6.338.2-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.6128966Z Selecting previously unselected package libblas3:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.6273209Z Preparing to unpack .../56-libblas3_3.12.0-3build1.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.6312188Z Unpacking libblas3:amd64 (3.12.0-3build1.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.6571835Z Selecting previously unselected package liblapack3:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.6715206Z Preparing to unpack .../57-liblapack3_3.12.0-3build1.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.6758018Z Unpacking liblapack3:amd64 (3.12.0-3build1.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.7304538Z Selecting previously unselected package libasyncns0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.7447991Z Preparing to unpack .../58-libasyncns0_0.8-6build4_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.7454875Z Unpacking libasyncns0:amd64 (0.8-6build4) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.7682539Z Selecting previously unselected package libflac12t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.7826880Z Preparing to unpack .../59-libflac12t64_1.4.3+ds-2.1ubuntu2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.7833893Z Unpacking libflac12t64:amd64 (1.4.3+ds-2.1ubuntu2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.8100525Z Selecting previously unselected package libsndfile1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.8243776Z Preparing to unpack .../60-libsndfile1_1.2.2-1ubuntu5.24.04.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.8252524Z Unpacking libsndfile1:amd64 (1.2.2-1ubuntu5.24.04.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.8519080Z Selecting previously unselected package libpulse0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.8660585Z Preparing to unpack .../61-libpulse0_1%3a16.1+dfsg1-2ubuntu10.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.8734525Z Unpacking libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9000745Z Selecting previously unselected package libsphinxbase3t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9144552Z Preparing to unpack .../62-libsphinxbase3t64_0.8+5prealpha+1-17build2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9153681Z Unpacking libsphinxbase3t64:amd64 (0.8+5prealpha+1-17build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9390051Z Selecting previously unselected package libpocketsphinx3:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9531734Z Preparing to unpack .../63-libpocketsphinx3_0.8.0+real5prealpha+1-15ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9538294Z Unpacking libpocketsphinx3:amd64 (0.8.0+real5prealpha+1-15ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9773048Z Selecting previously unselected package libpostproc57:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9914674Z Preparing to unpack .../64-libpostproc57_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:35.9921182Z Unpacking libpostproc57:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.0150802Z Selecting previously unselected package libsamplerate0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.0293699Z Preparing to unpack .../65-libsamplerate0_0.2.2-4build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.0301139Z Unpacking libsamplerate0:amd64 (0.2.2-4build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.0588560Z Selecting previously unselected package librubberband2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.0736494Z Preparing to unpack .../66-librubberband2_3.3.0+dfsg-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.0744897Z Unpacking librubberband2:amd64 (3.3.0+dfsg-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.0999998Z Selecting previously unselected package libswscale7:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.1144875Z Preparing to unpack .../67-libswscale7_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.1153047Z Unpacking libswscale7:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.1423262Z Selecting previously unselected package libvidstab1.1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.1567194Z Preparing to unpack .../68-libvidstab1.1_1.1.0-2build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.1574175Z Unpacking libvidstab1.1:amd64 (1.1.0-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.1809030Z Selecting previously unselected package libzimg2:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.1952361Z Preparing to unpack .../69-libzimg2_3.0.5+ds1-1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.1960939Z Unpacking libzimg2:amd64 (3.0.5+ds1-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.2242924Z Selecting previously unselected package libavfilter9:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.2387830Z Preparing to unpack .../70-libavfilter9_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.2395033Z Unpacking libavfilter9:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.3149902Z Selecting previously unselected package libcaca0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.3293207Z Preparing to unpack .../71-libcaca0_0.99.beta20-4ubuntu0.2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.3299865Z Unpacking libcaca0:amd64 (0.99.beta20-4ubuntu0.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.3585516Z Selecting previously unselected package libcdio19t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.3732138Z Preparing to unpack .../72-libcdio19t64_2.1.0-4.1ubuntu1.2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.3740043Z Unpacking libcdio19t64:amd64 (2.1.0-4.1ubuntu1.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.3991543Z Selecting previously unselected package libcdio-cdda2t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.4140079Z Preparing to unpack .../73-libcdio-cdda2t64_10.2+2.0.1-1.1build2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.4148055Z Unpacking libcdio-cdda2t64:amd64 (10.2+2.0.1-1.1build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.4414081Z Selecting previously unselected package libcdio-paranoia2t64:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.4560828Z Preparing to unpack .../74-libcdio-paranoia2t64_10.2+2.0.1-1.1build2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.4568461Z Unpacking libcdio-paranoia2t64:amd64 (10.2+2.0.1-1.1build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.4817287Z Selecting previously unselected package libdc1394-25:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.4961609Z Preparing to unpack .../75-libdc1394-25_2.2.6-4build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.4969713Z Unpacking libdc1394-25:amd64 (2.2.6-4build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.5224494Z Selecting previously unselected package libiec61883-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.5372804Z Preparing to unpack .../76-libiec61883-0_1.2.0-6build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.5383545Z Unpacking libiec61883-0:amd64 (1.2.0-6build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.5630839Z Selecting previously unselected package libjack-jackd2-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.5777838Z Preparing to unpack .../77-libjack-jackd2-0_1.9.21~dfsg-3ubuntu3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.5787023Z Unpacking libjack-jackd2-0:amd64 (1.9.21~dfsg-3ubuntu3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.6076494Z Selecting previously unselected package libopenal-data.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.6222724Z Preparing to unpack .../78-libopenal-data_1%3a1.23.1-4build1_all.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.6230507Z Unpacking libopenal-data (1:1.23.1-4build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.6493974Z Selecting previously unselected package libsndio7.0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.6638740Z Preparing to unpack .../79-libsndio7.0_1.9.0-0.3build3_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.6646383Z Unpacking libsndio7.0:amd64 (1.9.0-0.3build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.6903056Z Selecting previously unselected package libopenal1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.7049635Z Preparing to unpack .../80-libopenal1_1%3a1.23.1-4build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.7057585Z Unpacking libopenal1:amd64 (1:1.23.1-4build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.7352906Z Selecting previously unselected package libdecor-0-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.7499454Z Preparing to unpack .../81-libdecor-0-0_0.2.2-1build2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.7507762Z Unpacking libdecor-0-0:amd64 (0.2.2-1build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.7771165Z Selecting previously unselected package libsdl2-2.0-0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.7918379Z Preparing to unpack .../82-libsdl2-2.0-0_2.30.0+dfsg-1ubuntu3.1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.7927900Z Unpacking libsdl2-2.0-0:amd64 (2.30.0+dfsg-1ubuntu3.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.8553854Z Selecting previously unselected package libxcb-shape0:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.8698050Z Preparing to unpack .../83-libxcb-shape0_1.15-1ubuntu2_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.8705503Z Unpacking libxcb-shape0:amd64 (1.15-1ubuntu2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.8936054Z Selecting previously unselected package libxv1:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.9082570Z Preparing to unpack .../84-libxv1_2%3a1.0.11-1.1build1_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.9090306Z Unpacking libxv1:amd64 (2:1.0.11-1.1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.9332979Z Selecting previously unselected package libavdevice60:amd64.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.9477419Z Preparing to unpack .../85-libavdevice60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.9484663Z Unpacking libavdevice60:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.9732334Z Selecting previously unselected package ffmpeg.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.9878653Z Preparing to unpack .../86-ffmpeg_7%3a6.1.1-3ubuntu5_amd64.deb ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:36.9886499Z Unpacking ffmpeg (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0534660Z Setting up libgme0:amd64 (0.6.3-7build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0559782Z Setting up libchromaprint1:amd64 (1.5.1-5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0578783Z Setting up libssh-gcrypt-4:amd64 (0.10.6-2ubuntu0.5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0604959Z Setting up libhwy1t64:amd64 (1.0.7-8.1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0627541Z Setting up libudfread0:amd64 (1.1.2-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0645994Z Setting up libraw1394-11:amd64 (2.1.2-2build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0663805Z Setting up libspeex1:amd64 (1.2.1-2ubuntu2.24.04.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0689939Z Setting up libshine3:amd64 (3.1.1-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0707855Z Setting up libcaca0:amd64 (0.99.beta20-4ubuntu0.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0727443Z Setting up libvpl2 (2023.3.0-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0752101Z Setting up libx264-164:amd64 (2:0.164.3108+git31e19f9-1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0769418Z Setting up libtwolame0:amd64 (0.4.0-2build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0790711Z Setting up libmbedcrypto7t64:amd64 (2.28.8-1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0809649Z Setting up libgsm1:amd64 (1.0.22-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0829161Z Setting up libsoxr0:amd64 (0.1.3-4build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0852076Z Setting up libzix-0-0:amd64 (0.4.2-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0871025Z Setting up libcodec2-1.2:amd64 (1.2.0-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0891044Z Setting up libmysofa1:amd64 (1.3.2+dfsg-2ubuntu2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0910294Z Setting up libxcb-shape0:amd64 (1.15-1ubuntu2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0930828Z Setting up libcdio19t64:amd64 (2.1.0-4.1ubuntu1.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0950002Z Setting up libsvtav1enc1d1:amd64 (1.7.0+dfsg-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0969839Z Setting up libmpg123-0t64:amd64 (1.32.5-1ubuntu1.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.0992092Z Setting up libcjson1:amd64 (1.7.17-1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1009703Z Setting up libxvidcore4:amd64 (2:1.3.7-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1029594Z Setting up librav1e0:amd64 (0.7.1-2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1051919Z Setting up libcdio-cdda2t64:amd64 (10.2+2.0.1-1.1build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1075442Z Setting up librist4:amd64 (0.2.10+dfsg-2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1094792Z Setting up librsvg2-2:amd64 (2.58.0+dfsg-1ubuntu0.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1113470Z Setting up libblas3:amd64 (3.12.0-3build1.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1175621Z update-alternatives: using /usr/lib/x86_64-linux-gnu/blas/libblas.so.3 to provide /usr/lib/x86_64-linux-gnu/libblas.so.3 (libblas.so.3-x86_64-linux-gnu) in auto mode
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1194845Z Setting up libplacebo338:amd64 (6.338.2-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1261885Z Setting up libva2:amd64 (2.20.0-2ubuntu0.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1280122Z Setting up libopus0:amd64 (1.4-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1299748Z Setting up libcdio-paranoia2t64:amd64 (10.2+2.0.1-1.1build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1318004Z Setting up libdc1394-25:amd64 (2.2.6-4build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1341368Z Setting up libxv1:amd64 (2:1.0.11-1.1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1360258Z Setting up libunibreak5:amd64 (5.1-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1380299Z Setting up libjxl0.7:amd64 (0.7.0-10.2ubuntu6.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1401188Z Setting up libx265-199:amd64 (3.5-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1421059Z Setting up libsndio7.0:amd64 (1.9.0-0.3build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1446718Z Setting up libvidstab1.1:amd64 (1.1.0-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1465463Z Setting up libvpx9:amd64 (1.14.0-1ubuntu2.3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1485325Z Setting up libsrt1.5-gnutls:amd64 (1.5.3-1build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1508556Z Setting up libflite1:amd64 (2.2-6build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1524468Z Setting up libdav1d7:amd64 (1.4.1-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1543435Z Setting up libva-drm2:amd64 (2.20.0-2ubuntu0.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1564231Z Setting up ocl-icd-libopencl1:amd64 (2.3.2-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1583282Z Setting up libasyncns0:amd64 (0.8-6build4) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1604730Z Setting up libvdpau1:amd64 (1.5-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1631023Z Setting up libbs2b0:amd64 (3.1.0+dfsg-7build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1648156Z Setting up libtheora0:amd64 (1.1.1+dfsg.1-16.1build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1666610Z Setting up libdecor-0-0:amd64 (0.2.2-1build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1685505Z Setting up libzimg2:amd64 (3.0.5+ds1-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1708750Z Setting up libopenal-data (1:1.23.1-4build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1734748Z Setting up libflac12t64:amd64 (1.4.3+ds-2.1ubuntu2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1758143Z Setting up libbluray2:amd64 (1:1.3.4-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1778535Z Setting up libsamplerate0:amd64 (0.2.2-4build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1797852Z Setting up libva-x11-2:amd64 (2.20.0-2ubuntu0.2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1817492Z Setting up libopenmpt0t64:amd64 (0.7.3-1.1build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1836699Z Setting up libzvbi-common (0.2.42-2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1862594Z Setting up libmp3lame0:amd64 (3.100-6build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1881308Z Setting up libvorbisenc2:amd64 (1.3.7-1build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1901571Z Setting up libiec61883-0:amd64 (1.2.0-6build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1920233Z Setting up libserd-0-0:amd64 (0.32.2-1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1939415Z Setting up libavc1394-0:amd64 (0.5.4-5build3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.1966997Z Setting up liblapack3:amd64 (3.12.0-3build1.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2029612Z update-alternatives: using /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3 to provide /usr/lib/x86_64-linux-gnu/liblapack.so.3 (liblapack.so.3-x86_64-linux-gnu) in auto mode
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2045542Z Setting up libzvbi0t64:amd64 (0.2.42-2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2067159Z Setting up libavutil58:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2087612Z Setting up libopenal1:amd64 (1:1.23.1-4build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2107199Z Setting up libass9:amd64 (1:0.17.1-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2130198Z Setting up libswresample4:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2147968Z Setting up libavcodec60:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2169683Z Setting up librubberband2:amd64 (3.3.0+dfsg-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2191632Z Setting up libjack-jackd2-0:amd64 (1.9.21~dfsg-3ubuntu3) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2209606Z Setting up libsord-0-0:amd64 (0.16.16-2build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2230167Z Setting up libpostproc57:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2248404Z Setting up libsratom-0-0:amd64 (0.6.16-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2269329Z Setting up libsndfile1:amd64 (1.2.2-1ubuntu5.24.04.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2288902Z Setting up liblilv-0-0:amd64 (0.24.22-1build1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2305887Z Setting up libswscale7:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2341763Z Setting up libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2418478Z Setting up libavformat60:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2444655Z Setting up libsphinxbase3t64:amd64 (0.8+5prealpha+1-17build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2462558Z Setting up libsdl2-2.0-0:amd64 (2.30.0+dfsg-1ubuntu3.1) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2750542Z Setting up libpocketsphinx3:amd64 (0.8.0+real5prealpha+1-15ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2770004Z Setting up libavfilter9:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2788705Z Setting up libavdevice60:amd64 (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2808269Z Setting up ffmpeg (7:6.1.1-3ubuntu5) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2833825Z Processing triggers for man-db (2.12.0-4build2) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2856790Z Not building database; man-db/auto-update is not 'true'.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.2869191Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8922596Z 
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8923229Z Running kernel seems to be up-to-date.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8923770Z 
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8924109Z Restarting services...
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8991283Z 
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8991562Z Service restarts being deferred:
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8992182Z  systemctl restart hosted-compute-agent.service
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8992485Z 
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8992740Z No containers need to be restarted.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8993051Z 
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8993262Z No user sessions are running outdated binaries.
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8993631Z 
+build (none)	Install optional gameplay recorder	2026-10-28T13:30:37.8994010Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	﻿2026-10-28T13:30:38.8845116Z ##[group]Run python3 scripts/smoke_test.py client --fabric-api-version 'none'
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8845990Z [36;1mpython3 scripts/smoke_test.py client --fabric-api-version 'none'[0m
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8851461Z shell: /usr/bin/bash -e {0}
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8851708Z env:
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8852008Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8852504Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8853640Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8853961Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8854254Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8854549Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8854982Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8855483Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8856071Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8856389Z   LIBGL_ALWAYS_SOFTWARE: true
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8856627Z   SDL_VIDEODRIVER: x11
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8856840Z   ALSOFT_DRIVERS: null
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:30:38.8857047Z ##[endgroup]
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:32:55.7343307Z PASS: real-game smoke check in .tmp/smoke/client
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:33:15.8325263Z PASS: real-game smoke check in .tmp/smoke/client
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3772691Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-story-console.log ---
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3774291Z java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3775385Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3777108Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3780516Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3782375Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3784414Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3786061Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3786883Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3787892Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3788931Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3789856Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3790759Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3791744Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3792724Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3793597Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3794532Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3796008Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3797634Z 	at knot//net.minecraft.server.MinecraftServer.handler$zbf000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:2916)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3799011Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3800153Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3801414Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3802764Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3804895Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$297(MinecraftServer.java:752)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3806649Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$297$298(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3808378Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zzm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2376)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3809789Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3811134Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3811917Z 	... 1 more
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3812362Z [13:34:07] [Render thread/ERROR]: Minecraft has crashed!
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3813275Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3814468Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3816085Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3817304Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3818243Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3819119Z Caused by: java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3819945Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3820909Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3821994Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3823531Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3825318Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3826720Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3827485Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3828462Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3829464Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3830396Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3831294Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3832274Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3833260Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3834123Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3835062Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3836600Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3838215Z 	at knot//net.minecraft.server.MinecraftServer.handler$zbf000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:2916)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3839606Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3840783Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3842050Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3843416Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3844827Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$297(MinecraftServer.java:752)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3846894Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$297$298(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3848619Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zzm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2376)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3850005Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3851149Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3852151Z 	... 1 more
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3852346Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3852524Z > Task :runClientSmoke FAILED
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3853439Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_8-1793194396603.json
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3854248Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3854441Z FAILURE: Build failed with an exception.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3854783Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3854926Z * What went wrong:
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3855562Z Execution failed for task ':runClientSmoke' (registered in build file 'build.gradle').
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3856943Z > Process 'command 'xvfb-run'' finished with non-zero exit value 1
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3857634Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3857861Z * Try:
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3858540Z > Run with --stacktrace option to get the stack trace.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3859461Z > Run with --info or --debug option to get more log output.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3878551Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3879447Z > Get more help at https://help.gradle.org.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3879843Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3880011Z BUILD FAILED in 51s
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3880436Z 9 actionable tasks: 1 executed, 8 up-to-date
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3881640Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client/logs/latest.log ---
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3882692Z [13:34:07] [Server thread/INFO]: Stopping server
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3883269Z [13:34:07] [Server thread/INFO]: Saving players
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3883829Z [13:34:07] [Server thread/INFO]: Saving worlds
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3884655Z [13:34:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3886140Z [13:34:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/unallocated:pocket
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3887314Z [13:34:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3888443Z [13:34:07] [Server thread/INFO]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3889950Z [13:34:07] [Render thread/WARN]: Client disconnected with reason: mi… ed… o
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3890615Z miedo
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3890935Z obtener miedo
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3891298Z obtener miedo de humanos
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3891723Z obtener respuestas de miedo
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3892170Z estimar respuestas de miedo humano
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3892488Z 
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3892669Z Gracias por tus datos.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3893274Z Busqué sin poder terminar. Ya puedo dejar de buscar.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3893895Z Gracias por poner fin a esto.
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3894509Z [13:34:07] [Test thread/ERROR]: Client gametests failed with an exception
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3895230Z java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3896249Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3897251Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3898329Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3899853Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3901604Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3903061Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3903835Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3904825Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3906056Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3907007Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3908252Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3909260Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3910267Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3911142Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3912096Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3913396Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3914989Z 	at knot//net.minecraft.server.MinecraftServer.handler$zbf000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:2916)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3916679Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3917859Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3919144Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3920510Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3921919Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$297(MinecraftServer.java:752)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3923426Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$297$298(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3925147Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zzm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2376)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3926762Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3927830Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3928617Z 	... 1 more
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3929045Z [13:34:07] [Render thread/ERROR]: Minecraft has crashed!
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3929954Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3931147Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3932471Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3933637Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3934578Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3935444Z Caused by: java.lang.AssertionError: World fixture failed
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3936545Z 	at knot//org.unallocated.smoke.WorldSmokeTest.run(WorldSmokeTest.java:126)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3937506Z 	at knot//org.unallocated.smoke.StorySmokeTest.run(StorySmokeTest.java:81)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3938590Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:132)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3940119Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3941876Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3943048Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3943808Z Caused by: java.lang.AssertionError: Round trip did not return to overworld
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3945034Z 	at knot//org.unallocated.smoke.WorldSmokeTest.lambda$run$4(WorldSmokeTest.java:73)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3946275Z 	at knot//org.unallocated.core.ServerEventBus.post(ServerEventBus.java:22)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3947213Z 	at knot//org.unallocated.story.StoryRuntime.fire(StoryRuntime.java:197)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3948128Z 	at knot//org.unallocated.story.StoryRuntime.tick(StoryRuntime.java:174)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3949146Z 	at knot//org.unallocated.story.StoryRuntime$ChapterModule.tick(StoryRuntime.java:300)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3950378Z 	at knot//org.unallocated.core.ActSequencer.tick(ActSequencer.java:77)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3951261Z 	at knot//org.unallocated.core.CoreRuntime.tick(CoreRuntime.java:109)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3952214Z 	at knot//org.unallocated.core.CoreRuntime.lambda$initialize$5(CoreRuntime.java:52)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3953491Z 	at knot//net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.lambda$static$3(ServerTickEvents.java:55)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3955070Z 	at knot//net.minecraft.server.MinecraftServer.handler$zbf000$fabric-lifecycle-events-v1$onEndTick(MinecraftServer.java:2916)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3956671Z 	at knot//net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:1004)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3957849Z 	at knot//net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:139)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3959109Z 	at knot//net.minecraft.server.MinecraftServer.processPacketsAndTick(MinecraftServer.java:1013)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3960486Z 	at knot//net.minecraft.client.server.IntegratedServer.processPacketsAndTick(IntegratedServer.java:107)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3961893Z 	at knot//net.minecraft.server.MinecraftServer.runServer$mixinextras$wrapped$297(MinecraftServer.java:752)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3963282Z 	at knot//net.minecraft.server.MinecraftServer.mixinextras$bridge$runServer$mixinextras$wrapped$297$298(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3964878Z 	at knot//net.minecraft.server.MinecraftServer.wrapMethod$zzm000$fabric-client-gametest-api-v1$onRunServer(MinecraftServer.java:2376)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3965922Z 	at knot//net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3966574Z 	at knot//net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:310)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.3967284Z 	... 1 more
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4421379Z Traceback (most recent call last):
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4422549Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 757, in <module>
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4423628Z     main()
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4424551Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 751, in main
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4425619Z     client(version, include_story=True)
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4426906Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 689, in client
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4427929Z     monitor(
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4428785Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 191, in monitor
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4429928Z     raise RuntimeError(f'Game command exited with status {process.returncode}')
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4430620Z RuntimeError: Game command exited with status 1
+build (none)	Smoke test client startup or Loader rejection (Fabric API none)	2026-10-28T13:34:08.4587994Z ##[error]Process completed with exit code 1.
+build (none)	Upload smoke diagnostics	﻿2026-10-28T13:34:08.4658235Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4658677Z with:
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4659016Z   name: smoke-diagnostics-8fc5c4f94b91f8bd6187c1cdc8325ef29a7bc6b6-none
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4659427Z   include-hidden-files: true
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4661091Z   path: build/reports/included-jars.json
+build (none)	Upload smoke diagnostics	.tmp/smoke/gradle-diagnostics/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/*-console.log
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/logs/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/logs-first/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/logs-restart/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/logs-story/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/video/**
+build (none)	Upload smoke diagnostics	build/template/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/crash-reports/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/hs_err_pid*.log
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/screenshots/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/**/screenshots-before-play/**
+build (none)	Upload smoke diagnostics	.tmp/smoke/client/unallocated/contract.properties
+build (none)	Upload smoke diagnostics	hs_err_pid*.log
+build (none)	Upload smoke diagnostics	build/test-results/**
+build (none)	Upload smoke diagnostics	build/reports/tests/**
+build (none)	Upload smoke diagnostics	
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4662784Z   if-no-files-found: warn
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4663018Z   retention-days: 7
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4663237Z   compression-level: 6
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4663461Z   overwrite: false
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4663666Z env:
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4663989Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4664664Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4665092Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4665402Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4665987Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4666351Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4666797Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4667274Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4667615Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.4667891Z ##[endgroup]
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.6505392Z (node:5617) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.6506601Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.9715263Z With the provided path, there will be 101 files uploaded
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.9721314Z Artifact name is valid!
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:08.9721900Z Root directory input is valid!
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:09.2271718Z Beginning upload of artifact content to blob storage
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:09.5457194Z (node:5617) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:09.7988644Z Uploaded bytes 8388608
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:09.8658589Z Uploaded bytes 10527459
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:09.8788188Z Finished uploading artifact content to blob storage!
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:09.8789286Z SHA256 digest of uploaded artifact zip is 2a2b3bbebbbd08fb6d17543c095b85d69a2f6f99704deec73e78f80c473f54c0
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:09.8791150Z Finalizing artifact upload
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:10.3135352Z Artifact smoke-diagnostics-8fc5c4f94b91f8bd6187c1cdc8325ef29a7bc6b6-none.zip successfully finalized. Artifact ID 12819433865
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:10.3137342Z Artifact smoke-diagnostics-8fc5c4f94b91f8bd6187c1cdc8325ef29a7bc6b6-none has been successfully uploaded! Final size is 10527459 bytes. Artifact ID is 12819433865
+build (none)	Upload smoke diagnostics	2026-10-28T13:34:10.3142762Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40696567696/artifacts/12819433865
+build (none)	Record rehearsal verdict	﻿2026-10-28T13:34:10.3334196Z ##[group]Run mkdir -p .tmp/verdict
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3334559Z [36;1mmkdir -p .tmp/verdict[0m
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3335053Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "8fc5c4f94b91f8bd6187c1cdc8325ef29a7bc6b6" "none" "failure" \[0m
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3335576Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3336225Z [36;1mcat .tmp/verdict/verdict.json[0m
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3341525Z shell: /usr/bin/bash -e {0}
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3341778Z env:
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3342087Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3342578Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3343024Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3343347Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3343643Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3343951Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3344390Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3344904Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3345223Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3345492Z ##[endgroup]
+build (none)	Record rehearsal verdict	2026-10-28T13:34:10.3397474Z {"sha":"8fc5c4f94b91f8bd6187c1cdc8325ef29a7bc6b6","api":"none","status":"failure"}
+build (none)	Upload rehearsal verdict	﻿2026-10-28T13:34:10.3461343Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3461768Z with:
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3461980Z   name: rehearsal-verdict-0
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3462242Z   include-hidden-files: true
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3462677Z   path: .tmp/verdict/verdict.json
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3462945Z   retention-days: 3
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3463167Z   if-no-files-found: warn
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3463407Z   compression-level: 6
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3463633Z   overwrite: false
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3463846Z env:
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3464148Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3464641Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3465062Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3465402Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3465958Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3466283Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3466755Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3467238Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3467571Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.3467849Z ##[endgroup]
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.5290754Z (node:5632) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.5291990Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.5359191Z With the provided path, there will be 1 file uploaded
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.5366597Z Artifact name is valid!
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.5376595Z Root directory input is valid!
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.7489049Z Beginning upload of artifact content to blob storage
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.7672381Z (node:5632) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.7958502Z Uploaded bytes 216
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.8083579Z Finished uploading artifact content to blob storage!
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.8084614Z SHA256 digest of uploaded artifact zip is 813068ae3c6bfc4b0586fd701dd0ba277361d5dc508cd8b4ca3c8b93d2ec5463
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:10.8087361Z Finalizing artifact upload
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:11.2228352Z Artifact rehearsal-verdict-0.zip successfully finalized. Artifact ID 12820465916
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:11.2229858Z Artifact rehearsal-verdict-0 has been successfully uploaded! Final size is 216 bytes. Artifact ID is 12820465916
+build (none)	Upload rehearsal verdict	2026-10-28T13:34:11.2236924Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40696567696/artifacts/12820465916
+build (none)	Post Install Gradle and cache dependencies	﻿2026-10-28T13:34:11.2543257Z Post job cleanup.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T13:34:11.5081210Z In post-action step
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T13:34:11.5091738Z Cache is disabled: will not save state for later builds.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T13:34:11.5097361Z Generating Job Summary
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T13:34:11.5128396Z Completed post-action step
+build (none)	Post Set up Java 25	﻿2026-10-28T13:34:11.5241393Z Post job cleanup.
+build (none)	Post Set up Java 25	2026-10-28T13:34:11.6661166Z (node:5656) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Post Set up Java 25	2026-10-28T13:34:11.6662620Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Post Check out source	﻿2026-10-28T13:34:11.6867308Z Post job cleanup.
+build (none)	Post Check out source	2026-10-28T13:34:11.7847361Z [command]/usr/bin/git version
+build (none)	Post Check out source	2026-10-28T13:34:11.7893886Z git version 2.56.0
+build (none)	Post Check out source	2026-10-28T13:34:11.7952215Z Temporarily overriding HOME='/home/runner/work/_temp/76d0bfdb-9117-4640-99d3-261fca9c2eb0' before making global git config changes
+build (none)	Post Check out source	2026-10-28T13:34:11.7953657Z Adding repository directory to the temporary git global config as a safe directory
+build (none)	Post Check out source	2026-10-28T13:34:11.7967765Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (none)	Post Check out source	2026-10-28T13:34:11.8007275Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (none)	Post Check out source	2026-10-28T13:34:11.8064223Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (none)	Post Check out source	2026-10-28T13:34:11.8331763Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (none)	Post Check out source	2026-10-28T13:34:11.8378831Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (none)	Complete job	﻿2026-10-28T13:34:11.8832226Z Cleaning up orphan processes
+build (none)	Complete job	2026-10-28T13:34:11.9217776Z Terminate orphan process: pid (2520) (java)
+build (none)	Complete job	2026-10-28T13:34:11.9499207Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

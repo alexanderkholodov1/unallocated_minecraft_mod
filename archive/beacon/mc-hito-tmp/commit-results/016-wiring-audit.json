@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "06c7709 0.1.0.16: enforce the complete production mixin union and reject silently unwired packaged configs"
+}

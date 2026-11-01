@@ -1,0 +1,615 @@
+remote: 
+remote: Create a pull request for 'rehearsal/w-dbbf155' on GitHub by visiting:        
+remote:      https://github.com/alexanderkholodov1/unallocated_minecraft_mod/pull/new/rehearsal/w-dbbf155        
+remote: 
+rehearse: alexanderkholodov1/unallocated_minecraft_mod dbbf155 on rehearsal/w-dbbf155
+rehearse: run 40643160083
+{"sha":"dbbf155aee4140c53a171b9d3238875c4c6c911d","api":"none","status":"failure"}
+{"sha":"dbbf155aee4140c53a171b9d3238875c4c6c911d","api":"0.153.1+26.3","status":"failure"}
+{"sha":"dbbf155aee4140c53a171b9d3238875c4c6c911d","api":"0.161.0+26.3","status":"failure"}
+{"sha":"dbbf155aee4140c53a171b9d3238875c4c6c911d","api":"0.165.0+26.3","status":"failure"}
+rehearse: FAIL dbbf155 (0/4 jobs passed); logs: gh run view 40643160083 -R alexanderkholodov1/unallocated_minecraft_mod --log
+=== job 122665771303
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.3411088Z ##[endgroup]
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.4641705Z (node:2451) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.4642588Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.4697118Z With the provided path, there will be 1 file uploaded
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.4736829Z Artifact name is valid!
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.4737823Z Root directory input is valid!
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.8087096Z Beginning upload of artifact content to blob storage
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.8201636Z (node:2451) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:03.9951054Z Uploaded bytes 222
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.0403962Z Finished uploading artifact content to blob storage!
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.0404917Z SHA256 digest of uploaded artifact zip is 94c31d77b08cfa827e67832a4ca1a62ebe5a5af68681cabbe836698dfdeeeb27
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.0409613Z Finalizing artifact upload
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.5462868Z Artifact rehearsal-verdict-1.zip successfully finalized. Artifact ID 12795904942
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.5464044Z Artifact rehearsal-verdict-1 has been successfully uploaded! Final size is 222 bytes. Artifact ID is 12795904942
+build (0.153.1+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.5465110Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40643160083/artifacts/12795904942
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	﻿2026-10-28T06:21:04.5600626Z Post job cleanup.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:04.7380711Z In post-action step
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:04.7382983Z ##[group]Stopping Gradle daemons
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:04.7384079Z Stopping Gradle daemons for /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:04.7394464Z [command]/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle --stop
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:05.4540734Z Stopping Daemon(s)
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:05.4541027Z 1 Daemon stopped
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:05.4619650Z ##[endgroup]
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:05.4634593Z ##[group]Provision Gradle >= 9.8.2
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0418295Z Gradle version 9.8.2 is available at /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle and >= 9.8.2. Not installing.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0419476Z ##[endgroup]
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0497287Z ##[group]Executing Gradle to clean up caches
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0497991Z Cleaning up caches last used before 1793168386080
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0499496Z [command]/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle -g /home/runner/.gradle -I init.gradle --info --no-daemon --no-scan --build-cache -DGITHUB_DEPENDENCY_GRAPH_ENABLED=false -DGRADLE_ACTIONS_SKIP_BUILD_RESULT_CAPTURE=true noop
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.4551482Z Initialized native services in: /home/runner/.gradle/native
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.5047674Z Initialized jansi services in: /home/runner/.gradle/native
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.7018990Z The current JVM process isn't compatible with build requirement. The maximum heap size is insufficient.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.7056882Z 
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.7917305Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.8.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.7923003Z Starting process 'Gradle build daemon'. Working directory: /home/runner/.gradle/daemon/9.8.2 Command: /usr/lib/jvm/temurin-25-jdk-amd64/bin/java --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --sun-misc-unsafe-memory-access=allow --enable-native-access=ALL-UNNAMED -XX:MaxMetaspaceSize=384m -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/lib/gradle-daemon-main-9.8.2.jar -javaagent:/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/lib/agents/gradle-instrumentation-agent-9.8.2.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 9.8.2
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.8054395Z Successfully started process 'Gradle build daemon'
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.6876569Z An attempt to start the daemon took 0.905 secs.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7859423Z The client will now receive all logging from the daemon (pid: 2578). The daemon log file: /home/runner/.gradle/daemon/9.8.2/daemon-2578.out.log
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7860557Z Daemon will be stopped at the end of the build 
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.0897450Z Using 2 worker leases.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.1909580Z Operational build model parameters: {cachingModelBuilding=false, configurationCache=false, configurationCacheDisabledReason=null, configurationCacheParallelLoad=false, configurationCacheParallelStore=false, configureOnDemand=false, invalidateCoupledProjects=false, isolatedProjects=false, isolatedProjectsDiagnostics=false, isolatedProjectsDangerouslyIgnoreProblems=false, modelAsProjectDependency=false, modelBuilding=false, parallelModelBuilding=false, parallelProjectConfiguration=false, parallelProjectExecution=false, vintage=true}
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.3898387Z Received JVM installation metadata from '/usr/lib/jvm/temurin-25-jdk-amd64': {JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64, JAVA_VERSION=25.0.4.1, JAVA_VENDOR=Eclipse Adoptium, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=25.0.4.1+1-LTS, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=25.0.4.1+1-LTS, VM_VENDOR=Eclipse Adoptium, OS_ARCH=amd64}
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.7858701Z Watching the file system is configured to be enabled if available
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.7891871Z Now considering [/home/runner/work/_temp/dummy-cleanup-project] as hierarchies to watch
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.7893041Z File system watching is active
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.1874915Z Caching disabled for Groovy DSL script compilation (cp_init) because:
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.1887640Z   Build cache is disabled
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.1906782Z   Not worth caching.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.1913778Z Compiling initialization script '/home/runner/work/_temp/dummy-cleanup-project/init.gradle' using SubsetScriptTransformer.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.7859809Z Caching disabled for Groovy DSL script compilation (init) because:
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.7897733Z   Build cache is disabled
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.7917647Z   Not worth caching.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.7957365Z Compiling initialization script '/home/runner/work/_temp/dummy-cleanup-project/init.gradle' using BuildScriptTransformer.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.3859240Z gradle/actions: Not capturing build results
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.5885117Z Starting Build
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.5907253Z Caching disabled for Groovy DSL script compilation (cp_settings) because:
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.5914554Z   Build cache is disabled
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.5951045Z   Not worth caching.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.5979929Z Compiling settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle' using SubsetScriptTransformer.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.6861969Z Caching disabled for Groovy DSL script compilation (settings) because:
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.6897088Z   Build cache is disabled
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.6897527Z   Not worth caching.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.6928225Z Compiling settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle' using BuildScriptTransformer.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.6947383Z Settings evaluated using settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle'.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.7897661Z Using local directory build cache for the root build (location = /home/runner/.gradle/caches/build-cache-1, remove unused entries = older than 2026-10-28 06:19:46 UTC).
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.8887420Z Projects loaded. Root project using build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle'.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.8916587Z Included projects: [root project 'dummy-cleanup-project']
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1865888Z 
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1904704Z > Configure project :
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1927047Z Evaluating root project 'dummy-cleanup-project' using build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle'.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1928341Z Caching disabled for Groovy DSL script compilation (cp_proj) because:
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1954283Z   Not worth caching.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1976971Z Compiling build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle' using SubsetScriptTransformer.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1986577Z Caching disabled for Groovy DSL script compilation (proj) because:
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1996540Z   Not worth caching.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2016799Z Compiling build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle' using BuildScriptTransformer.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2026389Z All projects evaluated.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2036553Z Task name matched 'noop'
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2056571Z Selected primary task 'noop' from project :
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2076517Z Tasks to be executed: [task ':noop']
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2083557Z Tasks that were excluded: []
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2084007Z Resolve mutations for :noop (Thread[#48,included builds,5,main]) started.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2887648Z :noop (Thread[#49,Execution worker,5,main]) started.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2924355Z 
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2936049Z > Task :noop UP-TO-DATE
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2970801Z Skipping task ':noop' as it has no actions.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.2986409Z 
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3007867Z BUILD SUCCESSFUL in 5s
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3012177Z Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.2/userguide/configuration_cache_enabling.html
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3042733Z Build cache (/home/runner/.gradle/caches/build-cache-1) removing files not accessed on or after Wed Oct 28 06:19:46 UTC 2026.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3083689Z Build cache (/home/runner/.gradle/caches/build-cache-1) cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3093555Z Build cache (/home/runner/.gradle/caches/build-cache-1) cleaned up in 0.005 secs.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3916002Z groovy-dsl removing files not accessed on or after Wed Oct 28 06:19:46 UTC 2026.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3945382Z groovy-dsl cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3967007Z groovy-dsl cleaned up in 0.008 secs.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3986671Z Artifact transforms cache removing files not accessed on or after Wed Oct 28 06:19:46 UTC 2026.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3987546Z Artifact transforms cache cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3988139Z Artifact transforms cache cleaned up in 0.026 secs.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3988698Z jars (/home/runner/.gradle/caches/jars-9) cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3990024Z jars (/home/runner/.gradle/caches/jars-9) removing files not accessed on or after Wed Oct 28 06:19:46 UTC 2026.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3990725Z jars (/home/runner/.gradle/caches/jars-9) cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3991309Z jars (/home/runner/.gradle/caches/jars-9) cleaned up in 0.003 secs.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3991946Z artifact cache (/home/runner/.gradle/caches/modules-2) cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3992896Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3994032Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] removing files not accessed on or after Wed Oct 28 06:19:46 UTC 2026.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3995228Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3996541Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3997655Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] removing files not accessed on or after Wed Oct 28 06:19:46 UTC 2026.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3998769Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3999852Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/metadata-2.107] cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.4000747Z artifact cache (/home/runner/.gradle/caches/modules-2) cleanup deleted 0 files/directories.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.4001422Z artifact cache (/home/runner/.gradle/caches/modules-2) cleaned up in 0.036 secs.
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.4946751Z ##[endgroup]
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.4947559Z ##[group]Caching Gradle state
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6333146Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6660524Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7320746Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.9559535Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.0724165Z Sent 91465 of 91465 (100.0%), 0.4 MBs/sec
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1027823Z Sent 141090 of 141090 (100.0%), 0.6 MBs/sec
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.2760249Z Saved cache entry with key gradle-instrumented-jars-v1-40b519d5dd907ca55135d2625861efe8 from /home/runner/.gradle/caches/jars-*/*/ in 658ms
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3019039Z Saved cache entry with key gradle-groovy-dsl-v1-a7fbee3f16d3d835262a1bd589701a8d from /home/runner/.gradle/caches/*/groovy-dsl/*/ in 670ms
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9996955Z Sent 11319100 of 11319100 (100.0%), 12.4 MBs/sec
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.1901219Z Saved cache entry with key gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14 from /home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/ in 1493ms
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3436239Z Sent 50397184 of 100294877 (50.2%), 48.1 MBs/sec
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.3446784Z Sent 91815936 of 100294877 (91.5%), 43.8 MBs/sec
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.1977603Z Sent 100294877 of 100294877 (100.0%), 33.5 MBs/sec
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.3991760Z Saved cache entry with key gradle-dependencies-v1-e5a3ca0e7d48ac11c9b16437f5540ac9 from /home/runner/.gradle/caches/modules-*/files-*/*/*/*/* in 3811ms
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.4725201Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:17.1733053Z Sent 19832729 of 221159321 (9.0%), 18.9 MBs/sec
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.0462937Z Sent 221159321 of 221159321 (100.0%), 112.6 MBs/sec
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.2978234Z Saved cache entry with key gradle-home-v1|Linux-X64|build[999dab622a3e3943f385f88444111668]-dbbf155aee4140c53a171b9d3238875c4c6c911d from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 2835ms
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.2980174Z ##[endgroup]
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.2982795Z Generating Job Summary
+build (0.153.1+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.2994512Z Completed post-action step
+build (0.153.1+26.3)	Post Set up Java 25	﻿2026-10-28T06:21:18.3154017Z Post job cleanup.
+build (0.153.1+26.3)	Post Set up Java 25	2026-10-28T06:21:18.4137488Z (node:2673) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.153.1+26.3)	Post Set up Java 25	2026-10-28T06:21:18.4138852Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.153.1+26.3)	Post Check out source	﻿2026-10-28T06:21:18.4423353Z Post job cleanup.
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.5244994Z [command]/usr/bin/git version
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.5327699Z git version 2.55.0
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.5425359Z Temporarily overriding HOME='/home/runner/work/_temp/8ff2906e-27d0-4971-9d0d-7cc6dfe5443c' before making global git config changes
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.5429369Z Adding repository directory to the temporary git global config as a safe directory
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.5447001Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.5547018Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.5696504Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.6247082Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.153.1+26.3)	Post Check out source	2026-10-28T06:21:18.6301727Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.153.1+26.3)	Complete job	﻿2026-10-28T06:21:18.6655097Z Cleaning up orphan processes
+build (0.153.1+26.3)	Complete job	2026-10-28T06:21:18.6887667Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+=== job 122665771629
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.4844295Z ##[endgroup]
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.6044149Z (node:2476) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.6045174Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.6124682Z With the provided path, there will be 1 file uploaded
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.6138590Z Artifact name is valid!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.6139014Z Root directory input is valid!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.9719979Z Beginning upload of artifact content to blob storage
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:04.9839254Z (node:2476) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:05.2336617Z Uploaded bytes 222
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:05.3006526Z Finished uploading artifact content to blob storage!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:05.3007596Z SHA256 digest of uploaded artifact zip is 23b7a02eba55a8093c3cdb4061e0ab1f0008b4453b9c24a0dbf3104b8f50d30c
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:05.3017102Z Finalizing artifact upload
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:05.8456193Z Artifact rehearsal-verdict-3.zip successfully finalized. Artifact ID 12796139428
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:05.8456791Z Artifact rehearsal-verdict-3 has been successfully uploaded! Final size is 222 bytes. Artifact ID is 12796139428
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:05.8457484Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40643160083/artifacts/12796139428
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	﻿2026-10-28T06:21:05.8635019Z Post job cleanup.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0317960Z In post-action step
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0318625Z ##[group]Stopping Gradle daemons
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0319400Z Stopping Gradle daemons for /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.0325549Z [command]/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle --stop
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.7419428Z Stopping Daemon(s)
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.7924094Z 1 Daemon stopped
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.8013540Z ##[endgroup]
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:06.8027654Z ##[group]Provision Gradle >= 9.8.2
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.3797326Z Gradle version 9.8.2 is available at /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle and >= 9.8.2. Not installing.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.3798599Z ##[endgroup]
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.3799291Z ##[group]Executing Gradle to clean up caches
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.3800362Z Cleaning up caches last used before 1793168388066
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.3803317Z [command]/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle -g /home/runner/.gradle -I init.gradle --info --no-daemon --no-scan --build-cache -DGITHUB_DEPENDENCY_GRAPH_ENABLED=false -DGRADLE_ACTIONS_SKIP_BUILD_RESULT_CAPTURE=true noop
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7530104Z Initialized native services in: /home/runner/.gradle/native
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7590256Z Initialized jansi services in: /home/runner/.gradle/native
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.8934170Z The current JVM process isn't compatible with build requirement. The maximum heap size is insufficient.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.8945765Z 
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.9969063Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.8.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.0014637Z Starting process 'Gradle build daemon'. Working directory: /home/runner/.gradle/daemon/9.8.2 Command: /usr/lib/jvm/temurin-25-jdk-amd64/bin/java --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --sun-misc-unsafe-memory-access=allow --enable-native-access=ALL-UNNAMED -XX:MaxMetaspaceSize=384m -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/lib/gradle-daemon-main-9.8.2.jar -javaagent:/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/lib/agents/gradle-instrumentation-agent-9.8.2.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 9.8.2
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.0019511Z Successfully started process 'Gradle build daemon'
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.8922786Z An attempt to start the daemon took 0.907 secs.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.9934315Z The client will now receive all logging from the daemon (pid: 2604). The daemon log file: /home/runner/.gradle/daemon/9.8.2/daemon-2604.out.log
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.9943539Z Daemon will be stopped at the end of the build 
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.2951105Z Using 2 worker leases.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.3925038Z Operational build model parameters: {cachingModelBuilding=false, configurationCache=false, configurationCacheDisabledReason=null, configurationCacheParallelLoad=false, configurationCacheParallelStore=false, configureOnDemand=false, invalidateCoupledProjects=false, isolatedProjects=false, isolatedProjectsDiagnostics=false, isolatedProjectsDangerouslyIgnoreProblems=false, modelAsProjectDependency=false, modelBuilding=false, parallelModelBuilding=false, parallelProjectConfiguration=false, parallelProjectExecution=false, vintage=true}
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.5933207Z Received JVM installation metadata from '/usr/lib/jvm/temurin-25-jdk-amd64': {JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64, JAVA_VERSION=25.0.4.1, JAVA_VENDOR=Eclipse Adoptium, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=25.0.4.1+1-LTS, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=25.0.4.1+1-LTS, VM_VENDOR=Eclipse Adoptium, OS_ARCH=amd64}
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.8928881Z Watching the file system is configured to be enabled if available
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.9950865Z Now considering [/home/runner/work/_temp/dummy-cleanup-project] as hierarchies to watch
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.9964771Z File system watching is active
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.3923779Z Caching disabled for Groovy DSL script compilation (cp_init) because:
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.3942731Z   Build cache is disabled
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.3968556Z   Not worth caching.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.4006955Z Compiling initialization script '/home/runner/work/_temp/dummy-cleanup-project/init.gradle' using SubsetScriptTransformer.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.9951236Z Caching disabled for Groovy DSL script compilation (init) because:
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.9966953Z   Build cache is disabled
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.9990103Z   Not worth caching.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.0020465Z Compiling initialization script '/home/runner/work/_temp/dummy-cleanup-project/init.gradle' using BuildScriptTransformer.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.4940870Z gradle/actions: Not capturing build results
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6945051Z Starting Build
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6960522Z Caching disabled for Groovy DSL script compilation (cp_settings) because:
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6980206Z   Build cache is disabled
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7020271Z   Not worth caching.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7020867Z Compiling settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle' using SubsetScriptTransformer.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7060368Z Caching disabled for Groovy DSL script compilation (settings) because:
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7080152Z   Build cache is disabled
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7100126Z   Not worth caching.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7120402Z Compiling settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle' using BuildScriptTransformer.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7930963Z Settings evaluated using settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle'.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7940671Z Using local directory build cache for the root build (location = /home/runner/.gradle/caches/build-cache-1, remove unused entries = older than 2026-10-28 06:19:48 UTC).
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.8931217Z Projects loaded. Root project using build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle'.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.8941870Z Included projects: [root project 'dummy-cleanup-project']
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.0920466Z 
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.0952528Z > Configure project :
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.0991854Z Evaluating root project 'dummy-cleanup-project' using build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle'.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1010451Z Caching disabled for Groovy DSL script compilation (cp_proj) because:
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1010873Z   Not worth caching.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1011330Z Compiling build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle' using SubsetScriptTransformer.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1011909Z Caching disabled for Groovy DSL script compilation (proj) because:
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1012324Z   Not worth caching.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1037403Z Compiling build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle' using BuildScriptTransformer.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1060340Z All projects evaluated.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1920801Z Task name matched 'noop'
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1948554Z Selected primary task 'noop' from project :
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1965459Z Tasks to be executed: [task ':noop']
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1969860Z Tasks that were excluded: []
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1975054Z Resolve mutations for :noop (Thread[#48,included builds,5,main]) started.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.1976132Z :noop (Thread[#49,Execution worker,5,main]) started.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.2961817Z 
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.2971464Z > Task :noop UP-TO-DATE
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.2988689Z Skipping task ':noop' as it has no actions.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3002754Z 
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3040474Z BUILD SUCCESSFUL in 4s
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3060600Z Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.2/userguide/configuration_cache_enabling.html
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3080337Z Build cache (/home/runner/.gradle/caches/build-cache-1) removing files not accessed on or after Wed Oct 28 06:19:48 UTC 2026.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3124393Z Build cache (/home/runner/.gradle/caches/build-cache-1) cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3150953Z Build cache (/home/runner/.gradle/caches/build-cache-1) cleaned up in 0.006 secs.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3170232Z groovy-dsl removing files not accessed on or after Wed Oct 28 06:19:48 UTC 2026.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3210126Z groovy-dsl cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3230203Z groovy-dsl cleaned up in 0.007 secs.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3270375Z Artifact transforms cache removing files not accessed on or after Wed Oct 28 06:19:48 UTC 2026.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3300163Z Artifact transforms cache cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3930853Z Artifact transforms cache cleaned up in 0.034 secs.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3991340Z jars (/home/runner/.gradle/caches/jars-9) cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3996049Z jars (/home/runner/.gradle/caches/jars-9) removing files not accessed on or after Wed Oct 28 06:19:48 UTC 2026.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3996835Z jars (/home/runner/.gradle/caches/jars-9) cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3997621Z jars (/home/runner/.gradle/caches/jars-9) cleaned up in 0.007 secs.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3998308Z artifact cache (/home/runner/.gradle/caches/modules-2) cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3999236Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4000518Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] removing files not accessed on or after Wed Oct 28 06:19:48 UTC 2026.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4001732Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4002882Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4004098Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] removing files not accessed on or after Wed Oct 28 06:19:48 UTC 2026.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4005246Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4006304Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/metadata-2.107] cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4007193Z artifact cache (/home/runner/.gradle/caches/modules-2) cleanup deleted 0 files/directories.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4007862Z artifact cache (/home/runner/.gradle/caches/modules-2) cleaned up in 0.061 secs.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4981561Z ##[endgroup]
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.4982361Z ##[group]Caching Gradle state
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.6351598Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.6674351Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.7318512Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.0165116Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.1733054Z Failed to save cache entry with path '/home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/' and key: gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14: ReserveCacheError: Unable to reserve cache with key gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14, another job may be creating this cache.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.2675941Z Sent 91466 of 91466 (100.0%), 0.2 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3505050Z Sent 140933 of 140933 (100.0%), 0.3 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4932411Z Saved cache entry with key gradle-instrumented-jars-v1-093a119a99d349f66059486395395f5e from /home/runner/.gradle/caches/jars-*/*/ in 876ms
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6000752Z Saved cache entry with key gradle-groovy-dsl-v1-0e1936f6168b662d5385c0a4a718c590 from /home/runner/.gradle/caches/*/groovy-dsl/*/ in 967ms
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.4025523Z Sent 31916032 of 99564896 (32.1%), 30.4 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.4028162Z Sent 95879168 of 99564896 (96.3%), 45.7 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.6437766Z Sent 99564896 of 99564896 (100.0%), 42.4 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.8998750Z Saved cache entry with key gradle-dependencies-v1-008c7f2aa364935b100410dff8ae51dc from /home/runner/.gradle/caches/modules-*/files-*/*/*/*/* in 3312ms
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.9708922Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:17.7303883Z Sent 19837627 of 221164219 (9.0%), 18.9 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.7311592Z Sent 154055355 of 221164219 (69.7%), 73.5 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.8242163Z Sent 221164219 of 221164219 (100.0%), 100.8 MBs/sec
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:19.0761736Z Saved cache entry with key gradle-home-v1|Linux-X64|build[60541f95834898db84b07f2d7cae7ab0]-dbbf155aee4140c53a171b9d3238875c4c6c911d from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 3113ms
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:19.0763560Z ##[endgroup]
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:19.0763935Z Generating Job Summary
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:19.0775668Z Completed post-action step
+build (0.165.0+26.3)	Post Set up Java 25	﻿2026-10-28T06:21:19.0937612Z Post job cleanup.
+build (0.165.0+26.3)	Post Set up Java 25	2026-10-28T06:21:19.1858761Z (node:2698) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Post Set up Java 25	2026-10-28T06:21:19.1860257Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Post Check out source	﻿2026-10-28T06:21:19.2071069Z Post job cleanup.
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.2836157Z [command]/usr/bin/git version
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.2877780Z git version 2.55.0
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.2935264Z Temporarily overriding HOME='/home/runner/work/_temp/7b620d34-3187-4062-baba-9b8ca08d0dbc' before making global git config changes
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.2936408Z Adding repository directory to the temporary git global config as a safe directory
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.2937196Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.3030389Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.3140995Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.3708952Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.165.0+26.3)	Post Check out source	2026-10-28T06:21:19.3762250Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.165.0+26.3)	Complete job	﻿2026-10-28T06:21:19.4159556Z Cleaning up orphan processes
+build (0.165.0+26.3)	Complete job	2026-10-28T06:21:19.4419326Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+=== job 122665771666
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.4298508Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.4298687Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.4298841Z ##[endgroup]
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.5464919Z (node:2444) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.5465825Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.5518081Z With the provided path, there will be 1 file uploaded
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.5556951Z Artifact name is valid!
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.5557517Z Root directory input is valid!
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.8694170Z Beginning upload of artifact content to blob storage
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:06.8815618Z (node:2444) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:07.0528415Z Uploaded bytes 216
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:07.1011195Z Finished uploading artifact content to blob storage!
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:07.1012189Z SHA256 digest of uploaded artifact zip is cf9ff0432840dd54885862c28360951da41150d975106c75709a2ea0719e727a
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:07.1013660Z Finalizing artifact upload
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:07.5820044Z Artifact rehearsal-verdict-0.zip successfully finalized. Artifact ID 12796417017
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:07.5820922Z Artifact rehearsal-verdict-0 has been successfully uploaded! Final size is 216 bytes. Artifact ID is 12796417017
+build (none)	Upload rehearsal verdict	2026-10-28T06:21:07.5825768Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40643160083/artifacts/12796417017
+build (none)	Post Install Gradle and cache dependencies	﻿2026-10-28T06:21:07.6028965Z Post job cleanup.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7691412Z In post-action step
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7698493Z ##[group]Stopping Gradle daemons
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7698980Z Stopping Gradle daemons for /usr/share/gradle-9.8.2
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7710257Z [command]/usr/share/gradle-9.8.2/bin/gradle --stop
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.4389016Z Stopping Daemon(s)
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.4394344Z 1 Daemon stopped
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.4488942Z ##[endgroup]
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.4503330Z ##[group]Provision Gradle >= 9.8.2
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.0340961Z Gradle version 9.8.2 is available at /usr/bin/gradle and >= 9.8.2. Not installing.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.0343628Z ##[endgroup]
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.0344065Z ##[group]Executing Gradle to clean up caches
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.0344421Z Cleaning up caches last used before 1793168387625
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.0345205Z [command]/usr/bin/gradle -g /home/runner/.gradle -I init.gradle --info --no-daemon --no-scan --build-cache -DGITHUB_DEPENDENCY_GRAPH_ENABLED=false -DGRADLE_ACTIONS_SKIP_BUILD_RESULT_CAPTURE=true noop
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.4766237Z Initialized native services in: /home/runner/.gradle/native
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.4781955Z Initialized jansi services in: /home/runner/.gradle/native
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.5952494Z The current JVM process isn't compatible with build requirement. The maximum heap size is insufficient.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.5968436Z 
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.6973835Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.8.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.7001256Z Starting process 'Gradle build daemon'. Working directory: /home/runner/.gradle/daemon/9.8.2 Command: /usr/lib/jvm/temurin-25-jdk-amd64/bin/java --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --sun-misc-unsafe-memory-access=allow --enable-native-access=ALL-UNNAMED -XX:MaxMetaspaceSize=384m -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /usr/share/gradle-9.8.2/lib/gradle-daemon-main-9.8.2.jar -javaagent:/usr/share/gradle-9.8.2/lib/agents/gradle-instrumentation-agent-9.8.2.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 9.8.2
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.7063049Z Successfully started process 'Gradle build daemon'
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.4921623Z An attempt to start the daemon took 0.781 secs.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.5894274Z The client will now receive all logging from the daemon (pid: 2574). The daemon log file: /home/runner/.gradle/daemon/9.8.2/daemon-2574.out.log
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.5904479Z Daemon will be stopped at the end of the build 
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.8894125Z Using 2 worker leases.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.8964949Z Operational build model parameters: {cachingModelBuilding=false, configurationCache=false, configurationCacheDisabledReason=null, configurationCacheParallelLoad=false, configurationCacheParallelStore=false, configureOnDemand=false, invalidateCoupledProjects=false, isolatedProjects=false, isolatedProjectsDiagnostics=false, isolatedProjectsDangerouslyIgnoreProblems=false, modelAsProjectDependency=false, modelBuilding=false, parallelModelBuilding=false, parallelProjectConfiguration=false, parallelProjectExecution=false, vintage=true}
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.1978824Z Received JVM installation metadata from '/usr/lib/jvm/temurin-25-jdk-amd64': {JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64, JAVA_VERSION=25.0.5, JAVA_VENDOR=Eclipse Adoptium, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=25.0.5+8-LTS, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=25.0.5+8-LTS, VM_VENDOR=Eclipse Adoptium, OS_ARCH=amd64}
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.4864262Z Watching the file system is configured to be enabled if available
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.4888123Z Now considering [/home/runner/work/_temp/dummy-cleanup-project] as hierarchies to watch
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.4927941Z File system watching is active
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7863598Z Caching disabled for Groovy DSL script compilation (cp_init) because:
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7877695Z   Build cache is disabled
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7897627Z   Not worth caching.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.7908047Z Compiling initialization script '/home/runner/work/_temp/dummy-cleanup-project/init.gradle' using SubsetScriptTransformer.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3864259Z Caching disabled for Groovy DSL script compilation (init) because:
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3897834Z   Build cache is disabled
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3898121Z   Not worth caching.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.3917932Z Compiling initialization script '/home/runner/work/_temp/dummy-cleanup-project/init.gradle' using BuildScriptTransformer.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.7859837Z gradle/actions: Not capturing build results
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9878083Z Starting Build
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9918072Z Caching disabled for Groovy DSL script compilation (cp_settings) because:
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9937853Z   Build cache is disabled
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9938154Z   Not worth caching.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9938642Z Compiling settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle' using SubsetScriptTransformer.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9939249Z Caching disabled for Groovy DSL script compilation (settings) because:
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9939601Z   Build cache is disabled
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9939824Z   Not worth caching.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9940283Z Compiling settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle' using BuildScriptTransformer.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.0868833Z Settings evaluated using settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle'.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.0878270Z Using local directory build cache for the root build (location = /home/runner/.gradle/caches/build-cache-1, remove unused entries = older than 2026-10-28 06:19:47 UTC).
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.1868632Z Projects loaded. Root project using build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle'.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.1891116Z Included projects: [root project 'dummy-cleanup-project']
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3881447Z 
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3929528Z > Configure project :
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3948147Z Evaluating root project 'dummy-cleanup-project' using build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle'.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3967784Z Caching disabled for Groovy DSL script compilation (cp_proj) because:
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3998362Z   Not worth caching.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4027597Z Compiling build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle' using SubsetScriptTransformer.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4087748Z Caching disabled for Groovy DSL script compilation (proj) because:
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4107688Z   Not worth caching.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4108172Z Compiling build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle' using BuildScriptTransformer.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4108647Z All projects evaluated.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4108870Z Task name matched 'noop'
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4109120Z Selected primary task 'noop' from project :
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4109409Z Tasks to be executed: [task ':noop']
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4109669Z Tasks that were excluded: []
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4110000Z Resolve mutations for :noop (Thread[#48,included builds,5,main]) started.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4110388Z :noop (Thread[#49,Execution worker,5,main]) started.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4877826Z 
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4902408Z > Task :noop UP-TO-DATE
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4903205Z Skipping task ':noop' as it has no actions.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4926796Z 
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4955175Z BUILD SUCCESSFUL in 4s
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4985072Z Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.2/userguide/configuration_cache_enabling.html
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5007222Z Build cache (/home/runner/.gradle/caches/build-cache-1) removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5035269Z Build cache (/home/runner/.gradle/caches/build-cache-1) cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5062708Z Build cache (/home/runner/.gradle/caches/build-cache-1) cleaned up in 0.005 secs.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5071041Z groovy-dsl removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5092918Z groovy-dsl cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5127672Z groovy-dsl cleaned up in 0.004 secs.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5147935Z Artifact transforms cache removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5878846Z Artifact transforms cache cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5898083Z Artifact transforms cache cleaned up in 0.026 secs.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5928405Z jars (/home/runner/.gradle/caches/jars-9) cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5929238Z jars (/home/runner/.gradle/caches/jars-9) removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5930009Z jars (/home/runner/.gradle/caches/jars-9) cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5930583Z jars (/home/runner/.gradle/caches/jars-9) cleaned up in 0.007 secs.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5931316Z artifact cache (/home/runner/.gradle/caches/modules-2) cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5932178Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5933291Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5934420Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5935436Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5936506Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5937713Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5938808Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/metadata-2.107] cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5939650Z artifact cache (/home/runner/.gradle/caches/modules-2) cleanup deleted 0 files/directories.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5940299Z artifact cache (/home/runner/.gradle/caches/modules-2) cleaned up in 0.054 secs.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6838421Z ##[endgroup]
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6839129Z ##[group]Caching Gradle state
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.8104572Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.8412731Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.9031575Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.0223819Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.3042560Z Failed to save cache entry with path '/home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/' and key: gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14: ReserveCacheError: Unable to reserve cache with key gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14, another job may be creating this cache.
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.3851541Z Sent 91514 of 91514 (100.0%), 0.2 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.3870713Z Sent 140306 of 140306 (100.0%), 0.4 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.5439741Z Saved cache entry with key gradle-groovy-dsl-v1-1d0448c2d246049985235bb64486bcbb from /home/runner/.gradle/caches/*/groovy-dsl/*/ in 731ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.6059845Z Saved cache entry with key gradle-instrumented-jars-v1-81189462164f00e48420740ae8d32571 from /home/runner/.gradle/caches/jars-*/*/ in 810ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.4866454Z Sent 58458112 of 97767441 (59.8%), 55.8 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:16.3648609Z Sent 97767441 of 97767441 (100.0%), 49.6 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:16.5579093Z Saved cache entry with key gradle-dependencies-v1-fca2d0fd67c428db239e5da767994ef5 from /home/runner/.gradle/caches/modules-*/files-*/*/*/*/* in 2790ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:16.6241806Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.2563131Z Sent 19604531 of 220931123 (8.9%), 18.7 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.6845462Z Sent 220931123 of 220931123 (100.0%), 147.4 MBs/sec
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.8696303Z Saved cache entry with key gradle-home-v1|Linux-X64|build[466b54b410d7a3bddc3439bcbceeb060]-dbbf155aee4140c53a171b9d3238875c4c6c911d from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 2252ms
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.8704132Z ##[endgroup]
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.8704470Z Generating Job Summary
+build (none)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.8704782Z Completed post-action step
+build (none)	Post Set up Java 25	﻿2026-10-28T06:21:18.8912667Z Post job cleanup.
+build (none)	Post Set up Java 25	2026-10-28T06:21:18.9773368Z (node:2668) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (none)	Post Set up Java 25	2026-10-28T06:21:18.9774534Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (none)	Post Check out source	﻿2026-10-28T06:21:18.9987065Z Post job cleanup.
+build (none)	Post Check out source	2026-10-28T06:21:19.0693731Z [command]/usr/bin/git version
+build (none)	Post Check out source	2026-10-28T06:21:19.0747878Z git version 2.56.0
+build (none)	Post Check out source	2026-10-28T06:21:19.0814247Z Temporarily overriding HOME='/home/runner/work/_temp/71507bc0-e160-4127-a1c4-d43b7a2fc6cd' before making global git config changes
+build (none)	Post Check out source	2026-10-28T06:21:19.0815270Z Adding repository directory to the temporary git global config as a safe directory
+build (none)	Post Check out source	2026-10-28T06:21:19.0828009Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (none)	Post Check out source	2026-10-28T06:21:19.0923602Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (none)	Post Check out source	2026-10-28T06:21:19.1073826Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (none)	Post Check out source	2026-10-28T06:21:19.1462853Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (none)	Post Check out source	2026-10-28T06:21:19.1494024Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (none)	Complete job	﻿2026-10-28T06:21:19.1876744Z Cleaning up orphan processes
+build (none)	Complete job	2026-10-28T06:21:19.2105707Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+=== job 122665771753
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.3578703Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.3578897Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.3579067Z ##[endgroup]
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.4716025Z (node:2447) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.4716948Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.4771850Z With the provided path, there will be 1 file uploaded
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.4811347Z Artifact name is valid!
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.4811859Z Root directory input is valid!
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.7991986Z Beginning upload of artifact content to blob storage
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.8111354Z (node:2447) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:06.9656128Z Uploaded bytes 222
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:07.0126998Z Finished uploading artifact content to blob storage!
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:07.0128379Z SHA256 digest of uploaded artifact zip is 1889a3537cf077e59ab51656d7fda50d653c9f5f5a827186bba01db128b0ac10
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:07.0130702Z Finalizing artifact upload
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:07.4968829Z Artifact rehearsal-verdict-2.zip successfully finalized. Artifact ID 12796701034
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:07.4970891Z Artifact rehearsal-verdict-2 has been successfully uploaded! Final size is 222 bytes. Artifact ID is 12796701034
+build (0.161.0+26.3)	Upload rehearsal verdict	2026-10-28T06:21:07.4978168Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40643160083/artifacts/12796701034
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	﻿2026-10-28T06:21:07.5278957Z Post job cleanup.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7201364Z In post-action step
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7209396Z ##[group]Stopping Gradle daemons
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7210137Z Stopping Gradle daemons for /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:07.7221862Z [command]/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle --stop
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.3709377Z Stopping Daemon(s)
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.3720284Z 1 Daemon stopped
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.3797889Z ##[endgroup]
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.3804514Z ##[group]Provision Gradle >= 9.8.2
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.9483055Z Gradle version 9.8.2 is available at /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle and >= 9.8.2. Not installing.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.9484355Z ##[endgroup]
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.9485719Z ##[group]Executing Gradle to clean up caches
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.9486268Z Cleaning up caches last used before 1793168387204
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:08.9488909Z [command]/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle -g /home/runner/.gradle -I init.gradle --info --no-daemon --no-scan --build-cache -DGITHUB_DEPENDENCY_GRAPH_ENABLED=false -DGRADLE_ACTIONS_SKIP_BUILD_RESULT_CAPTURE=true noop
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.3355285Z Initialized native services in: /home/runner/.gradle/native
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.3373108Z Initialized jansi services in: /home/runner/.gradle/native
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.4616270Z The current JVM process isn't compatible with build requirement. The maximum heap size is insufficient.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.4617042Z 
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.5654762Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.8.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.5709972Z Starting process 'Gradle build daemon'. Working directory: /home/runner/.gradle/daemon/9.8.2 Command: /usr/lib/jvm/temurin-25-jdk-amd64/bin/java --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --sun-misc-unsafe-memory-access=allow --enable-native-access=ALL-UNNAMED -XX:MaxMetaspaceSize=384m -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/lib/gradle-daemon-main-9.8.2.jar -javaagent:/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/lib/agents/gradle-instrumentation-agent-9.8.2.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 9.8.2
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:09.5731728Z Successfully started process 'Gradle build daemon'
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.3628656Z An attempt to start the daemon took 0.783 secs.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.4630422Z The client will now receive all logging from the daemon (pid: 2576). The daemon log file: /home/runner/.gradle/daemon/9.8.2/daemon-2576.out.log
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.4651760Z Daemon will be stopped at the end of the build 
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.7618375Z Using 2 worker leases.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.7620878Z Operational build model parameters: {cachingModelBuilding=false, configurationCache=false, configurationCacheDisabledReason=null, configurationCacheParallelLoad=false, configurationCacheParallelStore=false, configureOnDemand=false, invalidateCoupledProjects=false, isolatedProjects=false, isolatedProjectsDiagnostics=false, isolatedProjectsDangerouslyIgnoreProblems=false, modelAsProjectDependency=false, modelBuilding=false, parallelModelBuilding=false, parallelProjectConfiguration=false, parallelProjectExecution=false, vintage=true}
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:10.9629013Z Received JVM installation metadata from '/usr/lib/jvm/temurin-25-jdk-amd64': {JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64, JAVA_VERSION=25.0.4.1, JAVA_VENDOR=Eclipse Adoptium, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=25.0.4.1+1-LTS, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=25.0.4.1+1-LTS, VM_VENDOR=Eclipse Adoptium, OS_ARCH=amd64}
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3625190Z Watching the file system is configured to be enabled if available
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3661916Z Now considering [/home/runner/work/_temp/dummy-cleanup-project] as hierarchies to watch
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.3681533Z File system watching is active
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6612264Z Caching disabled for Groovy DSL script compilation (cp_init) because:
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6641726Z   Build cache is disabled
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6661890Z   Not worth caching.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:11.6691726Z Compiling initialization script '/home/runner/work/_temp/dummy-cleanup-project/init.gradle' using SubsetScriptTransformer.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.2622971Z Caching disabled for Groovy DSL script compilation (init) because:
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.2641770Z   Build cache is disabled
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.2661581Z   Not worth caching.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.2662350Z Compiling initialization script '/home/runner/work/_temp/dummy-cleanup-project/init.gradle' using BuildScriptTransformer.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.7618877Z gradle/actions: Not capturing build results
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9632369Z Starting Build
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9651778Z Caching disabled for Groovy DSL script compilation (cp_settings) because:
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9691477Z   Build cache is disabled
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9711420Z   Not worth caching.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9731774Z Compiling settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle' using SubsetScriptTransformer.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9751647Z Caching disabled for Groovy DSL script compilation (settings) because:
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9771577Z   Build cache is disabled
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9791393Z   Not worth caching.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9811747Z Compiling settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle' using BuildScriptTransformer.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:12.9821743Z Settings evaluated using settings file '/home/runner/work/_temp/dummy-cleanup-project/settings.gradle'.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.0632620Z Using local directory build cache for the root build (location = /home/runner/.gradle/caches/build-cache-1, remove unused entries = older than 2026-10-28 06:19:47 UTC).
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.1611890Z Projects loaded. Root project using build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle'.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.1648981Z Included projects: [root project 'dummy-cleanup-project']
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3661573Z 
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3662531Z > Configure project :
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3702080Z Evaluating root project 'dummy-cleanup-project' using build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle'.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3735794Z Caching disabled for Groovy DSL script compilation (cp_proj) because:
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3771466Z   Not worth caching.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3781709Z Compiling build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle' using SubsetScriptTransformer.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3821518Z Caching disabled for Groovy DSL script compilation (proj) because:
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3849369Z   Not worth caching.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3874732Z Compiling build file '/home/runner/work/_temp/dummy-cleanup-project/build.gradle' using BuildScriptTransformer.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3901577Z All projects evaluated.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3911525Z Task name matched 'noop'
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3931465Z Selected primary task 'noop' from project :
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3942492Z Tasks to be executed: [task ':noop']
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3961428Z Tasks that were excluded: []
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.3971712Z Resolve mutations for :noop (Thread[#49,Execution worker,5,main]) started.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4630442Z :noop (Thread[#48,included builds,5,main]) started.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4651617Z 
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4661834Z > Task :noop UP-TO-DATE
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4683604Z Skipping task ':noop' as it has no actions.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4706873Z 
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4721617Z BUILD SUCCESSFUL in 4s
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4732544Z Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.2/userguide/configuration_cache_enabling.html
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4751860Z Build cache (/home/runner/.gradle/caches/build-cache-1) removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4761880Z Build cache (/home/runner/.gradle/caches/build-cache-1) cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4781925Z Build cache (/home/runner/.gradle/caches/build-cache-1) cleaned up in 0.005 secs.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.4794328Z groovy-dsl removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5632252Z groovy-dsl cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5653901Z groovy-dsl cleaned up in 0.009 secs.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5691867Z Artifact transforms cache removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5693613Z Artifact transforms cache cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5694191Z Artifact transforms cache cleaned up in 0.033 secs.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5700786Z jars (/home/runner/.gradle/caches/jars-9) cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5701869Z jars (/home/runner/.gradle/caches/jars-9) removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5702655Z jars (/home/runner/.gradle/caches/jars-9) cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5703280Z jars (/home/runner/.gradle/caches/jars-9) cleaned up in 0.004 secs.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5703933Z artifact cache (/home/runner/.gradle/caches/modules-2) cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5704876Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5706145Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5707367Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/resources-2.1] cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5708444Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.5710386Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] removing files not accessed on or after Wed Oct 28 06:19:47 UTC 2026.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6104328Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/files-2.1] cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6107404Z artifact cache (/home/runner/.gradle/caches/modules-2) [subdir: /home/runner/.gradle/caches/modules-2/metadata-2.107] cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6108414Z artifact cache (/home/runner/.gradle/caches/modules-2) cleanup deleted 0 files/directories.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6109256Z artifact cache (/home/runner/.gradle/caches/modules-2) cleaned up in 0.076 secs.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6842542Z ##[endgroup]
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.6843284Z ##[group]Caching Gradle state
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.8179218Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.8484471Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.9137190Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:13.9866144Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.2793536Z Sent 91415 of 91415 (100.0%), 0.3 MBs/sec
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.3487136Z Sent 140642 of 140642 (100.0%), 0.4 MBs/sec
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.3635570Z Failed to save cache entry with path '/home/runner/.gradle/caches/transforms-4/*/,/home/runner/.gradle/caches/*/transforms/*/' and key: gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14: ReserveCacheError: Unable to reserve cache with key gradle-transforms-v1-a6c16e5440a9fc9d65d8d8bc79431b14, another job may be creating this cache.
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.5535170Z Saved cache entry with key gradle-instrumented-jars-v1-bb82d4c48c63592a26a5ae6613d4d71b from /home/runner/.gradle/caches/jars-*/*/ in 751ms
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:14.7627527Z Saved cache entry with key gradle-groovy-dsl-v1-65e76ee881832c58394a8d02812c54e8 from /home/runner/.gradle/caches/*/groovy-dsl/*/ in 946ms
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:15.7357043Z Sent 56623104 of 100410263 (56.4%), 53.9 MBs/sec
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:16.3353705Z Sent 100410263 of 100410263 (100.0%), 59.8 MBs/sec
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:16.5247418Z Saved cache entry with key gradle-dependencies-v1-9804219c439083abf6788a1c0fd64435 from /home/runner/.gradle/caches/modules-*/files-*/*/*/*/* in 2752ms
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:16.6396340Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.2747982Z Sent 19833578 of 221160170 (9.0%), 18.9 MBs/sec
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.7407463Z Sent 221160170 of 221160170 (100.0%), 143.9 MBs/sec
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.9520576Z Saved cache entry with key gradle-home-v1|Linux-X64|build[57d4720e86cd4f2403e3bcae02ec38d4]-dbbf155aee4140c53a171b9d3238875c4c6c911d from /home/runner/.gradle/caches,/home/runner/.gradle/notifications,/home/runner/.gradle/.setup-gradle in 2320ms
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.9525330Z ##[endgroup]
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.9525605Z Generating Job Summary
+build (0.161.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T06:21:18.9529838Z Completed post-action step
+build (0.161.0+26.3)	Post Set up Java 25	﻿2026-10-28T06:21:18.9758050Z Post job cleanup.
+build (0.161.0+26.3)	Post Set up Java 25	2026-10-28T06:21:19.0611960Z (node:2672) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.161.0+26.3)	Post Set up Java 25	2026-10-28T06:21:19.0612896Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.161.0+26.3)	Post Check out source	﻿2026-10-28T06:21:19.0863507Z Post job cleanup.
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.1506128Z [command]/usr/bin/git version
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.1571639Z git version 2.55.0
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.1642862Z Temporarily overriding HOME='/home/runner/work/_temp/07a5dd2a-620f-40cb-950b-22d489eb3701' before making global git config changes
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.1643860Z Adding repository directory to the temporary git global config as a safe directory
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.1644760Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.1690764Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.1803964Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.2224605Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.161.0+26.3)	Post Check out source	2026-10-28T06:21:19.2296280Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.161.0+26.3)	Complete job	﻿2026-10-28T06:21:19.2623433Z Cleaning up orphan processes
+build (0.161.0+26.3)	Complete job	2026-10-28T06:21:19.2842494Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

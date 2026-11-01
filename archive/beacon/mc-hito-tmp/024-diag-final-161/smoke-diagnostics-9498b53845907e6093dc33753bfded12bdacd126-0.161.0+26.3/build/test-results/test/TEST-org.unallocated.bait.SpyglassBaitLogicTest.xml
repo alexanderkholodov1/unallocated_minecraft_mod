@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.bait.SpyglassBaitLogicTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2026-10-28T13:55:14.284Z" hostname="runnervm48cm3" time="0.198">
+  <properties/>
+  <testcase name="failedForcedMoveWaitsBeforeRetryingAndDoesNotAdvance()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.041"/>
+  <testcase name="withTheScareOffItSimplyIsNotThereNextTime()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.002"/>
+  <testcase name="specRejectsDistancesThatDoNotApproach()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.003"/>
+  <testcase name="appearsAfterTheDelayAtTheFirstDistance()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.001"/>
+  <testcase name="neverUsingTheSpyglassStillBringsItCloserAfterTheFallbackDelay()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.004"/>
+  <testcase name="lastLookFiresTheScreamerThenTheFigureIsGone()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.001"/>
+  <testcase name="reRaisingTheSpyglassHidesTheStepInTheZoomAnimation()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.001"/>
+  <testcase name="panningTheScopeAwayAlsoHidesIt()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.0"/>
+  <testcase name="leavesQuietlyAfterItsLifetimeOnlyWhenUnseen()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.003"/>
+  <testcase name="oneSpyglassUseCountsOnceAndTheFigureWaitsUntilUnseen()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.002"/>
+  <testcase name="walkingUpToItWhileWatchingEndsInTheScreamer()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.001"/>
+  <testcase name="aLostFigureIsPlacedAgainThenGivenUp()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.001"/>
+  <testcase name="neverPlacedOrMovedWhileVisible()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.103"/>
+  <testcase name="shortRenderDistanceShrinksTheApproachProportionally()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.007"/>
+  <testcase name="scareMomentIsSeededAndBounded()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.001"/>
+  <testcase name="shootingTheFigureBringsItIntoYourFace()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.0"/>
+  <testcase name="walkingTowardItWhileLookingAwayMakesItRecede()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.001"/>
+  <testcase name="walkingAwayMakesItFollowUnseen()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.001"/>
+  <testcase name="directorCanForceAStepAndTheScare()" classname="org.unallocated.bait.SpyglassBaitLogicTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

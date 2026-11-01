@@ -1,0 +1,1 @@
+{"paths": [".github/workflows/build.yml", "README.md", "docs/integration/MILESTONE-v0.1.0.md", "scripts/smoke_test.py", "scripts/install_headless_graphics.sh"], "message": "0.1.0.8: integrate v0.1.15 (ff3862c) cached headless graphics and daemon reuse across the API matrix"}

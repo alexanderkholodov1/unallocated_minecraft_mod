@@ -1,0 +1,272 @@
+build (0.165.0+26.3)	Build mod	﻿2026-10-28T05:59:37.3868438Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.3869480Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3[0m
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4038186Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4038496Z env:
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4038827Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4039323Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4039745Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4040058Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4040346Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4040638Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4041068Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4041535Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4041915Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:37.4042189Z ##[endgroup]
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2627623Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2643801Z Welcome to Gradle 9.8.2!
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2663309Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2663887Z Here are the highlights of this release:
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2683514Z  - Java 27 support
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2703557Z  - Maven mirror settings reuse
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2706652Z  - Linked problem locations in build output
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2709195Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2723589Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.2743189Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:38.5710669Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:59.9653314Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:59.9674609Z > Configure project :
+build (0.165.0+26.3)	Build mod	2026-10-28T05:59:59.9675292Z Fabric Loom: 1.19.3
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:35.8611811Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:35.8624168Z Note: Some input files use or override a deprecated API.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:35.8643513Z > Task :compileJava
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:35.9634750Z Note: Recompile with -Xlint:deprecation for details.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:49.2623448Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:49.2626629Z > Task :processResources
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:49.2663565Z > Task :classes
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:51.7610691Z > Task :compileClientJava
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:51.7614196Z > Task :processClientResources
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:51.7614876Z > Task :processIncludeJars
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:51.8623543Z > Task :recordIncludedJars
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:52.1611112Z > Task :clientClasses
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:52.3618919Z > Task :jar
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4638740Z /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/src/clientSmoke/java/org/unallocated/smoke/StorySmokeTest.java:25: error: unreported exception IOException; must be caught or declared to be thrown
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4640148Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4644231Z         Map<Path, byte[]> before = context.computeOnClient(client -> {
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4644902Z > Task :compileClientSmokeJava FAILED
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4660149Z                                                           ^
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4661246Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793167186652.json
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4693538Z 1 error
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4693777Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4694366Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4695356Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4714377Z FAILURE: Build failed with an exception.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4723222Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4723517Z 8 actionable tasks: 8 executed
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4733503Z * What went wrong:
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4754065Z Execution failed for task ':compileClientSmokeJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4773530Z > Compilation failed; see the compiler output below.
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4794691Z   /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/src/clientSmoke/java/org/unallocated/smoke/StorySmokeTest.java:25: error: unreported exception IOException; must be caught or declared to be thrown
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4797278Z           Map<Path, byte[]> before = context.computeOnClient(client -> {
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4813540Z                                                             ^
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4833386Z   1 error
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4853263Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4873283Z * Try:
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4873875Z > Check your code and dependencies to fix the compilation error(s)
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4893726Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4913228Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.4933340Z BUILD FAILED in 1m 15s
+build (0.165.0+26.3)	Build mod	2026-10-28T06:00:53.9510847Z ##[error]Process completed with exit code 1.
+build (none)	Build mod	﻿2026-10-28T05:59:34.8785229Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none
+build (none)	Build mod	2026-10-28T05:59:34.8785850Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none[0m
+build (none)	Build mod	2026-10-28T05:59:34.8991388Z shell: /usr/bin/bash -e {0}
+build (none)	Build mod	2026-10-28T05:59:34.8991564Z env:
+build (none)	Build mod	2026-10-28T05:59:34.8991742Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (none)	Build mod	2026-10-28T05:59:34.8992008Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (none)	Build mod	2026-10-28T05:59:34.8992234Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (none)	Build mod	2026-10-28T05:59:34.8992407Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (none)	Build mod	2026-10-28T05:59:34.8992566Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (none)	Build mod	2026-10-28T05:59:34.8992726Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (none)	Build mod	2026-10-28T05:59:34.8992960Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (none)	Build mod	2026-10-28T05:59:34.8993213Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (none)	Build mod	2026-10-28T05:59:34.8993443Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (none)	Build mod	2026-10-28T05:59:34.8993594Z ##[endgroup]
+build (none)	Build mod	2026-10-28T05:59:35.4217055Z 
+build (none)	Build mod	2026-10-28T05:59:35.4260409Z Welcome to Gradle 9.8.2!
+build (none)	Build mod	2026-10-28T05:59:35.4299434Z 
+build (none)	Build mod	2026-10-28T05:59:35.4305156Z Here are the highlights of this release:
+build (none)	Build mod	2026-10-28T05:59:35.4349802Z  - Java 27 support
+build (none)	Build mod	2026-10-28T05:59:35.4407176Z  - Maven mirror settings reuse
+build (none)	Build mod	2026-10-28T05:59:35.4429648Z  - Linked problem locations in build output
+build (none)	Build mod	2026-10-28T05:59:35.4469548Z 
+build (none)	Build mod	2026-10-28T05:59:35.4521447Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+build (none)	Build mod	2026-10-28T05:59:35.4559540Z 
+build (none)	Build mod	2026-10-28T05:59:35.8308221Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (none)	Build mod	2026-10-28T05:59:50.1179878Z 
+build (none)	Build mod	2026-10-28T05:59:50.1200288Z > Configure project :
+build (none)	Build mod	2026-10-28T05:59:50.1229811Z Fabric Loom: 1.19.3
+build (none)	Build mod	2026-10-28T06:00:14.7191391Z Note: Some input files use or override a deprecated API.
+build (none)	Build mod	2026-10-28T06:00:14.7191819Z 
+build (none)	Build mod	2026-10-28T06:00:14.7224815Z Note: Recompile with -Xlint:deprecation for details.
+build (none)	Build mod	2026-10-28T06:00:14.7225201Z > Task :compileJava
+build (none)	Build mod	2026-10-28T06:00:22.8157687Z 
+build (none)	Build mod	2026-10-28T06:00:22.8170042Z > Task :processResources
+build (none)	Build mod	2026-10-28T06:00:22.8170379Z > Task :classes
+build (none)	Build mod	2026-10-28T06:00:24.4155694Z > Task :compileClientJava
+build (none)	Build mod	2026-10-28T06:00:24.4180019Z > Task :processClientResources
+build (none)	Build mod	2026-10-28T06:00:24.4199713Z > Task :processIncludeJars
+build (none)	Build mod	2026-10-28T06:00:24.5185968Z > Task :recordIncludedJars
+build (none)	Build mod	2026-10-28T06:00:24.7166619Z > Task :clientClasses
+build (none)	Build mod	2026-10-28T06:00:24.8155495Z > Task :jar
+build (none)	Build mod	2026-10-28T06:00:25.6154756Z 
+build (none)	Build mod	2026-10-28T06:00:25.6157767Z /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/src/clientSmoke/java/org/unallocated/smoke/StorySmokeTest.java:25: error: unreported exception IOException; must be caught or declared to be thrown
+build (none)	Build mod	2026-10-28T06:00:25.6158817Z > Task :compileClientSmokeJava FAILED
+build (none)	Build mod	2026-10-28T06:00:25.6159725Z         Map<Path, byte[]> before = context.computeOnClient(client -> {
+build (none)	Build mod	2026-10-28T06:00:25.6160319Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793167180765.json
+build (none)	Build mod	2026-10-28T06:00:25.6161034Z                                                           ^
+build (none)	Build mod	2026-10-28T06:00:25.6161213Z 
+build (none)	Build mod	2026-10-28T06:00:25.6161449Z 1 error
+build (none)	Build mod	2026-10-28T06:00:25.6162019Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (none)	Build mod	2026-10-28T06:00:25.6162791Z 
+build (none)	Build mod	2026-10-28T06:00:25.6162887Z 8 actionable tasks: 8 executed
+build (none)	Build mod	2026-10-28T06:00:25.6163297Z FAILURE: Build failed with an exception.
+build (none)	Build mod	2026-10-28T06:00:25.6163590Z 
+build (none)	Build mod	2026-10-28T06:00:25.6163780Z * What went wrong:
+build (none)	Build mod	2026-10-28T06:00:25.6164367Z Execution failed for task ':compileClientSmokeJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+build (none)	Build mod	2026-10-28T06:00:25.6165057Z > Compilation failed; see the compiler output below.
+build (none)	Build mod	2026-10-28T06:00:25.6166029Z   /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/src/clientSmoke/java/org/unallocated/smoke/StorySmokeTest.java:25: error: unreported exception IOException; must be caught or declared to be thrown
+build (none)	Build mod	2026-10-28T06:00:25.6167737Z           Map<Path, byte[]> before = context.computeOnClient(client -> {
+build (none)	Build mod	2026-10-28T06:00:25.6168202Z                                                             ^
+build (none)	Build mod	2026-10-28T06:00:25.6168576Z   1 error
+build (none)	Build mod	2026-10-28T06:00:25.6168794Z 
+build (none)	Build mod	2026-10-28T06:00:25.6168978Z * Try:
+build (none)	Build mod	2026-10-28T06:00:25.6169497Z > Check your code and dependencies to fix the compilation error(s)
+build (none)	Build mod	2026-10-28T06:00:25.6170056Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (none)	Build mod	2026-10-28T06:00:25.6170467Z 
+build (none)	Build mod	2026-10-28T06:00:25.6170656Z BUILD FAILED in 50s
+build (none)	Build mod	2026-10-28T06:00:26.0635596Z ##[error]Process completed with exit code 1.
+build (0.153.1+26.3)	Build mod	﻿2026-10-28T05:59:36.4039450Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.153.1+26.3
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4040592Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.153.1+26.3[0m
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4291099Z shell: /usr/bin/bash -e {0}
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4291414Z env:
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4291757Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4292316Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4292794Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4293136Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4293655Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4293982Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4294473Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4295053Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4295484Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:36.4295760Z ##[endgroup]
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3174168Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3184240Z Welcome to Gradle 9.8.2!
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3203805Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3224189Z Here are the highlights of this release:
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3237992Z  - Java 27 support
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3254282Z  - Maven mirror settings reuse
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3255005Z  - Linked problem locations in build output
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3255551Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3256045Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.3256740Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:37.6142933Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:58.4134264Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:58.4174294Z > Configure project :
+build (0.153.1+26.3)	Build mod	2026-10-28T05:59:58.4194188Z Fabric Loom: 1.19.3
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:32.9124784Z Note: Some input files use or override a deprecated API.
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:32.9125334Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:32.9144168Z Note: Recompile with -Xlint:deprecation for details.
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:32.9144865Z > Task :compileJava
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:46.5133279Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:46.5148263Z > Task :processResources
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:46.5159779Z > Task :classes
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:49.0114263Z > Task :compileClientJava
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:49.0144709Z > Task :processClientResources
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:49.1112963Z > Task :processIncludeJars
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:49.2324747Z > Task :recordIncludedJars
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:49.4416766Z > Task :clientClasses
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:49.7184868Z > Task :jar
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.7111932Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.7155675Z /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/src/clientSmoke/java/org/unallocated/smoke/StorySmokeTest.java:25: error: unreported exception IOException; must be caught or declared to be thrown
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.7157564Z > Task :compileClientSmokeJava FAILED
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.7174329Z         Map<Path, byte[]> before = context.computeOnClient(client -> {
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.7208861Z                                                           ^
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.7234013Z 1 error
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8154545Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8155643Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793167184982.json
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8187565Z FAILURE: Build failed with an exception.
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8187999Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8189004Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8190113Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8191806Z * What went wrong:
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8192228Z 8 actionable tasks: 8 executed
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8198650Z Execution failed for task ':compileClientSmokeJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8224231Z > Compilation failed; see the compiler output below.
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8230590Z   /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/src/clientSmoke/java/org/unallocated/smoke/StorySmokeTest.java:25: error: unreported exception IOException; must be caught or declared to be thrown
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8244359Z           Map<Path, byte[]> before = context.computeOnClient(client -> {
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8264194Z                                                             ^
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8313110Z   1 error
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8341006Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8352886Z * Try:
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8354118Z > Check your code and dependencies to fix the compilation error(s)
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8355728Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8356679Z 
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:50.8357359Z BUILD FAILED in 1m 14s
+build (0.153.1+26.3)	Build mod	2026-10-28T06:00:51.2695702Z ##[error]Process completed with exit code 1.
+build (0.161.0+26.3)	Build mod	﻿2026-10-28T05:59:39.6207595Z ##[group]Run gradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.161.0+26.3
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6208558Z [36;1mgradle --daemon --console=plain build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.161.0+26.3[0m
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6469768Z shell: /usr/bin/bash -e {0}
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6470167Z env:
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6470940Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6471660Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6472247Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6472668Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6473057Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6473455Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6474056Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6474725Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6475206Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:39.6475561Z ##[endgroup]
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5278145Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5301546Z Welcome to Gradle 9.8.2!
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5320834Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5321470Z Here are the highlights of this release:
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5341164Z  - Java 27 support
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5348023Z  - Maven mirror settings reuse
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5371152Z  - Linked problem locations in build output
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5390923Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5391564Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.5410875Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T05:59:40.9239172Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:03.1252158Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:03.1282004Z > Configure project :
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:03.1311104Z Fabric Loom: 1.19.3
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:42.2254848Z Note: Some input files use or override a deprecated API.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:42.2258593Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:42.2271318Z Note: Recompile with -Xlint:deprecation for details.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:42.2281731Z > Task :compileJava
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:56.7239986Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:56.7251616Z > Task :processResources
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:56.7272089Z > Task :classes
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:59.6241389Z > Task :compileClientJava
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:59.6250691Z > Task :processClientResources
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:59.7282017Z > Task :processIncludeJars
+build (0.161.0+26.3)	Build mod	2026-10-28T06:00:59.7321335Z > Task :recordIncludedJars
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:00.0238915Z > Task :clientClasses
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:00.2242472Z > Task :jar
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.3246686Z /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/src/clientSmoke/java/org/unallocated/smoke/StorySmokeTest.java:25: error: unreported exception IOException; must be caught or declared to be thrown
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.3248315Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.3261511Z         Map<Path, byte[]> before = context.computeOnClient(client -> {
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.3262277Z > Task :compileClientSmokeJava FAILED
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.3263431Z                                                           ^
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.3264695Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793167189213.json
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.3265887Z 1 error
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4246666Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4246750Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4262348Z FAILURE: Build failed with an exception.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4263880Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4298641Z 8 actionable tasks: 8 executed
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4299270Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4334428Z * What went wrong:
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4381598Z Execution failed for task ':compileClientSmokeJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4428604Z > Compilation failed; see the compiler output below.
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4452362Z   /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/src/clientSmoke/java/org/unallocated/smoke/StorySmokeTest.java:25: error: unreported exception IOException; must be caught or declared to be thrown
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4458105Z           Map<Path, byte[]> before = context.computeOnClient(client -> {
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4460077Z                                                             ^
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4462995Z   1 error
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4466135Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4466811Z * Try:
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4467572Z > Check your code and dependencies to fix the compilation error(s)
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4468701Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4469540Z 
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.4469897Z BUILD FAILED in 1m 21s
+build (0.161.0+26.3)	Build mod	2026-10-28T06:01:01.8810980Z ##[error]Process completed with exit code 1.

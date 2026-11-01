@@ -1,0 +1,1261 @@
+﻿2026-10-28T09:53:23.9791988Z Current runner version: '2.338.0'
+2026-10-28T09:53:23.9813700Z ##[group]Runner Image Provisioner
+2026-10-28T09:53:23.9814259Z Hosted Compute Agent
+2026-10-28T09:53:23.9814689Z Version: 20261021.618
+2026-10-28T09:53:23.9815078Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-28T09:53:23.9815538Z Build Date: 2026-10-21T00:45:21Z
+2026-10-28T09:53:23.9815976Z Worker ID: {e74fc6c6-3720-424f-9732-beacc147c257}
+2026-10-28T09:53:23.9816393Z Region: westus3
+2026-10-28T09:53:23.9816719Z Cloud: Azure
+2026-10-28T09:53:23.9817118Z ##[endgroup]
+2026-10-28T09:53:23.9817914Z ##[group]Operating System
+2026-10-28T09:53:23.9818317Z Ubuntu
+2026-10-28T09:53:23.9818634Z 24.04.5
+2026-10-28T09:53:23.9818937Z LTS
+2026-10-28T09:53:23.9819296Z ##[endgroup]
+2026-10-28T09:53:23.9819675Z ##[group]Runner Image
+2026-10-28T09:53:23.9820045Z Image: ubuntu-24.04
+2026-10-28T09:53:23.9820551Z Version: 20261025.353.1
+2026-10-28T09:53:23.9821768Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-28T09:53:23.9822683Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-10-28T09:53:23.9823257Z ##[endgroup]
+2026-10-28T09:53:23.9823958Z ##[group]GITHUB_TOKEN Permissions
+2026-10-28T09:53:23.9825327Z Contents: read
+2026-10-28T09:53:23.9825751Z Metadata: read
+2026-10-28T09:53:23.9826073Z ##[endgroup]
+2026-10-28T09:53:23.9828202Z Secret source: Actions
+2026-10-28T09:53:23.9828925Z Cache mode: write
+2026-10-28T09:53:23.9829583Z Prepare workflow directory
+2026-10-28T09:53:24.0198722Z Prepare all required actions
+2026-10-28T09:53:24.0236029Z Getting action download info
+2026-10-28T09:53:24.3227693Z Download action repository 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' (SHA:08c6903cd8c0fde910a37f88322edcfb5dd907a8)
+2026-10-28T09:53:24.5004667Z Download action repository 'actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e' (SHA:f2beeb24e141e01a676f977032f5a29d81c9e27e)
+2026-10-28T09:53:25.3855913Z Download action repository 'gradle/actions@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2' (SHA:4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2)
+2026-10-28T09:53:27.2173914Z Download action repository 'actions/cache@5a3ec84eff668545956fd18022155c47e93e2684' (SHA:5a3ec84eff668545956fd18022155c47e93e2684)
+2026-10-28T09:53:27.4638337Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-28T09:53:27.7496870Z Complete job name: build (none)
+2026-10-28T09:53:27.8063192Z ##[group]Run actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+2026-10-28T09:53:27.8063544Z with:
+2026-10-28T09:53:27.8063673Z   persist-credentials: false
+2026-10-28T09:53:27.8063859Z   repository: alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T09:53:27.8065236Z   token: ***
+2026-10-28T09:53:27.8065358Z   ssh-strict: true
+2026-10-28T09:53:27.8065480Z   ssh-user: git
+2026-10-28T09:53:27.8065599Z   clean: true
+2026-10-28T09:53:27.8065729Z   sparse-checkout-cone-mode: true
+2026-10-28T09:53:27.8065899Z   fetch-depth: 1
+2026-10-28T09:53:27.8066030Z   fetch-tags: false
+2026-10-28T09:53:27.8066152Z   show-progress: true
+2026-10-28T09:53:27.8066297Z   lfs: false
+2026-10-28T09:53:27.8066410Z   submodules: false
+2026-10-28T09:53:27.8066535Z   set-safe-directory: true
+2026-10-28T09:53:27.8066740Z ##[endgroup]
+2026-10-28T09:53:28.0753934Z Syncing repository: alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T09:53:28.0755504Z ##[group]Getting Git version info
+2026-10-28T09:53:28.0756011Z Working directory is '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+2026-10-28T09:53:28.0756592Z [command]/usr/bin/git version
+2026-10-28T09:53:28.0801731Z git version 2.56.0
+2026-10-28T09:53:28.0993380Z ##[endgroup]
+2026-10-28T09:53:28.1009253Z Temporarily overriding HOME='/home/runner/work/_temp/b3def4ae-18c2-484b-81e7-94e95e309ad2' before making global git config changes
+2026-10-28T09:53:28.1010603Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-28T09:53:28.1030962Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T09:53:28.1033303Z Deleting the contents of '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+2026-10-28T09:53:28.1034371Z ##[group]Initializing the repository
+2026-10-28T09:53:28.1060831Z [command]/usr/bin/git init /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T09:53:28.1232373Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-28T09:53:28.1247598Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-28T09:53:28.1248633Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-28T09:53:28.1249218Z hint: call:
+2026-10-28T09:53:28.1249540Z hint:
+2026-10-28T09:53:28.1249953Z hint: 	git config --global init.defaultBranch <name>
+2026-10-28T09:53:28.1250370Z hint:
+2026-10-28T09:53:28.1250939Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-28T09:53:28.1251512Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-28T09:53:28.1251950Z hint:
+2026-10-28T09:53:28.1252272Z hint: 	git branch -m <name>
+2026-10-28T09:53:28.1252618Z hint:
+2026-10-28T09:53:28.1253131Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-28T09:53:28.1282389Z Initialized empty Git repository in /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.git/
+2026-10-28T09:53:28.1291365Z [command]/usr/bin/git remote add origin https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T09:53:28.1342094Z ##[endgroup]
+2026-10-28T09:53:28.1377353Z ##[group]Disabling automatic garbage collection
+2026-10-28T09:53:28.1381377Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-28T09:53:28.1388270Z ##[endgroup]
+2026-10-28T09:53:28.1388764Z ##[group]Setting up auth
+2026-10-28T09:53:28.1392257Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T09:53:28.1458559Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T09:53:28.1837226Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T09:53:28.1880809Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T09:53:28.2105887Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-28T09:53:28.2186331Z ##[endgroup]
+2026-10-28T09:53:28.2186750Z ##[group]Fetching the repository
+2026-10-28T09:53:28.2195035Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b77bb1006ce23cc9261869133178ad2203b48dc3:refs/remotes/origin/rehearsal/w-b77bb10
+2026-10-28T09:53:28.9329231Z From https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T09:53:28.9330134Z  * [new ref]         b77bb1006ce23cc9261869133178ad2203b48dc3 -> origin/rehearsal/w-b77bb10
+2026-10-28T09:53:28.9331540Z ##[endgroup]
+2026-10-28T09:53:28.9331925Z ##[group]Determining the checkout info
+2026-10-28T09:53:28.9332320Z ##[endgroup]
+2026-10-28T09:53:28.9332642Z [command]/usr/bin/git sparse-checkout disable
+2026-10-28T09:53:28.9342793Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-28T09:53:28.9380871Z ##[group]Checking out the ref
+2026-10-28T09:53:28.9384835Z [command]/usr/bin/git checkout --progress --force -B rehearsal/w-b77bb10 refs/remotes/origin/rehearsal/w-b77bb10
+2026-10-28T09:53:28.9581482Z Switched to a new branch 'rehearsal/w-b77bb10'
+2026-10-28T09:53:28.9587878Z branch 'rehearsal/w-b77bb10' set up to track 'origin/rehearsal/w-b77bb10'.
+2026-10-28T09:53:28.9593125Z ##[endgroup]
+2026-10-28T09:53:28.9649917Z [command]/usr/bin/git log -1 --format=%H
+2026-10-28T09:53:28.9682480Z b77bb1006ce23cc9261869133178ad2203b48dc3
+2026-10-28T09:53:28.9689831Z ##[group]Removing auth
+2026-10-28T09:53:28.9693193Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T09:53:28.9730001Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T09:53:28.9924047Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T09:53:28.9961937Z http.https://github.com/.extraheader
+2026-10-28T09:53:28.9963707Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-28T09:53:29.0009945Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T09:53:29.0184546Z ##[endgroup]
+2026-10-28T09:53:29.1251230Z ##[group]Run actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e
+2026-10-28T09:53:29.1251496Z with:
+2026-10-28T09:53:29.1251618Z   distribution: temurin
+2026-10-28T09:53:29.1251753Z   java-version: 25
+2026-10-28T09:53:29.1251874Z   java-package: jdk
+2026-10-28T09:53:29.1251993Z   check-latest: false
+2026-10-28T09:53:29.1252111Z   server-id: github
+2026-10-28T09:53:29.1252255Z   server-username: GITHUB_ACTOR
+2026-10-28T09:53:29.1252456Z   server-password: GITHUB_TOKEN
+2026-10-28T09:53:29.1252598Z   overwrite-settings: true
+2026-10-28T09:53:29.1252733Z   job-status: success
+2026-10-28T09:53:29.1253938Z   token: ***
+2026-10-28T09:53:29.1254053Z ##[endgroup]
+2026-10-28T09:53:29.4210373Z ##[group]Installed distributions
+2026-10-28T09:53:29.4487818Z Resolved Java 25.0.5+8 from tool-cache
+2026-10-28T09:53:29.4488258Z Setting Java 25.0.5+8 as the default
+2026-10-28T09:53:29.4495645Z (node:2016) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T09:53:29.4496362Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T09:53:29.4498285Z Creating toolchains.xml for JDK version 25 from temurin
+2026-10-28T09:53:29.4553048Z Writing to /home/runner/.m2/toolchains.xml
+2026-10-28T09:53:29.4553464Z 
+2026-10-28T09:53:29.4553746Z Java configuration:
+2026-10-28T09:53:29.4554210Z   Distribution: temurin
+2026-10-28T09:53:29.4554591Z   Version: 25.0.5+8
+2026-10-28T09:53:29.4555005Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:29.4555384Z 
+2026-10-28T09:53:29.4555918Z ##[endgroup]
+2026-10-28T09:53:29.4573650Z Creating settings.xml with server-id: github
+2026-10-28T09:53:29.4574161Z Writing to /home/runner/.m2/settings.xml
+2026-10-28T09:53:29.4969649Z ##[group]Run gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2
+2026-10-28T09:53:29.4970026Z with:
+2026-10-28T09:53:29.4970197Z   gradle-version: 9.8.2
+2026-10-28T09:53:29.4970385Z   cache-disabled: true
+2026-10-28T09:53:29.4970570Z   cache-read-only: true
+2026-10-28T09:53:29.4970879Z   cache-write-only: false
+2026-10-28T09:53:29.4971088Z   cache-overwrite-existing: false
+2026-10-28T09:53:29.4971307Z   cache-cleanup: on-success
+2026-10-28T09:53:29.4971546Z   gradle-home-cache-includes: caches
+notifications
+
+2026-10-28T09:53:29.4971812Z   add-job-summary: always
+2026-10-28T09:53:29.4972024Z   add-job-summary-as-pr-comment: never
+2026-10-28T09:53:29.4972259Z   dependency-graph: disabled
+2026-10-28T09:53:29.4972511Z   dependency-graph-report-dir: dependency-graph-reports
+2026-10-28T09:53:29.4972810Z   dependency-graph-continue-on-failure: true
+2026-10-28T09:53:29.4973064Z   build-scan-publish: false
+2026-10-28T09:53:29.4973269Z   validate-wrappers: true
+2026-10-28T09:53:29.4973512Z   allow-snapshot-wrappers: false
+2026-10-28T09:53:29.4973746Z   gradle-home-cache-strict-match: false
+2026-10-28T09:53:29.4974156Z   workflow-job-context: {
+  "api": "none"
+}
+2026-10-28T09:53:29.4976208Z   github-token: ***
+2026-10-28T09:53:29.4976382Z env:
+2026-10-28T09:53:29.4976625Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:29.4977020Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:29.4977328Z ##[endgroup]
+2026-10-28T09:53:32.8076647Z Cache is disabled: will not restore state from previous builds.
+2026-10-28T09:53:32.8101344Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+2026-10-28T09:53:32.8241190Z ##[group]All Gradle Wrapper jars are valid
+2026-10-28T09:53:32.8242463Z 
+2026-10-28T09:53:32.8242891Z ##[endgroup]
+2026-10-28T09:53:32.9312086Z ##[group]Provision Gradle 9.8.2
+2026-10-28T09:53:39.9348843Z Gradle version 9.8.2 is already available on PATH. Not installing.
+2026-10-28T09:53:39.9354281Z ##[endgroup]
+2026-10-28T09:53:39.9983258Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+2026-10-28T09:53:39.9983496Z with:
+2026-10-28T09:53:39.9983612Z   path: ~/.gradle/caches
+2026-10-28T09:53:39.9983907Z   key: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8
+2026-10-28T09:53:39.9984220Z   enableCrossOsArchive: false
+2026-10-28T09:53:39.9984359Z   fail-on-cache-miss: false
+2026-10-28T09:53:39.9984488Z   lookup-only: false
+2026-10-28T09:53:39.9984607Z   save-always: false
+2026-10-28T09:53:39.9984721Z env:
+2026-10-28T09:53:39.9984886Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:39.9985141Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:39.9985359Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:53:39.9985524Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:53:39.9985679Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:53:39.9985877Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:53:39.9986114Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:53:39.9986363Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:53:39.9986532Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:53:39.9986674Z ##[endgroup]
+2026-10-28T09:53:40.0681826Z (node:2128) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T09:53:40.0682626Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T09:53:40.3085335Z Cache not found for input keys: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8
+2026-10-28T09:53:40.3718916Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+2026-10-28T09:53:40.3719133Z with:
+2026-10-28T09:53:40.3719273Z   path: .gradle/loom-cache
+.tmp/smoke-downloads
+
+2026-10-28T09:53:40.3719554Z   key: minecraft-v1-Linux-X64-c9ba4cc954069f5b3fdfa13df18c0fa68cd99e3d49a2539d1628be751bb551fb
+2026-10-28T09:53:40.3719840Z   enableCrossOsArchive: false
+2026-10-28T09:53:40.3719985Z   fail-on-cache-miss: false
+2026-10-28T09:53:40.3720117Z   lookup-only: false
+2026-10-28T09:53:40.3720237Z   save-always: false
+2026-10-28T09:53:40.3720355Z env:
+2026-10-28T09:53:40.3720518Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:40.3728513Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:40.3728756Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:53:40.3728929Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:53:40.3729091Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:53:40.3729307Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:53:40.3729536Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:53:40.3729788Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:53:40.3730139Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:53:40.3730285Z ##[endgroup]
+2026-10-28T09:53:40.4459107Z (node:2153) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T09:53:40.4459884Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T09:53:40.6417154Z Cache not found for input keys: minecraft-v1-Linux-X64-c9ba4cc954069f5b3fdfa13df18c0fa68cd99e3d49a2539d1628be751bb551fb
+2026-10-28T09:53:40.6514835Z ##[group]Run python3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none
+2026-10-28T09:53:40.6515351Z [36;1mpython3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none[0m
+2026-10-28T09:53:40.6521953Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:53:40.6522100Z env:
+2026-10-28T09:53:40.6522278Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:40.6522550Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:53:40.6522806Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:53:40.6522984Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:53:40.6523152Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:53:40.6523321Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:53:40.6523565Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:53:40.6535124Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:53:40.6535396Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:53:40.6535624Z ##[endgroup]
+2026-10-28T09:53:42.1015465Z Starting a Gradle Daemon (subsequent builds will be faster)
+2026-10-28T09:54:07.1391479Z 
+2026-10-28T09:54:07.1392347Z > Configure project :
+2026-10-28T09:54:07.1411678Z Fabric Loom: 1.19.3
+2026-10-28T09:54:37.5811856Z 
+2026-10-28T09:54:37.5821652Z > Task :compileJava
+2026-10-28T09:54:37.5862405Z Note: Some input files use or override a deprecated API.
+2026-10-28T09:54:37.5917273Z Note: Recompile with -Xlint:deprecation for details.
+2026-10-28T09:54:45.9881287Z 
+2026-10-28T09:54:45.9911295Z > Task :processResources
+2026-10-28T09:54:45.9930900Z > Task :classes
+2026-10-28T09:54:47.5897072Z > Task :compileClientJava
+2026-10-28T09:54:47.5907522Z > Task :processClientResources
+2026-10-28T09:54:47.5932682Z > Task :processIncludeJars
+2026-10-28T09:54:47.7911820Z > Task :recordIncludedJars
+2026-10-28T09:54:47.7936645Z > Task :clientClasses
+2026-10-28T09:54:47.9901022Z > Task :jar
+2026-10-28T09:54:48.9909075Z > Task :compileClientSmokeJava
+2026-10-28T09:54:48.9909531Z > Task :assemble
+2026-10-28T09:54:48.9909984Z > Task :processClientSmokeResources
+2026-10-28T09:54:48.9910381Z > Task :clientSmokeClasses
+2026-10-28T09:54:48.9914972Z > Task :clientSmokeJar
+2026-10-28T09:54:52.3949054Z > Task :compileTestJava
+2026-10-28T09:54:52.3949342Z > Task :processTestResources
+2026-10-28T09:54:52.3949545Z > Task :testClasses
+2026-10-28T09:54:58.8074573Z > Task :test
+2026-10-28T09:54:58.8079996Z > Task :validateAccessWidener NO-SOURCE
+2026-10-28T09:54:58.8080460Z > Task :check
+2026-10-28T09:54:58.8080928Z > Task :build
+2026-10-28T09:54:58.8104175Z > Task :prepareCoexistApi NO-SOURCE
+2026-10-28T09:54:59.0075820Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793181234855.json
+2026-10-28T09:54:59.0076225Z 
+2026-10-28T09:54:59.0076692Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+2026-10-28T09:54:59.0077521Z 
+2026-10-28T09:54:59.0077610Z BUILD SUCCESSFUL in 1m 18s
+2026-10-28T09:54:59.0077824Z 13 actionable tasks: 13 executed
+2026-10-28T09:54:59.2187618Z ##[group]Run python3 scripts/author_template.py
+2026-10-28T09:54:59.2187844Z [36;1mpython3 scripts/author_template.py[0m
+2026-10-28T09:54:59.2192083Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:54:59.2192219Z env:
+2026-10-28T09:54:59.2192388Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:54:59.2192788Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:54:59.2193007Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:54:59.2193172Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:54:59.2193328Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:54:59.2193487Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:54:59.2193714Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:54:59.2193962Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:54:59.2194131Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:54:59.2194323Z ##[endgroup]
+2026-10-28T09:55:14.5722388Z Server reached Done with the mod loaded; sent stop.
+2026-10-28T09:55:15.1803963Z PASS: real-game smoke check in .tmp/smoke/template
+2026-10-28T09:55:15.2882256Z UNALLOCATED template bytes=387251 jar bytes=1330694 sha256=7cc52739869ec7d00c5ef1bd214c39d9d76dbffdc74348efcc9c4cccaa259fd3
+2026-10-28T09:55:15.2992013Z ##[group]Run python3 scripts/contract_text.py --check
+2026-10-28T09:55:15.2992381Z [36;1mpython3 scripts/contract_text.py --check[0m
+2026-10-28T09:55:15.2997747Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:55:15.2997963Z env:
+2026-10-28T09:55:15.2998223Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:55:15.2998626Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:55:15.2998974Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:55:15.2999235Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:55:15.2999488Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:55:15.2999747Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:55:15.3000113Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:55:15.3000513Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:55:15.3000965Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:55:15.3001227Z ##[endgroup]
+2026-10-28T09:55:15.3289362Z ##[group]Run python3 scripts/verify_jar.py
+2026-10-28T09:55:15.3289673Z [36;1mpython3 scripts/verify_jar.py[0m
+2026-10-28T09:55:15.3294868Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:55:15.3295084Z env:
+2026-10-28T09:55:15.3295346Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:55:15.3295749Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:55:15.3296093Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:55:15.3296379Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:55:15.3296618Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:55:15.3296878Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:55:15.3297256Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:55:15.3297564Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:55:15.3297752Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:55:15.3297919Z ##[endgroup]
+2026-10-28T09:55:15.4187141Z Verified /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/libs/unallocated-0.2.0.jar: 1,330,694 bytes; exactly 7 approved nested modules
+2026-10-28T09:55:15.4288630Z ##[group]Run python3 -B -m unittest discover -s scripts -p 'test_*.py'
+2026-10-28T09:55:15.4288913Z [36;1mpython3 -B -m unittest discover -s scripts -p 'test_*.py'[0m
+2026-10-28T09:55:15.4293288Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:55:15.4293422Z env:
+2026-10-28T09:55:15.4293590Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:55:15.4293845Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:55:15.4294069Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:55:15.4294239Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:55:15.4294399Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:55:15.4294676Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:55:15.4294911Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:55:15.4295161Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:55:15.4295353Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:55:15.4295502Z ##[endgroup]
+2026-10-28T09:55:29.3782218Z ................................................................................................
+2026-10-28T09:55:29.3782865Z ----------------------------------------------------------------------
+2026-10-28T09:55:29.3783259Z Ran 96 tests in 13.632s
+2026-10-28T09:55:29.3783448Z 
+2026-10-28T09:55:29.3783594Z OK
+2026-10-28T09:55:29.3942962Z ##[group]Run python3 scripts/smoke_test.py server --fabric-api-version 'none'
+2026-10-28T09:55:29.3943454Z [36;1mpython3 scripts/smoke_test.py server --fabric-api-version 'none'[0m
+2026-10-28T09:55:29.3948675Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:55:29.3948911Z env:
+2026-10-28T09:55:29.3949173Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:55:29.3949573Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:55:29.3949926Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:55:29.3950186Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:55:29.3950435Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:55:29.3951298Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:55:29.3951671Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:55:29.3952070Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:55:29.3952369Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:55:29.3952598Z ##[endgroup]
+2026-10-28T09:55:29.4413919Z Using pinned official Fabric server launcher (download on cache miss): https://meta.fabricmc.net/v2/versions/loader/26.3/0.20.1/1.1.2/server/jar
+2026-10-28T09:55:29.4441775Z Installed player JAR SHA-256: 7cc52739869ec7d00c5ef1bd214c39d9d76dbffdc74348efcc9c4cccaa259fd3
+2026-10-28T09:55:44.8816465Z Server reached Done with the mod loaded; sent stop.
+2026-10-28T09:55:45.4898343Z PASS: real-game smoke check in .tmp/smoke/server
+2026-10-28T09:55:55.4220757Z Server reached Done with the mod loaded; sent stop.
+2026-10-28T09:55:56.0277390Z PASS: real-game smoke check in .tmp/smoke/server
+2026-10-28T09:56:05.3455858Z Server reached Done with the mod loaded; sent stop.
+2026-10-28T09:56:05.9507620Z PASS: real-game smoke check in .tmp/smoke/server
+2026-10-28T09:56:05.9623531Z ##[group]Run echo "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"
+2026-10-28T09:56:05.9623958Z [36;1mecho "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"[0m
+2026-10-28T09:56:05.9629045Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:56:05.9629254Z env:
+2026-10-28T09:56:05.9629508Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:05.9629937Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:05.9630331Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:56:05.9630597Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:56:05.9631163Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:56:05.9631412Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:56:05.9631783Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:56:05.9632177Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:56:05.9632478Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:56:05.9632707Z ##[endgroup]
+2026-10-28T09:56:06.0101533Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+2026-10-28T09:56:06.0101746Z with:
+2026-10-28T09:56:06.0101869Z   path: .tmp/headless-debs/*.deb
+2026-10-28T09:56:06.0102168Z   key: graphics-v1-X64-ubuntu24-20261026.354.1-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+2026-10-28T09:56:06.0102457Z   enableCrossOsArchive: false
+2026-10-28T09:56:06.0102745Z   fail-on-cache-miss: false
+2026-10-28T09:56:06.0102877Z   lookup-only: false
+2026-10-28T09:56:06.0102999Z   save-always: false
+2026-10-28T09:56:06.0103113Z env:
+2026-10-28T09:56:06.0103276Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:06.0103532Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:06.0103751Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:56:06.0103917Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:56:06.0104072Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:56:06.0104258Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:56:06.0104487Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:56:06.0104735Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:56:06.0104905Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:56:06.0105053Z ##[endgroup]
+2026-10-28T09:56:06.0776143Z (node:2788) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T09:56:06.0777070Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T09:56:06.2737920Z Cache hit for: graphics-v1-X64-ubuntu24-20261026.354.1-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+2026-10-28T09:56:06.2811308Z (node:2788) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T09:56:07.3398966Z Received 17498812 of 17498812 (100.0%), 20.6 MBs/sec
+2026-10-28T09:56:07.3417085Z Cache Size: ~17 MB (17498812 B)
+2026-10-28T09:56:07.3424692Z [command]/usr/bin/tar -xf /home/runner/work/_temp/c7266f73-fa58-4e02-8daa-a3245d13902c/cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --use-compress-program unzstd
+2026-10-28T09:56:07.4168246Z Cache restored successfully
+2026-10-28T09:56:07.4307087Z Cache restored from key: graphics-v1-X64-ubuntu24-20261026.354.1-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+2026-10-28T09:56:07.4432545Z ##[group]Run bash scripts/install_headless_graphics.sh
+2026-10-28T09:56:07.4432776Z [36;1mbash scripts/install_headless_graphics.sh[0m
+2026-10-28T09:56:07.4436711Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:56:07.4436858Z env:
+2026-10-28T09:56:07.4437025Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:07.4437284Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:07.4437511Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:56:07.4437685Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:56:07.4437845Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:56:07.4438007Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:56:07.4438242Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:56:07.4438512Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:56:07.4438705Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:56:07.4438881Z ##[endgroup]
+2026-10-28T09:56:12.0470343Z Reading package lists...
+2026-10-28T09:56:12.2524841Z Building dependency tree...
+2026-10-28T09:56:12.2533853Z Reading state information...
+2026-10-28T09:56:12.4031215Z E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+2026-10-28T09:56:12.4054210Z Cached package dependency closure is incomplete; resolving from Ubuntu.
+2026-10-28T09:56:20.5811209Z Reading package lists...
+2026-10-28T09:56:20.7158671Z Building dependency tree...
+2026-10-28T09:56:20.7164460Z Reading state information...
+2026-10-28T09:56:20.8350570Z The following NEW packages will be installed:
+2026-10-28T09:56:20.8351635Z   mesa-vulkan-drivers
+2026-10-28T09:56:21.0401665Z 0 upgraded, 1 newly installed, 0 to remove and 5 not upgraded.
+2026-10-28T09:56:21.0402469Z Need to get 0 B/17.5 MB of archives.
+2026-10-28T09:56:21.0402963Z After this operation, 98.5 MB of additional disk space will be used.
+2026-10-28T09:56:21.0578907Z Selecting previously unselected package mesa-vulkan-drivers:amd64.
+2026-10-28T09:56:21.0827041Z (Reading database ... 
+2026-10-28T09:56:21.0827504Z (Reading database ... 5%
+2026-10-28T09:56:21.0827838Z (Reading database ... 10%
+2026-10-28T09:56:21.0828043Z (Reading database ... 15%
+2026-10-28T09:56:21.0828263Z (Reading database ... 20%
+2026-10-28T09:56:21.0828460Z (Reading database ... 25%
+2026-10-28T09:56:21.0828654Z (Reading database ... 30%
+2026-10-28T09:56:21.0828886Z (Reading database ... 35%
+2026-10-28T09:56:21.0829098Z (Reading database ... 40%
+2026-10-28T09:56:21.0829373Z (Reading database ... 45%
+2026-10-28T09:56:21.0829645Z (Reading database ... 50%
+2026-10-28T09:56:21.0866319Z (Reading database ... 55%
+2026-10-28T09:56:21.2321542Z (Reading database ... 60%
+2026-10-28T09:56:21.4359492Z (Reading database ... 65%
+2026-10-28T09:56:21.6852745Z (Reading database ... 70%
+2026-10-28T09:56:21.8388147Z (Reading database ... 75%
+2026-10-28T09:56:22.0380921Z (Reading database ... 80%
+2026-10-28T09:56:22.1787849Z (Reading database ... 85%
+2026-10-28T09:56:22.3224052Z (Reading database ... 90%
+2026-10-28T09:56:22.4921995Z (Reading database ... 95%
+2026-10-28T09:56:22.4922654Z (Reading database ... 100%
+2026-10-28T09:56:22.4923120Z (Reading database ... 215504 files and directories currently installed.)
+2026-10-28T09:56:22.4958777Z Preparing to unpack .../mesa-vulkan-drivers_25.2.8-0ubuntu0.24.04.4_amd64.deb ...
+2026-10-28T09:56:22.5073891Z Unpacking mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-10-28T09:56:23.4831317Z Setting up mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-10-28T09:56:23.4856579Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-10-28T09:56:24.9921090Z 
+2026-10-28T09:56:24.9921915Z Running kernel seems to be up-to-date.
+2026-10-28T09:56:24.9922495Z 
+2026-10-28T09:56:24.9922788Z Restarting services...
+2026-10-28T09:56:24.9979366Z 
+2026-10-28T09:56:24.9979850Z Service restarts being deferred:
+2026-10-28T09:56:24.9982563Z  systemctl restart hosted-compute-agent.service
+2026-10-28T09:56:24.9983308Z 
+2026-10-28T09:56:24.9983578Z No containers need to be restarted.
+2026-10-28T09:56:24.9983892Z 
+2026-10-28T09:56:24.9984386Z No user sessions are running outdated binaries.
+2026-10-28T09:56:24.9984720Z 
+2026-10-28T09:56:24.9985160Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-28T09:56:25.2061721Z ##[group]Run if ! command -v ffmpeg >/dev/null 2>&1; then
+2026-10-28T09:56:25.2062136Z [36;1mif ! command -v ffmpeg >/dev/null 2>&1; then[0m
+2026-10-28T09:56:25.2062572Z [36;1m  if ! (sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends ffmpeg); then[0m
+2026-10-28T09:56:25.2063060Z [36;1m    echo 'UNALLOCATED video unavailable: ffmpeg installation failed'[0m
+2026-10-28T09:56:25.2063412Z [36;1m  fi[0m
+2026-10-28T09:56:25.2063610Z [36;1mfi[0m
+2026-10-28T09:56:25.2068895Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:56:25.2069114Z env:
+2026-10-28T09:56:25.2069378Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:25.2069784Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:25.2070126Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:56:25.2070393Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:56:25.2070884Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:56:25.2071144Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:56:25.2071507Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:56:25.2071909Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:56:25.2072180Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:56:25.2072411Z ##[endgroup]
+2026-10-28T09:56:29.0352968Z Reading package lists...
+2026-10-28T09:56:29.1890777Z Building dependency tree...
+2026-10-28T09:56:29.1896084Z Reading state information...
+2026-10-28T09:56:29.3009178Z The following additional packages will be installed:
+2026-10-28T09:56:29.3010094Z   libass9 libasyncns0 libavc1394-0 libavcodec60 libavdevice60 libavfilter9
+2026-10-28T09:56:29.3011015Z   libavformat60 libavutil58 libblas3 libbluray2 libbs2b0 libcaca0
+2026-10-28T09:56:29.3011736Z   libcdio-cdda2t64 libcdio-paranoia2t64 libcdio19t64 libchromaprint1 libcjson1
+2026-10-28T09:56:29.3012562Z   libcodec2-1.2 libdav1d7 libdc1394-25 libdecor-0-0 libflac12t64 libflite1
+2026-10-28T09:56:29.3013210Z   libgme0 libgsm1 libhwy1t64 libiec61883-0 libjack-jackd2-0 libjxl0.7
+2026-10-28T09:56:29.3013863Z   liblapack3 liblilv-0-0 libmbedcrypto7t64 libmp3lame0 libmpg123-0t64
+2026-10-28T09:56:29.3014477Z   libmysofa1 libopenal-data libopenal1 libopenmpt0t64 libopus0 libplacebo338
+2026-10-28T09:56:29.3015103Z   libpocketsphinx3 libpostproc57 libpulse0 librav1e0 libraw1394-11 librist4
+2026-10-28T09:56:29.3015708Z   librsvg2-2 librubberband2 libsamplerate0 libsdl2-2.0-0 libserd-0-0 libshine3
+2026-10-28T09:56:29.3016315Z   libsndfile1 libsndio7.0 libsord-0-0 libsoxr0 libspeex1 libsphinxbase3t64
+2026-10-28T09:56:29.3016879Z   libsratom-0-0 libsrt1.5-gnutls libssh-gcrypt-4 libsvtav1enc1d1
+2026-10-28T09:56:29.3017439Z   libswresample4 libswscale7 libtheora0 libtwolame0 libudfread0 libunibreak5
+2026-10-28T09:56:29.3017979Z   libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1 libvorbisenc2 libvpl2
+2026-10-28T09:56:29.3018585Z   libvpx9 libx264-164 libx265-199 libxcb-shape0 libxv1 libxvidcore4 libzimg2
+2026-10-28T09:56:29.3019182Z   libzix-0-0 libzvbi-common libzvbi0t64 ocl-icd-libopencl1
+2026-10-28T09:56:29.3019555Z Suggested packages:
+2026-10-28T09:56:29.3019886Z   ffmpeg-doc libcuda1 libnvcuvid1 libnvidia-encode1 libbluray-bdj jackd2
+2026-10-28T09:56:29.3020342Z   libportaudio2 opus-tools pulseaudio libraw1394-doc librsvg2-bin serdi sndiod
+2026-10-28T09:56:29.3020832Z   sordi speex opencl-icd
+2026-10-28T09:56:29.3021203Z Recommended packages:
+2026-10-28T09:56:29.3021521Z   libaacs0 default-libdecor-0-plugin-1 | libdecor-0-plugin-1
+2026-10-28T09:56:29.3021939Z   pocketsphinx-en-us librsvg2-common va-driver-all | va-driver
+2026-10-28T09:56:29.3022303Z   vdpau-driver-all | vdpau-driver
+2026-10-28T09:56:29.3294708Z The following NEW packages will be installed:
+2026-10-28T09:56:29.3295525Z   ffmpeg libass9 libasyncns0 libavc1394-0 libavcodec60 libavdevice60
+2026-10-28T09:56:29.3296143Z   libavfilter9 libavformat60 libavutil58 libblas3 libbluray2 libbs2b0 libcaca0
+2026-10-28T09:56:29.3297305Z   libcdio-cdda2t64 libcdio-paranoia2t64 libcdio19t64 libchromaprint1 libcjson1
+2026-10-28T09:56:29.3297912Z   libcodec2-1.2 libdav1d7 libdc1394-25 libdecor-0-0 libflac12t64 libflite1
+2026-10-28T09:56:29.3298494Z   libgme0 libgsm1 libhwy1t64 libiec61883-0 libjack-jackd2-0 libjxl0.7
+2026-10-28T09:56:29.3299051Z   liblapack3 liblilv-0-0 libmbedcrypto7t64 libmp3lame0 libmpg123-0t64
+2026-10-28T09:56:29.3299601Z   libmysofa1 libopenal-data libopenal1 libopenmpt0t64 libopus0 libplacebo338
+2026-10-28T09:56:29.3300224Z   libpocketsphinx3 libpostproc57 libpulse0 librav1e0 libraw1394-11 librist4
+2026-10-28T09:56:29.3300939Z   librsvg2-2 librubberband2 libsamplerate0 libsdl2-2.0-0 libserd-0-0 libshine3
+2026-10-28T09:56:29.3301550Z   libsndfile1 libsndio7.0 libsord-0-0 libsoxr0 libspeex1 libsphinxbase3t64
+2026-10-28T09:56:29.3302138Z   libsratom-0-0 libsrt1.5-gnutls libssh-gcrypt-4 libsvtav1enc1d1
+2026-10-28T09:56:29.3302727Z   libswresample4 libswscale7 libtheora0 libtwolame0 libudfread0 libunibreak5
+2026-10-28T09:56:29.3303356Z   libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1 libvorbisenc2 libvpl2
+2026-10-28T09:56:29.3303934Z   libvpx9 libx264-164 libx265-199 libxcb-shape0 libxv1 libxvidcore4 libzimg2
+2026-10-28T09:56:29.3304460Z   libzix-0-0 libzvbi-common libzvbi0t64 ocl-icd-libopencl1
+2026-10-28T09:56:29.3487063Z 0 upgraded, 87 newly installed, 0 to remove and 5 not upgraded.
+2026-10-28T09:56:29.3487588Z Need to get 62.8 MB of archives.
+2026-10-28T09:56:29.3487970Z After this operation, 173 MB of additional disk space will be used.
+2026-10-28T09:56:29.3488737Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-28T09:56:29.5397499Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva2 amd64 2.20.0-2ubuntu0.2 [66.4 kB]
+2026-10-28T09:56:29.5863670Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva-drm2 amd64 2.20.0-2ubuntu0.2 [7124 B]
+2026-10-28T09:56:29.6319921Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libva-x11-2 amd64 2.20.0-2ubuntu0.2 [12.0 kB]
+2026-10-28T09:56:29.6805833Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvdpau1 amd64 1.5-2build1 [27.8 kB]
+2026-10-28T09:56:29.7265549Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libvpl2 amd64 2023.3.0-1build1 [99.8 kB]
+2026-10-28T09:56:29.7730039Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ocl-icd-libopencl1 amd64 2.3.2-1build1 [38.5 kB]
+2026-10-28T09:56:29.8189281Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavutil58 amd64 7:6.1.1-3ubuntu5 [401 kB]
+2026-10-28T09:56:29.8690522Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libcodec2-1.2 amd64 1.2.0-2build1 [8998 kB]
+2026-10-28T09:56:30.0622154Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libdav1d7 amd64 1.4.1-1build1 [604 kB]
+2026-10-28T09:56:30.1097361Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libgsm1 amd64 1.0.22-1build1 [27.8 kB]
+2026-10-28T09:56:30.1549457Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libhwy1t64 amd64 1.0.7-8.1build1 [584 kB]
+2026-10-28T09:56:30.2038466Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 libjxl0.7 amd64 0.7.0-10.2ubuntu6.1 [1001 kB]
+2026-10-28T09:56:30.2547049Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libmp3lame0 amd64 3.100-6build1 [142 kB]
+2026-10-28T09:56:30.3012775Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libopus0 amd64 1.4-1build1 [208 kB]
+2026-10-28T09:56:30.3479436Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librav1e0 amd64 0.7.1-2 [1022 kB]
+2026-10-28T09:56:30.3987780Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 librsvg2-2 amd64 2.58.0+dfsg-1ubuntu0.1 [2141 kB]
+2026-10-28T09:56:30.4571840Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libshine3 amd64 3.1.1-2build1 [23.2 kB]
+2026-10-28T09:56:30.5025417Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libspeex1 amd64 1.2.1-2ubuntu2.24.04.1 [59.6 kB]
+2026-10-28T09:56:30.5502217Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsvtav1enc1d1 amd64 1.7.0+dfsg-2build1 [2425 kB]
+2026-10-28T09:56:30.6074524Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsoxr0 amd64 0.1.3-4build3 [80.0 kB]
+2026-10-28T09:56:30.6535028Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libswresample4 amd64 7:6.1.1-3ubuntu5 [63.8 kB]
+2026-10-28T09:56:30.7003160Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtheora0 amd64 1.1.1+dfsg.1-16.1build3 [211 kB]
+2026-10-28T09:56:30.7459413Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtwolame0 amd64 0.4.0-2build3 [52.3 kB]
+2026-10-28T09:56:30.7919461Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libvorbisenc2 amd64 1.3.7-1build3 [80.8 kB]
+2026-10-28T09:56:30.8381985Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libvpx9 amd64 1.14.0-1ubuntu2.3 [1143 kB]
+2026-10-28T09:56:30.8896914Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libx264-164 amd64 2:0.164.3108+git31e19f9-1 [604 kB]
+2026-10-28T09:56:30.9379536Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libx265-199 amd64 3.5-2build1 [1226 kB]
+2026-10-28T09:56:31.0349008Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libxvidcore4 amd64 2:1.3.7-1build1 [219 kB]
+2026-10-28T09:56:31.2719370Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzvbi-common all 0.2.42-2 [42.4 kB]
+2026-10-28T09:56:31.3227590Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzvbi0t64 amd64 0.2.42-2 [261 kB]
+2026-10-28T09:56:31.4076983Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavcodec60 amd64 7:6.1.1-3ubuntu5 [5851 kB]
+2026-10-28T09:56:31.6638061Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libraw1394-11 amd64 2.1.2-2build3 [26.2 kB]
+2026-10-28T09:56:31.7091947Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libavc1394-0 amd64 0.5.4-5build3 [15.4 kB]
+2026-10-28T09:56:31.7547558Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libunibreak5 amd64 5.1-2build1 [25.0 kB]
+2026-10-28T09:56:31.8004560Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libass9 amd64 1:0.17.1-2build1 [104 kB]
+2026-10-28T09:56:31.8462354Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libudfread0 amd64 1.1.2-1build1 [19.0 kB]
+2026-10-28T09:56:31.8915767Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbluray2 amd64 1:1.3.4-1build1 [159 kB]
+2026-10-28T09:56:31.9404508Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libchromaprint1 amd64 1.5.1-5 [30.5 kB]
+2026-10-28T09:56:31.9861955Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libgme0 amd64 0.6.3-7build1 [134 kB]
+2026-10-28T09:56:32.0321167Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libmpg123-0t64 amd64 1.32.5-1ubuntu1.1 [169 kB]
+2026-10-28T09:56:32.0783784Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenmpt0t64 amd64 0.7.3-1.1build3 [647 kB]
+2026-10-28T09:56:32.1273774Z Get:43 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libcjson1 amd64 1.7.17-1 [24.8 kB]
+2026-10-28T09:56:32.1729784Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libmbedcrypto7t64 amd64 2.28.8-1 [209 kB]
+2026-10-28T09:56:32.2193651Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librist4 amd64 0.2.10+dfsg-2 [74.9 kB]
+2026-10-28T09:56:32.2651487Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsrt1.5-gnutls amd64 1.5.3-1build2 [316 kB]
+2026-10-28T09:56:32.3126926Z Get:47 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libssh-gcrypt-4 amd64 0.10.6-2ubuntu0.5 [226 kB]
+2026-10-28T09:56:32.3592240Z Get:48 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavformat60 amd64 7:6.1.1-3ubuntu5 [1153 kB]
+2026-10-28T09:56:32.4111087Z Get:49 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libbs2b0 amd64 3.1.0+dfsg-7build1 [10.6 kB]
+2026-10-28T09:56:32.4571437Z Get:50 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libflite1 amd64 2.2-6build3 [13.6 MB]
+2026-10-28T09:56:32.7298962Z Get:51 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libserd-0-0 amd64 0.32.2-1 [43.6 kB]
+2026-10-28T09:56:32.7756224Z Get:52 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzix-0-0 amd64 0.4.2-2build1 [23.6 kB]
+2026-10-28T09:56:32.8211899Z Get:53 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsord-0-0 amd64 0.16.16-2build1 [15.8 kB]
+2026-10-28T09:56:32.8664269Z Get:54 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsratom-0-0 amd64 0.6.16-1build1 [17.3 kB]
+2026-10-28T09:56:32.9123582Z Get:55 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 liblilv-0-0 amd64 0.24.22-1build1 [41.0 kB]
+2026-10-28T09:56:32.9579646Z Get:56 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libmysofa1 amd64 1.3.2+dfsg-2ubuntu2 [1158 kB]
+2026-10-28T09:56:33.0114448Z Get:57 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libplacebo338 amd64 6.338.2-2build1 [2654 kB]
+2026-10-28T09:56:33.1015120Z Get:58 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libblas3 amd64 3.12.0-3build1.1 [238 kB]
+2026-10-28T09:56:33.1478028Z Get:59 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 liblapack3 amd64 3.12.0-3build1.1 [2646 kB]
+2026-10-28T09:56:33.2072885Z Get:60 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libasyncns0 amd64 0.8-6build4 [11.3 kB]
+2026-10-28T09:56:33.2532050Z Get:61 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libflac12t64 amd64 1.4.3+ds-2.1ubuntu2 [197 kB]
+2026-10-28T09:56:33.2988191Z Get:62 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsndfile1 amd64 1.2.2-1ubuntu5.24.04.1 [209 kB]
+2026-10-28T09:56:33.3447634Z Get:63 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libpulse0 amd64 1:16.1+dfsg1-2ubuntu10.1 [292 kB]
+2026-10-28T09:56:33.3920789Z Get:64 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsphinxbase3t64 amd64 0.8+5prealpha+1-17build2 [126 kB]
+2026-10-28T09:56:33.4381415Z Get:65 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libpocketsphinx3 amd64 0.8.0+real5prealpha+1-15ubuntu5 [133 kB]
+2026-10-28T09:56:33.4841754Z Get:66 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libpostproc57 amd64 7:6.1.1-3ubuntu5 [49.9 kB]
+2026-10-28T09:56:33.5302446Z Get:67 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libsamplerate0 amd64 0.2.2-4build1 [1344 kB]
+2026-10-28T09:56:33.5821690Z Get:68 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 librubberband2 amd64 3.3.0+dfsg-2build1 [130 kB]
+2026-10-28T09:56:33.6279262Z Get:69 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libswscale7 amd64 7:6.1.1-3ubuntu5 [193 kB]
+2026-10-28T09:56:33.6747526Z Get:70 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libvidstab1.1 amd64 1.1.0-2build1 [38.5 kB]
+2026-10-28T09:56:33.7209517Z Get:71 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libzimg2 amd64 3.0.5+ds1-1build1 [254 kB]
+2026-10-28T09:56:33.7681873Z Get:72 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavfilter9 amd64 7:6.1.1-3ubuntu5 [4235 kB]
+2026-10-28T09:56:33.8661787Z Get:73 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libcaca0 amd64 0.99.beta20-4ubuntu0.2 [209 kB]
+2026-10-28T09:56:33.9124927Z Get:74 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libcdio19t64 amd64 2.1.0-4.1ubuntu1.2 [62.4 kB]
+2026-10-28T09:56:33.9583241Z Get:75 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libcdio-cdda2t64 amd64 10.2+2.0.1-1.1build2 [16.5 kB]
+2026-10-28T09:56:34.0042921Z Get:76 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libcdio-paranoia2t64 amd64 10.2+2.0.1-1.1build2 [16.6 kB]
+2026-10-28T09:56:34.0497710Z Get:77 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libdc1394-25 amd64 2.2.6-4build1 [90.1 kB]
+2026-10-28T09:56:34.0957052Z Get:78 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libiec61883-0 amd64 1.2.0-6build1 [24.5 kB]
+2026-10-28T09:56:34.1427269Z Get:79 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libjack-jackd2-0 amd64 1.9.21~dfsg-3ubuntu3 [289 kB]
+2026-10-28T09:56:34.1887071Z Get:80 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenal-data all 1:1.23.1-4build1 [161 kB]
+2026-10-28T09:56:34.2345953Z Get:81 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsndio7.0 amd64 1.9.0-0.3build3 [29.6 kB]
+2026-10-28T09:56:34.2800982Z Get:82 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libopenal1 amd64 1:1.23.1-4build1 [540 kB]
+2026-10-28T09:56:34.3280951Z Get:83 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libdecor-0-0 amd64 0.2.2-1build2 [16.5 kB]
+2026-10-28T09:56:34.3734793Z Get:84 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libsdl2-2.0-0 amd64 2.30.0+dfsg-1ubuntu3.1 [686 kB]
+2026-10-28T09:56:34.4221872Z Get:85 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxcb-shape0 amd64 1.15-1ubuntu2 [6100 B]
+2026-10-28T09:56:34.4675104Z Get:86 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxv1 amd64 2:1.0.11-1.1build1 [10.7 kB]
+2026-10-28T09:56:34.5132723Z Get:87 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libavdevice60 amd64 7:6.1.1-3ubuntu5 [82.3 kB]
+2026-10-28T09:56:34.5591164Z Get:88 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ffmpeg amd64 7:6.1.1-3ubuntu5 [1879 kB]
+2026-10-28T09:56:34.7944902Z Fetched 62.8 MB in 5s (12.0 MB/s)
+2026-10-28T09:56:34.8111614Z Selecting previously unselected package libva2:amd64.
+2026-10-28T09:56:34.8142618Z (Reading database ... 
+2026-10-28T09:56:34.8147093Z (Reading database ... 5%
+2026-10-28T09:56:34.8147440Z (Reading database ... 10%
+2026-10-28T09:56:34.8147805Z (Reading database ... 15%
+2026-10-28T09:56:34.8148233Z (Reading database ... 20%
+2026-10-28T09:56:34.8148639Z (Reading database ... 25%
+2026-10-28T09:56:34.8148985Z (Reading database ... 30%
+2026-10-28T09:56:34.8149315Z (Reading database ... 35%
+2026-10-28T09:56:34.8149648Z (Reading database ... 40%
+2026-10-28T09:56:34.8149981Z (Reading database ... 45%
+2026-10-28T09:56:34.8150319Z (Reading database ... 50%
+2026-10-28T09:56:34.8152944Z (Reading database ... 55%
+2026-10-28T09:56:34.8180829Z (Reading database ... 60%
+2026-10-28T09:56:34.8209168Z (Reading database ... 65%
+2026-10-28T09:56:34.8221111Z (Reading database ... 70%
+2026-10-28T09:56:34.8237021Z (Reading database ... 75%
+2026-10-28T09:56:34.8310122Z (Reading database ... 80%
+2026-10-28T09:56:34.8327460Z (Reading database ... 85%
+2026-10-28T09:56:34.8457260Z (Reading database ... 90%
+2026-10-28T09:56:34.8635207Z (Reading database ... 95%
+2026-10-28T09:56:34.8635759Z (Reading database ... 100%
+2026-10-28T09:56:34.8636258Z (Reading database ... 215539 files and directories currently installed.)
+2026-10-28T09:56:34.8669485Z Preparing to unpack .../00-libva2_2.20.0-2ubuntu0.2_amd64.deb ...
+2026-10-28T09:56:34.8683279Z Unpacking libva2:amd64 (2.20.0-2ubuntu0.2) ...
+2026-10-28T09:56:34.8900345Z Selecting previously unselected package libva-drm2:amd64.
+2026-10-28T09:56:34.9000754Z Preparing to unpack .../01-libva-drm2_2.20.0-2ubuntu0.2_amd64.deb ...
+2026-10-28T09:56:34.9007368Z Unpacking libva-drm2:amd64 (2.20.0-2ubuntu0.2) ...
+2026-10-28T09:56:34.9208349Z Selecting previously unselected package libva-x11-2:amd64.
+2026-10-28T09:56:34.9313450Z Preparing to unpack .../02-libva-x11-2_2.20.0-2ubuntu0.2_amd64.deb ...
+2026-10-28T09:56:34.9318913Z Unpacking libva-x11-2:amd64 (2.20.0-2ubuntu0.2) ...
+2026-10-28T09:56:34.9537982Z Selecting previously unselected package libvdpau1:amd64.
+2026-10-28T09:56:34.9644803Z Preparing to unpack .../03-libvdpau1_1.5-2build1_amd64.deb ...
+2026-10-28T09:56:34.9648557Z Unpacking libvdpau1:amd64 (1.5-2build1) ...
+2026-10-28T09:56:34.9848965Z Selecting previously unselected package libvpl2.
+2026-10-28T09:56:34.9956922Z Preparing to unpack .../04-libvpl2_2023.3.0-1build1_amd64.deb ...
+2026-10-28T09:56:34.9961524Z Unpacking libvpl2 (2023.3.0-1build1) ...
+2026-10-28T09:56:35.0169934Z Selecting previously unselected package ocl-icd-libopencl1:amd64.
+2026-10-28T09:56:35.0276056Z Preparing to unpack .../05-ocl-icd-libopencl1_2.3.2-1build1_amd64.deb ...
+2026-10-28T09:56:35.0280964Z Unpacking ocl-icd-libopencl1:amd64 (2.3.2-1build1) ...
+2026-10-28T09:56:35.0786015Z Selecting previously unselected package libavutil58:amd64.
+2026-10-28T09:56:35.0893544Z Preparing to unpack .../06-libavutil58_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:35.0898990Z Unpacking libavutil58:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:35.1177748Z Selecting previously unselected package libcodec2-1.2:amd64.
+2026-10-28T09:56:35.1287208Z Preparing to unpack .../07-libcodec2-1.2_1.2.0-2build1_amd64.deb ...
+2026-10-28T09:56:35.1302470Z Unpacking libcodec2-1.2:amd64 (1.2.0-2build1) ...
+2026-10-28T09:56:35.3298548Z Selecting previously unselected package libdav1d7:amd64.
+2026-10-28T09:56:35.3407171Z Preparing to unpack .../08-libdav1d7_1.4.1-1build1_amd64.deb ...
+2026-10-28T09:56:35.3413289Z Unpacking libdav1d7:amd64 (1.4.1-1build1) ...
+2026-10-28T09:56:35.3746191Z Selecting previously unselected package libgsm1:amd64.
+2026-10-28T09:56:35.3848894Z Preparing to unpack .../09-libgsm1_1.0.22-1build1_amd64.deb ...
+2026-10-28T09:56:35.3855166Z Unpacking libgsm1:amd64 (1.0.22-1build1) ...
+2026-10-28T09:56:35.4061855Z Selecting previously unselected package libhwy1t64:amd64.
+2026-10-28T09:56:35.4149325Z Preparing to unpack .../10-libhwy1t64_1.0.7-8.1build1_amd64.deb ...
+2026-10-28T09:56:35.4161188Z Unpacking libhwy1t64:amd64 (1.0.7-8.1build1) ...
+2026-10-28T09:56:35.4712074Z Selecting previously unselected package libjxl0.7:amd64.
+2026-10-28T09:56:35.4789296Z Preparing to unpack .../11-libjxl0.7_0.7.0-10.2ubuntu6.1_amd64.deb ...
+2026-10-28T09:56:35.4795934Z Unpacking libjxl0.7:amd64 (0.7.0-10.2ubuntu6.1) ...
+2026-10-28T09:56:35.5482785Z Selecting previously unselected package libmp3lame0:amd64.
+2026-10-28T09:56:35.5558763Z Preparing to unpack .../12-libmp3lame0_3.100-6build1_amd64.deb ...
+2026-10-28T09:56:35.5564360Z Unpacking libmp3lame0:amd64 (3.100-6build1) ...
+2026-10-28T09:56:35.5772280Z Selecting previously unselected package libopus0:amd64.
+2026-10-28T09:56:35.5878156Z Preparing to unpack .../13-libopus0_1.4-1build1_amd64.deb ...
+2026-10-28T09:56:35.5885233Z Unpacking libopus0:amd64 (1.4-1build1) ...
+2026-10-28T09:56:35.6088032Z Selecting previously unselected package librav1e0:amd64.
+2026-10-28T09:56:35.6191844Z Preparing to unpack .../14-librav1e0_0.7.1-2_amd64.deb ...
+2026-10-28T09:56:35.6196585Z Unpacking librav1e0:amd64 (0.7.1-2) ...
+2026-10-28T09:56:35.6781793Z Selecting previously unselected package librsvg2-2:amd64.
+2026-10-28T09:56:35.6856126Z Preparing to unpack .../15-librsvg2-2_2.58.0+dfsg-1ubuntu0.1_amd64.deb ...
+2026-10-28T09:56:35.6871469Z Unpacking librsvg2-2:amd64 (2.58.0+dfsg-1ubuntu0.1) ...
+2026-10-28T09:56:35.7792410Z Selecting previously unselected package libshine3:amd64.
+2026-10-28T09:56:35.7895220Z Preparing to unpack .../16-libshine3_3.1.1-2build1_amd64.deb ...
+2026-10-28T09:56:35.7901699Z Unpacking libshine3:amd64 (3.1.1-2build1) ...
+2026-10-28T09:56:35.8111827Z Selecting previously unselected package libspeex1:amd64.
+2026-10-28T09:56:35.8189261Z Preparing to unpack .../17-libspeex1_1.2.1-2ubuntu2.24.04.1_amd64.deb ...
+2026-10-28T09:56:35.8201469Z Unpacking libspeex1:amd64 (1.2.1-2ubuntu2.24.04.1) ...
+2026-10-28T09:56:35.8382595Z Selecting previously unselected package libsvtav1enc1d1:amd64.
+2026-10-28T09:56:35.8480469Z Preparing to unpack .../18-libsvtav1enc1d1_1.7.0+dfsg-2build1_amd64.deb ...
+2026-10-28T09:56:35.8491599Z Unpacking libsvtav1enc1d1:amd64 (1.7.0+dfsg-2build1) ...
+2026-10-28T09:56:35.9457495Z Selecting previously unselected package libsoxr0:amd64.
+2026-10-28T09:56:35.9563706Z Preparing to unpack .../19-libsoxr0_0.1.3-4build3_amd64.deb ...
+2026-10-28T09:56:35.9571600Z Unpacking libsoxr0:amd64 (0.1.3-4build3) ...
+2026-10-28T09:56:35.9765806Z Selecting previously unselected package libswresample4:amd64.
+2026-10-28T09:56:35.9867607Z Preparing to unpack .../20-libswresample4_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:35.9883048Z Unpacking libswresample4:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:36.0172873Z Selecting previously unselected package libtheora0:amd64.
+2026-10-28T09:56:36.0173709Z Preparing to unpack .../21-libtheora0_1.1.1+dfsg.1-16.1build3_amd64.deb ...
+2026-10-28T09:56:36.0177674Z Unpacking libtheora0:amd64 (1.1.1+dfsg.1-16.1build3) ...
+2026-10-28T09:56:36.0421536Z Selecting previously unselected package libtwolame0:amd64.
+2026-10-28T09:56:36.0519571Z Preparing to unpack .../22-libtwolame0_0.4.0-2build3_amd64.deb ...
+2026-10-28T09:56:36.0524786Z Unpacking libtwolame0:amd64 (0.4.0-2build3) ...
+2026-10-28T09:56:36.0716426Z Selecting previously unselected package libvorbisenc2:amd64.
+2026-10-28T09:56:36.0814855Z Preparing to unpack .../23-libvorbisenc2_1.3.7-1build3_amd64.deb ...
+2026-10-28T09:56:36.0820316Z Unpacking libvorbisenc2:amd64 (1.3.7-1build3) ...
+2026-10-28T09:56:36.1023248Z Selecting previously unselected package libvpx9:amd64.
+2026-10-28T09:56:36.1121595Z Preparing to unpack .../24-libvpx9_1.14.0-1ubuntu2.3_amd64.deb ...
+2026-10-28T09:56:36.1127850Z Unpacking libvpx9:amd64 (1.14.0-1ubuntu2.3) ...
+2026-10-28T09:56:36.1691993Z Selecting previously unselected package libx264-164:amd64.
+2026-10-28T09:56:36.1791858Z Preparing to unpack .../25-libx264-164_2%3a0.164.3108+git31e19f9-1_amd64.deb ...
+2026-10-28T09:56:36.1797452Z Unpacking libx264-164:amd64 (2:0.164.3108+git31e19f9-1) ...
+2026-10-28T09:56:36.2194562Z Selecting previously unselected package libx265-199:amd64.
+2026-10-28T09:56:36.2295112Z Preparing to unpack .../26-libx265-199_3.5-2build1_amd64.deb ...
+2026-10-28T09:56:36.2300403Z Unpacking libx265-199:amd64 (3.5-2build1) ...
+2026-10-28T09:56:36.4344884Z Selecting previously unselected package libxvidcore4:amd64.
+2026-10-28T09:56:36.4450115Z Preparing to unpack .../27-libxvidcore4_2%3a1.3.7-1build1_amd64.deb ...
+2026-10-28T09:56:36.4455619Z Unpacking libxvidcore4:amd64 (2:1.3.7-1build1) ...
+2026-10-28T09:56:36.4659015Z Selecting previously unselected package libzvbi-common.
+2026-10-28T09:56:36.4761035Z Preparing to unpack .../28-libzvbi-common_0.2.42-2_all.deb ...
+2026-10-28T09:56:36.4767162Z Unpacking libzvbi-common (0.2.42-2) ...
+2026-10-28T09:56:36.5772118Z Selecting previously unselected package libzvbi0t64:amd64.
+2026-10-28T09:56:36.5873371Z Preparing to unpack .../29-libzvbi0t64_0.2.42-2_amd64.deb ...
+2026-10-28T09:56:36.5878615Z Unpacking libzvbi0t64:amd64 (0.2.42-2) ...
+2026-10-28T09:56:36.6111461Z Selecting previously unselected package libavcodec60:amd64.
+2026-10-28T09:56:36.6198921Z Preparing to unpack .../30-libavcodec60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:36.6204617Z Unpacking libavcodec60:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:36.8383634Z Selecting previously unselected package libraw1394-11:amd64.
+2026-10-28T09:56:36.8490160Z Preparing to unpack .../31-libraw1394-11_2.1.2-2build3_amd64.deb ...
+2026-10-28T09:56:36.8495376Z Unpacking libraw1394-11:amd64 (2.1.2-2build3) ...
+2026-10-28T09:56:36.8691356Z Selecting previously unselected package libavc1394-0:amd64.
+2026-10-28T09:56:36.8785562Z Preparing to unpack .../32-libavc1394-0_0.5.4-5build3_amd64.deb ...
+2026-10-28T09:56:36.8791146Z Unpacking libavc1394-0:amd64 (0.5.4-5build3) ...
+2026-10-28T09:56:36.8981490Z Selecting previously unselected package libunibreak5:amd64.
+2026-10-28T09:56:36.9080048Z Preparing to unpack .../33-libunibreak5_5.1-2build1_amd64.deb ...
+2026-10-28T09:56:36.9085874Z Unpacking libunibreak5:amd64 (5.1-2build1) ...
+2026-10-28T09:56:36.9298221Z Selecting previously unselected package libass9:amd64.
+2026-10-28T09:56:36.9399766Z Preparing to unpack .../34-libass9_1%3a0.17.1-2build1_amd64.deb ...
+2026-10-28T09:56:36.9405850Z Unpacking libass9:amd64 (1:0.17.1-2build1) ...
+2026-10-28T09:56:36.9611290Z Selecting previously unselected package libudfread0:amd64.
+2026-10-28T09:56:36.9710195Z Preparing to unpack .../35-libudfread0_1.1.2-1build1_amd64.deb ...
+2026-10-28T09:56:36.9719857Z Unpacking libudfread0:amd64 (1.1.2-1build1) ...
+2026-10-28T09:56:36.9905692Z Selecting previously unselected package libbluray2:amd64.
+2026-10-28T09:56:37.0006567Z Preparing to unpack .../36-libbluray2_1%3a1.3.4-1build1_amd64.deb ...
+2026-10-28T09:56:37.0017229Z Unpacking libbluray2:amd64 (1:1.3.4-1build1) ...
+2026-10-28T09:56:37.0231365Z Selecting previously unselected package libchromaprint1:amd64.
+2026-10-28T09:56:37.0313519Z Preparing to unpack .../37-libchromaprint1_1.5.1-5_amd64.deb ...
+2026-10-28T09:56:37.0321349Z Unpacking libchromaprint1:amd64 (1.5.1-5) ...
+2026-10-28T09:56:37.0506928Z Selecting previously unselected package libgme0:amd64.
+2026-10-28T09:56:37.0607598Z Preparing to unpack .../38-libgme0_0.6.3-7build1_amd64.deb ...
+2026-10-28T09:56:37.0613681Z Unpacking libgme0:amd64 (0.6.3-7build1) ...
+2026-10-28T09:56:37.0811473Z Selecting previously unselected package libmpg123-0t64:amd64.
+2026-10-28T09:56:37.0909682Z Preparing to unpack .../39-libmpg123-0t64_1.32.5-1ubuntu1.1_amd64.deb ...
+2026-10-28T09:56:37.0915839Z Unpacking libmpg123-0t64:amd64 (1.32.5-1ubuntu1.1) ...
+2026-10-28T09:56:37.1115720Z Selecting previously unselected package libopenmpt0t64:amd64.
+2026-10-28T09:56:37.1216127Z Preparing to unpack .../40-libopenmpt0t64_0.7.3-1.1build3_amd64.deb ...
+2026-10-28T09:56:37.1221895Z Unpacking libopenmpt0t64:amd64 (0.7.3-1.1build3) ...
+2026-10-28T09:56:37.1519798Z Selecting previously unselected package libcjson1:amd64.
+2026-10-28T09:56:37.1620826Z Preparing to unpack .../41-libcjson1_1.7.17-1_amd64.deb ...
+2026-10-28T09:56:37.1626238Z Unpacking libcjson1:amd64 (1.7.17-1) ...
+2026-10-28T09:56:37.1816662Z Selecting previously unselected package libmbedcrypto7t64:amd64.
+2026-10-28T09:56:37.1916994Z Preparing to unpack .../42-libmbedcrypto7t64_2.28.8-1_amd64.deb ...
+2026-10-28T09:56:37.1922383Z Unpacking libmbedcrypto7t64:amd64 (2.28.8-1) ...
+2026-10-28T09:56:37.2124340Z Selecting previously unselected package librist4:amd64.
+2026-10-28T09:56:37.2222023Z Preparing to unpack .../43-librist4_0.2.10+dfsg-2_amd64.deb ...
+2026-10-28T09:56:37.2227313Z Unpacking librist4:amd64 (0.2.10+dfsg-2) ...
+2026-10-28T09:56:37.2412645Z Selecting previously unselected package libsrt1.5-gnutls:amd64.
+2026-10-28T09:56:37.2510421Z Preparing to unpack .../44-libsrt1.5-gnutls_1.5.3-1build2_amd64.deb ...
+2026-10-28T09:56:37.2515533Z Unpacking libsrt1.5-gnutls:amd64 (1.5.3-1build2) ...
+2026-10-28T09:56:37.2782301Z Selecting previously unselected package libssh-gcrypt-4:amd64.
+2026-10-28T09:56:37.2881815Z Preparing to unpack .../45-libssh-gcrypt-4_0.10.6-2ubuntu0.5_amd64.deb ...
+2026-10-28T09:56:37.2887962Z Unpacking libssh-gcrypt-4:amd64 (0.10.6-2ubuntu0.5) ...
+2026-10-28T09:56:37.3094807Z Selecting previously unselected package libavformat60:amd64.
+2026-10-28T09:56:37.3199706Z Preparing to unpack .../46-libavformat60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:37.3205199Z Unpacking libavformat60:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:37.3753505Z Selecting previously unselected package libbs2b0:amd64.
+2026-10-28T09:56:37.3861918Z Preparing to unpack .../47-libbs2b0_3.1.0+dfsg-7build1_amd64.deb ...
+2026-10-28T09:56:37.3867776Z Unpacking libbs2b0:amd64 (3.1.0+dfsg-7build1) ...
+2026-10-28T09:56:37.4181018Z Selecting previously unselected package libflite1:amd64.
+2026-10-28T09:56:37.4287311Z Preparing to unpack .../48-libflite1_2.2-6build3_amd64.deb ...
+2026-10-28T09:56:37.4293956Z Unpacking libflite1:amd64 (2.2-6build3) ...
+2026-10-28T09:56:37.7135595Z Selecting previously unselected package libserd-0-0:amd64.
+2026-10-28T09:56:37.7243926Z Preparing to unpack .../49-libserd-0-0_0.32.2-1_amd64.deb ...
+2026-10-28T09:56:37.7250522Z Unpacking libserd-0-0:amd64 (0.32.2-1) ...
+2026-10-28T09:56:37.7458497Z Selecting previously unselected package libzix-0-0:amd64.
+2026-10-28T09:56:37.7567434Z Preparing to unpack .../50-libzix-0-0_0.4.2-2build1_amd64.deb ...
+2026-10-28T09:56:37.7572554Z Unpacking libzix-0-0:amd64 (0.4.2-2build1) ...
+2026-10-28T09:56:37.7781984Z Selecting previously unselected package libsord-0-0:amd64.
+2026-10-28T09:56:37.7891710Z Preparing to unpack .../51-libsord-0-0_0.16.16-2build1_amd64.deb ...
+2026-10-28T09:56:37.7898748Z Unpacking libsord-0-0:amd64 (0.16.16-2build1) ...
+2026-10-28T09:56:37.8156297Z Selecting previously unselected package libsratom-0-0:amd64.
+2026-10-28T09:56:37.8263528Z Preparing to unpack .../52-libsratom-0-0_0.6.16-1build1_amd64.deb ...
+2026-10-28T09:56:37.8271518Z Unpacking libsratom-0-0:amd64 (0.6.16-1build1) ...
+2026-10-28T09:56:37.8476008Z Selecting previously unselected package liblilv-0-0:amd64.
+2026-10-28T09:56:37.8583457Z Preparing to unpack .../53-liblilv-0-0_0.24.22-1build1_amd64.deb ...
+2026-10-28T09:56:37.8589737Z Unpacking liblilv-0-0:amd64 (0.24.22-1build1) ...
+2026-10-28T09:56:37.8798509Z Selecting previously unselected package libmysofa1:amd64.
+2026-10-28T09:56:37.8903786Z Preparing to unpack .../54-libmysofa1_1.3.2+dfsg-2ubuntu2_amd64.deb ...
+2026-10-28T09:56:37.8910329Z Unpacking libmysofa1:amd64 (1.3.2+dfsg-2ubuntu2) ...
+2026-10-28T09:56:37.9241608Z Selecting previously unselected package libplacebo338:amd64.
+2026-10-28T09:56:37.9351025Z Preparing to unpack .../55-libplacebo338_6.338.2-2build1_amd64.deb ...
+2026-10-28T09:56:37.9369841Z Unpacking libplacebo338:amd64 (6.338.2-2build1) ...
+2026-10-28T09:56:38.0641860Z Selecting previously unselected package libblas3:amd64.
+2026-10-28T09:56:38.0730247Z Preparing to unpack .../56-libblas3_3.12.0-3build1.1_amd64.deb ...
+2026-10-28T09:56:38.0767194Z Unpacking libblas3:amd64 (3.12.0-3build1.1) ...
+2026-10-28T09:56:38.0996387Z Selecting previously unselected package liblapack3:amd64.
+2026-10-28T09:56:38.1101892Z Preparing to unpack .../57-liblapack3_3.12.0-3build1.1_amd64.deb ...
+2026-10-28T09:56:38.1139121Z Unpacking liblapack3:amd64 (3.12.0-3build1.1) ...
+2026-10-28T09:56:38.2244297Z Selecting previously unselected package libasyncns0:amd64.
+2026-10-28T09:56:38.2352665Z Preparing to unpack .../58-libasyncns0_0.8-6build4_amd64.deb ...
+2026-10-28T09:56:38.2359026Z Unpacking libasyncns0:amd64 (0.8-6build4) ...
+2026-10-28T09:56:38.2568997Z Selecting previously unselected package libflac12t64:amd64.
+2026-10-28T09:56:38.2676193Z Preparing to unpack .../59-libflac12t64_1.4.3+ds-2.1ubuntu2_amd64.deb ...
+2026-10-28T09:56:38.2687354Z Unpacking libflac12t64:amd64 (1.4.3+ds-2.1ubuntu2) ...
+2026-10-28T09:56:38.2910372Z Selecting previously unselected package libsndfile1:amd64.
+2026-10-28T09:56:38.3017392Z Preparing to unpack .../60-libsndfile1_1.2.2-1ubuntu5.24.04.1_amd64.deb ...
+2026-10-28T09:56:38.3036549Z Unpacking libsndfile1:amd64 (1.2.2-1ubuntu5.24.04.1) ...
+2026-10-28T09:56:38.3267588Z Selecting previously unselected package libpulse0:amd64.
+2026-10-28T09:56:38.3379689Z Preparing to unpack .../61-libpulse0_1%3a16.1+dfsg1-2ubuntu10.1_amd64.deb ...
+2026-10-28T09:56:38.3451989Z Unpacking libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
+2026-10-28T09:56:38.3772342Z Selecting previously unselected package libsphinxbase3t64:amd64.
+2026-10-28T09:56:38.3866446Z Preparing to unpack .../62-libsphinxbase3t64_0.8+5prealpha+1-17build2_amd64.deb ...
+2026-10-28T09:56:38.3874135Z Unpacking libsphinxbase3t64:amd64 (0.8+5prealpha+1-17build2) ...
+2026-10-28T09:56:38.4094626Z Selecting previously unselected package libpocketsphinx3:amd64.
+2026-10-28T09:56:38.4199931Z Preparing to unpack .../63-libpocketsphinx3_0.8.0+real5prealpha+1-15ubuntu5_amd64.deb ...
+2026-10-28T09:56:38.4206688Z Unpacking libpocketsphinx3:amd64 (0.8.0+real5prealpha+1-15ubuntu5) ...
+2026-10-28T09:56:38.4426635Z Selecting previously unselected package libpostproc57:amd64.
+2026-10-28T09:56:38.4535786Z Preparing to unpack .../64-libpostproc57_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:38.4542243Z Unpacking libpostproc57:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:38.4897778Z Selecting previously unselected package libsamplerate0:amd64.
+2026-10-28T09:56:38.5003197Z Preparing to unpack .../65-libsamplerate0_0.2.2-4build1_amd64.deb ...
+2026-10-28T09:56:38.5008802Z Unpacking libsamplerate0:amd64 (0.2.2-4build1) ...
+2026-10-28T09:56:38.5339584Z Selecting previously unselected package librubberband2:amd64.
+2026-10-28T09:56:38.5444889Z Preparing to unpack .../66-librubberband2_3.3.0+dfsg-2build1_amd64.deb ...
+2026-10-28T09:56:38.5460580Z Unpacking librubberband2:amd64 (3.3.0+dfsg-2build1) ...
+2026-10-28T09:56:38.5655633Z Selecting previously unselected package libswscale7:amd64.
+2026-10-28T09:56:38.5761246Z Preparing to unpack .../67-libswscale7_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:38.5766639Z Unpacking libswscale7:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:38.5977722Z Selecting previously unselected package libvidstab1.1:amd64.
+2026-10-28T09:56:38.6085145Z Preparing to unpack .../68-libvidstab1.1_1.1.0-2build1_amd64.deb ...
+2026-10-28T09:56:38.6090934Z Unpacking libvidstab1.1:amd64 (1.1.0-2build1) ...
+2026-10-28T09:56:38.6300007Z Selecting previously unselected package libzimg2:amd64.
+2026-10-28T09:56:38.6406250Z Preparing to unpack .../69-libzimg2_3.0.5+ds1-1build1_amd64.deb ...
+2026-10-28T09:56:38.6412391Z Unpacking libzimg2:amd64 (3.0.5+ds1-1build1) ...
+2026-10-28T09:56:38.6668062Z Selecting previously unselected package libavfilter9:amd64.
+2026-10-28T09:56:38.6773086Z Preparing to unpack .../70-libavfilter9_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:38.6778605Z Unpacking libavfilter9:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:38.8629572Z Selecting previously unselected package libcaca0:amd64.
+2026-10-28T09:56:38.8736608Z Preparing to unpack .../71-libcaca0_0.99.beta20-4ubuntu0.2_amd64.deb ...
+2026-10-28T09:56:38.8742633Z Unpacking libcaca0:amd64 (0.99.beta20-4ubuntu0.2) ...
+2026-10-28T09:56:38.9059571Z Selecting previously unselected package libcdio19t64:amd64.
+2026-10-28T09:56:38.9167037Z Preparing to unpack .../72-libcdio19t64_2.1.0-4.1ubuntu1.2_amd64.deb ...
+2026-10-28T09:56:38.9182971Z Unpacking libcdio19t64:amd64 (2.1.0-4.1ubuntu1.2) ...
+2026-10-28T09:56:38.9391562Z Selecting previously unselected package libcdio-cdda2t64:amd64.
+2026-10-28T09:56:38.9484940Z Preparing to unpack .../73-libcdio-cdda2t64_10.2+2.0.1-1.1build2_amd64.deb ...
+2026-10-28T09:56:38.9493625Z Unpacking libcdio-cdda2t64:amd64 (10.2+2.0.1-1.1build2) ...
+2026-10-28T09:56:38.9704591Z Selecting previously unselected package libcdio-paranoia2t64:amd64.
+2026-10-28T09:56:38.9810920Z Preparing to unpack .../74-libcdio-paranoia2t64_10.2+2.0.1-1.1build2_amd64.deb ...
+2026-10-28T09:56:38.9826342Z Unpacking libcdio-paranoia2t64:amd64 (10.2+2.0.1-1.1build2) ...
+2026-10-28T09:56:39.0122054Z Selecting previously unselected package libdc1394-25:amd64.
+2026-10-28T09:56:39.0212911Z Preparing to unpack .../75-libdc1394-25_2.2.6-4build1_amd64.deb ...
+2026-10-28T09:56:39.0218245Z Unpacking libdc1394-25:amd64 (2.2.6-4build1) ...
+2026-10-28T09:56:39.0441677Z Selecting previously unselected package libiec61883-0:amd64.
+2026-10-28T09:56:39.0527393Z Preparing to unpack .../76-libiec61883-0_1.2.0-6build1_amd64.deb ...
+2026-10-28T09:56:39.0541436Z Unpacking libiec61883-0:amd64 (1.2.0-6build1) ...
+2026-10-28T09:56:39.0729270Z Selecting previously unselected package libjack-jackd2-0:amd64.
+2026-10-28T09:56:39.0835463Z Preparing to unpack .../77-libjack-jackd2-0_1.9.21~dfsg-3ubuntu3_amd64.deb ...
+2026-10-28T09:56:39.0841603Z Unpacking libjack-jackd2-0:amd64 (1.9.21~dfsg-3ubuntu3) ...
+2026-10-28T09:56:39.1150336Z Selecting previously unselected package libopenal-data.
+2026-10-28T09:56:39.1257822Z Preparing to unpack .../78-libopenal-data_1%3a1.23.1-4build1_all.deb ...
+2026-10-28T09:56:39.1263578Z Unpacking libopenal-data (1:1.23.1-4build1) ...
+2026-10-28T09:56:39.1479567Z Selecting previously unselected package libsndio7.0:amd64.
+2026-10-28T09:56:39.1583977Z Preparing to unpack .../79-libsndio7.0_1.9.0-0.3build3_amd64.deb ...
+2026-10-28T09:56:39.1598658Z Unpacking libsndio7.0:amd64 (1.9.0-0.3build3) ...
+2026-10-28T09:56:39.1806011Z Selecting previously unselected package libopenal1:amd64.
+2026-10-28T09:56:39.1934962Z Preparing to unpack .../80-libopenal1_1%3a1.23.1-4build1_amd64.deb ...
+2026-10-28T09:56:39.1955400Z Unpacking libopenal1:amd64 (1:1.23.1-4build1) ...
+2026-10-28T09:56:39.2362361Z Selecting previously unselected package libdecor-0-0:amd64.
+2026-10-28T09:56:39.2363258Z Preparing to unpack .../81-libdecor-0-0_0.2.2-1build2_amd64.deb ...
+2026-10-28T09:56:39.2371592Z Unpacking libdecor-0-0:amd64 (0.2.2-1build2) ...
+2026-10-28T09:56:39.2566867Z Selecting previously unselected package libsdl2-2.0-0:amd64.
+2026-10-28T09:56:39.2671378Z Preparing to unpack .../82-libsdl2-2.0-0_2.30.0+dfsg-1ubuntu3.1_amd64.deb ...
+2026-10-28T09:56:39.2679753Z Unpacking libsdl2-2.0-0:amd64 (2.30.0+dfsg-1ubuntu3.1) ...
+2026-10-28T09:56:39.3601100Z Selecting previously unselected package libxcb-shape0:amd64.
+2026-10-28T09:56:39.3705484Z Preparing to unpack .../83-libxcb-shape0_1.15-1ubuntu2_amd64.deb ...
+2026-10-28T09:56:39.3723073Z Unpacking libxcb-shape0:amd64 (1.15-1ubuntu2) ...
+2026-10-28T09:56:39.4041707Z Selecting previously unselected package libxv1:amd64.
+2026-10-28T09:56:39.4117750Z Preparing to unpack .../84-libxv1_2%3a1.0.11-1.1build1_amd64.deb ...
+2026-10-28T09:56:39.4122983Z Unpacking libxv1:amd64 (2:1.0.11-1.1build1) ...
+2026-10-28T09:56:39.4317505Z Selecting previously unselected package libavdevice60:amd64.
+2026-10-28T09:56:39.4424030Z Preparing to unpack .../85-libavdevice60_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:39.4431998Z Unpacking libavdevice60:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.4664771Z Selecting previously unselected package ffmpeg.
+2026-10-28T09:56:39.4751932Z Preparing to unpack .../86-ffmpeg_7%3a6.1.1-3ubuntu5_amd64.deb ...
+2026-10-28T09:56:39.4772055Z Unpacking ffmpeg (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.5511269Z Setting up libgme0:amd64 (0.6.3-7build1) ...
+2026-10-28T09:56:39.5536166Z Setting up libchromaprint1:amd64 (1.5.1-5) ...
+2026-10-28T09:56:39.5553746Z Setting up libssh-gcrypt-4:amd64 (0.10.6-2ubuntu0.5) ...
+2026-10-28T09:56:39.5575949Z Setting up libhwy1t64:amd64 (1.0.7-8.1build1) ...
+2026-10-28T09:56:39.5591107Z Setting up libudfread0:amd64 (1.1.2-1build1) ...
+2026-10-28T09:56:39.5611256Z Setting up libraw1394-11:amd64 (2.1.2-2build3) ...
+2026-10-28T09:56:39.5627413Z Setting up libspeex1:amd64 (1.2.1-2ubuntu2.24.04.1) ...
+2026-10-28T09:56:39.5670370Z Setting up libshine3:amd64 (3.1.1-2build1) ...
+2026-10-28T09:56:39.5684423Z Setting up libcaca0:amd64 (0.99.beta20-4ubuntu0.2) ...
+2026-10-28T09:56:39.5709464Z Setting up libvpl2 (2023.3.0-1build1) ...
+2026-10-28T09:56:39.5723708Z Setting up libx264-164:amd64 (2:0.164.3108+git31e19f9-1) ...
+2026-10-28T09:56:39.5764197Z Setting up libtwolame0:amd64 (0.4.0-2build3) ...
+2026-10-28T09:56:39.5779876Z Setting up libmbedcrypto7t64:amd64 (2.28.8-1) ...
+2026-10-28T09:56:39.5803981Z Setting up libgsm1:amd64 (1.0.22-1build1) ...
+2026-10-28T09:56:39.5820336Z Setting up libsoxr0:amd64 (0.1.3-4build3) ...
+2026-10-28T09:56:39.5836901Z Setting up libzix-0-0:amd64 (0.4.2-2build1) ...
+2026-10-28T09:56:39.5851991Z Setting up libcodec2-1.2:amd64 (1.2.0-2build1) ...
+2026-10-28T09:56:39.5871756Z Setting up libmysofa1:amd64 (1.3.2+dfsg-2ubuntu2) ...
+2026-10-28T09:56:39.5887730Z Setting up libxcb-shape0:amd64 (1.15-1ubuntu2) ...
+2026-10-28T09:56:39.5905873Z Setting up libcdio19t64:amd64 (2.1.0-4.1ubuntu1.2) ...
+2026-10-28T09:56:39.5922204Z Setting up libsvtav1enc1d1:amd64 (1.7.0+dfsg-2build1) ...
+2026-10-28T09:56:39.5935559Z Setting up libmpg123-0t64:amd64 (1.32.5-1ubuntu1.1) ...
+2026-10-28T09:56:39.5966259Z Setting up libcjson1:amd64 (1.7.17-1) ...
+2026-10-28T09:56:39.5983011Z Setting up libxvidcore4:amd64 (2:1.3.7-1build1) ...
+2026-10-28T09:56:39.6002460Z Setting up librav1e0:amd64 (0.7.1-2) ...
+2026-10-28T09:56:39.6018714Z Setting up libcdio-cdda2t64:amd64 (10.2+2.0.1-1.1build2) ...
+2026-10-28T09:56:39.6032004Z Setting up librist4:amd64 (0.2.10+dfsg-2) ...
+2026-10-28T09:56:39.6046300Z Setting up librsvg2-2:amd64 (2.58.0+dfsg-1ubuntu0.1) ...
+2026-10-28T09:56:39.6065813Z Setting up libblas3:amd64 (3.12.0-3build1.1) ...
+2026-10-28T09:56:39.6112472Z update-alternatives: using /usr/lib/x86_64-linux-gnu/blas/libblas.so.3 to provide /usr/lib/x86_64-linux-gnu/libblas.so.3 (libblas.so.3-x86_64-linux-gnu) in auto mode
+2026-10-28T09:56:39.6125525Z Setting up libplacebo338:amd64 (6.338.2-2build1) ...
+2026-10-28T09:56:39.6142074Z Setting up libva2:amd64 (2.20.0-2ubuntu0.2) ...
+2026-10-28T09:56:39.6156471Z Setting up libopus0:amd64 (1.4-1build1) ...
+2026-10-28T09:56:39.6175271Z Setting up libcdio-paranoia2t64:amd64 (10.2+2.0.1-1.1build2) ...
+2026-10-28T09:56:39.6189845Z Setting up libdc1394-25:amd64 (2.2.6-4build1) ...
+2026-10-28T09:56:39.6205860Z Setting up libxv1:amd64 (2:1.0.11-1.1build1) ...
+2026-10-28T09:56:39.6221444Z Setting up libunibreak5:amd64 (5.1-2build1) ...
+2026-10-28T09:56:39.6235491Z Setting up libjxl0.7:amd64 (0.7.0-10.2ubuntu6.1) ...
+2026-10-28T09:56:39.6258787Z Setting up libx265-199:amd64 (3.5-2build1) ...
+2026-10-28T09:56:39.6275029Z Setting up libsndio7.0:amd64 (1.9.0-0.3build3) ...
+2026-10-28T09:56:39.6288754Z Setting up libvidstab1.1:amd64 (1.1.0-2build1) ...
+2026-10-28T09:56:39.6311732Z Setting up libvpx9:amd64 (1.14.0-1ubuntu2.3) ...
+2026-10-28T09:56:39.6326744Z Setting up libsrt1.5-gnutls:amd64 (1.5.3-1build2) ...
+2026-10-28T09:56:39.6343004Z Setting up libflite1:amd64 (2.2-6build3) ...
+2026-10-28T09:56:39.6359626Z Setting up libdav1d7:amd64 (1.4.1-1build1) ...
+2026-10-28T09:56:39.6374277Z Setting up libva-drm2:amd64 (2.20.0-2ubuntu0.2) ...
+2026-10-28T09:56:39.6393689Z Setting up ocl-icd-libopencl1:amd64 (2.3.2-1build1) ...
+2026-10-28T09:56:39.6409375Z Setting up libasyncns0:amd64 (0.8-6build4) ...
+2026-10-28T09:56:39.6424594Z Setting up libvdpau1:amd64 (1.5-2build1) ...
+2026-10-28T09:56:39.6457863Z Setting up libbs2b0:amd64 (3.1.0+dfsg-7build1) ...
+2026-10-28T09:56:39.6472820Z Setting up libtheora0:amd64 (1.1.1+dfsg.1-16.1build3) ...
+2026-10-28T09:56:39.6489865Z Setting up libdecor-0-0:amd64 (0.2.2-1build2) ...
+2026-10-28T09:56:39.6511410Z Setting up libzimg2:amd64 (3.0.5+ds1-1build1) ...
+2026-10-28T09:56:39.6526236Z Setting up libopenal-data (1:1.23.1-4build1) ...
+2026-10-28T09:56:39.6546637Z Setting up libflac12t64:amd64 (1.4.3+ds-2.1ubuntu2) ...
+2026-10-28T09:56:39.6564286Z Setting up libbluray2:amd64 (1:1.3.4-1build1) ...
+2026-10-28T09:56:39.6579828Z Setting up libsamplerate0:amd64 (0.2.2-4build1) ...
+2026-10-28T09:56:39.6603164Z Setting up libva-x11-2:amd64 (2.20.0-2ubuntu0.2) ...
+2026-10-28T09:56:39.6619103Z Setting up libopenmpt0t64:amd64 (0.7.3-1.1build3) ...
+2026-10-28T09:56:39.6633575Z Setting up libzvbi-common (0.2.42-2) ...
+2026-10-28T09:56:39.6647356Z Setting up libmp3lame0:amd64 (3.100-6build1) ...
+2026-10-28T09:56:39.6668322Z Setting up libvorbisenc2:amd64 (1.3.7-1build3) ...
+2026-10-28T09:56:39.6681819Z Setting up libiec61883-0:amd64 (1.2.0-6build1) ...
+2026-10-28T09:56:39.6706967Z Setting up libserd-0-0:amd64 (0.32.2-1) ...
+2026-10-28T09:56:39.6719711Z Setting up libavc1394-0:amd64 (0.5.4-5build3) ...
+2026-10-28T09:56:39.6734716Z Setting up liblapack3:amd64 (3.12.0-3build1.1) ...
+2026-10-28T09:56:39.6782776Z update-alternatives: using /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3 to provide /usr/lib/x86_64-linux-gnu/liblapack.so.3 (liblapack.so.3-x86_64-linux-gnu) in auto mode
+2026-10-28T09:56:39.6794709Z Setting up libzvbi0t64:amd64 (0.2.42-2) ...
+2026-10-28T09:56:39.6813787Z Setting up libavutil58:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.6832483Z Setting up libopenal1:amd64 (1:1.23.1-4build1) ...
+2026-10-28T09:56:39.6897893Z Setting up libass9:amd64 (1:0.17.1-2build1) ...
+2026-10-28T09:56:39.6915656Z Setting up libswresample4:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.6928961Z Setting up libavcodec60:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.6942472Z Setting up librubberband2:amd64 (3.3.0+dfsg-2build1) ...
+2026-10-28T09:56:39.6958150Z Setting up libjack-jackd2-0:amd64 (1.9.21~dfsg-3ubuntu3) ...
+2026-10-28T09:56:39.6973366Z Setting up libsord-0-0:amd64 (0.16.16-2build1) ...
+2026-10-28T09:56:39.6999045Z Setting up libpostproc57:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.7019178Z Setting up libsratom-0-0:amd64 (0.6.16-1build1) ...
+2026-10-28T09:56:39.7032460Z Setting up libsndfile1:amd64 (1.2.2-1ubuntu5.24.04.1) ...
+2026-10-28T09:56:39.7049304Z Setting up liblilv-0-0:amd64 (0.24.22-1build1) ...
+2026-10-28T09:56:39.7069111Z Setting up libswscale7:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.7082407Z Setting up libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
+2026-10-28T09:56:39.7162717Z Setting up libavformat60:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.7176147Z Setting up libsphinxbase3t64:amd64 (0.8+5prealpha+1-17build2) ...
+2026-10-28T09:56:39.7192720Z Setting up libsdl2-2.0-0:amd64 (2.30.0+dfsg-1ubuntu3.1) ...
+2026-10-28T09:56:39.7610012Z Setting up libpocketsphinx3:amd64 (0.8.0+real5prealpha+1-15ubuntu5) ...
+2026-10-28T09:56:39.7625671Z Setting up libavfilter9:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.7641660Z Setting up libavdevice60:amd64 (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.7655807Z Setting up ffmpeg (7:6.1.1-3ubuntu5) ...
+2026-10-28T09:56:39.7675418Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-28T09:56:39.7693637Z Not building database; man-db/auto-update is not 'true'.
+2026-10-28T09:56:39.7707729Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-10-28T09:56:40.1849215Z 
+2026-10-28T09:56:40.1862130Z Running kernel seems to be up-to-date.
+2026-10-28T09:56:40.1862495Z 
+2026-10-28T09:56:40.1862722Z Restarting services...
+2026-10-28T09:56:40.1921089Z 
+2026-10-28T09:56:40.1921529Z Service restarts being deferred:
+2026-10-28T09:56:40.1921845Z  systemctl restart hosted-compute-agent.service
+2026-10-28T09:56:40.1922038Z 
+2026-10-28T09:56:40.1922124Z No containers need to be restarted.
+2026-10-28T09:56:40.1922273Z 
+2026-10-28T09:56:40.1922382Z No user sessions are running outdated binaries.
+2026-10-28T09:56:40.1922876Z 
+2026-10-28T09:56:40.1923035Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-28T09:56:40.8856025Z ##[group]Run python3 scripts/smoke_test.py client --fabric-api-version 'none'
+2026-10-28T09:56:40.8856342Z [36;1mpython3 scripts/smoke_test.py client --fabric-api-version 'none'[0m
+2026-10-28T09:56:40.8860252Z shell: /usr/bin/bash -e {0}
+2026-10-28T09:56:40.8860389Z env:
+2026-10-28T09:56:40.8860556Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:40.8861030Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T09:56:40.8861259Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T09:56:40.8861435Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T09:56:40.8861596Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T09:56:40.8861760Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T09:56:40.8861998Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T09:56:40.8862269Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T09:56:40.8862465Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T09:56:40.8862618Z   LIBGL_ALWAYS_SOFTWARE: true
+2026-10-28T09:56:40.8862755Z   SDL_VIDEODRIVER: x11
+2026-10-28T09:56:40.8862879Z   ALSOFT_DRIVERS: null
+2026-10-28T09:56:40.8863004Z ##[endgroup]
+2026-10-28T09:59:00.2782740Z PASS: real-game smoke check in .tmp/smoke/client
+2026-10-28T09:59:19.0731321Z PASS: real-game smoke check in .tmp/smoke/client
+2026-10-28T09:59:55.0517241Z PASS: real-game smoke check in .tmp/smoke/client
+2026-10-28T10:02:11.7490239Z UNALLOCATED video bytes=525578
+2026-10-28T10:02:14.0853611Z PASS: real-game smoke check in .tmp/smoke/client
+2026-10-28T10:02:14.0996954Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-28T10:02:14.0997174Z with:
+2026-10-28T10:02:14.0997355Z   name: smoke-diagnostics-b77bb1006ce23cc9261869133178ad2203b48dc3-none
+2026-10-28T10:02:14.0997587Z   include-hidden-files: true
+2026-10-28T10:02:14.0998436Z   path: build/reports/included-jars.json
+.tmp/smoke/gradle-diagnostics/**
+.tmp/smoke/*-console.log
+.tmp/smoke/**/logs/**
+.tmp/smoke/**/logs-first/**
+.tmp/smoke/**/logs-restart/**
+.tmp/smoke/**/logs-story/**
+.tmp/smoke/video/**
+build/template/**
+.tmp/smoke/**/crash-reports/**
+.tmp/smoke/**/hs_err_pid*.log
+.tmp/smoke/**/screenshots/**
+.tmp/smoke/**/screenshots-before-play/**
+.tmp/smoke/client/unallocated/contract.properties
+hs_err_pid*.log
+build/test-results/**
+build/reports/tests/**
+
+2026-10-28T10:02:14.0999276Z   if-no-files-found: warn
+2026-10-28T10:02:14.0999407Z   retention-days: 7
+2026-10-28T10:02:14.0999527Z   compression-level: 6
+2026-10-28T10:02:14.0999653Z   overwrite: false
+2026-10-28T10:02:14.0999788Z env:
+2026-10-28T10:02:14.0999954Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:14.1000205Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:14.1000436Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:02:14.1000607Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:02:14.1000976Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:02:14.1001189Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:02:14.1001423Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:02:14.1001670Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:02:14.1001844Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:02:14.1001995Z ##[endgroup]
+2026-10-28T10:02:14.2222857Z (node:5241) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:02:14.2228084Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:02:14.4152581Z With the provided path, there will be 98 files uploaded
+2026-10-28T10:02:14.4152904Z Artifact name is valid!
+2026-10-28T10:02:14.4153358Z Root directory input is valid!
+2026-10-28T10:02:14.7932378Z Beginning upload of artifact content to blob storage
+2026-10-28T10:02:15.0077820Z (node:5241) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T10:02:15.7077092Z Uploaded bytes 8388608
+2026-10-28T10:02:15.8900907Z Uploaded bytes 13215409
+2026-10-28T10:02:15.9479486Z Finished uploading artifact content to blob storage!
+2026-10-28T10:02:15.9480280Z SHA256 digest of uploaded artifact zip is 7b5c022a48baed146b41113dcc59801c785de4e670fd362ca90c01813e749fed
+2026-10-28T10:02:15.9481971Z Finalizing artifact upload
+2026-10-28T10:02:16.4353004Z Artifact smoke-diagnostics-b77bb1006ce23cc9261869133178ad2203b48dc3-none.zip successfully finalized. Artifact ID 12807262230
+2026-10-28T10:02:16.4354106Z Artifact smoke-diagnostics-b77bb1006ce23cc9261869133178ad2203b48dc3-none has been successfully uploaded! Final size is 13215409 bytes. Artifact ID is 12807262230
+2026-10-28T10:02:16.4359640Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40667754056/artifacts/12807262230
+2026-10-28T10:02:16.4534192Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-28T10:02:16.4534551Z with:
+2026-10-28T10:02:16.4534803Z   name: unallocated-b77bb1006ce23cc9261869133178ad2203b48dc3
+2026-10-28T10:02:16.4535306Z   path: build/libs/unallocated-*.jar
+build/libs/unallocated-*.jar.sha256
+build/reports/included-jars.json
+
+2026-10-28T10:02:16.4535743Z   if-no-files-found: error
+2026-10-28T10:02:16.4535968Z   retention-days: 14
+2026-10-28T10:02:16.4536171Z   compression-level: 6
+2026-10-28T10:02:16.4536376Z   overwrite: false
+2026-10-28T10:02:16.4536580Z   include-hidden-files: false
+2026-10-28T10:02:16.4536799Z env:
+2026-10-28T10:02:16.4537072Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:16.4537520Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:16.4537896Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:02:16.4538183Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:02:16.4538481Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:02:16.4538754Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:02:16.4539151Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:02:16.4539566Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:02:16.4539849Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:02:16.4540092Z ##[endgroup]
+2026-10-28T10:02:16.5673774Z (node:5255) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:02:16.5674574Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:02:16.5768241Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-28T10:02:16.5811753Z The least common ancestor is /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build. This will be the root directory of the artifact
+2026-10-28T10:02:16.5829306Z With the provided path, there will be 3 files uploaded
+2026-10-28T10:02:16.5864892Z Artifact name is valid!
+2026-10-28T10:02:16.5868995Z Root directory input is valid!
+2026-10-28T10:02:16.9560557Z Beginning upload of artifact content to blob storage
+2026-10-28T10:02:17.0009746Z (node:5255) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T10:02:17.5379984Z Uploaded bytes 1300675
+2026-10-28T10:02:17.6016308Z Finished uploading artifact content to blob storage!
+2026-10-28T10:02:17.6017023Z SHA256 digest of uploaded artifact zip is 29742c6a4d2c94e3b1e31cc4840b9a6b5bd5ba7be53d65282e0d3631ddabd088
+2026-10-28T10:02:17.6017943Z Finalizing artifact upload
+2026-10-28T10:02:18.1132720Z Artifact unallocated-b77bb1006ce23cc9261869133178ad2203b48dc3.zip successfully finalized. Artifact ID 12807910707
+2026-10-28T10:02:18.1133696Z Artifact unallocated-b77bb1006ce23cc9261869133178ad2203b48dc3 has been successfully uploaded! Final size is 1300675 bytes. Artifact ID is 12807910707
+2026-10-28T10:02:18.1138398Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40667754056/artifacts/12807910707
+2026-10-28T10:02:18.1293703Z ##[group]Run python3 scripts/smoke_test.py release
+2026-10-28T10:02:18.1293938Z [36;1mpython3 scripts/smoke_test.py release[0m
+2026-10-28T10:02:18.1298024Z shell: /usr/bin/bash -e {0}
+2026-10-28T10:02:18.1298175Z env:
+2026-10-28T10:02:18.1298363Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:18.1298648Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:18.1298891Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:02:18.1299094Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:02:18.1299273Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:02:18.1299453Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:02:18.1299705Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:02:18.1299983Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:02:18.1300173Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:02:18.1300358Z ##[endgroup]
+2026-10-28T10:02:18.1844155Z UNALLOCATED release staged: {"version": "0.2.0", "minecraft": "26.3", "loader": "0.20.1", "fabric_api_bundled": true, "jar": "unallocated-0.2.0.jar", "sha256": "7cc52739869ec7d00c5ef1bd214c39d9d76dbffdc74348efcc9c4cccaa259fd3", "world_zip": "UNALLOCATED-world.zip", "commit": "b77bb1006ce23cc9261869133178ad2203b48dc3", "run": "40667754056"}
+2026-10-28T10:02:18.1964712Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-28T10:02:18.1965109Z with:
+2026-10-28T10:02:18.1965401Z   name: unallocated-release-b77bb1006ce23cc9261869133178ad2203b48dc3
+2026-10-28T10:02:18.1965752Z   path: build/release/**
+2026-10-28T10:02:18.1965981Z   if-no-files-found: error
+2026-10-28T10:02:18.1966204Z   retention-days: 14
+2026-10-28T10:02:18.1966421Z   compression-level: 6
+2026-10-28T10:02:18.1966640Z   overwrite: false
+2026-10-28T10:02:18.1966859Z   include-hidden-files: false
+2026-10-28T10:02:18.1967096Z env:
+2026-10-28T10:02:18.1967380Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:18.1967818Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:18.1968210Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:02:18.1968502Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:02:18.1968777Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:02:18.1969088Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:02:18.1969491Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:02:18.1969929Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:02:18.1970228Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:02:18.1970489Z ##[endgroup]
+2026-10-28T10:02:18.3109173Z (node:5269) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:02:18.3109980Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:02:18.3328042Z With the provided path, there will be 20 files uploaded
+2026-10-28T10:02:18.3328685Z Artifact name is valid!
+2026-10-28T10:02:18.3329024Z Root directory input is valid!
+2026-10-28T10:02:18.6755404Z Beginning upload of artifact content to blob storage
+2026-10-28T10:02:18.8754927Z (node:5269) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T10:02:19.5794636Z Uploaded bytes 7586135
+2026-10-28T10:02:19.6392940Z Finished uploading artifact content to blob storage!
+2026-10-28T10:02:19.6393945Z SHA256 digest of uploaded artifact zip is 30de4cc3ebbda10d8aea4815247d9d2936a8ca4ca55c592093b8ffa686956e6a
+2026-10-28T10:02:19.6395665Z Finalizing artifact upload
+2026-10-28T10:02:20.1183245Z Artifact unallocated-release-b77bb1006ce23cc9261869133178ad2203b48dc3.zip successfully finalized. Artifact ID 12808040477
+2026-10-28T10:02:20.1184235Z Artifact unallocated-release-b77bb1006ce23cc9261869133178ad2203b48dc3 has been successfully uploaded! Final size is 7586135 bytes. Artifact ID is 12808040477
+2026-10-28T10:02:20.1187300Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40667754056/artifacts/12808040477
+2026-10-28T10:02:20.1335975Z ##[group]Run mkdir -p .tmp/verdict
+2026-10-28T10:02:20.1336170Z [36;1mmkdir -p .tmp/verdict[0m
+2026-10-28T10:02:20.1336452Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "b77bb1006ce23cc9261869133178ad2203b48dc3" "none" "success" \[0m
+2026-10-28T10:02:20.1336735Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+2026-10-28T10:02:20.1336907Z [36;1mcat .tmp/verdict/verdict.json[0m
+2026-10-28T10:02:20.1341590Z shell: /usr/bin/bash -e {0}
+2026-10-28T10:02:20.1341738Z env:
+2026-10-28T10:02:20.1341918Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:20.1342187Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:20.1342421Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:02:20.1342605Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:02:20.1342772Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:02:20.1342944Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:02:20.1343203Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:02:20.1343465Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:02:20.1343653Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:02:20.1343813Z ##[endgroup]
+2026-10-28T10:02:20.1382461Z {"sha":"b77bb1006ce23cc9261869133178ad2203b48dc3","api":"none","status":"success"}
+2026-10-28T10:02:20.1414078Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-28T10:02:20.1414301Z with:
+2026-10-28T10:02:20.1414433Z   name: rehearsal-verdict-0
+2026-10-28T10:02:20.1414594Z   include-hidden-files: true
+2026-10-28T10:02:20.1414749Z   path: .tmp/verdict/verdict.json
+2026-10-28T10:02:20.1414904Z   retention-days: 3
+2026-10-28T10:02:20.1415040Z   if-no-files-found: warn
+2026-10-28T10:02:20.1415182Z   compression-level: 6
+2026-10-28T10:02:20.1415319Z   overwrite: false
+2026-10-28T10:02:20.1415446Z env:
+2026-10-28T10:02:20.1415622Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:20.1415892Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.5-8/x64
+2026-10-28T10:02:20.1416133Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T10:02:20.1416316Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T10:02:20.1416492Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T10:02:20.1416682Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T10:02:20.1416927Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T10:02:20.1417191Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T10:02:20.1417377Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T10:02:20.1417536Z ##[endgroup]
+2026-10-28T10:02:20.2502259Z (node:5284) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:02:20.2503056Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:02:20.2544170Z With the provided path, there will be 1 file uploaded
+2026-10-28T10:02:20.2545257Z Artifact name is valid!
+2026-10-28T10:02:20.2546122Z Root directory input is valid!
+2026-10-28T10:02:20.6327350Z Beginning upload of artifact content to blob storage
+2026-10-28T10:02:20.6482311Z (node:5284) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T10:02:20.8471294Z Uploaded bytes 215
+2026-10-28T10:02:20.9032863Z Finished uploading artifact content to blob storage!
+2026-10-28T10:02:20.9033614Z SHA256 digest of uploaded artifact zip is 69951e595cbaf8d6950beac07997f19a17db60af92ce6788c77e80f3590d164c
+2026-10-28T10:02:20.9034179Z Finalizing artifact upload
+2026-10-28T10:02:21.4349977Z Artifact rehearsal-verdict-0.zip successfully finalized. Artifact ID 12807706178
+2026-10-28T10:02:21.4350869Z Artifact rehearsal-verdict-0 has been successfully uploaded! Final size is 215 bytes. Artifact ID is 12807706178
+2026-10-28T10:02:21.4361487Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40667754056/artifacts/12807706178
+2026-10-28T10:02:21.4903999Z Post job cleanup.
+2026-10-28T10:02:21.5632645Z Cache hit occurred on the primary key graphics-v1-X64-ubuntu24-20261026.354.1-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4, not saving cache.
+2026-10-28T10:02:21.5633586Z (node:5308) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:02:21.5634762Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:02:21.6175358Z Post job cleanup.
+2026-10-28T10:02:21.6987719Z (node:5328) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:02:21.6988482Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:02:21.7119317Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+2026-10-28T10:02:22.2717978Z Failed to save: Unable to reserve cache with key minecraft-v1-Linux-X64-c9ba4cc954069f5b3fdfa13df18c0fa68cd99e3d49a2539d1628be751bb551fb, another job may be creating this cache.
+2026-10-28T10:02:22.3385203Z Post job cleanup.
+2026-10-28T10:02:22.4071887Z (node:5360) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:02:22.4077427Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:02:22.4179187Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod --files-from manifest.txt --use-compress-program zstdmt
+2026-10-28T10:02:24.6095110Z Failed to save: Unable to reserve cache with key gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8, another job may be creating this cache.
+2026-10-28T10:02:24.7063899Z Post job cleanup.
+2026-10-28T10:02:24.8634000Z In post-action step
+2026-10-28T10:02:24.8640285Z Cache is disabled: will not save state for later builds.
+2026-10-28T10:02:24.8643531Z Generating Job Summary
+2026-10-28T10:02:24.8658191Z Completed post-action step
+2026-10-28T10:02:24.8792792Z Post job cleanup.
+2026-10-28T10:02:24.9802062Z (node:5393) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T10:02:24.9802912Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T10:02:25.0039784Z Post job cleanup.
+2026-10-28T10:02:25.0705304Z [command]/usr/bin/git version
+2026-10-28T10:02:25.0788703Z git version 2.56.0
+2026-10-28T10:02:25.0940196Z Temporarily overriding HOME='/home/runner/work/_temp/858f304a-7fcc-4af2-9424-4a742d5274da' before making global git config changes
+2026-10-28T10:02:25.0941205Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-28T10:02:25.0973199Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T10:02:25.1029932Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T10:02:25.1081060Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T10:02:25.1453707Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T10:02:25.1466872Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T10:02:25.1815523Z Cleaning up orphan processes
+2026-10-28T10:02:25.1998899Z Terminate orphan process: pid (2203) (java)
+2026-10-28T10:02:25.2077761Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.story.StoryLoaderTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-29T02:08:27.828Z" hostname="runnervm48cm3" time="0.159">
+  <properties/>
+  <testcase name="anchorNamesExactlyMatchMapLayout()" classname="org.unallocated.story.StoryLoaderTest" time="0.001"/>
+  <testcase name="duplicateKeysAndTrailingJsonAreRejected()" classname="org.unallocated.story.StoryLoaderTest" time="0.016"/>
+  <testcase name="fixturesAgreeWithOfflineRuleAndPointerContract()" classname="org.unallocated.story.StoryLoaderTest" time="0.08"/>
+  <testcase name="compilerContextRetainsTheStoryAnchorNamespace()" classname="org.unallocated.story.StoryLoaderTest" time="0.004"/>
+  <testcase name="anyCompilesExtensionsThroughTheRegistry()" classname="org.unallocated.story.StoryLoaderTest" time="0.002"/>
+  <testcase name="unverifiedPostChainsAreUnknown()" classname="org.unallocated.story.StoryLoaderTest" time="0.001"/>
+  <testcase name="shippedStoryIsValidWithItsThreeEndings()" classname="org.unallocated.story.StoryLoaderTest" time="0.054"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.creature.CreatureActionsTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-28T13:54:40.446Z" hostname="runnervmtai0g" time="0.01">
+  <properties/>
+  <testcase name="invalidBodiesAndMissingTexturesFailAtLoad()" classname="org.unallocated.creature.CreatureActionsTest" time="0.005"/>
+  <testcase name="creatureTriggersCompileWithDwellAndDistance()" classname="org.unallocated.creature.CreatureActionsTest" time="0.003"/>
+  <testcase name="mannequinBodyAndAllOperationsCompile()" classname="org.unallocated.creature.CreatureActionsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

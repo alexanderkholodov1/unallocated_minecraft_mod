@@ -1,0 +1,12 @@
+page claim OK: unallocated/contract.properties exists
+saves/ has: UNALLOCATED
+page claim OK - world GameType: 2 (2 = Adventure)
+page claim OK - allowCommands: 0 (0 = cheats off)
+installer profile name(s): ['fabric-loader-26.3']
+ERROR line (x count):       1 [21:53:20] [Download-2/ERROR]: Failed to fetch user properties
+ERROR line (x count):       1 [21:53:20] [Render thread/ERROR]: Failed to create backend OpenGL
+ERROR line (x count):       1 [21:53:22] [Download-1/ERROR]: Failed to fetch Realms feature flags
+ERROR line (x count):       1 [21:53:22] [Render thread/ERROR]: Error while loading the narrator
+ERROR line (x count):       1 [21:54:53] [Render thread/ERROR]: Error while loading the narrator
+ERROR line (x count):       1 [21:55:00] [Download-3/ERROR]: Couldn't connect to realms
+mod warning/error: [21:55:14] [Server thread/WARN]: UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.core.ActSequencerTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2026-10-28T13:41:32.909Z" hostname="runnervm48cm3" time="0.493">
+  <properties/>
+  <testcase name="sessionIsDormantUntilExplicitStart()" classname="org.unallocated.core.ActSequencerTest" time="0.463"/>
+  <testcase name="reloadSkipsNewlyDisabledAct()" classname="org.unallocated.core.ActSequencerTest" time="0.01"/>
+  <testcase name="noEnabledModulesDoesNotLoop()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="brokenFallbackCannotTrapPlayer()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="terminalActFinishesOnceAndSurvivesReload()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="advanceAndRescueNeverStartDormantOrUnarmedSessions()" classname="org.unallocated.core.ActSequencerTest" time="0.001"/>
+  <testcase name="completionSkipsDisabledActAndPublishesChange()" classname="org.unallocated.core.ActSequencerTest" time="0.002"/>
+  <testcase name="budgetExpiresExactlyOnceAndRunsDiegeticFallbackBeforeEnteringNextAct()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="globalFeatureSwitchCannotBeIgnoredByAContentModule()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="throwingEnabledAndCheckpointCallbacksAreIsolated()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="reloadResumesCheckpointWithRemainingBudget()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="contractIsClientOnlyAndDoesNotConsumeAWorldTick()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="moduleMayAdvanceItselfWithoutTickingOrCompletingNextAct()" classname="org.unallocated.core.ActSequencerTest" time="0.001"/>
+  <testcase name="completionOnBudgetBoundaryWinsOverForcedAdvance()" classname="org.unallocated.core.ActSequencerTest" time="0.001"/>
+  <testcase name="rescueRequiresFiveSecondsAndCannotSkipTwoActsBackToBack()" classname="org.unallocated.core.ActSequencerTest" time="0.001"/>
+  <testcase name="deferredConsoleJumpStillEntersDisabledActWhenPlayerConnects()" classname="org.unallocated.core.ActSequencerTest" time="0.0"/>
+  <testcase name="explicitJumpTargetsDisabledActsAndResetsOnlyActClock()" classname="org.unallocated.core.ActSequencerTest" time="0.001"/>
+  <testcase name="invalidOrThrowingBudgetsCannotCrashOrTrapTheSession()" classname="org.unallocated.core.ActSequencerTest" time="0.001"/>
+  <testcase name="disabledResumeAndAdminJumpHaveDistinctSkipMarkers()" classname="org.unallocated.core.ActSequencerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

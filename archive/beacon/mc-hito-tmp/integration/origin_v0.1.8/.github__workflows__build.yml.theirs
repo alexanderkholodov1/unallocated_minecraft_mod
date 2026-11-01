@@ -1,0 +1,89 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - name: Check out source
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Set up Java 25
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Install Gradle and cache dependencies
+        uses: gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2 # v5.0.0
+        with:
+          # No wrapper JAR is required; keep in sync with TOOLCHAIN.md.
+          gradle-version: '9.8.2'
+          cache-read-only: ${{ github.event_name != 'push' }}
+
+      - name: Build mod
+        run: gradle --no-daemon --console=plain build clientSmokeJar prepareCoexistApi
+
+      - name: Verify installable JAR and write checksum
+        run: python3 scripts/verify_jar.py
+
+      - name: Verify packaging and smoke failure paths without Java
+        run: python3 -B -m unittest discover -s scripts -p 'test_*.py'
+
+      - name: Smoke test dedicated server commands and saved session reload
+        timeout-minutes: 6
+        run: python3 scripts/smoke_test.py server
+
+      - name: Verify server coexistence with optional full Fabric API
+        timeout-minutes: 4
+        run: python3 scripts/smoke_test.py server-with-api
+
+      - name: Install headless client graphics
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri mesa-vulkan-drivers
+
+      - name: Smoke test production client and photograph map checkpoints
+        timeout-minutes: 8
+        env:
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          SDL_VIDEODRIVER: x11
+          ALSOFT_DRIVERS: 'null'
+        run: python3 scripts/smoke_test.py client
+
+      - name: Upload smoke diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: smoke-diagnostics-${{ github.sha }}
+          include-hidden-files: true
+          path: |
+            .tmp/smoke/*-console.log
+            .tmp/smoke/**/logs/**
+            .tmp/smoke/**/crash-reports/**
+            .tmp/smoke/**/hs_err_pid*.log
+            .tmp/smoke/**/screenshots/**
+            hs_err_pid*.log
+            build/test-results/test/**
+            build/reports/tests/test/**
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Upload installable mod
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: unallocated-${{ github.sha }}
+          path: |
+            build/libs/unallocated-*.jar
+            build/libs/unallocated-*.jar.sha256
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,46 @@
+== installing harness tools
+== running stage 'play' on the laptop (foreground)
+[02:17:16Z] page says: Minecraft=26.3 Loader>=0.20.1 installer=1.1.2 java=25 jar=unallocated-0.2.0.jar
+[02:17:18Z] starting client (Xvfb :77 854x480, software GL, OpenAL null device)
+[02:21:18Z] FAIL: client never initialized (rc=1)
+[02:21:36Z] frame stable
+[02:21:37Z] screenshot 00-first-run-welcome-1.png (mean=70.3 hash=3148e10b1ced5c031d348889a320a166)
+[02:21:38Z] dismissed Minecraft first-run welcome screen (1)
+[02:22:11Z] screenshot 00-first-run-welcome-2.png (mean=75.0 hash=80d191b4188764a73166e8212df2b4d8)
+[02:22:12Z] dismissed Minecraft first-run welcome screen (2)
+[02:22:44Z] screenshot 00-first-run-welcome-3.png (mean=85.7 hash=239cfca100315c01548e0b357bc75cfe)
+[02:22:45Z] dismissed Minecraft first-run welcome screen (3)
+[02:23:17Z] FAIL: contract screen not detected (background pixel is 49 35 31
+[02:23:17Z] screenshot 01-contract.png (mean=94.3 hash=c315d894cb025ae6ec6e3d0536c99b82)
+[02:23:20Z] screenshot 01b-contract-typed.png (mean=67.6 hash=c58c6ff73df7151c086623810d809374)
+[02:23:21Z] clicked accept at 427,446
+[02:23:27Z] screenshot 02-title-button.png (mean=70.0 hash=030463e82f0f8397acbd0ccf01bf10e6)
+[02:23:28Z] clicked UNALLOCATED at 427,188
+[02:26:36Z] FAIL: no LOBBY chapter entry (rc=1)
+[02:26:41Z] screenshot 04-in-world.png (mean=77.8 hash=e652ae5aa53030578d235e46c7114356)
+[02:27:41Z] screenshot 05-in-world-60s.png (mean=65.1 hash=4b241e01e5246450fb3f68cc8e66a6c1)
+[02:27:41Z] game still running after 60 s in-world
+close sent to 2 window(s)
+game exit status: 0
+FAIL  log: initialized (common)
+FAIL  log: initialized (client)
+FAIL  log: story loaded
+FAIL  log: chapter entry slot=LOBBY
+PASS  no 'story invalid'
+PASS  no crash report
+PASS  game ran 60 s in-world
+PASS  clean quit
+page claim NOT met: unallocated/contract.properties missing
+world check failed: [Errno 2] No such file or directory: '/home/alexamaze/unallocated-cleantest/neg1/mc/saves/UNALLOCATED/level.dat'
+installer profile name(s): ['fabric-loader-26.3']
+ERROR line (x count):       1 [21:17:37] [Download-2/ERROR]: Failed to fetch user properties
+ERROR line (x count):       1 [21:17:37] [Render thread/ERROR]: Failed to create backend OpenGL
+ERROR line (x count):       1 [21:17:38] [Download-1/ERROR]: Failed to fetch Realms feature flags
+ERROR line (x count):       1 [21:17:38] [Render thread/ERROR]: Error while loading the narrator
+ERROR line (x count):       1 [21:21:39] [Download-3/ERROR]: Couldn't connect to realms
+ERROR line (x count):       1 [21:21:39] [Render thread/ERROR]: Error while loading the narrator
+[02:27:43Z] VERDICT: FAIL
+== elapsed 627s; copying evidence back
+wrote /home/alexamaze/Workspaces/mc-inputs/laptop-test/results/neg1/RESULT.md
+== VERDICT: FAIL  (see /home/alexamaze/Workspaces/mc-inputs/laptop-test/results/neg1/RESULT.md)
+exit=1

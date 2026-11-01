@@ -1,0 +1,2 @@
+- Experiencia para un solo jugador.
+- Probado en una instalación limpia de Minecraft 26.3 con Fabric Loader 0.20.1 (Linux, renderizado por software). Aún sin probar en Windows y macOS con GPU real.

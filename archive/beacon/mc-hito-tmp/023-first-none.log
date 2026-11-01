@@ -1,0 +1,798 @@
+﻿2026-10-28T08:28:04.8544022Z Current runner version: '2.338.0'
+2026-10-28T08:28:04.8630255Z ##[group]Runner Image Provisioner
+2026-10-28T08:28:04.8631745Z Hosted Compute Agent
+2026-10-28T08:28:04.8632760Z Version: 20261021.618
+2026-10-28T08:28:04.8634072Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-28T08:28:04.8635348Z Build Date: 2026-10-21T00:45:21Z
+2026-10-28T08:28:04.8636706Z Worker ID: {f4b1fcda-ae5f-46bc-aa6e-af32eab884cd}
+2026-10-28T08:28:04.8637963Z Region: westus3
+2026-10-28T08:28:04.8638885Z Cloud: Azure
+2026-10-28T08:28:04.8640224Z ##[endgroup]
+2026-10-28T08:28:04.8643256Z ##[group]Operating System
+2026-10-28T08:28:04.8644556Z Ubuntu
+2026-10-28T08:28:04.8645587Z 24.04.5
+2026-10-28T08:28:04.8646535Z LTS
+2026-10-28T08:28:04.8647671Z ##[endgroup]
+2026-10-28T08:28:04.8648752Z ##[group]Runner Image
+2026-10-28T08:28:04.8670645Z Image: ubuntu-24.04
+2026-10-28T08:28:04.8671798Z Version: 20261012.334.1
+2026-10-28T08:28:04.8674199Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-28T08:28:04.8677187Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-28T08:28:04.8679317Z ##[endgroup]
+2026-10-28T08:28:04.8681289Z ##[group]GITHUB_TOKEN Permissions
+2026-10-28T08:28:04.8684582Z Contents: read
+2026-10-28T08:28:04.8685685Z Metadata: read
+2026-10-28T08:28:04.8686637Z ##[endgroup]
+2026-10-28T08:28:04.8710172Z Secret source: Actions
+2026-10-28T08:28:04.8711827Z Cache mode: write
+2026-10-28T08:28:04.8713552Z Prepare workflow directory
+2026-10-28T08:28:04.9325872Z Prepare all required actions
+2026-10-28T08:28:04.9442418Z Getting action download info
+2026-10-28T08:28:05.4195778Z Download action repository 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' (SHA:08c6903cd8c0fde910a37f88322edcfb5dd907a8)
+2026-10-28T08:28:05.5343094Z Download action repository 'actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e' (SHA:f2beeb24e141e01a676f977032f5a29d81c9e27e)
+2026-10-28T08:28:06.4866978Z Download action repository 'gradle/actions@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2' (SHA:4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2)
+2026-10-28T08:28:08.2280896Z Download action repository 'actions/cache@5a3ec84eff668545956fd18022155c47e93e2684' (SHA:5a3ec84eff668545956fd18022155c47e93e2684)
+2026-10-28T08:28:08.4045747Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-28T08:28:08.7057087Z Complete job name: build (none)
+2026-10-28T08:28:08.7852144Z ##[group]Run actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+2026-10-28T08:28:08.7852912Z with:
+2026-10-28T08:28:08.7853238Z   persist-credentials: false
+2026-10-28T08:28:08.7853581Z   repository: alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T08:28:08.7856151Z   token: ***
+2026-10-28T08:28:08.7856368Z   ssh-strict: true
+2026-10-28T08:28:08.7856580Z   ssh-user: git
+2026-10-28T08:28:08.7856781Z   clean: true
+2026-10-28T08:28:08.7857023Z   sparse-checkout-cone-mode: true
+2026-10-28T08:28:08.7857326Z   fetch-depth: 1
+2026-10-28T08:28:08.7857551Z   fetch-tags: false
+2026-10-28T08:28:08.7857778Z   show-progress: true
+2026-10-28T08:28:08.7857995Z   lfs: false
+2026-10-28T08:28:08.7858187Z   submodules: false
+2026-10-28T08:28:08.7858402Z   set-safe-directory: true
+2026-10-28T08:28:08.7858839Z ##[endgroup]
+2026-10-28T08:28:09.1339601Z Syncing repository: alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T08:28:09.1341835Z ##[group]Getting Git version info
+2026-10-28T08:28:09.1350959Z Working directory is '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+2026-10-28T08:28:09.1358633Z [command]/usr/bin/git version
+2026-10-28T08:28:09.1556028Z git version 2.55.0
+2026-10-28T08:28:09.1564774Z ##[endgroup]
+2026-10-28T08:28:09.1573918Z Temporarily overriding HOME='/home/runner/work/_temp/71679975-967b-4d5c-bfc5-17a72898deda' before making global git config changes
+2026-10-28T08:28:09.1575602Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-28T08:28:09.1577994Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T08:28:09.1665754Z Deleting the contents of '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+2026-10-28T08:28:09.1667592Z ##[group]Initializing the repository
+2026-10-28T08:28:09.1945243Z [command]/usr/bin/git init /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T08:28:09.1981847Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-28T08:28:09.1994855Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-28T08:28:09.1996587Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-28T08:28:09.1999473Z hint: call:
+2026-10-28T08:28:09.2000549Z hint:
+2026-10-28T08:28:09.2001354Z hint: 	git config --global init.defaultBranch <name>
+2026-10-28T08:28:09.2003160Z hint:
+2026-10-28T08:28:09.2004184Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-28T08:28:09.2005611Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-28T08:28:09.2010298Z hint:
+2026-10-28T08:28:09.2013694Z hint: 	git branch -m <name>
+2026-10-28T08:28:09.2014818Z hint:
+2026-10-28T08:28:09.2015426Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-28T08:28:09.2016627Z Initialized empty Git repository in /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.git/
+2026-10-28T08:28:09.2030414Z [command]/usr/bin/git remote add origin https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T08:28:09.2051825Z ##[endgroup]
+2026-10-28T08:28:09.2052904Z ##[group]Disabling automatic garbage collection
+2026-10-28T08:28:09.2054139Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-28T08:28:09.2116394Z ##[endgroup]
+2026-10-28T08:28:09.2117512Z ##[group]Setting up auth
+2026-10-28T08:28:09.2118883Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T08:28:09.2235253Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T08:28:09.2730309Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T08:28:09.2769929Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T08:28:09.3016324Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-28T08:28:09.3064950Z ##[endgroup]
+2026-10-28T08:28:09.3065903Z ##[group]Fetching the repository
+2026-10-28T08:28:09.3095226Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +d5158a003b23bdd6370308e00ba7dd33736b8c56:refs/remotes/origin/rehearsal/w-d5158a0
+2026-10-28T08:28:10.0658294Z From https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+2026-10-28T08:28:10.0660432Z  * [new ref]         d5158a003b23bdd6370308e00ba7dd33736b8c56 -> origin/rehearsal/w-d5158a0
+2026-10-28T08:28:10.0664028Z ##[endgroup]
+2026-10-28T08:28:10.0665460Z ##[group]Determining the checkout info
+2026-10-28T08:28:10.0666980Z ##[endgroup]
+2026-10-28T08:28:10.0668447Z [command]/usr/bin/git sparse-checkout disable
+2026-10-28T08:28:10.0712438Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-28T08:28:10.0748059Z ##[group]Checking out the ref
+2026-10-28T08:28:10.0753893Z [command]/usr/bin/git checkout --progress --force -B rehearsal/w-d5158a0 refs/remotes/origin/rehearsal/w-d5158a0
+2026-10-28T08:28:10.1025969Z Switched to a new branch 'rehearsal/w-d5158a0'
+2026-10-28T08:28:10.1031402Z branch 'rehearsal/w-d5158a0' set up to track 'origin/rehearsal/w-d5158a0'.
+2026-10-28T08:28:10.1040138Z ##[endgroup]
+2026-10-28T08:28:10.1093792Z [command]/usr/bin/git log -1 --format=%H
+2026-10-28T08:28:10.1137261Z d5158a003b23bdd6370308e00ba7dd33736b8c56
+2026-10-28T08:28:10.1146141Z ##[group]Removing auth
+2026-10-28T08:28:10.1151400Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T08:28:10.1190099Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T08:28:10.1427336Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T08:28:10.1460833Z http.https://github.com/.extraheader
+2026-10-28T08:28:10.1470931Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-28T08:28:10.1514649Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T08:28:10.1743150Z ##[endgroup]
+2026-10-28T08:28:10.2040137Z ##[group]Run actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e
+2026-10-28T08:28:10.2040588Z with:
+2026-10-28T08:28:10.2040820Z   distribution: temurin
+2026-10-28T08:28:10.2041063Z   java-version: 25
+2026-10-28T08:28:10.2041281Z   java-package: jdk
+2026-10-28T08:28:10.2041507Z   check-latest: false
+2026-10-28T08:28:10.2041742Z   server-id: github
+2026-10-28T08:28:10.2041993Z   server-username: GITHUB_ACTOR
+2026-10-28T08:28:10.2042298Z   server-password: GITHUB_TOKEN
+2026-10-28T08:28:10.2042562Z   overwrite-settings: true
+2026-10-28T08:28:10.2042806Z   job-status: success
+2026-10-28T08:28:10.2045203Z   token: ***
+2026-10-28T08:28:10.2045420Z ##[endgroup]
+2026-10-28T08:28:10.4132463Z ##[group]Installed distributions
+2026-10-28T08:28:10.4190810Z Resolved Java 25.0.4+1 from tool-cache
+2026-10-28T08:28:10.4194437Z (node:2081) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T08:28:10.4195695Z Setting Java 25.0.4+1 as the default
+2026-10-28T08:28:10.4220763Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T08:28:10.4221627Z Creating toolchains.xml for JDK version 25 from temurin
+2026-10-28T08:28:10.4339450Z Writing to /home/runner/.m2/toolchains.xml
+2026-10-28T08:28:10.4344737Z 
+2026-10-28T08:28:10.4379809Z Java configuration:
+2026-10-28T08:28:10.4469834Z   Distribution: temurin
+2026-10-28T08:28:10.4520074Z   Version: 25.0.4+1
+2026-10-28T08:28:10.4522591Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:10.4585046Z 
+2026-10-28T08:28:10.4608872Z ##[endgroup]
+2026-10-28T08:28:10.4641118Z Creating settings.xml with server-id: github
+2026-10-28T08:28:10.4642402Z Writing to /home/runner/.m2/settings.xml
+2026-10-28T08:28:10.5023523Z ##[group]Run gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2
+2026-10-28T08:28:10.5024305Z with:
+2026-10-28T08:28:10.5024632Z   gradle-version: 9.8.2
+2026-10-28T08:28:10.5025017Z   cache-disabled: true
+2026-10-28T08:28:10.5025397Z   cache-read-only: true
+2026-10-28T08:28:10.5025774Z   cache-write-only: false
+2026-10-28T08:28:10.5026190Z   cache-overwrite-existing: false
+2026-10-28T08:28:10.5026636Z   cache-cleanup: on-success
+2026-10-28T08:28:10.5027128Z   gradle-home-cache-includes: caches
+notifications
+
+2026-10-28T08:28:10.5027671Z   add-job-summary: always
+2026-10-28T08:28:10.5028098Z   add-job-summary-as-pr-comment: never
+2026-10-28T08:28:10.5028587Z   dependency-graph: disabled
+2026-10-28T08:28:10.5029329Z   dependency-graph-report-dir: dependency-graph-reports
+2026-10-28T08:28:10.5030078Z   dependency-graph-continue-on-failure: true
+2026-10-28T08:28:10.5030619Z   build-scan-publish: false
+2026-10-28T08:28:10.5031053Z   validate-wrappers: true
+2026-10-28T08:28:10.5031538Z   allow-snapshot-wrappers: false
+2026-10-28T08:28:10.5032022Z   gradle-home-cache-strict-match: false
+2026-10-28T08:28:10.5032830Z   workflow-job-context: {
+  "api": "none"
+}
+2026-10-28T08:28:10.5037545Z   github-token: ***
+2026-10-28T08:28:10.5037958Z env:
+2026-10-28T08:28:10.5038464Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:10.5039543Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:10.5040219Z ##[endgroup]
+2026-10-28T08:28:12.1390225Z Cache is disabled: will not restore state from previous builds.
+2026-10-28T08:28:12.1410139Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+2026-10-28T08:28:12.1647856Z ##[group]All Gradle Wrapper jars are valid
+2026-10-28T08:28:12.1671167Z 
+2026-10-28T08:28:12.1676826Z ##[endgroup]
+2026-10-28T08:28:12.2930503Z ##[group]Provision Gradle 9.8.2
+2026-10-28T08:28:15.7493998Z Downloaded https://services.gradle.org/distributions/gradle-9.8.2-bin.zip to /home/runner/work/_temp/.gradle-actions/gradle-installations/downloads/gradle-9.8.2-bin.zip (size 151620138)
+2026-10-28T08:28:15.7532712Z [command]/usr/bin/unzip -o -q /home/runner/work/_temp/.gradle-actions/gradle-installations/downloads/gradle-9.8.2-bin.zip
+2026-10-28T08:28:16.8760044Z Extracted Gradle 9.8.2 to /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2
+2026-10-28T08:28:16.8762070Z Provisioned Gradle executable /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle
+2026-10-28T08:28:16.8763403Z ##[endgroup]
+2026-10-28T08:28:16.9647060Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+2026-10-28T08:28:16.9647490Z with:
+2026-10-28T08:28:16.9647706Z   path: ~/.gradle/caches
+2026-10-28T08:28:16.9648290Z   key: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-5547910969a413b5d36ab9a11ddbc0a4ba3bddd9811bf656a763d4a4f575f570
+2026-10-28T08:28:16.9648927Z   enableCrossOsArchive: false
+2026-10-28T08:28:16.9650117Z   fail-on-cache-miss: false
+2026-10-28T08:28:16.9650529Z   lookup-only: false
+2026-10-28T08:28:16.9650777Z   save-always: false
+2026-10-28T08:28:16.9650986Z env:
+2026-10-28T08:28:16.9651293Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:16.9651807Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:16.9652270Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:28:16.9652594Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:28:16.9652895Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:28:16.9653244Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:28:16.9653700Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:28:16.9654198Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:28:16.9654530Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:28:16.9654802Z ##[endgroup]
+2026-10-28T08:28:17.0782244Z (node:2216) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T08:28:17.0783811Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T08:28:17.2975296Z Cache not found for input keys: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-5547910969a413b5d36ab9a11ddbc0a4ba3bddd9811bf656a763d4a4f575f570
+2026-10-28T08:28:17.3784492Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+2026-10-28T08:28:17.3784893Z with:
+2026-10-28T08:28:17.3785138Z   path: .gradle/loom-cache
+.tmp/smoke-downloads
+
+2026-10-28T08:28:17.3785705Z   key: minecraft-v1-Linux-X64-9d0da8f1fe21d35d6ad95aab45f167f227b87498f46fd66b82af696a46d4cc07
+2026-10-28T08:28:17.3786248Z   enableCrossOsArchive: false
+2026-10-28T08:28:17.3786510Z   fail-on-cache-miss: false
+2026-10-28T08:28:17.3786747Z   lookup-only: false
+2026-10-28T08:28:17.3786962Z   save-always: false
+2026-10-28T08:28:17.3787170Z env:
+2026-10-28T08:28:17.3787465Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:17.3787958Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:17.3788588Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:28:17.3788904Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:28:17.3789557Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:28:17.3789914Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:28:17.3790365Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:28:17.3790856Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:28:17.3791183Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:28:17.3791450Z ##[endgroup]
+2026-10-28T08:28:17.5205744Z (node:2242) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T08:28:17.5207090Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T08:28:17.7320280Z Cache not found for input keys: minecraft-v1-Linux-X64-9d0da8f1fe21d35d6ad95aab45f167f227b87498f46fd66b82af696a46d4cc07
+2026-10-28T08:28:17.7406726Z ##[group]Run python3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none
+2026-10-28T08:28:17.7407715Z [36;1mpython3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=none[0m
+2026-10-28T08:28:17.7700939Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:28:17.7701248Z env:
+2026-10-28T08:28:17.7701620Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:17.7702233Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:28:17.7702760Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:28:17.7703143Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:28:17.7703492Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:28:17.7703854Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:28:17.7704403Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:28:17.7705070Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:28:17.7705460Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:28:17.7705780Z ##[endgroup]
+2026-10-28T08:28:18.6512207Z 
+2026-10-28T08:28:18.6512955Z Welcome to Gradle 9.8.2!
+2026-10-28T08:28:18.6513436Z 
+2026-10-28T08:28:18.6513765Z Here are the highlights of this release:
+2026-10-28T08:28:18.6514429Z  - Java 27 support
+2026-10-28T08:28:18.6515055Z  - Maven mirror settings reuse
+2026-10-28T08:28:18.6515705Z  - Linked problem locations in build output
+2026-10-28T08:28:18.6516255Z 
+2026-10-28T08:28:18.6516778Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+2026-10-28T08:28:18.6533328Z 
+2026-10-28T08:28:19.0557991Z Starting a Gradle Daemon (subsequent builds will be faster)
+2026-10-28T08:28:40.9027570Z 
+2026-10-28T08:28:40.9028793Z > Configure project :
+2026-10-28T08:28:40.9029608Z Fabric Loom: 1.19.3
+2026-10-28T08:29:08.3579690Z 
+2026-10-28T08:29:08.3616054Z > Task :compileJava
+2026-10-28T08:29:08.3650035Z Note: Some input files use or override a deprecated API.
+2026-10-28T08:29:08.3685619Z Note: Recompile with -Xlint:deprecation for details.
+2026-10-28T08:29:21.3736021Z 
+2026-10-28T08:29:21.3780233Z > Task :processResources
+2026-10-28T08:29:21.3799712Z > Task :classes
+2026-10-28T08:29:24.1802937Z > Task :compileClientJava
+2026-10-28T08:29:24.1804200Z > Task :processClientResources
+2026-10-28T08:29:24.1805020Z > Task :processIncludeJars
+2026-10-28T08:29:24.3807280Z > Task :recordIncludedJars
+2026-10-28T08:29:24.5808180Z > Task :clientClasses
+2026-10-28T08:29:24.9840207Z > Task :jar
+2026-10-28T08:29:26.1857062Z > Task :compileClientSmokeJava
+2026-10-28T08:29:26.1857810Z > Task :assemble
+2026-10-28T08:29:26.1858413Z > Task :processClientSmokeResources
+2026-10-28T08:29:26.1858895Z > Task :clientSmokeClasses
+2026-10-28T08:29:26.3854702Z > Task :clientSmokeJar
+2026-10-28T08:29:30.1901272Z > Task :compileTestJava
+2026-10-28T08:29:30.1902306Z > Task :processTestResources
+2026-10-28T08:29:30.1902966Z > Task :testClasses
+2026-10-28T08:29:38.6082872Z > Task :test
+2026-10-28T08:29:38.6084058Z > Task :validateAccessWidener NO-SOURCE
+2026-10-28T08:29:38.6084938Z > Task :check
+2026-10-28T08:29:38.6085542Z > Task :build
+2026-10-28T08:29:38.6086176Z > Task :prepareCoexistApi NO-SOURCE
+2026-10-28T08:29:38.6087340Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793176106865.json
+2026-10-28T08:29:38.6088365Z 
+2026-10-28T08:29:38.6089705Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+2026-10-28T08:29:38.6091072Z 
+2026-10-28T08:29:38.6091419Z BUILD SUCCESSFUL in 1m 20s
+2026-10-28T08:29:38.6092038Z 13 actionable tasks: 13 executed
+2026-10-28T08:29:38.8288582Z ##[group]Run python3 scripts/author_template.py
+2026-10-28T08:29:38.8289753Z [36;1mpython3 scripts/author_template.py[0m
+2026-10-28T08:29:38.8377435Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:29:38.8377726Z env:
+2026-10-28T08:29:38.8378057Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:29:38.8378584Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:29:38.8379259Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:29:38.8379632Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:29:38.8379932Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:29:38.8380233Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:29:38.8380679Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:29:38.8381167Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:29:38.8381491Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:29:38.8381810Z ##[endgroup]
+2026-10-28T08:30:04.0312636Z Server reached Done with the mod loaded; sent stop.
+2026-10-28T08:30:04.6456612Z PASS: real-game smoke check in .tmp/smoke/template
+2026-10-28T08:30:04.8015466Z UNALLOCATED template bytes=397618 jar bytes=1343657 sha256=6e085c86ae3265a96c46e815406ea0a6743e155cb7ab14e86afa096f9b1281ae
+2026-10-28T08:30:04.8216951Z ##[group]Run python3 scripts/contract_text.py --check
+2026-10-28T08:30:04.8217728Z [36;1mpython3 scripts/contract_text.py --check[0m
+2026-10-28T08:30:04.8289629Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:30:04.8289904Z env:
+2026-10-28T08:30:04.8290235Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:30:04.8290795Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:30:04.8291251Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:30:04.8291572Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:30:04.8291883Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:30:04.8292205Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:30:04.8292653Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:30:04.8293144Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:30:04.8293478Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:30:04.8293795Z ##[endgroup]
+2026-10-28T08:30:04.8756183Z ##[group]Run python3 scripts/verify_jar.py
+2026-10-28T08:30:04.8756561Z [36;1mpython3 scripts/verify_jar.py[0m
+2026-10-28T08:30:04.8816157Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:30:04.8816413Z env:
+2026-10-28T08:30:04.8816729Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:30:04.8817251Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:30:04.8817691Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:30:04.8818010Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:30:04.8818306Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:30:04.8818619Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:30:04.8819315Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:30:04.8820052Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:30:04.8820379Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:30:04.8820688Z ##[endgroup]
+2026-10-28T08:30:05.0193140Z Verified /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/libs/unallocated-0.2.0.jar: 1,343,657 bytes; exactly 7 approved nested modules
+2026-10-28T08:30:05.0334376Z ##[group]Run python3 -B -m unittest discover -s scripts -p 'test_*.py'
+2026-10-28T08:30:05.0334928Z [36;1mpython3 -B -m unittest discover -s scripts -p 'test_*.py'[0m
+2026-10-28T08:30:05.0397731Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:30:05.0398019Z env:
+2026-10-28T08:30:05.0398365Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:30:05.0398960Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:30:05.0399791Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:30:05.0400150Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:30:05.0400486Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:30:05.0400821Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:30:05.0401320Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:30:05.0401868Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:30:05.0402271Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:30:05.0402598Z ##[endgroup]
+2026-10-28T08:30:18.0790765Z ..........................................................................................
+2026-10-28T08:30:18.0791647Z ----------------------------------------------------------------------
+2026-10-28T08:30:18.0792583Z Ran 90 tests in 12.879s
+2026-10-28T08:30:18.0793191Z 
+2026-10-28T08:30:18.0793555Z OK
+2026-10-28T08:30:18.1015701Z ##[group]Run python3 scripts/smoke_test.py server --fabric-api-version 'none'
+2026-10-28T08:30:18.1016758Z [36;1mpython3 scripts/smoke_test.py server --fabric-api-version 'none'[0m
+2026-10-28T08:30:18.1124135Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:30:18.1124625Z env:
+2026-10-28T08:30:18.1125202Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:30:18.1126182Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:30:18.1126983Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:30:18.1127559Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:30:18.1128123Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:30:18.1128707Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:30:18.1129901Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:30:18.1130867Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:30:18.1131570Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:30:18.1132099Z ##[endgroup]
+2026-10-28T08:30:18.1907055Z Using pinned official Fabric server launcher (download on cache miss): https://meta.fabricmc.net/v2/versions/loader/26.3/0.20.1/1.1.2/server/jar
+2026-10-28T08:30:18.1949934Z Installed player JAR SHA-256: 6e085c86ae3265a96c46e815406ea0a6743e155cb7ab14e86afa096f9b1281ae
+2026-10-28T08:30:44.9686147Z Server reached Done with the mod loaded; sent stop.
+2026-10-28T08:30:45.5870770Z PASS: real-game smoke check in .tmp/smoke/server
+2026-10-28T08:31:03.7355470Z Server reached Done with the mod loaded; sent stop.
+2026-10-28T08:31:04.3463095Z PASS: real-game smoke check in .tmp/smoke/server
+2026-10-28T08:31:21.0383830Z Server reached Done with the mod loaded; sent stop.
+2026-10-28T08:31:21.4444676Z PASS: real-game smoke check in .tmp/smoke/server
+2026-10-28T08:31:21.4608859Z ##[group]Run echo "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"
+2026-10-28T08:31:21.4609805Z [36;1mecho "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"[0m
+2026-10-28T08:31:21.4672040Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:31:21.4672337Z env:
+2026-10-28T08:31:21.4672719Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:31:21.4673511Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:31:21.4674020Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:31:21.4674397Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:31:21.4674753Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:31:21.4675106Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:31:21.4675635Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:31:21.4676222Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:31:21.4676657Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:31:21.4676974Z ##[endgroup]
+2026-10-28T08:31:21.5516625Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+2026-10-28T08:31:21.5517106Z with:
+2026-10-28T08:31:21.5517343Z   path: .tmp/headless-debs/*.deb
+2026-10-28T08:31:21.5517952Z   key: graphics-v1-X64-ubuntu24-20261023.334.3-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+2026-10-28T08:31:21.5518610Z   enableCrossOsArchive: false
+2026-10-28T08:31:21.5518917Z   fail-on-cache-miss: false
+2026-10-28T08:31:21.5519482Z   lookup-only: false
+2026-10-28T08:31:21.5519726Z   save-always: false
+2026-10-28T08:31:21.5519953Z env:
+2026-10-28T08:31:21.5520289Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:31:21.5520860Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:31:21.5521351Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:31:21.5521700Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:31:21.5522010Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:31:21.5522375Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:31:21.5522853Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:31:21.5523440Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:31:21.5523787Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:31:21.5524074Z ##[endgroup]
+2026-10-28T08:31:21.6781006Z (node:2869) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T08:31:21.6785628Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T08:31:21.9129340Z Cache not found for input keys: graphics-v1-X64-ubuntu24-20261023.334.3-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+2026-10-28T08:31:21.9240916Z ##[group]Run bash scripts/install_headless_graphics.sh
+2026-10-28T08:31:21.9241450Z [36;1mbash scripts/install_headless_graphics.sh[0m
+2026-10-28T08:31:21.9305889Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:31:21.9306243Z env:
+2026-10-28T08:31:21.9306677Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:31:21.9307418Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:31:21.9308047Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:31:21.9308510Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:31:21.9308929Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:31:21.9309723Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:31:21.9310371Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:31:21.9311085Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:31:21.9311553Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:31:21.9311980Z ##[endgroup]
+2026-10-28T08:31:31.1979585Z Reading package lists...
+2026-10-28T08:31:31.3652405Z Building dependency tree...
+2026-10-28T08:31:31.3661380Z Reading state information...
+2026-10-28T08:31:31.5664106Z The following NEW packages will be installed:
+2026-10-28T08:31:31.5665286Z   mesa-vulkan-drivers
+2026-10-28T08:31:31.8982740Z 0 upgraded, 1 newly installed, 0 to remove and 102 not upgraded.
+2026-10-28T08:31:31.8983556Z Need to get 17.5 MB of archives.
+2026-10-28T08:31:31.8984349Z After this operation, 98.5 MB of additional disk space will be used.
+2026-10-28T08:31:31.8986341Z Get:1 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 mesa-vulkan-drivers amd64 25.2.8-0ubuntu0.24.04.4 [17.5 MB]
+2026-10-28T08:31:33.2001667Z Fetched 17.5 MB in 1s (13.0 MB/s)
+2026-10-28T08:31:33.2236466Z Selecting previously unselected package mesa-vulkan-drivers:amd64.
+2026-10-28T08:31:33.2584104Z (Reading database ... 
+2026-10-28T08:31:33.2585375Z (Reading database ... 5%
+2026-10-28T08:31:33.2586139Z (Reading database ... 10%
+2026-10-28T08:31:33.2586688Z (Reading database ... 15%
+2026-10-28T08:31:33.2587074Z (Reading database ... 20%
+2026-10-28T08:31:33.2587487Z (Reading database ... 25%
+2026-10-28T08:31:33.2587887Z (Reading database ... 30%
+2026-10-28T08:31:33.2588275Z (Reading database ... 35%
+2026-10-28T08:31:33.2588646Z (Reading database ... 40%
+2026-10-28T08:31:33.2589031Z (Reading database ... 45%
+2026-10-28T08:31:33.2589686Z (Reading database ... 50%
+2026-10-28T08:31:33.2651614Z (Reading database ... 55%
+2026-10-28T08:31:33.3630153Z (Reading database ... 60%
+2026-10-28T08:31:33.5541000Z (Reading database ... 65%
+2026-10-28T08:31:33.7610933Z (Reading database ... 70%
+2026-10-28T08:31:33.9593822Z (Reading database ... 75%
+2026-10-28T08:31:34.0632964Z (Reading database ... 80%
+2026-10-28T08:31:34.1693785Z (Reading database ... 85%
+2026-10-28T08:31:34.3052172Z (Reading database ... 90%
+2026-10-28T08:31:34.4609934Z (Reading database ... 95%
+2026-10-28T08:31:34.4610923Z (Reading database ... 100%
+2026-10-28T08:31:34.4612110Z (Reading database ... 203540 files and directories currently installed.)
+2026-10-28T08:31:34.4660285Z Preparing to unpack .../mesa-vulkan-drivers_25.2.8-0ubuntu0.24.04.4_amd64.deb ...
+2026-10-28T08:31:34.4696959Z Unpacking mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-10-28T08:31:34.8320300Z Setting up mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+2026-10-28T08:31:34.8341066Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-10-28T08:31:36.1505885Z 
+2026-10-28T08:31:36.1506780Z Running kernel seems to be up-to-date.
+2026-10-28T08:31:36.1507604Z 
+2026-10-28T08:31:36.1508024Z Restarting services...
+2026-10-28T08:31:36.1587076Z 
+2026-10-28T08:31:36.1587546Z Service restarts being deferred:
+2026-10-28T08:31:36.1599972Z  systemctl restart hosted-compute-agent.service
+2026-10-28T08:31:36.1600677Z 
+2026-10-28T08:31:36.1601297Z No containers need to be restarted.
+2026-10-28T08:31:36.1601781Z 
+2026-10-28T08:31:36.1602559Z No user sessions are running outdated binaries.
+2026-10-28T08:31:36.1603199Z 
+2026-10-28T08:31:36.1603725Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-28T08:31:36.3842467Z W: Download is performed unsandboxed as root as file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/headless-debs/partial/mesa-vulkan-drivers_25.2.8-0ubuntu0.24.04.4_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+2026-10-28T08:31:36.4343440Z ##[group]Run python3 scripts/smoke_test.py client --fabric-api-version 'none'
+2026-10-28T08:31:36.4344078Z [36;1mpython3 scripts/smoke_test.py client --fabric-api-version 'none'[0m
+2026-10-28T08:31:36.4406956Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:31:36.4407260Z env:
+2026-10-28T08:31:36.4407629Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:31:36.4408249Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:31:36.4408777Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:31:36.4409457Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:31:36.4409813Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:31:36.4410173Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:31:36.4410722Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:31:36.4411313Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:31:36.4411759Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:31:36.4412099Z   LIBGL_ALWAYS_SOFTWARE: true
+2026-10-28T08:31:36.4412586Z   SDL_VIDEODRIVER: x11
+2026-10-28T08:31:36.4412845Z   ALSOFT_DRIVERS: null
+2026-10-28T08:31:36.4413097Z ##[endgroup]
+2026-10-28T08:34:39.3342692Z PASS: real-game smoke check in .tmp/smoke/client
+2026-10-28T08:35:09.7901925Z PASS: real-game smoke check in .tmp/smoke/client
+2026-10-28T08:36:09.7149888Z PASS: real-game smoke check in .tmp/smoke/client
+2026-10-28T08:36:09.7461684Z UNALLOCATED video unavailable: ffmpeg is missing
+2026-10-28T08:36:59.3323753Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-play-console.log ---
+2026-10-28T08:36:59.3326422Z [08:36:35] [Render thread/INFO]: Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
+2026-10-28T08:36:59.3328799Z [08:36:35] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+2026-10-28T08:36:59.3331431Z [08:36:35] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+2026-10-28T08:36:59.3333727Z [08:36:35] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+2026-10-28T08:36:59.3335998Z [08:36:35] [Render thread/INFO]: Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
+2026-10-28T08:36:59.3338149Z [08:36:35] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
+2026-10-28T08:36:59.3340529Z [08:36:35] [Render thread/INFO]: Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+2026-10-28T08:36:59.3342083Z [08:36:35] [Render thread/INFO]: Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+2026-10-28T08:36:59.3343460Z [08:36:35] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
+2026-10-28T08:36:59.3344808Z [08:36:35] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+2026-10-28T08:36:59.3346523Z [08:36:36] [Download-2/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
+2026-10-28T08:36:59.3347977Z [08:36:36] [Download-2/ERROR]: Couldn't connect to realms
+2026-10-28T08:36:59.3349949Z com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC'
+2026-10-28T08:36:59.3352076Z 	at knot//com.mojang.realmsclient.client.RealmsClient.execute(RealmsClient.java:625)
+2026-10-28T08:36:59.3353557Z 	at knot//com.mojang.realmsclient.client.RealmsClient.clientCompatible(RealmsClient.java:354)
+2026-10-28T08:36:59.3355107Z 	at knot//com.mojang.realmsclient.RealmsAvailability.lambda$check$0(RealmsAvailability.java:48)
+2026-10-28T08:36:59.3356675Z 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+2026-10-28T08:36:59.3358235Z 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+2026-10-28T08:36:59.3360500Z 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+2026-10-28T08:36:59.3361802Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-10-28T08:36:59.3363028Z [08:36:38] [Test thread/INFO]: UNALLOCATED smoke: contract skipped on second process with saved acceptance.
+2026-10-28T08:36:59.3364560Z [08:36:38] [Test thread/INFO]: UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified.
+2026-10-28T08:36:59.3366283Z [08:36:38] [Render thread/INFO]: Resizing Dynamic Transforms UBO, capacity limit of 2 reached during a single frame. New capacity will be 4.
+2026-10-28T08:36:59.3367857Z [08:36:38] [Test thread/INFO]: UNALLOCATED smoke: title screen reached from player JAR.
+2026-10-28T08:36:59.3368972Z [08:36:40] [Render thread/ERROR]: UNALLOCATED launcher failed
+2026-10-28T08:36:59.3370547Z java.util.concurrent.CompletionException: java.io.IOException: Expected one session marker
+2026-10-28T08:36:59.3372136Z 	at knot//org.unallocated.client.launcher.LauncherClient.lambda$copyAndOpen$1(LauncherClient.java:99)
+2026-10-28T08:36:59.3374028Z 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+2026-10-28T08:36:59.3375588Z 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1781)
+2026-10-28T08:36:59.3377019Z 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+2026-10-28T08:36:59.3378396Z 	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+2026-10-28T08:36:59.3380091Z 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+2026-10-28T08:36:59.3381488Z 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+2026-10-28T08:36:59.3382732Z Caused by: java.io.IOException: Expected one session marker
+2026-10-28T08:36:59.3383968Z 	at knot//org.unallocated.client.launcher.LauncherClient.sessionFile(LauncherClient.java:44)
+2026-10-28T08:36:59.3385498Z 	at knot//org.unallocated.client.launcher.LauncherClient.readSession(LauncherClient.java:50)
+2026-10-28T08:36:59.3387115Z 	at knot//org.unallocated.client.launcher.LauncherClient.copyTemplate(LauncherClient.java:135)
+2026-10-28T08:36:59.3388739Z 	at knot//org.unallocated.client.launcher.LauncherClient.lambda$copyAndOpen$1(LauncherClient.java:98)
+2026-10-28T08:36:59.3390252Z 	... 6 more
+2026-10-28T08:36:59.3391007Z [08:36:58] [Test thread/ERROR]: Client gametests failed with an exception
+2026-10-28T08:36:59.3392046Z java.lang.AssertionError: Timed out waiting for predicate
+2026-10-28T08:36:59.3393608Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:200)
+2026-10-28T08:36:59.3395826Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:171)
+2026-10-28T08:36:59.3397508Z 	at knot//org.unallocated.smoke.PlaySmokeTest.run(PlaySmokeTest.java:82)
+2026-10-28T08:36:59.3398872Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:133)
+2026-10-28T08:36:59.3400976Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+2026-10-28T08:36:59.3403045Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+2026-10-28T08:36:59.3404477Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-10-28T08:36:59.3405388Z [08:36:58] [Render thread/ERROR]: Minecraft has crashed!
+2026-10-28T08:36:59.3406649Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timed out waiting for predicate
+2026-10-28T08:36:59.3408194Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+2026-10-28T08:36:59.3410230Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+2026-10-28T08:36:59.3412000Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+2026-10-28T08:36:59.3413241Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+2026-10-28T08:36:59.3426630Z Caused by: java.lang.AssertionError: Timed out waiting for predicate
+2026-10-28T08:36:59.3440581Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:200)
+2026-10-28T08:36:59.3460479Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:171)
+2026-10-28T08:36:59.3468972Z 	at knot//org.unallocated.smoke.PlaySmokeTest.run(PlaySmokeTest.java:82)
+2026-10-28T08:36:59.3470969Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:133)
+2026-10-28T08:36:59.3474260Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+2026-10-28T08:36:59.3476371Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+2026-10-28T08:36:59.3478138Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-10-28T08:36:59.3478798Z 
+2026-10-28T08:36:59.3479568Z > Task :runClientSmoke FAILED
+2026-10-28T08:36:59.3480841Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_7-1793176570737.json
+2026-10-28T08:36:59.3481917Z 
+2026-10-28T08:36:59.3482422Z FAILURE: Build failed with an exception.
+2026-10-28T08:36:59.3482986Z 
+2026-10-28T08:36:59.3483327Z * What went wrong:
+2026-10-28T08:36:59.3484203Z Execution failed for task ':runClientSmoke' (registered in build file 'build.gradle').
+2026-10-28T08:36:59.3485359Z > Process 'command 'xvfb-run'' finished with non-zero exit value 1
+2026-10-28T08:36:59.3486079Z 
+2026-10-28T08:36:59.3486408Z * Try:
+2026-10-28T08:36:59.3487132Z > Run with --stacktrace option to get the stack trace.
+2026-10-28T08:36:59.3488041Z > Run with --info or --debug option to get more log output.
+2026-10-28T08:36:59.3489290Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+2026-10-28T08:36:59.3490337Z > Get more help at https://help.gradle.org.
+2026-10-28T08:36:59.3490934Z 
+2026-10-28T08:36:59.3491269Z BUILD FAILED in 48s
+2026-10-28T08:36:59.3491906Z 9 actionable tasks: 1 executed, 8 up-to-date
+2026-10-28T08:36:59.3493167Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client/logs/latest.log ---
+2026-10-28T08:36:59.3494614Z 		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:213)
+2026-10-28T08:36:59.3495516Z 		... 11 more
+2026-10-28T08:36:59.3496579Z 	Suppressed: java.lang.UnsatisfiedLinkError: libflite.so: cannot open shared object file: No such file or directory
+2026-10-28T08:36:59.3497829Z 		at knot//com.sun.jna.Native.open(Native Method)
+2026-10-28T08:36:59.3498758Z 		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:226)
+2026-10-28T08:36:59.3500152Z 		... 11 more
+2026-10-28T08:36:59.3500591Z UNALLOCATED video unavailable: no playable recording
+2026-10-28T08:36:59.3568176Z 	Suppressed: java.io.IOException: Native library (linux-x86-64/libflite.so) not found in resource path (/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/9.10.1/ada2141c0cc52ee8f5c48cd5fa4ce0e794f22236/asm-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/9.10.1/8d49f14d51f632cb1d87c88d1ceaf50db0d8af1b/asm-analysis-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/9.10.1/4229e4c55fd8e01c23f9fe9884075cc628aacc50/asm-commons-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/9.10.1/e244332a17564c1d1572449399a842de35881be2/asm-tree-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/9.10.1/7bb9d450e8d4cbf9f9e04096c44bbfe7fba80b15/asm-util-9.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.5+mixin.0.8.7/cef8519a91129d0c21fa03bb9378f0e8ca810e5/sponge-mixin-0.17.5+mixin.0.8.7.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.github.llamalad7/mixinextras-fabric/0.5.5/d1055b99c0ab08a8403fe2da3d79ca28e6340a76/mixinextras-fabric-0.5.5.jar:/home/runner/.gradle/caches/modules-2/files-2.1/at.yawk.lz4/lz4-java/1.10.1/f541d7f910fe3d76f38f799c507c48cc81b12ecb/lz4-java-1.10.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.azure/azure-json/1.4.0/fcc1d354dbc3e0300e5276b1bf124d0247799cd8/azure-json-1.4.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.github.oshi/oshi-core/6.9.0/3224870731860cfcd7744581a05b559e94291e7/oshi-core-6.9.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.14.0/efc0e34ede4e3204eaefb84a00e55e8c86634382/gson-2.14.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.6.0-jre/c376b13067cc99a5774403530953f7b05a91e218/guava-33.6.0-jre.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/78.3/6a851a53bb1f25689fc418dcc8935b0d93580adf/icu4j-78.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.microsoft.azure/msal4j/1.24.1/c233f2d047b9755f7041adf21a858c680e4c9242/msal4j-1.24.1.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/authlib/10.0.77/add8754cda96cf0cd840441632875648836f8a71/authlib-10.0.77.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/blocklist/1.0.10/5c685c5ffa94c4cd39496c7184c1d122e515ecef/blocklist-1.0.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/brigadier/1.3.11/3373d1e7bf00c8b99bed1ea4efb8c47344e4a887/brigadier-1.3.11.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/datafixerupper/10.0.21/b6b2ae770c02e0c1eb90f9985b151e9085a38d0b/datafixerupper-10.0.21.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/cc2ad81342001b4281c305a298d7f50332354058/jtracy-1.14.38.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/jtracy/1.14.38/d2433300f8a4e99595d513546d19ecddc3eaa15e/jtracy-1.14.38-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/logging/1.7.12/351cea64a5233361327d8d54c44277041beed97f/logging-1.7.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/patchy/2.2.10/da05971b07cbb379d002cf7eaec6a2048211fefc/patchy-2.2.10.jar:/home/runner/.gradle/caches/modules-2/files-2.1/com.mojang/text2speech/1.19.12/2e517a75c79d34d32de2b5d68422150836c2133e/text2speech-1.19.12.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.22.0/6b3eb4beb7058c2a638f5f17bcb388649fd339dd/commons-codec-1.22.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.20.0/36f3474daec2849c149e877614e7f979b2082cd2/commons-io-2.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.2.16.Final/5397ef65dcb60670e0e0dba4854522873af3070/netty-buffer-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-base/4.2.16.Final/1a01d45a9efc228c6d747525848b065e0656b5f/netty-codec-base-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-compression/4.2.16.Final/bdbbcfcdbe217b95c14a04df4fc5d31213d5c27c/netty-codec-compression-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.2.16.Final/b5e0715df90047ee5a0138c8f704f43c751009e4/netty-codec-http-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.2.16.Final/c2bc7fa5acfa2afc777e944d84f0aa65559cc81e/netty-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.2.16.Final/cc82873ae4b6d14effe480740ad838de09add70d/netty-handler-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.2.16.Final/fcea6d64273b59ab9127b68c16ae98af34642139/netty-resolver-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.2.16.Final/cf90c7b892e284ba9f1545dce170168369b3b9d6/netty-transport-classes-epoll-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-kqueue/4.2.16.Final/fa2bcf8c71626510f6fae173f78182117b70f7a/netty-transport-classes-kqueue-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/eed34f3b37b4c46a0cbb49456ccc4e3bd7195e4c/netty-transport-native-epoll-4.2.16.Final-linux-aarch_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.2.16.Final/439c24f5c27c220deb042b42e4048d606edeb78d/netty-transport-native-epoll-4.2.16.Final-linux-x86_64.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.2.16.Final/3cf32390f1b80af890ac44aa0698c2ff58c2a4d7/netty-transport-native-unix-common-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.2.16.Final/ae87a3bec51d503475a19fbd718bf777f2fc06c6/netty-transport-4.2.16.Final.jar:/home/runner/.gradle/caches/modules-2/files-2.1/it.unimi.dsi/fastutil/8.5.18/a6cff377eecc19c2037bf31568a6d7106b50ba1f/fastutil-8.5.18.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna-platform/5.17.0/a4934c44d25a9d8c2ddf4203affd20330cb3426f/jna-platform-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/5.17.0/33d12735bef894440780fce64f9758d420c7bae2/jna-5.17.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.sf.jopt-simple/jopt-simple/5.0.4/4fdac2fbe92dfad86aa6e9301736f6b4342a3f5c/jopt-simple-5.0.4.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.28.0/e482f2c7a88dac3c497e96aa420b6a769f59c8d7/commons-compress-1.28.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.20.0/65897b3e5731220962e659e001904af3c3cbeba9/commons-lang3-3.20.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.26.0/ad52af0ecf054a7e3f275a2e180ee06d9c490951/log4j-api-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.26.0/d267ca60b27ddb075e0b4e75e7875859717bf85f/log4j-core-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-slf4j2-impl/2.26.0/668c0f0e813d83f00a7182533aa658ec7e7a0a0d/log4j-slf4j2-impl-2.26.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jcraft/jorbis/0.0.17/8872d22b293e8f5d7d56ff92be966e6dc28ebdc6/jorbis-0.0.17.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.joml/joml/1.10.9/438e036486bad66b189bff385dd07dea4f74a146/joml-1.10.9.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/d2b12961d44f92860fb1ab501f9c69b7a2975236/lwjgl-freetype-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-freetype/3.4.3/38f27c9a0fbe000bfb38b295c32944d699e246e9/lwjgl-freetype-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/350f317eaf5295b1e53f6664ef5fdeeaaa7dcbf0/lwjgl-jemalloc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-jemalloc/3.4.3/ca21b4b4c6d223907de645a18436ef6f677a5d4f/lwjgl-jemalloc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/32b52cda5af6937a4e4bd321bdb83082025cb332/lwjgl-openal-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openal/3.4.3/7daa62f9f7b38b30e8a3d3bc7069e9b2e3cd52f0/lwjgl-openal-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/b81769ee48050f8c71e70839505f350bf9219d90/lwjgl-opengl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-opengl/3.4.3/ec6fb42167943e94f7f0b14707c1737653c4044b/lwjgl-opengl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/c02146735d6ff70d070c73532b435e5c893a346b/lwjgl-sdl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-sdl/3.4.3/6ed1b80b7c211a491612c70e43f27ba1f42cccd0/lwjgl-sdl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/ba9fbc8fc4d50b3e4b436cc958ddb4abdb05867c/lwjgl-shaderc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-shaderc/3.4.3/37faa5824f75901f4961e56805aedf68e13cf8b/lwjgl-shaderc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/98e5b5ef5159100b26a169a9aed6c24e820e3eaa/lwjgl-spvc-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.4.3/709eb01deec4bdafb7634b125a63fd8de172fc50/lwjgl-spvc-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/cdce54785bd3758e44a81f345d6260774d921c78/lwjgl-stb-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-stb/3.4.3/3878e44ce27c12791e570b5c8754ef3b68401dd3/lwjgl-stb-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/816a6ac87f1e447e5346ca0e7a1078353f51fbd6/lwjgl-vma-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.4.3/3a9a95d3e83f7fc49c6ed8d0e1c853b77662d90e/lwjgl-vma-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vulkan/3.4.3/ffdaf1898192059f059d66f9fa37e3debcac10e0/lwjgl-vulkan-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/7ab5265a73d8a959ed62332d546536ae6be2f0d5/lwjgl-3.4.3.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl/3.4.3/2800e134537db1a175eba41c430b1018eddc48f0/lwjgl-3.4.3-natives-linux.jar:/home/runner/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.17/d9e58ac9c7779ba3bf8142aff6c830617a7fe60f/slf4j-api-2.0.17.jar:/home/runner/.gradle/caches/fabric-loom/26.3/minecraft-client.jar:/home/runner/.gradle/caches/modules-2/files-2.1/net.fabricmc/fabric-loader/0.20.1/7c7f9831e9f27b303d5d08decb5f4258a9f03296/fabric-loader-0.20.1.jar)
+2026-10-28T08:36:59.3633693Z 		at knot//com.sun.jna.Native.extractFromResourcePath(Native.java:1141)
+2026-10-28T08:36:59.3634674Z 		at knot//com.sun.jna.NativeLibrary.loadLibrary(NativeLibrary.java:297)
+2026-10-28T08:36:59.3635337Z 		... 11 more
+2026-10-28T08:36:59.3637501Z [08:36:28] [Render thread/INFO]: Reloading ResourceManager: vanilla, vanilla, fabric-api-base, fabric-client-gametest-api-v1, fabric-command-api-v2, fabric-lifecycle-events-v1, fabric-networking-api-v1, fabric-registry-sync-v0, fabric-resource-loader-v1, fabric-screen-api-v1, fabricloader, unallocated
+2026-10-28T08:36:59.3640368Z [08:36:29] [Worker-Main-1/INFO]: Found unifont_all_no_pua-17.0.01.hex, loading
+2026-10-28T08:36:59.3641255Z [08:36:29] [Worker-Main-1/INFO]: Found unifont_jp_patch-17.0.01.hex, loading
+2026-10-28T08:36:59.3642120Z [08:36:29] [Worker-Main-1/INFO]: Found unifont_pua-17.0.01.hex, loading
+2026-10-28T08:36:59.3642966Z [08:36:35] [Render thread/INFO]: OpenAL initialized on device No Output
+2026-10-28T08:36:59.3643741Z [08:36:35] [Render thread/INFO]: Sound engine started
+2026-10-28T08:36:59.3644612Z [08:36:35] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+2026-10-28T08:36:59.3645716Z [08:36:35] [Render thread/INFO]: Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
+2026-10-28T08:36:59.3646856Z [08:36:35] [Render thread/INFO]: Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
+2026-10-28T08:36:59.3648012Z [08:36:35] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+2026-10-28T08:36:59.3649472Z [08:36:35] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+2026-10-28T08:36:59.3650694Z [08:36:35] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+2026-10-28T08:36:59.3651832Z [08:36:35] [Render thread/INFO]: Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
+2026-10-28T08:36:59.3653563Z [08:36:35] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
+2026-10-28T08:36:59.3654649Z [08:36:35] [Render thread/INFO]: Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+2026-10-28T08:36:59.3655784Z [08:36:35] [Render thread/INFO]: Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+2026-10-28T08:36:59.3656963Z [08:36:35] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
+2026-10-28T08:36:59.3658112Z [08:36:35] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+2026-10-28T08:36:59.3659854Z [08:36:36] [Download-2/INFO]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
+2026-10-28T08:36:59.3661175Z [08:36:36] [Download-2/ERROR]: Couldn't connect to realms
+2026-10-28T08:36:59.3662768Z com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC'
+2026-10-28T08:36:59.3664571Z 	at knot//com.mojang.realmsclient.client.RealmsClient.execute(RealmsClient.java:625)
+2026-10-28T08:36:59.3666099Z 	at knot//com.mojang.realmsclient.client.RealmsClient.clientCompatible(RealmsClient.java:354)
+2026-10-28T08:36:59.3667425Z 	at knot//com.mojang.realmsclient.RealmsAvailability.lambda$check$0(RealmsAvailability.java:48)
+2026-10-28T08:36:59.3668751Z 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+2026-10-28T08:36:59.3670323Z 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+2026-10-28T08:36:59.3671652Z 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+2026-10-28T08:36:59.3672638Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-10-28T08:36:59.3673588Z [08:36:38] [Test thread/INFO]: UNALLOCATED smoke: contract skipped on second process with saved acceptance.
+2026-10-28T08:36:59.3674858Z [08:36:38] [Test thread/INFO]: UNALLOCATED smoke: bundled Fabric API modules verified; screen hook verified.
+2026-10-28T08:36:59.3676313Z [08:36:38] [Render thread/INFO]: Resizing Dynamic Transforms UBO, capacity limit of 2 reached during a single frame. New capacity will be 4.
+2026-10-28T08:36:59.3677689Z [08:36:38] [Test thread/INFO]: UNALLOCATED smoke: title screen reached from player JAR.
+2026-10-28T08:36:59.3678525Z [08:36:40] [Render thread/ERROR]: UNALLOCATED launcher failed
+2026-10-28T08:36:59.3679727Z java.util.concurrent.CompletionException: java.io.IOException: Expected one session marker
+2026-10-28T08:36:59.3681114Z 	at knot//org.unallocated.client.launcher.LauncherClient.lambda$copyAndOpen$1(LauncherClient.java:99)
+2026-10-28T08:36:59.3682587Z 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+2026-10-28T08:36:59.3683998Z 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1781)
+2026-10-28T08:36:59.3685202Z 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+2026-10-28T08:36:59.3686338Z 	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+2026-10-28T08:36:59.3687654Z 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+2026-10-28T08:36:59.3688859Z 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+2026-10-28T08:36:59.3690086Z Caused by: java.io.IOException: Expected one session marker
+2026-10-28T08:36:59.3691110Z 	at knot//org.unallocated.client.launcher.LauncherClient.sessionFile(LauncherClient.java:44)
+2026-10-28T08:36:59.3692425Z 	at knot//org.unallocated.client.launcher.LauncherClient.readSession(LauncherClient.java:50)
+2026-10-28T08:36:59.3693737Z 	at knot//org.unallocated.client.launcher.LauncherClient.copyTemplate(LauncherClient.java:135)
+2026-10-28T08:36:59.3695107Z 	at knot//org.unallocated.client.launcher.LauncherClient.lambda$copyAndOpen$1(LauncherClient.java:98)
+2026-10-28T08:36:59.3696079Z 	... 6 more
+2026-10-28T08:36:59.3696871Z [08:36:58] [Test thread/ERROR]: Client gametests failed with an exception
+2026-10-28T08:36:59.3697731Z java.lang.AssertionError: Timed out waiting for predicate
+2026-10-28T08:36:59.3699022Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:200)
+2026-10-28T08:36:59.3701391Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:171)
+2026-10-28T08:36:59.3702779Z 	at knot//org.unallocated.smoke.PlaySmokeTest.run(PlaySmokeTest.java:82)
+2026-10-28T08:36:59.3703962Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:133)
+2026-10-28T08:36:59.3705538Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+2026-10-28T08:36:59.3707356Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+2026-10-28T08:36:59.3708561Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-10-28T08:36:59.3709629Z [08:36:58] [Render thread/ERROR]: Minecraft has crashed!
+2026-10-28T08:36:59.3710642Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Timed out waiting for predicate
+2026-10-28T08:36:59.3711942Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+2026-10-28T08:36:59.3713320Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+2026-10-28T08:36:59.3714635Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+2026-10-28T08:36:59.3715559Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+2026-10-28T08:36:59.3716617Z Caused by: java.lang.AssertionError: Timed out waiting for predicate
+2026-10-28T08:36:59.3718038Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:200)
+2026-10-28T08:36:59.3720157Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.waitFor(ClientGameTestContextImpl.java:171)
+2026-10-28T08:36:59.3721639Z 	at knot//org.unallocated.smoke.PlaySmokeTest.run(PlaySmokeTest.java:82)
+2026-10-28T08:36:59.3722767Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:133)
+2026-10-28T08:36:59.3724289Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+2026-10-28T08:36:59.3726084Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+2026-10-28T08:36:59.3727343Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-10-28T08:36:59.4064437Z Traceback (most recent call last):
+2026-10-28T08:36:59.4065889Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 695, in <module>
+2026-10-28T08:36:59.4067362Z     main()
+2026-10-28T08:36:59.4068545Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 689, in main
+2026-10-28T08:36:59.4070376Z     client(version, include_story=True)
+2026-10-28T08:36:59.4071650Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 628, in client
+2026-10-28T08:36:59.4072795Z     monitor(
+2026-10-28T08:36:59.4073672Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 190, in monitor
+2026-10-28T08:36:59.4074939Z     raise RuntimeError(f'Game command exited with status {process.returncode}')
+2026-10-28T08:36:59.4075776Z RuntimeError: Game command exited with status 1
+2026-10-28T08:36:59.4250220Z ##[error]Process completed with exit code 1.
+2026-10-28T08:36:59.4321319Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-28T08:36:59.4321763Z with:
+2026-10-28T08:36:59.4322099Z   name: smoke-diagnostics-d5158a003b23bdd6370308e00ba7dd33736b8c56-none
+2026-10-28T08:36:59.4322516Z   include-hidden-files: true
+2026-10-28T08:36:59.4324206Z   path: build/reports/included-jars.json
+.tmp/smoke/gradle-diagnostics/**
+~/.gradle/daemon/**/daemon-*.out.log
+.tmp/smoke/*-console.log
+.tmp/smoke/**/logs/**
+.tmp/smoke/**/logs-first/**
+.tmp/smoke/**/logs-restart/**
+.tmp/smoke/**/logs-story/**
+.tmp/smoke/video/**
+build/template/**
+.tmp/smoke/**/crash-reports/**
+.tmp/smoke/**/hs_err_pid*.log
+.tmp/smoke/**/screenshots/**
+.tmp/smoke/client/unallocated/contract.properties
+hs_err_pid*.log
+build/test-results/**
+build/reports/tests/**
+
+2026-10-28T08:36:59.4325904Z   if-no-files-found: warn
+2026-10-28T08:36:59.4326139Z   retention-days: 7
+2026-10-28T08:36:59.4326353Z   compression-level: 6
+2026-10-28T08:36:59.4326573Z   overwrite: false
+2026-10-28T08:36:59.4326791Z env:
+2026-10-28T08:36:59.4327085Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:36:59.4327574Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:36:59.4327995Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:36:59.4328484Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:36:59.4328779Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:36:59.4329391Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:36:59.4329913Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:36:59.4330405Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:36:59.4330725Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:36:59.4330990Z ##[endgroup]
+2026-10-28T08:36:59.6201802Z (node:4062) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T08:36:59.6203437Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T08:36:59.9858542Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-28T08:36:59.9873511Z The least common ancestor is /home/runner. This will be the root directory of the artifact
+2026-10-28T08:36:59.9874652Z With the provided path, there will be 96 files uploaded
+2026-10-28T08:36:59.9875870Z Artifact name is valid!
+2026-10-28T08:36:59.9876539Z Root directory input is valid!
+2026-10-28T08:37:00.3596451Z Beginning upload of artifact content to blob storage
+2026-10-28T08:37:00.7660121Z (node:4062) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T08:37:01.5001780Z Uploaded bytes 8388608
+2026-10-28T08:37:01.6608614Z Uploaded bytes 12037083
+2026-10-28T08:37:01.7232683Z Finished uploading artifact content to blob storage!
+2026-10-28T08:37:01.7236651Z SHA256 digest of uploaded artifact zip is d3b72fecca82b03d6eeb935e869fe0db2abfce945364f9f3a0553fe2f32a6afc
+2026-10-28T08:37:01.7238359Z Finalizing artifact upload
+2026-10-28T08:37:02.2043863Z Artifact smoke-diagnostics-d5158a003b23bdd6370308e00ba7dd33736b8c56-none.zip successfully finalized. Artifact ID 12802735988
+2026-10-28T08:37:02.2046750Z Artifact smoke-diagnostics-d5158a003b23bdd6370308e00ba7dd33736b8c56-none has been successfully uploaded! Final size is 12037083 bytes. Artifact ID is 12802735988
+2026-10-28T08:37:02.2050158Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40656974949/artifacts/12802735988
+2026-10-28T08:37:02.2241124Z ##[group]Run mkdir -p .tmp/verdict
+2026-10-28T08:37:02.2241473Z [36;1mmkdir -p .tmp/verdict[0m
+2026-10-28T08:37:02.2241983Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "d5158a003b23bdd6370308e00ba7dd33736b8c56" "none" "failure" \[0m
+2026-10-28T08:37:02.2242528Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+2026-10-28T08:37:02.2242826Z [36;1mcat .tmp/verdict/verdict.json[0m
+2026-10-28T08:37:02.2304990Z shell: /usr/bin/bash -e {0}
+2026-10-28T08:37:02.2305260Z env:
+2026-10-28T08:37:02.2305601Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:37:02.2306166Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:37:02.2306654Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:37:02.2306991Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:37:02.2307304Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:37:02.2307625Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:37:02.2308132Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:37:02.2308683Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:37:02.2309176Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:37:02.2309477Z ##[endgroup]
+2026-10-28T08:37:02.2415435Z {"sha":"d5158a003b23bdd6370308e00ba7dd33736b8c56","api":"none","status":"failure"}
+2026-10-28T08:37:02.2468590Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-28T08:37:02.2469023Z with:
+2026-10-28T08:37:02.2469450Z   name: rehearsal-verdict-0
+2026-10-28T08:37:02.2469917Z   include-hidden-files: true
+2026-10-28T08:37:02.2470187Z   path: .tmp/verdict/verdict.json
+2026-10-28T08:37:02.2470461Z   retention-days: 3
+2026-10-28T08:37:02.2470683Z   if-no-files-found: warn
+2026-10-28T08:37:02.2470920Z   compression-level: 6
+2026-10-28T08:37:02.2471139Z   overwrite: false
+2026-10-28T08:37:02.2471344Z env:
+2026-10-28T08:37:02.2471645Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:37:02.2472166Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+2026-10-28T08:37:02.2483389Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-10-28T08:37:02.2483897Z   GRADLE_USER_HOME: /home/runner/.gradle
+2026-10-28T08:37:02.2484227Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-10-28T08:37:02.2484563Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-10-28T08:37:02.2485023Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-10-28T08:37:02.2485545Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-10-28T08:37:02.2485898Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-10-28T08:37:02.2486181Z ##[endgroup]
+2026-10-28T08:37:02.4278523Z (node:4079) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T08:37:02.4282972Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T08:37:02.4446946Z With the provided path, there will be 1 file uploaded
+2026-10-28T08:37:02.4489072Z Artifact name is valid!
+2026-10-28T08:37:02.4509841Z Root directory input is valid!
+2026-10-28T08:37:02.8015300Z Beginning upload of artifact content to blob storage
+2026-10-28T08:37:02.8234935Z (node:4079) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-28T08:37:03.0232900Z Uploaded bytes 216
+2026-10-28T08:37:03.0817192Z Finished uploading artifact content to blob storage!
+2026-10-28T08:37:03.0831228Z SHA256 digest of uploaded artifact zip is 03e4946f79987329dbaf43f31adbcdb70e2b1731048fad989e981d375ee9160c
+2026-10-28T08:37:03.0832174Z Finalizing artifact upload
+2026-10-28T08:37:03.5960336Z Artifact rehearsal-verdict-0.zip successfully finalized. Artifact ID 12803245193
+2026-10-28T08:37:03.5962363Z Artifact rehearsal-verdict-0 has been successfully uploaded! Final size is 216 bytes. Artifact ID is 12803245193
+2026-10-28T08:37:03.5969772Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40656974949/artifacts/12803245193
+2026-10-28T08:37:03.6226271Z Post job cleanup.
+2026-10-28T08:37:03.8922823Z In post-action step
+2026-10-28T08:37:03.8934957Z Cache is disabled: will not save state for later builds.
+2026-10-28T08:37:03.8941094Z Generating Job Summary
+2026-10-28T08:37:03.8970185Z Completed post-action step
+2026-10-28T08:37:03.9148880Z Post job cleanup.
+2026-10-28T08:37:04.0812956Z (node:4103) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T08:37:04.0814649Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T08:37:04.1100141Z Post job cleanup.
+2026-10-28T08:37:04.2357783Z [command]/usr/bin/git version
+2026-10-28T08:37:04.2450079Z git version 2.55.0
+2026-10-28T08:37:04.2540752Z Temporarily overriding HOME='/home/runner/work/_temp/90d7fee8-c99b-482d-8299-daacbbebf312' before making global git config changes
+2026-10-28T08:37:04.2544805Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-28T08:37:04.2546470Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+2026-10-28T08:37:04.2652535Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T08:37:04.2741630Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T08:37:04.3100976Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T08:37:04.3147507Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T08:37:04.3727023Z Cleaning up orphan processes
+2026-10-28T08:37:04.4146429Z Terminate orphan process: pid (2290) (java)
+2026-10-28T08:37:04.4283307Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

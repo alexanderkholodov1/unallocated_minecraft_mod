@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.story.StoryLoaderTest" tests="7" skipped="0" failures="1" errors="0" timestamp="2026-10-29T01:59:29.772Z" hostname="runnervm48cm3" time="0.177">
+  <properties/>
+  <testcase name="anchorNamesExactlyMatchMapLayout()" classname="org.unallocated.story.StoryLoaderTest" time="0.002"/>
+  <testcase name="duplicateKeysAndTrailingJsonAreRejected()" classname="org.unallocated.story.StoryLoaderTest" time="0.015"/>
+  <testcase name="fixturesAgreeWithOfflineRuleAndPointerContract()" classname="org.unallocated.story.StoryLoaderTest" time="0.082"/>
+  <testcase name="compilerContextRetainsTheStoryAnchorNamespace()" classname="org.unallocated.story.StoryLoaderTest" time="0.004"/>
+  <testcase name="anyCompilesExtensionsThroughTheRegistry()" classname="org.unallocated.story.StoryLoaderTest" time="0.002"/>
+  <testcase name="unverifiedPostChainsAreUnknown()" classname="org.unallocated.story.StoryLoaderTest" time="0.001"/>
+  <testcase name="shippedStoryIsValidWithItsThreeEndings()" classname="org.unallocated.story.StoryLoaderTest" time="0.069">
+    <failure message="org.opentest4j.AssertionFailedError: [Finding[file=chapters/presa.json, pointer=/beats/0/actions/0/scare, rule=feature-off, message=effects.screamer is false, warning=false], Finding[file=chapters/presa.json, pointer=/beats/5/actions/2/effect, rule=feature-off, message=effects.options is false, warning=false], Finding[file=chapters/puppet.json, pointer=/beats/4/actions/2/effect, rule=feature-off, message=effects.options is false, warning=false], Finding[file=chapters/kernel.json, pointer=/beats/12/actions/13/effect, rule=feature-off, message=effects.options is false, warning=false], Finding[file=story.json, pointer=/chapters, rule=session-length, message=Budget outside 600–900 seconds, warning=true]] ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: [Finding[file=chapters/presa.json, pointer=/beats/0/actions/0/scare, rule=feature-off, message=effects.screamer is false, warning=false], Finding[file=chapters/presa.json, pointer=/beats/5/actions/2/effect, rule=feature-off, message=effects.options is false, warning=false], Finding[file=chapters/puppet.json, pointer=/beats/4/actions/2/effect, rule=feature-off, message=effects.options is false, warning=false], Finding[file=chapters/kernel.json, pointer=/beats/12/actions/13/effect, rule=feature-off, message=effects.options is false, warning=false], Finding[file=story.json, pointer=/chapters, rule=session-length, message=Budget outside 600–900 seconds, warning=true]] ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:42)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:191)
+	at org.unallocated.story.StoryLoaderTest.shippedStoryIsValidWithItsThreeEndings(StoryLoaderTest.java:62)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,790 @@
+build (0.165.0+26.3)	Set up job	﻿2026-10-28T13:39:37.8570922Z Current runner version: '2.338.0'
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8597913Z ##[group]Runner Image Provisioner
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8598881Z Hosted Compute Agent
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8599514Z Version: 20261021.618
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8600219Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8601012Z Build Date: 2026-10-21T00:45:21Z
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8601699Z Worker ID: {20608e3d-b859-4912-b260-e3d811c29951}
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8602379Z Region: westus
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8603001Z Cloud: Azure
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8603571Z ##[endgroup]
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8605103Z ##[group]Operating System
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8605999Z Ubuntu
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8606538Z 24.04.5
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8607136Z LTS
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8607686Z ##[endgroup]
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8608271Z ##[group]Runner Image
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8608896Z Image: ubuntu-24.04
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8609458Z Version: 20261012.334.1
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8611082Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8612959Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8613964Z ##[endgroup]
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8615181Z ##[group]GITHUB_TOKEN Permissions
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8617305Z Contents: read
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8617976Z Metadata: read
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8618684Z ##[endgroup]
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8621230Z Secret source: Actions
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8622272Z Cache mode: write
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8623021Z Prepare workflow directory
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.8973953Z Prepare all required actions
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:37.9024148Z Getting action download info
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:38.3232521Z Download action repository 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' (SHA:08c6903cd8c0fde910a37f88322edcfb5dd907a8)
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:38.4897819Z Download action repository 'actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e' (SHA:f2beeb24e141e01a676f977032f5a29d81c9e27e)
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:39.0203219Z Download action repository 'gradle/actions@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2' (SHA:4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2)
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:40.0584168Z Download action repository 'actions/cache@5a3ec84eff668545956fd18022155c47e93e2684' (SHA:5a3ec84eff668545956fd18022155c47e93e2684)
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:40.2845916Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+build (0.165.0+26.3)	Set up job	2026-10-28T13:39:40.6275623Z Complete job name: build (0.165.0+26.3)
+build (0.165.0+26.3)	Check out source	﻿2026-10-28T13:39:40.7177476Z ##[group]Run actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7178314Z with:
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7178595Z   persist-credentials: false
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7178982Z   repository: alexanderkholodov1/unallocated_minecraft_mod
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7181611Z   token: ***
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7181882Z   ssh-strict: true
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7182141Z   ssh-user: git
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7182394Z   clean: true
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7182665Z   sparse-checkout-cone-mode: true
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7183008Z   fetch-depth: 1
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7183263Z   fetch-tags: false
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7183532Z   show-progress: true
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7183817Z   lfs: false
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7184067Z   submodules: false
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7184334Z   set-safe-directory: true
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:40.7184828Z ##[endgroup]
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0581476Z Syncing repository: alexanderkholodov1/unallocated_minecraft_mod
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0583640Z ##[group]Getting Git version info
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0584770Z Working directory is '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0586579Z [command]/usr/bin/git version
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0675279Z git version 2.55.0
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0701328Z ##[endgroup]
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0724112Z Temporarily overriding HOME='/home/runner/work/_temp/6266c059-a329-4abf-93cd-c2cf893ebfc8' before making global git config changes
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0726684Z Adding repository directory to the temporary git global config as a safe directory
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0732064Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0800064Z Deleting the contents of '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod'
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0806149Z ##[group]Initializing the repository
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0811828Z [command]/usr/bin/git init /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0998744Z hint: Using 'master' as the name for the initial branch. This default branch name
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.0999910Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1000887Z hint: to use in all of your new repositories, which will suppress this warning,
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1001684Z hint: call:
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1002068Z hint:
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1002655Z hint: 	git config --global init.defaultBranch <name>
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1003258Z hint:
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1003868Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1004861Z hint: 'development'. The just-created branch can be renamed via this command:
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1005628Z hint:
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1006332Z hint: 	git branch -m <name>
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1006793Z hint:
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1007441Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1008694Z Initialized empty Git repository in /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.git/
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1017371Z [command]/usr/bin/git remote add origin https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1086033Z ##[endgroup]
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1087407Z ##[group]Disabling automatic garbage collection
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1106831Z [command]/usr/bin/git config --local gc.auto 0
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1139222Z ##[endgroup]
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1140574Z ##[group]Setting up auth
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1148975Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1192445Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1591419Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1631167Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1872501Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1920222Z ##[endgroup]
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1921242Z ##[group]Fetching the repository
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.1935411Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +97c012488be4896e62cbecc55ba40bd68af49a1d:refs/remotes/origin/rehearsal/w-97c0124
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7030347Z From https://github.com/alexanderkholodov1/unallocated_minecraft_mod
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7031945Z  * [new ref]         97c012488be4896e62cbecc55ba40bd68af49a1d -> origin/rehearsal/w-97c0124
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7035501Z ##[endgroup]
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7036295Z ##[group]Determining the checkout info
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7038766Z ##[endgroup]
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7044935Z [command]/usr/bin/git sparse-checkout disable
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7105121Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7139894Z ##[group]Checking out the ref
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7144709Z [command]/usr/bin/git checkout --progress --force -B rehearsal/w-97c0124 refs/remotes/origin/rehearsal/w-97c0124
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7434896Z Switched to a new branch 'rehearsal/w-97c0124'
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7440124Z branch 'rehearsal/w-97c0124' set up to track 'origin/rehearsal/w-97c0124'.
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7446858Z ##[endgroup]
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7503738Z [command]/usr/bin/git log -1 --format=%H
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7532922Z 97c012488be4896e62cbecc55ba40bd68af49a1d
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7542713Z ##[group]Removing auth
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7546462Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7580714Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7817541Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7847161Z http.https://github.com/.extraheader
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7856223Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.7894531Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.165.0+26.3)	Check out source	2026-10-28T13:39:41.8132258Z ##[endgroup]
+build (0.165.0+26.3)	Set up Java 25	﻿2026-10-28T13:39:41.8433678Z ##[group]Run actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8434171Z with:
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8434397Z   distribution: temurin
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8434631Z   java-version: 25
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8434847Z   java-package: jdk
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8435064Z   check-latest: false
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8435290Z   server-id: github
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8435508Z   server-username: GITHUB_ACTOR
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8436170Z   server-password: GITHUB_TOKEN
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8436497Z   overwrite-settings: true
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8436743Z   job-status: success
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8439104Z   token: ***
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:41.8439329Z ##[endgroup]
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0247318Z ##[group]Installed distributions
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0492506Z Resolved Java 25.0.4+1 from tool-cache
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0493251Z Setting Java 25.0.4+1 as the default
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0505287Z (node:2408) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0507079Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0510137Z Creating toolchains.xml for JDK version 25 from temurin
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0594435Z Writing to /home/runner/.m2/toolchains.xml
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0595366Z 
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0596065Z Java configuration:
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0596694Z   Distribution: temurin
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0597291Z   Version: 25.0.4+1
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0598032Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0598747Z 
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0599737Z ##[endgroup]
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0614835Z Creating settings.xml with server-id: github
+build (0.165.0+26.3)	Set up Java 25	2026-10-28T13:39:42.0637862Z Writing to /home/runner/.m2/settings.xml
+build (0.165.0+26.3)	Install Gradle and cache dependencies	﻿2026-10-28T13:39:42.1034889Z ##[group]Run gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1035435Z with:
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1035642Z   gradle-version: 9.8.2
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1036107Z   cache-disabled: true
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1036335Z   cache-read-only: true
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1036564Z   cache-write-only: false
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1036816Z   cache-overwrite-existing: false
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1037094Z   cache-cleanup: on-success
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1037388Z   gradle-home-cache-includes: caches
+build (0.165.0+26.3)	Install Gradle and cache dependencies	notifications
+build (0.165.0+26.3)	Install Gradle and cache dependencies	
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1037737Z   add-job-summary: always
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1037998Z   add-job-summary-as-pr-comment: never
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1038292Z   dependency-graph: disabled
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1038606Z   dependency-graph-report-dir: dependency-graph-reports
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1038979Z   dependency-graph-continue-on-failure: true
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1039287Z   build-scan-publish: false
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1039532Z   validate-wrappers: true
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1039785Z   allow-snapshot-wrappers: false
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1040303Z   gradle-home-cache-strict-match: false
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1040619Z   workflow-job-context: {
+build (0.165.0+26.3)	Install Gradle and cache dependencies	  "api": "0.165.0+26.3"
+build (0.165.0+26.3)	Install Gradle and cache dependencies	}
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1043112Z   github-token: ***
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1043330Z env:
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1043629Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1044134Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:42.1044533Z ##[endgroup]
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:44.2648953Z Cache is disabled: will not restore state from previous builds.
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:44.2657083Z Merged default JDK locations into /home/runner/.m2/toolchains.xml
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:44.2844176Z ##[group]All Gradle Wrapper jars are valid
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:44.2845164Z 
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:44.2846232Z ##[endgroup]
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:44.3549420Z ##[group]Provision Gradle 9.8.2
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:50.8115948Z Downloaded https://services.gradle.org/distributions/gradle-9.8.2-bin.zip to /home/runner/work/_temp/.gradle-actions/gradle-installations/downloads/gradle-9.8.2-bin.zip (size 151620138)
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:50.8146122Z [command]/usr/bin/unzip -o -q /home/runner/work/_temp/.gradle-actions/gradle-installations/downloads/gradle-9.8.2-bin.zip
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:51.9400111Z Extracted Gradle 9.8.2 to /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:51.9403658Z Provisioned Gradle executable /home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-9.8.2/bin/gradle
+build (0.165.0+26.3)	Install Gradle and cache dependencies	2026-10-28T13:39:51.9407025Z ##[endgroup]
+build (0.165.0+26.3)	Restore shared Gradle dependencies	﻿2026-10-28T13:39:52.0282424Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0282914Z with:
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0283147Z   path: ~/.gradle/caches
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0283836Z   key: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0284608Z   enableCrossOsArchive: false
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0284911Z   fail-on-cache-miss: false
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0285187Z   lookup-only: false
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0285450Z   save-always: false
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0285985Z env:
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0286344Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0286920Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0287412Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0287766Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0288083Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0288399Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0288939Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0289469Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0289819Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.0290141Z ##[endgroup]
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.1450635Z (node:2522) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.1452195Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Restore shared Gradle dependencies	2026-10-28T13:39:52.4032834Z Cache not found for input keys: gradle-shared-v1-Linux-X64-jdk25-gradle9.8.2-7e0999ac3974ca6cb05fabe5d313e8814ef6cd130e0c9b6260cc50d535e4dee8
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	﻿2026-10-28T13:39:52.4827631Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4828062Z with:
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4828320Z   path: .gradle/loom-cache
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	.tmp/smoke-downloads
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4828886Z   key: minecraft-v1-Linux-X64-30be326b34aaa1caf3fb9099bca0b45706f25c0ba0746381e19896669d736c0c
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4829485Z   enableCrossOsArchive: false
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4829761Z   fail-on-cache-miss: false
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4830016Z   lookup-only: false
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4830241Z   save-always: false
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4830462Z env:
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4830774Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4831302Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4831948Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4832289Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4832606Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4832943Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4833458Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4833984Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4834344Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.4834638Z ##[endgroup]
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.5946545Z (node:2547) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.5947713Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Cache Loom project and smoke server downloads	2026-10-28T13:39:52.8481228Z Cache not found for input keys: minecraft-v1-Linux-X64-30be326b34aaa1caf3fb9099bca0b45706f25c0ba0746381e19896669d736c0c
+build (0.165.0+26.3)	Build mod	﻿2026-10-28T13:39:52.8613525Z ##[group]Run python3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8614498Z [36;1mpython3 scripts/smoke_test.py gradle -- build clientSmokeJar prepareCoexistApi -PsmokeApiVersion=0.165.0+26.3[0m
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8884924Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8885335Z env:
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8886007Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8886776Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8887412Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8887870Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8888295Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8888733Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8889391Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8890140Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8890661Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:52.8891048Z ##[endgroup]
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5760323Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5763002Z Welcome to Gradle 9.8.2!
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5776532Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5776932Z Here are the highlights of this release:
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5777493Z  - Java 27 support
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5777898Z  - Maven mirror settings reuse
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5778246Z  - Linked problem locations in build output
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5778465Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5778682Z For more details see https://docs.gradle.org/9.8.2/release-notes.html
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.5778993Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:39:53.9722545Z Starting a Gradle Daemon (subsequent builds will be faster)
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:10.3961037Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:10.3962564Z > Configure project :
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:10.3963621Z Fabric Loom: 1.19.3
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:40.6326467Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:40.6376671Z > Task :compileJava
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:40.6386488Z Note: Some input files use or override a deprecated API.
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:40.6406583Z Note: Recompile with -Xlint:deprecation for details.
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:48.8387270Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:48.8388176Z > Task :processResources
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:48.8389020Z > Task :classes
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:51.0411223Z > Task :compileClientJava
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:51.0412310Z > Task :processClientResources
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:51.0420716Z > Task :processIncludeJars
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:51.2413093Z > Task :recordIncludedJars
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:51.4415077Z > Task :clientClasses
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:51.6416678Z > Task :jar
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:52.8425222Z > Task :compileClientSmokeJava
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:52.8426189Z > Task :assemble
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:52.8426791Z > Task :processClientSmokeResources
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:52.8427372Z > Task :clientSmokeClasses
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:52.8427859Z > Task :clientSmokeJar
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:57.2466319Z > Task :compileTestJava
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:57.2467106Z > Task :processTestResources
+build (0.165.0+26.3)	Build mod	2026-10-28T13:40:57.2468144Z > Task :testClasses
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.0563290Z > Task :test
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.0563836Z > Task :validateAccessWidener NO-SOURCE
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.0564597Z > Task :check
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.0564958Z > Task :build
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.2572232Z > Task :prepareCoexistApi
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.2573290Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run-1793194799995.json
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.2574118Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.2575009Z [Incubating] Problems report is available at: file:///home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/reports/problems/problems-report.html
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.2576266Z 
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.2576425Z BUILD SUCCESSFUL in 1m 12s
+build (0.165.0+26.3)	Build mod	2026-10-28T13:41:05.2576800Z 14 actionable tasks: 14 executed
+build (0.165.0+26.3)	Author release template and inject into player JAR	﻿2026-10-28T13:41:05.6707436Z ##[group]Run python3 scripts/author_template.py
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6707869Z [36;1mpython3 scripts/author_template.py[0m
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6770858Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6771172Z env:
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6771502Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6772037Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6772496Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6772823Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6773137Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6773453Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6773927Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6774459Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6774806Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:05.6775090Z ##[endgroup]
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:23.4113688Z Server reached Done with the mod loaded; sent stop.
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:24.0249193Z PASS: real-game smoke check in .tmp/smoke/template
+build (0.165.0+26.3)	Author release template and inject into player JAR	2026-10-28T13:41:24.1914108Z UNALLOCATED template bytes=393681 jar bytes=1388287 sha256=27ef145f6706ddd5b30432893ea14a4b83f25c7affd8fccdcdfe84d9bda7f4b6
+build (0.165.0+26.3)	Verify contract text matches Appendix C	﻿2026-10-28T13:41:24.2073961Z ##[group]Run python3 scripts/contract_text.py --check
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2074800Z [36;1mpython3 scripts/contract_text.py --check[0m
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2157398Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2157720Z env:
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2158054Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2158573Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2159056Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2159379Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2159677Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2159987Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2160435Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2160942Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2161261Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Verify contract text matches Appendix C	2026-10-28T13:41:24.2161530Z ##[endgroup]
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	﻿2026-10-28T13:41:24.2661203Z ##[group]Run python3 scripts/verify_jar.py
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2661852Z [36;1mpython3 scripts/verify_jar.py[0m
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2737263Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2737539Z env:
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2737851Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2738374Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2738823Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2739149Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2739451Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2739760Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2740207Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2740894Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2741222Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.2741492Z ##[endgroup]
+build (0.165.0+26.3)	Verify installable JAR, mixin packages and write checksum	2026-10-28T13:41:24.4191569Z Verified /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/build/libs/unallocated-0.2.0.jar: 1,388,287 bytes; exactly 7 approved nested modules
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	﻿2026-10-28T13:41:24.4332927Z ##[group]Run python3 -B -m unittest discover -s scripts -p 'test_*.py'
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4333730Z [36;1mpython3 -B -m unittest discover -s scripts -p 'test_*.py'[0m
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4398600Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4398881Z env:
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4399207Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4399736Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4400176Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4400498Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4400812Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4401113Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4401567Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4402062Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4402386Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:24.4402694Z ##[endgroup]
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:38.6799135Z ................................................................................................
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:38.6800011Z ----------------------------------------------------------------------
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:38.6800515Z Ran 96 tests in 13.950s
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:38.6800733Z 
+build (0.165.0+26.3)	Verify packaging, smoke and contract orchestration failure paths without Java	2026-10-28T13:41:38.6800852Z OK
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	﻿2026-10-28T13:41:38.7030813Z ##[group]Run python3 scripts/smoke_test.py server --fabric-api-version '0.165.0+26.3'
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7031482Z [36;1mpython3 scripts/smoke_test.py server --fabric-api-version '0.165.0+26.3'[0m
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7096132Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7096451Z env:
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7096822Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7097445Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7097972Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7098354Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7098710Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7099067Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7099604Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7100201Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7100589Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7100955Z ##[endgroup]
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7852118Z Using pinned official Fabric server launcher (download on cache miss): https://meta.fabricmc.net/v2/versions/loader/26.3/0.20.1/1.1.2/server/jar
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:38.7896789Z Installed player JAR SHA-256: 27ef145f6706ddd5b30432893ea14a4b83f25c7affd8fccdcdfe84d9bda7f4b6
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:41:59.6164391Z Server reached Done with the mod loaded; sent stop.
+build (0.165.0+26.3)	Smoke test dedicated server (Fabric API 0.165.0+26.3)	2026-10-28T13:42:00.2387057Z PASS: real-game smoke check in .tmp/smoke/server-api-0.165.0+26.3
+build (0.165.0+26.3)	Identify graphics runner image	﻿2026-10-28T13:42:00.2544674Z ##[group]Run echo "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2545219Z [36;1mecho "version=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"[0m
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2608674Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2608946Z env:
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2609274Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2609808Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2610271Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2610614Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2611138Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2611468Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2611961Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2612510Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2612880Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Identify graphics runner image	2026-10-28T13:42:00.2613222Z ##[endgroup]
+build (0.165.0+26.3)	Cache headless graphics packages	﻿2026-10-28T13:42:00.3384373Z ##[group]Run actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3384838Z with:
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3385054Z   path: .tmp/headless-debs/*.deb
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3385617Z   key: graphics-v1-X64-ubuntu24-20261023.334.3-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3386745Z   enableCrossOsArchive: false
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3387021Z   fail-on-cache-miss: false
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3387269Z   lookup-only: false
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3387491Z   save-always: false
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3387705Z env:
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3388027Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3388544Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3389001Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3389325Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3389636Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3389969Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3390468Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3390981Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3391316Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.3391592Z ##[endgroup]
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.4472767Z (node:3130) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.4474042Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Cache headless graphics packages	2026-10-28T13:42:00.7119689Z Cache not found for input keys: graphics-v1-X64-ubuntu24-20261023.334.3-16707a271fffb78f61034462582d121fb74b31b8739a20a4e8214b69311dd9c4
+build (0.165.0+26.3)	Install headless client graphics	﻿2026-10-28T13:42:00.7225965Z ##[group]Run bash scripts/install_headless_graphics.sh
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7226438Z [36;1mbash scripts/install_headless_graphics.sh[0m
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7290003Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7290277Z env:
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7290598Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7291144Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7291616Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7291951Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7292255Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7292564Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7293031Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7293563Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7293905Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:00.7294184Z ##[endgroup]
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:11.4978631Z Reading package lists...
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:11.6570200Z Building dependency tree...
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:11.6578498Z Reading state information...
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:11.8245369Z The following NEW packages will be installed:
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:11.8246302Z   mesa-vulkan-drivers
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:12.7045463Z 0 upgraded, 1 newly installed, 0 to remove and 102 not upgraded.
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:12.7046703Z Need to get 17.5 MB of archives.
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:12.7047309Z After this operation, 98.5 MB of additional disk space will be used.
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:12.7048314Z Get:1 https://archive.ubuntu.com/ubuntu noble-updates/main amd64 mesa-vulkan-drivers amd64 25.2.8-0ubuntu0.24.04.4 [17.5 MB]
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.5657899Z Fetched 17.5 MB in 3s (5070 kB/s)
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.5878976Z Selecting previously unselected package mesa-vulkan-drivers:amd64.
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6213788Z (Reading database ... 
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6214376Z (Reading database ... 5%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6214899Z (Reading database ... 10%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6215235Z (Reading database ... 15%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6215514Z (Reading database ... 20%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6216648Z (Reading database ... 25%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6217094Z (Reading database ... 30%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6217508Z (Reading database ... 35%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6217888Z (Reading database ... 40%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6218163Z (Reading database ... 45%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6218435Z (Reading database ... 50%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.6273738Z (Reading database ... 55%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.7787684Z (Reading database ... 60%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:15.9690309Z (Reading database ... 65%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:16.1717721Z (Reading database ... 70%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:16.3792186Z (Reading database ... 75%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:16.5254613Z (Reading database ... 80%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:16.7332927Z (Reading database ... 85%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:16.8982787Z (Reading database ... 90%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:17.0869151Z (Reading database ... 95%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:17.0869915Z (Reading database ... 100%
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:17.0870866Z (Reading database ... 203540 files and directories currently installed.)
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:17.0916569Z Preparing to unpack .../mesa-vulkan-drivers_25.2.8-0ubuntu0.24.04.4_amd64.deb ...
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:17.0955938Z Unpacking mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:17.4296253Z Setting up mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:17.4320118Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7459466Z 
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7460088Z Running kernel seems to be up-to-date.
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7460585Z 
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7460783Z Restarting services...
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7536414Z 
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7537339Z Service restarts being deferred:
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7540237Z  systemctl restart hosted-compute-agent.service
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7540686Z 
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7540923Z No containers need to be restarted.
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7541253Z 
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7541467Z No user sessions are running outdated binaries.
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7542247Z 
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.7542477Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+build (0.165.0+26.3)	Install headless client graphics	2026-10-28T13:42:18.9798580Z W: Download is performed unsandboxed as root as file '/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/headless-debs/partial/mesa-vulkan-drivers_25.2.8-0ubuntu0.24.04.4_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	﻿2026-10-28T13:42:19.0344112Z ##[group]Run python3 scripts/smoke_test.py client --fabric-api-version '0.165.0+26.3'
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0344771Z [36;1mpython3 scripts/smoke_test.py client --fabric-api-version '0.165.0+26.3'[0m
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0409639Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0409925Z env:
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0410258Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0410823Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0411286Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0411621Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0411928Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0412243Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0412719Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0413243Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0413588Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0413918Z   LIBGL_ALWAYS_SOFTWARE: true
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0414171Z   SDL_VIDEODRIVER: x11
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0414397Z   ALSOFT_DRIVERS: null
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:42:19.0414615Z ##[endgroup]
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:44:38.7630371Z PASS: real-game smoke check in .tmp/smoke/client-api-0.165.0+26.3
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:45:00.1252690Z PASS: real-game smoke check in .tmp/smoke/client-api-0.165.0+26.3
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:45:56.3960826Z PASS: real-game smoke check in .tmp/smoke/client-api-0.165.0+26.3
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5681472Z --- Smoke console: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-api-0.165.0+26.3-play-console.log ---
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5683492Z [13:48:11] [Server thread/INFO]: UNALLOCATED act=EPILOGUE complete t=105
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5684776Z [13:48:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5686351Z [13:48:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:the_end
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5687333Z [13:48:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/unallocated:pocket
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5688308Z [13:48:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:the_nether
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5689103Z [13:48:11] [Server thread/INFO]: UNALLOCATED ending=SERVER_CLOSED
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5691750Z [13:48:11] [Server thread/INFO]: Player252 lost connection: mi… ed… o
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5692330Z miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5692595Z obtener miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5692889Z obtener miedo de humanos
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5693196Z obtener respuestas de miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5693464Z estimar respuestas de miedo humano
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5693653Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5693741Z Gracias por tus datos.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5694126Z Busqué sin poder terminar. Ya puedo dejar de buscar.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5694476Z Gracias por poner fin a esto.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5694803Z [13:48:11] [Server thread/INFO]: System chat: Player252 left the game
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5695308Z [13:48:11] [Server thread/INFO]: Stopping singleplayer server as player logged out
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5696102Z [13:48:11] [Server thread/INFO]: Stopping server
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5696483Z [13:48:11] [Server thread/INFO]: Saving players
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5696816Z [13:48:11] [Server thread/INFO]: Saving worlds
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5697307Z [13:48:12] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5697911Z [13:48:12] [Netty Local IO #1/ERROR]: Negative index in crash report handler (19/34)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5698508Z [13:48:12] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:the_end
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5699155Z [13:48:12] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/unallocated:pocket
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5699814Z [13:48:12] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:the_nether
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5710163Z [13:48:12] [Render thread/WARN]: Client disconnected with reason: Internal Exception: java.nio.channels.ClosedChannelException
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5711301Z [13:48:12] [Test thread/ERROR]: Client gametests failed with an exception
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5712259Z java.lang.AssertionError: Could not find button 'Volver al título' in screen 'net.minecraft.client.gui.screens.DisconnectedScreen'
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5713379Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.lambda$clickScreenButton$0(ClientGameTestContextImpl.java:231)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5714527Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.lambda$runOnClient$0(ClientGameTestContextImpl.java:537)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5715553Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runTaskOnThisThread(ThreadingImpl.java:229)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5716460Z 	at Async Stack Trace..(Unknown Source)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5717078Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runTaskOnOtherThread(ThreadingImpl.java:221)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5717968Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runOnClient(ThreadingImpl.java:198)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5718934Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.runOnClient(ClientGameTestContextImpl.java:537)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5720258Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.clickScreenButton(ClientGameTestContextImpl.java:229)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5721086Z 	at knot//org.unallocated.smoke.PlaySmokeTest.run(PlaySmokeTest.java:115)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5721686Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:133)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5722523Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5723472Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5724118Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5724476Z [13:48:12] [Render thread/ERROR]: Minecraft has crashed!
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5725445Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Could not find button 'Volver al título' in screen 'net.minecraft.client.gui.screens.DisconnectedScreen'
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5726750Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5727491Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5728136Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5728648Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5729525Z Caused by: java.lang.AssertionError: Could not find button 'Volver al título' in screen 'net.minecraft.client.gui.screens.DisconnectedScreen'
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5730619Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.lambda$clickScreenButton$0(ClientGameTestContextImpl.java:231)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5731745Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.lambda$runOnClient$0(ClientGameTestContextImpl.java:537)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5732759Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runTaskOnThisThread(ThreadingImpl.java:229)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5733409Z 	at Async Stack Trace..(Unknown Source)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5734016Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runTaskOnOtherThread(ThreadingImpl.java:221)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5734903Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runOnClient(ThreadingImpl.java:198)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5736093Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.runOnClient(ClientGameTestContextImpl.java:537)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5737363Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.clickScreenButton(ClientGameTestContextImpl.java:229)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5738181Z 	at knot//org.unallocated.smoke.PlaySmokeTest.run(PlaySmokeTest.java:115)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5738779Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:133)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5739609Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5740560Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5741198Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5741419Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5741523Z > Task :runClientSmoke FAILED
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5742032Z gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_8-1793195157146.json
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5742486Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5742594Z FAILURE: Build failed with an exception.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5742851Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5742938Z * What went wrong:
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5743335Z Execution failed for task ':runClientSmoke' (registered in build file 'build.gradle').
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5743974Z > Process 'command 'xvfb-run'' finished with non-zero exit value 1
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5744251Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5744324Z * Try:
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5744563Z > Run with --stacktrace option to get the stack trace.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5744934Z > Run with --info or --debug option to get more log output.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5745383Z > Run with --scan to get full insights from a Build Scan (powered by Develocity).
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5746072Z > Get more help at https://help.gradle.org.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5746296Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5746390Z BUILD FAILED in 2m 16s
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5746635Z 9 actionable tasks: 1 executed, 8 up-to-date
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5747262Z --- Game log: /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/.tmp/smoke/client-api-0.165.0+26.3/logs/latest.log ---
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5748174Z [13:46:26] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 2 reached during a single frame. New capacity will be 8.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5749094Z [13:46:26] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 16 reached during a single frame. New capacity will be 32.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5750010Z [13:46:26] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 8 reached during a single frame. New capacity will be 16.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5750912Z [13:46:26] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 16 reached during a single frame. New capacity will be 32.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5751829Z [13:46:26] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 32 reached during a single frame. New capacity will be 64.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5752746Z [13:46:26] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 32 reached during a single frame. New capacity will be 64.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5753655Z [13:46:26] [Render thread/INFO]: Resizing Chunk Sections Command Buffer, capacity limit of 64 reached during a single frame. New capacity will be 128.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5754456Z [13:46:28] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2011ms or 40 ticks behind
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5755236Z [13:46:29] [Render thread/INFO]: Resizing Chunk Sections Instanced, capacity limit of 64 reached during a single frame. New capacity will be 128.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5756125Z [13:48:11] [Server thread/INFO]: UNALLOCATED act=LOBBY forced t=105
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5756591Z [13:48:11] [Server thread/INFO]: UNALLOCATED story chapter=free_roam slot=LOBBY escape
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5757067Z [13:48:11] [Server thread/INFO]: UNALLOCATED act=THEFT skipped t=105
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5757627Z [13:48:11] [Server thread/INFO]: UNALLOCATED act=LOOP skipped t=105
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5758031Z [13:48:11] [Server thread/INFO]: UNALLOCATED act=POCKET skipped t=105
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5758439Z [13:48:11] [Server thread/INFO]: UNALLOCATED act=CLIMAX skipped t=105
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5758844Z [13:48:11] [Server thread/INFO]: UNALLOCATED act=EPILOGUE enter t=105
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5759266Z [13:48:11] [Server thread/INFO]: UNALLOCATED story ending=SERVER_CLOSED
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5759770Z [13:48:11] [Server thread/INFO]: UNALLOCATED story autoplay run=0 ending=SERVER_CLOSED complete
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5760287Z [13:48:11] [Server thread/INFO]: UNALLOCATED act=EPILOGUE complete t=105
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5760824Z [13:48:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5761448Z [13:48:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:the_end
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5762066Z [13:48:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/unallocated:pocket
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5762698Z [13:48:11] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:the_nether
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5763212Z [13:48:11] [Server thread/INFO]: UNALLOCATED ending=SERVER_CLOSED
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5763841Z [13:48:11] [Server thread/INFO]: Player252 lost connection: mi… ed… o
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5764172Z miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5764352Z obtener miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5764554Z obtener miedo de humanos
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5764789Z obtener respuestas de miedo
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5765039Z estimar respuestas de miedo humano
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5765212Z 
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5765296Z Gracias por tus datos.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5765611Z Busqué sin poder terminar. Ya puedo dejar de buscar.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5766229Z Gracias por poner fin a esto.
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5766552Z [13:48:11] [Server thread/INFO]: System chat: Player252 left the game
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5767015Z [13:48:11] [Server thread/INFO]: Stopping singleplayer server as player logged out
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5767452Z [13:48:11] [Server thread/INFO]: Stopping server
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5767763Z [13:48:11] [Server thread/INFO]: Saving players
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5768068Z [13:48:11] [Server thread/INFO]: Saving worlds
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5768547Z [13:48:12] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:overworld
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5769121Z [13:48:12] [Netty Local IO #1/ERROR]: Negative index in crash report handler (19/34)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5769682Z [13:48:12] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:the_end
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5770314Z [13:48:12] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/unallocated:pocket
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5770937Z [13:48:12] [Server thread/INFO]: Saving chunks for level 'ServerLevel[UNALLOCATED]'/minecraft:the_nether
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5771664Z [13:48:12] [Render thread/WARN]: Client disconnected with reason: Internal Exception: java.nio.channels.ClosedChannelException
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5772310Z [13:48:12] [Test thread/ERROR]: Client gametests failed with an exception
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5773094Z java.lang.AssertionError: Could not find button 'Volver al título' in screen 'net.minecraft.client.gui.screens.DisconnectedScreen'
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5774142Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.lambda$clickScreenButton$0(ClientGameTestContextImpl.java:231)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5775268Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.lambda$runOnClient$0(ClientGameTestContextImpl.java:537)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5776621Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runTaskOnThisThread(ThreadingImpl.java:229)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5777246Z 	at Async Stack Trace..(Unknown Source)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5777850Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runTaskOnOtherThread(ThreadingImpl.java:221)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5779118Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runOnClient(ThreadingImpl.java:198)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5780073Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.runOnClient(ClientGameTestContextImpl.java:537)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5781155Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.clickScreenButton(ClientGameTestContextImpl.java:229)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5781977Z 	at knot//org.unallocated.smoke.PlaySmokeTest.run(PlaySmokeTest.java:115)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5782568Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:133)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5783387Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5784330Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5784976Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5785327Z [13:48:12] [Render thread/ERROR]: Minecraft has crashed!
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5786565Z net.fabricmc.loader.impl.FormattedException: java.lang.AssertionError: Could not find button 'Volver al título' in screen 'net.minecraft.client.gui.screens.DisconnectedScreen'
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5787707Z 	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5788443Z 	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:519)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5789081Z 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5789873Z 	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5791338Z Caused by: java.lang.AssertionError: Could not find button 'Volver al título' in screen 'net.minecraft.client.gui.screens.DisconnectedScreen'
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5792444Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.lambda$clickScreenButton$0(ClientGameTestContextImpl.java:231)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5793573Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.lambda$runOnClient$0(ClientGameTestContextImpl.java:537)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5794601Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runTaskOnThisThread(ThreadingImpl.java:229)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5795218Z 	at Async Stack Trace..(Unknown Source)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5796209Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runTaskOnOtherThread(ThreadingImpl.java:221)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5797144Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.runOnClient(ThreadingImpl.java:198)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5798095Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.runOnClient(ClientGameTestContextImpl.java:537)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5799174Z 	at knot//net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl.clickScreenButton(ClientGameTestContextImpl.java:229)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5799990Z 	at knot//org.unallocated.smoke.PlaySmokeTest.run(PlaySmokeTest.java:115)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5800578Z 	at knot//org.unallocated.smoke.TitleScreenSmokeTest.runTest(TitleScreenSmokeTest.java:133)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5801409Z 	at knot//net.fabricmc.fabric.impl.client.gametest.FabricClientGameTestRunner.lambda$start$0(FabricClientGameTestRunner.java:54)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5802348Z 	at knot//net.fabricmc.fabric.impl.client.gametest.threading.ThreadingImpl.lambda$runTestThread$0(ThreadingImpl.java:139)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.5802989Z 	at java.base/java.lang.Thread.run(Thread.java:1474)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6590809Z Traceback (most recent call last):
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6591783Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 758, in <module>
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6593160Z     main()
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6594427Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 752, in main
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6595518Z     client(version, include_story=True)
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6596867Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 690, in client
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6598018Z     monitor(
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6598723Z   File "/home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod/scripts/smoke_test.py", line 191, in monitor
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6599733Z     raise RuntimeError(f'Game command exited with status {process.returncode}')
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6600378Z RuntimeError: Game command exited with status 1
+build (0.165.0+26.3)	Smoke test client startup or Loader rejection (Fabric API 0.165.0+26.3)	2026-10-28T13:48:13.6757841Z ##[error]Process completed with exit code 1.
+build (0.165.0+26.3)	Upload smoke diagnostics	﻿2026-10-28T13:48:13.6873007Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6873567Z with:
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6874398Z   name: smoke-diagnostics-97c012488be4896e62cbecc55ba40bd68af49a1d-0.165.0+26.3
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6874929Z   include-hidden-files: true
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6878136Z   path: build/reports/included-jars.json
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/gradle-diagnostics/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/*-console.log
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs-first/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs-restart/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/logs-story/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/video/**
+build (0.165.0+26.3)	Upload smoke diagnostics	build/template/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/crash-reports/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/hs_err_pid*.log
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/screenshots/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/**/screenshots-before-play/**
+build (0.165.0+26.3)	Upload smoke diagnostics	.tmp/smoke/client/unallocated/contract.properties
+build (0.165.0+26.3)	Upload smoke diagnostics	hs_err_pid*.log
+build (0.165.0+26.3)	Upload smoke diagnostics	build/test-results/**
+build (0.165.0+26.3)	Upload smoke diagnostics	build/reports/tests/**
+build (0.165.0+26.3)	Upload smoke diagnostics	
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6881322Z   if-no-files-found: warn
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6881566Z   retention-days: 7
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6881997Z   compression-level: 6
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6882325Z   overwrite: false
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6882551Z env:
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6883192Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6883863Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6884529Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6884973Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6885271Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6887703Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6888348Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6888837Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6889160Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.6889695Z ##[endgroup]
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.8738649Z (node:4548) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:13.8741155Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:14.2324155Z With the provided path, there will be 104 files uploaded
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:14.2330160Z Artifact name is valid!
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:14.2330869Z Root directory input is valid!
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:14.7041605Z Beginning upload of artifact content to blob storage
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:15.0202783Z (node:4548) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:15.9080265Z Uploaded bytes 8388608
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:16.0829423Z Uploaded bytes 12891497
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:16.1554196Z Finished uploading artifact content to blob storage!
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:16.1555603Z SHA256 digest of uploaded artifact zip is 89725d26f4e9b67f6a3dd87b0808024e4bf6d482ec4f5b54648d5161f4123a0d
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:16.1557412Z Finalizing artifact upload
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:16.6431550Z Artifact smoke-diagnostics-97c012488be4896e62cbecc55ba40bd68af49a1d-0.165.0+26.3.zip successfully finalized. Artifact ID 12821730396
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:16.6433345Z Artifact smoke-diagnostics-97c012488be4896e62cbecc55ba40bd68af49a1d-0.165.0+26.3 has been successfully uploaded! Final size is 12891497 bytes. Artifact ID is 12821730396
+build (0.165.0+26.3)	Upload smoke diagnostics	2026-10-28T13:48:16.6439667Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40698456066/artifacts/12821730396
+build (0.165.0+26.3)	Record rehearsal verdict	﻿2026-10-28T13:48:16.6610440Z ##[group]Run mkdir -p .tmp/verdict
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6610791Z [36;1mmkdir -p .tmp/verdict[0m
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6611312Z [36;1mprintf '{"sha":"%s","api":"%s","status":"%s"}\n' "97c012488be4896e62cbecc55ba40bd68af49a1d" "0.165.0+26.3" "failure" \[0m
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6611869Z [36;1m  > ".tmp/verdict/verdict.json"[0m
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6612168Z [36;1mcat .tmp/verdict/verdict.json[0m
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6674821Z shell: /usr/bin/bash -e {0}
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6675103Z env:
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6675446Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6676291Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6676787Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6677143Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6677472Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6677808Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6678315Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6679154Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6679521Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6679828Z ##[endgroup]
+build (0.165.0+26.3)	Record rehearsal verdict	2026-10-28T13:48:16.6782132Z {"sha":"97c012488be4896e62cbecc55ba40bd68af49a1d","api":"0.165.0+26.3","status":"failure"}
+build (0.165.0+26.3)	Upload rehearsal verdict	﻿2026-10-28T13:48:16.6842523Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6842942Z with:
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6843147Z   name: rehearsal-verdict-3
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6843398Z   include-hidden-files: true
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6843716Z   path: .tmp/verdict/verdict.json
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6843967Z   retention-days: 3
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6844183Z   if-no-files-found: warn
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6844415Z   compression-level: 6
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6844637Z   overwrite: false
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6844832Z env:
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6845125Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6845632Z   JAVA_HOME_25_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.4-1/x64
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6846501Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6846821Z   GRADLE_USER_HOME: /home/runner/.gradle
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6847126Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6847436Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6847907Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6848393Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6848720Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.6848984Z ##[endgroup]
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.8515159Z (node:4563) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.8516769Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.8562558Z With the provided path, there will be 1 file uploaded
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.8569492Z Artifact name is valid!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:16.8570410Z Root directory input is valid!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:17.2584129Z Beginning upload of artifact content to blob storage
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:17.2772350Z (node:4563) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:17.5337407Z Uploaded bytes 222
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:17.6079794Z Finished uploading artifact content to blob storage!
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:17.6081029Z SHA256 digest of uploaded artifact zip is e1cd638e06d20b66d43f5eba30716e523dd57ca1c830a28db32dd315114ef5f2
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:17.6083141Z Finalizing artifact upload
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:18.0994587Z Artifact rehearsal-verdict-3.zip successfully finalized. Artifact ID 12821655613
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:18.0995981Z Artifact rehearsal-verdict-3 has been successfully uploaded! Final size is 222 bytes. Artifact ID is 12821655613
+build (0.165.0+26.3)	Upload rehearsal verdict	2026-10-28T13:48:18.1001843Z Artifact download URL: https://github.com/alexanderkholodov1/unallocated_minecraft_mod/actions/runs/40698456066/artifacts/12821655613
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	﻿2026-10-28T13:48:18.1237076Z Post job cleanup.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T13:48:18.3610517Z In post-action step
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T13:48:18.3621535Z Cache is disabled: will not save state for later builds.
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T13:48:18.3627212Z Generating Job Summary
+build (0.165.0+26.3)	Post Install Gradle and cache dependencies	2026-10-28T13:48:18.3646069Z Completed post-action step
+build (0.165.0+26.3)	Post Set up Java 25	﻿2026-10-28T13:48:18.3761858Z Post job cleanup.
+build (0.165.0+26.3)	Post Set up Java 25	2026-10-28T13:48:18.5235499Z (node:4587) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+build (0.165.0+26.3)	Post Set up Java 25	2026-10-28T13:48:18.5237090Z (Use `node --trace-deprecation ...` to show where the warning was created)
+build (0.165.0+26.3)	Post Check out source	﻿2026-10-28T13:48:18.5452560Z Post job cleanup.
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6392347Z [command]/usr/bin/git version
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6470375Z git version 2.55.0
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6513696Z Temporarily overriding HOME='/home/runner/work/_temp/435f5b03-7f4f-4892-9456-821553c242d0' before making global git config changes
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6515959Z Adding repository directory to the temporary git global config as a safe directory
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6520321Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/unallocated_minecraft_mod/unallocated_minecraft_mod
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6564875Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6602887Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6884383Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (0.165.0+26.3)	Post Check out source	2026-10-28T13:48:18.6925479Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (0.165.0+26.3)	Complete job	﻿2026-10-28T13:48:18.7391901Z Cleaning up orphan processes
+build (0.165.0+26.3)	Complete job	2026-10-28T13:48:18.7710047Z Terminate orphan process: pid (2599) (java)
+build (0.165.0+26.3)	Complete job	2026-10-28T13:48:18.7802236Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

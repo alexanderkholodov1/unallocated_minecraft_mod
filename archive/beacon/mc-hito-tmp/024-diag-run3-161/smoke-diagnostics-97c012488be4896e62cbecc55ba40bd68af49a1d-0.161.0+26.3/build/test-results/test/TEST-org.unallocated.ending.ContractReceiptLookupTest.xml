@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.ending.ContractReceiptLookupTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-28T13:41:51.640Z" hostname="runnervm48cm3" time="0.005">
+  <properties/>
+  <testcase name="unmergedContractPackageIsOptional()" classname="org.unallocated.ending.ContractReceiptLookupTest" time="0.001"/>
+  <testcase name="readsViaTheStoreApiWithoutOpeningItsFiles()" classname="org.unallocated.ending.ContractReceiptLookupTest" time="0.001"/>
+  <testcase name="absentCorruptUnreadableOrClickedReceiptDegradesGracefully()" classname="org.unallocated.ending.ContractReceiptLookupTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

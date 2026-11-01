@@ -1,0 +1,9 @@
+page claim OK: unallocated/contract.properties exists
+saves/ has: UNALLOCATED
+ERROR line (x count):       1 [21:11:13] [Download-2/ERROR]: Failed to fetch user properties
+ERROR line (x count):       1 [21:11:13] [Render thread/ERROR]: Failed to create backend OpenGL
+ERROR line (x count):       1 [21:11:15] [Download-2/ERROR]: Failed to fetch Realms feature flags
+ERROR line (x count):       1 [21:11:15] [Render thread/ERROR]: Error while loading the narrator
+ERROR line (x count):       1 [21:12:24] [Render thread/ERROR]: Error while loading the narrator
+ERROR line (x count):       1 [21:12:30] [Download-3/ERROR]: Couldn't connect to realms
+mod warning/error: [21:12:42] [Server thread/WARN]: UNALLOCATED story warning story.json#/chapters: [session-length] Budget outside 600–900 seconds

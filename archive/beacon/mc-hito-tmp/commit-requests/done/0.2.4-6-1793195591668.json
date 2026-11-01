@@ -1,0 +1,1 @@
+{"paths": ["src/client/java/org/unallocated/client/mixin/ending/EndingConnectionMixin.java", "src/clientSmoke/java/org/unallocated/smoke/EndingDisconnectProbe.java", "docs/story/RUNTIME.md"], "message": "0.2.0.4: retain received farewell details across late generic channel closure"}

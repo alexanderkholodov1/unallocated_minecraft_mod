@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unallocated.core.SessionStateTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-28T07:35:05.110Z" hostname="runnervmtai0g" time="0.017">
+  <properties/>
+  <testcase name="badTimestampsAreClampedAndUnknownSchemasRejected()" classname="org.unallocated.core.SessionStateTest" time="0.004"/>
+  <testcase name="allPublicMutatorsMarkStateDirty()" classname="org.unallocated.core.SessionStateTest" time="0.001"/>
+  <testcase name="profileAndTemperatureCannotPersistNonFiniteNumbers()" classname="org.unallocated.core.SessionStateTest" time="0.001"/>
+  <testcase name="newAndLegacyUnarmedStatesRemainDormantAndClean()" classname="org.unallocated.core.SessionStateTest" time="0.001"/>
+  <testcase name="savedDataCodecRoundTripPreservesEveryFieldAndIndependentCollections()" classname="org.unallocated.core.SessionStateTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

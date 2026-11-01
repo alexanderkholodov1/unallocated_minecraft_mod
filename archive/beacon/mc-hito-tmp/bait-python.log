@@ -1,0 +1,59 @@
+...............E......E..........................
+======================================================================
+ERROR: test_console_commands_run_before_stop_and_their_evidence_is_required (test_smoke_test.WatchdogTest.test_console_commands_run_before_stop_and_their_evidence_is_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/alexamaze/Workspaces/mc-hito/scripts/test_smoke_test.py", line 44, in test_console_commands_run_before_stop_and_their_evidence_is_required
+    self.run_fixture(
+    ~~~~~~~~~~~~~~~~^
+        "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        stop_when_ready=True, ready=(COMMON, DONE), ready_commands=['ubait selftest'],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/alexamaze/Workspaces/mc-hito/scripts/test_smoke_test.py", line 29, in run_fixture
+    monitor(
+    ~~~~~~~^
+        [sys.executable, '-c', code], directory, directory / 'console.log',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        required, timeout=kwargs.pop('timeout', 2), **kwargs,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        game_directory=game_directory,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: monitor() got an unexpected keyword argument 'ready'
+
+======================================================================
+ERROR: test_failed_selftest_fails_without_waiting_for_the_deadline (test_smoke_test.WatchdogTest.test_failed_selftest_fails_without_waiting_for_the_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/alexamaze/Workspaces/mc-hito/scripts/test_smoke_test.py", line 56, in test_failed_selftest_fails_without_waiting_for_the_deadline
+    self.run_fixture(
+    ~~~~~~~~~~~~~~~~^
+        "log.write_text('UNALLOCATED initialized (common).\\nDone (0.1s)!\\n')\n"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        stop_when_ready=True, ready=(COMMON, DONE), ready_commands=['ubait selftest'],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/alexamaze/Workspaces/mc-hito/scripts/test_smoke_test.py", line 29, in run_fixture
+    monitor(
+    ~~~~~~~^
+        [sys.executable, '-c', code], directory, directory / 'console.log',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        required, timeout=kwargs.pop('timeout', 2), **kwargs,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        game_directory=game_directory,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: monitor() got an unexpected keyword argument 'ready'
+
+----------------------------------------------------------------------
+Ran 49 tests in 9.084s
+
+FAILED (errors=2)

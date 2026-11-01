@@ -1,0 +1,12 @@
+remote: 
+remote: Create a pull request for 'rehearsal/w-88a8e8d' on GitHub by visiting:        
+remote:      https://github.com/alexanderkholodov1/unallocated_minecraft_mod/pull/new/rehearsal/w-88a8e8d        
+remote: 
+rehearse: alexanderkholodov1/unallocated_minecraft_mod 88a8e8d on rehearsal/w-88a8e8d
+rehearse: run 40689554920
+
+rehearse: FAIL 88a8e8d (0/4 jobs passed); logs: gh run view 40689554920 -R alexanderkholodov1/unallocated_minecraft_mod --log
+=== job 122820567693
+=== job 122820567866
+=== job 122820567992
+=== job 122820568064

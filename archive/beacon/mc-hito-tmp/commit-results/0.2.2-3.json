@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "8a337fb 0.2.0.2: fix 26.3 chat adapter and wait for client loading before autoplay"
+}

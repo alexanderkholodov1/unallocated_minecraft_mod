@@ -1,0 +1,4 @@
+{
+  "ok": true,
+  "commit": "b47348a 0.1.0.23: keep stopped audio layers silent during late engine ticks and gain refreshes"
+}

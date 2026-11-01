@@ -1,0 +1,1 @@
+{"paths": ["src/client/java/org/unallocated/client/story/StoryClient.java", "src/client/java/org/unallocated/client/story/StoryHudMixin.java", "src/client/java/org/unallocated/client/story/StorySplashAccessor.java", "src/main/resources/unallocated.story.mixins.json"], "message": "0.2.0.2: isolate story mixins from application classes"}
