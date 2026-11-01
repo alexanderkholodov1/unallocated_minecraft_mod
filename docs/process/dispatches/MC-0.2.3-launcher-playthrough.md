@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # Brief MC-0.2.3 — `launcher-playthrough`: the judge's path, built and proven
 
 **Recommended lane:** Codex CLI, gpt-6.1-sol, effort **medium** (switch to high only if two rehearsals fail on the
@@ -14,7 +16,7 @@ in CI. Python checks run locally. Reference JARs for signatures: `~/Workspaces/m
 
 ## Goal and why
 The judges play at home on unknown machines; installation and stability are a judging criterion
-(`docs/intent/Itch.io Competition Instructions.txt`, "Estabilidad y facilidad de instalación"). The owner decided how
+(`docs/intent/Itch.io Competition Instructions.txt`, "Estabilidad y facilidad de instalación" [Stability and ease of installation]). The owner decided how
 they start: **D-03 A** in `docs/plan/DECISIONS.md` (read D-03 and D-04 whole, with his "Respuesta" column): a
 "UNALLOCATED" button on the title screen that copies the world template carried in our JAR to `saves/`, shows a
 "connecting to the server" screen and opens the world, plus a world ZIP as fallback. You build that, and you prove the
@@ -32,7 +34,7 @@ is played end to end automatically.
    smoke save "is a test fixture, not a release template").
 4. Code: `scripts/smoke_test.py` (server/client phases, watchdog, `verify_mod_directory`), `scripts/verify_jar.py`,
    `build.gradle`, `.github/workflows/build.yml`, `src/clientSmoke/**` (single orchestrator, `story` phase from 0.2.2),
-   `client/contract/**` (the title is reached after the contract), `README.md` ("Instalación en casa", "Cómo comenzar").
+   `client/contract/**` (the title is reached after the contract), `README.md` ("Instalación en casa" [Installation at home], "Cómo comenzar" [How to begin]).
 
 ## What to build (exact outcomes)
 1. **Template authoring in CI** (`scripts/author_template.py`, Python, CI only like `smoke_test.py`): start a dedicated
@@ -69,8 +71,8 @@ is played end to end automatically.
    `UNALLOCATED video unavailable: <reason>` and continue (the video never fails the build; everything else does).
 6. **Release artifact** (profile `none`, success only): `unallocated-release-<sha>` exactly as §4.3 lists, including
    `UNALLOCATED-world.zip` (the same template ZIP) and `release.json`. Keep the existing `unallocated-<sha>` artifact.
-7. **Version 0.2.0** in `gradle.properties`; README: "Requisitos" file name, "Instalación en casa" step 4, and "Cómo
-   comenzar" rewritten in Spanish for the button, continue/new, `/unallocated siguiente` as rescue, and the ZIP
+7. **Version 0.2.0** in `gradle.properties`; README: "Requisitos" [Requirements] file name, "Instalación en casa" [Installation at home] step 4, and "Cómo
+   comenzar" [How to begin] rewritten in Spanish for the button, continue/new, `/unallocated siguiente` as rescue, and the ZIP
    fallback (unzip `UNALLOCATED-world.zip` into `saves/`, open from Un jugador). Keep every other README section.
 8. Timeouts: raise the client step and job timeouts only as needed (job ≤ 45 min). Order workflow steps so the
    template exists before `verify_jar.py`.

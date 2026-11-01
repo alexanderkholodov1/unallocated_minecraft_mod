@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 **Captain's dispatch note (2026-10-28 07:05Z):** packages 0.2.1 (`dfffb3d`), 0.2.5 (`2a2ffb9`) and 0.2.2 (the story runtime, through `2867c3e`) are on `v0.2.0`; read `docs/story/RUNTIME.md`, which 0.2.2 wrote, before you start, and build on what it actually delivered (its markers, commands and the `story` CI phase). Codex quota is no longer scarce (weekly window reset tonight), so do this package completely and well, at the effort you are given. The commit relay and the rehearsal relay are running for `~/Workspaces/mc-hito`. `~/Workspaces/mc-ref/javacheck.sh ~/Workspaces/mc-hito` is authorized before each commit when `MemAvailable` is at least 900 MB and `pgrep -f "chrom|firestore-emulator"` prints nothing; otherwise rely on the rehearsal. A rehearsal takes 10-35 minutes; two tonight failed only on infrastructure (a dependency download "Read timed out", and a Gradle daemon that started and printed nothing for 35 minutes until the job timeout): if a rehearsal fails only that way, request it once more and say so.
 
 **Also yours in this package, first (captain, 08:20Z), because it decides whether tomorrow's content night can trust CI:**
@@ -26,7 +28,7 @@ in CI. Python checks run locally. Reference JARs for signatures: `~/Workspaces/m
 
 ## Goal and why
 The judges play at home on unknown machines; installation and stability are a judging criterion
-(`docs/intent/Itch.io Competition Instructions.txt`, "Estabilidad y facilidad de instalación"). The owner decided how
+(`docs/intent/Itch.io Competition Instructions.txt`, "Estabilidad y facilidad de instalación" [Stability and ease of installation]). The owner decided how
 they start: **D-03 A** in `docs/plan/DECISIONS.md` (read D-03 and D-04 whole, with his "Respuesta" column): a
 "UNALLOCATED" button on the title screen that copies the world template carried in our JAR to `saves/`, shows a
 "connecting to the server" screen and opens the world, plus a world ZIP as fallback. You build that, and you prove the
@@ -44,7 +46,7 @@ is played end to end automatically.
    smoke save "is a test fixture, not a release template").
 4. Code: `scripts/smoke_test.py` (server/client phases, watchdog, `verify_mod_directory`), `scripts/verify_jar.py`,
    `build.gradle`, `.github/workflows/build.yml`, `src/clientSmoke/**` (single orchestrator, `story` phase from 0.2.2),
-   `client/contract/**` (the title is reached after the contract), `README.md` ("Instalación en casa", "Cómo comenzar").
+   `client/contract/**` (the title is reached after the contract), `README.md` ("Instalación en casa" [Installation at home], "Cómo comenzar" [How to begin]).
 
 ## What to build (exact outcomes)
 1. **Template authoring in CI** (`scripts/author_template.py`, Python, CI only like `smoke_test.py`): start a dedicated
@@ -81,8 +83,8 @@ is played end to end automatically.
    `UNALLOCATED video unavailable: <reason>` and continue (the video never fails the build; everything else does).
 6. **Release artifact** (profile `none`, success only): `unallocated-release-<sha>` exactly as §4.3 lists, including
    `UNALLOCATED-world.zip` (the same template ZIP) and `release.json`. Keep the existing `unallocated-<sha>` artifact.
-7. **Version 0.2.0** in `gradle.properties`; README: "Requisitos" file name, "Instalación en casa" step 4, and "Cómo
-   comenzar" rewritten in Spanish for the button, continue/new, `/unallocated siguiente` as rescue, and the ZIP
+7. **Version 0.2.0** in `gradle.properties`; README: "Requisitos" [Requirements] file name, "Instalación en casa" [Installation at home] step 4, and "Cómo
+   comenzar" [How to begin] rewritten in Spanish for the button, continue/new, `/unallocated siguiente` as rescue, and the ZIP
    fallback (unzip `UNALLOCATED-world.zip` into `saves/`, open from Un jugador). Keep every other README section.
 8. Timeouts: raise the client step and job timeouts only as needed (job ≤ 45 min). Order workflow steps so the
    template exists before `verify_jar.py`.

@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 **Captain's dispatch note (2026-10-28 04:30Z):** work in `~/Workspaces/mc-release` (local branch `v0.2.0-release-kit`, identical to `v0.2.0` with the plan) instead of `~/Workspaces/mc-hito`, where another package is running. Commit directly with `git` there (no relay runs for that folder); do not request a rehearsal: the captain integrates your commit into `v0.2.0` and rehearses it. Everything else in this brief stands.
 
 # Brief MC-0.2.5 — `release-kit`: the itch.io page and the release bundle
@@ -15,7 +17,7 @@ Python 3 stdlib is fine.
 
 ## Goal and why
 The judges download from itch.io and play at home; the page must contain everything the jam rules require
-(`docs/intent/Itch.io Competition Instructions.txt`, section "¿Qué debes entregar?" — read it), with installation
+(`docs/intent/Itch.io Competition Instructions.txt`, section "¿Qué debes entregar?" [What must you deliver?] — read it), with installation
 instructions a stranger can follow. The game's story is designed only tomorrow evening, so the page is a template whose
 fixed parts are complete now and whose story parts are clearly marked tokens. A script fills the generated parts from
 the CI release artifact so the owner uploads in minutes.
@@ -23,24 +25,24 @@ the CI release artifact so the owner uploads in minutes.
 ## Inputs
 - `docs/plan/milestones.md` **§10** (each page item and who produces it) and **§4.3** (exact release artifact names and
   `release.json` fields) and §4.5.
-- `README.md` sections "Requisitos para jugar", "Instalación en casa", "Advertencias de contenido y estado conocido",
-  "Equipo y créditos" — the verified installation text and credits; reuse their facts (versions, paths per OS, the
+- `README.md` sections "Requisitos para jugar" [Requirements to play], "Instalación en casa" [Installation at home], "Advertencias de contenido y estado conocido" [Content warnings and known status],
+  "Equipo y créditos" [Team and credits] — the verified installation text and credits; reuse their facts (versions, paths per OS, the
   Fabric API Apache-2.0 credit) and adapt them to the button start described in §4.3/§10: in the game, the title screen
   has a button "UNALLOCATED"; a world ZIP `UNALLOCATED-world.zip` is the fallback (unzip into `saves/`, open from
-  "Un jugador").
+  "Un jugador" [Singleplayer]).
 - `docs/plan/CONTRACT-TEXT.md` (the contract's warnings; quote its warning facts, do not invent new ones).
 - `docs/plan/DECISIONS.md` D-02, D-03 (the owner's decisions about Fabric API inside our JAR and the start).
 
 ## Deliver (exact files; nothing else)
 1. `docs/release/ITCH-PAGE.md` — the page body **in Spanish**, Markdown that itch accepts, with these sections in this
-   order: título y descripción breve (`{{DESIGN:DESCRIPTION}}`), advertencias de contenido (fixed facts from the
-   contract + `{{DESIGN:WARNINGS}}`), requisitos (Minecraft Java Edition `{{MINECRAFT}}` exactly, Fabric Loader
+   order: title and short description (`{{DESIGN:DESCRIPTION}}`), content warnings (fixed facts from the
+   contract + `{{DESIGN:WARNINGS}}`), requirements (Minecraft Java Edition `{{MINECRAFT}}` exactly, Fabric Loader
    `{{LOADER}}` or later, Java via the official launcher, Fabric API `{{FABRIC_API}}` **included**, no other mod),
-   archivos (`{{JAR}}` with SHA-256 `{{SHA256}}`, `{{WORLD_ZIP}}` optional), instalación paso a paso (Windows, macOS,
-   Linux), cómo empezar (contract "De acuerdo", button, rescue `/unallocated siguiente`, recommended 10–15 min with
-   headphones, first person), mapa y configuración (built in; ZIP fallback steps), errores conocidos
-   (`{{KNOWN_ISSUES}}`), equipo (`{{DESIGN:TEAM}}`), créditos (Fabric API credit as in README + `{{DESIGN:CREDITS}}`),
-   capturas y video (a note for the owner, not shown to players — mark it as an HTML comment). Generated tokens:
+   files (`{{JAR}}` with SHA-256 `{{SHA256}}`, `{{WORLD_ZIP}}` optional), step-by-step installation (Windows, macOS,
+   Linux), how to start (contract "De acuerdo" [I agree], button, rescue `/unallocated siguiente`, recommended 10–15 min with
+   headphones, first person), map and configuration (built in; ZIP fallback steps), known issues
+   (`{{KNOWN_ISSUES}}`), team (`{{DESIGN:TEAM}}`), credits (Fabric API credit as in README + `{{DESIGN:CREDITS}}`),
+   screenshots and video (a note for the owner, not shown to players — mark it as an HTML comment). Generated tokens:
    `{{VERSION}}`, `{{MINECRAFT}}`, `{{LOADER}}`, `{{FABRIC_API}}`, `{{JAR}}`, `{{SHA256}}`, `{{WORLD_ZIP}}`,
    `{{COMMIT}}`, `{{KNOWN_ISSUES}}`. Design tokens: `{{DESIGN:<NAME>}}`. Write no story and no description of the plot.
 2. `docs/release/CHECKLIST.md` — English, numbered, for the owner/captain: download the release artifact (`gh run
@@ -61,7 +63,7 @@ the CI release artifact so the owner uploads in minutes.
 5. Add `dist/` to `.gitignore` (one line) — the only edit outside your new files.
 
 ## Decisions you may take alone
-Spanish wording of the fixed sections (clear, short, formal "tú" as the README uses), Markdown layout, script
+Spanish wording of the fixed sections (clear, short, formal "tú" [you] as the README uses), Markdown layout, script
 internals. Not yours: any story, description of the game's plot, warnings the contract does not state, team names.
 
 ## Delivery

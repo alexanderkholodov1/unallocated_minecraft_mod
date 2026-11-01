@@ -1,10 +1,12 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 Coordinator (Beacon captain), steering this same session. Your integration of the 12 packages is good work and it is
 now recorded: commit 529e068 lists every package as a merge parent, and the old package branches are retired, so GitHub
 holds only `main` and `v0.1.0`. Two things changed since your brief; read them before anything else.
 
 ## 1. How you verify now (the owner's structural rule, 2026-10-26)
 Your commits were pushed to `v0.1.0` one by one and every red CI run sent the owner an email: 47 failed runs today. He
-wants "NI UN SOLO ERROR" in any project, achieved by verifying before the real CI, not by hiding failures. So:
+wants "NI UN SOLO ERROR" [NOT A SINGLE ERROR] in any project, achieved by verifying before the real CI, not by hiding failures. So:
 - Nothing of yours is pushed to `v0.1.0` any more. The real CI there runs only on commits that already passed a
   rehearsal. Commit 9e62208 (`0.1.0.19`) made the workflow run only on `main`, `v*` and pull requests, plus
   `rehearsal/**`, where jobs are `continue-on-error` and record a verdict.

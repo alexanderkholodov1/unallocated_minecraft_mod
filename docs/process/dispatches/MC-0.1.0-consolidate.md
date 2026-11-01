@@ -1,14 +1,16 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # UNALLOCATED milestone v0.1.0: consolidate every work package into the one hito branch (Codex, gpt-6.1-sol, high)
 
 ## For whom and why
 You work for Alexander Kholodov (GitHub `alexanderkholodov1`), who is entering a Minecraft game jam with the mod
 UNALLOCATED (repo `alexanderkholodov1/unallocated_minecraft_mod`, private). The submission deadline is 2026-10-28 23:59
-UTC-5. His intent documents are in `docs/intent/` (verbatim, "CADA PALABRA esta escrita por mi Y ESTA AHI POR ALGO");
+UTC-5. His intent documents are in `docs/intent/` (verbatim, "CADA PALABRA esta escrita por mi Y ESTA AHI POR ALGO" [EVERY WORD was written by me AND IS THERE FOR A REASON]);
 the plan is `docs/plan/PLAN.md`, his answers to the open decisions are in `docs/plan/DECISIONS.md` (branch `v0.1.14`).
 
 Milestone 1 was built as 12 separate work-package branches, each pushed to GitHub. He judged that a grave failure of
-repository hygiene: "EL AVANCE QUE PUDO PERFECTAMENTE PODRIA CABER EN UN PR, NO ENTIENDO PARA QUE NECESITO 14 RAMAS",
-and asked for a clean-up "NUNCA ELIMINANDO POR ELIMINAR, SINO FUSIONANDO Y UNIENDO COSAS EN HITOS COHERENTES". Your job
+repository hygiene: "EL AVANCE QUE PUDO PERFECTAMENTE PODRIA CABER EN UN PR, NO ENTIENDO PARA QUE NECESITO 14 RAMAS" [THE PROGRESS COULD PERFECTLY WELL FIT IN ONE PR; I DO NOT UNDERSTAND WHY I NEED 14 BRANCHES],
+and asked for a clean-up "NUNCA ELIMINANDO POR ELIMINAR, SINO FUSIONANDO Y UNIENDO COSAS EN HITOS COHERENTES" [NEVER DELETING FOR THE SAKE OF DELETING, BUT MERGING AND JOINING THINGS INTO COHERENT MILESTONES]. Your job
 is the fusion: one coherent milestone `v0.1.0` that contains the work of every package, builds, and passes CI. The
 versions were just corrected from the mistaken `1.0.0-alpha.1.N` to `0.1.N` (1.0.0-alpha is reserved for the complete
 game he tests himself); keep `0.x` everywhere.
@@ -26,7 +28,7 @@ Branches to integrate (all on `origin`; read them with `git show`, `git diff`, `
 | Branch | Package | Last CI |
 |---|---|---|
 | `v0.1.1` | scaffold: toolchain, CI, install docs | |
-| `v0.1.3` | contract screen before the menu ("De acuerdo") | green |
+| `v0.1.3` | contract screen before the menu ("De acuerdo" [I agree]) | green |
 | `v0.1.4` | interface effects (camera, chat, HUD, toasts, death screen...) | green before the rename |
 | `v0.1.5` | spyglass bait | **red**: `SpyglassBaitLogicTest.directorCanForceAStepAndTheScare` (SpyglassBaitLogicTest.java:263) |
 | `v0.1.6` | Fabric API inside our JAR (jar-in-jar), version matrix, `breaks` | green |

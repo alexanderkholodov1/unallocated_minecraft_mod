@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # MC lead plan — ship the jam build by 04:15Z (written ~01:58Z, 2026-10-29)
 
 Base: `v0.2.0` @ 9498b53 (skeleton green, run 40700637219). Design: ~/Workspaces/mc-story (LORE, GAMEPLAY, MAPA,
@@ -7,7 +9,7 @@ vanilla commands; no Java unless a blocker appears.
 ## What fits, in order
 1. **Story content, written by me (Opus, lead), 02:00–02:50Z.** Five chapters on the existing map + the Heap (pocket):
    1. `presa` (Overworld, ~6 min): forum line on arrival; lobby → hill spyglass bait → path (lost time, rewritten chat,
-      `<nick> no corras…`) → predecessor's base (signs NO USES EL CATALEJO / LA MINA DA VUELTAS / EL RELOJ MIENTE,
+      `<nick> no corras…` [<nick> do not run…]) → predecessor's base (signs NO USES EL CATALEJO / LA MINA DA VUELTAS / EL RELOJ MIENTE [DO NOT USE THE SPYGLASS / THE MINE LOOPS / THE CLOCK LIES],
       chest with shears) → mine loop (seamless relative teleport, twice) → floor rots → fall into the Heap.
    2. `heap` (~2 min): rotting copy of the island; the spider body (scaled vanilla spider) stalks then chases; caught →
       death screen written by him (`subject connection: still open. retaining (+fear)`), Trial 1.
@@ -38,12 +40,12 @@ vanilla commands; no Java unless a blocker appears.
 
 ## Cuts (technical, never the story's endings or arc), in order if time runs short
 1. Arrival variants (3 random) → Explorer only (runtime has no random branch). 2. Fake server list / Tab list with
-   victims, respawn button labelled "De acuerdo" (Java). 3. Per-world secrets (fixed values instead). 4. Director by
+   victims, respawn button labelled "De acuerdo" [I agree] (Java). 3. Per-world secrets (fixed values instead). 4. Director by
    telemetry (fixed triggers, as DIRECTOR §7 allows). 5. Second deliberate-death loop (one Puppet trip + one return).
 6. Contract fine print (spec value lives in the leak instead). Never cut: three endings, first death, Puppet, Kernel.
 
 ## Already known deviations (reported to the owner)
 - POISON closes to the farewell screen with the degraded cascade instead of leaving the player in the world forever.
-- Completar's "reopen message replaces the contract" → shown as the title splash after the ending.
+- Complete's "reopen message replaces the contract" → shown as the title splash after the ending.
 - Wording not given verbatim by the design (Shell output, leak lines) is written only from LORE facts and listed in
   the report for his review.

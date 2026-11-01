@@ -1,113 +1,115 @@
-# UNALLOCATED — Orden de construcción (para el capitán de Beacon)
+*Translated from the original Spanish on 2026-11-01.*
 
-*Por hitos, no por fechas (preferencia del dueño): los hitos pueden avanzarse de golpe o uno a uno según los recursos.
-Cada hito tiene un criterio de aceptación claro, para hacer imposible el desastre de producción. Minecraft Java 26.3,
-Fabric, un jugador primero. El motor del miedo es el mapa scripteado; el director es bonus.*
+# UNALLOCATED — Build order (for the Beacon captain)
 
----
-
-## 1. Piezas de código existentes (reutilizar o descartar, sin obligación)
-
-Del código base ya disponible:
-- **Pantalla de "contrato"** antes del menú → usar para el consentimiento + advertencias + número de sujeto + spec en
-  letra chica (LORE.md §4.1, NARRATIVA.md §6).
-- **Núcleo de sesión con actos y estado guardado** → usar para fases, Trial actual, perfil por jugador, flags
-  (proceso suspendido, punto de no retorno).
-- **Mapa por código (lobby, colina, camino, base, mina)** → esqueleto del Overworld (MAPA.md §3).
-- **Cebo de catalejo con susto** → la colina [3] (GAMEPLAY.md §9).
-- **Efectos sobre la interfaz (cámara, chat, HUD, avisos, pantalla de muerte)** → interfaz como arma, chat reescrito,
-  pantalla de muerte escrita por él, ventana del watchdog.
-- **Final provisional** → base para la ventana del watchdog y los tres finales.
-- **Sistema de audio** → lag/atenuación, screamers puntuales, ambiente.
-
-Si el diseño necesita algo que no está, pedirlo.
+*By milestones, not dates (the owner's preference): milestones can be advanced all at once or one by one depending on resources.
+Each milestone has a clear acceptance criterion, to make a production disaster impossible. Minecraft Java 26.3,
+Fabric, single player first. The engine of fear is the scripted map; the director is a bonus.*
 
 ---
 
-## 2. Hitos (con criterio de aceptación)
+## 1. Existing code components (reuse or discard, no obligation)
 
-> Dependencias entre corchetes. El orden recomendado es H0→H6; H7 y H8 son opcionales/posteriores.
+From the codebase already available:
+- **"Contract" screen** before the menu → use for consent + warnings + subject number + spec in
+  fine print (LORE.md §4.1, NARRATIVE.md §6).
+- **Session core with acts and saved state** → use for phases, current Trial, per-player profile, flags
+  (process suspended, point of no return).
+- **Map built through code (lobby, hill, path, base, mine)** → Overworld skeleton (MAP.md §3).
+- **Spyglass bait with a scare** → the hill [3] (GAMEPLAY.md §9).
+- **Interface effects (camera, chat, HUD, notifications, death screen)** → interface as a weapon, rewritten chat,
+  death screen written by it, watchdog window.
+- **Provisional ending** → foundation for the watchdog window and the three endings.
+- **Audio system** → lag/attenuation, occasional screamers, ambience.
 
-### H0 — Cimientos
-Arranca el mod en 26.3; contrato → menú → carga del mapa; núcleo de sesión con fases; gestor de opciones que **guarda y
-restaura siempre** (incluso tras crash); telemetría básica local; esqueleto del Overworld por código.
-**Aceptación:** build verde; una sesión entra, carga el lobby y sale sin crash; cualquier ajuste tocado se restaura.
-
-### H1 — Presa jugable (línea base + estímulo) [H0]
-Lobby/hub/colina/camino/base/mina; catalejo-cebo; lag como presencia; interfaz como arma (sutil); chat reescrito;
-tiempo perdido; loop de la mina seamless; suelo podrido → transición al Heap.
-**Aceptación:** un jugador recorre del contrato a la caída al Heap en ~7 min, sin crash, entendiendo a dónde ir sin
-que le expliquen.
-
-### H2 — El Heap y la primera muerte [H1]
-Dimensión Heap (copia corrupta por datapack) con etapas de pudrición; primera muerte inevitable; flip a vista de
-Puppet; la red de Threads y los Artifacts visibles como Puppet.
-**Aceptación:** caer al Heap, morir, verse como Puppet con la red, y reaparecer ("De acuerdo") de forma estable.
-
-### H3 — Mecánicas de Puppet [H2]
-Cortar hilos (tijeras) → leaks + aceleración de la vuelta (rechazo de muestra corrupta); tirón de los hilos; Trials que
-suben y escalada del Heap entre muertes; cegado de sensores en el camino al Kernel.
-**Aceptación:** el jugador puede acelerar su vuelta cortando hilos; dos o tres muertes a propósito abren el camino al
-Kernel; el Heap se nota más hostil con cada muerte.
-
-### H4 — Entrega de la historia [H1, H3]
-Rastro del predecesor (foro/MOTD, letreros, libro, postmortem); ecos de comportamiento; logs/errores por varias vías;
-idioma que incorpora nick y chat del jugador. Mapear cada hecho del lore a su pieza (NARRATIVA.md §6).
-**Aceptación:** un jugador nuevo, sin explicaciones, puede reconstruir la historia de principio a fin al terminar
-(verificar con 2–3 testers y un cuestionario corto).
-
-### H5 — Kernel, Shell y finales [H2, H3]
-Punto de no retorno señalizado; Shell diegético (entrada del Puppet → intérprete) con secretos por mundo; suspender el
-bucle; ventana del watchdog guiada; los tres finales (Completar / Envenenar / Consumido) con sus textos (LORE.md §4).
-**Aceptación:** los tres finales son alcanzables y legibles; el final malo (Consumido) solo ocurre tras cruzar el punto
-de no retorno avisado; Completar y Envenenar cierran con su texto.
-
-### H6 — Director y pulido [H1–H5]
-Director por telemetría afinando momento/intensidad (con degradación a triggers fijos); balance de ritmo; advertencias
-de contenido; empaquetado; página de itch.io; capturas y video corto.
-**Aceptación:** 0 crashes en varias sesiones seguidas; instalación en frío exitosa desde la página; ritmo que no cansa.
-
-### H7 — (Opcional) Voz [H4]
-Captura del "De acuerdo" y devolución degradada, solo si alcanza. Sin dependencia de chat de voz. **No ruta crítica.**
-
-### H8 — (Posterior) Multijugador
-Puppets de unos ayudando/estorbando a vivos de otros (GAMEPLAY.md §12). Después de la entrega de un jugador.
+If the design needs something that does not exist, ask for it.
 
 ---
 
-## 3. Qué recortar primero si aprieta el tiempo (técnico, NUNCA la historia)
+## 2. Milestones (with acceptance criteria)
 
-El dueño fue explícito: la historia y los finales no se recortan ("hacemos bien o no hacemos"). Si falta tiempo, se
-recorta **alcance técnico**, en este orden:
-1. **H8 multijugador** (ya es posterior).
-2. **H7 voz** (opcional).
-3. **H6 director** → degradar a **triggers fijos** (el mapa scripteado ya es el motor; el director es bonus).
-4. **Fidelidad del Heap** → menos etapas de pudrición / radio de copia menor, sin perder la primera muerte ni el Kernel.
-5. **Interfaz como arma** → quedarse con los golpes más fuertes (pantalla de muerte, F3, chat reescrito) y soltar los
-   menores.
+> Dependencies in brackets. The recommended order is H0→H6; H7 and H8 are optional/later.
 
-Lo que **no** se recorta: contrato, presa jugable (H1), primera muerte y Puppet (H2–H3), entrega de la historia (H4),
-Kernel y los tres finales (H5).
+### H0 — Foundations
+The mod starts in 26.3; contract → menu → map loading; session core with phases; options manager that **always saves and
+restores** (even after a crash); basic local telemetry; Overworld skeleton built through code.
+**Acceptance:** green build; a session enters, loads the lobby and exits without crashing; any changed setting is restored.
+
+### H1 — Playable prey (baseline + stimulus) [H0]
+Lobby/hub/hill/path/base/mine; spyglass bait; lag as presence; interface as a weapon (subtle); rewritten chat;
+lost time; seamless mine loop; rotten floor → transition to the Heap.
+**Acceptance:** a player goes from the contract to the fall into the Heap in ~7 min, without crashing, understanding where to go without
+being told.
+
+### H2 — The Heap and the first death [H1]
+Heap dimension (corrupted copy through a datapack) with stages of decay; inevitable first death; flip to
+Puppet view; the network of Threads and the Artifacts visible as a Puppet.
+**Acceptance:** fall into the Heap, die, see yourself as a Puppet with the network, and respawn ("De acuerdo" [I agree]) reliably.
+
+### H3 — Puppet mechanics [H2]
+Cut threads (shears) → leaks + faster return (corrupted sample rejection); threads pulling; rising Trials
+and Heap escalation between deaths; blinding sensors on the way to the Kernel.
+**Acceptance:** the player can speed up their return by cutting threads; two or three deliberate deaths open the way to the
+Kernel; the Heap feels more hostile with each death.
+
+### H4 — Story delivery [H1, H3]
+Predecessor's trail (forum/MOTD, signs, book, postmortem); behavioral echoes; logs/errors through several channels;
+language incorporating the player's nickname and chat. Map each lore fact to its piece (NARRATIVE.md §6).
+**Acceptance:** a new player, without explanations, can reconstruct the story from beginning to end upon finishing
+(check with 2–3 testers and a short questionnaire).
+
+### H5 — Kernel, Shell and endings [H2, H3]
+Signposted point of no return; diegetic Shell (Puppet input → interpreter) with per-world secrets; suspend the
+loop; guided watchdog window; the three endings (Complete / Poison / Consumed) with their texts (LORE.md §4).
+**Acceptance:** all three endings are reachable and readable; the bad ending (Consumed) only happens after crossing the
+warned point of no return; Complete and Poison close with their texts.
+
+### H6 — Director and polish [H1–H5]
+Telemetry director tuning timing/intensity (with fallback to fixed triggers); pacing balance; content
+warnings; packaging; itch.io page; screenshots and short video.
+**Acceptance:** 0 crashes across several consecutive sessions; successful clean installation from the page; pacing that does not wear players out.
+
+### H7 — (Optional) Voice [H4]
+Capture "De acuerdo" [I agree] and play it back degraded, only if resources allow. No voice-chat dependency. **Not on the critical path.**
+
+### H8 — (Later) Multiplayer
+Some players' Puppets helping/hindering other living players (GAMEPLAY.md §12). After the single-player delivery.
 
 ---
 
-## 4. Restricciones de entrega (itch.io)
+## 3. What to cut first if time gets tight (technical, NEVER the story)
 
-Objetivo de entrega: **2026-10-28 23:59 (UTC−5)** (confirmar estado actual con el dueño). La página debe incluir:
-archivo del mod y dependencias; loader y versión exactos (Fabric, Minecraft 26.3, Java 25); instrucciones de
-instalación e inicio; mapa/config si hacen falta; descripción breve; equipo y créditos de recursos externos; errores
-conocidos y **advertencias de contenido** (luces intermitentes, sonidos fuertes). Recomendado: capturas y video corto.
+The owner was explicit: the story and endings are not cut ("hacemos bien o no hacemos" [we do it properly or we do not do it]). If time is short,
+cut **technical scope**, in this order:
+1. **H8 multiplayer** (already later).
+2. **H7 voice** (optional).
+3. **H6 director** → fall back to **fixed triggers** (the scripted map is already the engine; the director is a bonus).
+4. **Heap fidelity** → fewer stages of decay / smaller copy radius, without losing the first death or the Kernel.
+5. **Interface as a weapon** → keep the strongest hits (death screen, F3, rewritten chat) and drop the
+   smaller ones.
 
-Criterio de dependencias: **cada dependencia obligatoria baja la facilidad de instalación**; incluir solo lo realmente
-necesario y con instalación sencilla. Verificar en 26.3: Fabric Loader/API, y mods de optimización si de verdad hacen
-falta (ModernFix, Lithium, C2ME, Noisium, Starlight). Simple Voice Chat solo si se hace H7.
+What is **not** cut: contract, playable prey (H1), first death and Puppet (H2–H3), story delivery (H4),
+Kernel and the three endings (H5).
 
 ---
 
-## 5. Pruebas mínimas
+## 4. Delivery constraints (itch.io)
 
-- **E0 Humo:** carga, no se cae, ajustes se restauran.
-- **E1 Un jugador completo:** sesión de punta a punta sin crash; un tester nuevo, sin explicaciones, llega a un final y
-  entiende la historia (cuestionario corto: momento más aterrador, dónde se confundió, si entendió qué hacer y qué era
-  el Reclaimer, si el audio molestó, si volvería a jugar).
-- **E5 Jurado:** instalación en frío desde la página de itch por un desconocido, 10–15 min cronometrados.
+Delivery target: **2026-10-28 23:59 (UTC−5)** (confirm current status with the owner). The page must include:
+mod file and dependencies; exact loader and version (Fabric, Minecraft 26.3, Java 25); installation and
+startup instructions; map/config if needed; short description; team and external resource credits; known
+issues and **content warnings** (flashing lights, loud sounds). Recommended: screenshots and short video.
+
+Dependency criterion: **every mandatory dependency makes installation harder**; include only what is truly
+necessary and easy to install. Verify in 26.3: Fabric Loader/API, and optimization mods if truly
+needed (ModernFix, Lithium, C2ME, Noisium, Starlight). Simple Voice Chat only if H7 is implemented.
+
+---
+
+## 5. Minimum tests
+
+- **E0 Smoke:** loads, does not crash, settings are restored.
+- **E1 Complete single player:** end-to-end session without crashing; a new tester, without explanations, reaches an ending and
+  understands the story (short questionnaire: scariest moment, where they got confused, whether they understood what to do and what
+  the Reclaimer was, whether the audio bothered them, whether they would play again).
+- **E5 Judges:** clean installation from the itch page by a stranger, 10–15 min timed.

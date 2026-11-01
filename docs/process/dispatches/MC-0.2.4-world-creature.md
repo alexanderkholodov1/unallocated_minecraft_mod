@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # Brief MC-0.2.4 — `world-creature`: pocket dimension, copy, corruption and the creature
 
 **Recommended lane:** Codex CLI, gpt-6.1-sol, effort **medium**. Why: two bounded primitives on top of the runtime's
@@ -16,7 +18,7 @@ the dispatch authorizes it). English in code/docs.
 ## Goal and why
 The owner decided the experience has "a monster, a pocket dimension and a climax with one of several endings" (his
 answers in `docs/plan/DECISIONS.md`; the pocket dimension and the creature with a body are his words in
-`docs/intent/Initial brainstorm.txt`, "Tematica" 1, and `docs/intent/UNALLOCATED — Plan de construcción (AI generated,
+`docs/intent/Initial brainstorm.txt`, "Tematica" [Theme] 1, and `docs/intent/UNALLOCATED — Plan de construcción (AI generated,
 Author redacted).md` §3.3 and §5.6 — read them, do not take story from anywhere else). What the pocket looks like, what
 the creature's body is and what it does are **open design questions** (designer's questions 3 and 10 in
 `~/Workspaces/mc-story/NOTAS.md`). You build the primitives that serve any reasonable answer, so tomorrow's content only

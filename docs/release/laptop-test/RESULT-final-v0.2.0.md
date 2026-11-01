@@ -1,3 +1,5 @@
+*Translated from the original Spanish on 2026-11-01.*
+
 # RESULT: PASS
 
 Run `final-v0.2.0` (stage `all`), laptop WSL Ubuntu, openjdk version "25.0.5" 2026-10-20 LTS.
@@ -6,8 +8,8 @@ Run `final-v0.2.0` (stage `all`), laptop WSL Ubuntu, openjdk version "25.0.5" 20
 | Item | Value |
 | --- | --- |
 | Mod JAR | `unallocated-0.2.0.jar` sha256 `1fb9e54f24bdec9277ffca33fcb7fe373cc49a3af01ab2926b4b6f4c3188a318` (verified against the page) |
-| Minecraft (page: "exactamente") | 26.3 |
-| Fabric Loader (page: "o posterior") | requested 0.20.1; log: Loading Minecraft 26.3 with Fabric Loader 0.20.1 |
+| Minecraft (page: "exactamente" [exactly]) | 26.3 |
+| Fabric Loader (page: "o posterior" [or later]) | requested 0.20.1; log: Loading Minecraft 26.3 with Fabric Loader 0.20.1 |
 | Fabric installer (page) | 1.1.2 |
 | Java | page says Java 25; used Temurin from `api.adoptium.net` (see java-version.txt) |
 | Profile id written by installer | fabric-loader-0.20.1-26.3 |
