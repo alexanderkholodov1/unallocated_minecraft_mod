@@ -1,6 +1,6 @@
 {
  "id": "heap",
- "budget_seconds": 120,
+ "budget_seconds": 150,
  "checkpoint": "heap.arrival",
  "on_enter": [
   {
@@ -10,50 +10,41 @@
   },
   {
    "at": 0,
-   "do": "corrupt",
-   "area": "heap.rot",
-   "rules": [
-    {
-     "from": [
-      "minecraft:grass_block"
-     ],
-     "to": [
-      "unallocated:rot",
-      "unallocated:rot",
-      "minecraft:coarse_dirt"
-     ],
-     "ratio": 0.35
-    },
-    {
-     "from": [
-      "minecraft:cobblestone",
-      "minecraft:stone_bricks"
-     ],
-     "to": [
-      "minecraft:mossy_cobblestone",
-      "minecraft:cracked_stone_bricks"
-     ],
-     "ratio": 0.4
-    },
-    {
-     "from": [
-      "minecraft:glass",
-      "minecraft:glass_pane"
-     ],
-     "to": [
-      "minecraft:air"
-     ],
-     "ratio": 0.5
-    }
-   ],
-   "seed": 4114,
-   "over_seconds": 40
+   "do": "command",
+   "run": "scoreboard objectives modify vc displayname {translate:\"score.unallocated.heap_title\"}"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "scoreboard players display name online vc {translate:\"score.unallocated.online_heap\"}"
+  },
+  {
+   "at": 0,
+   "do": "command",
+   "run": "scoreboard players display name rank vc {translate:\"score.unallocated.rank_subject\"}"
+  },
+  {
+   "at": 1,
+   "do": "chat",
+   "text": {
+    "es": "g0: estimate human fear response :: pool UNALLOCATED",
+    "en": "g0: estimate human fear response :: pool UNALLOCATED",
+    "color": "#8a8a8a"
+   }
+  },
+  {
+   "at": 3,
+   "do": "actionbar",
+   "text": {
+    "es": "Es la misma base. Pero no es la misma.",
+    "en": "It is the same base. But it is not the same."
+   }
   },
   {
    "at": 2,
    "do": "creature",
    "op": "spawn",
-   "id": "spider",
+   "id": "reclaimer",
    "body": {
     "summon": "unallocated:reclaimer"
    },
@@ -64,9 +55,9 @@
    "at": 2.1,
    "do": "creature",
    "op": "stalk",
-   "id": "spider",
-   "step": 1.5,
-   "min_distance": 6
+   "id": "reclaimer",
+   "step": 1.2,
+   "min_distance": 8
   }
  ],
  "on_resume": [
@@ -79,15 +70,9 @@
  "escape": [
   {
    "at": 0,
-   "do": "creature",
-   "op": "despawn",
-   "id": "spider"
-  },
-  {
-   "at": 0,
    "do": "counter",
    "id": "trial",
-   "set": 1
+   "add": 1
   },
   {
    "at": 0,
@@ -98,11 +83,6 @@
     "es": "subject connection: still open. retaining (+fear)",
     "en": "subject connection: still open. retaining (+fear)"
    }
-  },
-  {
-   "at": 0.2,
-   "do": "audio",
-   "cue": "muffle"
   },
   {
    "at": 0.4,
@@ -122,18 +102,26 @@
      "do": "audio",
      "cue": "threads",
      "where": "heap.spider"
+    },
+    {
+     "at": 6,
+     "do": "actionbar",
+     "text": {
+      "es": "Algo grande está quieto junto a la mina. Se mueve cuando no lo miras.",
+      "en": "Something big stands still by the mine. It moves when you are not looking."
+     }
     }
    ],
    "capture": {
     "name": "heap",
-    "at": 5
+    "at": 6
    }
   },
   {
    "id": "heap.hunt",
    "when": {
     "type": "after",
-    "seconds": 18
+    "seconds": 16
    },
    "actions": [
     {
@@ -142,38 +130,42 @@
      "run": "tp @s ~ ~ ~ facing entity @e[type=unallocated:reclaimer,limit=1,sort=nearest] eyes"
     },
     {
-     "at": 0,
+     "at": 0.1,
      "do": "creature",
      "op": "chase",
-     "id": "spider",
-     "speed": 3.5,
+     "id": "reclaimer",
+     "speed": 5.5,
      "catch_distance": 1.5
     }
    ],
    "capture": {
     "name": "cazar",
-    "at": 1.0
+    "at": 0.6
    }
   },
   {
    "id": "heap.caught",
    "when": {
     "type": "creature",
-    "creature": "spider",
+    "creature": "reclaimer",
     "event": "caught"
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 2
    },
    "actions": [
     {
      "at": 0,
      "do": "counter",
      "id": "trial",
-     "set": 1
+     "add": 1
     },
     {
      "at": 0,
      "do": "creature",
      "op": "hold",
-     "id": "spider"
+     "id": "reclaimer"
     },
     {
      "at": 0.1,
@@ -186,7 +178,7 @@
      }
     },
     {
-     "at": 0.30000000000000004,
+     "at": 0.2,
      "do": "audio",
      "cue": "screamer"
     },
@@ -201,16 +193,21 @@
    }
   },
   {
-   "id": "heap.next",
+   "id": "heap.to_puppet",
    "when": {
     "type": "respawn"
+   },
+   "if": {
+    "flags": [
+     "puppet"
+    ]
    },
    "actions": [
     {
      "at": 0,
      "do": "creature",
      "op": "despawn",
-     "id": "spider"
+     "id": "reclaimer"
     },
     {
      "at": 0.2,
@@ -220,6 +217,83 @@
    "autoplay": {
     "wait_seconds": 200
    }
+  },
+  {
+   "id": "heap.alive_again",
+   "when": {
+    "type": "respawn"
+   },
+   "if": {
+    "not_flags": [
+     "puppet"
+    ]
+   },
+   "repeat": {
+    "max": 20,
+    "cooldown_seconds": 1
+   },
+   "actions": [
+    {
+     "at": 0.3,
+     "do": "title",
+     "title": {
+      "es": "Trial {counter:trial}",
+      "en": "Trial {counter:trial}"
+     },
+     "fade_in": 0.3,
+     "stay": 2,
+     "fade_out": 1
+    },
+    {
+     "at": 1,
+     "do": "chat",
+     "text": {
+      "es": "subject connection: still open.",
+      "en": "subject connection: still open.",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 2,
+     "do": "actionbar",
+     "text": {
+      "es": "Al morir, elige «Todavía no» para quedarte como Puppet: sólo así verás sus hilos.",
+      "en": "When you die, choose \"Not yet\" to stay as a Puppet: only then will you see its threads."
+     }
+    },
+    {
+     "at": 4,
+     "do": "creature",
+     "op": "spawn",
+     "id": "reclaimer",
+     "body": {
+      "summon": "unallocated:reclaimer"
+     },
+     "where": "heap.spider",
+     "facing": "player"
+    },
+    {
+     "at": 4.1,
+     "do": "creature",
+     "op": "stalk",
+     "id": "reclaimer",
+     "step": 1.2,
+     "min_distance": 8
+    },
+    {
+     "at": 10,
+     "do": "command",
+     "run": "tp @s ~ ~ ~ facing entity @e[type=unallocated:reclaimer,limit=1,sort=nearest] eyes"
+    },
+    {
+     "at": 10.1,
+     "do": "creature",
+     "op": "chase",
+     "id": "reclaimer",
+     "speed": 6,
+     "catch_distance": 1.5
+    }
+   ]
   }
  ]
 }

@@ -329,6 +329,9 @@ public final class StoryRuntime {
     /** "I agree" from the Puppet state: consent to another trial; back alive at the chapter's respawn point. */
     public boolean revive(ServerPlayer p) {
         if (!state.active() || !state.flags().contains(PUPPET_FLAG)) return false;
+        if (state.flags().contains("story.flag.no_revive")) { // the Kernel is the point of no return
+            p.sendSystemMessage(net.minecraft.network.chat.Component.translatable("puppet.unallocated.no_return")); return false;
+        }
         state.removeFlag(PUPPET_FLAG); applyPuppet(p, false);
         JsonObject chapter = currentChapter();
         if (chapter != null) teleport(p, resolvePosition(chapter.get(chapter.has("respawn") ? "respawn" : "checkpoint")));

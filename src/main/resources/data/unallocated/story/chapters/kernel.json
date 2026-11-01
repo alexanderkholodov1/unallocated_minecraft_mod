@@ -5,30 +5,25 @@
  "on_enter": [
   {
    "at": 0,
+   "do": "flag",
+   "set": "no_revive"
+  },
+  {
+   "at": 0,
    "do": "title",
    "title": {
-    "es": "Trial {counter:trial}",
-    "en": "Trial {counter:trial}"
+    "es": "the Kernel",
+    "en": "the Kernel"
    },
    "fade_in": 0.3,
    "stay": 2.5,
    "fade_out": 1
   },
   {
-   "at": 0,
-   "do": "command",
-   "run": "effect give @s minecraft:night_vision infinite 0 true"
-  },
-  {
-   "at": 0.5,
-   "do": "command",
-   "run": "give @s minecraft:shears[minecraft:can_break={blocks:\"unallocated:thread\"}]"
-  },
-  {
    "at": 1,
    "do": "creature",
    "op": "spawn",
-   "id": "spider",
+   "id": "reclaimer",
    "body": {
     "summon": "unallocated:reclaimer{attributes:[{id:\"minecraft:scale\",base:1.15d}]}"
    },
@@ -39,13 +34,21 @@
    "at": 1.1,
    "do": "creature",
    "op": "face_player",
-   "id": "spider"
+   "id": "reclaimer"
   },
   {
    "at": 2,
    "do": "audio",
    "cue": "threads",
    "where": "kernel.heart"
+  },
+  {
+   "at": 4,
+   "do": "actionbar",
+   "text": {
+    "es": "Al fondo del túnel, el centro de la telaraña. Desde aquí no se vuelve.",
+    "en": "At the end of the tunnel, the centre of the web. There is no coming back from here."
+   }
   }
  ],
  "on_resume": [
@@ -64,260 +67,10 @@
  ],
  "beats": [
   {
-   "id": "kernel.cut_a",
-   "when": {
-    "type": "break",
-    "block": "unallocated:thread",
-    "zone": "heap.cut_a"
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "human_playtest_pool: UNALLOCATED",
-      "en": "human_playtest_pool: UNALLOCATED",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "reclaim pool ... UNALLOCATED",
-      "en": "reclaim pool ... UNALLOCATED",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_a"
-    }
-   ],
-   "if": {
-    "not_flags": [
-     "cut_a"
-    ]
-   }
-  },
-  {
-   "id": "kernel.cut_b",
-   "when": {
-    "type": "break",
-    "block": "unallocated:thread",
-    "zone": "heap.cut_b"
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
-      "en": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "watchdog :: guarding pid 7331",
-      "en": "watchdog :: guarding pid 7331",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_b"
-    }
-   ],
-   "if": {
-    "not_flags": [
-     "cut_b"
-    ]
-   }
-  },
-  {
-   "id": "kernel.cut_c",
-   "when": {
-    "type": "break",
-    "block": "unallocated:thread",
-    "zone": "heap.cut_c"
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "success_threshold: 1.37 (spec g0: 0.82)",
-      "en": "success_threshold: 1.37 (spec g0: 0.82)",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "the Kernel :: main loop",
-      "en": "the Kernel :: main loop",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_c"
-    }
-   ],
-   "if": {
-    "not_flags": [
-     "cut_c"
-    ]
-   }
-  },
-  {
-   "id": "kernel.rotate_a",
-   "when": {
-    "type": "zone",
-    "zone": "kernel.threshold"
-   },
-   "if": {
-    "not_flags": [
-     "cut_a"
-    ]
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 2
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "credential rotated: proximity event",
-      "en": "credential rotated: proximity event",
-      "color": "#aa0000"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "muffle"
-    },
-    {
-     "at": 0.3,
-     "do": "teleport",
-     "to": "kernel.gate",
-     "blackout": true
-    }
-   ]
-  },
-  {
-   "id": "kernel.rotate_b",
-   "when": {
-    "type": "zone",
-    "zone": "kernel.threshold"
-   },
-   "if": {
-    "not_flags": [
-     "cut_b"
-    ]
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 2
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "credential rotated: proximity event",
-      "en": "credential rotated: proximity event",
-      "color": "#aa0000"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "muffle"
-    },
-    {
-     "at": 0.3,
-     "do": "teleport",
-     "to": "kernel.gate",
-     "blackout": true
-    }
-   ]
-  },
-  {
-   "id": "kernel.rotate_c",
-   "when": {
-    "type": "zone",
-    "zone": "kernel.threshold"
-   },
-   "if": {
-    "not_flags": [
-     "cut_c"
-    ]
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 2
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "credential rotated: proximity event",
-      "en": "credential rotated: proximity event",
-      "color": "#aa0000"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "muffle"
-    },
-    {
-     "at": 0.3,
-     "do": "teleport",
-     "to": "kernel.gate",
-     "blackout": true
-    }
-   ]
-  },
-  {
    "id": "kernel.cross",
    "when": {
     "type": "zone",
     "zone": "kernel.threshold"
-   },
-   "if": {
-    "flags": [
-     "cut_a",
-     "cut_b",
-     "cut_c"
-    ]
    },
    "actions": [
     {
@@ -517,7 +270,7 @@
      "at": 0,
      "do": "creature",
      "op": "hold",
-     "id": "spider"
+     "id": "reclaimer"
     },
     {
      "at": 0,
@@ -721,7 +474,7 @@
      "at": 19,
      "do": "creature",
      "op": "despawn",
-     "id": "spider"
+     "id": "reclaimer"
     },
     {
      "at": 21,
@@ -944,7 +697,7 @@
      "at": 0,
      "do": "creature",
      "op": "chase",
-     "id": "spider",
+     "id": "reclaimer",
      "speed": 6,
      "catch_distance": 1.5
     },
@@ -977,7 +730,7 @@
      "at": 0,
      "do": "creature",
      "op": "chase",
-     "id": "spider",
+     "id": "reclaimer",
      "speed": 2.5,
      "catch_distance": 1.5
     }
@@ -987,7 +740,7 @@
    "id": "kernel.caught",
    "when": {
     "type": "creature",
-    "creature": "spider",
+    "creature": "reclaimer",
     "event": "caught"
    },
    "if": {
@@ -1033,40 +786,6 @@
      "at": 0.5,
      "do": "end",
      "ending": "CONSUMED"
-    }
-   ]
-  },
-  {
-   "id": "kernel.respawn",
-   "when": {
-    "type": "respawn"
-   },
-   "if": {
-    "not_flags": [
-     "crossed"
-    ]
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 0
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "counter",
-     "id": "trial",
-     "add": 1
-    },
-    {
-     "at": 0.5,
-     "do": "title",
-     "title": {
-      "es": "Trial {counter:trial}",
-      "en": "Trial {counter:trial}"
-     },
-     "fade_in": 0.3,
-     "stay": 2.5,
-     "fade_out": 1
     }
    ]
   },
