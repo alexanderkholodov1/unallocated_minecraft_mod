@@ -1,0 +1,103 @@
+{
+  "format": 1,
+  "languages": [
+    "es",
+    "en"
+  ],
+  "default_language": "es",
+  "language_select": "client",
+  "agreement_fallback": {
+    "es": "[ES] acuerdo-por-clic",
+    "en": "[EN] click-agreement"
+  },
+  "chapters": [
+    "first",
+    "second",
+    "third"
+  ],
+  "anchors": {
+    "example.mark": {
+      "pos": [
+        90,
+        64,
+        20
+      ],
+      "dimension": "overworld",
+      "yaw": -90,
+      "pitch": 0
+    }
+  },
+  "zones": {
+    "example.end_zone": {
+      "box": [
+        98,
+        64,
+        18,
+        100,
+        67,
+        22
+      ],
+      "dimension": "overworld"
+    }
+  },
+  "endings": {
+    "EXAMPLE_A": {
+      "title": {
+        "es": "[ES] Final A t\u00edtulo",
+        "en": "[EN] Ending A title"
+      },
+      "lines": [
+        {
+          "es": "[ES] Final A l\u00ednea, {agreement}",
+          "en": "[EN] Ending A line, {agreement}"
+        }
+      ],
+      "splash": {
+        "es": "[ES] Final A splash",
+        "en": "[EN] Ending A splash"
+      },
+      "quote_agreement": true
+    },
+    "EXAMPLE_B": {
+      "title": {
+        "es": "[ES] Final B t\u00edtulo",
+        "en": "[EN] Ending B title"
+      },
+      "lines": [
+        {
+          "es": "[ES] Final B l\u00ednea, {elapsed_min} min",
+          "en": "[EN] Ending B line, {elapsed_min} min"
+        }
+      ],
+      "splash": {
+        "es": "[ES] Final B splash",
+        "en": "[EN] Ending B splash"
+      },
+      "quote_agreement": false
+    }
+  },
+  "fallback_ending": "EXAMPLE_A",
+  "build": {
+    "forceload": [],
+    "run": [
+      "setblock 90 64 22 minecraft:oak_sign"
+    ]
+  },
+  "autoplay": {
+    "time_scale": 0.25,
+    "runs": [
+      {
+        "ending": "EXAMPLE_A",
+        "skip": [
+          "second.choose_b"
+        ]
+      },
+      {
+        "ending": "EXAMPLE_B",
+        "skip": [
+          "second.choose_a"
+        ]
+      }
+    ]
+  }
+}

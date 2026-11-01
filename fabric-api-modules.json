@@ -1,0 +1,46 @@
+{
+  "fabric_api_version": "0.165.0+26.3",
+  "modules": {
+    "fabric-api-base": {
+      "version": "2.0.6+fcdff87f5d",
+      "environment": "*",
+      "reason": "Event infrastructure required by lifecycle, commands, networking and screens."
+    },
+    "fabric-command-api-v2": {
+      "version": "3.1.2+fcdff87f5d",
+      "environment": "*",
+      "reason": "Command registration (v0.1 /unallocated interface)."
+    },
+    "fabric-lifecycle-events-v1": {
+      "version": "4.1.9+ffef5f675d",
+      "environment": "*",
+      "reason": "Server/client lifecycle and tick events (v0.1 core and bait)."
+    },
+    "fabric-networking-api-v1": {
+      "version": "6.4.0+a21c9eb65d",
+      "environment": "*",
+      "reason": "CustomPacketPayload registration and client/server networking."
+    },
+    "fabric-registry-sync-v0": {
+      "version": "8.0.4+1ca9f6365d",
+      "environment": "*",
+      "reason": "Allows custom sound registration before registry freeze and synchronizes mod registry IDs."
+    },
+    "fabric-resource-loader-v1": {
+      "version": "3.1.0+5af7744b5d",
+      "environment": "*",
+      "reason": "Mod resources, data packs and reload listeners."
+    },
+    "fabric-screen-api-v1": {
+      "version": "5.2.4+48607d035d",
+      "environment": "client",
+      "reason": "Client screen initialization and extraction hooks."
+    }
+  },
+  "smoke_api_versions": [
+    "0.153.1+26.3",
+    "0.161.0+26.3",
+    "0.165.0+26.3"
+  ],
+  "minimum_external_api_version": "0.161.0"
+}

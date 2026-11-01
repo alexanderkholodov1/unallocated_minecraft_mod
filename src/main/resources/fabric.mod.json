@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "unallocated",
+  "version": "${version}",
+  "name": "UNALLOCATED",
+  "description": "Mod de terror: contrato, sesión persistente, mapa, cebo de catalejo, efectos de interfaz, audio y epílogo.",
+  "authors": [
+    "NULL_Threshold Interactive"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "mixins": [
+    {
+      "config": "unallocated.contract.mixins.json",
+      "environment": "client"
+    },
+    {
+      "config": "unallocated-interface.mixins.json",
+      "environment": "client"
+    },
+    "unallocated.bait.mixins.json",
+    {
+      "config": "unallocated.bait.client.mixins.json",
+      "environment": "client"
+    },
+    {
+      "config": "unallocated.ending.mixins.json",
+      "environment": "client"
+    },
+    {
+      "config": "unallocated-audio.client.mixins.json",
+      "environment": "client"
+    },
+    "unallocated.story.mixins.json",
+    "unallocated-creature.mixins.json"
+  ],
+  "entrypoints": {
+    "main": [
+      "org.unallocated.UnallocatedMod"
+    ],
+    "client": [
+      "org.unallocated.client.UnallocatedClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}",
+    "java": ">=25",
+    "fabric-api-base": ">=${fabric_api_base_version}",
+    "fabric-command-api-v2": ">=${fabric_command_api_v2_version}",
+    "fabric-lifecycle-events-v1": ">=${fabric_lifecycle_events_v1_version}",
+    "fabric-networking-api-v1": ">=${fabric_networking_api_v1_version}",
+    "fabric-resource-loader-v1": ">=${fabric_resource_loader_v1_version}",
+    "fabric-screen-api-v1": ">=${fabric_screen_api_v1_version}",
+    "fabric-registry-sync-v0": ">=${fabric_registry_sync_v0_version}"
+  },
+  "breaks": {
+    "fabric-api": "<${minimum_external_api_version}"
+  }
+}

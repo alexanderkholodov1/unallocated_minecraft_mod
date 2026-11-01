@@ -1,0 +1,141 @@
+{
+  "id": "first",
+  "budget_seconds": 240,
+  "checkpoint": "lobby.spawn",
+  "on_enter": [
+    {
+      "at": 0,
+      "do": "audio",
+      "cue": "ambient"
+    },
+    {
+      "at": 2,
+      "do": "title",
+      "title": {
+        "es": "[ES] T\u00edtulo 1",
+        "en": "[EN] Title 1"
+      },
+      "subtitle": {
+        "es": "[ES] Subt\u00edtulo 1, {player}",
+        "en": "[EN] Subtitle 1, {player}"
+      }
+    }
+  ],
+  "on_resume": [
+    {
+      "at": 0,
+      "do": "audio",
+      "cue": "ambient"
+    }
+  ],
+  "escape": [
+    {
+      "at": 0,
+      "do": "teleport",
+      "to": "mine.entrance",
+      "blackout": true
+    }
+  ],
+  "beats": [
+    {
+      "id": "first.Invalid_ID!",
+      "when": {
+        "type": "zone",
+        "zone": "lobby.exit"
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "actionbar",
+          "text": {
+            "es": "[ES] Texto 1",
+            "en": "[EN] Text 1"
+          }
+        },
+        {
+          "at": 1,
+          "do": "flag",
+          "set": "example.left_lobby"
+        }
+      ]
+    },
+    {
+      "id": "first.look_hill",
+      "when": {
+        "type": "look",
+        "at": "hill.bait",
+        "degrees": 10,
+        "seconds": 0.5
+      },
+      "if": {
+        "flags": [
+          "example.left_lobby"
+        ]
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "audio",
+          "cue": "threads",
+          "where": "hill.bait"
+        }
+      ]
+    },
+    {
+      "id": "first.sign",
+      "when": {
+        "type": "interact",
+        "at": {
+          "pos": [
+            90,
+            64,
+            22
+          ]
+        }
+      },
+      "actions": [
+        {
+          "at": 0,
+          "do": "interface",
+          "effect": "SIGN",
+          "seconds": 5,
+          "generation": 2,
+          "strength": 0.5,
+          "leak": "es",
+          "seed": 17,
+          "sign": {
+            "pos": [
+              90,
+              64,
+              22
+            ]
+          },
+          "text": {
+            "es": "[ES] Letrero",
+            "en": "[EN] Sign"
+          }
+        },
+        {
+          "at": 1,
+          "do": "chat",
+          "from": {
+            "es": "[ES] Remitente",
+            "en": "[EN] Sender"
+          },
+          "text": {
+            "es": "[ES] Mensaje {local_time}",
+            "en": "[EN] Message {local_time}"
+          }
+        },
+        {
+          "at": 3,
+          "do": "next_chapter"
+        }
+      ],
+      "capture": {
+        "name": "example-sign",
+        "at": 0.5
+      }
+    }
+  ]
+}

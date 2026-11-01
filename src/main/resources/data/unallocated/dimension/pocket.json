@@ -1,0 +1,18 @@
+{
+  "type": "unallocated:pocket",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "unallocated:pocket",
+      "layers": [
+        {
+          "block": "minecraft:air",
+          "height": 1
+        }
+      ],
+      "lakes": false,
+      "features": false,
+      "structure_overrides": []
+    }
+  }
+}

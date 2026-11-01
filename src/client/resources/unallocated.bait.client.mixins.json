@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "package": "org.unallocated.client.mixin.bait",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "BaitEntityRenderDistanceMixin",
+    "BaitHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

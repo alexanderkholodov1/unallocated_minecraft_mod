@@ -1,0 +1,48 @@
+{
+  "checkpoints": [
+    "base.entrance",
+    "base.theft_zone",
+    "hill.bait_path",
+    "hill.view",
+    "lobby.board",
+    "lobby.spawn",
+    "mine.entrance",
+    "mine.threshold",
+    "path.midpoint"
+  ],
+  "landmarks": [
+    "base.back_door",
+    "base.bed",
+    "base.chest",
+    "base.door",
+    "hill.bait",
+    "lobby.motd",
+    "lobby.route",
+    "lobby.rules",
+    "lobby.task",
+    "lobby.well",
+    "mine.end",
+    "mine.lintel",
+    "mine.route",
+    "path.campfire",
+    "path.route",
+    "path.torch.0",
+    "path.torch.1",
+    "path.torch.2",
+    "path.torch.3",
+    "path.torch.4"
+  ],
+  "sections": [
+    "lobby",
+    "hill",
+    "path",
+    "base",
+    "mine"
+  ],
+  "triggers": [
+    "base.theft_zone",
+    "hill.bait_path",
+    "lobby.exit",
+    "mine.entrance"
+  ]
+}
