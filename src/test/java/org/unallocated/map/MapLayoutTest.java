@@ -29,7 +29,7 @@ class MapLayoutTest {
     @Test void landmarksAndSceneryRespectSectionOwnership() {
         for (var entry : MapLayout.landmarks().entrySet()) {
             var pos = entry.getValue();
-            var section = MapLayout.section(entry.getKey().split("\\.")[0]);
+            var section = MapLayout.section(entry.getKey().startsWith("hub.") ? "lobby" : entry.getKey().split("\\.")[0]);
             assertTrue(section.bounds().contains(pos.getX(), pos.getY(), pos.getZ()), entry.getKey());
         }
         for (var root : MapLayout.TREES) for (var section : MapLayout.sections().values()) {

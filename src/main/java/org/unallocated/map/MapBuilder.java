@@ -11,7 +11,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.storage.LevelData;
 import org.unallocated.UnallocatedMod;
@@ -32,13 +31,10 @@ public final class MapBuilder {
         }
         var writers = new ArrayList<MapWriter>();
         if (sectionId.equals("all")) {
-            UnallocatedMod.LOGGER.info("UNALLOCATED map build section=all phase=clear");
-            clear(level, MapLayout.ISLAND);
-            UnallocatedMod.LOGGER.info("UNALLOCATED map build section=all phase=terrain");
-            terrain(level);
             for (var section : SECTIONS.values()) writers.add(buildSection(level, section));
         } else writers.add(buildSection(level, SECTIONS.get(sectionId)));
         UnallocatedMod.LOGGER.info("UNALLOCATED map build section={} phase=configure", sectionId);
+        clearSightline(level);
         configure(level);
         writers.forEach(MapWriter::finishSigns);
         UnallocatedMod.LOGGER.info("UNALLOCATED map build section={} phase=verify", sectionId);
@@ -47,7 +43,7 @@ public final class MapBuilder {
     }
     private static MapWriter buildSection(ServerLevel level, MapSection section) {
         UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=clear", section.id());
-        clear(level, MapLayout.section(section.id()).bounds());
+        MapWriter.prepare(level, MapLayout.section(section.id()));
         UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=place", section.id());
         var writer = new MapWriter(level, MapLayout.section(section.id()));
         section.build(writer);
@@ -60,37 +56,35 @@ public final class MapBuilder {
         UnallocatedMod.LOGGER.info("UNALLOCATED map section={} phase=complete", section.id());
         return writer;
     }
-    private static void clear(ServerLevel level, MapLayout.BlockBox box) {
-        if (!level.isInsideBuildHeight(box.minY()) || !level.isInsideBuildHeight(box.maxY())) {
-            throw new IllegalArgumentException("Map box exceeds dimension build height: " + box
-                + ", minY=" + level.getMinY() + ", height=" + level.getHeight());
+    static int sightlineCeiling(int x, int z) {
+        var start = MapLayout.checkpoint("lobby.spawn").pos();
+        var end = MapLayout.landmark("hill.bait");
+        int ceiling = Integer.MAX_VALUE;
+        for (int step = 0; step <= 84; step++) {
+            double t = step / 84.0;
+            int rayX = (int) Math.round(start.getX() + (end.getX() - start.getX()) * t);
+            int rayZ = (int) Math.round(start.getZ() + (end.getZ() - start.getZ()) * t);
+            if (Math.abs(x - rayX) <= 1 && Math.abs(z - rayZ) <= 1) {
+                ceiling = Math.min(ceiling, (int) Math.ceil(65.6 + (73.6 - 65.6) * t) - 1);
+            }
         }
-        for (var pos : BlockPos.betweenClosed(box.minX(), box.minY(), box.minZ(), box.maxX(), box.maxY(), box.maxZ())) {
-            if (!level.getBlockState(pos).isAir()) MapWriter.place(level, pos, Blocks.AIR.defaultBlockState());
-        }
+        return ceiling;
     }
-    private static void terrain(ServerLevel level) {
-        var b = MapLayout.ISLAND;
-        double centerX = (b.minX() + b.maxX()) / 2.0;
-        double radiusX = (b.maxX() - b.minX()) / 2.0;
-        double radiusZ = (b.maxZ() - b.minZ()) / 2.0;
-        for (int x = b.minX(); x <= b.maxX(); x++) for (int z = b.minZ(); z <= b.maxZ(); z++) {
-            double edge = Math.pow((x - centerX) / radiusX, 2) + Math.pow(z / radiusZ, 2);
-            if (edge > 0.95 + 0.025 * Math.sin(x * 0.4) * Math.cos(z * 0.3)) continue;
-            int bottom = b.minY() + (int) (edge * 4);
-            for (int y = bottom; y <= MapLayout.GROUND_Y; y++) {
-                var block = y == MapLayout.GROUND_Y ? Blocks.GRASS_BLOCK : y >= MapLayout.GROUND_Y - 2 ? Blocks.DIRT : Blocks.STONE;
-                MapWriter.place(level, new BlockPos(x, y, z), block.defaultBlockState());
+    /** Clear only the viewing corridor above the rising eye-to-bait ray, preserving the hill. */
+    private static void clearSightline(ServerLevel level) {
+        var start = MapLayout.checkpoint("lobby.spawn").pos();
+        var end = MapLayout.landmark("hill.bait");
+        for (int step = 0; step <= 84; step++) {
+            double t = step / 84.0;
+            int x = (int) Math.round(start.getX() + (end.getX() - start.getX()) * t);
+            int z = (int) Math.round(start.getZ() + (end.getZ() - start.getZ()) * t);
+            int bottom = (int) Math.ceil(65.6 + (73.6 - 65.6) * t);
+            for (int dx = -1; dx <= 1; dx++) for (int dz = -1; dz <= 1; dz++) {
+                for (int y = bottom; y < level.getMinY() + level.getHeight(); y++) {
+                    var pos = new BlockPos(x + dx, y, z + dz);
+                    if (!level.getBlockState(pos).isAir()) MapWriter.place(level, pos, Blocks.AIR.defaultBlockState());
+                }
             }
-        }
-        for (var root : MapLayout.TREES) {
-            for (int y = 3; y <= 5; y++) for (int x = -2; x <= 2; x++) for (int z = -2; z <= 2; z++) {
-                if (Math.abs(x) == 2 && Math.abs(z) == 2) continue;
-                MapWriter.place(level, root.offset(x, y, z), Blocks.OAK_LEAVES.defaultBlockState()
-                    .setValue(BlockStateProperties.PERSISTENT, true));
-            }
-            for (int y = 0; y <= 4; y++) MapWriter.place(level, root.above(y), Blocks.OAK_LOG.defaultBlockState());
-            MapWriter.place(level, root.above(6), Blocks.OAK_LEAVES.defaultBlockState().setValue(BlockStateProperties.PERSISTENT, true));
         }
     }
     private static void configure(ServerLevel level) {

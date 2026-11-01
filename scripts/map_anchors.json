@@ -16,6 +16,7 @@
     "base.chest",
     "base.door",
     "hill.bait",
+    "hub.admin_house",
     "lobby.motd",
     "lobby.route",
     "lobby.rules",
