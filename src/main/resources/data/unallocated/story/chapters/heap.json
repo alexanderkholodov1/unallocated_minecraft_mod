@@ -138,13 +138,22 @@
    "actions": [
     {
      "at": 0,
+     "do": "command",
+     "run": "tp @s ~ ~ ~ facing entity @e[type=unallocated:reclaimer,limit=1,sort=nearest] eyes"
+    },
+    {
+     "at": 0,
      "do": "creature",
      "op": "chase",
      "id": "spider",
      "speed": 3.5,
      "catch_distance": 1.5
     }
-   ]
+   ],
+   "capture": {
+    "name": "cazar",
+    "at": 1.0
+   }
   },
   {
    "id": "heap.caught",
