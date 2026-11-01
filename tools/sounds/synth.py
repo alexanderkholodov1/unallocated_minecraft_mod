@@ -233,20 +233,8 @@ def drone(r):
         hiss = bp(noise(r, n), 5200, 2) * 0.02 * (0.5 + 0.5 * np.sin(2 * np.pi * 0.05 * t))
         chans.append(hum * 0.55 + pad * 0.7 + air * 0.9 + hiss)
     st = np.stack(chans, axis=1)
-    # faint data chirps (stepped tones), random pan
-    chirp_times = np.sort(r.uniform(1.0, dur + xf - 1.0, 11))
-    for ct in chirp_times:
-        steps = r.integers(2, 5)
-        f = r.uniform(1800, 5200)
-        seq = np.concatenate([
-            np.sin(2 * np.pi * (f * r.choice([1, 1.25, 1.5, 0.8])) * np.arange(int(0.022 * SR)) / SR)
-            * np.hanning(int(0.022 * SR)) for _ in range(steps)])
-        seq = np.concatenate([seq, np.zeros(int(0.15 * SR))])
-        pan = r.uniform(0.15, 0.85)
-        amp = r.uniform(0.012, 0.03)
-        for echo, ea in ((0, 1.0), (0.17, 0.35), (0.34, 0.12)):
-            add_at(st[:, 0], seq * amp * ea * (1 - pan), ct + echo)
-            add_at(st[:, 1], seq * amp * ea * pan, ct + echo)
+    # No data chirps in the bed: the owner found looping beeps tiring and meaningless. Beeps now play only as
+    # scripted glitch cues (fx/glitch_*), when something happens.
     st = loop_crossfade(st, int(xf * SR))
     return st
 

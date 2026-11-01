@@ -49,6 +49,7 @@ public final class StoryRuntime {
         this.server = server; this.state = SessionState.get(server); scheduler = new StoryScheduler(state);
         events = new ServerEventBus(e -> UnallocatedMod.LOGGER.error("UNALLOCATED story listener failed", e));
         run = runIndex;
+        readArrival();
         loaded = StoryLoader.load(StoryLoader.resources(), new StoryValidator(server));
         for (var finding : loaded.findings()) UnallocatedMod.LOGGER.warn(finding.marker());
         if (loaded.valid()) {
@@ -66,6 +67,25 @@ public final class StoryRuntime {
             log("loaded chapters=" + loaded.data().chapters().size() + " beats=" + beats.size() + " endings=" + object(loaded.data().root(), "endings").size() + " format=1");
         }
     }
+    /** The launcher writes the drawn arrival (LORE 3) into the copied world; it becomes the runtime flag arrival.*. */
+    private void readArrival() {
+        try {
+            var file = server.getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT).resolve("unallocated-arrival.txt");
+            if (!java.nio.file.Files.isRegularFile(file)) return;
+            var lines = java.nio.file.Files.readAllLines(file);
+            String arrival = lines.isEmpty() ? "" : lines.getFirst().strip();
+            if (!List.of("explorer", "former", "invited").contains(arrival)) return;
+            for (String other : List.of("explorer", "former", "invited")) if (!other.equals(arrival)) state.removeFlag("story.flag.arrival." + other);
+            state.addFlag("story.flag.arrival." + arrival);
+            arrivalUser = lines.size() > 1 ? lines.get(1).strip().replaceAll("[^\\p{L}\\p{N}_ .-]", "") : "";
+            log("arrival=" + arrival);
+        } catch (java.io.IOException | RuntimeException error) {
+            UnallocatedMod.LOGGER.warn("UNALLOCATED arrival unreadable", error);
+        }
+    }
+    private String arrivalUser = "";
+    /** The player's real computer user name, for the former-player arrival's house sign (LORE 3). */
+    public String arrivalUser() { return arrivalUser; }
     public static void initialize() {
         StoryBuiltins.initialize();
         for (int i = 0; i < SLOTS.size(); i++) CoreRuntime.register(new ChapterModule(i));
@@ -148,11 +168,13 @@ public final class StoryRuntime {
         boolean respawn = participant != null && participant != p && dead;
         participant = p; JsonObject chapter = currentChapter();
         if (chapter == null) return;
+        if (respawn && pendingPuppet) { pendingPuppet = false; state.addFlag(PUPPET_FLAG); }
         if (respawn) { signal(p, "respawn", "", null); dead = false; }
         chapterId = string(chapter, "id", ""); String entered = "story.entered." + chapterId;
         boolean resume = state.flags().contains(entered); generation++;
         if (!resume) { scheduler.cancel(null); state.addFlag(entered); }
         teleport(p, resolvePosition(chapter.get(respawn && chapter.has("respawn") ? "respawn" : "checkpoint")));
+        applyPuppet(p, state.flags().contains(PUPPET_FLAG));
         scheduler.schedule(chapterId + (resume ? ".on_resume" : ".on_enter"), steps.get(chapterId + (resume ? ".on_resume" : ".on_enter")));
         log("chapter=" + chapterId + " slot=" + state.act() + (resume ? " resume" : " enter"));
         simulated.clear(); autoplayReady.clear(); triggers.values().forEach(StoryTriggers.Trigger::reset);
@@ -296,6 +318,30 @@ public final class StoryRuntime {
         return new Box(string(o, "dimension", "overworld"), Math.min(v[0], v[3]), Math.min(v[1], v[4]), Math.min(v[2], v[5]), Math.max(v[0], v[3]), Math.max(v[1], v[4]), Math.max(v[2], v[5]));
     }
     private static Box mapBox(MapLayout.BlockBox b) { return new Box("overworld", b.minX(), b.minY(), b.minZ(), b.maxX(), b.maxY(), b.maxZ()); }
+    /** Set by the runtime while the participant plays dead (LORE 1.10: the connection never closed). */
+    public static final String PUPPET_FLAG = "story.flag.puppet";
+    private boolean pendingPuppet;
+    /** "Not yet" on the death screen: the next respawn is as a Puppet instead of a living subject. */
+    public boolean requestPuppet(ServerPlayer p) {
+        if (!state.active() || !p.isDeadOrDying()) return false;
+        pendingPuppet = true; log("puppet requested"); return true;
+    }
+    /** "I agree" from the Puppet state: consent to another trial; back alive at the chapter's respawn point. */
+    public boolean revive(ServerPlayer p) {
+        if (!state.active() || !state.flags().contains(PUPPET_FLAG)) return false;
+        state.removeFlag(PUPPET_FLAG); applyPuppet(p, false);
+        JsonObject chapter = currentChapter();
+        if (chapter != null) teleport(p, resolvePosition(chapter.get(chapter.has("respawn") ? "respawn" : "checkpoint")));
+        signal(p, "respawn", "", null); log("puppet revived"); return true;
+    }
+    public boolean puppet() { return state.flags().contains(PUPPET_FLAG); }
+    private void applyPuppet(ServerPlayer p, boolean on) {
+        p.getAbilities().invulnerable = on; p.onUpdateAbilities();
+        if (on) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.NIGHT_VISION, -1, 0, false, false));
+        else p.removeEffect(net.minecraft.world.effect.MobEffects.NIGHT_VISION);
+        CompoundTag args = new CompoundTag(); args.putBoolean("on", on);
+        CoreNetworking.send(p, new EffectPayload("story.puppet", args, 0));
+    }
     public boolean teleport(ServerPlayer p, Position pos) { Vec3 v = pos.center(); return p.teleportTo(level(pos.dimension), v.x, v.y, v.z, Set.of(), pos.yaw, pos.pitch, true); }
     static void log(String text) { UnallocatedMod.LOGGER.info("UNALLOCATED story " + text); }
     private record ChapterModule(int index) implements ActModule {

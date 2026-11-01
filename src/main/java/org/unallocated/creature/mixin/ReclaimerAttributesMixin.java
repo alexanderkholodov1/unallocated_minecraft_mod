@@ -16,10 +16,11 @@ abstract class ReclaimerAttributesMixin {
     @Inject(method = "getSupplier", at = @At("HEAD"), cancellable = true)
     private static void unallocated$reclaimerSupplier(EntityType<? extends LivingEntity> type, CallbackInfoReturnable<AttributeSupplier> result) {
         if (type == UnallocatedContent.RECLAIMER) result.setReturnValue(UnallocatedContent.reclaimerAttributes());
+        if (type == UnallocatedContent.THREAD_ENTITY) result.setReturnValue(UnallocatedContent.threadAttributes());
     }
 
     @Inject(method = "hasSupplier", at = @At("HEAD"), cancellable = true)
     private static void unallocated$reclaimerHasSupplier(EntityType<?> type, CallbackInfoReturnable<Boolean> result) {
-        if (type == UnallocatedContent.RECLAIMER) result.setReturnValue(true);
+        if (type == UnallocatedContent.RECLAIMER || type == UnallocatedContent.THREAD_ENTITY) result.setReturnValue(true);
     }
 }

@@ -8,6 +8,9 @@ public final class UnallocatedClient implements ClientModInitializer {
     public void onInitializeClient() {
         org.unallocated.client.mixin.creature.EntityRenderersInvoker.unallocated$register(
             org.unallocated.content.UnallocatedContent.RECLAIMER, org.unallocated.client.creature.ReclaimerRenderer::new);
+        org.unallocated.client.mixin.creature.EntityRenderersInvoker.unallocated$register(
+            org.unallocated.content.UnallocatedContent.THREAD_ENTITY, org.unallocated.client.creature.ThreadRenderer::new);
+        org.unallocated.client.creature.PuppetClient.initialize();
         org.unallocated.client.core.ClientSession.initialize();
         org.unallocated.client.creature.PuppetThreads.initialize();
         org.unallocated.client.ending.EndingClient.initialize();

@@ -86,10 +86,12 @@ public final class StoryClient {
                 org.unallocated.UnallocatedMod.LOGGER.info("UNALLOCATED story action beat={} do=interface result={}", string(data, "beat", "interface"), accepted ? "ok" : "refused");
             }
             case "story.ending_text" -> org.unallocated.client.ending.EndingClient.storyEnding(envelope);
+            case "story.puppet" -> org.unallocated.client.creature.PuppetClient.set(payload.args().getBooleanOr("on", false));
             default -> { }
         }
     }
     public static void overlay(GuiGraphicsExtractor graphics) {
+        org.unallocated.client.creature.PuppetClient.overlay(graphics);
         if (blackoutStart == 0 || Minecraft.getInstance().level == null) return;
         double elapsed = (System.nanoTime() - blackoutStart) / 1_000_000_000.0;
         double alpha = elapsed < fadeIn ? elapsed / Math.max(.001, fadeIn) : elapsed < fadeIn + hold ? 1 : 1 - (elapsed - fadeIn - hold) / Math.max(.001, fadeOut);

@@ -230,9 +230,30 @@ def rot():
     (OUT / 'block' / 'rot.png.mcmeta').write_text(json.dumps({'animation': {'frametime': 10, 'interpolate': True}}) + '\n')
 
 
+def thread_entity():
+    """64x16 texture of the Puppet-only thread entity: a dark fibrous strand (rows 0-3) and a brighter knot (rows 4-10)."""
+    img = Image.new('RGBA', (64, 16), (0, 0, 0, 0))
+    px = img.load()
+    rng = random.Random(2077)
+    for y in range(0, 4):
+        for x in range(64):
+            k = rng.uniform(0.6, 1.0)
+            px[x, y] = (int(150 * k), int(18 * k), int(28 * k), 255)
+            if rng.random() < 0.12:
+                px[x, y] = (230, 70, 80, 255)
+    for y in range(4, 11):
+        for x in range(0, 16):
+            k = rng.uniform(0.75, 1.0)
+            px[x, y] = (int(220 * k), int(40 * k), int(50 * k), 255)
+    out = OUT / 'entity'
+    out.mkdir(parents=True, exist_ok=True)
+    img.save(out / 'thread.png')
+
+
 if __name__ == '__main__':
     reclaimer()
     thread()
     web()
     rot()
+    thread_entity()
     print('textures written to', OUT)

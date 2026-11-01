@@ -5,8 +5,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
-import org.unallocated.client.core.ClientSession;
-import org.unallocated.core.Act;
 
 /**
  * As a Puppet you finally see the threads that leave your own hands: the channel through which the Reclaimer copies
@@ -28,8 +26,7 @@ public final class PuppetThreads {
         var player = client.player;
         var level = client.level;
         if (player == null || level == null || client.isPaused() || !player.isAlive()) return;
-        Act act = ClientSession.act();
-        if (act != Act.LOOP && act != Act.CLIMAX) return;
+        if (!PuppetClient.active()) return;
         if (!level.dimension().identifier().getPath().equals("pocket")) return;
         float yaw = player.getYRot() * Mth.DEG_TO_RAD;
         Vec3 right = new Vec3(-Mth.cos(yaw), 0, -Mth.sin(yaw));
