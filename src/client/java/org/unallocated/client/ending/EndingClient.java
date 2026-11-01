@@ -33,12 +33,12 @@ public final class EndingClient {
         }
         if (org.unallocated.story.StoryData.bool(data, "quote_agreement", false)) {
             ContractReceiptLookup.read(Minecraft.getInstance().gameDirectory.toPath()).ifPresent(text ->
-                message.append("\nDijiste «" + text + "». Gracias por tus datos."));
+                message.append("\n").append(EndingText.receiptLine(java.util.Optional.of(text))));
         }
         storyMessage = message;
         storySplash = org.unallocated.client.story.StoryClient.text(org.unallocated.story.StoryData.object(data, "splash"), envelope);
     }
-    public static Component splash() { return story != null ? storySplash : Component.literal(EndingText.SPLASH); }
+    public static Component splash() { return story != null ? storySplash : EndingText.splash(); }
 
     /** Called by vanilla's disconnect screen factory; Minecraft still owns the entire teardown. */
     public static Screen screen(DisconnectionDetails details) {
@@ -46,8 +46,8 @@ public final class EndingClient {
                 || !EndingText.REASON_KEY.equals(text.getKey())) return null;
         var receipt = ContractReceiptLookup.read(Minecraft.getInstance().gameDirectory.toPath());
         endingSplash = true;
-        if (story != null) return new DisconnectedScreen(new TitleScreen(), storyTitle, storyMessage, Component.literal(EndingText.RETURN_BUTTON));
-        return new DisconnectedScreen(new TitleScreen(), Component.literal(EndingText.TITLE),
-            Component.literal(EndingText.message(receipt)), Component.literal(EndingText.RETURN_BUTTON));
+        if (story != null) return new DisconnectedScreen(new TitleScreen(), storyTitle, storyMessage, EndingText.returnButton());
+        return new DisconnectedScreen(new TitleScreen(), EndingText.title(),
+            EndingText.component(receipt), EndingText.returnButton());
     }
 }

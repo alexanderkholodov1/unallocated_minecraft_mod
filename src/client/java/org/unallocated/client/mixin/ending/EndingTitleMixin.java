@@ -2,7 +2,6 @@ package org.unallocated.client.mixin.ending;
 
 import net.minecraft.client.gui.components.SplashRenderer;
 import net.minecraft.client.gui.screens.TitleScreen;
-import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,6 +16,6 @@ public abstract class EndingTitleMixin {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void unallocated$endingSplash(CallbackInfo callback) {
-        if (EndingClient.hasEndingSplash()) splash = new SplashRenderer(Component.literal(EndingText.SPLASH));
+        if (EndingClient.hasEndingSplash()) splash = new SplashRenderer(EndingText.splash());
     }
 }
