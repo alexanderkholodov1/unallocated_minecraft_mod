@@ -31,11 +31,12 @@ def main():
     parser.add_argument('--jdk', help='use only this JDK for compiling and for the game (e.g. a Temurin 25 when another JDK crashes)')
     parser.add_argument('--phase', default='play', choices=['play', 'idle'], help='play: autoplay every ending; idle: a player who never moves must still reach an ending')
     args = parser.parse_args()
-    if not os.environ.get('JAVA_HOME'):
-        sys.exit('Set JAVA_HOME to a Java 25 JDK first')
-    gradle = [args.gradle, '--console=plain']
     if args.jdk:
         os.environ['JAVA_HOME'] = args.jdk
+    if not os.environ.get('JAVA_HOME'):
+        sys.exit('Set JAVA_HOME to a Java 25 JDK first (or pass --jdk)')
+    gradle = [args.gradle, '--console=plain']
+    if args.jdk:
         gradle += ['-Porg.gradle.java.installations.auto-detect=false', f'-Porg.gradle.java.installations.paths={args.jdk}']
     if not args.skip_build:
         run(gradle + ['build', 'clientSmokeJar', '-PsmokeApiVersion=none', '-x', 'test'])
