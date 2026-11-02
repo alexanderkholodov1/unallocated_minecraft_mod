@@ -391,7 +391,7 @@
   "map.unallocated.house_of": "House of",
   "map.unallocated.house_kept": "(claim kept)",
   "shell.unallocated.attention": "it is listening",
-  "story.unallocated.puppetbook.0": "If you are reading this, it already caught you once. This is what I know.\n\nWhen you die, choose \"Not yet\". You stay dead, as a Puppet, and you see its threads.",
+  "story.unallocated.puppetbook.0": "If you are reading this, it already caught you once. This is what I know.\n\nWhen you die, choose \"Not yet\". You stay dead, as a Puppet, and you see its threads.\n\nIf you want it to take you again, sleep.",
   "story.unallocated.puppetbook.1": "As a Puppet, and only then, the chat is its server's console. Type help. Then cat README and read my notes in home/noor.\n\nIf you type a lot, it hears you and comes down. Let it: every time it catches you, you get deeper.",
   "story.unallocated.puppetbook.2": "The third time you can see its processes with ps. Find its own, the one eating everything, and stop it with kill and its number.\n\nOnce stopped, the contract tells you which number to give it. — Noor"
 }

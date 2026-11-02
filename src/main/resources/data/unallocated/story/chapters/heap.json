@@ -43,7 +43,7 @@
  ],
  "on_resume": [
   {
-   "at": 0,
+   "at": 0.5,
    "do": "audio",
    "cue": "ambient"
   }

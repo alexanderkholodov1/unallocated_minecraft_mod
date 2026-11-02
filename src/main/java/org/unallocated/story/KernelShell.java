@@ -27,13 +27,16 @@ import org.unallocated.content.UnallocatedContent;
  */
 public final class KernelShell {
     private KernelShell() {}
-    static final int PID = 7331, MAX_ATTENTION = 8, CONNECTIONS = 3, WINDOW_TICKS = 120 * 20;
+    static final int PID = 7331, MAX_ATTENTION = 5, CONNECTIONS = 3, WINDOW_TICKS = 120 * 20;
     private static final String GIANT = "unallocated.giant";
     enum Phase { IDLE, DESCENT, FIGHT, WINDOW, COMPLETE, POISON, CONSUMED }
     private static Phase phase = Phase.IDLE;
     private static int ticks, phaseTicks, lost, lastStruckTick = -9999, perchTicks, nextLash, nextScream, screamWarn = -1, stagger;
     private static double giantX, giantY, giantZ;
-    private static boolean halfWarned, gen3Warned, typedPs, typedHelp;
+    private static boolean halfWarned, gen3Warned, typedPs, typedHelp, awake;
+    private static int pendingDescent = -1, frozenTicks, sinceFreeze;
+    private static final Set<String> SHELL_WORDS = Set.of("help", "?", "ls", "dir", "cat", "less", "more", "type", "open", "read", "ps", "top", "htop",
+        "params", "kill", "pkill", "killall", "set", "echo", "whoami", "sudo", "su", "cd", "pwd", "exit");
     private static final List<Lash> lashes = new ArrayList<>();
     private record Lash(Vec3 at, int fallTick) {}
     private static final Random RANDOM = new Random();
@@ -49,11 +52,11 @@ public final class KernelShell {
     /** True while what the participant types belongs to the Shell instead of the server chat. */
     public static boolean routes(StoryRuntime r, ServerPlayer p) {
         String c = chapter(r);
-        return c.equals("kernel") || c.equals("puppet") && r.puppet();
+        return c.equals("kernel") || c.equals("puppet") || c.equals("heap");
     }
 
     static void reset() {
-        phase = Phase.IDLE; ticks = phaseTicks = lost = perchTicks = stagger = 0; lashes.clear(); halfWarned = gen3Warned = typedPs = typedHelp = false;
+        phase = Phase.IDLE; ticks = phaseTicks = lost = perchTicks = stagger = frozenTicks = sinceFreeze = 0; awake = false; pendingDescent = -1; lashes.clear(); halfWarned = gen3Warned = typedPs = typedHelp = false;
         lastStruckTick = -9999; screamWarn = -1;
     }
 
@@ -92,8 +95,14 @@ public final class KernelShell {
         String line = raw.strip().replaceAll("\\s+", " ");
         if (line.isEmpty()) return true;
         String lower = line.toLowerCase(Locale.ROOT);
+        if (!chapter(r).equals("kernel") && !r.puppet()) {
+            if (!SHELL_WORDS.contains(lower.split(" ")[0])) return false; // ordinary chat while alive
+            say(r, p, "> " + line, "> " + line, "#d8d4cb");
+            say(r, p, "sh: permiso denegado: esta consola solo le contesta a los sujetos muertos. sigues vivo.", "sh: permission denied: this console only answers dead subjects. you are still alive.", "#aa0000");
+            return true;
+        }
         // The two final commands belong to the chapter beats (kernel.complete / kernel.poison) once the window is open.
-        if (phase == Phase.WINDOW && (lower.matches("set success_threshold 0?[.,]82") || lower.matches(".*reclaimer.*>>.*dataset.*"))) return false;
+        if (phase == Phase.WINDOW && !awake && (lower.matches("set success_threshold 0?[.,]82") || lower.matches(".*reclaimer.*>>.*dataset.*"))) return false;
         if (phase == Phase.COMPLETE || phase == Phase.POISON || phase == Phase.CONSUMED || phase == Phase.DESCENT) return true;
         say(r, p, "> " + line, "> " + line, "#d8d4cb");
         int gen = depth(r);
@@ -110,12 +119,14 @@ public final class KernelShell {
             case "ps", "top", "htop" -> { if (gen < 3) denied(r, p, cmd, gen, 3); else { typedPs = true; ps(r, p); } }
             case "kill", "pkill", "killall" -> kill(r, p, gen, lower);
             case "set" -> {
-                if (phase != Phase.WINDOW) say(r, p, "set: el proceso tiene el archivo abierto. detén el proceso primero.", "set: the process holds the file open. stop the process first.", "#9a9a9a");
+                if (phase == Phase.WINDOW && awake) say(r, p, "set: el proceso está corriendo otra vez. detenlo primero: kill 7331", "set: the process is running again. stop it first: kill 7331", "#aa0000");
+                else if (phase != Phase.WINDOW) say(r, p, "set: el proceso tiene el archivo abierto. detén el proceso primero.", "set: the process holds the file open. stop the process first.", "#9a9a9a");
                 else if (w.length >= 3 && w[1].equals("success_threshold")) say(r, p, "set: " + w[2] + " fuera de especificación. el contrato fija el valor.", "set: " + w[2] + " is out of spec. the contract fixes the value.", "#aa0000");
                 else say(r, p, "uso: set success_threshold <valor>", "usage: set success_threshold <value>", "#9a9a9a");
             }
             case "echo" -> {
-                if (phase != Phase.WINDOW) say(r, p, "echo: dataset bloqueado mientras el proceso corre.", "echo: dataset locked while the process runs.", "#9a9a9a");
+                if (phase == Phase.WINDOW && awake) say(r, p, "echo: el proceso está corriendo otra vez. detenlo primero: kill 7331", "echo: the process is running again. stop it first: kill 7331", "#aa0000");
+                else if (phase != Phase.WINDOW) say(r, p, "echo: dataset bloqueado mientras el proceso corre.", "echo: dataset locked while the process runs.", "#9a9a9a");
                 else if (lower.contains(">>")) say(r, p, "dataset: añadido. ese sujeto no está aquí. nada cambia.", "dataset: appended. that subject is not here. nothing changes.", "#9a9a9a");
                 else out(r, p, line.substring(4).strip());
             }
@@ -194,16 +205,19 @@ public final class KernelShell {
             }
             case "readme", "readme.txt" -> {
                 say(r, p, "esta consola solo le contesta a los sujetos muertos. tú lo estás.", "this console only answers dead subjects. you are one.", "#e8e8e8");
-                say(r, p, "Noor dejó notas: cat home/noor/1.txt. hay una por cada vez que la atrapó.", "Noor left notes: cat home/noor/1.txt. there is one for every time it caught her.", "#e8e8e8");
+                String notes = gen == 1 ? "cat home/noor/1.txt" : gen == 2 ? "cat home/noor/1.txt · cat home/noor/2.txt" : "cat home/noor/3.txt";
+                say(r, p, "Noor dejó una nota por cada vez que la atrapó. Ahora puedes leer: " + notes, "Noor left a note for every time it caught her. You can read now: " + notes, "#e8e8e8");
                 say(r, p, "cada vez que te atrapa de nuevo llegas más hondo y puedes leer más (gen " + gen + "/3).", "every time it catches you again you get deeper and can read more (gen " + gen + "/3).", "#e8e8e8");
             }
             case "1.txt" -> {
+                if (gen == 1) scheduleDescent(r, p);
                 say(r, p, "nota 1. lo que escribes aquí, lo oye. la barra de arriba es cuánto te está escuchando.", "note 1. what you type here, it hears. the bar at the top is how closely it is listening.", "#e8e8e8");
                 say(r, p, "si haces ruido baja del cielo y te mata. no pasa nada: vuelves, pero más hondo. elige «Todavía no» para seguir aquí.", "if you make noise it comes down from the sky and kills you. that is fine: you come back, deeper. choose \"Not yet\" to stay here.", "#e8e8e8");
                 say(r, p, "quieres llegar más hondo, así que haz ruido. mientras, lee config/reclaim.cfg y docs/contract.txt. algo no cuadra.", "you want to go deeper, so make noise. meanwhile read config/reclaim.cfg and docs/contract.txt. something doesn't add up.", "#e8e8e8");
             }
             case "2.txt" -> {
                 if (gen < 2) { denied(r, p, "cat home/noor/2.txt", gen, 2); return; }
+                scheduleDescent(r, p);
                 say(r, p, "nota 2. 1.37 contra 0.82. busca un miedo que no existe, por eso nunca termina con nadie. mira logs/reclaim.log.", "note 2. 1.37 against 0.82. it looks for a fear that doesn't exist, so it never finishes with anyone. see logs/reclaim.log.", "#e8e8e8");
                 say(r, p, "la próxima vez que te atrape verás sus procesos (ps). pero en cuanto escribas algo, bajará y no se irá. ten pensado qué escribir.", "next time it catches you, you will see its processes (ps). but the moment you type, it will come down and not leave. know what you will type.", "#e8e8e8");
             }
@@ -248,12 +262,24 @@ public final class KernelShell {
 
     private static void kill(StoryRuntime r, ServerPlayer p, int gen, String lower) {
         if (gen < 3) { denied(r, p, "kill", gen, 3); return; }
-        if (phase == Phase.WINDOW) { out(r, p, "[7331] reclaim :: already stopped"); return; }
+        if (phase == Phase.WINDOW) {
+            if (!awake) { out(r, p, "[7331] reclaim :: already stopped"); return; }
+            if (lower.matches(".*\\b" + PID + "\\b.*")) { refreeze(r, p); return; }
+            out(r, p, "kill: no such process"); return;
+        }
         if (phase == Phase.IDLE) startFight(r, p);
         if (lower.matches(".*\\b" + PID + "\\b.*")) { stop(r, p); return; }
         if (lower.matches(".*\\b(1|412|1104|1187|7332)\\b.*")) say(r, p, "kill: operación no permitida", "kill: operation not permitted", "#aa0000");
         else out(r, p, "kill: no such process");
         nextLash = Math.min(nextLash, 10); // it heard the wrong number
+    }
+
+    /** Reading the note of your own depth is loud enough: it comes for you a few seconds later. */
+    private static void scheduleDescent(StoryRuntime r, ServerPlayer p) {
+        if (pendingDescent < 0 && phase == Phase.IDLE && depth(r) < 3) {
+            pendingDescent = ticks + 240;
+            say(r, p, "te oyó leer.", "it heard you reading.", "#aa0000");
+        }
     }
 
     // ---------------------------------------------------------------- noise and the descent
@@ -307,6 +333,7 @@ public final class KernelShell {
         run(r, p, "bossbar set unallocated:reclaim players @s");
         run(r, p, "effect give @s minecraft:darkness 4 0 true");
         run(r, p, "weather thunder");
+        AudioSounds.play(p, "ambient", p.position());
         AudioSounds.play(p, "threads", p.position());
         title(r, p, "RECLAIMER", "encuentra su número de proceso", "find its process number");
         if (!chapter(r).equals("kernel")) r.next(p); // the Kernel chapter: no way back, death = CONSUMED
@@ -315,7 +342,7 @@ public final class KernelShell {
 
     /** One kill on the right number: everything stops. */
     private static void stop(StoryRuntime r, ServerPlayer p) {
-        phase = Phase.WINDOW; phaseTicks = 0; lashes.clear();
+        phase = Phase.WINDOW; phaseTicks = 0; lashes.clear(); awake = false; frozenTicks = 0; sinceFreeze = 0;
         setFlag(r, "suspended");
         run(r, p, "bossbar remove unallocated:reclaim");
         run(r, p, "bossbar add unallocated:watchdog \"watchdog :: restart 120 s\"");
@@ -335,8 +362,27 @@ public final class KernelShell {
         windowNotes(r, p);
     }
 
+    /** The watchdog restarts a thread: it hunts again until you stop it again. */
+    private static void wake(StoryRuntime r, ServerPlayer p) {
+        awake = true; lashes.clear(); nextLash = 60; stagger = 0;
+        title(r, p, "watchdog", "reinicio parcial · kill 7331", "partial restart · kill 7331");
+        out(r, p, "watchdog :: restarting thread main ... [7331] reclaim :: running");
+        run(r, p, "bossbar set unallocated:watchdog color purple");
+        AudioSounds.play(p, "threads", p.position());
+        ((ServerLevel) p.level()).playSound(null, BlockPos.containing(giantX, giantY + 6, giantZ), UnallocatedContent.RECLAIMER_ROAR, SoundSource.HOSTILE, 4F, 0.6F);
+    }
+
+    private static void refreeze(StoryRuntime r, ServerPlayer p) {
+        awake = false; sinceFreeze = 0; lashes.clear();
+        out(r, p, "[7331] reclaim :: SIGSTOP");
+        run(r, p, "bossbar set unallocated:watchdog color yellow");
+        ((ServerLevel) p.level()).playSound(null, BlockPos.containing(giantX, giantY, giantZ), UnallocatedContent.RECLAIMER_CLICK, SoundSource.HOSTILE, 3F, 0.3F);
+        title(r, p, "SIGSTOP", "rápido: set o echo", "quick: set or echo");
+        windowNotes(r, p);
+    }
+
     static void windowNotes(StoryRuntime r, ServerPlayer p) {
-        say(r, p, "[7331] reclaim :: detenido. el watchdog lo reinicia en 120 s (la barra de arriba).", "[7331] reclaim :: stopped. the watchdog restarts it in 120 s (the bar at the top).", "#ffff55");
+        say(r, p, "[7331] reclaim :: detenido. el watchdog lo despierta a ratos: tienes unos 15 s cada vez.", "[7331] reclaim :: stopped. the watchdog wakes it now and then: you have about 15 s each time.", "#ffff55");
         say(r, p, "Las notas de Noor dejaban dos salidas. Escribe una antes de que la barra llegue a cero.", "Noor's notes left two ways out. Type one before the bar reaches zero.", "#e8e8e8");
         say(r, p, "  set success_threshold <el valor del contrato>  →  podrá terminar, por fin, y soltarlos a todos", "  set success_threshold <the contract's value>  →  it can finally finish, and let everyone go", "#55ff55");
         say(r, p, "  echo <su nombre> >> dataset  →  se buscará a sí mismo para siempre, roto", "  echo <its name> >> dataset  →  it will hunt itself forever, broken", "#ff5555");
@@ -355,8 +401,8 @@ public final class KernelShell {
     /** Called by the kernel.complete / kernel.poison beats through "unallocated shell <mode>". */
     public static void ending(StoryRuntime r, ServerPlayer p, String mode) {
         switch (mode) {
-            case "complete" -> { run(r, p, "bossbar remove unallocated:watchdog"); lashes.clear(); phase = Phase.COMPLETE; phaseTicks = 0; }
-            case "poison" -> { run(r, p, "bossbar remove unallocated:watchdog"); lashes.clear(); phase = Phase.POISON; phaseTicks = 0; }
+            case "complete" -> { run(r, p, "bossbar remove unallocated:watchdog"); lashes.clear(); awake = false; phase = Phase.COMPLETE; phaseTicks = 0; }
+            case "poison" -> { run(r, p, "bossbar remove unallocated:watchdog"); lashes.clear(); awake = false; phase = Phase.POISON; phaseTicks = 0; }
             case "white_room" -> whiteRoom(r, p);
             case "restore" -> restore(r, p);
             case "remove" -> removeGiant(r, p);
@@ -405,6 +451,10 @@ public final class KernelShell {
         switch (phase) {
             case IDLE -> {
                 boolean puppet = c.equals("puppet") && r.puppet();
+                if (!puppet) pendingDescent = -1;
+                if (puppet && pendingDescent >= 0 && ticks >= pendingDescent) { pendingDescent = -1; descend(r, p); return; }
+                // alive after the first trial, sleeping is consenting again: it takes you in your sleep
+                if (c.equals("puppet") && !r.puppet() && p.isSleeping() && !flag(r, "slept")) setFlag(r, "slept");
                 if (puppet) replaySouls(p, level);
                 if (puppet && depth(r) >= 3 && !gen3Warned && phaseTicks > 100) {
                     gen3Warned = true;
@@ -436,24 +486,31 @@ public final class KernelShell {
             }
             case FIGHT -> fightTick(r, p, level);
             case WINDOW -> {
-                int left = Math.max(0, (WINDOW_TICKS - phaseTicks) / 20);
-                if (phaseTicks % 20 == 0) {
+                if (awake) {
+                    fightTick(r, p, level);
+                    if (phase != Phase.WINDOW) return;
+                    if (phaseTicks % 100 == 0) bar(r, p, "¡Despertó! Detenlo otra vez: kill 7331", "It woke up! Stop it again: kill 7331");
+                    return;
+                }
+                frozenTicks++; sinceFreeze++;
+                // Frozen, it still breathes; near the end the seconds tick out loud.
+                if (sinceFreeze % 70 == 0) level.playSound(null, BlockPos.containing(giantX, giantY + 4, giantZ), UnallocatedContent.RECLAIMER_BREATH, SoundSource.HOSTILE, 2.5F, 0.6F);
+                if (sinceFreeze % 160 == 80) level.playSound(null, p.blockPosition().above(10), UnallocatedContent.THREAD_VIBRATE, SoundSource.HOSTILE, 0.6F, 0.5F);
+                if ((WINDOW_TICKS - frozenTicks) <= 400 && frozenTicks % 20 == 0)
+                    level.playSound(null, p.blockPosition(), net.minecraft.sounds.SoundEvents.NOTE_BLOCK_HAT.value(), SoundSource.MASTER, 1F, 0.8F);
+                int left = Math.max(0, (WINDOW_TICKS - frozenTicks) / 20);
+                if (frozenTicks % 20 == 0) {
                     run(r, p, "bossbar set unallocated:watchdog value " + left);
                     run(r, p, "bossbar set unallocated:watchdog name \"watchdog :: restart " + left + " s\"");
                     if (left <= 30) run(r, p, "bossbar set unallocated:watchdog color red");
                 }
-                // Frozen, but the watchdog tugs at it: it lags toward you, a little closer every ten seconds.
-                if (phaseTicks % 200 == 0) {
-                    double dx = p.getX() - giantX, dz = p.getZ() - giantZ, d = Math.max(1, Math.sqrt(dx * dx + dz * dz));
-                    if (d > 6) { giantX += dx / d * 1.5; giantZ += dz / d * 1.5; }
-                    moveGiant(r, p);
-                    level.playSound(null, BlockPos.containing(giantX, giantY, giantZ), UnallocatedContent.RECLAIMER_CLICK, SoundSource.HOSTILE, 3F, 0.4F);
-                }
-                if (phaseTicks % 200 == 0) bar(r, p, "⏱ " + left + " s · set success_threshold <valor>  ·  echo <nombre> >> dataset", "⏱ " + left + " s · set success_threshold <value>  ·  echo <name> >> dataset");
-                if (phaseTicks % 800 == 400) windowNotes(r, p);
-                if (phaseTicks >= WINDOW_TICKS) consumed(r, p, true);
+                if (sinceFreeze % 200 == 40) bar(r, p, "⏱ " + left + " s · set success_threshold <valor>  ·  echo <nombre> >> dataset", "⏱ " + left + " s · set success_threshold <value>  ·  echo <name> >> dataset");
+                if (sinceFreeze == 220) level.playSound(null, BlockPos.containing(giantX, giantY + 6, giantZ), UnallocatedContent.RECLAIMER_ROAR, SoundSource.HOSTILE, 3F, 0.5F);
+                if (sinceFreeze >= 300) wake(r, p);
+                if (frozenTicks >= WINDOW_TICKS) consumed(r, p, true);
             }
             case COMPLETE -> {
+                if (phaseTicks % 60 == 0 && phaseTicks < 360) level.playSound(null, BlockPos.containing(giantX, giantY + 4, giantZ), UnallocatedContent.THREAD_SNAP, SoundSource.HOSTILE, 1.5F, 1.6F);
                 // It sinks slowly, lucid, and comes apart into threads.
                 if (phaseTicks < 360 && phaseTicks % 4 == 0) { giantY -= 0.2; moveGiant(r, p); }
                 if (phaseTicks % 5 == 0) level.sendParticles(new DustParticleOptions(0x8A1020, 2.0F), giantX, giantY + 5, giantZ, 40, 2.5, 5, 2.5, 0.02);
@@ -463,6 +520,9 @@ public final class KernelShell {
                 if (phaseTicks % 3 == 0) run(r, p, String.format(Locale.ROOT, "tp @e[tag=%s,limit=1] %.2f %.2f %.2f %d %d", GIANT,
                     giantX + RANDOM.nextGaussian() * 0.15, giantY, giantZ + RANDOM.nextGaussian() * 0.15, RANDOM.nextInt(360) - 180, RANDOM.nextInt(120) - 60));
                 if (phaseTicks % 9 == 0) level.sendParticles(new DustParticleOptions(0x8A1020, 1.5F), giantX, giantY + 2, giantZ, 20, 1.5, 2, 1.5, 0.05);
+                if (phaseTicks % 13 == 0) level.playSound(null, BlockPos.containing(giantX, giantY + 2, giantZ), RANDOM.nextBoolean() ? UnallocatedContent.RECLAIMER_CLICK : UnallocatedContent.RECLAIMER_WHISPER,
+                    SoundSource.HOSTILE, 1.6F, 0.5F + RANDOM.nextFloat());
+                if (phaseTicks % 90 == 0) level.playSound(null, BlockPos.containing(giantX, giantY + 2, giantZ), UnallocatedContent.THREAD_SNAP, SoundSource.HOSTILE, 1.2F, 0.4F);
             }
             case CONSUMED -> {
                 giantX = p.getX(); giantZ = p.getZ(); giantY = Math.max(p.getY() + 1, giantY - 0.6); moveGiant(r, p);
@@ -567,9 +627,9 @@ public final class KernelShell {
         if (--nextScream == 30) level.playSound(null, BlockPos.containing(giantX, giantY + 6, giantZ), UnallocatedContent.RECLAIMER_ROAR, SoundSource.HOSTILE, 4F, 0.7F);
         if (nextScream <= 0) { scream(r, p); nextScream = 700 + RANDOM.nextInt(300); }
         // Dummy-proof hints, only if the player is stuck.
-        if (phaseTicks == 600 && !typedHelp && !typedPs) bar(r, p, "La consola sigue abierta. help.", "The console is still open. help.");
-        if (phaseTicks == 1200 && !typedPs) bar(r, p, "ps muestra sus procesos. El suyo es el que más consume.", "ps shows its processes. Its own is the one eating everything.");
-        if (phaseTicks == 2000) bar(r, p, "kill <su número>", "kill <its number>");
+        if (phase == Phase.FIGHT && phaseTicks == 600 && !typedHelp && !typedPs) bar(r, p, "La consola sigue abierta. help.", "The console is still open. help.");
+        if (phase == Phase.FIGHT && phaseTicks == 1200 && !typedPs) bar(r, p, "ps muestra sus procesos. El suyo es el que más consume.", "ps shows its processes. Its own is the one eating everything.");
+        if (phase == Phase.FIGHT && phaseTicks == 2000) bar(r, p, "kill <su número>", "kill <its number>");
         if (phaseTicks % 200 == 0 && phaseTicks >= 200) bar(r, p, "conexión " + (CONNECTIONS - lost) + "/" + CONNECTIONS, "connection " + (CONNECTIONS - lost) + "/" + CONNECTIONS);
     }
 

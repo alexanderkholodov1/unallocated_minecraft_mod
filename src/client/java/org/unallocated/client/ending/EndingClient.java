@@ -16,6 +16,7 @@ public final class EndingClient {
     private static boolean endingSplash;
     private static com.google.gson.JsonObject story;
     private static Component storyTitle, storyMessage, storySplash;
+    private static String storyId = "";
     private EndingClient() {}
     public static void initialize() {
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> { endingSplash = false; story = null; });
@@ -25,6 +26,7 @@ public final class EndingClient {
     public static void storyEnding(com.google.gson.JsonObject envelope) {
         story = envelope;
         var data = org.unallocated.story.StoryData.object(envelope, "data");
+        storyId = org.unallocated.story.StoryData.string(data, "id", "");
         storyTitle = org.unallocated.client.story.StoryClient.text(org.unallocated.story.StoryData.object(data, "title"), envelope);
         var message = Component.empty();
         for (var line : org.unallocated.story.StoryData.array(data, "lines")) {
@@ -46,7 +48,7 @@ public final class EndingClient {
                 || !EndingText.REASON_KEY.equals(text.getKey())) return null;
         var receipt = ContractReceiptLookup.read(Minecraft.getInstance().gameDirectory.toPath());
         endingSplash = true;
-        if (story != null) return new EndingScreen(storyTitle, storyMessage, EndingText.returnButton());
+        if (story != null) return new EndingScreen(storyTitle, storyMessage, EndingText.returnButton(), storyId);
         return new DisconnectedScreen(new TitleScreen(), EndingText.title(),
             EndingText.component(receipt), EndingText.returnButton());
     }

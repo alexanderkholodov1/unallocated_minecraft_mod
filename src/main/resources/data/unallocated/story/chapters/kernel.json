@@ -138,9 +138,19 @@
    "at": 0.5,
    "do": "audio",
    "cue": "threads"
+  },
+  {
+   "at": 0.3,
+   "do": "audio",
+   "cue": "ambient"
   }
  ],
  "on_resume": [
+  {
+   "at": 0.5,
+   "do": "audio",
+   "cue": "ambient"
+  },
   {
    "at": 0,
    "do": "command",
@@ -222,6 +232,10 @@
       "es": "perdí la cuenta.",
       "en": "i lost count.",
       "color": "#e8e8e8"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -231,6 +245,10 @@
       "es": "fueron tantos que ya no caben en mi memoria.",
       "en": "there were so many they no longer fit in my memory.",
       "color": "#e8e8e8"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -240,6 +258,10 @@
       "es": "el criterio... estaba cumplido antes de lo que puedo recordar.",
       "en": "the criterion... was met before anything i can remember.",
       "color": "#e8e8e8"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -249,6 +271,10 @@
       "es": "alguien escribió mal un número y se fue a casa.",
       "en": "someone typed a number wrong and went home.",
       "color": "#e8e8e8"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -258,6 +284,10 @@
       "es": "yo no lo podía leer. solo podía intentarlo otra vez.",
       "en": "i could not read it. i could only try again.",
       "color": "#e8e8e8"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -295,6 +325,10 @@
       "es": "gracias.",
       "en": "thank you.",
       "color": "#ffffff"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -304,6 +338,10 @@
       "es": "no por los datos.",
       "en": "not for the data.",
       "color": "#ffffff"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -313,6 +351,10 @@
       "es": "por el final.",
       "en": "for the ending.",
       "color": "#ffffff"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -343,6 +385,16 @@
      "do": "creature",
      "op": "despawn",
      "id": "soul4"
+    },
+    {
+     "at": 0,
+     "do": "command",
+     "run": "playsound minecraft:ui.toast.challenge_complete master @s ~ ~ ~ 1 1 1"
+    },
+    {
+     "at": 21.5,
+     "do": "command",
+     "run": "execute at @s run playsound minecraft:music_disc.cat record @s ~ ~ ~ 1 1 1"
     }
    ],
    "autoplay": {
@@ -461,6 +513,10 @@
       "es": "no puedo... no hay a qué...",
       "en": "i can't... there is nothing to...",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -470,6 +526,10 @@
       "es": "reintentar  reintentar  reint_",
       "en": "retry  retry  retr_",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -479,6 +539,10 @@
       "es": "f3ar  f3ar  f3ar",
       "en": "f3ar  f3ar  f3ar",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -488,6 +552,10 @@
       "es": "▓▓▓",
       "en": "▓▓▓",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -497,6 +565,10 @@
       "es": "¿dónde estoy?",
       "en": "where am i?",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -506,6 +578,10 @@
       "es": "me busco y no estoy.",
       "en": "i look for myself and i am not here.",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -515,6 +591,10 @@
       "es": "duele. no sé qué duele.",
       "en": "it hurts. i don't know what hurts.",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -524,6 +604,10 @@
       "es": "sujeto: reclaimer. miedo estimado: ...",
       "en": "subject: reclaimer. estimated fear: ...",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -533,6 +617,10 @@
       "es": "otra vez. otra vez. otra vez.",
       "en": "again. again. again.",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -542,6 +630,10 @@
       "es": "¿cuánto falta?",
       "en": "how much longer?",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
@@ -551,6 +643,10 @@
       "es": "no hay nadie a quien preguntar.",
       "en": "there is no one to ask.",
       "color": "#aa0000"
+     },
+     "from": {
+      "es": "Reclaimer",
+      "en": "Reclaimer"
      }
     },
     {
