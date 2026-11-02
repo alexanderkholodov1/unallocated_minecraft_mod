@@ -16,6 +16,17 @@ import zlib
 from pathlib import Path
 
 import numpy as np
+
+def _ffmpeg():
+    """ffmpeg from PATH, else the binary shipped by the imageio-ffmpeg wheel (pip install imageio-ffmpeg)."""
+    found = shutil.which("ffmpeg")
+    if found:
+        return found
+    import imageio_ffmpeg
+    return imageio_ffmpeg.get_ffmpeg_exe()
+
+
+FFMPEG = _ffmpeg()
 from scipy.io import wavfile
 from scipy.signal import butter, fftconvolve, sosfilt
 
@@ -676,17 +687,12 @@ def main():
             # Encode, then decode and verify the Vorbis overshoot stays under
             # -1 dBFS; if not, scale down and re-encode.
             for _ in range(4):
-                if shutil.which("ffmpeg"):
-                    wavfile.write(wav, SR, to_int16(x))
-                    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav),
-                                    "-c:a", "libvorbis", "-q:a", "5", str(dst)], check=True)
-                    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(dst), "-f", "f32le", "-"],
-                                         capture_output=True, check=True).stdout
-                    pk = np.max(np.abs(np.frombuffer(raw, np.float32)))
-                else:  # no ffmpeg: libsndfile (python-soundfile) encodes and decodes Vorbis as well
-                    import soundfile
-                    soundfile.write(str(dst), x.astype(np.float32), SR, format="OGG", subtype="VORBIS")
-                    pk = np.max(np.abs(soundfile.read(str(dst), dtype="float32")[0]))
+                wavfile.write(wav, SR, to_int16(x))
+                subprocess.run([FFMPEG, "-y", "-loglevel", "error", "-i", str(wav),
+                                "-c:a", "libvorbis", "-q:a", "5", str(dst)], check=True)
+                raw = subprocess.run([FFMPEG, "-v", "error", "-i", str(dst), "-f", "f32le", "-"],
+                                     capture_output=True, check=True).stdout
+                pk = np.max(np.abs(np.frombuffer(raw, np.float32)))
                 if pk <= 10 ** (-0.95 / 20):
                     break
                 x = x * 10 ** (-1.0 / 20) / pk
