@@ -272,7 +272,7 @@ public final class StoryRuntime {
         for (String id : object(root(), "endings").keySet()) if (state.flags().contains("story.ending." + id)) { chosen = id; break; }
         JsonObject ending = object(object(root(), "endings"), chosen);
         state.addFlag("story.ending." + chosen); log("ending=" + chosen); events.post(new StoryEnding(chosen));
-        if (!bool(ending, "builtin", false)) effect(player, "ending_text", ending, 0);
+        if (!bool(ending, "builtin", false)) { JsonObject scored = ending.deepCopy(); scored.addProperty("id", chosen); effect(player, "ending_text", scored, 0); }
         if (autoplay) {
             String expected = string(array(object(root(), "autoplay"), "runs").get(run).getAsJsonObject(), "ending", "");
             if (!expected.equals(chosen)) throw new IllegalStateException("Autoplay reached " + chosen + " expected " + expected);

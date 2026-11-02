@@ -19,10 +19,12 @@ public final class EndingScreen extends Screen {
     private final List<String> cards = new ArrayList<>();
     private final Component back;
     private int card, shown;
-    private boolean done;
+    private boolean done, scored;
+    private final String ending;
 
-    public EndingScreen(Component heading, Component message, Component back) {
+    public EndingScreen(Component heading, Component message, Component back, String ending) {
         super(heading);
+        this.ending = ending;
         this.heading = heading; this.back = back;
         for (String part : message.getString().split("\n")) if (!part.isBlank()) cards.add(part.strip());
         if (cards.isEmpty()) cards.add("");
@@ -31,11 +33,26 @@ public final class EndingScreen extends Screen {
     @Override
     protected void init() {
         clearWidgets();
+        if (!scored) {
+            scored = true;
+            var sounds = minecraft.getSoundManager();
+            if (ending.equals("COMPLETE")) {
+                // Released: the world comes back, and so does the music.
+                sounds.play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1F, 1F));
+                sounds.play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvents.MUSIC_DISC_CAT, 1F));
+            } else {
+                sounds.play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(net.minecraft.sounds.SoundEvent.createVariableRangeEvent(
+                    net.minecraft.resources.Identifier.fromNamespaceAndPath("unallocated", "audio.ambient_drone")), ending.equals("POISON") ? 0.7F : 0.85F, 0.9F));
+            }
+        }
         if (done) addRenderableWidget(Button.builder(back, b -> minecraft.gui.setScreen(new TitleScreen())).bounds(width / 2 - 100, height - 40, 200, 20).build());
     }
 
     @Override
-    public void tick() { if (!done) shown += CHARS_PER_TICK; }
+    public void tick() {
+        if (!done) shown += CHARS_PER_TICK;
+        minecraft.getMusicManager().stopPlaying(); // the title-screen music must not start over the ending
+    }
 
     private void advance() {
         if (shown < cards.get(card).length()) { shown = cards.get(card).length(); return; }
