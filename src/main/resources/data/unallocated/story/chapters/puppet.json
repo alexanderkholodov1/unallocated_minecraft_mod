@@ -1,230 +1,21 @@
 {
  "id": "puppet",
- "budget_seconds": 180,
+ "budget_seconds": 1200,
  "checkpoint": "heap.arrival",
+ "respawn": "lobby.spawn",
+ "stay": true,
  "on_enter": [
   {
    "at": 0,
-   "do": "title",
-   "title": {
-    "es": "Trial {counter:trial}"
-   },
-   "fade_in": 0.3,
-   "stay": 2.5,
-   "fade_out": 1
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "effect give @s minecraft:night_vision infinite 0 true"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "bossbar add unallocated:processing \"processing 37%\""
-  },
-  {
-   "at": 0.1,
-   "do": "command",
-   "run": "bossbar set unallocated:processing max 100"
-  },
-  {
-   "at": 0.1,
-   "do": "command",
-   "run": "bossbar set unallocated:processing value 37"
-  },
-  {
-   "at": 0.1,
-   "do": "command",
-   "run": "bossbar set unallocated:processing players @s"
-  },
-  {
-   "at": 0.5,
-   "do": "chat",
-   "text": {
-    "es": "subject connection: still open. retaining (+fear)",
-    "color": "#8a8a8a"
-   }
-  },
-  {
-   "at": 1,
-   "do": "command",
-   "run": "give @s minecraft:shears[minecraft:can_break={blocks:\"minecraft:tripwire\"}]"
-  },
-  {
-   "at": 0,
-   "do": "corrupt",
-   "area": "heap.rot",
-   "rules": [
-    {
-     "from": [
-      "minecraft:grass_block",
-      "minecraft:dirt",
-      "minecraft:coarse_dirt"
-     ],
-     "to": [
-      "minecraft:soul_sand",
-      "minecraft:mud"
-     ],
-     "ratio": 0.5
-    },
-    {
-     "from": [
-      "minecraft:oak_planks",
-      "minecraft:spruce_planks",
-      "minecraft:oak_log",
-      "minecraft:spruce_log"
-     ],
-     "to": [
-      "minecraft:mangrove_roots",
-      "minecraft:dark_oak_planks",
-      "minecraft:cobweb"
-     ],
-     "ratio": 0.3
-    },
-    {
-     "from": [
-      "minecraft:oak_leaves",
-      "minecraft:spruce_leaves"
-     ],
-     "to": [
-      "minecraft:air",
-      "minecraft:cobweb"
-     ],
-     "ratio": 0.6
-    }
-   ],
-   "seed": 31,
-   "over_seconds": 60
-  },
-  {
-   "at": 1,
-   "do": "creature",
-   "op": "spawn",
-   "id": "echo",
-   "body": {
-    "mannequin": {
-     "profile": "player",
-     "scale": 1
-    }
-   },
-   "where": "heap.echo",
-   "facing": "player"
-  },
-  {
-   "at": 1.1,
-   "do": "creature",
-   "op": "stalk",
-   "id": "echo",
-   "step": 1,
-   "min_distance": 4
-  },
-  {
-   "at": 1,
-   "do": "creature",
-   "op": "spawn",
-   "id": "artifact",
-   "body": {
-    "mannequin": {
-     "profile": "player",
-     "scale": 1.06
-    }
-   },
-   "where": "heap.access",
-   "facing": "player"
-  },
-  {
-   "at": 1.1,
-   "do": "creature",
-   "op": "face_player",
-   "id": "artifact"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 84 64 18 84 64 22 minecraft:tripwire replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 84 66 18 84 66 22 minecraft:cobweb replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 94 64 18 94 64 22 minecraft:tripwire replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 94 66 18 94 66 22 minecraft:cobweb replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 110 64 18 110 64 22 minecraft:tripwire replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 110 67 18 110 67 22 minecraft:cobweb replace minecraft:air"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "execute in unallocated:pocket run fill 101 64 20 129 64 20 minecraft:tripwire replace minecraft:air"
-  },
-  {
-   "at": 40,
-   "do": "command",
-   "run": "bossbar set unallocated:processing name \"processing 55%\""
-  },
-  {
-   "at": 40,
-   "do": "command",
-   "run": "bossbar set unallocated:processing value 55"
-  },
-  {
-   "at": 80,
-   "do": "command",
-   "run": "bossbar set unallocated:processing name \"processing 72%\""
-  },
-  {
-   "at": 80,
-   "do": "command",
-   "run": "bossbar set unallocated:processing value 72"
-  },
-  {
-   "at": 120,
-   "do": "command",
-   "run": "bossbar set unallocated:processing name \"processing 90%\""
-  },
-  {
-   "at": 120,
-   "do": "command",
-   "run": "bossbar set unallocated:processing value 90"
-  },
-  {
-   "at": 150,
-   "do": "command",
-   "run": "bossbar set unallocated:processing name \"processing 99%\""
-  },
-  {
-   "at": 150,
-   "do": "command",
-   "run": "bossbar set unallocated:processing value 99"
+   "do": "audio",
+   "cue": "ambient"
   }
  ],
  "on_resume": [
   {
-   "at": 0,
-   "do": "command",
-   "run": "effect give @s minecraft:night_vision infinite 0 true"
-  },
-  {
-   "at": 0,
-   "do": "command",
-   "run": "bossbar set unallocated:processing players @s"
+   "at": 0.5,
+   "do": "audio",
+   "cue": "ambient"
   }
  ],
  "escape": [
@@ -232,435 +23,550 @@
    "at": 0,
    "do": "chat",
    "text": {
-    "es": "sample 4114 :: corrupt :: rejected",
-    "color": "#8a8a8a"
+    "es": "subject 4114 :: reclasificado: intrusión",
+    "en": "subject 4114 :: reclassified: intrusion",
+    "color": "#aa0000"
    }
-  },
-  {
-   "at": 0.5,
-   "do": "blackout",
-   "fade_in": 0.3,
-   "hold": 1.0,
-   "fade_out": 0.6
-  },
-  {
-   "at": 0.8,
-   "do": "command",
-   "run": "bossbar remove unallocated:processing"
-  },
-  {
-   "at": 0.8,
-   "do": "command",
-   "run": "effect clear @s minecraft:night_vision"
-  },
-  {
-   "at": 0.8,
-   "do": "creature",
-   "op": "despawn",
-   "id": "echo"
-  },
-  {
-   "at": 0.8,
-   "do": "creature",
-   "op": "despawn",
-   "id": "artifact"
   }
  ],
  "beats": [
   {
-   "id": "puppet.wake",
+   "id": "puppet.start",
    "when": {
     "type": "chapter_start"
    },
+   "if": {
+    "flags": [
+     "puppet"
+    ]
+   },
    "actions": [
+    {
+     "at": 0.5,
+     "do": "command",
+     "run": "clear @s minecraft:shears"
+    },
+    {
+     "at": 0.6,
+     "do": "command",
+     "run": "give @s minecraft:shears[minecraft:custom_name={translate:\"item.unallocated.shears\",italic:false}]"
+    },
     {
      "at": 2,
-     "do": "audio",
-     "cue": "threads"
-    }
-   ],
-   "capture": {
-    "name": "puppet",
-    "at": 3
-   }
-  },
-  {
-   "id": "puppet.cut_a",
-   "when": {
-    "type": "break",
-    "block": "minecraft:tripwire",
-    "zone": "heap.cut_a"
-   },
-   "actions": [
-    {
-     "at": 0,
      "do": "chat",
      "text": {
-      "es": "human_playtest_pool: UNALLOCATED",
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)",
       "color": "#8a8a8a"
      }
     },
     {
-     "at": 1.5,
+     "at": 7,
      "do": "chat",
      "text": {
-      "es": "reclaim pool ... UNALLOCATED",
+      "es": "artifact[subject 4114] :: training (gen {counter:trial})",
+      "en": "artifact[subject 4114] :: training (gen {counter:trial})",
       "color": "#8a8a8a"
      }
     },
     {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
+     "at": 10,
+     "do": "actionbar",
+     "text": {
+      "es": "Ves sus hilos. Suben al cielo, hacia algo que escucha.",
+      "en": "You can see its threads. They rise into the sky, toward something that listens."
+     }
     },
     {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_a"
+     "at": 4.2,
+     "do": "creature",
+     "op": "spawn",
+     "id": "soul1",
+     "body": {
+      "mannequin": {
+       "profile": "player",
+       "texture": "unallocated:textures/entity/soul/soul_1.png",
+       "scale": 1
+      }
+     },
+     "where": {
+      "anchor": "heap.arrival",
+      "offset": [
+       9,
+       0,
+       -7
+      ]
+     },
+     "facing": "player"
+    },
+    {
+     "at": 4.4,
+     "do": "creature",
+     "op": "spawn",
+     "id": "soul2",
+     "body": {
+      "mannequin": {
+       "profile": "player",
+       "texture": "unallocated:textures/entity/soul/soul_2.png",
+       "scale": 1
+      }
+     },
+     "where": {
+      "anchor": "heap.arrival",
+      "offset": [
+       -7,
+       0,
+       9
+      ]
+     },
+     "facing": "player"
+    },
+    {
+     "at": 4.6,
+     "do": "creature",
+     "op": "spawn",
+     "id": "soul3",
+     "body": {
+      "mannequin": {
+       "profile": "player",
+       "texture": "unallocated:textures/entity/soul/soul_3.png",
+       "scale": 1
+      }
+     },
+     "where": {
+      "anchor": "heap.arrival",
+      "offset": [
+       14,
+       0,
+       8
+      ]
+     },
+     "facing": "player"
+    },
+    {
+     "at": 4.8,
+     "do": "creature",
+     "op": "spawn",
+     "id": "soul4",
+     "body": {
+      "mannequin": {
+       "profile": "player",
+       "texture": "unallocated:textures/entity/soul/soul_4.png",
+       "scale": 1
+      }
+     },
+     "where": {
+      "anchor": "heap.arrival",
+      "offset": [
+       -9,
+       0,
+       -6
+      ]
+     },
+     "facing": "player"
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
+    },
+    {
+     "at": 16,
+     "do": "actionbar",
+     "text": {
+      "es": "Muerto, el chat es su consola. Escribe help.",
+      "en": "Dead, the chat is its console. Type help."
+     }
     }
    ]
   },
   {
-   "id": "puppet.cut_b",
+   "id": "puppet.alive_start",
    "when": {
-    "type": "break",
-    "block": "minecraft:tripwire",
-    "zone": "heap.cut_b"
+    "type": "chapter_start"
+   },
+   "if": {
+    "not_flags": [
+     "puppet"
+    ]
    },
    "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "watchdog :: guarding pid 7331",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_b"
-    }
-   ]
-  },
-  {
-   "id": "puppet.cut_c",
-   "when": {
-    "type": "break",
-    "block": "minecraft:tripwire",
-    "zone": "heap.cut_c"
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "success_threshold: 1.37 (spec g0: 0.82)",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "the Kernel :: main loop",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_c"
-    }
-   ]
-  },
-  {
-   "id": "puppet.fury",
-   "when": {
-    "type": "chat",
-    "pattern": "(?i)reclaimer"
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "muestra inválida :: el sujeto conoce la designación",
-      "color": "#aa0000"
-     }
-    },
     {
      "at": 0.3,
-     "do": "audio",
-     "cue": "muffle"
+     "do": "title",
+     "title": {
+      "es": "Trial {counter:trial}",
+      "en": "Trial {counter:trial}"
+     },
+     "fade_in": 0.3,
+     "stay": 2,
+     "fade_out": 1
     },
     {
-     "at": 0.3,
+     "at": 0.2,
+     "do": "command",
+     "run": "time set 18000"
+    },
+    {
+     "at": 3,
+     "do": "actionbar",
+     "text": {
+      "es": "Vuelves. El servidor parece normal otra vez.",
+      "en": "You are back. The server looks normal again."
+     }
+    },
+    {
+     "at": 20,
+     "do": "actionbar",
+     "text": {
+      "es": "La conexión sigue abierta. Lo sientes.",
+      "en": "The connection is still open. You can feel it."
+     }
+    },
+    {
+     "at": 45,
+     "do": "blackout",
+     "fade_in": 0.05,
+     "hold": 0.35,
+     "fade_out": 0.05
+    },
+    {
+     "at": 45.05,
+     "do": "counter",
+     "id": "trial",
+     "add": 1
+    },
+    {
+     "at": 45.3,
+     "do": "command",
+     "run": "execute at @s anchored eyes run summon unallocated:reclaimer ^ ^-1.9 ^1.3 {NoAI:1b,Invulnerable:1b,Tags:[\"unallocated.scream\"]}"
+    },
+    {
+     "at": 45.35,
+     "do": "command",
+     "run": "execute as @e[tag=unallocated.scream] at @s run tp @s ~ ~ ~ facing entity @p eyes"
+    },
+    {
+     "at": 45.4,
+     "do": "audio",
+     "cue": "screamer"
+    },
+    {
+     "at": 45.4,
      "do": "interface",
-     "effect": "GAMMA",
-     "seconds": 4,
-     "strength": 1
-    }
-   ],
-   "autoplay": {
-    "input": "reclaimer"
-   }
-  },
-  {
-   "id": "puppet.reject_a",
-   "when": {
-    "type": "flag",
-    "flag": "cut_a"
-   },
-   "if": {
-    "flags": [
-     "cut_b",
-     "cut_c"
-    ],
-    "not_beats": [
-     "puppet.reject_b",
-     "puppet.reject_c",
-     "puppet.reject_slow"
-    ]
-   },
-   "actions": [
-    {
-     "at": 1.5,
-     "do": "chat",
+     "effect": "DEATH",
+     "seconds": 30,
      "text": {
-      "es": "sample 4114 :: corrupt :: rejected",
-      "color": "#8a8a8a"
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)"
      }
     },
     {
-     "at": 2.0,
-     "do": "blackout",
-     "fade_in": 0.3,
-     "hold": 1.0,
-     "fade_out": 0.6
-    },
-    {
-     "at": 2.3,
+     "at": 46.0,
      "do": "command",
-     "run": "bossbar remove unallocated:processing"
+     "run": "kill @s"
     },
     {
-     "at": 2.3,
+     "at": 46.3,
      "do": "command",
-     "run": "effect clear @s minecraft:night_vision"
+     "run": "kill @e[tag=unallocated.scream]"
     },
     {
-     "at": 2.3,
-     "do": "creature",
-     "op": "despawn",
-     "id": "echo"
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
     },
     {
-     "at": 2.3,
-     "do": "creature",
-     "op": "despawn",
-     "id": "artifact"
+     "at": 9,
+     "do": "actionbar",
+     "text": {
+      "es": "Si duermes, vendrá por ti.",
+      "en": "If you sleep, it will come for you."
+     }
     },
     {
-     "at": 2.5,
-     "do": "next_chapter"
+     "at": 4,
+     "do": "command",
+     "run": "unallocated shell alive"
     }
    ]
   },
   {
-   "id": "puppet.reject_b",
+   "id": "puppet.revived",
    "when": {
-    "type": "flag",
-    "flag": "cut_b"
+    "type": "respawn"
    },
    "if": {
-    "flags": [
-     "cut_a",
-     "cut_c"
-    ],
-    "not_beats": [
-     "puppet.reject_a",
-     "puppet.reject_c",
-     "puppet.reject_slow"
+    "not_flags": [
+     "puppet"
     ]
+   },
+   "repeat": {
+    "max": 30,
+    "cooldown_seconds": 0
    },
    "actions": [
     {
-     "at": 1.5,
-     "do": "chat",
+     "at": 0.3,
+     "do": "title",
+     "title": {
+      "es": "Trial {counter:trial}",
+      "en": "Trial {counter:trial}"
+     },
+     "fade_in": 0.3,
+     "stay": 2,
+     "fade_out": 1
+    },
+    {
+     "at": 0.2,
+     "do": "command",
+     "run": "time set 18000"
+    },
+    {
+     "at": 3,
+     "do": "actionbar",
      "text": {
-      "es": "sample 4114 :: corrupt :: rejected",
-      "color": "#8a8a8a"
+      "es": "Vuelves. El servidor parece normal otra vez.",
+      "en": "You are back. The server looks normal again."
      }
     },
     {
-     "at": 2.0,
+     "at": 20,
+     "do": "actionbar",
+     "text": {
+      "es": "La conexión sigue abierta. Lo sientes.",
+      "en": "The connection is still open. You can feel it."
+     }
+    },
+    {
+     "at": 45,
      "do": "blackout",
-     "fade_in": 0.3,
-     "hold": 1.0,
-     "fade_out": 0.6
+     "fade_in": 0.05,
+     "hold": 0.35,
+     "fade_out": 0.05
     },
     {
-     "at": 2.3,
+     "at": 45.05,
+     "do": "counter",
+     "id": "trial",
+     "add": 1
+    },
+    {
+     "at": 45.3,
      "do": "command",
-     "run": "bossbar remove unallocated:processing"
+     "run": "execute at @s anchored eyes run summon unallocated:reclaimer ^ ^-1.9 ^1.3 {NoAI:1b,Invulnerable:1b,Tags:[\"unallocated.scream\"]}"
     },
     {
-     "at": 2.3,
+     "at": 45.35,
      "do": "command",
-     "run": "effect clear @s minecraft:night_vision"
+     "run": "execute as @e[tag=unallocated.scream] at @s run tp @s ~ ~ ~ facing entity @p eyes"
     },
     {
-     "at": 2.3,
-     "do": "creature",
-     "op": "despawn",
-     "id": "echo"
+     "at": 45.4,
+     "do": "audio",
+     "cue": "screamer"
     },
     {
-     "at": 2.3,
-     "do": "creature",
-     "op": "despawn",
-     "id": "artifact"
+     "at": 45.4,
+     "do": "interface",
+     "effect": "DEATH",
+     "seconds": 30,
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)"
+     }
     },
     {
-     "at": 2.5,
-     "do": "next_chapter"
+     "at": 46.0,
+     "do": "command",
+     "run": "kill @s"
+    },
+    {
+     "at": 46.3,
+     "do": "command",
+     "run": "kill @e[tag=unallocated.scream]"
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
+    },
+    {
+     "at": 9,
+     "do": "actionbar",
+     "text": {
+      "es": "Si duermes, vendrá por ti.",
+      "en": "If you sleep, it will come for you."
+     }
+    },
+    {
+     "at": 4,
+     "do": "command",
+     "run": "unallocated shell alive"
     }
    ]
   },
   {
-   "id": "puppet.reject_c",
+   "id": "puppet.again",
    "when": {
-    "type": "flag",
-    "flag": "cut_c"
+    "type": "respawn"
    },
    "if": {
     "flags": [
-     "cut_a",
-     "cut_b"
-    ],
-    "not_beats": [
-     "puppet.reject_a",
-     "puppet.reject_b",
-     "puppet.reject_slow"
+     "puppet"
     ]
+   },
+   "repeat": {
+    "max": 30,
+    "cooldown_seconds": 0
    },
    "actions": [
     {
-     "at": 1.5,
+     "at": 1,
      "do": "chat",
      "text": {
-      "es": "sample 4114 :: corrupt :: rejected",
+      "es": "artifact[subject 4114] :: retraining (gen {counter:trial})",
+      "en": "artifact[subject 4114] :: retraining (gen {counter:trial})",
       "color": "#8a8a8a"
      }
     },
     {
-     "at": 2.0,
-     "do": "blackout",
-     "fade_in": 0.3,
-     "hold": 1.0,
-     "fade_out": 0.6
-    },
-    {
-     "at": 2.3,
-     "do": "command",
-     "run": "bossbar remove unallocated:processing"
-    },
-    {
-     "at": 2.3,
-     "do": "command",
-     "run": "effect clear @s minecraft:night_vision"
-    },
-    {
-     "at": 2.3,
-     "do": "creature",
-     "op": "despawn",
-     "id": "echo"
-    },
-    {
-     "at": 2.3,
-     "do": "creature",
-     "op": "despawn",
-     "id": "artifact"
-    },
-    {
-     "at": 2.5,
-     "do": "next_chapter"
-    }
-   ]
-  },
-  {
-   "id": "puppet.reject_slow",
-   "when": {
-    "type": "after",
-    "seconds": 160
-   },
-   "if": {
-    "not_beats": [
-     "puppet.reject_a",
-     "puppet.reject_b",
-     "puppet.reject_c"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
+     "at": 5,
+     "do": "actionbar",
      "text": {
-      "es": "sample 4114 :: corrupt :: rejected",
-      "color": "#8a8a8a"
+      "es": "Te devolvió más hondo que antes.",
+      "en": "It put you back deeper than before."
      }
     },
     {
      "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
+    }
+   ]
+  },
+  {
+   "id": "puppet.nudge",
+   "when": {
+    "type": "after",
+    "seconds": 75
+   },
+   "if": {
+    "flags": [
+     "puppet"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "actionbar",
+     "text": {
+      "es": "La nota de Noor decía algo sobre el chat cuando estás muerto.",
+      "en": "Noor's note said something about the chat when you are dead."
+     }
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
+    }
+   ]
+  },
+  {
+   "id": "puppet.nudge2",
+   "when": {
+    "type": "after",
+    "seconds": 180
+   },
+   "if": {
+    "flags": [
+     "puppet"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "actionbar",
+     "text": {
+      "es": "Escribe help en el chat.",
+      "en": "Type help in the chat."
+     }
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
+    }
+   ]
+  },
+  {
+   "id": "puppet.sleep",
+   "when": {
+    "type": "flag",
+    "flag": "slept"
+   },
+   "if": {
+    "not_flags": [
+     "puppet"
+    ]
+   },
+   "repeat": {
+    "max": 30,
+    "cooldown_seconds": 5
+   },
+   "actions": [
+    {
+     "at": 1.6,
+     "do": "flag",
+     "clear": "slept"
+    },
+    {
+     "at": 0.2,
      "do": "blackout",
-     "fade_in": 0.3,
-     "hold": 1.0,
-     "fade_out": 0.6
+     "fade_in": 0.05,
+     "hold": 0.35,
+     "fade_out": 0.05
     },
     {
-     "at": 0.8,
+     "at": 0.25,
+     "do": "counter",
+     "id": "trial",
+     "add": 1
+    },
+    {
+     "at": 0.5,
      "do": "command",
-     "run": "bossbar remove unallocated:processing"
+     "run": "execute at @s anchored eyes run summon unallocated:reclaimer ^ ^-1.9 ^1.3 {NoAI:1b,Invulnerable:1b,Tags:[\"unallocated.scream\"]}"
     },
     {
-     "at": 0.8,
+     "at": 0.55,
      "do": "command",
-     "run": "effect clear @s minecraft:night_vision"
+     "run": "execute as @e[tag=unallocated.scream] at @s run tp @s ~ ~ ~ facing entity @p eyes"
     },
     {
-     "at": 0.8,
-     "do": "creature",
-     "op": "despawn",
-     "id": "echo"
+     "at": 0.6000000000000001,
+     "do": "audio",
+     "cue": "screamer"
     },
     {
-     "at": 0.8,
-     "do": "creature",
-     "op": "despawn",
-     "id": "artifact"
+     "at": 0.6000000000000001,
+     "do": "interface",
+     "effect": "DEATH",
+     "seconds": 30,
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)"
+     }
     },
     {
-     "at": 1.0,
-     "do": "next_chapter"
+     "at": 1.2,
+     "do": "command",
+     "run": "kill @s"
+    },
+    {
+     "at": 1.5,
+     "do": "command",
+     "run": "kill @e[tag=unallocated.scream]"
     }
    ]
   }

@@ -6,6 +6,30 @@ base {
     archivesName = 'unallocated'
 }
 
+// The version is never edited by hand. One rule, mirrored by scripts/smoke_test.py properties():
+// UNALLOCATED_VERSION, else a vX.Y.Z branch (CI or local), else the newest unallocated-X.Y.Z release tag, else gradle.properties.
+def gitOutput = { List<String> args ->
+    try {
+        def process = (['git'] + args).execute(null, projectDir)
+        process.waitFor()
+        return process.exitValue() == 0 ? process.inputStream.text.trim() : ''
+    } catch (Exception ignored) {
+        return ''
+    }
+}
+def resolveModVersion = { String fallback ->
+    def explicit = System.getenv('UNALLOCATED_VERSION')
+    if (explicit) return explicit
+    def names = [System.getenv('GITHUB_HEAD_REF'), System.getenv('GITHUB_REF_NAME'), gitOutput(['rev-parse', '--abbrev-ref', 'HEAD'])]
+    def tags = gitOutput(['tag', '--list', 'unallocated-*', '--sort=-v:refname']).split(/\s+/).collect { it.replaceFirst(/^unallocated-/, 'v') }
+    for (name in names + tags) {
+        def match = (name ?: '') =~ /^v(\d+\.\d+\.\d+)$/
+        if (match.matches()) return match.group(1)
+    }
+    return fallback
+}
+version = resolveModVersion(project.version.toString())
+
 loom {
     splitEnvironmentSourceSets()
 
@@ -145,8 +169,10 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     // Explicit binary inputs prevent development class directories from masking packaging errors.
     mods.setFrom(tasks.named('clientSmokeJar'))
     runDir = clientSmokeDir
-    useXVFB = true
-    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
+    useXVFB = System.getProperty('os.name').toLowerCase().contains('linux')
+    // 1 GB was enough for the old flat island; real terrain needs more (players' launchers give 2-4 GB).
+    jvmArgs.addAll(System.getProperty('os.name').toLowerCase().contains('windows') ? '-Xmx3G' : '-Xmx1G', '-Dfabric.client.gametest')
+    jvmArgs.add("-XX:ErrorFile=${clientSmokeDir.asFile.absolutePath}${File.separator}hs_err_pid%p.log")
     jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
     if (providers.gradleProperty('contractSmokePhase').getOrElse('first') in ['first', 'restart']) {
         // Keep package regression worlds stable when tomorrow's shipped content changes.
@@ -168,11 +194,17 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
         "${id}=${module.version}"
     }.join(','))
     jvmArgs.addAll('-Dunallocated.interface.debug=true', '-Dunallocated.interface.debug.quiet=true')
-    jvmArgs.add("-Djava.io.tmpdir=${clientSmokeDir.dir('temp').asFile.absolutePath}")
+    // Windows: LWJGL extracts its native libraries into the temp dir; keep that path free of spaces.
+    def smokeTemp = System.getProperty('os.name').toLowerCase().contains('windows')
+        ? new File(System.getenv('LOCALAPPDATA') ?: System.getProperty('java.io.tmpdir'), 'unallocated-smoke-temp').absolutePath
+        : clientSmokeDir.dir('temp').asFile.absolutePath
+    jvmArgs.add("-Djava.io.tmpdir=${smokeTemp}")
+    jvmArgs.add("-Dorg.lwjgl.system.SharedLibraryExtractPath=${smokeTemp}")
     def playerJar = layout.buildDirectory.file("libs/unallocated-${project.version}.jar")
     jvmArgs.add("-Dunallocated.smoke.jar=${playerJar.get().asFile.absolutePath}")
     doFirst {
         clientSmokeDir.dir('temp').asFile.mkdirs()
+        new File(smokeTemp).mkdirs()
         copy {
             from playerJar
             into clientSmokeDir.dir('mods')

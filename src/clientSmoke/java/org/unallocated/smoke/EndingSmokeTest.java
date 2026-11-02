@@ -124,10 +124,10 @@ final class EndingSmokeTest {
             var screen = (DisconnectedScreen) client.gui.screen();
             String text = screen.getNarrationMessage().getString();
             if (!screen.getTitle().getString().equals(EndingText.TITLE)
-                    || !text.contains("estimar respuestas de miedo humano")
-                    || !text.contains("Gracias por tus datos.")
-                    || !text.contains("Dijiste «dE AcUeRdO»")
-                    || !text.contains("Gracias por poner fin a esto.")) {
+                    || !text.contains("estimate human fear responses")
+                    || !text.contains("Thank you for your data.")
+                    || !text.contains("You said \"dE AcUeRdO\"")
+                    || !text.contains("Thank you for putting an end to this.")) {
                 throw new AssertionError("Ending disconnect mixin did not apply or farewell is missing");
             }
             if (screen.children().stream().noneMatch(child -> child instanceof AbstractWidget button

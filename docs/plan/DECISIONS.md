@@ -1,150 +1,152 @@
-# UNALLOCATED — Decisiones abiertas para el dueño
+*Translated from the original Spanish on 2026-11-01.*
 
-*Paquete v0.1.2 · 2026-10-26. Cada decisión: opciones, recomendación, qué cambia. Primero las que **bloquean trabajo**. Si el dueño no responde, los agentes avanzan con la recomendación (marcada **→**) y la decisión se puede revertir donde se indica.*
+# UNALLOCATED — Open decisions for the owner
 
-Formato de respuesta sugerido para el dueño: `D-03: B` o `D-07: A, pero …`.
+*Package v0.1.2 · 2026-10-26. Each decision: options, recommendation, what changes. Decisions that **block work** come first. If the owner does not respond, the agents proceed with the recommendation (marked **→**) and the decision can be reverted where indicated.*
 
-## Resumen
+Suggested response format for the owner: `D-03: B` or `D-07: A, pero …` [D-07: A, but …].
 
-| # | Decisión | Recomendación | Bloquea | Respuesta del operador
+## Summary
+
+| # | Decision | Recommendation | Blocks | Operator's response
 |---|---|---|---|
-| D-01 | ¿Núcleo sin IA externa ni voz? | Sí | todo v0.1 | Sí.
-| D-02 | Fabric API para el juez | Dentro de nuestro JAR (jar-in-jar) | v0.1.3, página | Sí
-| D-03 | Cómo empieza el juez | Botón "UNALLOCATED" en el título + ZIP de respaldo | v0.1.7 | Sí
-| D-04 | Cómo se construye el mapa | Por código, pulible a mano | v0.1.6 | Sí
-| D-05 | "De acuerdo" | Escrito | v0.1.4 |  Sí
-| D-06 | Idioma del texto filtrado | Mixto (español al jugador, logs en inglés) | v0.2.7 | Sí
-| D-07 | Finales | Dos: tijeras + `kill -9` (B) / consumido (A) | v0.3.8 | No estoy seguro, estas distorcionando porque yo propuse finales distintos.
-| D-08 | Shaders propios | No imprescindibles; efectos vanilla | v0.2–3 | No, podemos usar shaders creados por alguien.
-| D-09 | Hilos en un jugador | "Quien más sabe, más ve" + siempre se oyen | v0.3.6 | Interesante, pero me debes explicar bien
-| D-10 | Recursos y sonido | CC0/acreditados; vanilla alterado en tiempo de ejecución | v0.1.10 | Prefiero B
-| D-21 | Ajustes que cambian | En memoria, sin tocar `options.txt` | v0.2.5 | Prefiero B
-| D-11 | Director | Ritmo + aprendizaje visible, sin bandit | v0.2.2 | Como fuimos por construir un mapa no se que tan aplicable sea
-| D-12…D-20 | Subir temprano, probadores, nombres, ritual, ancla, reglas, licencia, memoria, orden robo/escalera | ver abajo | v0.6 | Vamos a entregar la primera version COMPLETA; yo hago las pruebas; apruebo; B; no lo explicaste bien, pero supongo que A; B; si; me gusta!; esta bien.
+| D-01 | Core without external AI or voice? | Yes | all of v0.1 | Sí [Yes].
+| D-02 | Fabric API for the judge | Inside our JAR (jar-in-jar) | v0.1.3, page | Sí [Yes]
+| D-03 | How the judge starts | "UNALLOCATED" button on the title + backup ZIP | v0.1.7 | Sí [Yes]
+| D-04 | How the map is built | By code, polishable by hand | v0.1.6 | Sí [Yes]
+| D-05 | "De acuerdo" [I agree] | Written | v0.1.4 |  Sí [Yes]
+| D-06 | Language of the leaked text | Mixed (Spanish to the player, logs in English) | v0.2.7 | Sí [Yes]
+| D-07 | Endings | Two: scissors + `kill -9` (B) / consumed (A) | v0.3.8 | No estoy seguro, estas distorcionando porque yo propuse finales distintos. [I'm not sure, you're distorting it because I proposed different endings.]
+| D-08 | Custom shaders | Not essential; vanilla effects | v0.2–3 | No, podemos usar shaders creados por alguien. [No, we can use shaders made by someone else.]
+| D-09 | Threads in a single player | "Quien más sabe, más ve" [the one who knows more sees more] + they are always heard | v0.3.6 | Interesante, pero me debes explicar bien [Interesting, but you have to explain it well to me]
+| D-10 | Resources and sound | CC0/credited; vanilla altered at runtime | v0.1.10 | Prefiero B [I prefer B]
+| D-21 | Settings that change | In memory, without touching `options.txt` | v0.2.5 | Prefiero B [I prefer B]
+| D-11 | Director | Pacing + visible learning, no bandit | v0.2.2 | Como fuimos por construir un mapa no se que tan aplicable sea [Since we went for building a map, I don't know how applicable it is]
+| D-12…D-20 | Upload early, testers, names, ritual, anchor, rules, license, memory, theft/ladder order | see below | v0.6 | Vamos a entregar la primera version COMPLETA; yo hago las pruebas; apruebo; B; no lo explicaste bien, pero supongo que A; B; si; me gusta!; esta bien. [We are going to deliver the first COMPLETE version; I do the tests; I approve; B; you didn't explain it well, but I suppose A; B; yes; I like it!; it's fine.]
 
 ---
 
-## Bloquean trabajo ya (v0.1)
+## Blocking work now (v0.1)
 
-### D-01 — El núcleo de la experiencia no depende de IA externa ni de voz *(default del coordinador, no confirmado)*
-- **A →** Sí: la jam funciona sin red, sin micrófono y sin servicio de inferencia; IA y voz quedan para después del PoC (PLAN §9).
-- B: servicio de inferencia opcional (LAN/VPN) que mejora textos si está disponible.
-- C: modelo local (tipo Ollama) obligatorio.
-- **Por qué A:** los jueces juegan en casa en máquinas desconocidas ("Los jueces NO JUGARAN EN VIVO EN EL AULA"); "Estabilidad y facilidad de instalación" es criterio; Neuro Lurker ya ocupa el nicho "LLM local que te acecha". B no aporta nada que el juez vea si el servicio no responde.
-- **Qué cambia:** elimina de la jam el servicio, Simple Voice Chat, el DSL y todos los riesgos de red; el contrato pide "De acuerdo" escrito (D-05).
+### D-01 — The core of the experience does not depend on external AI or voice *(coordinator default, not confirmed)*
+- **A →** Yes: the jam works without network, without microphone and without an inference service; AI and voice are left for after the PoC (PLAN §9).
+- B: optional inference service (LAN/VPN) that improves texts if available.
+- C: mandatory local model (Ollama-like).
+- **Why A:** judges play at home on unknown machines ("Los jueces NO JUGARAN EN VIVO EN EL AULA" [Judges will NOT PLAY LIVE IN THE CLASSROOM]); "Estabilidad y facilidad de instalación" [Stability and ease of installation] is a criterion; Neuro Lurker already occupies the "local LLM that stalks you" niche. B adds nothing the judge would see if the service does not respond.
+- **What changes:** removes from the jam the service, Simple Voice Chat, the DSL and all network risks; the contract asks for a written "De acuerdo" (D-05).
 
-### D-02 — Cómo recibe el juez Fabric API
-- **A →** Empaquetar dentro de nuestro JAR (jar-in-jar, `include`) sólo los módulos de Fabric API que usemos (Apache-2.0, acreditados). El juez instala Loader + un JAR.
-- B: pedir al juez que descargue Fabric API 0.165.0+26.3 aparte.
-- C: no usar Fabric API (sólo Mixins y Loader).
-- **Por qué A:** cada dependencia extra es un punto de falla en casa (su criterio en 1.3: "cada dependencia obligatoria puede decrementar la facilidad de instalación"). C multiplica el trabajo y el riesgo (eventos, red, HUD, comandos a mano).
-- **Qué cambia:** WP v0.1.3 modifica el chequeo de CI que hoy prohíbe JARs anidados; la página dice "no hace falta Fabric API". Reversible: pasar a B es sólo documentación. Verificación en `VERIFIED.md`.
+### D-02 — How the judge receives Fabric API
+- **A →** Package inside our JAR (jar-in-jar, `include`) only the Fabric API modules we use (Apache-2.0, credited). The judge installs Loader + one JAR.
+- B: ask the judge to download Fabric API 0.165.0+26.3 separately.
+- C: do not use Fabric API (only Mixins and Loader).
+- **Why A:** every extra dependency is a point of failure at home (their criterion in 1.3: "cada dependencia obligatoria puede decrementar la facilidad de instalación" [each mandatory dependency can decrease ease of installation]). C multiplies the work and the risk (events, network, HUD, hand-made commands).
+- **What changes:** WP v0.1.3 modifies the CI check that today prohibits nested JARs; the page says "no hace falta Fabric API" [Fabric API is not needed]. Reversible: going to B is only documentation. Verification in `VERIFIED.md`.
 
-### D-03 — Cómo empieza el juez la experiencia
-- **A →** Botón **"UNALLOCATED"** en el menú principal: copia la plantilla del mundo (dentro del JAR) a `saves/`, muestra una pantalla tipo "Conectando al servidor…" y abre el mundo. Además, ZIP del mundo en itch como respaldo manual.
-- B: sólo el ZIP del mundo; el juez lo descomprime en `saves/` y lo abre desde "Un jugador".
-- C: el mod genera el mapa en un mundo nuevo creado por el juez.
-- **Por qué A:** menos pasos manuales (el error más común en casa es la carpeta equivocada); el "servidor abandonado" empieza en la pantalla de conexión ("el idioma de Minecraft como arma"). B queda como respaldo.
-- **Qué cambia:** WP v0.1.7 (UI+REL). Si A da problemas en una plataforma, la página remite a B sin cambiar el mod.
+### D-03 — How the judge starts the experience
+- **A →** **"UNALLOCATED"** button in the main menu: copies the world template (inside the JAR) to `saves/`, shows a "Conectando al servidor…" [Connecting to the server…] style screen and opens the world. Additionally, a world ZIP on itch as a manual backup.
+- B: only the world ZIP; the judge unzips it into `saves/` and opens it from "Un jugador" [Singleplayer].
+- C: the mod generates the map in a new world created by the judge.
+- **Why A:** fewer manual steps (the most common error at home is the wrong folder); the "abandoned server" starts on the connection screen ("el idioma de Minecraft como arma" [the Minecraft language as a weapon]). B remains as backup.
+- **What changes:** WP v0.1.7 (UI+REL). If A causes problems on a platform, the page refers to B without changing the mod.
 
-### D-04 — Cómo se construye el mapa pre-construido
-- **A →** Híbrido: el mapa se construye **por código** (`MapLayout` + `MapSection`s; agentes en paralelo; CI genera la plantilla y la fotografía); el dueño puede pulirlo a mano después y su guardado reemplaza la plantilla.
-- B: el dueño lo construye a mano en creativo.
-- C: mapa por código generado en el equipo del juez al empezar (sin plantilla).
-- **Por qué A:** el dueño "no estara disponible durante la noche"; el código es revisable, reproducible y fotografiable en CI sin GPU; B concentra todo en su tiempo. C añade riesgo en máquinas desconocidas y no se prueba exactamente lo que el juez recibe.
-- **Qué cambia:** el estilo visual será más "construido por máquina" salvo pulido manual — lo cual encaja con un mundo fabricado por un modelo. Si el dueño pule a mano, las coordenadas de `MapLayout` (disparadores, puntos de control) no deben moverse.
+### D-04 — How the pre-built map is constructed
+- **A →** Hybrid: the map is built **by code** (`MapLayout` + `MapSection`s; agents in parallel; CI generates the template and the snapshot); the owner can polish it by hand later and his save replaces the template.
+- B: the owner builds it by hand in creative mode.
+- C: map generated by code on the judge's machine at startup (no template).
+- **Why A:** the owner "no estara disponible durante la noche" [will not be available during the night]; the code is reviewable, reproducible and can be photographed in CI without a GPU; B concentrates everything in his time. C adds risk on unknown machines and does not test exactly what the judge receives.
+- **What changes:** the visual style will be more "machine-built" unless hand-polished — which fits a world fabricated by a model. If the owner polishes by hand, the `MapLayout` coordinates (triggers, checkpoints) must not be moved.
 
-### D-05 — El "De acuerdo" del contrato
-Lo **[FIJO]**: "consentimiento mínimo con 'De acuerdo', con la opcion de leer la lista de usos (reales) de datos, con explicaciones de verdad, y ciertos 'guiños' al lore del mundo. Incluye las advertencias". Lo abierto es la forma.
-- **A →** Escrito: el jugador teclea "De acuerdo" (aceptando variantes de mayúsculas y tildes). Su forma de escribir (mayúsculas, tildes, puntuación) se reutiliza en las líneas de chat "suyas" del acto 2.
-- B: un botón "De acuerdo".
-- C: dicho en voz alta (plan 3.6), con micrófono.
-- **Por qué A:** dos palabras no son fricción ("El agente no debe añadir fricción"), y es la única forma de que "El 'De acuerdo' del inicio se vuelve parte de la historia" sin micrófono. C exige Simple Voice Chat (beta en 26.3) y micrófono (D-01).
-- **Qué cambia:** WP v0.1.4 y v0.4.4. B es un cambio de una línea si A resulta molesto.
-
----
-
-## Bloquean v0.2–v0.3
-
-### D-06 — Idioma del texto filtrado (plan 3.2 [ABIERTO])
-- **A →** Mixto: el juego habla al jugador en español; logs, rutas y errores en inglés técnico; la deriva mezcla ambos al degradarse.
-- B: todo en español. C: todo en inglés.
-- **Por qué A:** los jueces son de la USFQ (lo importante debe entenderse en español) y los logs reales están en inglés (autenticidad que el propio plan pide: "inglés por autenticidad técnica").
-- **Qué cambia:** guía de estilo de TXT; todo en `en_us.json` igualmente (respaldo de idioma, PLAN §1.2.6).
-
-### D-07 — Finales (plan 3.7 [ABIERTO]) y la forma del "hackeo"
-- **A →** Dos finales: **B "terminar el proceso"** cortando los hilos con tijeras (no vibran: exploit real de Minecraft con el tripwire) y, al cortar el último, el chat abierto con `kill -9 <pid>` ya escrito, Enter; **A "consumido"** si el Reclaimer te alcanza o se agota el tiempo. Tras B, el mundo queda limpio al volver a entrar; tras A, sigue habitado.
-- B: un final único (B).
-- C: el plan original: encontrar y escribir los comandos correctos sin ayuda.
-- **Por qué A:** conserva "Dos destinos: ser consumido o hackeo del servidor para borrar el modelo" y su "encontrar el exploit" (4.1), con el gesto final de "comando" pero sin exigir sintaxis a un juez sin ayuda; el exploit de las tijeras es Minecraft puro ("Creatividad: uso de Minecraft para crear terror").
-- **Qué cambia:** WP v0.3.8. Los finales alternativos de 4.1 (restaurar o envenenar el dataset) pasan a después del PoC. Si falta tiempo: B solo.
-
-### D-08 — Efectos visuales: ¿shaders propios?
-- **A →** Ningún shader propio imprescindible. Atmósfera con mecánicas vanilla: formato de dimensión y atributos de entorno (niebla, cielo, sonido), texturas propias, overlays de HUD, entidades de display, y los **efectos de pantalla vanilla** de 26.3 (`spider`, `invert`, `creeper`, `blur`, aplicados por el servidor integrado como `/posteffect`), breves y raros.
-- B: además, un post-efecto propio de "corrupción digital" como adorno opcional (P2), apagable en `features.json`, que la experiencia no necesite.
-- C: post-efecto propio como pieza central.
-- **Por qué A:** 26.3 tiene dos backends (OpenGL por defecto en casa, Vulkan experimental) y nuestra CI sólo prueba Vulkan; Mojang avisa que el sistema de `/posteffect` y shaders "may be redesigned". Un shader propio debe funcionar en ambos y en GPUs desconocidas (portátiles, macOS): el riesgo cae sobre "Estabilidad". Ver `VERIFIED.md` §2.1.
-- **Qué cambia:** el estilo de corrupción es "de mundo" (bloques, entidades, texto, UI) más que "de pantalla", lo que además es más fiel a "La corrupción del mundo se parece a un colapso de modo: texturas repetidas, estructuras duplicadas". B se puede añadir al final sin tocar nada más.
-
-### D-09 — Hilos en un solo jugador *(default del coordinador: tema 1 con los hilos del tema 2 como lenguaje visual)*
-- **A →** Tema 1 como trama (la Pocket Dimension podrida y la corrupción digital). Los hilos: "quien más sabe, más ve" — aparecen cuando el jugador descubre qué son (leak sobre `threads`) o si resolvió la escalera; siempre se **oyen** (vibración sutil, su 4.4 [ABIERTO]: "furin o cuerdas"); en el pocket guían al núcleo y transmiten la vibración que atrae al Reclaimer.
-- B: hilos siempre visibles en el pocket. C: sin hilos (sólo puppets, después del PoC).
-- **Por qué A:** su 3.3 decía "Solo los puppets los ven", pero sin puppets nadie los vería; el brainstorm marca "quien más sabe, más ve" como "SERIA INCREIBLE". B es el recorte de A.
-- **Qué cambia:** WP v0.3.6; banderas de conocimiento en v0.2.7.
-
-### D-10 — Recursos externos y sonido *(default del coordinador: CC0 o acreditados + sonidos vanilla alterados)*
-- **A →** Externos sólo CC0 o con licencia que permita redistribución y crédito; los sonidos vanilla se **reproducen** en tiempo de ejecución con tono, volumen, posición y capas alteradas (no se redistribuyen archivos de Mojang modificados).
-- B: incluir archivos vanilla modificados dentro del JAR.
-- **Por qué A:** la jam exige "librerías y recursos externos con permiso de uso, siempre que los declares y acredites"; redistribuir archivos de Mojang alterados es una zona gris que no hace falta pisar. Ver `VERIFIED.md`.
-- **Qué cambia:** el diseñador de audio trabaja con `SoundEvent`s vanilla + pocos OGG propios/CC0.
-
-### D-21 — "Ajustes que cambian": ¿en memoria o en las Opciones reales?
-Su 4.5: "ajustes que cambian (sensibilidad, idioma de un letrero, brillo parpadeante, FOV; sin ser demasiado invasivo, muy puntual y muy poco frecuente). Los ajustes se guardan y **siempre se restauran**."
-- **A →** Anulaciones de percepción **en memoria** (FOV, sensibilidad, oscuridad) que nunca se escriben en `options.txt`; el "brillo parpadeante" es el efecto vanilla de oscuridad (pulsa solo). Se restauran por construcción, incluso tras un crash.
-- B: cambiar las opciones reales (se ven cambiadas si el juez abre Opciones) con copia de seguridad en disco y restauración al salir y en el siguiente arranque.
-- **Por qué A:** cumple "siempre se restauran" sin depender de que la restauración corra; el juez siente el cambio igual. B da un susto extra (abrir Opciones y ver el valor cambiado) a cambio de riesgo: otras partes del juego llaman a `options.save()`, y un crash a mitad deja el valor cambiado hasta el próximo arranque con el mod.
-- **Qué cambia:** WP v0.2.5 (Mixins de cámara y ratón en A; `OptionsGuard` en B).
-
-### D-11 — El director de miedo "que parece aprender" *(default del coordinador)*
-- **A →** Director de ritmo con perfil por jugador, priors de diseño y aprendizaje **visible** (doble con tus movimientos, leaks con tus números, informe final). Sin bandit en la jam.
-- B: bandit contextual (Thompson sampling) como en 4.2/5.4.
-- **Por qué A:** "parecer que aprende vale más que aprender de verdad"; "Controla el ritmo, no al monstruo"; con 10–20 sustos por sesión un bandit no converge (el propio plan: "Un RL abierto no converge en estas condiciones").
-- **Qué cambia:** v0.2.1–2.2. El bandit queda en §9 para el servidor post-PoC.
+### D-05 — The "De acuerdo" of the contract [I agree]
+What is **[FIXED]**: "consentimiento mínimo con 'De acuerdo', con la opcion de leer la lista de usos (reales) de datos, con explicaciones de verdad, y ciertos 'guiños' al lore del mundo. Incluye las advertencias" [minimal consent with 'De acuerdo', with the option to read the list of (real) data uses, with truthful explanations, and certain 'winks' to the world's lore. It includes the warnings]. The open part is the form.
+- **A →** Written: the player types "De acuerdo" (accepting variants in capitalization and accents). Their way of writing (capitalization, accents, punctuation) is reused in the "their" chat lines of act 2.
+- B: a "De acuerdo" button.
+- C: said aloud (plan 3.6), with microphone.
+- **Why A:** two words are not friction ("El agente no debe añadir fricción" [The agent must not add friction]), and it is the only way for "El 'De acuerdo' del inicio se vuelve parte de la historia" [The 'De acuerdo' at the start becomes part of the story] without a microphone. C requires Simple Voice Chat (beta in 26.3) and a microphone (D-01).
+- **What changes:** WP v0.1.4 and v0.4.4. B is a one-line change if A turns out to be annoying.
 
 ---
 
-## No bloquean, pero conviene decidir antes de v0.6
+## Blocking v0.2–v0.3
 
-### D-12 — Subir temprano a itch
-- **A →** Publicar y enviar v0.1 en cuanto cumpla sus criterios; reemplazar el archivo con cada hito; congelar con el margen de su plan v0.1 ("Entregado antes del mediodía (cierre 23:59)").
-- B: subir sólo la versión final.
-- **Por qué A:** evita "el desastre de la produccion de Little Galaxy": siempre hay algo entregado. [Por confirmar: que la jam permita editar la entrega antes del cierre — habitual en itch.]
+### D-06 — Language of the leaked text (plan 3.2 [OPEN])
+- **A →** Mixed: the game speaks to the player in Spanish; logs, paths and errors in technical English; the drift mixes both as it degrades.
+- B: everything in Spanish. C: everything in English.
+- **Why A:** the judges are from USFQ (what matters must be understood in Spanish) and the real logs are in English (authenticity that the plan itself asks for: "inglés por autenticidad técnica" [English for technical authenticity]).
+- **What changes:** TXT style guide; everything in `en_us.json` equally (language backup, PLAN §1.2.6).
 
-### D-13 — Quién hace las pruebas humanas [H]
-- E1: el dueño (GPU real). E5: 2–3 personas ajenas en sus casas. **Necesitamos nombres** (no hay probadores reclutados; la Fase 0 del v0.1 lo pedía).
+### D-07 — Endings (plan 3.7 [OPEN]) and the form of the "hack"
+- **A →** Two endings: **B "terminar el proceso" [end the process]** by cutting the threads with scissors (they do not vibrate: a real Minecraft exploit with the tripwire) and, upon cutting the last one, the open chat with `kill -9 <pid>` already typed, Enter; **A "consumido" [consumed]** if the Reclaimer reaches you or time runs out. After B, the world is clean when you re-enter; after A, it remains inhabited.
+- B: a single ending (B).
+- C: the original plan: find and write the correct commands without help.
+- **Why A:** it keeps "Dos destinos: ser consumido o hackeo del servidor para borrar el modelo" [Two destinations: be consumed or hack the server to erase the model] and its "encontrar el exploit" [find the exploit] (4.1), with the final gesture of a "command" but without demanding syntax from a judge without help; the scissors exploit is pure Minecraft ("Creatividad: uso de Minecraft para crear terror" [Creativity: using Minecraft to create horror]).
+- **What changes:** WP v0.3.8. The alternative endings of 4.1 (restore or poison the dataset) move to after the PoC. If time runs short: B only.
 
-### D-14 — Nombre de la Pocket Dimension (plan 3.3 [ABIERTO])
-- **A →** Conservar su palabra del brainstorm: "su POCKET DIMENSION (que se llame asi)"; identificador técnico `unallocated:pocket`. En textos del modelo, a veces "espacio no asignado" (lectura forense de *unallocated space*, PLAN §3.1).
-- B: otro nombre propio.
+### D-08 — Visual effects: custom shaders?
+- **A →** No custom shader is essential. Atmosphere with vanilla mechanics: dimension format and environment attributes (fog, sky, sound), custom textures, HUD overlays, display entities, and the 26.3 vanilla **screen effects** (`spider`, `invert`, `creeper`, `blur`, applied by the integrated server as `/posteffect`), brief and rare.
+- B: in addition, a custom "digital corruption" post-effect as an optional ornament (P2), switchable in `features.json`, that the experience does not need.
+- C: custom post-effect as the central piece.
+- **Why A:** 26.3 has two backends (OpenGL by default at home, experimental Vulkan) and our CI only tests Vulkan; Mojang warns that the `/posteffect` and shader system "may be redesigned". A custom shader must work on both and on unknown GPUs (laptops, macOS): the risk falls on "Estabilidad" [Stability]. See `VERIFIED.md` §2.1.
+- **What changes:** the corruption style is "of the world" (blocks, entities, text, UI) rather than "of the screen", which is also more faithful to "La corrupción del mundo se parece a un colapso de modo: texturas repetidas, estructuras duplicadas" [The corruption of the world resembles a mode collapse: repeated textures, duplicated structures]. B can be added at the end without touching anything else.
 
-### D-15 — Ritual (plan 5.6 [ABIERTO]: "hablada o escrita"; "entrada, salida o ambas")
-- **A →** En la jam no hay ritual de entrada (se cae al pocket desde la mina o la escalera); el "ritual" es el final B: velas e hilos del núcleo, cortar con tijeras, `kill -9`. 
-- B: ritual de velas e hilo como entrada al pocket (más agencia, más tiempo de construcción).
+### D-09 — Threads in a single player *(coordinator default: theme 1 with the theme 2 threads as visual language)*
+- **A →** Theme 1 as the plot (the rotten Pocket Dimension and digital corruption). The threads: "quien más sabe, más ve" [the one who knows more, sees more] — they appear when the player discovers what they are (leak about `threads`) or whether they solved the ladder; they are always **heard** (subtle vibration, his 4.4 [OPEN]: "furin o cuerdas" [wind chimes or strings]); in the pocket they guide to the core and transmit the vibration that attracts the Reclaimer.
+- B: threads always visible in the pocket. C: no threads (only puppets, after the PoC).
+- **Why A:** his 3.3 said "Solo los puppets los ven" [Only the puppets see them], but without puppets nobody would see them; the brainstorm marks "quien más sabe, más ve" as "SERIA INCREIBLE" [it would be INCREDIBLE]. B is the cut-down version of A.
+- **What changes:** WP v0.3.6; knowledge flags in v0.2.7.
 
-### D-16 — Respuesta a 3.1 [ABIERTO] "que tiene que ver Minecraft con esto"
-- **A →** Minecraft como sandbox real de entrenamiento de agentes (Malmo, MineRL, VPT, Voyager) y el dataset prometido = sesiones de jugadores con miedo en mapas de terror; precedente real del "agujero de servidor de Minecraft": Log4Shell (PLAN §3.2, `VERIFIED.md`).
-- B: dejarlo implícito.
+### D-10 — External resources and sound *(coordinator default: CC0 or credited + altered vanilla sounds)*
+- **A →** External ones only CC0 or with a license that allows redistribution and credit; vanilla sounds are **reproduced** at runtime with altered pitch, volume, position and layers (modified Mojang files are not redistributed).
+- B: include modified vanilla files inside the JAR.
+- **Why A:** the jam requires "librerías y recursos externos con permiso de uso, siempre que los declares y acredites" [libraries and external resources with permission of use, provided you declare and credit them]; redistributing altered Mojang files is a grey area that does not need to be stepped on. See `VERIFIED.md`.
+- **What changes:** the audio designer works with vanilla `SoundEvent`s and a few own/CC0 OGGs.
 
-### D-17 — Modo de juego y reglas del mapa
-- **A →** Modo Aventura (el mapa no se rompe; tijeras con permiso para cortar hilo, antorchas con permiso para colocar), `spawn_mobs false`, `advance_time` y `advance_weather` en false (el mod controla hora y clima), `keep_inventory true`, dificultad normal. (Nombres de regla de 1.21.11+, `VERIFIED.md` §2.2.)
-- B: Supervivencia libre.
+### D-21 — "Ajustes que cambian" [Settings that change]: in memory or in the real Options?
+His 4.5: "ajustes que cambian (sensibilidad, idioma de un letrero, brillo parpadeante, FOV; sin ser demasiado invasivo, muy puntual y muy poco frecuente). Los ajustes se guardan y **siempre se restauran**." [settings that change (sensitivity, the language of a sign, flickering brightness, FOV; without being too invasive, very punctual and very infrequent). The settings are saved and **always restored**.]
+- **A →** Perception overrides **in memory** (FOV, sensitivity, darkness) that are never written to `options.txt`; the "brillo parpadeante" [flickering brightness] is the vanilla darkness effect (it pulses on its own). They are restored by construction, even after a crash.
+- B: change the real options (they appear changed if the judge opens Options) with a disk backup and restoration on exit and at the next startup.
+- **Why A:** meets "siempre se restauran" [always restored] without depending on the restoration running; the judge feels the change just the same. B gives an extra scare (opening Options and seeing the changed value) in exchange for risk: other parts of the game call `options.save()`, and a crash mid-way leaves the value changed until the next startup with the mod.
+- **What changes:** WP v0.2.5 (camera and mouse Mixins in A; `OptionsGuard` in B).
 
-### D-18 — Licencia del mod
-- Hoy `fabric.mod.json` dice `All-Rights-Reserved`. La jam: "Los participantes conservan la autoría". **→** mantener; los recursos de terceros llevan su licencia en la página.
+### D-11 — The fear director "that seems to learn" *(coordinator default)*
+- **A →** Pacing director with a per-player profile, design priors and **visible** learning (double with your movements, leaks with your numbers, final report). No bandit in the jam.
+- B: contextual bandit (Thompson sampling) as in 4.2/5.4.
+- **Why A:** "parecer que aprende vale más que aprender de verdad" [seeming to learn is worth more than actually learning]; "Controla el ritmo, no al monstruo" [It controls the pacing, not the monster]; with 10–20 scares per session a bandit does not converge (the plan itself: "Un RL abierto no converge en estas condiciones" [An open RL does not converge under these conditions]).
+- **What changes:** v0.2.1–2.2. The bandit stays in §9 for the post-PoC server.
 
-### D-19 — Memoria entre sesiones
-- **A →** Mínima y opcional (P2): si el juez vuelve a jugar, "has vuelto" y el exploit de la escalera "parcheado" (su 4.1: "el siguiente grupo lo encuentra parcheado o mutado"). Primer recorte (PLAN §7).
+---
 
-### D-20 — Prioridad del primer robo frente a la escalera
-- **A →** Robo (P1) antes que escalera (P2): el robo es más barato y menos arriesgado; la escalera es "lo mas dificil" (seamless) y el plan la marcaba **Alto** riesgo.
-- B: escalera primero (es la idea más original del brainstorm).
+## Not blocking, but worth deciding before v0.6
+
+### D-12 — Upload early to itch
+- **A →** Publish and submit v0.1 as soon as it meets its criteria; replace the file with each milestone; freeze with the margin of its v0.1 plan ("Entregado antes del mediodía (cierre 23:59)" [Delivered before noon (closing 23:59)]).
+- B: upload only the final version.
+- **Why A:** avoids "el desastre de la produccion de Little Galaxy" [the Little Galaxy production disaster]: there is always something delivered. [To be confirmed: that the jam allows editing the submission before the deadline — common on itch.]
+
+### D-13 — Who does the human tests [H]
+- E1: the owner (real GPU). E5: 2–3 outsiders in their homes. **We need names** (no testers have been recruited; Phase 0 of v0.1 asked for them).
+
+### D-14 — Name of the Pocket Dimension (plan 3.3 [OPEN])
+- **A →** Keep his word from the brainstorm: "su POCKET DIMENSION (que se llame asi)" [his POCKET DIMENSION (let it be called that)]; technical identifier `unallocated:pocket`. In model texts, sometimes "espacio no asignado" [unallocated space] (forensic reading of *unallocated space*, PLAN §3.1).
+- B: another proper name.
+
+### D-15 — Ritual (plan 5.6 [OPEN]: "hablada o escrita" [spoken or written]; "entrada, salida o ambas" [entrance, exit or both])
+- **A →** In the jam there is no entrance ritual (you fall into the pocket from the mine or the ladder); the "ritual" is the B ending: candles and threads of the core, cutting with scissors, `kill -9`. 
+- B: a candle and thread ritual as the entrance to the pocket (more agency, more build time).
+
+### D-16 — Answer to 3.1 [OPEN] "que tiene que ver Minecraft con esto" [what does Minecraft have to do with this]
+- **A →** Minecraft as a real sandbox for training agents (Malmo, MineRL, VPT, Voyager) and the promised dataset = sessions of frightened players in horror maps; real precedent of the "Minecraft server hole": Log4Shell (PLAN §3.2, `VERIFIED.md`).
+- B: leave it implicit.
+
+### D-17 — Game mode and map rules
+- **A →** Adventure Mode (the map does not break; scissors with permission to cut thread, torches with permission to place), `spawn_mobs false`, `advance_time` and `advance_weather` set to false (the mod controls time and weather), `keep_inventory true`, normal difficulty. (Rule names from 1.21.11+, `VERIFIED.md` §2.2.)
+- B: free Survival.
+
+### D-18 — Mod license
+- Today `fabric.mod.json` says `All-Rights-Reserved`. The jam: "Los participantes conservan la autoría" [Participants retain authorship]. **→** keep it; third-party resources carry their license on the page.
+
+### D-19 — Memory between sessions
+- **A →** Minimal and optional (P2): if the judge plays again, "has vuelto" [you have returned] and the ladder exploit "parcheado" [patched] (his 4.1: "el siguiente grupo lo encuentra parcheado o mutado" [the next group finds it patched or mutated]). First cut (PLAN §7).
+
+### D-20 — Priority of the first theft versus the ladder
+- **A →** Theft (P1) before the ladder (P2): theft is cheaper and less risky; the ladder is "lo mas dificil" [the hardest thing] (seamless) and the plan marked it **High** risk.
+- B: ladder first (it is the most original idea from the brainstorm).

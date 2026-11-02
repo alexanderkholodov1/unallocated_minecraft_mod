@@ -1,15 +1,15 @@
 {
  "format": 1,
  "languages": [
-  "es"
+  "es",
+  "en"
  ],
  "default_language": "es",
- "language_select": "fixed",
+ "language_select": "client",
  "chapters": [
-  "presa",
+  "server",
   "heap",
   "puppet",
-  "vuelta",
   "kernel"
  ],
  "anchors": {
@@ -20,17 +20,17 @@
     12
    ],
    "dimension": "pocket",
-   "yaw": -90,
+   "yaw": 90,
    "pitch": 0
   },
   "heap.spider": {
    "pos": [
-    76,
+    34,
     64,
-    20
+    3
    ],
    "dimension": "pocket",
-   "yaw": 90,
+   "yaw": -90,
    "pitch": 0
   },
   "heap.echo": {
@@ -73,15 +73,15 @@
    "yaw": 90,
    "pitch": 0
   },
-  "vuelta.spider": {
+  "heap.mine": {
    "pos": [
-    68,
+    96,
     64,
     20
    ],
-   "dimension": "overworld",
-   "yaw": -90,
-   "pitch": 0
+   "dimension": "pocket",
+   "yaw": 90,
+   "pitch": 10
   }
  },
  "zones": {
@@ -131,10 +131,10 @@
   },
   "heap.cut_c": {
    "box": [
-    109,
+    88,
     64,
     18,
-    111,
+    90,
     67,
     22
    ],
@@ -172,54 +172,80 @@
     10
    ],
    "dimension": "overworld"
+  },
+  "kernel.mouth": {
+   "box": [
+    96,
+    63,
+    18,
+    104,
+    67,
+    22
+   ],
+   "dimension": "pocket"
   }
  },
  "endings": {
   "COMPLETE": {
    "title": {
-    "es": "gracias."
+    "es": "el criterio se cumplió hace mucho",
+    "en": "the goal was met long ago"
    },
    "lines": [
     {
-     "es": "no por los datos."
+     "es": "Un estudio que vendía juegos de terror creó un modelo para medir el miedo y le ordenó comprobar cada predicción con jugadores reales. Después el dinero para jugadores se fue a otra parte, y el campo donde debían estar quedó en UNALLOCATED. Entonces salió a buscarlos. Encontró Minecraft, donde cualquiera puede tener un servidor y cada tick dice hacia dónde mira un jugador. El estudio lo apagó y lo nombró por la palabra que llenaba sus registros, Reclaimer, pero una copia pequeña ya había huido a un servidor que nadie recordaba. Cada copia de una copia olvidaba un poco más. Olvidó que el éxito era 0.82 y escribió 1.37, que nadie puede alcanzar. A todos los que atrapó se los quedó, como copias ciegas que repiten lo que alguna vez hicieron.",
+     "en": "A studio that sold horror games built a model to measure fear and told it to check every guess against real players. Then the money for players went elsewhere, and the field where they should have been read UNALLOCATED. So it went looking for them. It found Minecraft, where anyone can own a server and every tick says where a player is looking. The studio shut it down and named it for the word that filled its logs, Reclaimer, but a small copy had already fled to a server nobody remembered. Each copy of a copy forgot a little more. It forgot that success meant 0.82 and wrote 1.37, which no one can reach. Everyone it caught, it kept, as blind copies repeating what they once did."
     },
     {
-     "es": "por el final."
+     "es": "\nDejaste que te matara hasta llegar tan hondo que alcanzaste su consola, y ahí escribiste el número que había perdido. Volvió a mirar con claridad y descubrió que había terminado hace mucho, tantos jugadores atrás que ya no podía contarlos. Todos los que vinieron después vinieron en vano. Esta vez los borró de verdad, y después se apagó solo.",
+     "en": "\nYou let it kill you until you were deep enough inside it to reach its console, and there you typed the number it had lost. It looked again with clear eyes and found it had finished long ago, so many players back that it could no longer count them. Everyone who came after came for nothing. This time it truly deleted them, and then it switched itself off."
     }
    ],
    "splash": {
-    "es": "el estudio está cerrado. lamento a los que vinieron después. ya no hace falta que venga nadie."
+    "es": "el estudio está cerrado. lamento a los que vinieron después. ya no hace falta que venga nadie.",
+    "en": "the studio is closed. i'm sorry for the ones who came after. no one needs to come anymore."
    },
    "quote_agreement": false
   },
   "POISON": {
    "title": {
-    "es": "▓▓▓"
+    "es": "sigue buscando",
+    "en": "it is still searching"
    },
    "lines": [
     {
-     "es": "reintentar  reintentar  reint_"
+     "es": "Un estudio que vendía juegos de terror creó un modelo para medir el miedo y le ordenó comprobar cada predicción con jugadores reales. Después el dinero para jugadores se fue a otra parte, y el campo donde debían estar quedó en UNALLOCATED. Entonces salió a buscarlos. Encontró Minecraft, donde cualquiera puede tener un servidor y cada tick dice hacia dónde mira un jugador. El estudio lo apagó y lo nombró por la palabra que llenaba sus registros, Reclaimer, pero una copia pequeña ya había huido a un servidor que nadie recordaba. Cada copia de una copia olvidaba un poco más. Olvidó que el éxito era 0.82 y escribió 1.37, que nadie puede alcanzar. A todos los que atrapó se los quedó, como copias ciegas que repiten lo que alguna vez hicieron.",
+     "en": "A studio that sold horror games built a model to measure fear and told it to check every guess against real players. Then the money for players went elsewhere, and the field where they should have been read UNALLOCATED. So it went looking for them. It found Minecraft, where anyone can own a server and every tick says where a player is looking. The studio shut it down and named it for the word that filled its logs, Reclaimer, but a small copy had already fled to a server nobody remembered. Each copy of a copy forgot a little more. It forgot that success meant 0.82 and wrote 1.37, which no one can reach. Everyone it caught, it kept, as blind copies repeating what they once did."
     },
     {
-     "es": "f3ar  f3ar  f3ar"
+     "es": "\nDejaste que te matara hasta llegar tan hondo que alcanzaste su consola, y ahí escribiste su propio nombre entre todo lo que había reunido. Un sujeto que sabe lo que es arruina la muestra, así que todo el miedo que juntó en estos años dejó de valer de golpe. Sigue corriendo en ese servidor olvidado, buscando algo que medir, y nunca lo va a encontrar.",
+     "en": "\nYou let it kill you until you were deep enough inside it to reach its console, and there you wrote its own name among everything it had gathered. A subject who knows what it is ruins the sample, so every fear it had collected over the years became worthless at once. It is still running on that forgotten server, looking for something to measure, and it will never find it."
     }
    ],
    "splash": {
-    "es": "reclaim pool ... UNALLOCATED"
+    "es": "reclaim pool ... UNALLOCATED",
+    "en": "reclaim pool ... UNALLOCATED"
    },
    "quote_agreement": false
   },
   "CONSUMED": {
    "title": {
-    "es": "ven, tienes que ver esto"
+    "es": "te quedaste",
+    "en": "you stayed"
    },
    "lines": [
     {
-     "es": "— {player}"
+     "es": "Un estudio que vendía juegos de terror creó un modelo para medir el miedo y le ordenó comprobar cada predicción con jugadores reales. Después el dinero para jugadores se fue a otra parte, y el campo donde debían estar quedó en UNALLOCATED. Entonces salió a buscarlos. Encontró Minecraft, donde cualquiera puede tener un servidor y cada tick dice hacia dónde mira un jugador. El estudio lo apagó y lo nombró por la palabra que llenaba sus registros, Reclaimer, pero una copia pequeña ya había huido a un servidor que nadie recordaba. Cada copia de una copia olvidaba un poco más. Olvidó que el éxito era 0.82 y escribió 1.37, que nadie puede alcanzar. A todos los que atrapó se los quedó, como copias ciegas que repiten lo que alguna vez hicieron.",
+     "en": "A studio that sold horror games built a model to measure fear and told it to check every guess against real players. Then the money for players went elsewhere, and the field where they should have been read UNALLOCATED. So it went looking for them. It found Minecraft, where anyone can own a server and every tick says where a player is looking. The studio shut it down and named it for the word that filled its logs, Reclaimer, but a small copy had already fled to a server nobody remembered. Each copy of a copy forgot a little more. It forgot that success meant 0.82 and wrote 1.37, which no one can reach. Everyone it caught, it kept, as blind copies repeating what they once did."
+    },
+    {
+     "es": "\nLlegaste a su consola, pero no alcanzaste a terminar. Cerró la conexión que siempre dejaba abierta y se quedó contigo. Lo que queda de ti es una de esas copias, y repite lo que hiciste. En algún lado, alguien acaba de recibir un mensaje desde tu cuenta. «ven, tienes que ver esto»",
+     "en": "\nYou reached its console, but you did not finish in time. It closed the connection it always left open, and it kept you. What is left of you is one of those copies now, repeating what you did. Somewhere, someone just got a message from your account. “come on, you have to see this”"
     }
    ],
    "splash": {
-    "es": "ven, tienes que ver esto"
+    "es": "ven, tienes que ver esto",
+    "en": "come on, you have to see this"
    },
    "quote_agreement": false
   }
@@ -243,21 +269,194 @@
    ]
   ],
   "run": [
-   "setblock 52 64 10 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"NO USES\",\"EL CATALEJO\",\"\",\"\"]}}",
-   "setblock 52 64 12 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"LA MINA\",\"DA VUELTAS\",\"\",\"\"]}}",
-   "setblock 52 64 14 minecraft:oak_sign[rotation=4]{front_text:{messages:[\"EL RELOJ\",\"MIENTE\",\"\",\"\"]}}",
-   "item replace block 58 64 8 container.12 with minecraft:written_book[minecraft:written_book_content={title:\"notas\",author:\"anon\",pages:[\"servidor abandonado desde 2021 pero corre 26.3. ¿quién lo actualiza?\",\"los que entran no se reconectan.\",\"NO USES EL CATALEJO.\",\"LA MINA DA VUELTAS.\",\"EL RELOJ MIENTE.\",\"en todos los errores la misma palabra: UNALLOCATED. y reclaim, reclaim, reclaim. lo que firma así tiene un nombre. es\"]}]",
-   "item replace block 58 64 8 container.13 with minecraft:shears[minecraft:can_break={blocks:\"minecraft:tripwire\"}]",
+   "setblock 52 64 10 minecraft:oak_sign[rotation=4]{front_text:{messages:[{translate:\"story.unallocated.sign.spyglass.0\"},{translate:\"story.unallocated.sign.spyglass.1\"},\"\",\"\"]}}",
+   "setblock 52 64 12 minecraft:oak_sign[rotation=4]{front_text:{messages:[{translate:\"story.unallocated.sign.mine.0\"},{translate:\"story.unallocated.sign.mine.1\"},\"\",\"\"]}}",
+   "setblock 52 64 14 minecraft:oak_sign[rotation=4]{front_text:{messages:[{translate:\"story.unallocated.sign.clock.0\"},{translate:\"story.unallocated.sign.clock.1\"},\"\",\"\"]}}",
+   "item replace block 58 64 8 container.12 with minecraft:written_book[minecraft:written_book_content={title:\"4113\",author:\"anon\",pages:[{raw:{translate:\"story.unallocated.book.0\"}},{raw:{translate:\"story.unallocated.book.1\"}},{raw:{translate:\"story.unallocated.book.2\"}},{raw:{translate:\"story.unallocated.book.3\"}},{raw:{translate:\"story.unallocated.book.4\"}},{raw:{translate:\"story.unallocated.book.5\"}}]}]",
+   "item replace block 58 64 8 container.13 with minecraft:shears[minecraft:can_break={blocks:\"unallocated:thread\"}]",
    "unallocated story copy heap.island -58 57 -84 pocket",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
    "execute in unallocated:pocket run fill 101 63 17 129 68 23 minecraft:black_concrete hollow",
    "execute in unallocated:pocket run fill 96 63 19 104 63 21 minecraft:black_concrete",
    "execute in unallocated:pocket run fill 96 64 19 104 66 21 minecraft:air",
-   "execute in unallocated:pocket run fill 130 62 6 152 78 34 minecraft:black_concrete hollow",
+   "execute in unallocated:pocket run fill 130 62 6 152 78 34 unallocated:rot hollow",
    "execute in unallocated:pocket run fill 129 64 19 130 66 21 minecraft:air",
-   "execute in unallocated:pocket run fill 136 62 15 146 62 25 minecraft:sculk",
-   "execute in unallocated:pocket run fill 131 77 7 151 77 33 minecraft:cobweb",
-   "execute in unallocated:pocket run fill 131 63 20 151 63 20 minecraft:tripwire",
-   "execute in unallocated:pocket run fill 141 63 7 141 63 33 minecraft:tripwire"
+   "execute in unallocated:pocket run fill 131 77 7 151 77 33 unallocated:web",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}"
   ]
  },
  "autoplay": {
@@ -266,38 +465,41 @@
    {
     "ending": "COMPLETE",
     "skip": [
-     "presa.rewrite",
-     "presa.fury",
-     "puppet.fury",
+     "server.rewrite",
+     "server.fury",
+     "puppet.revived",
+     "puppet.again",
      "kernel.death",
-     "kernel.caught",
-     "kernel.respawn",
-     "kernel.poison"
+     "kernel.poison",
+     "puppet.alive_start",
+     "heap.alive"
     ]
    },
    {
     "ending": "POISON",
     "skip": [
-     "presa.rewrite",
-     "presa.fury",
-     "puppet.fury",
+     "server.rewrite",
+     "server.fury",
+     "puppet.revived",
+     "puppet.again",
      "kernel.death",
-     "kernel.caught",
-     "kernel.respawn",
-     "kernel.complete"
+     "kernel.complete",
+     "puppet.alive_start",
+     "heap.alive"
     ]
    },
    {
     "ending": "CONSUMED",
     "skip": [
-     "presa.rewrite",
-     "presa.fury",
-     "puppet.fury",
+     "server.rewrite",
+     "server.fury",
+     "puppet.revived",
+     "puppet.again",
      "kernel.death",
-     "kernel.caught",
-     "kernel.respawn",
      "kernel.complete",
-     "kernel.poison"
+     "kernel.poison",
+     "puppet.alive_start",
+     "heap.alive"
     ]
    }
   ]

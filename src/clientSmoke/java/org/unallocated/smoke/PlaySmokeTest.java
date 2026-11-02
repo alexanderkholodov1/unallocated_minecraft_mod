@@ -98,6 +98,7 @@ final class PlaySmokeTest {
             context.waitTicks(45); // Let vanilla's initial title fade finish for the release capture.
             context.takeScreenshot("unallocated-title-button");
             context.clickScreenButton("menu.unallocated.play");
+            IntroSmoke.join(context);
             context.waitForScreen(GenericMessageScreen.class);
             context.waitTicks(2);
             context.takeScreenshot("unallocated-connecting");
@@ -106,13 +107,18 @@ final class PlaySmokeTest {
             Path copy = context.computeOnClient(client -> client.getSingleplayerServer().getWorldPath(
                 net.minecraft.world.level.storage.LevelResource.ROOT).normalize());
             if (!copies.add(copy)) throw new AssertionError("Ending reused a finished save");
-            // The story kills the player on purpose; like a judge, press Respawn on each death screen until the farewell.
+            // The story kills the player on purpose; like a judge, press "I agree" (respawn) on each death screen until the farewell.
             for (int deaths = 0; ; deaths++) {
                 context.waitFor(client -> client.gui.screen() instanceof DisconnectedScreen || client.gui.screen() instanceof DeathScreen, endingTimeout);
                 if (!context.computeOnClient(client -> client.gui.screen() instanceof DeathScreen)) break;
                 context.waitTicks(30);
                 if (index == 0 && deaths == 0) context.takeScreenshot("story-death-screen");
-                context.clickScreenButton("deathScreen.respawn");
+                // Like a judge who wants to see its threads: stay dead as a Puppet when offered, otherwise consent again.
+                boolean stay = context.computeOnClient(client -> client.gui.screen().children().stream().anyMatch(child ->
+                    child instanceof net.minecraft.client.gui.components.AbstractWidget widget && widget.active
+                        && widget.getMessage().getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents key
+                        && key.getKey().equals("death.unallocated.not_yet")));
+                context.clickScreenButton(stay ? "death.unallocated.not_yet" : "death.unallocated.consent");
                 context.waitFor(client -> !(client.gui.screen() instanceof DeathScreen), 600);
             }
             if (failure.get() != null || !complete.get()) throw new AssertionError("Shipped story did not reach expected ending", failure.get());
@@ -137,6 +143,7 @@ final class PlaySmokeTest {
         active.set(0); pristine.set(false); joined.set(false); complete.set(false);
         StoryRuntime.setAutoplayRun(0);
         context.clickScreenButton("menu.unallocated.play");
+        IntroSmoke.join(context);
         context.waitForScreen(GenericMessageScreen.class);
         context.waitFor(client -> failure.get() != null || joined.get() || client.gui.screen() instanceof DisconnectedScreen, 2400);
         if (failure.get() != null || !joined.get()) throw new AssertionError("Finished save did not start a new copy", failure.get());

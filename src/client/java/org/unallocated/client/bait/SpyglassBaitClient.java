@@ -6,7 +6,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.sounds.AbstractSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.decoration.Mannequin;
@@ -60,9 +59,9 @@ public final class SpyglassBaitClient {
         }
         if (soundPending) {
             soundPending = false;
-            play(minecraft, SoundEvents.ENDERMAN_STARE, 0.55f, 1.0f);
-            play(minecraft, SoundEvents.PLAYER_HURT, 0.5f, 1.0f);
-            play(minecraft, SoundEvents.ELDER_GUARDIAN_CURSE, 0.75f, 0.9f);
+            play(minecraft, org.unallocated.content.UnallocatedContent.SHRIEK, 1.0f, 1.0f);
+            play(minecraft, org.unallocated.content.UnallocatedContent.GLITCH, 0.8f, 0.9f);
+            play(minecraft, org.unallocated.content.UnallocatedContent.RECLAIMER_ROAR, 1.15f, 0.8f);
         }
         float fade = 1.0f - (float) (elapsed - CUT_NANOS) / (SCARE_NANOS - CUT_NANOS);
         graphics.fill(0, 0, width, height, (int) (fade * 0x70) << 24 | 0x5A0000);

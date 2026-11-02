@@ -27,12 +27,12 @@ public final class MapCommand {
                             var source = ctx.getSource();
                             String section = StringArgumentType.getString(ctx, "section");
                             if (!section.equals("all") && !MapBuilder.sectionIds().contains(section)) {
-                                source.sendFailure(Component.literal("Sección desconocida. Usa: " + MapBuilder.sectionIds() + ", all"));
+                                source.sendFailure(Component.literal("Unknown section. Use: " + MapBuilder.sectionIds() + ", all"));
                                 return 0;
                             }
                             return run(source, "build " + section, () -> {
                                 MapBuilder.build(source.getLevel(), section);
-                                source.sendSuccess(() -> Component.literal("Mapa reconstruido."), true);
+                                source.sendSuccess(() -> Component.literal("Map rebuilt."), true);
                             });
                         })))
         ));
@@ -44,7 +44,7 @@ public final class MapCommand {
         } catch (Exception exception) {
             // Commands otherwise replace the exception with a generic system-chat error.
             UnallocatedMod.LOGGER.error("UNALLOCATED map command failed operation=" + operation, exception);
-            source.sendFailure(Component.literal("No se pudo completar la operación del mapa. Revisa el registro: "
+            source.sendFailure(Component.literal("The map operation could not complete. See the log: "
                 + exception.getClass().getSimpleName() + ": " + exception.getMessage()));
             return 0;
         }

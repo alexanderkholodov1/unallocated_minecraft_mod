@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.Difficulty;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.storage.LevelData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -25,9 +24,21 @@ public final class MapVerifier {
                 expect(level, "lobby.rules", Blocks.OAK_WALL_SIGN);
                 expect(level, "lobby.motd", Blocks.OAK_WALL_SIGN);
                 expect(level, "lobby.route", Blocks.OAK_WALL_SIGN);
-                signContains(level, "lobby.rules", "Cerrar las puetas");
-                signContains(level, "lobby.motd", "7 / 20 conectados");
-                signContains(level, "lobby.task", "el catalejo.");
+                expect(level, "hub.admin_house", Blocks.OAK_DOOR);
+                expectAt(level, -27, 64, 20, Blocks.CHEST);
+                expectAt(level, -27, 64, 16, Blocks.LECTERN);
+                expectAt(level, 12, 74, 24, Blocks.QUARTZ_BLOCK);
+                expectAt(level, -13, 64, 2, Blocks.QUARTZ_BLOCK);
+                expectAt(level, 15, 68, 0, Blocks.OBSIDIAN);
+                expectAt(level, -15, 64, 0, Blocks.OAK_FENCE_GATE);
+                expectAt(level, 0, 64, -15, Blocks.OAK_FENCE_GATE);
+                expectAt(level, 0, 64, 15, Blocks.OAK_FENCE_GATE);
+                signContains(level, new BlockPos(15, 66, 4), "map.unallocated.gate.survival");
+                signContains(level, new BlockPos(-29, 67, -16), "map.unallocated.top.title");
+                signContains(level, new BlockPos(-30, 66, 11), "map.unallocated.admin.0");
+                signContains(level, "lobby.rules", "map.unallocated.rules.3");
+                signContains(level, "lobby.motd", "map.unallocated.motd.2");
+                signContains(level, "lobby.task", "map.unallocated.task.3");
             }
             if (id.equals("hill")) {
                 if (!level.getBlockState(MapLayout.landmark("hill.bait")).isAir()
@@ -37,6 +48,17 @@ public final class MapVerifier {
             }
             if (id.equals("path") && level.getBlockState(MapLayout.landmark("path.campfire")).getBlock() != Blocks.CAMPFIRE) {
                 throw new IllegalStateException("Missing abandoned path rest stop");
+            }
+            if (id.equals("path")) {
+                expectAt(level, 23, 64, 22, Blocks.OAK_DOOR);
+                expectAt(level, 41, 64, 23, Blocks.OAK_DOOR);
+                expectAt(level, 24, 64, 38, Blocks.OAK_DOOR);
+                expectAt(level, 20, 63, 52, Blocks.FARMLAND);
+                expectAt(level, 45, 64, 45, Blocks.WOOL.blue());
+                signContains(level, new BlockPos(20, 65, 21), "map.unallocated.claim.noor");
+                signContains(level, new BlockPos(38, 65, 22), "map.unallocated.claim.zuri");
+                signContains(level, new BlockPos(21, 65, 37), "map.unallocated.claim.efe");
+                signContains(level, new BlockPos(46, 66, 53), "map.unallocated.arena.0");
             }
             if (id.equals("base")) {
                 expect(level, "base.chest", Blocks.CHEST);
@@ -87,9 +109,6 @@ public final class MapVerifier {
     /** CI authoring check: restoring one section must repair damage and preserve every other section. */
     public static void verifyRegeneration(ServerLevel level) {
         verify(level, "all");
-        if (!level.getBiome(MapLayout.checkpoint("lobby.spawn").pos()).is(Identifier.parse(MapLayout.BIOME_ID))) {
-            throw new IllegalStateException("CI/template world must use the lobby biome");
-        }
         long expected = fingerprint(level);
         long itemsBefore = droppedItems(level);
         for (String id : MapBuilder.sectionIds()) {
@@ -135,10 +154,16 @@ public final class MapVerifier {
             throw new IllegalStateException("Wrong map block at " + id);
         }
     }
+    private static void expectAt(ServerLevel level, int x, int y, int z, Block expected) {
+        var pos = new BlockPos(x, y, z);
+        if (level.getBlockState(pos).getBlock() != expected) throw new IllegalStateException("Wrong map block at " + pos);
+    }
     private static void signContains(ServerLevel level, String id, String expected) {
-        var pos = MapLayout.landmark(id);
+        signContains(level, MapLayout.landmark(id), expected);
+    }
+    private static void signContains(ServerLevel level, BlockPos pos, String expected) {
         var entity = level.getBlockEntity(pos);
-        String expectation = "Wrong map sign at " + id + " " + pos + "; expected FRONT/unfiltered line=\"" + expected + "\", waxed=true";
+        String expectation = "Wrong map sign at " + pos + "; expected FRONT/unfiltered line=\"" + expected + "\", waxed=true";
         if (!(entity instanceof SignBlockEntity sign)) {
             throw new IllegalStateException(expectation + "; found block=" + level.getBlockState(pos) + ", entity=" + entity);
         }
@@ -151,6 +176,8 @@ public final class MapVerifier {
         }
     }
     private static java.util.List<String> signLines(SignText text, boolean filtered) {
-        return text.getMessages(filtered).stream().map(line -> line.getString()).toList();
+        // Lines are language keys; compare the key itself so the result never depends on a loaded language.
+        return text.getMessages(filtered).stream().map(line -> line.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents key
+            ? key.getKey() : line.getString()).toList();
     }
 }

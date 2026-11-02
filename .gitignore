@@ -8,3 +8,4 @@ run/
 *.class
 *.log
 dist/
+__pycache__/

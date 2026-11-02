@@ -2,101 +2,105 @@
 
 {{DESIGN:DESCRIPTION}}
 
-## Advertencias de contenido
+## Content warnings
 
-**Luces y cambios de brillo, sonidos fuertes, sustos y terror psicológico.** Las advertencias aparecen antes del menú del juego y puedes leerlas antes de aceptar.
+**Flashing lights and brightness changes, loud sounds, jump scares and psychological horror.** The warnings appear before the game menu and you can read them before accepting.
 
 {{DESIGN:WARNINGS}}
 
-## Requisitos
+## Requirements
 
-| Componente | Requisito |
+| Component | Requirement |
 | --- | --- |
-| Juego | **Minecraft Java Edition {{MINECRAFT}}**, **exactamente {{MINECRAFT}}**. Los hotfixes 26.3.x aún no están admitidos. Necesitas una cuenta con acceso al juego. |
-| Loader | **Fabric Loader {{LOADER}} o posterior** para Minecraft {{MINECRAFT}}. |
-| Java | **Java 25**. El Minecraft Launcher oficial descarga el entorno necesario al iniciar {{MINECRAFT}}; deja el ejecutable Java del perfil en su valor predeterminado. |
-| Fabric API | **Incluida.** {{FABRIC_API}} viaja dentro de nuestro JAR. **No descargues ni instales Fabric API aparte.** |
-| Otros mods | **Ninguno.** Usa un perfil limpio sin otros mods. |
+| Game | **Minecraft Java Edition {{MINECRAFT}}**, **exactly {{MINECRAFT}}**. 26.3.x hotfixes are not supported yet. You need an account with access to the game. |
+| Loader | **Fabric Loader {{LOADER}} or newer** for Minecraft {{MINECRAFT}}. |
+| Java | **Java 25**. The official Minecraft Launcher downloads the right runtime when it starts {{MINECRAFT}}; leave the profile's Java executable at its default. |
+| Fabric API | **Included.** {{FABRIC_API}} ships inside our JAR. **Do not download or install Fabric API separately.** |
+| Other mods | **None.** Use a clean profile without other mods. |
 
-## Archivos
+## Files
 
-| Archivo | Qué es |
+| File | What it is |
 | --- | --- |
-| `{{JAR}}` | El mod. SHA-256: `{{SHA256}}` |
-| `{{WORLD_ZIP}}` | Mapa de respaldo opcional. Solo lo necesitas si el botón del título no funciona. |
+| `{{JAR}}` | The mod. SHA-256: `{{SHA256}}` |
+| `{{WORLD_ZIP}}` | Optional backup map. You only need it if the title button does not work. |
 
-Puedes comprobar la descarga con la huella SHA-256: en Windows usa `certutil -hashfile {{JAR}} SHA256`; en macOS, `shasum -a 256 {{JAR}}`; en Linux, `sha256sum {{JAR}}`.
+You can verify the download with the SHA-256 fingerprint: on Windows use `certutil -hashfile {{JAR}} SHA256`; on macOS, `shasum -a 256 {{JAR}}`; on Linux, `sha256sum {{JAR}}`.
 
-## Instalación paso a paso
+## Step-by-step installation
 
-1. Abre **Minecraft Launcher**, selecciona **Java Edition** y crea una instalación de la versión **{{MINECRAFT}}**. Iníciala una vez hasta el menú principal. Después cierra Minecraft y el launcher.
-2. Descarga el [instalador oficial de Fabric](https://fabricmc.net/use/installer/) **1.1.2** y ábrelo según tu sistema:
+1. Open **Minecraft Launcher**, select **Java Edition** and create an installation of version **{{MINECRAFT}}**. Start it once to the main menu. Then close Minecraft and the launcher.
+2. Download the [official Fabric installer](https://fabricmc.net/use/installer/) **1.1.2** and open it according to your system:
 
-   | Sistema | Cómo abrir el instalador |
+   | System | How to open the installer |
    | --- | --- |
-   | Windows | Descarga **Download for Windows** (`.exe`) y ejecútalo. Utiliza el Java del launcher. |
-   | macOS | Descarga **Universal/.JAR** y ábrelo con Java. Si no tienes Java instalado para abrir archivos, instala [Temurin 25](https://adoptium.net/temurin/releases/?version=25) para tu Mac (aarch64 para Apple Silicon; x64 para Intel). También puedes ejecutar `java -jar fabric-installer-1.1.2.jar` desde la carpeta de descarga en Terminal. |
-   | Linux | Descarga **Universal/.JAR**. Si falta Java del sistema, instala [Temurin 25](https://adoptium.net/temurin/releases/?version=25) para tu distribución y arquitectura. Desde la carpeta de descarga ejecuta `java -jar fabric-installer-1.1.2.jar`. |
+   | Windows | Download **Download for Windows** (`.exe`) and run it. It uses the launcher's Java. |
+   | macOS | Download **Universal/.JAR** and open it with Java. If you have no Java installed to open files, install [Temurin 25](https://adoptium.net/temurin/releases/?version=25) for your Mac (aarch64 for Apple Silicon; x64 for Intel). You can also run `java -jar fabric-installer-1.1.2.jar` from the download folder in Terminal. |
+   | Linux | Download **Universal/.JAR**. If system Java is missing, install [Temurin 25](https://adoptium.net/temurin/releases/?version=25) for your distribution and architecture. From the download folder run `java -jar fabric-installer-1.1.2.jar`. |
 
-3. En el instalador, abre la pestaña **Client**. Elige **Minecraft Version: {{MINECRAFT}}** y **Loader Version: {{LOADER}} o posterior**. Comprueba que la ubicación corresponde a tu Minecraft Launcher, deja marcada **Create Profile** y pulsa **Install**.
-4. Descarga `{{JAR}}` desde esta página. No lo descomprimas.
-5. Copia el JAR a la carpeta **`mods`** del perfil. Crea esa carpeta si no existe:
+3. In the installer, open the **Client** tab. Choose **Minecraft Version: {{MINECRAFT}}** and **Loader Version: {{LOADER}} or newer**. Check that the location matches your Minecraft Launcher, leave **Create Profile** ticked and press **Install**.
+4. Download `{{JAR}}` from this page. Do not extract it.
+5. Copy the JAR into the profile's **`mods`** folder. Create the folder if it does not exist:
 
-   | Sistema | Ubicación predeterminada | Cómo llegar |
+   | System | Default location | How to get there |
    | --- | --- | --- |
-   | Windows | `%APPDATA%\.minecraft\mods` | Pulsa Win+R, pega la ruta y pulsa Enter. |
-   | macOS | `~/Library/Application Support/minecraft/mods` | Finder → Ir → Ir a la carpeta; pega la ruta. |
-   | Linux | `~/.minecraft/mods` | Pega la ruta en tu explorador de archivos; Ctrl+H muestra las carpetas ocultas. |
+   | Windows | `%APPDATA%\.minecraft\mods` | Press Win+R, paste the path and press Enter. |
+   | macOS | `~/Library/Application Support/minecraft/mods` | Finder → Go → Go to Folder; paste the path. |
+   | Linux | `~/.minecraft/mods` | Paste the path into your file manager; Ctrl+H shows hidden folders. |
 
-   Si configuraste un **Directorio del juego / Game Directory** distinto en el launcher, usa la carpeta `mods` dentro de ese directorio. Copia solo nuestro JAR: Fabric API ya viene dentro y el instalador de Fabric no se copia a `mods`.
+   If you set a different **Game Directory** in the launcher, use the `mods` folder inside that directory. Copy only our JAR: Fabric API is already inside it, and the Fabric installer is not copied to `mods`.
 
-6. Abre el launcher y selecciona el perfil que creó el instalador, llamado **`fabric-loader-{{MINECRAFT}}`** (versión `fabric-loader-{{LOADER}}-{{MINECRAFT}}` o posterior). Si no aparece, ve a **Instalaciones** y activa el filtro de instalaciones modificadas (**Modded**). Pulsa **Jugar / Play**.
+6. Open the launcher and select the profile the installer created, called **`fabric-loader-{{MINECRAFT}}`** (version `fabric-loader-{{LOADER}}-{{MINECRAFT}}` or newer). If it does not appear, go to **Installations** and enable the modded-installations filter (**Modded**). Press **Play**.
 
-## Cómo empezar
+**TLauncher or offline accounts.** The mod needs no online authentication. In TLauncher, choose or install a **Fabric {{MINECRAFT}}** version, launch it once, then use TLauncher's "open game folder" option and put only `{{JAR}}` in its `mods` folder. For TLauncher custom or modpack versions, the folder is `.minecraft/versions/<version name>/mods`.
 
-1. En el primer arranque, lee las advertencias del contrato y pulsa **De acuerdo** para entrar al menú. **Leer usos de datos** es opcional. La aceptación queda solo en tu equipo, en `<directorio del juego>/unallocated/contract.properties`, y no se envía fuera.
-2. En el menú principal pulsa el botón **UNALLOCATED**. El mod copia el mapa incluido, muestra una pantalla de conexión y abre el mundo. No tienes que crear ni descargar nada más.
-3. Juega en **primera persona**. Se recomienda una sesión de **10 a 15 minutos**, con audífonos, sola o solo, y con poca luz.
-4. Si una sesión activa se queda atascada, escribe **`/unallocated siguiente`** en el chat. Rescata la sesión y avanza al siguiente acto; no necesita trucos y no inicia otra sesión.
+## How to start
 
-## Mapa y configuración
+1. On the first launch, read the contract's warnings and press **I agree** (**De acuerdo** in Spanish), or type it, to enter the menu. **Read data uses** is optional. The acceptance stays only on your computer, in `<game directory>/unallocated/contract.properties`, and is not sent anywhere.
+2. In the main menu press the **UNALLOCATED** button. The mod copies the included map, shows a connection screen and opens the world. You do not have to create or download anything else.
+3. Play in **first person**. A **10 to 15 minute** session is recommended, with headphones, alone, and with little light.
+4. If an active session gets stuck, type **`/unallocated next`** in the chat (Spanish alias **`/unallocated siguiente`**). It rescues the session and moves on to the next act; it needs no cheats and does not start another session.
 
-El mapa y su configuración viajan dentro del JAR. El botón **UNALLOCATED** crea una copia nueva en `saves/` con el modo Aventura y los trucos desactivados; no hay que configurar nada a mano. Para volver a empezar después de un final, pulsa el botón otra vez.
+The mod is fully available in English and Spanish, chosen from the game language.
 
-**Respaldo con el ZIP.** Si el botón no funciona en tu equipo:
+## Map and configuration
 
-1. Descarga `{{WORLD_ZIP}}`.
-2. Descomprímelo de modo que la carpeta `UNALLOCATED/` quede dentro de la carpeta `saves`:
+The map and its configuration travel inside the JAR. The **UNALLOCATED** button creates a fresh copy in `saves/` with Adventure mode and cheats disabled; there is nothing to configure by hand. To start over after an ending, press the button again.
 
-   | Sistema | Carpeta `saves` |
+**Backup with the ZIP.** If the button does not work on your computer:
+
+1. Download `{{WORLD_ZIP}}`.
+2. Extract it so that the `UNALLOCATED/` folder ends up inside the `saves` folder:
+
+   | System | `saves` folder |
    | --- | --- |
    | Windows | `%APPDATA%\.minecraft\saves` |
    | macOS | `~/Library/Application Support/minecraft/saves` |
    | Linux | `~/.minecraft/saves` |
 
-   Si usas otro **Directorio del juego**, usa la carpeta `saves` dentro de ese directorio.
-3. Abre Minecraft y entra a **Un jugador / Singleplayer**. Elige el mundo **UNALLOCATED**.
+   If you use another **Game Directory**, use the `saves` folder inside that directory.
+3. Open Minecraft and go to **Singleplayer**. Choose the **UNALLOCATED** world.
 
-## Errores conocidos
+## Known issues
 
 {{KNOWN_ISSUES}}
 
-Si el mod no carga, comprueba que el perfil usa **exactamente {{MINECRAFT}} y Loader {{LOADER}} o posterior**, que no hay JAR antiguos en `mods` y que Fabric API no está duplicada aparte. Después revisa `logs/latest.log` dentro del directorio del juego y busca las líneas `UNALLOCATED initialized (common).` y `UNALLOCATED initialized (client).`.
+If the mod does not load, check that the profile uses **exactly {{MINECRAFT}} and Loader {{LOADER}} or newer**, that there are no old JARs in `mods` and that Fabric API is not duplicated separately. Then check `logs/latest.log` inside the game directory and look for the lines `UNALLOCATED initialized (common).` and `UNALLOCATED initialized (client).`.
 
-## Equipo
+## Team
 
 {{DESIGN:TEAM}}
 
-## Créditos
+## Credits
 
-Incluye siete módulos de **Fabric API {{FABRIC_API}}**, de **FabricMC y sus colaboradores**, bajo **Apache-2.0**: API base, eventos de ciclo de vida, comandos, red, sincronización de registros, pantallas y carga de recursos. El JAR conserva las licencias de cada módulo e incluye `META-INF/NOTICE-Fabric-API.txt` y `META-INF/licenses/Fabric-API-Apache-2.0.txt`. La estructura de compilación se basa en la [plantilla oficial de Fabric para {{MINECRAFT}}](https://github.com/FabricMC/fabric-example-mod/tree/{{MINECRAFT}}), disponible bajo CC0-1.0.
+Includes seven modules of **Fabric API {{FABRIC_API}}**, by **FabricMC and its contributors**, under **Apache-2.0**: base API, lifecycle events, commands, networking, registry sync, screens and resource loading. The JAR keeps each module's licenses and includes `META-INF/NOTICE-Fabric-API.txt` and `META-INF/licenses/Fabric-API-Apache-2.0.txt`. The build structure is based on the [official Fabric template for {{MINECRAFT}}](https://github.com/FabricMC/fabric-example-mod/tree/{{MINECRAFT}}), available under CC0-1.0.
 
 {{DESIGN:CREDITS}}
 
-Minecraft pertenece a Mojang/Microsoft. Este mod no es un producto oficial de Minecraft ni está aprobado por Mojang o Microsoft.
+Minecraft belongs to Mojang/Microsoft. This mod is not an official Minecraft product and is not approved by Mojang or Microsoft.
 
-## Capturas y video
+## Screenshots and video
 
-<!-- NOTA PARA EL DUEÑO (no visible para los jugadores): elige de 3 a 5 capturas de dist/screenshots/ y una portada de 630×500 píxeles. Sube dist/gameplay.mp4 o, mejor, una grabación en tiempo real con sonido hecha en un PC real. Consulta docs/release/CHECKLIST.md. -->
+<!-- NOTE FOR THE OWNER (not visible to players): choose 3 to 5 screenshots from dist/screenshots/ and a 630×500 pixel cover. Upload dist/gameplay.mp4 or, better, a real-time recording with sound made on a real PC. See docs/release/CHECKLIST.md. -->
 
-<!-- Página generada para la versión {{VERSION}} desde el commit {{COMMIT}}. -->
+<!-- Page generated for version {{VERSION}} from commit {{COMMIT}}. -->

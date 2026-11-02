@@ -8,7 +8,7 @@ and sends a real vanilla disconnect packet. Minecraft's normal integrated-server
 for saving/shutdown and releases the world lock before displaying `DisconnectedScreen`. A dedicated
 server is stopped with `halt(false)` after sending the disconnect. The game process remains open.
 
-Only the tagged reason `unallocated.ending.server_closed` changes the disconnect screen factory.
+Only the tagged reason `ending.unallocated.server_closed` changes the disconnect screen factory.
 The screen is Minecraft's own `DisconnectedScreen`, with a Spanish heading, inverse g5→g0 objective,
 gratitude, and a button whose parent is the title. Other disconnects retain vanilla behavior.
 The title splash is replaced in memory, survives title reinitialization/resizing, and resets at
