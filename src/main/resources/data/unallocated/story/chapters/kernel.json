@@ -15,26 +15,124 @@
    "run": "unallocated revive lock"
   },
   {
-   "at": 1,
+   "at": 1.2,
    "do": "creature",
    "op": "spawn",
-   "id": "echo",
+   "id": "soul1",
    "body": {
     "mannequin": {
      "profile": "player",
+     "texture": "unallocated:textures/entity/soul/soul_1.png",
      "scale": 1
     }
    },
-   "where": "heap.echo",
+   "where": {
+    "anchor": "heap.arrival",
+    "offset": [
+     9,
+     0,
+     -7
+    ]
+   },
    "facing": "player"
   },
   {
-   "at": 1.1,
+   "at": 1.25,
    "do": "creature",
    "op": "stalk",
-   "id": "echo",
-   "step": 1.4,
+   "id": "soul1",
+   "step": 1.3,
    "min_distance": 1.5
+  },
+  {
+   "at": 1.4,
+   "do": "creature",
+   "op": "spawn",
+   "id": "soul2",
+   "body": {
+    "mannequin": {
+     "profile": "player",
+     "texture": "unallocated:textures/entity/soul/soul_2.png",
+     "scale": 1
+    }
+   },
+   "where": {
+    "anchor": "heap.arrival",
+    "offset": [
+     -7,
+     0,
+     9
+    ]
+   },
+   "facing": "player"
+  },
+  {
+   "at": 1.45,
+   "do": "creature",
+   "op": "stalk",
+   "id": "soul2",
+   "step": 1.3,
+   "min_distance": 2.5
+  },
+  {
+   "at": 1.6,
+   "do": "creature",
+   "op": "spawn",
+   "id": "soul3",
+   "body": {
+    "mannequin": {
+     "profile": "player",
+     "texture": "unallocated:textures/entity/soul/soul_3.png",
+     "scale": 1
+    }
+   },
+   "where": {
+    "anchor": "heap.arrival",
+    "offset": [
+     14,
+     0,
+     8
+    ]
+   },
+   "facing": "player"
+  },
+  {
+   "at": 1.6500000000000001,
+   "do": "creature",
+   "op": "stalk",
+   "id": "soul3",
+   "step": 1.3,
+   "min_distance": 3.5
+  },
+  {
+   "at": 1.8,
+   "do": "creature",
+   "op": "spawn",
+   "id": "soul4",
+   "body": {
+    "mannequin": {
+     "profile": "player",
+     "texture": "unallocated:textures/entity/soul/soul_4.png",
+     "scale": 1
+    }
+   },
+   "where": {
+    "anchor": "heap.arrival",
+    "offset": [
+     -9,
+     0,
+     -6
+    ]
+   },
+   "facing": "player"
+  },
+  {
+   "at": 1.85,
+   "do": "creature",
+   "op": "stalk",
+   "id": "soul4",
+   "step": 1.3,
+   "min_distance": 4.5
   }
  ],
  "on_resume": [
@@ -63,7 +161,25 @@
      "at": 0,
      "do": "creature",
      "op": "hold",
-     "id": "echo"
+     "id": "soul1"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "hold",
+     "id": "soul2"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "hold",
+     "id": "soul3"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "hold",
+     "id": "soul4"
     }
    ]
   },
@@ -93,12 +209,6 @@
      "at": 0,
      "do": "command",
      "run": "unallocated shell complete"
-    },
-    {
-     "at": 0,
-     "do": "creature",
-     "op": "despawn",
-     "id": "echo"
     },
     {
      "at": 2.0,
@@ -204,6 +314,30 @@
      "at": 36,
      "do": "end",
      "ending": "COMPLETE"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "despawn",
+     "id": "soul1"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "despawn",
+     "id": "soul2"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "despawn",
+     "id": "soul3"
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "despawn",
+     "id": "soul4"
     }
    ],
    "autoplay": {
@@ -235,12 +369,6 @@
      "at": 0,
      "do": "flag",
      "set": "poisoned"
-    },
-    {
-     "at": 0,
-     "do": "creature",
-     "op": "despawn",
-     "id": "echo"
     },
     {
      "at": 0.5,
@@ -429,6 +557,30 @@
      "at": 57.00000000000001,
      "do": "end",
      "ending": "POISON"
+    },
+    {
+     "at": 3.2,
+     "do": "creature",
+     "op": "despawn",
+     "id": "soul1"
+    },
+    {
+     "at": 3.2,
+     "do": "creature",
+     "op": "despawn",
+     "id": "soul2"
+    },
+    {
+     "at": 3.2,
+     "do": "creature",
+     "op": "despawn",
+     "id": "soul3"
+    },
+    {
+     "at": 3.2,
+     "do": "creature",
+     "op": "despawn",
+     "id": "soul4"
     }
    ],
    "autoplay": {
