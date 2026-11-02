@@ -1,6 +1,6 @@
 {
  "id": "kernel",
- "budget_seconds": 600,
+ "budget_seconds": 1200,
  "checkpoint": "kernel.gate",
  "stay": true,
  "on_enter": [
@@ -133,6 +133,11 @@
    "id": "soul4",
    "step": 1.3,
    "min_distance": 4.5
+  },
+  {
+   "at": 0.5,
+   "do": "audio",
+   "cue": "threads"
   }
  ],
  "on_resume": [

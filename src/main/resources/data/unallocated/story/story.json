@@ -72,6 +72,16 @@
    "dimension": "pocket",
    "yaw": 90,
    "pitch": 0
+  },
+  "heap.mine": {
+   "pos": [
+    96,
+    64,
+    20
+   ],
+   "dimension": "pocket",
+   "yaw": 90,
+   "pitch": 10
   }
  },
  "zones": {

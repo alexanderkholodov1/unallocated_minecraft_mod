@@ -18,11 +18,14 @@ public final class ThreadModel extends EntityModel<ThreadRenderState> {
     private static final float LENGTH = 16F;
     private final ModelPart[] segments = new ModelPart[SEGMENTS];
     private final ModelPart knot;
+    /** The strand that rises from the knot into the sky, where the Reclaimer listens. */
+    private final ModelPart sky;
 
     public ThreadModel(ModelPart root) {
         super(root);
         for (int i = 0; i < SEGMENTS; i++) segments[i] = root.getChild("segment_" + i);
         knot = root.getChild("knot");
+        sky = root.getChild("sky");
     }
 
     public static LayerDefinition createLayer() {
@@ -30,6 +33,7 @@ public final class ThreadModel extends EntityModel<ThreadRenderState> {
         PartDefinition root = mesh.getRoot();
         for (int i = 0; i < SEGMENTS; i++)
             root.addOrReplaceChild("segment_" + i, CubeListBuilder.create().texOffs(0, 0).addBox(0F, -0.4F, -0.4F, LENGTH, 0.8F, 0.8F), PartPose.ZERO);
+        root.addOrReplaceChild("sky", CubeListBuilder.create().texOffs(0, 0).addBox(0F, -0.3F, -0.3F, LENGTH, 0.6F, 0.6F), PartPose.ZERO);
         root.addOrReplaceChild("knot", CubeListBuilder.create().texOffs(0, 4).addBox(-1.5F, -1.5F, -1.5F, 3F, 3F, 3F), PartPose.ZERO);
         return LayerDefinition.create(mesh, 64, 16);
     }
@@ -50,6 +54,8 @@ public final class ThreadModel extends EntityModel<ThreadRenderState> {
         }
         knot.y = 14F + Mth.sin(0.5F * Mth.PI) * (span * 0.06F + tremble);
         knot.yRot = state.ageInTicks * 0.05F;
+        float sway = Mth.sin(state.ageInTicks * 0.05F) * 6F;
+        segment(sky, 0F, knot.y, 0F, sway, knot.y - 640F, sway * 0.5F);
     }
 
     private static void segment(ModelPart part, float x0, float y0, float z0, float x1, float y1, float z1) {

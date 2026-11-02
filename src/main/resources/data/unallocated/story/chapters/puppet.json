@@ -2,7 +2,7 @@
  "id": "puppet",
  "budget_seconds": 1200,
  "checkpoint": "heap.arrival",
- "respawn": "mine.entrance",
+ "respawn": "lobby.spawn",
  "stay": true,
  "on_enter": [
   {
@@ -94,14 +94,6 @@
      "facing": "player"
     },
     {
-     "at": 4.25,
-     "do": "creature",
-     "op": "stalk",
-     "id": "soul1",
-     "step": 0.8,
-     "min_distance": 7
-    },
-    {
      "at": 4.4,
      "do": "creature",
      "op": "spawn",
@@ -122,14 +114,6 @@
       ]
      },
      "facing": "player"
-    },
-    {
-     "at": 4.45,
-     "do": "creature",
-     "op": "stalk",
-     "id": "soul2",
-     "step": 0.8,
-     "min_distance": 8
     },
     {
      "at": 4.6,
@@ -154,14 +138,6 @@
      "facing": "player"
     },
     {
-     "at": 4.6499999999999995,
-     "do": "creature",
-     "op": "stalk",
-     "id": "soul3",
-     "step": 0.8,
-     "min_distance": 9
-    },
-    {
      "at": 4.8,
      "do": "creature",
      "op": "spawn",
@@ -184,12 +160,17 @@
      "facing": "player"
     },
     {
-     "at": 4.85,
-     "do": "creature",
-     "op": "stalk",
-     "id": "soul4",
-     "step": 0.8,
-     "min_distance": 10
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
+    },
+    {
+     "at": 16,
+     "do": "actionbar",
+     "text": {
+      "es": "Muerto, el chat es su consola. Escribe help.",
+      "en": "Dead, the chat is its console. Type help."
+     }
     }
    ]
   },
@@ -283,6 +264,29 @@
      "at": 46.3,
      "do": "command",
      "run": "kill @e[tag=unallocated.scream]"
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
+    },
+    {
+     "at": 1.9,
+     "do": "command",
+     "run": "clear @s minecraft:written_book"
+    },
+    {
+     "at": 2,
+     "do": "command",
+     "run": "give @s minecraft:written_book[minecraft:written_book_content={title:\"Noor\",author:\"Noor\",pages:[{raw:{translate:\"story.unallocated.puppetbook.0\"}},{raw:{translate:\"story.unallocated.puppetbook.1\"}},{raw:{translate:\"story.unallocated.puppetbook.2\"}}]}]"
+    },
+    {
+     "at": 6,
+     "do": "actionbar",
+     "text": {
+      "es": "Hay un libro en tu inventario que no estaba antes.",
+      "en": "There is a book in your inventory that was not there before."
+     }
     }
    ]
   },
@@ -380,6 +384,29 @@
      "at": 46.3,
      "do": "command",
      "run": "kill @e[tag=unallocated.scream]"
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
+    },
+    {
+     "at": 1.9,
+     "do": "command",
+     "run": "clear @s minecraft:written_book"
+    },
+    {
+     "at": 2,
+     "do": "command",
+     "run": "give @s minecraft:written_book[minecraft:written_book_content={title:\"Noor\",author:\"Noor\",pages:[{raw:{translate:\"story.unallocated.puppetbook.0\"}},{raw:{translate:\"story.unallocated.puppetbook.1\"}},{raw:{translate:\"story.unallocated.puppetbook.2\"}}]}]"
+    },
+    {
+     "at": 6,
+     "do": "actionbar",
+     "text": {
+      "es": "Hay un libro en tu inventario que no estaba antes.",
+      "en": "There is a book in your inventory that was not there before."
+     }
     }
    ]
   },
@@ -414,6 +441,11 @@
       "es": "Te devolvió más hondo que antes.",
       "en": "It put you back deeper than before."
      }
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
     }
    ]
   },
@@ -436,6 +468,11 @@
       "es": "La nota de Noor decía algo sobre el chat cuando estás muerto.",
       "en": "Noor's note said something about the chat when you are dead."
      }
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
     }
    ]
   },
@@ -458,6 +495,11 @@
       "es": "Escribe help en el chat.",
       "en": "Type help in the chat."
      }
+    },
+    {
+     "at": 0.5,
+     "do": "audio",
+     "cue": "ambient"
     }
    ]
   }
