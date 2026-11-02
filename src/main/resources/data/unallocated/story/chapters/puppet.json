@@ -183,7 +183,11 @@
       "en": "Threads cut: {counter:cuts}/3"
      }
     }
-   ]
+   ],
+   "capture": {
+    "name": "hilos",
+    "at": 0.3
+   }
   },
   {
    "id": "puppet.cut_b",

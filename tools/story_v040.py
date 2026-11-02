@@ -214,7 +214,8 @@ def cut(letter, leak1, leak2):
             'if': {'not_flags': [f'cut_{letter}']}, 'actions': [
                 chat(0, leak1, None, GRAY), chat(1.5, leak2, None, GRAY), {'at': 0, 'do': 'audio', 'cue': 'threads'},
                 flag(0.2, f'cut_{letter}'), {'at': 0.2, 'do': 'counter', 'id': 'cuts', 'add': 1},
-                bar(2.5, 'Hilos cortados: {counter:cuts}/3', 'Threads cut: {counter:cuts}/3')]}
+                bar(2.5, 'Hilos cortados: {counter:cuts}/3', 'Threads cut: {counter:cuts}/3')],
+            **({'capture': {'name': 'hilos', 'at': 0.3}} if letter == 'a' else {})}
 
 
 puppet = {
