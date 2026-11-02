@@ -88,7 +88,7 @@ public final class ThreadEntity extends Mob {
             server.playSound(null, blockPosition(), UnallocatedContent.THREAD_VIBRATE, SoundSource.HOSTILE, 1.6F, 0.6F);
             server.playSound(null, player.blockPosition().above(12), UnallocatedContent.THREAD_VIBRATE, SoundSource.HOSTILE, 1.2F, 1.5F);
             for (int y = 0; y < 30; y += 2) server.sendParticles(new DustParticleOptions(0x8A1020, 0.9F), getX(), getY() + y, getZ(), 1, 0.05, 0.4, 0.05, 0.0);
-            org.unallocated.story.KernelShell.noise(StoryRuntime.get(server.getServer()), player, 1);
+            org.unallocated.story.KernelShell.brush(StoryRuntime.get(server.getServer()), player);
             return;
         }
     }

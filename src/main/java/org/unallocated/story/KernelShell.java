@@ -283,6 +283,19 @@ public final class KernelShell {
     }
 
     // ---------------------------------------------------------------- noise and the descent
+    /**
+     * Brushing through a thread: it sounds and it notices, but on its own it never brings it down (only typing or
+     * cutting does), at most once every 8 s, and not at all in the first 20 s after you wake as a Puppet.
+     */
+    private static int lastBrush = -9999, respawnTick;
+    private static ServerPlayer lastBody;
+    public static void brush(StoryRuntime r, ServerPlayer p) {
+        if (phase != Phase.IDLE || !chapter(r).equals("puppet") || !r.puppet()) return;
+        if (ticks - respawnTick < 400 || ticks - lastBrush < 160 || attention(r) >= MAX_ATTENTION - 1) return;
+        lastBrush = ticks;
+        noise(r, p, 1);
+    }
+
     public static void noise(StoryRuntime r, ServerPlayer p, int amount) {
         if (phase != Phase.IDLE || !chapter(r).equals("puppet") || !r.puppet()) return;
         if (depth(r) >= 3) return; // at gen 3 typing alone brings it down (see chat)
@@ -468,6 +481,7 @@ public final class KernelShell {
     // ---------------------------------------------------------------- tick
     public static void tick(StoryRuntime r, ServerPlayer p) {
         ticks++; phaseTicks++;
+        if (p != lastBody) { lastBody = p; respawnTick = ticks; } // a respawn is a new body
         String c = chapter(r);
         if (!c.equals("puppet") && !c.equals("kernel")) { if (phase != Phase.IDLE) reset(); return; }
         if (c.equals("kernel") && phase == Phase.IDLE && !flag(r, "suspended")) {
