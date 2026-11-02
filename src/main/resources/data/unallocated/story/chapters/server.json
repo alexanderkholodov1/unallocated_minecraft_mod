@@ -494,7 +494,10 @@
       "en": "Night already? It was daytime a moment ago."
      }
     }
-   ]
+   ],
+   "autoplay": {
+    "wait_seconds": 90
+   }
   },
   {
    "id": "server.sprint",
@@ -623,6 +626,9 @@
    "capture": {
     "name": "base",
     "at": 1
+   },
+   "autoplay": {
+    "wait_seconds": 100
    }
   },
   {
@@ -640,7 +646,10 @@
       "en": "The mine. A sign said it loops."
      }
     }
-   ]
+   ],
+   "autoplay": {
+    "wait_seconds": 110
+   }
   },
   {
    "id": "server.loop1",
@@ -663,6 +672,9 @@
    "capture": {
     "name": "mina",
     "at": 0.6
+   },
+   "autoplay": {
+    "wait_seconds": 120
    }
   },
   {

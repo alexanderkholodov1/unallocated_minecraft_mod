@@ -45,7 +45,9 @@ public final class UnallocatedCommand {
                         source.getLevel().sendBlockUpdated(pos, sign.getBlockState(), sign.getBlockState(), 3);
                         return 1;
                     }))))
-                .then(Commands.literal("revive").executes(ctx -> {
+                .then(Commands.literal("revive").then(Commands.literal("lock").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS)).executes(ctx -> {
+                    org.unallocated.story.StoryRuntime.get(ctx.getSource().getServer()).lockRevive(ctx.getSource().getPlayerOrException()); return 1;
+                })).executes(ctx -> {
                     var runtime = org.unallocated.story.StoryRuntime.get(ctx.getSource().getServer());
                     return runtime.revive(ctx.getSource().getPlayerOrException()) ? 1 : 0;
                 }))
