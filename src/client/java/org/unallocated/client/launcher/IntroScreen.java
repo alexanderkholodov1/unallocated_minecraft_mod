@@ -19,18 +19,26 @@ public final class IntroScreen extends Screen {
     private static final int CARDS = 4;
     private static final int CHARS_PER_TICK = 2;
     private final String arrival;
+    private final boolean returning;
     private final Runnable join;
     private int card;
     private int shown;
     private boolean list;
 
-    public IntroScreen(String arrival, Runnable join) {
+    public IntroScreen(String arrival, Runnable join) { this(arrival, false, join); }
+
+    public IntroScreen(String arrival, boolean returning, Runnable join) {
         super(Component.translatable("intro.unallocated.title"));
         this.arrival = arrival;
+        this.returning = returning;
         this.join = join;
     }
 
     private Component cardText(int index) {
+        if (returning) {
+            if (index == 0) return Component.translatable("intro.unallocated.returning");
+            index--;
+        }
         return Component.translatable("intro.unallocated." + arrival + "." + index);
     }
 
@@ -51,7 +59,7 @@ public final class IntroScreen extends Screen {
     private void advance() {
         int length = cardText(card).getString().length();
         if (shown < length) { shown = length; return; }
-        if (card + 1 < CARDS) { card++; shown = 0; return; }
+        if (card + 1 < CARDS + (returning ? 1 : 0)) { card++; shown = 0; return; }
         list = true;
         init();
     }

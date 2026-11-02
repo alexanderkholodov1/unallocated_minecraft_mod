@@ -48,6 +48,9 @@ public final class EndingScreen extends Screen {
         if (done) addRenderableWidget(Button.builder(back, b -> minecraft.gui.setScreen(new TitleScreen())).bounds(width / 2 - 100, height - 40, 200, 20).build());
     }
 
+    /** True once every card has been read and the return button is shown. */
+    public boolean finished() { return done; }
+
     @Override
     public void tick() {
         if (!done) shown += CHARS_PER_TICK;

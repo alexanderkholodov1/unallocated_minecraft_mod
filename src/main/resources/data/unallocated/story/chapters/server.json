@@ -157,6 +157,41 @@
  ],
  "beats": [
   {
+   "id": "server.returning",
+   "when": {
+    "type": "chapter_start"
+   },
+   "if": {
+    "flags": [
+     "returning"
+    ]
+   },
+   "actions": [
+    {
+     "at": 9,
+     "do": "command",
+     "run": "unallocated tab echo"
+    },
+    {
+     "at": 10,
+     "do": "chat",
+     "text": {
+      "es": "[ValleCraft] {player} ya está conectado.",
+      "en": "[ValleCraft] {player} is already connected.",
+      "color": "#55ffff"
+     }
+    },
+    {
+     "at": 14,
+     "do": "actionbar",
+     "text": {
+      "es": "Tu nombre aparece dos veces en la lista. Tab.",
+      "en": "Your name is on the list twice. Tab."
+     }
+    }
+   ]
+  },
+  {
    "id": "server.explorer",
    "when": {
     "type": "chapter_start"
@@ -243,30 +278,6 @@
      "at": 0,
      "do": "command",
      "run": "unallocated tab add Kai"
-    },
-    {
-     "at": 7,
-     "do": "chat",
-     "text": {
-      "es": "viniste.",
-      "en": "you came."
-     },
-     "from": {
-      "es": "Kai",
-      "en": "Kai"
-     }
-    },
-    {
-     "at": 11,
-     "do": "chat",
-     "text": {
-      "es": "estoy en survival. sal por la puerta grande. te espero en la base.",
-      "en": "i'm in survival. go out the big gate. i'll wait at the base."
-     },
-     "from": {
-      "es": "Kai",
-      "en": "Kai"
-     }
     }
    ]
   },

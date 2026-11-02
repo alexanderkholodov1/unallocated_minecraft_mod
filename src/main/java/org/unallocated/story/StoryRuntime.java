@@ -78,6 +78,7 @@ public final class StoryRuntime {
             for (String other : List.of("explorer", "former", "invited")) if (!other.equals(arrival)) state.removeFlag("story.flag.arrival." + other);
             state.addFlag("story.flag.arrival." + arrival);
             arrivalUser = lines.size() > 1 ? lines.get(1).strip().replaceAll("[^\\p{L}\\p{N}_ .-]", "") : "";
+            if (lines.size() > 2 && lines.get(2).strip().equals("returning")) state.addFlag("story.flag.returning");
             log("arrival=" + arrival);
         } catch (java.io.IOException | RuntimeException error) {
             UnallocatedMod.LOGGER.warn("UNALLOCATED arrival unreadable", error);

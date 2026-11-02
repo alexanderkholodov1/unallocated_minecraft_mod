@@ -16,7 +16,7 @@ import static org.unallocated.story.StoryData.*;
 /** Shared rule IDs/pointers with the offline checker. Parsers receive this validation context. */
 public final class StoryValidator {
     /** Flags the runtime itself sets (Puppet state, randomized arrival); stories may test them without setting them. */
-    public static final java.util.Set<String> RUNTIME_FLAGS = java.util.Set.of("puppet", "arrival.explorer", "arrival.former", "arrival.invited", "suspended", "fight", "slept");
+    public static final java.util.Set<String> RUNTIME_FLAGS = java.util.Set.of("puppet", "arrival.explorer", "arrival.former", "arrival.invited", "suspended", "fight", "slept", "returning");
     public record Finding(String file, String pointer, String rule, String message, boolean warning) {
         public String marker() { return "UNALLOCATED story " + (warning ? "warning " : "invalid ") + file + "#" + pointer + ": [" + rule + "] " + message; }
     }

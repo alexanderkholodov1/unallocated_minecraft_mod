@@ -19,6 +19,7 @@
     "InterfaceLightmapMixin",
     "InterfaceDeathPuppetMixin",
     "InterfacePauseStuckMixin",
+    "InterfacePauseWatcherMixin",
     "InterfaceRecipeToastMixin"
   ],
   "injectors": {

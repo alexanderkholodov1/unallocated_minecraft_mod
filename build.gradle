@@ -182,6 +182,10 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
         jvmArgs.add('-Dunallocated.story.dir=' + layout.projectDirectory.dir('src/test/resources/story-fixtures/valid/example').asFile.absolutePath)
         jvmArgs.add('-Dunallocated.story.autoplay=true')
     }
+    if (providers.gradleProperty('contractSmokePhase').getOrElse('first') == 'tour') {
+        jvmArgs.add("-Dunallocated.tour.ending=${providers.gradleProperty('tourEnding').getOrElse('COMPLETE')}")
+        jvmArgs.add('-Dunallocated.pause.watcher.force=true')
+    }
     if (providers.gradleProperty('contractSmokePhase').getOrElse('first') == 'play') {
         jvmArgs.add('-Dunallocated.story.autoplay=true')
     }
