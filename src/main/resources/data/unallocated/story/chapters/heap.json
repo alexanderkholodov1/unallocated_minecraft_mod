@@ -219,20 +219,65 @@
    }
   },
   {
+   "id": "heap.alive_twice",
+   "when": {
+    "type": "respawn"
+   },
+   "if": {
+    "flags": [
+     "alive_once"
+    ],
+    "not_flags": [
+     "puppet"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "chat",
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 0.5,
+     "do": "actionbar",
+     "text": {
+      "es": "No te deja ir. Te quedas como Puppet.",
+      "en": "It does not let you go. You stay as a Puppet."
+     }
+    },
+    {
+     "at": 0,
+     "do": "creature",
+     "op": "despawn",
+     "id": "reclaimer"
+    },
+    {
+     "at": 1.5,
+     "do": "next_chapter"
+    }
+   ]
+  },
+  {
    "id": "heap.alive_again",
    "when": {
     "type": "respawn"
    },
    "if": {
     "not_flags": [
-     "puppet"
+     "puppet",
+     "alive_once"
     ]
    },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 1
-   },
    "actions": [
+    {
+     "at": 0,
+     "do": "flag",
+     "set": "alive_once"
+    },
     {
      "at": 0.3,
      "do": "title",
