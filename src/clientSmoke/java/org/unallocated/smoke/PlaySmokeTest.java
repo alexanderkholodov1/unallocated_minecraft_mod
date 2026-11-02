@@ -102,14 +102,14 @@ final class PlaySmokeTest {
             context.waitForScreen(GenericMessageScreen.class);
             context.waitTicks(2);
             context.takeScreenshot("unallocated-connecting");
-            context.waitFor(client -> failure.get() != null || joined.get() || client.gui.screen() instanceof DisconnectedScreen, 2400);
+            context.waitFor(client -> failure.get() != null || joined.get() || EndingSmoke.shown(client.gui.screen()), 2400);
             if (failure.get() != null || !joined.get()) throw new AssertionError("Launcher preflight failed", failure.get());
             Path copy = context.computeOnClient(client -> client.getSingleplayerServer().getWorldPath(
                 net.minecraft.world.level.storage.LevelResource.ROOT).normalize());
             if (!copies.add(copy)) throw new AssertionError("Ending reused a finished save");
             // The story kills the player on purpose; like a judge, press "I agree" (respawn) on each death screen until the farewell.
             for (int deaths = 0; ; deaths++) {
-                context.waitFor(client -> client.gui.screen() instanceof DisconnectedScreen || client.gui.screen() instanceof DeathScreen, endingTimeout);
+                context.waitFor(client -> EndingSmoke.shown(client.gui.screen()) || client.gui.screen() instanceof DeathScreen, endingTimeout);
                 if (!context.computeOnClient(client -> client.gui.screen() instanceof DeathScreen)) break;
                 context.waitTicks(30);
                 if (index == 0 && deaths == 0) context.takeScreenshot("story-death-screen");
@@ -125,8 +125,9 @@ final class PlaySmokeTest {
             context.runOnClient(client -> {
                 if (client.level != null || client.getSingleplayerServer() != null) throw new AssertionError("Farewell kept server open");
             });
+            context.waitTicks(40);
             context.takeScreenshot("unallocated-play-farewell-" + index);
-            context.clickScreenButton(EndingText.RETURN_BUTTON);
+            EndingSmoke.returnToTitle(context);
             context.waitForScreen(TitleScreen.class);
             context.takeScreenshot("unallocated-play-title-" + index);
             LoggerFactory.getLogger("unallocated-smoke").info("UNALLOCATED smoke: play run={} farewell and title verified", index);

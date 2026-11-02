@@ -86,16 +86,26 @@ public final class LauncherClient {
     /** A new copy first tells who you are (one of LORE 3's arrivals, drawn per copy), then "joins" the server. */
     private static void copyAndOpen(Minecraft client) {
         String arrival = IntroScreen.ARRIVALS.get(java.util.concurrent.ThreadLocalRandom.current().nextInt(IntroScreen.ARRIVALS.size()));
-        client.gui.setScreen(new IntroScreen(arrival, () -> copyAndOpen(client, arrival)));
+        boolean returning = finishedBefore(client.gameDirectory.toPath().resolve("saves"));
+        client.gui.setScreen(new IntroScreen(arrival, returning, () -> copyAndOpen(client, arrival, returning)));
     }
 
-    private static void copyAndOpen(Minecraft client, String arrival) {
+    /** LORE replay: you have been here before when an earlier copy reached an ending. */
+    private static boolean finishedBefore(Path saves) {
+        if (!Files.isDirectory(saves)) return false;
+        try (var paths = Files.list(saves)) {
+            return paths.filter(p -> Files.isDirectory(p) && p.getFileName().toString().matches("UNALLOCATED(?: \\(\\d+\\))?"))
+                .anyMatch(world -> { try { return readSession(world).getBooleanOr("finished", false); } catch (IOException e) { return false; } });
+        } catch (IOException exception) { return false; }
+    }
+
+    private static void copyAndOpen(Minecraft client, String arrival, boolean returning) {
         client.gui.setScreen(new GenericMessageScreen(Component.translatable("menu.unallocated.connecting")));
         var visible = CompletableFuture.runAsync(() -> { }, CompletableFuture.delayedExecutor(1, java.util.concurrent.TimeUnit.SECONDS));
         CompletableFuture.supplyAsync(() -> {
             try {
                 Path world = copyTemplate(client.gameDirectory.toPath().resolve("saves"));
-                Files.writeString(world.resolve("unallocated-arrival.txt"), arrival + "\n" + System.getProperty("user.name", "") + "\n");
+                Files.writeString(world.resolve("unallocated-arrival.txt"), arrival + "\n" + System.getProperty("user.name", "") + "\n" + (returning ? "returning" : "first") + "\n");
                 return world;
             }
             catch (Exception exception) { throw new java.util.concurrent.CompletionException(exception); }

@@ -34,7 +34,7 @@ public final class KernelShell {
     private static int ticks, phaseTicks, lost, lastStruckTick = -9999, perchTicks, nextLash, nextScream, screamWarn = -1, stagger;
     private static double giantX, giantY, giantZ;
     private static boolean halfWarned, gen3Warned, typedPs, typedHelp, awake;
-    private static int pendingDescent = -1, frozenTicks, sinceFreeze;
+    private static int pendingDescent = -1, frozenTicks, sinceFreeze, awakeTicks, lastTyped = -1;
     private static final Set<String> SHELL_WORDS = Set.of("help", "?", "ls", "dir", "cat", "less", "more", "type", "open", "read", "ps", "top", "htop",
         "params", "kill", "pkill", "killall", "set", "echo", "whoami", "sudo", "su", "cd", "pwd", "exit");
     private static final List<Lash> lashes = new ArrayList<>();
@@ -43,6 +43,8 @@ public final class KernelShell {
     private static final Vec3 SAFE = new Vec3(53.5, 64, 12.5);
 
     // ---------------------------------------------------------------- state helpers
+    /** Story autoplay (CI): the fight is not simulated; the window opens at once and never wakes. */
+    private static boolean autoplay() { return Boolean.getBoolean("unallocated.story.autoplay"); }
     private static int depth(StoryRuntime r) { return Math.min(3, Math.max(1, r.state().counters().getOrDefault("story.deaths", 0))); }
     private static int attention(StoryRuntime r) { return r.state().counters().getOrDefault("story.counter.attention", 0); }
     private static String chapter(StoryRuntime r) { JsonObject c = r.currentChapter(); return c == null ? "" : StoryData.string(c, "id", ""); }
@@ -56,7 +58,7 @@ public final class KernelShell {
     }
 
     static void reset() {
-        phase = Phase.IDLE; ticks = phaseTicks = lost = perchTicks = stagger = frozenTicks = sinceFreeze = 0; awake = false; pendingDescent = -1; lashes.clear(); halfWarned = gen3Warned = typedPs = typedHelp = false;
+        phase = Phase.IDLE; ticks = phaseTicks = lost = perchTicks = stagger = frozenTicks = sinceFreeze = awakeTicks = 0; awake = false; pendingDescent = -1; lastTyped = -1; lashes.clear(); halfWarned = gen3Warned = typedPs = typedHelp = false;
         lastStruckTick = -9999; screamWarn = -1;
     }
 
@@ -105,6 +107,7 @@ public final class KernelShell {
         if (phase == Phase.WINDOW && !awake && (lower.matches("set success_threshold 0?[.,]82") || lower.matches(".*reclaimer.*>>.*dataset.*"))) return false;
         if (phase == Phase.COMPLETE || phase == Phase.POISON || phase == Phase.CONSUMED || phase == Phase.DESCENT) return true;
         say(r, p, "> " + line, "> " + line, "#d8d4cb");
+        lastTyped = ticks;
         int gen = depth(r);
         String[] w = lower.split(" ");
         String cmd = w[0];
@@ -277,7 +280,7 @@ public final class KernelShell {
     /** Reading the note of your own depth is loud enough: it comes for you a few seconds later. */
     private static void scheduleDescent(StoryRuntime r, ServerPlayer p) {
         if (pendingDescent < 0 && phase == Phase.IDLE && depth(r) < 3) {
-            pendingDescent = ticks + 240;
+            pendingDescent = ticks + r.ticks(12);
             say(r, p, "te oyó leer.", "it heard you reading.", "#aa0000");
         }
     }
@@ -345,12 +348,12 @@ public final class KernelShell {
         run(r, p, "bossbar set unallocated:reclaim value 100");
         run(r, p, "bossbar set unallocated:reclaim players @s");
         run(r, p, "effect give @s minecraft:darkness 4 0 true");
-        run(r, p, "weather thunder");
         AudioSounds.play(p, "ambient", p.position());
         AudioSounds.play(p, "threads", p.position());
         title(r, p, "RECLAIMER", "encuentra su número de proceso", "find its process number");
         if (!chapter(r).equals("kernel")) r.next(p); // the Kernel chapter: no way back, death = CONSUMED
         bar(r, p, "Viene por ti. Encuentra su número de proceso y detenlo.", "It is coming for you. Find its process number and stop it.");
+        if (autoplay()) stop(r, p);
     }
 
     /** One kill on the right number: everything stops. */
@@ -377,7 +380,7 @@ public final class KernelShell {
 
     /** The watchdog restarts a thread: it hunts again until you stop it again. */
     private static void wake(StoryRuntime r, ServerPlayer p) {
-        awake = true; lashes.clear(); nextLash = 60; stagger = 0;
+        awake = true; awakeTicks = 0; lashes.clear(); nextLash = 60; stagger = 0;
         title(r, p, "watchdog", "reinicio parcial · kill 7331", "partial restart · kill 7331");
         out(r, p, "watchdog :: restarting thread main ... [7331] reclaim :: running");
         run(r, p, "bossbar set unallocated:watchdog color purple");
@@ -431,6 +434,17 @@ public final class KernelShell {
     private static void aliveRun(StoryRuntime r, ServerPlayer p) {
         int runs = r.state().counters().getOrDefault("story.counter.runs", 0) + 1;
         r.state().setCounter("story.counter.runs", runs);
+        if (runs >= 4) {
+            r.cancel("puppet.revived"); r.cancel("puppet.alive_start");
+            blackout(r, p, 0.05, 1.0, 0.8, null);
+            AudioSounds.play(p, "screamer", p.position());
+            r.forcePuppet(p);
+            r.teleport(p, r.resolvePosition(new com.google.gson.JsonPrimitive("heap.arrival")));
+            say(r, p, "subject connection: still open. consent no longer required.", "subject connection: still open. consent no longer required.", "#aa0000");
+            bar(r, p, "No te deja ir. Te quedas.", "It does not let you go. You stay.");
+            r.fire("puppet.start");
+            return;
+        }
         boolean noor = giveBook(r, p, "Noor", "puppetbook", 3);
         boolean zuri = runs >= 3 && giveBook(r, p, "Zuri", "zuribook", 4);
         if (zuri) bar(r, p, "Alguien más dejó algo para ti. Un libro firmado por Zuri.", "Someone else left something for you. A book signed by Zuri.");
@@ -494,6 +508,12 @@ public final class KernelShell {
                 boolean puppet = c.equals("puppet") && r.puppet();
                 if (!puppet) pendingDescent = -1;
                 if (puppet && pendingDescent >= 0 && ticks >= pendingDescent) { pendingDescent = -1; descend(r, p); return; }
+                if (puppet && ticks - Math.max(lastTyped, respawnTick) > r.ticks(150)) {
+                    lastTyped = ticks;
+                    say(r, p, "te oyó esperar.", "it heard you waiting.", "#aa0000");
+                    if (depth(r) >= 3) startFight(r, p); else descend(r, p);
+                    return;
+                }
                 // alive after the first trial, sleeping is consenting again: it takes you in your sleep
                 if (c.equals("puppet") && !r.puppet() && p.isSleeping() && !flag(r, "slept")) setFlag(r, "slept");
                 if (puppet) replaySouls(p, level);
@@ -528,6 +548,7 @@ public final class KernelShell {
             case FIGHT -> fightTick(r, p, level);
             case WINDOW -> {
                 if (awake) {
+                    if (++awakeTicks >= 600) { refreeze(r, p); return; }
                     fightTick(r, p, level);
                     if (phase != Phase.WINDOW) return;
                     if (phaseTicks % 100 == 0) bar(r, p, "¡Despertó! Detenlo otra vez: kill 7331", "It woke up! Stop it again: kill 7331");
@@ -547,7 +568,7 @@ public final class KernelShell {
                 }
                 if (sinceFreeze % 200 == 40) bar(r, p, "⏱ " + left + " s · set success_threshold <valor>  ·  echo <nombre> >> dataset", "⏱ " + left + " s · set success_threshold <value>  ·  echo <name> >> dataset");
                 if (sinceFreeze == 220) level.playSound(null, BlockPos.containing(giantX, giantY + 6, giantZ), UnallocatedContent.RECLAIMER_ROAR, SoundSource.HOSTILE, 3F, 0.5F);
-                if (sinceFreeze >= 300) wake(r, p);
+                if (sinceFreeze >= 300 && !autoplay()) wake(r, p);
                 if (frozenTicks >= WINDOW_TICKS) consumed(r, p, true);
             }
             case COMPLETE -> {
@@ -597,6 +618,12 @@ public final class KernelShell {
     }
 
     private static void fightTick(StoryRuntime r, ServerPlayer p, ServerLevel level) {
+        if (phase == Phase.FIGHT && phaseTicks >= 7200) {
+            out(r, p, "watchdog :: thread main stalled");
+            say(r, p, "se agotó. se quedó quieto, por ahora.", "it wore itself out. it stopped, for now.", "#ffff55");
+            stop(r, p);
+            return;
+        }
         // Falling into the void is not the end: it spits you back into its world.
         if (p.getY() < 50) {
             blackout(r, p, 0.05, 0.6, 0.6, null);

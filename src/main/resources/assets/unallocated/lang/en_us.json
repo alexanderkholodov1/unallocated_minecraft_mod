@@ -290,7 +290,7 @@
   "story.unallocated.sign.clock.0": "IT GETS DARK",
   "story.unallocated.sign.clock.1": "TOO EARLY",
   "story.unallocated.book.0": "if you found this, you got in the same way i did. i left it in the base because it's the only door that still closes. read all of it before you go down the mine. and don't trust the tab list.",
-  "story.unallocated.book.1": "there's someone standing on the hill to the north. every time you look at them through the spyglass they're closer. i stopped looking. you should too.",
+  "story.unallocated.book.1": "the first night i saw someone standing on the hill to the north, by the road. i looked through the spyglass and they were closer. when i lowered it they were gone. i didn't look again.",
   "story.unallocated.book.2": "the floor at the end of the mine gives way. down there it's this same server, only rotten. it killed me there. then it asked me if i agreed, and i was back up here.",
   "story.unallocated.book.3": "it looks like the chat gives you access to the server's internal console when you die. help, ls and cat answer. every death gets you deeper. the third time it let me stop processes. don't type too much. it listens.",
   "story.unallocated.book.4": "every error says UNALLOCATED. and reclaim, reclaim, reclaim. i looked the word up: on clusters, reclaim means taking back resources that belong to you.",
@@ -397,5 +397,7 @@
   "story.unallocated.zuribook.0": "Noor didn't make it. I got further, and I'm leaving you this in case you get there.\n\nThe third time it catches you, you can see its processes. But the moment you type the first word, it comes down. And this time it doesn't leave.",
   "story.unallocated.zuribook.1": "Always run. It is slow, but with the chat open you stand still.\n\nClimb a roof or a tree to type. It takes a while to reach you, though in the end it brings down what holds you.\n\nWhen the ground turns red, move. Threads fall from the sky.",
   "story.unallocated.zuribook.2": "Type ps and look for the process that eats everything. Its number is all you need. kill and that number stops it.\n\nIf you fall into the void it brings you back. Don't give up there.",
-  "story.unallocated.zuribook.3": "Once stopped, the watchdog wakes it now and then and you have to stop it again.\n\nKnow what you will type. The contract's value with set success_threshold, or its name into its dataset with echo.\n\nI hesitated between the two and it woke up. — Zuri"
+  "story.unallocated.zuribook.3": "Once stopped, the watchdog wakes it now and then and you have to stop it again.\n\nKnow what you will type. The contract's value with set success_threshold, or its name into its dataset with echo.\n\nI hesitated between the two and it woke up. — Zuri",
+  "intro.unallocated.returning": "You have been here before. You don't quite remember how it ended. The server does.",
+  "pause.unallocated.back_to_me": "Back to me"
 }

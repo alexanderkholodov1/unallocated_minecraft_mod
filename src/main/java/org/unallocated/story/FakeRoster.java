@@ -34,6 +34,19 @@ public final class FakeRoster {
         player.connection.send(packet);
     }
 
+    /** You, a second time: same name, another entry (the one that stayed last time). */
+    public static void echo(ServerPlayer player) {
+        String name = player.getGameProfile().name();
+        UUID echo = UUID.nameUUIDFromBytes(("Echo:" + name).getBytes(StandardCharsets.UTF_8));
+        var actions = EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER, ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED,
+            ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY, ClientboundPlayerInfoUpdatePacket.Action.UPDATE_GAME_MODE);
+        var packet = new ClientboundPlayerInfoUpdatePacket(actions, List.of());
+        var entry = new ClientboundPlayerInfoUpdatePacket.Entry(echo, new GameProfile(echo, name), true, 999,
+            GameType.SURVIVAL, null, true, 0, null);
+        ((PlayerInfoEntriesAccessor) (Object) packet).unallocated$setEntries(List.of(entry));
+        player.connection.send(packet);
+    }
+
     public static void remove(ServerPlayer player, String name) {
         player.connection.send(new ClientboundPlayerInfoRemovePacket(List.of(id(name))));
     }

@@ -29,7 +29,10 @@ def main():
     parser.add_argument('--gradle', default=os.environ.get('GRADLE', shutil.which('gradle') or 'gradle'))
     parser.add_argument('--skip-build', action='store_true', help='reuse the JAR already authored in build/libs')
     parser.add_argument('--jdk', help='use only this JDK for compiling and for the game (e.g. a Temurin 25 when another JDK crashes)')
-    parser.add_argument('--phase', default='play', choices=['play', 'idle'], help='play: autoplay every ending; idle: a player who never moves must still reach an ending')
+    parser.add_argument('--phase', default='play', choices=['play', 'idle', 'tour'],
+                        help='play: autoplay every ending; idle: a player who never moves must still reach an ending; '
+                             'tour: a real-time guided playthrough with a screenshot of every scene (see TourSmokeTest)')
+    parser.add_argument('--tour-ending', default='COMPLETE', choices=['COMPLETE', 'POISON'], help='the ending the tour types')
     args = parser.parse_args()
     if args.jdk:
         os.environ['JAVA_HOME'] = args.jdk
@@ -48,7 +51,7 @@ def main():
     receipt.parent.mkdir(parents=True, exist_ok=True)
     receipt.write_text('schemaVersion=1\ncontractVersion=1\nacceptedAt=2026-11-01T18\\:00\\:00Z\nmethod=TYPED\ntypedText=De acuerdo\n',
                        encoding='utf-8')
-    run(gradle + ['runClientSmoke', '-PsmokeApiVersion=none', f'-PcontractSmokePhase={args.phase}'])
+    run(gradle + ['runClientSmoke', '-PsmokeApiVersion=none', f'-PcontractSmokePhase={args.phase}', f'-PtourEnding={args.tour_ending}'])
     print('Screenshots:', CLIENT / 'screenshots')
 
 

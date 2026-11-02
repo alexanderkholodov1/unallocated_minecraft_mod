@@ -21,10 +21,11 @@ final class IdleSmokeTest {
         int shot = 0;
         while (System.currentTimeMillis() < deadline) {
             context.waitTicks(20);
-            if (context.computeOnClient(client -> client.gui.screen() instanceof DisconnectedScreen)) {
+            if (context.computeOnClient(client -> EndingSmoke.shown(client.gui.screen()))) {
+                context.waitTicks(40);
                 context.takeScreenshot("idle-farewell");
                 log.info("UNALLOCATED smoke: idle player reached an ending after {} s", (System.currentTimeMillis() - start) / 1000);
-                context.clickScreenButton(EndingText.RETURN_BUTTON);
+                EndingSmoke.returnToTitle(context);
                 return;
             }
             if (context.computeOnClient(client -> client.gui.screen() instanceof DeathScreen)) {

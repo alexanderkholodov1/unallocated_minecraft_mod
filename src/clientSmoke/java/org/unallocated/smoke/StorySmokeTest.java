@@ -64,7 +64,7 @@ final class StorySmokeTest {
                     return dimensions.replaceOverworldGenerator(registries, new FlatLevelSource(flat));
                 });
             }).create();
-            context.waitForScreen(DisconnectedScreen.class);
+            context.waitFor(client -> EndingSmoke.shown(client.gui.screen()), 1200);
             if (!complete.get()) throw new AssertionError("Story did not emit its expected ending");
             context.runOnClient(client -> {
                 var screen = client.gui.screen();
@@ -74,7 +74,7 @@ final class StorySmokeTest {
                 if (client.level != null || client.getSingleplayerServer() != null) throw new AssertionError("Story farewell kept world open");
             });
             context.takeScreenshot("unallocated-story-farewell-" + (run == 0 ? "a" : "b"));
-            context.clickScreenButton(EndingText.RETURN_BUTTON); context.waitForScreen(TitleScreen.class);
+            EndingSmoke.returnToTitle(context); context.waitForScreen(TitleScreen.class);
             author.set(false);
         }
         context.waitFor(client -> captures.containsAll(Set.of("example-sign", "example-end")));

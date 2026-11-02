@@ -62,7 +62,7 @@ def strict_json(content):
 
 
 # Flags the Java runtime sets itself (Puppet state, randomized arrival); stories may test them without setting them.
-RUNTIME_FLAGS = {"puppet", "arrival.explorer", "arrival.former", "arrival.invited", "suspended", "fight", "slept"}
+RUNTIME_FLAGS = {"puppet", "arrival.explorer", "arrival.former", "arrival.invited", "suspended", "fight", "slept", "returning"}
 
 
 @dataclass
