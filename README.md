@@ -14,6 +14,7 @@ A first-person horror mod for Minecraft Java 26.3 (Fabric) by NULL_Threshold Int
 | Java | **Java 25**. The official Minecraft Launcher downloads the right runtime when it starts 26.3; leave the profile's Java executable at its default. |
 | Mod file | **`unallocated-0.4.0.jar`** from the author's release. |
 | Account | The **official Minecraft Launcher** works, and so do **TLauncher** and other launchers with **offline accounts**: the mod needs no online authentication. |
+| Memory | Give Minecraft **at least 2 GB of RAM** (the official launcher's default; in TLauncher: Settings → Memory). |
 
 Minecraft is pinned to 26.3 because the bundled modules apply mixins to its internal classes; a hotfix could change those targets. The supported version will only be widened after testing.
 
