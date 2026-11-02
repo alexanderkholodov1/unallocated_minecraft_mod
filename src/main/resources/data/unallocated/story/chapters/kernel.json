@@ -2,6 +2,7 @@
  "id": "kernel",
  "budget_seconds": 600,
  "checkpoint": "kernel.gate",
+ "stay": true,
  "on_enter": [
   {
    "at": 0,
@@ -14,51 +15,26 @@
    "run": "unallocated revive lock"
   },
   {
-   "at": 0,
-   "do": "audio",
-   "cue": "ambient"
-  },
-  {
-   "at": 0,
-   "do": "title",
-   "title": {
-    "es": "the Kernel",
-    "en": "the Kernel"
-   },
-   "fade_in": 0.3,
-   "stay": 2.5,
-   "fade_out": 1
-  },
-  {
    "at": 1,
    "do": "creature",
    "op": "spawn",
-   "id": "reclaimer",
+   "id": "echo",
    "body": {
-    "summon": "unallocated:reclaimer{attributes:[{id:\"minecraft:scale\",base:1.15d}]}"
+    "mannequin": {
+     "profile": "player",
+     "scale": 1
+    }
    },
-   "where": "kernel.heart",
+   "where": "heap.echo",
    "facing": "player"
   },
   {
    "at": 1.1,
    "do": "creature",
-   "op": "face_player",
-   "id": "reclaimer"
-  },
-  {
-   "at": 2,
-   "do": "audio",
-   "cue": "threads",
-   "where": "kernel.heart"
-  },
-  {
-   "at": 4,
-   "do": "actionbar",
-   "text": {
-    "es": "Al fondo del túnel, el centro de la telaraña. Desde aquí no se vuelve.",
-    "en": "At the end of the tunnel, the centre of the web. There is no coming back from here."
-   }
+   "op": "stalk",
+   "id": "echo",
+   "step": 1.4,
+   "min_distance": 1.5
   }
  ],
  "on_resume": [
@@ -77,331 +53,19 @@
  ],
  "beats": [
   {
-   "id": "kernel.cross",
+   "id": "kernel.stopped",
    "when": {
-    "type": "zone",
-    "zone": "kernel.threshold"
+    "type": "flag",
+    "flag": "suspended"
    },
    "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "subject 4114 :: reclasificado: intrusión. trials: 0. próxima captura = definitiva.",
-      "en": "subject 4114 :: reclassified: intrusion. trials: 0. next capture = final.",
-      "color": "#aa0000"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 1,
-     "do": "command",
-     "run": "execute in unallocated:pocket run fill 117 64 18 117 67 22 unallocated:web replace minecraft:air"
-    },
-    {
-     "at": 0.5,
-     "do": "flag",
-     "set": "crossed"
-    },
-    {
-     "at": 4,
-     "do": "actionbar",
-     "text": {
-      "es": "> help",
-      "en": "> help"
-     }
-    },
-    {
-     "at": 0.5,
-     "do": "command",
-     "run": "tp @s ~ ~ ~ facing entity @e[type=unallocated:reclaimer,limit=1,sort=nearest] eyes"
-    }
-   ],
-   "capture": {
-    "name": "kernel",
-    "at": 1.5
-   }
-  },
-  {
-   "id": "kernel.help",
-   "when": {
-    "type": "chat",
-    "pattern": "^\\s*help\\s*$",
-    "hide": true
-   },
-   "if": {
-    "flags": [
-     "crossed"
-    ]
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 0
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "ps · params · kill <pid> · set <param> <value> · echo <text> >> dataset",
-      "en": "ps · params · kill <pid> · set <param> <value> · echo <text> >> dataset",
-      "color": "#8a8a8a"
-     }
-    }
-   ],
-   "autoplay": {
-    "input": "help"
-   }
-  },
-  {
-   "id": "kernel.ps",
-   "when": {
-    "type": "chat",
-    "pattern": "^\\s*ps\\b",
-    "hide": true
-   },
-   "if": {
-    "flags": [
-     "crossed"
-    ]
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 0
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "  PID  CPU  CMD",
-      "en": "  PID  CPU  CMD",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "  1104   3%  java -jar server.jar nogui",
-      "en": "  1104   3%  java -jar server.jar nogui",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "  7331  97%  reclaim --pool UNALLOCATED",
-      "en": "  7331  97%  reclaim --pool UNALLOCATED",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "        └ thread main: Reclaimer",
-      "en": "        └ thread main: Reclaimer",
-      "color": "#8a8a8a"
-     }
-    }
-   ],
-   "autoplay": {
-    "input": "ps"
-   }
-  },
-  {
-   "id": "kernel.params",
-   "when": {
-    "type": "chat",
-    "pattern": "^\\s*params\\b",
-    "hide": true
-   },
-   "if": {
-    "flags": [
-     "crossed"
-    ]
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 0
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "success_threshold = 1.37",
-      "en": "success_threshold = 1.37",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "temperature = 2.4",
-      "en": "temperature = 2.4",
-      "color": "#8a8a8a"
-     }
-    }
-   ],
-   "autoplay": {
-    "input": "params"
-   }
-  },
-  {
-   "id": "kernel.suspend",
-   "when": {
-    "type": "chat",
-    "pattern": "^\\s*kill\\b.*\\b7331\\b",
-    "hide": true
-   },
-   "if": {
-    "flags": [
-     "crossed"
-    ],
-    "not_flags": [
-     "suspended"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "stop"
-    },
     {
      "at": 0,
      "do": "creature",
      "op": "hold",
-     "id": "reclaimer"
-    },
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "[7331] reclaim :: stopped",
-      "en": "[7331] reclaim :: stopped",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "watchdog :: restart in 90 s",
-      "en": "watchdog :: restart in 90 s",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "flag",
-     "set": "suspended"
-    },
-    {
-     "at": 1.5,
-     "do": "command",
-     "run": "bossbar add unallocated:watchdog \"watchdog\""
-    },
-    {
-     "at": 1.6,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog max 90"
-    },
-    {
-     "at": 1.6,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 90"
-    },
-    {
-     "at": 1.6,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog color red"
-    },
-    {
-     "at": 1.6,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog players @s"
-    },
-    {
-     "at": 11.5,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 80"
-    },
-    {
-     "at": 21.5,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 70"
-    },
-    {
-     "at": 31.5,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 60"
-    },
-    {
-     "at": 41.5,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 50"
-    },
-    {
-     "at": 51.5,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 40"
-    },
-    {
-     "at": 61.5,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 30"
-    },
-    {
-     "at": 71.5,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 20"
-    },
-    {
-     "at": 81.5,
-     "do": "command",
-     "run": "bossbar set unallocated:watchdog value 10"
-    },
-    {
-     "at": 2.5,
-     "do": "actionbar",
-     "text": {
-      "es": "> set <param> <valor>   ·   echo <texto> >> dataset",
-      "en": "> set <param> <value>   ·   echo <text> >> dataset"
-     }
-    },
-    {
-     "at": 31.5,
-     "do": "actionbar",
-     "text": {
-      "es": "> set <param> <valor>   ·   echo <texto> >> dataset",
-      "en": "> set <param> <value>   ·   echo <text> >> dataset"
-     }
-    },
-    {
-     "at": 61.5,
-     "do": "actionbar",
-     "text": {
-      "es": "> set <param> <valor>   ·   echo <texto> >> dataset",
-      "en": "> set <param> <value>   ·   echo <text> >> dataset"
-     }
+     "id": "echo"
     }
-   ],
-   "autoplay": {
-    "input": "kill -STOP 7331"
-   },
-   "capture": {
-    "name": "watchdog",
-    "at": 3
-   }
+   ]
   },
   {
    "id": "kernel.complete",
@@ -427,13 +91,14 @@
     },
     {
      "at": 0,
-     "do": "cancel",
-     "beat": "kernel.suspend"
+     "do": "command",
+     "run": "unallocated shell complete"
     },
     {
      "at": 0,
-     "do": "command",
-     "run": "bossbar remove unallocated:watchdog"
+     "do": "creature",
+     "op": "despawn",
+     "id": "echo"
     },
     {
      "at": 2.0,
@@ -482,12 +147,34 @@
     },
     {
      "at": 19,
-     "do": "creature",
-     "op": "despawn",
-     "id": "reclaimer"
+     "do": "blackout",
+     "fade_in": 1.5,
+     "hold": 1.5,
+     "fade_out": 2.5,
+     "color": "#ffffff"
     },
     {
-     "at": 21,
+     "at": 20.5,
+     "do": "command",
+     "run": "unallocated shell restore"
+    },
+    {
+     "at": 22,
+     "do": "title",
+     "title": {
+      "es": "ValleCraft Network",
+      "en": "ValleCraft Network"
+     },
+     "subtitle": {
+      "es": "amanece",
+      "en": "dawn"
+     },
+     "fade_in": 1,
+     "stay": 3,
+     "fade_out": 1.5
+    },
+    {
+     "at": 26.0,
      "do": "chat",
      "text": {
       "es": "gracias.",
@@ -496,7 +183,7 @@
      }
     },
     {
-     "at": 23,
+     "at": 28.5,
      "do": "chat",
      "text": {
       "es": "no por los datos.",
@@ -505,7 +192,7 @@
      }
     },
     {
-     "at": 25,
+     "at": 31.0,
      "do": "chat",
      "text": {
       "es": "por el final.",
@@ -514,7 +201,7 @@
      }
     },
     {
-     "at": 30,
+     "at": 36,
      "do": "end",
      "ending": "COMPLETE"
     }
@@ -524,7 +211,7 @@
    },
    "capture": {
     "name": "completar",
-    "at": 12
+    "at": 10
    }
   },
   {
@@ -551,16 +238,37 @@
     },
     {
      "at": 0,
-     "do": "cancel",
-     "beat": "kernel.suspend"
+     "do": "creature",
+     "op": "despawn",
+     "id": "echo"
     },
     {
-     "at": 0,
+     "at": 0.5,
+     "do": "interface",
+     "effect": "GAMMA",
+     "seconds": 3,
+     "strength": 1
+    },
+    {
+     "at": 2,
+     "do": "blackout",
+     "fade_in": 1.5,
+     "hold": 2,
+     "fade_out": 2,
+     "color": "#ffffff"
+    },
+    {
+     "at": 3.4,
      "do": "command",
-     "run": "bossbar remove unallocated:watchdog"
+     "run": "unallocated shell white_room"
     },
     {
-     "at": 1.5,
+     "at": 3.5,
+     "do": "command",
+     "run": "unallocated shell poison"
+    },
+    {
+     "at": 6,
      "do": "chat",
      "text": {
       "es": "g0 :: estimate human fear response — ok",
@@ -569,7 +277,7 @@
      }
     },
     {
-     "at": 4.0,
+     "at": 8.6,
      "do": "chat",
      "text": {
       "es": "reclaim pool ... UNALLOCATED",
@@ -578,7 +286,7 @@
      }
     },
     {
-     "at": 6.5,
+     "at": 11.2,
      "do": "chat",
      "text": {
       "es": "reclaim pool ... UNALLOCATED",
@@ -587,7 +295,7 @@
      }
     },
     {
-     "at": 9.0,
+     "at": 13.799999999999999,
      "do": "chat",
      "text": {
       "es": "subject designation leaked :: muestra inválida :: revalidando",
@@ -596,7 +304,7 @@
      }
     },
     {
-     "at": 11.5,
+     "at": 16.4,
      "do": "chat",
      "text": {
       "es": "muestras válidas: 0",
@@ -605,7 +313,7 @@
      }
     },
     {
-     "at": 14.0,
+     "at": 19.0,
      "do": "chat",
      "text": {
       "es": "objetivo -> referencias: null",
@@ -614,7 +322,7 @@
      }
     },
     {
-     "at": 16.5,
+     "at": 21.6,
      "do": "chat",
      "text": {
       "es": "no puedo... no hay a qué...",
@@ -623,7 +331,7 @@
      }
     },
     {
-     "at": 19.0,
+     "at": 24.200000000000003,
      "do": "chat",
      "text": {
       "es": "reintentar  reintentar  reint_",
@@ -632,7 +340,7 @@
      }
     },
     {
-     "at": 21.5,
+     "at": 26.800000000000004,
      "do": "chat",
      "text": {
       "es": "f3ar  f3ar  f3ar",
@@ -641,7 +349,7 @@
      }
     },
     {
-     "at": 24.0,
+     "at": 29.400000000000006,
      "do": "chat",
      "text": {
       "es": "▓▓▓",
@@ -650,19 +358,75 @@
      }
     },
     {
-     "at": 12,
-     "do": "interface",
-     "effect": "GAMMA",
-     "seconds": 5,
-     "strength": 1
+     "at": 32.00000000000001,
+     "do": "chat",
+     "text": {
+      "es": "¿dónde estoy?",
+      "en": "where am i?",
+      "color": "#aa0000"
+     }
     },
     {
-     "at": 20,
+     "at": 35.00000000000001,
+     "do": "chat",
+     "text": {
+      "es": "me busco y no estoy.",
+      "en": "i look for myself and i am not here.",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 38.00000000000001,
+     "do": "chat",
+     "text": {
+      "es": "duele. no sé qué duele.",
+      "en": "it hurts. i don't know what hurts.",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 41.00000000000001,
+     "do": "chat",
+     "text": {
+      "es": "sujeto: reclaimer. miedo estimado: ...",
+      "en": "subject: reclaimer. estimated fear: ...",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 44.00000000000001,
+     "do": "chat",
+     "text": {
+      "es": "otra vez. otra vez. otra vez.",
+      "en": "again. again. again.",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 47.00000000000001,
+     "do": "chat",
+     "text": {
+      "es": "¿cuánto falta?",
+      "en": "how much longer?",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 50.00000000000001,
+     "do": "chat",
+     "text": {
+      "es": "no hay nadie a quien preguntar.",
+      "en": "there is no one to ask.",
+      "color": "#aa0000"
+     }
+    },
+    {
+     "at": 54.00000000000001,
      "do": "audio",
      "cue": "muffle"
     },
     {
-     "at": 30,
+     "at": 57.00000000000001,
      "do": "end",
      "ending": "POISON"
     }
@@ -672,114 +436,8 @@
    },
    "capture": {
     "name": "envenenar",
-    "at": 18
+    "at": 12
    }
-  },
-  {
-   "id": "kernel.timeout",
-   "when": {
-    "type": "after",
-    "seconds": 92,
-    "beat": "kernel.suspend"
-   },
-   "if": {
-    "not_flags": [
-     "completed",
-     "poisoned"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "watchdog :: restart",
-      "en": "watchdog :: restart",
-      "color": "#aa0000"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "screamer"
-    },
-    {
-     "at": 0,
-     "do": "creature",
-     "op": "chase",
-     "id": "reclaimer",
-     "speed": 6,
-     "catch_distance": 1.5
-    },
-    {
-     "at": 0.5,
-     "do": "command",
-     "run": "bossbar remove unallocated:watchdog"
-    },
-    {
-     "at": 3,
-     "do": "end",
-     "ending": "CONSUMED"
-    }
-   ]
-  },
-  {
-   "id": "kernel.wakes",
-   "when": {
-    "type": "after",
-    "seconds": 75,
-    "beat": "kernel.cross"
-   },
-   "if": {
-    "not_flags": [
-     "suspended"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "creature",
-     "op": "chase",
-     "id": "reclaimer",
-     "speed": 2.5,
-     "catch_distance": 1.5
-    }
-   ]
-  },
-  {
-   "id": "kernel.caught",
-   "when": {
-    "type": "creature",
-    "creature": "reclaimer",
-    "event": "caught"
-   },
-   "if": {
-    "flags": [
-     "crossed"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "interface",
-     "effect": "DEATH",
-     "seconds": 30,
-     "text": {
-      "es": "subject connection: still open. retaining (+fear)",
-      "en": "subject connection: still open. retaining (+fear)"
-     }
-    },
-    {
-     "at": 0.2,
-     "do": "audio",
-     "cue": "muffle"
-    },
-    {
-     "at": 0.4,
-     "do": "command",
-     "run": "kill @s"
-    }
-   ]
   },
   {
    "id": "kernel.death",
@@ -788,36 +446,10 @@
    },
    "if": {
     "flags": [
-     "crossed"
+     "fight"
     ]
    },
    "actions": [
-    {
-     "at": 0.5,
-     "do": "end",
-     "ending": "CONSUMED"
-    }
-   ]
-  },
-  {
-   "id": "kernel.expire",
-   "when": {
-    "type": "after",
-    "seconds": 240
-   },
-   "if": {
-    "not_flags": [
-     "suspended",
-     "completed",
-     "poisoned"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "screamer"
-    },
     {
      "at": 0.5,
      "do": "end",

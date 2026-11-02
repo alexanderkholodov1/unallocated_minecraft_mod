@@ -62,7 +62,7 @@ def strict_json(content):
 
 
 # Flags the Java runtime sets itself (Puppet state, randomized arrival); stories may test them without setting them.
-RUNTIME_FLAGS = {"puppet", "arrival.explorer", "arrival.former", "arrival.invited"}
+RUNTIME_FLAGS = {"puppet", "arrival.explorer", "arrival.former", "arrival.invited", "suspended", "fight"}
 
 
 @dataclass
@@ -1196,7 +1196,7 @@ class Validator:
             self.add_finding(file_rel, "", "error", "bad-value", "Chapter file must contain a JSON object")
             return
 
-        allowed = {"id", "budget_seconds", "checkpoint", "respawn", "on_enter", "on_resume", "escape", "beats"}
+        allowed = {"id", "budget_seconds", "checkpoint", "respawn", "stay", "on_enter", "on_resume", "escape", "beats"}
         for k in data:
             if k not in allowed:
                 self.add_finding(file_rel, f"/{k}", "error", "unknown-key", f"Unknown key '{k}' in chapter")

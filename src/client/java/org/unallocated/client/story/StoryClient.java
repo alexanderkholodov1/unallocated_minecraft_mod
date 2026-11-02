@@ -85,6 +85,10 @@ public final class StoryClient {
                 boolean accepted = allowed && InterfaceEffects.trigger(request);
                 org.unallocated.UnallocatedMod.LOGGER.info("UNALLOCATED story action beat={} do=interface result={}", string(data, "beat", "interface"), accepted ? "ok" : "refused");
             }
+            case "story.scream" -> { // the Reclaimer closes your console in your face
+                if (client.gui.screen() instanceof net.minecraft.client.gui.screens.ChatScreen) client.gui.setScreen(null);
+                blackoutColor = 0x400000; fadeIn = .02; hold = .15; fadeOut = .35; blackoutStart = System.nanoTime();
+            }
             case "story.ending_text" -> org.unallocated.client.ending.EndingClient.storyEnding(envelope);
             case "story.puppet" -> org.unallocated.client.creature.PuppetClient.set(payload.args().getBooleanOr("on", false), payload.args().getBooleanOr("locked", false));
             default -> { }

@@ -39,25 +39,6 @@
     "es": "Es el mismo servidor. Pero no es el mismo.",
     "en": "It is the same server. But it is not the same."
    }
-  },
-  {
-   "at": 2,
-   "do": "creature",
-   "op": "spawn",
-   "id": "reclaimer",
-   "body": {
-    "summon": "unallocated:reclaimer"
-   },
-   "where": "heap.spider",
-   "facing": "player"
-  },
-  {
-   "at": 2.1,
-   "do": "creature",
-   "op": "stalk",
-   "id": "reclaimer",
-   "step": 1.2,
-   "min_distance": 8
   }
  ],
  "on_resume": [
@@ -70,12 +51,34 @@
  "escape": [
   {
    "at": 0,
+   "do": "blackout",
+   "fade_in": 0.05,
+   "hold": 0.35,
+   "fade_out": 0.05
+  },
+  {
+   "at": 0.05,
    "do": "counter",
    "id": "trial",
    "add": 1
   },
   {
-   "at": 0,
+   "at": 0.3,
+   "do": "command",
+   "run": "execute at @s anchored eyes run summon unallocated:reclaimer ^ ^-1.9 ^1.3 {NoAI:1b,Invulnerable:1b,Tags:[\"unallocated.scream\"]}"
+  },
+  {
+   "at": 0.35,
+   "do": "command",
+   "run": "execute as @e[tag=unallocated.scream] at @s run tp @s ~ ~ ~ facing entity @p eyes"
+  },
+  {
+   "at": 0.4,
+   "do": "audio",
+   "cue": "screamer"
+  },
+  {
+   "at": 0.4,
    "do": "interface",
    "effect": "DEATH",
    "seconds": 30,
@@ -85,9 +88,14 @@
    }
   },
   {
-   "at": 0.4,
+   "at": 1.0,
    "do": "command",
    "run": "kill @s"
+  },
+  {
+   "at": 1.3,
+   "do": "command",
+   "run": "kill @e[tag=unallocated.scream]"
   }
  ],
  "beats": [
@@ -104,71 +112,52 @@
      "where": "heap.spider"
     },
     {
-     "at": 6,
+     "at": 9,
      "do": "actionbar",
      "text": {
-      "es": "Algo grande está quieto en el camino. Se mueve cuando no lo miras.",
-      "en": "Something big stands still on the path. It moves when you are not looking."
+      "es": "Algo respira detrás de ti. No te des la vuelta.",
+      "en": "Something is breathing behind you. Don't turn around."
      }
     }
-   ],
-   "capture": {
-    "name": "heap",
-    "at": 6
-   }
+   ]
   },
   {
-   "id": "heap.hunt",
+   "id": "heap.take",
    "when": {
     "type": "after",
-    "seconds": 16
+    "seconds": 20
    },
    "actions": [
     {
      "at": 0,
-     "do": "command",
-     "run": "tp @s ~ ~ ~ facing entity @e[type=unallocated:reclaimer,limit=1,sort=nearest] eyes"
+     "do": "blackout",
+     "fade_in": 0.05,
+     "hold": 0.35,
+     "fade_out": 0.05
     },
     {
-     "at": 0.1,
-     "do": "creature",
-     "op": "chase",
-     "id": "reclaimer",
-     "speed": 5.5,
-     "catch_distance": 1.5
-    }
-   ],
-   "capture": {
-    "name": "cazar",
-    "at": 0.6
-   }
-  },
-  {
-   "id": "heap.caught",
-   "when": {
-    "type": "creature",
-    "creature": "reclaimer",
-    "event": "caught"
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 2
-   },
-   "actions": [
-    {
-     "at": 0,
+     "at": 0.05,
      "do": "counter",
      "id": "trial",
      "add": 1
     },
     {
-     "at": 0,
-     "do": "creature",
-     "op": "hold",
-     "id": "reclaimer"
+     "at": 0.3,
+     "do": "command",
+     "run": "execute at @s anchored eyes run summon unallocated:reclaimer ^ ^-1.9 ^1.3 {NoAI:1b,Invulnerable:1b,Tags:[\"unallocated.scream\"]}"
     },
     {
-     "at": 0.1,
+     "at": 0.35,
+     "do": "command",
+     "run": "execute as @e[tag=unallocated.scream] at @s run tp @s ~ ~ ~ facing entity @p eyes"
+    },
+    {
+     "at": 0.4,
+     "do": "audio",
+     "cue": "screamer"
+    },
+    {
+     "at": 0.4,
      "do": "interface",
      "effect": "DEATH",
      "seconds": 30,
@@ -178,19 +167,16 @@
      }
     },
     {
-     "at": 0.2,
-     "do": "audio",
-     "cue": "screamer"
-    },
-    {
-     "at": 0.5,
+     "at": 1.0,
      "do": "command",
      "run": "kill @s"
+    },
+    {
+     "at": 1.3,
+     "do": "command",
+     "run": "kill @e[tag=unallocated.scream]"
     }
-   ],
-   "autoplay": {
-    "wait_seconds": 20
-   }
+   ]
   },
   {
    "id": "heap.to_puppet",
@@ -204,141 +190,28 @@
    },
    "actions": [
     {
-     "at": 0,
-     "do": "creature",
-     "op": "despawn",
-     "id": "reclaimer"
-    },
-    {
      "at": 0.2,
      "do": "next_chapter"
     }
-   ],
-   "autoplay": {
-    "wait_seconds": 200
-   }
+   ]
   },
   {
-   "id": "heap.alive_twice",
+   "id": "heap.alive",
    "when": {
     "type": "respawn"
    },
    "if": {
-    "flags": [
-     "alive_once"
-    ],
     "not_flags": [
      "puppet"
     ]
    },
    "actions": [
     {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "subject connection: still open. retaining (+fear)",
-      "en": "subject connection: still open. retaining (+fear)",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0.5,
-     "do": "actionbar",
-     "text": {
-      "es": "No te deja ir. Te quedas como Puppet.",
-      "en": "It does not let you go. You stay as a Puppet."
-     }
-    },
-    {
-     "at": 0,
-     "do": "creature",
-     "op": "despawn",
-     "id": "reclaimer"
-    },
-    {
-     "at": 1.5,
+     "at": 0.2,
      "do": "next_chapter"
     }
    ]
-  },
-  {
-   "id": "heap.alive_again",
-   "when": {
-    "type": "respawn"
-   },
-   "if": {
-    "not_flags": [
-     "puppet",
-     "alive_once"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "flag",
-     "set": "alive_once"
-    },
-    {
-     "at": 0.3,
-     "do": "title",
-     "title": {
-      "es": "Trial {counter:trial}",
-      "en": "Trial {counter:trial}"
-     },
-     "fade_in": 0.3,
-     "stay": 2,
-     "fade_out": 1
-    },
-    {
-     "at": 1,
-     "do": "chat",
-     "text": {
-      "es": "subject connection: still open.",
-      "en": "subject connection: still open.",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 2,
-     "do": "actionbar",
-     "text": {
-      "es": "Al morir, elige «Todavía no» para quedarte como Puppet: sólo así verás sus hilos.",
-      "en": "When you die, choose \"Not yet\" to stay as a Puppet: only then will you see its threads."
-     }
-    },
-    {
-     "at": 4,
-     "do": "creature",
-     "op": "spawn",
-     "id": "reclaimer",
-     "body": {
-      "summon": "unallocated:reclaimer"
-     },
-     "where": "heap.spider",
-     "facing": "player"
-    },
-    {
-     "at": 4.1,
-     "do": "creature",
-     "op": "stalk",
-     "id": "reclaimer",
-     "step": 1.2,
-     "min_distance": 8
-    },
-    {
-     "at": 10,
-     "do": "command",
-     "run": "tp @s ~ ~ ~ facing entity @e[type=unallocated:reclaimer,limit=1,sort=nearest] eyes"
-    },
-    {
-     "at": 10.1,
-     "do": "creature",
-     "op": "chase",
-     "id": "reclaimer",
-     "speed": 6,
-     "catch_distance": 1.5
-    }
-   ]
   }
- ]
+ ],
+ "respawn": "mine.entrance"
 }

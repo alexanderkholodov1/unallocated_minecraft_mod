@@ -420,8 +420,8 @@
      "at": 5,
      "do": "actionbar",
      "text": {
-      "es": "Sigue el camino de antorchas hacia la base.",
-      "en": "Follow the torch path to the base."
+      "es": "La base compartida queda al final del camino, hacia el este, pasando la casa de piedra de Zuri.",
+      "en": "The shared base is at the east end of the road, past Zuri's stone house."
      }
     }
    ],
@@ -589,8 +589,8 @@
      "at": 0.5,
      "do": "actionbar",
      "text": {
-      "es": "La base de alguien. Letreros, un cofre. Alguien investigaba algo aquí.",
-      "en": "Someone's base. Signs, a chest. Someone was investigating something here."
+      "es": "Los griefers pasaron por aquí cuando ya no quedaba nadie. Solo hay un cofre, y parece más nuevo que lo demás.",
+      "en": "Griefers got here after everyone left. There is only one chest, and it looks newer than everything else."
      }
     },
     {
@@ -642,8 +642,8 @@
      "at": 0,
      "do": "actionbar",
      "text": {
-      "es": "La mina. Un letrero decía que da vueltas.",
-      "en": "The mine. A sign said it loops."
+      "es": "La mina de Noor. Al fondo, el piso suena hueco.",
+      "en": "Noor's mine. At the far end, the floor sounds hollow."
      }
     }
    ],
@@ -652,73 +652,10 @@
    }
   },
   {
-   "id": "server.loop1",
-   "when": {
-    "type": "zone",
-    "zone": "presa.mine_end"
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "command",
-     "run": "tp @s ~-14 ~ ~"
-    },
-    {
-     "at": 0.5,
-     "do": "flag",
-     "set": "loop1"
-    }
-   ],
-   "capture": {
-    "name": "mina",
-    "at": 0.6
-   },
-   "autoplay": {
-    "wait_seconds": 120
-   }
-  },
-  {
-   "id": "server.loop2",
-   "when": {
-    "type": "zone",
-    "zone": "presa.mine_end"
-   },
-   "if": {
-    "flags": [
-     "loop1"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "command",
-     "run": "tp @s ~-14 ~ ~"
-    },
-    {
-     "at": 0.5,
-     "do": "flag",
-     "set": "loop2"
-    },
-    {
-     "at": 1,
-     "do": "actionbar",
-     "text": {
-      "es": "Otra vez el mismo tramo.",
-      "en": "The same stretch again."
-     }
-    }
-   ]
-  },
-  {
    "id": "server.fall",
    "when": {
     "type": "zone",
     "zone": "presa.mine_end"
-   },
-   "if": {
-    "flags": [
-     "loop2"
-    ]
    },
    "actions": [
     {
@@ -791,8 +728,8 @@
      "at": 0,
      "do": "actionbar",
      "text": {
-      "es": "Sigue el camino de antorchas hasta la base, al este.",
-      "en": "Follow the torch path east to the base."
+      "es": "Sigue el camino hacia el este, pasando la casa de piedra. La casa de madera con chimenea es la base.",
+      "en": "Keep east along the road, past the stone house. The wooden house with the chimney is the base."
      }
     }
    ]
@@ -805,7 +742,7 @@
    },
    "if": {
     "not_beats": [
-     "server.loop1"
+     "server.fall"
     ]
    },
    "actions": [

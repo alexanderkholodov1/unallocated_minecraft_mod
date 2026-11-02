@@ -69,6 +69,28 @@ public final class ThreadEntity extends Mob {
         super.tick();
         setYRot(0F); setYBodyRot(0F); setYHeadRot(0F); setXRot(0F);
         setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
+        if (level() instanceof ServerLevel server && tickCount % 4 == 0 && --crossCooldown <= 0) sense(server);
+    }
+
+    private int crossCooldown;
+
+    /** A Puppet passing through a thread tugs it: the pull runs up into the sky, where the Reclaimer listens. */
+    private void sense(ServerLevel server) {
+        Vector3fc span = span();
+        var half = new net.minecraft.world.phys.Vec3(span.x() / 2, span.y() / 2, span.z() / 2);
+        var a = position().subtract(half); var b = position().add(half);
+        for (ServerPlayer player : server.players()) {
+            if (player.distanceToSqr(this) > 40 * 40 || !StoryRuntime.get(server.getServer()).puppet()) continue;
+            var body = player.position().add(0, 0.9, 0);
+            var ab = b.subtract(a); double t = Math.clamp(body.subtract(a).dot(ab) / Math.max(1e-6, ab.lengthSqr()), 0, 1);
+            if (a.add(ab.scale(t)).distanceTo(body) > 0.9) continue;
+            crossCooldown = 15;
+            server.playSound(null, blockPosition(), UnallocatedContent.THREAD_VIBRATE, SoundSource.HOSTILE, 1.6F, 0.6F);
+            server.playSound(null, player.blockPosition().above(12), UnallocatedContent.THREAD_VIBRATE, SoundSource.HOSTILE, 1.2F, 1.5F);
+            for (int y = 0; y < 30; y += 2) server.sendParticles(new DustParticleOptions(0x8A1020, 0.9F), getX(), getY() + y, getZ(), 1, 0.05, 0.4, 0.05, 0.0);
+            org.unallocated.story.KernelShell.noise(StoryRuntime.get(server.getServer()), player, 1);
+            return;
+        }
     }
 
     @Override
@@ -99,6 +121,7 @@ public final class ThreadEntity extends Mob {
         level.playSound(null, blockPosition(), UnallocatedContent.THREAD_SNAP, SoundSource.BLOCKS, 1.2F, 0.9F + random.nextFloat() * 0.2F);
         level.sendParticles(new DustParticleOptions(0x8A1020, 1.0F), getX(), getY() + 0.3, getZ(), 24, 0.4, 0.2, 0.4, 0.0);
         StoryRuntime.signal(player, "break", "unallocated:thread", blockPosition());
+        org.unallocated.story.KernelShell.noise(StoryRuntime.get(level.getServer()), player, 2);
         discard();
     }
 }
