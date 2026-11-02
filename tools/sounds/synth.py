@@ -9,6 +9,7 @@ Writes 44.1 kHz WAVs to a temp dir, converts them to OGG Vorbis with ffmpeg and
 places them in src/main/resources/assets/unallocated/sounds/<path>.ogg
 """
 import os
+import shutil
 import subprocess
 import tempfile
 import zlib
@@ -675,12 +676,17 @@ def main():
             # Encode, then decode and verify the Vorbis overshoot stays under
             # -1 dBFS; if not, scale down and re-encode.
             for _ in range(4):
-                wavfile.write(wav, SR, to_int16(x))
-                subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav),
-                                "-c:a", "libvorbis", "-q:a", "5", str(dst)], check=True)
-                raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(dst), "-f", "f32le", "-"],
-                                     capture_output=True, check=True).stdout
-                pk = np.max(np.abs(np.frombuffer(raw, np.float32)))
+                if shutil.which("ffmpeg"):
+                    wavfile.write(wav, SR, to_int16(x))
+                    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav),
+                                    "-c:a", "libvorbis", "-q:a", "5", str(dst)], check=True)
+                    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(dst), "-f", "f32le", "-"],
+                                         capture_output=True, check=True).stdout
+                    pk = np.max(np.abs(np.frombuffer(raw, np.float32)))
+                else:  # no ffmpeg: libsndfile (python-soundfile) encodes and decodes Vorbis as well
+                    import soundfile
+                    soundfile.write(str(dst), x.astype(np.float32), SR, format="OGG", subtype="VORBIS")
+                    pk = np.max(np.abs(soundfile.read(str(dst), dtype="float32")[0]))
                 if pk <= 10 ** (-0.95 / 20):
                     break
                 x = x * 10 ** (-1.0 / 20) / pk
