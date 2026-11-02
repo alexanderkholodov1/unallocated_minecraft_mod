@@ -332,7 +332,7 @@ for dx, dz in ((10, 0), (0, 10), (7, 7), (7, -7)):
 story['build']['run'] = run
 story['autoplay'] = {'time_scale': 0.1, 'runs': [
     {'ending': e, 'skip': ['server.rewrite', 'server.fury', 'puppet.fury', 'heap.alive_again', 'puppet.revived', 'puppet.caught',
-                           'puppet.blocked', 'puppet.alive_block', 'kernel.death', 'kernel.caught'] + extra}
+                           'puppet.blocked', 'puppet.alive_block', 'puppet.again', 'kernel.death', 'kernel.caught'] + extra}
     for e, extra in (('COMPLETE', ['kernel.poison', 'kernel.expire']), ('POISON', ['kernel.complete', 'kernel.expire']),
                      ('CONSUMED', ['kernel.complete', 'kernel.poison']))]}
 
