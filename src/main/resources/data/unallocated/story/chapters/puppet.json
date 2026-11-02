@@ -72,26 +72,124 @@
      }
     },
     {
-     "at": 4,
+     "at": 4.2,
      "do": "creature",
      "op": "spawn",
-     "id": "echo",
+     "id": "soul1",
      "body": {
       "mannequin": {
        "profile": "player",
+       "texture": "unallocated:textures/entity/soul/soul_1.png",
        "scale": 1
       }
      },
-     "where": "heap.echo",
+     "where": {
+      "anchor": "heap.arrival",
+      "offset": [
+       9,
+       0,
+       -7
+      ]
+     },
      "facing": "player"
     },
     {
-     "at": 4.1,
+     "at": 4.25,
      "do": "creature",
      "op": "stalk",
-     "id": "echo",
-     "step": 1,
-     "min_distance": 5
+     "id": "soul1",
+     "step": 0.8,
+     "min_distance": 7
+    },
+    {
+     "at": 4.4,
+     "do": "creature",
+     "op": "spawn",
+     "id": "soul2",
+     "body": {
+      "mannequin": {
+       "profile": "player",
+       "texture": "unallocated:textures/entity/soul/soul_2.png",
+       "scale": 1
+      }
+     },
+     "where": {
+      "anchor": "heap.arrival",
+      "offset": [
+       -7,
+       0,
+       9
+      ]
+     },
+     "facing": "player"
+    },
+    {
+     "at": 4.45,
+     "do": "creature",
+     "op": "stalk",
+     "id": "soul2",
+     "step": 0.8,
+     "min_distance": 8
+    },
+    {
+     "at": 4.6,
+     "do": "creature",
+     "op": "spawn",
+     "id": "soul3",
+     "body": {
+      "mannequin": {
+       "profile": "player",
+       "texture": "unallocated:textures/entity/soul/soul_3.png",
+       "scale": 1
+      }
+     },
+     "where": {
+      "anchor": "heap.arrival",
+      "offset": [
+       14,
+       0,
+       8
+      ]
+     },
+     "facing": "player"
+    },
+    {
+     "at": 4.6499999999999995,
+     "do": "creature",
+     "op": "stalk",
+     "id": "soul3",
+     "step": 0.8,
+     "min_distance": 9
+    },
+    {
+     "at": 4.8,
+     "do": "creature",
+     "op": "spawn",
+     "id": "soul4",
+     "body": {
+      "mannequin": {
+       "profile": "player",
+       "texture": "unallocated:textures/entity/soul/soul_4.png",
+       "scale": 1
+      }
+     },
+     "where": {
+      "anchor": "heap.arrival",
+      "offset": [
+       -9,
+       0,
+       -6
+      ]
+     },
+     "facing": "player"
+    },
+    {
+     "at": 4.85,
+     "do": "creature",
+     "op": "stalk",
+     "id": "soul4",
+     "step": 0.8,
+     "min_distance": 10
     }
    ]
   },
