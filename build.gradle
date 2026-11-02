@@ -170,7 +170,9 @@ tasks.register('runClientSmoke', net.fabricmc.loom.task.prod.ClientProductionRun
     mods.setFrom(tasks.named('clientSmokeJar'))
     runDir = clientSmokeDir
     useXVFB = System.getProperty('os.name').toLowerCase().contains('linux')
-    jvmArgs.addAll('-Xmx1G', '-Dfabric.client.gametest')
+    // 1 GB was enough for the old flat island; real terrain needs more (players' launchers give 2-4 GB).
+    jvmArgs.addAll(System.getProperty('os.name').toLowerCase().contains('windows') ? '-Xmx3G' : '-Xmx1G', '-Dfabric.client.gametest')
+    jvmArgs.add("-XX:ErrorFile=${clientSmokeDir.asFile.absolutePath}${File.separator}hs_err_pid%p.log")
     jvmArgs.add("-Dunallocated.smoke.contractPhase=${providers.gradleProperty('contractSmokePhase').getOrElse('first')}")
     if (providers.gradleProperty('contractSmokePhase').getOrElse('first') in ['first', 'restart']) {
         // Keep package regression worlds stable when tomorrow's shipped content changes.
