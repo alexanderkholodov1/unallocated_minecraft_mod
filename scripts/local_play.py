@@ -28,10 +28,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--gradle', default=os.environ.get('GRADLE', shutil.which('gradle') or 'gradle'))
     parser.add_argument('--skip-build', action='store_true', help='reuse the JAR already authored in build/libs')
+    parser.add_argument('--jdk', help='use only this JDK for compiling and for the game (e.g. a Temurin 25 when another JDK crashes)')
+    parser.add_argument('--phase', default='play', choices=['play', 'idle'], help='play: autoplay every ending; idle: a player who never moves must still reach an ending')
     args = parser.parse_args()
     if not os.environ.get('JAVA_HOME'):
         sys.exit('Set JAVA_HOME to a Java 25 JDK first')
     gradle = [args.gradle, '--console=plain']
+    if args.jdk:
+        os.environ['JAVA_HOME'] = args.jdk
+        gradle += ['-Porg.gradle.java.installations.auto-detect=false', f'-Porg.gradle.java.installations.paths={args.jdk}']
     if not args.skip_build:
         run(gradle + ['build', 'clientSmokeJar', '-PsmokeApiVersion=none', '-x', 'test'])
         shutil.rmtree(ROOT / '.tmp' / 'smoke' / 'template', ignore_errors=True)
@@ -42,7 +47,7 @@ def main():
     receipt.parent.mkdir(parents=True, exist_ok=True)
     receipt.write_text('schemaVersion=1\ncontractVersion=1\nacceptedAt=2026-11-01T18\\:00\\:00Z\nmethod=TYPED\ntypedText=De acuerdo\n',
                        encoding='utf-8')
-    run(gradle + ['runClientSmoke', '-PsmokeApiVersion=none', '-PcontractSmokePhase=play'])
+    run(gradle + ['runClientSmoke', '-PsmokeApiVersion=none', f'-PcontractSmokePhase={args.phase}'])
     print('Screenshots:', CLIENT / 'screenshots')
 
 

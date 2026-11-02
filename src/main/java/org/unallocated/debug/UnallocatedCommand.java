@@ -20,7 +20,9 @@ public final class UnallocatedCommand {
             Commands.literal("unallocated")
                 .then(Commands.literal("next").executes(ctx -> rescue(ctx.getSource())))
                 .then(Commands.literal("siguiente").executes(ctx -> rescue(ctx.getSource())))
-                .then(Commands.literal("puppet").executes(ctx -> {
+                .then(Commands.literal("puppet").then(Commands.literal("now").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS)).executes(ctx -> {
+                    org.unallocated.story.StoryRuntime.get(ctx.getSource().getServer()).forcePuppet(ctx.getSource().getPlayerOrException()); return 1;
+                })).executes(ctx -> {
                     var runtime = org.unallocated.story.StoryRuntime.get(ctx.getSource().getServer());
                     return runtime.requestPuppet(ctx.getSource().getPlayerOrException()) ? 1 : 0;
                 }))

@@ -326,6 +326,11 @@ public final class StoryRuntime {
         if (!state.active() || !p.isDeadOrDying()) return false;
         pendingPuppet = true; log("puppet requested"); return true;
     }
+    /** Entering the Puppet chapter by any path (timeout, rescue) makes the participant a Puppet, as the story requires. */
+    public void forcePuppet(ServerPlayer p) {
+        if (!state.active() || state.flags().contains(PUPPET_FLAG)) return;
+        state.addFlag(PUPPET_FLAG); applyPuppet(p, true); log("puppet forced");
+    }
     /** "I agree" from the Puppet state: consent to another trial; back alive at the chapter's respawn point. */
     public boolean revive(ServerPlayer p) {
         if (!state.active() || !state.flags().contains(PUPPET_FLAG)) return false;
