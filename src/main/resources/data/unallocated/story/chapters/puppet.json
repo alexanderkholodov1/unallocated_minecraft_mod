@@ -5,6 +5,11 @@
  "on_enter": [
   {
    "at": 0,
+   "do": "command",
+   "run": "unallocated puppet now"
+  },
+  {
+   "at": 0,
    "do": "title",
    "title": {
     "es": "PUPPET",

@@ -220,6 +220,7 @@ def cut(letter, leak1, leak2):
 puppet = {
     'id': 'puppet', 'budget_seconds': 300, 'checkpoint': 'heap.arrival',
     'on_enter': [
+        cmd(0, 'unallocated puppet now'),
         {'at': 0, 'do': 'title', 'title': T('PUPPET'), 'subtitle': T('subject connection: still open'), 'fade_in': 0.3, 'stay': 3, 'fade_out': 1},
         cmd(0.5, 'give @s minecraft:shears[minecraft:can_break={blocks:"unallocated:thread"},'
                  'minecraft:custom_name={translate:"item.unallocated.shears",italic:false}]'),
