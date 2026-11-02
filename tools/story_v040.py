@@ -130,7 +130,7 @@ server = {
             cmd(0.1, 'time add 2500'),
             chat(1.2, '[Server] Lag detectado: 2500 ticks omitidos. Reloj resincronizado.',
                  '[Server] Lag detected: 2500 ticks skipped. Clock resynchronized.', GRAY),
-            bar(2.5, '¿Ya es de noche? Hace un momento era de día.', 'Night already? It was daytime a moment ago.')]},
+            bar(2.5, '¿Ya es de noche? Hace un momento era de día.', 'Night already? It was daytime a moment ago.')], 'autoplay': {'wait_seconds': 90}},
         {'id': 'server.sprint', 'when': {'type': 'sprint', 'seconds': 4}, 'actions': [
             chat(0, 'no corras. no sirve el dato si corres.', 'don\'t run. the data is useless if you run.', sender='{player}')]},
         {'id': 'server.rewrite', 'when': {'type': 'chat', 'pattern': '\\S', 'hide': True}, 'actions': [
@@ -146,11 +146,11 @@ server = {
              'seed': 4114, 'sign': {'pos': [53, 64, 10]}, 'text': T('objetivo: obtener fear de subject // retry',
                                                                     'objective: obtain fear from subject // retry')},
             bar(14, 'Detrás de la base está la mina.', 'Behind the base is the mine.')],
-         'capture': {'name': 'base', 'at': 1}},
+         'capture': {'name': 'base', 'at': 1}, 'autoplay': {'wait_seconds': 100}},
         {'id': 'server.mine', 'when': {'type': 'zone', 'zone': 'mine.entrance'}, 'actions': [
-            bar(0, 'La mina. Un letrero decía que da vueltas.', 'The mine. A sign said it loops.')]},
+            bar(0, 'La mina. Un letrero decía que da vueltas.', 'The mine. A sign said it loops.')], 'autoplay': {'wait_seconds': 110}},
         {'id': 'server.loop1', 'when': {'type': 'zone', 'zone': 'presa.mine_end'}, 'actions': [
-            cmd(0, 'tp @s ~-14 ~ ~'), flag(0.5, 'loop1')], 'capture': {'name': 'mina', 'at': 0.6}},
+            cmd(0, 'tp @s ~-14 ~ ~'), flag(0.5, 'loop1')], 'capture': {'name': 'mina', 'at': 0.6}, 'autoplay': {'wait_seconds': 120}},
         {'id': 'server.loop2', 'when': {'type': 'zone', 'zone': 'presa.mine_end'}, 'if': {'flags': ['loop1']}, 'actions': [
             cmd(0, 'tp @s ~-14 ~ ~'), flag(0.5, 'loop2'),
             bar(1, 'Otra vez el mismo tramo.', 'The same stretch again.')]},
@@ -289,6 +289,7 @@ kernel = {
     'id': 'kernel', 'budget_seconds': 600, 'checkpoint': 'kernel.gate',
     'on_enter': [
         flag(0, 'no_revive'),
+        cmd(0.1, 'unallocated revive lock'),
         {'at': 0, 'do': 'audio', 'cue': 'ambient'},
         {'at': 0, 'do': 'title', 'title': T('the Kernel'), 'fade_in': 0.3, 'stay': 2.5, 'fade_out': 1},
         creature(1, 'spawn', body={'summon': 'unallocated:reclaimer{attributes:[{id:"minecraft:scale",base:1.15d}]}'},

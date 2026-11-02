@@ -86,7 +86,7 @@ public final class StoryClient {
                 org.unallocated.UnallocatedMod.LOGGER.info("UNALLOCATED story action beat={} do=interface result={}", string(data, "beat", "interface"), accepted ? "ok" : "refused");
             }
             case "story.ending_text" -> org.unallocated.client.ending.EndingClient.storyEnding(envelope);
-            case "story.puppet" -> org.unallocated.client.creature.PuppetClient.set(payload.args().getBooleanOr("on", false));
+            case "story.puppet" -> org.unallocated.client.creature.PuppetClient.set(payload.args().getBooleanOr("on", false), payload.args().getBooleanOr("locked", false));
             default -> { }
         }
     }

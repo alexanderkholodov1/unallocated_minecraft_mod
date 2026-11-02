@@ -9,6 +9,11 @@
    "set": "no_revive"
   },
   {
+   "at": 0.1,
+   "do": "command",
+   "run": "unallocated revive lock"
+  },
+  {
    "at": 0,
    "do": "audio",
    "cue": "ambient"

@@ -338,11 +338,16 @@ public final class StoryRuntime {
         signal(p, "respawn", "", null); log("puppet revived"); return true;
     }
     public boolean puppet() { return state.flags().contains(PUPPET_FLAG); }
+    /** The Kernel is the point of no return: the Puppet overlay stops offering the way back. */
+    public void lockRevive(ServerPlayer p) {
+        CompoundTag args = new CompoundTag(); args.putBoolean("on", state.flags().contains(PUPPET_FLAG)); args.putBoolean("locked", true);
+        CoreNetworking.send(p, new EffectPayload("story.puppet", args, 0));
+    }
     private void applyPuppet(ServerPlayer p, boolean on) {
         p.getAbilities().invulnerable = on; p.onUpdateAbilities();
         if (on) p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.NIGHT_VISION, -1, 0, false, false));
         else p.removeEffect(net.minecraft.world.effect.MobEffects.NIGHT_VISION);
-        CompoundTag args = new CompoundTag(); args.putBoolean("on", on);
+        CompoundTag args = new CompoundTag(); args.putBoolean("on", on); args.putBoolean("locked", state.flags().contains("story.flag.no_revive"));
         CoreNetworking.send(p, new EffectPayload("story.puppet", args, 0));
     }
     public boolean teleport(ServerPlayer p, Position pos) { Vec3 v = pos.center(); return p.teleportTo(level(pos.dimension), v.x, v.y, v.z, Set.of(), pos.yaw, pos.pitch, true); }

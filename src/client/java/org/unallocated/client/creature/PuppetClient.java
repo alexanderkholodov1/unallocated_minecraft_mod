@@ -14,23 +14,27 @@ import org.unallocated.content.ThreadEntity;
  */
 public final class PuppetClient {
     private static boolean puppet;
+    private static boolean locked;
     private static boolean rWasDown;
 
     private PuppetClient() {}
 
     public static boolean active() { return puppet; }
 
-    public static void set(boolean on) {
+    public static void set(boolean on) { set(on, locked); }
+
+    public static void set(boolean on, boolean noReturn) {
         puppet = on;
+        locked = noReturn;
         ThreadEntity.clientPuppet = on;
         Minecraft client = Minecraft.getInstance();
         if (!on && client.gui.screen() instanceof ReviveScreen) client.gui.setScreen(null);
     }
 
     public static void initialize() {
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> set(false));
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> set(false, false));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            boolean down = puppet && client.player != null && client.gui.screen() == null
+            boolean down = puppet && !locked && client.player != null && client.gui.screen() == null
                 && InputConstants.isKeyDown(InputConstants.KEY_R);
             if (down && !rWasDown) client.gui.setScreen(new ReviveScreen());
             rWasDown = down;
@@ -53,7 +57,7 @@ public final class PuppetClient {
         var font = client.font;
         Component top = Component.translatable("puppet.unallocated.state");
         graphics.text(font, top, (w - font.width(top)) / 2, 8, 0xFFE05050, true);
-        Component hint = Component.translatable("puppet.unallocated.revive_hint");
+        Component hint = Component.translatable(locked ? "puppet.unallocated.no_return" : "puppet.unallocated.revive_hint");
         graphics.text(font, hint, (w - font.width(hint)) / 2, h - 58, 0xFFD8D4CB, true);
     }
 }
