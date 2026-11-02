@@ -1,2 +1,4 @@
-- Single-player experience.
-- Tested on Windows 11 (Intel Iris Xe, OpenGL) with an offline account, and in CI on Linux; macOS is untested.
+- Single-player experience (about 12–15 minutes).
+- Give Minecraft **at least 2 GB of RAM** (the official launcher's default). In TLauncher: Settings → Memory → 2048 MB or more. With 1 GB the game can crash while loading the real-terrain world.
+- Tested on Windows 11 (GTX 1070 and Intel Iris Xe, OpenGL) with offline/TLauncher-style accounts, and in CI on Linux; macOS is untested.
+- If you ever feel stuck, open the pause menu and press **I'm stuck** (or type `/unallocated next`).
