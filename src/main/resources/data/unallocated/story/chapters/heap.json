@@ -36,8 +36,8 @@
    "at": 3,
    "do": "actionbar",
    "text": {
-    "es": "Es la misma base. Pero no es la misma.",
-    "en": "It is the same base. But it is not the same."
+    "es": "Es el mismo servidor. Pero no es el mismo.",
+    "en": "It is the same server. But it is not the same."
    }
   },
   {
@@ -107,8 +107,8 @@
      "at": 6,
      "do": "actionbar",
      "text": {
-      "es": "Algo grande está quieto junto a la mina. Se mueve cuando no lo miras.",
-      "en": "Something big stands still by the mine. It moves when you are not looking."
+      "es": "Algo grande está quieto en el camino. Se mueve cuando no lo miras.",
+      "en": "Something big stands still on the path. It moves when you are not looking."
      }
     }
    ],

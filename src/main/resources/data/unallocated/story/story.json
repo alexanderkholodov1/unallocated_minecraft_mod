@@ -20,17 +20,17 @@
     12
    ],
    "dimension": "pocket",
-   "yaw": -90,
+   "yaw": 90,
    "pitch": 0
   },
   "heap.spider": {
    "pos": [
-    76,
+    34,
     64,
-    20
+    3
    ],
    "dimension": "pocket",
-   "yaw": 90,
+   "yaw": -90,
    "pitch": 0
   },
   "heap.echo": {
@@ -265,12 +265,28 @@
    "unallocated story corrupt heap.rot 4114 heap",
    "unallocated story corrupt heap.rot 4114 heap",
    "unallocated story corrupt heap.rot 4114 heap",
+   "unallocated story corrupt heap.rot 4114 heap",
    "execute in unallocated:pocket run fill 101 63 17 129 68 23 minecraft:black_concrete hollow",
    "execute in unallocated:pocket run fill 96 63 19 104 63 21 minecraft:black_concrete",
    "execute in unallocated:pocket run fill 96 64 19 104 66 21 minecraft:air",
    "execute in unallocated:pocket run fill 130 62 6 152 78 34 unallocated:rot hollow",
    "execute in unallocated:pocket run fill 129 64 19 130 66 21 minecraft:air",
    "execute in unallocated:pocket run fill 131 77 7 151 77 33 unallocated:web",
+   "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 20.5 66 4.5 {dx:18.0f,dy:2.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 45.5 68 -14.5 {dx:16.0f,dy:4.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 60.5 67 6.5 {dx:12.0f,dy:1.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 72.5 67 14.5 {dx:10.0f,dy:1.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 30.5 66 14.5 {dx:20.0f,dy:0.0f,dz:6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 8.5 67 -4.5 {dx:18.0f,dy:2.0f,dz:8.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 80.5 67 26.5 {dx:8.0f,dy:0.0f,dz:-6.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 66.5 70 20.5 {dx:14.0f,dy:3.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:10.0f,dy:6.0f,dz:0.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:0.0f,dy:6.0f,dz:10.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:7.0f}",
+   "execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {dx:7.0f,dy:6.0f,dz:-7.0f}",
    "execute in unallocated:pocket run summon unallocated:thread 84.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
    "execute in unallocated:pocket run summon unallocated:thread 89.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",
    "execute in unallocated:pocket run summon unallocated:thread 94.5 65.3 20.5 {dx:0.0f,dy:0.0f,dz:5.0f}",

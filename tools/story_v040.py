@@ -175,7 +175,7 @@ heap = {
         cmd(0, 'scoreboard players display name online vc {translate:"score.unallocated.online_heap"}'),
         cmd(0, 'scoreboard players display name rank vc {translate:"score.unallocated.rank_subject"}'),
         chat(1, LEAK_G0, None, GRAY),
-        bar(3, 'Es la misma base. Pero no es la misma.', 'It is the same base. But it is not the same.'),
+        bar(3, 'Es el mismo servidor. Pero no es el mismo.', 'It is the same server. But it is not the same.'),
     ] + [dict(a, at=a['at'] + 2) for a in HUNT],
     'on_resume': [{'at': 0, 'do': 'audio', 'cue': 'ambient'}],
     'escape': [{'at': 0, 'do': 'counter', 'id': 'trial', 'add': 1},
@@ -184,8 +184,8 @@ heap = {
     'beats': [
         {'id': 'heap.see', 'when': {'type': 'chapter_start'}, 'actions': [
             {'at': 3, 'do': 'audio', 'cue': 'threads', 'where': 'heap.spider'},
-            bar(6, 'Algo grande está quieto junto a la mina. Se mueve cuando no lo miras.',
-                'Something big stands still by the mine. It moves when you are not looking.')],
+            bar(6, 'Algo grande está quieto en el camino. Se mueve cuando no lo miras.',
+                'Something big stands still on the path. It moves when you are not looking.')],
          'capture': {'name': 'heap', 'at': 6}},
         {'id': 'heap.hunt', 'when': {'type': 'after', 'seconds': 16}, 'actions': [
             cmd(0, FACE), creature(0.1, 'chase', speed=5.5, catch_distance=1.5)], 'capture': {'name': 'cazar', 'at': 0.6}},
@@ -314,6 +314,8 @@ for bid in ('kernel.cross', 'kernel.help', 'kernel.ps', 'kernel.params', 'kernel
 story = json.loads((D / 'story.json').read_text(encoding='utf-8'))
 story['chapters'] = ['server', 'heap', 'puppet', 'kernel']
 story['anchors'].pop('vuelta.spider', None)
+story['anchors']['heap.arrival'] = {'pos': [53, 64, 12], 'dimension': 'pocket', 'yaw': 90, 'pitch': 0}
+story['anchors']['heap.spider'] = {'pos': [34, 64, 3], 'dimension': 'pocket', 'yaw': -90, 'pitch': 0}
 story['zones']['heap.cut_c'] = {'box': [88, 64, 18, 90, 67, 22], 'dimension': 'pocket'}
 story['zones']['kernel.mouth'] = {'box': [96, 63, 18, 104, 67, 22], 'dimension': 'pocket'}
 run = [c for c in story['build']['run'] if 'unallocated:thread[' not in c]
