@@ -27,7 +27,7 @@ import org.unallocated.content.UnallocatedContent;
  */
 public final class KernelShell {
     private KernelShell() {}
-    static final int PID = 7331, MAX_ATTENTION = 8, CONNECTIONS = 3, WINDOW_TICKS = 90 * 20;
+    static final int PID = 7331, MAX_ATTENTION = 8, CONNECTIONS = 3, WINDOW_TICKS = 120 * 20;
     private static final String GIANT = "unallocated.giant";
     enum Phase { IDLE, DESCENT, FIGHT, WINDOW, COMPLETE, POISON, CONSUMED }
     private static Phase phase = Phase.IDLE;
@@ -125,6 +125,10 @@ public final class KernelShell {
             default -> out(r, p, "sh: " + cmd + ": command not found");
         }
         if (phase == Phase.WINDOW) return true;
+        ServerLevel lvl = (ServerLevel) p.level();
+        float loud = 0.35F + 0.12F * attention(r) + (gen >= 3 ? 0.6F : 0F);
+        lvl.playSound(null, p.blockPosition().above(2), UnallocatedContent.THREAD_VIBRATE, SoundSource.HOSTILE, loud, 0.6F + 0.08F * attention(r));
+        lvl.playSound(null, p.blockPosition().above(14), UnallocatedContent.THREAD_VIBRATE, SoundSource.HOSTILE, loud * 0.7F, 1.4F);
         int noise = 1;
         if (lower.contains("reclaimer") && !cmd.equals("cat")) {
             noise += 3;
@@ -142,7 +146,7 @@ public final class KernelShell {
     }
 
     private static void help(StoryRuntime r, ServerPlayer p, int gen) {
-        out(r, p, "reclaim shell (gen " + gen + "/3)");
+        out(r, p, "reclaim shell (gen " + gen + "/3) · empieza / start: cat README");
         out(r, p, "  help · ls [dir] · cat <file> · whoami");
         out(r, p, gen >= 2 ? "  params" : "  params                 [gen 2]");
         out(r, p, gen >= 3 ? "  ps · kill <pid>" : "  ps · kill <pid>        [gen 3]");
@@ -150,9 +154,9 @@ public final class KernelShell {
     }
 
     private static final Map<String, List<String>> DIRS = Map.of(
-        "", List.of("config/   dataset/   docs/   home/   logs/"),
+        "", List.of("README   config/   dataset/   docs/   home/   logs/"),
         "config", List.of("reclaim.cfg"), "dataset", List.of("subjects.txt"), "docs", List.of("contract.txt"),
-        "home", List.of("noor/"), "home/noor", List.of("notes.txt"), "logs", List.of("reclaim.log"));
+        "home", List.of("noor/"), "home/noor", List.of("1.txt   2.txt   3.txt"), "logs", List.of("reclaim.log"));
     private static void ls(StoryRuntime r, ServerPlayer p, String dir) {
         String d = dir.replaceAll("^\\./", "").replaceAll("^/", "").replaceAll("/+$", "").replace("~", "home");
         if (d.equals(".")) d = "";
@@ -188,7 +192,23 @@ public final class KernelShell {
                 say(r, p, "# cada nombre que se añade aquí es un sujeto que busca:  echo <nombre> >> dataset",
                     "# every name appended here is a subject it hunts:  echo <name> >> dataset", "#9a9a9a");
             }
-            case "notes.txt" -> {
+            case "readme", "readme.txt" -> {
+                say(r, p, "esta consola solo le contesta a los sujetos muertos. tú lo estás.", "this console only answers dead subjects. you are one.", "#e8e8e8");
+                say(r, p, "Noor dejó notas: cat home/noor/1.txt. hay una por cada vez que la atrapó.", "Noor left notes: cat home/noor/1.txt. there is one for every time it caught her.", "#e8e8e8");
+                say(r, p, "cada vez que te atrapa de nuevo llegas más hondo y puedes leer más (gen " + gen + "/3).", "every time it catches you again you get deeper and can read more (gen " + gen + "/3).", "#e8e8e8");
+            }
+            case "1.txt" -> {
+                say(r, p, "nota 1. lo que escribes aquí, lo oye. la barra de arriba es cuánto te está escuchando.", "note 1. what you type here, it hears. the bar at the top is how closely it is listening.", "#e8e8e8");
+                say(r, p, "si haces ruido baja del cielo y te mata. no pasa nada: vuelves, pero más hondo. elige «Todavía no» para seguir aquí.", "if you make noise it comes down from the sky and kills you. that is fine: you come back, deeper. choose \"Not yet\" to stay here.", "#e8e8e8");
+                say(r, p, "quieres llegar más hondo, así que haz ruido. mientras, lee config/reclaim.cfg y docs/contract.txt. algo no cuadra.", "you want to go deeper, so make noise. meanwhile read config/reclaim.cfg and docs/contract.txt. something doesn't add up.", "#e8e8e8");
+            }
+            case "2.txt" -> {
+                if (gen < 2) { denied(r, p, "cat home/noor/2.txt", gen, 2); return; }
+                say(r, p, "nota 2. 1.37 contra 0.82. busca un miedo que no existe, por eso nunca termina con nadie. mira logs/reclaim.log.", "note 2. 1.37 against 0.82. it looks for a fear that doesn't exist, so it never finishes with anyone. see logs/reclaim.log.", "#e8e8e8");
+                say(r, p, "la próxima vez que te atrape verás sus procesos (ps). pero en cuanto escribas algo, bajará y no se irá. ten pensado qué escribir.", "next time it catches you, you will see its processes (ps). but the moment you type, it will come down and not leave. know what you will type.", "#e8e8e8");
+            }
+            case "3.txt", "notes.txt" -> {
+                if (gen < 3) { denied(r, p, "cat home/noor/3.txt", gen, 3); return; }
                 say(r, p, "si estás leyendo esto, también estás muerto. lo siento.", "if you are reading this you are dead too. i'm sorry.", "#e8e8e8");
                 say(r, p, "el número está mal. el contrato dice 0.82 y él busca 1.37, un miedo que no existe. por eso nunca termina con nadie.",
                     "the number is wrong. the contract says 0.82 and it looks for 1.37, a fear that doesn't exist. that's why it never finishes with anyone.", "#e8e8e8");
@@ -247,6 +267,8 @@ public final class KernelShell {
             halfWarned = true;
             say(r, p, "who is typing?", "who is typing?", "#aa0000");
             run(r, p, "effect give @s minecraft:darkness 6 0 true");
+            ((ServerLevel) p.level()).playSound(null, p.blockPosition(), UnallocatedContent.RECLAIMER_WHISPER, SoundSource.HOSTILE, 2F, 0.7F);
+            ((ServerLevel) p.level()).playSound(null, p.blockPosition().above(20), UnallocatedContent.RECLAIMER_ROAR, SoundSource.HOSTILE, 1.5F, 0.4F);
         }
         if (a >= MAX_ATTENTION) descend(r, p);
     }
@@ -284,7 +306,9 @@ public final class KernelShell {
         run(r, p, "bossbar set unallocated:reclaim value 100");
         run(r, p, "bossbar set unallocated:reclaim players @s");
         run(r, p, "effect give @s minecraft:darkness 4 0 true");
+        run(r, p, "weather thunder");
         AudioSounds.play(p, "threads", p.position());
+        title(r, p, "RECLAIMER", "encuentra su número de proceso", "find its process number");
         if (!chapter(r).equals("kernel")) r.next(p); // the Kernel chapter: no way back, death = CONSUMED
         bar(r, p, "Viene por ti. Encuentra su número de proceso y detenlo.", "It is coming for you. Find its process number and stop it.");
     }
@@ -294,7 +318,7 @@ public final class KernelShell {
         phase = Phase.WINDOW; phaseTicks = 0; lashes.clear();
         setFlag(r, "suspended");
         run(r, p, "bossbar remove unallocated:reclaim");
-        run(r, p, "bossbar add unallocated:watchdog \"watchdog :: restart 90 s\"");
+        run(r, p, "bossbar add unallocated:watchdog \"watchdog :: restart 120 s\"");
         run(r, p, "bossbar set unallocated:watchdog max " + WINDOW_TICKS / 20);
         run(r, p, "bossbar set unallocated:watchdog value " + WINDOW_TICKS / 20);
         run(r, p, "bossbar set unallocated:watchdog color yellow");
@@ -306,16 +330,26 @@ public final class KernelShell {
         level.playSound(null, BlockPos.containing(giantX, giantY, giantZ), UnallocatedContent.RECLAIMER_CLICK, SoundSource.HOSTILE, 3F, 0.3F);
         out(r, p, "[7331] reclaim :: SIGSTOP");
         r.fire("kernel.stopped");
+        run(r, p, "weather clear");
+        title(r, p, "SIGSTOP", "el watchdog lo reinicia en 120 s", "the watchdog restarts it in 120 s");
         windowNotes(r, p);
     }
 
     static void windowNotes(StoryRuntime r, ServerPlayer p) {
-        say(r, p, "[7331] reclaim :: detenido. el watchdog lo reinicia en 90 s.", "[7331] reclaim :: stopped. the watchdog restarts it in 90 s.", "#ffff55");
+        say(r, p, "[7331] reclaim :: detenido. el watchdog lo reinicia en 120 s (la barra de arriba).", "[7331] reclaim :: stopped. the watchdog restarts it in 120 s (the bar at the top).", "#ffff55");
         say(r, p, "Las notas de Noor dejaban dos salidas. Escribe una antes de que la barra llegue a cero.", "Noor's notes left two ways out. Type one before the bar reaches zero.", "#e8e8e8");
         say(r, p, "  set success_threshold <el valor del contrato>  →  podrá terminar, por fin, y soltarlos a todos", "  set success_threshold <the contract's value>  →  it can finally finish, and let everyone go", "#55ff55");
         say(r, p, "  echo <su nombre> >> dataset  →  se buscará a sí mismo para siempre, roto", "  echo <its name> >> dataset  →  it will hunt itself forever, broken", "#ff5555");
         say(r, p, "  (¿el valor? cat docs/contract.txt · ¿su nombre? ps)", "  (the value? cat docs/contract.txt · its name? ps)", "#9a9a9a");
         say(r, p, "Si la barra llega a cero, despierta y te consume.", "If the bar reaches zero, it wakes and consumes you.", "#aa0000");
+    }
+
+    static void title(StoryRuntime r, ServerPlayer p, String main, String es, String en) {
+        JsonObject t = new JsonObject(); t.addProperty("es", main); t.addProperty("en", main);
+        JsonObject sub = new JsonObject(); sub.addProperty("es", es); sub.addProperty("en", en);
+        JsonObject data = new JsonObject(); data.add("title", t); data.add("subtitle", sub);
+        data.addProperty("fade_in", 0.3); data.addProperty("stay", 4); data.addProperty("fade_out", 1);
+        r.effect(p, "title", data, 0);
     }
 
     /** Called by the kernel.complete / kernel.poison beats through "unallocated shell <mode>". */
@@ -371,6 +405,7 @@ public final class KernelShell {
         switch (phase) {
             case IDLE -> {
                 boolean puppet = c.equals("puppet") && r.puppet();
+                if (puppet) replaySouls(p, level);
                 if (puppet && depth(r) >= 3 && !gen3Warned && phaseTicks > 100) {
                     gen3Warned = true;
                     bar(r, p, "Más hondo que nunca. Ahora puedes ver sus procesos. Si escribes, bajará.", "Deeper than ever. Now you can see its processes. If you type, it will come down.");
@@ -414,7 +449,8 @@ public final class KernelShell {
                     moveGiant(r, p);
                     level.playSound(null, BlockPos.containing(giantX, giantY, giantZ), UnallocatedContent.RECLAIMER_CLICK, SoundSource.HOSTILE, 3F, 0.4F);
                 }
-                if (phaseTicks % 600 == 300) windowNotes(r, p);
+                if (phaseTicks % 200 == 0) bar(r, p, "⏱ " + left + " s · set success_threshold <valor>  ·  echo <nombre> >> dataset", "⏱ " + left + " s · set success_threshold <value>  ·  echo <name> >> dataset");
+                if (phaseTicks % 800 == 400) windowNotes(r, p);
                 if (phaseTicks >= WINDOW_TICKS) consumed(r, p, true);
             }
             case COMPLETE -> {
@@ -443,9 +479,25 @@ public final class KernelShell {
      * staggers it 2.5 s. A perch buys 15 s before it shakes it down (warning at 7 s). The scream that closes the
      * console comes every 35-50 s with a 1.5 s roar first. Hints: help (30 s), ps (60 s), kill <pid> (100 s).
      */
+    /** The fallen souls repeat what was recorded of them: a few steps, a pause, and back to the start, forever. */
+    private static final Map<String, Vec3> ORIGINS = new HashMap<>();
+    private static void replaySouls(ServerPlayer p, ServerLevel level) {
+        for (int i = 1; i <= 4; i++) {
+            var e = org.unallocated.creature.Creatures.entity(p, "soul" + i);
+            if (e == null || e.level() != level) continue;
+            Vec3 o = ORIGINS.computeIfAbsent("soul" + i, k -> e.position());
+            double angle = i * Math.PI / 2 + 0.6, t = (ticks + i * 53) % 220;
+            double along = t < 170 ? t / 170.0 * 7 : 7;
+            double x = o.x + Math.cos(angle) * along, z = o.z + Math.sin(angle) * along;
+            double y = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (int) Math.floor(x), (int) Math.floor(z));
+            float yaw = (float) Math.toDegrees(Math.atan2(-Math.cos(angle), Math.sin(angle)));
+            e.teleportTo(x, y, z); e.setYRot(yaw); e.setYHeadRot(yaw); e.setYBodyRot(yaw);
+        }
+    }
+
     private static void fightTick(StoryRuntime r, ServerPlayer p, ServerLevel level) {
         // Falling into the void is not the end: it spits you back into its world.
-        if (p.getY() < 52) {
+        if (p.getY() < 50) {
             blackout(r, p, 0.05, 0.6, 0.6, null);
             p.teleportTo(level, SAFE.x, SAFE.y, SAFE.z, Set.of(), p.getYRot(), p.getXRot(), true);
             p.fallDistance = 0;
@@ -501,12 +553,16 @@ public final class KernelShell {
             }
         }
         // Its world comes apart around you, revealing the void underneath.
-        if (phaseTicks % 3 == 0 && phaseTicks >= 80) {
+        for (int burst = 0; burst < 2 && phaseTicks >= 80; burst++) {
             double angle = RANDOM.nextDouble() * Math.PI * 2, radius = 8 + RANDOM.nextDouble() * 24;
             int x = (int) Math.floor(p.getX() + Math.cos(angle) * radius), z = (int) Math.floor(p.getZ() + Math.sin(angle) * radius);
             int top = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z) - 1;
-            for (int y = top; y >= 55; y--) collapse(level, new BlockPos(x, y, z), y == top);
+            for (int y = top; y >= level.getMinY(); y--) collapse(level, new BlockPos(x, y, z), y == top);
+            level.sendParticles(ParticleTypes.LARGE_SMOKE, x + .5, top + 1, z + .5, 6, 0.4, 0.6, 0.4, 0.02);
+            if (RANDOM.nextInt(4) == 0) level.playSound(null, new BlockPos(x, top, z), net.minecraft.sounds.SoundEvents.GENERIC_EXPLODE.value(), SoundSource.BLOCKS, 0.6F, 0.5F);
         }
+        if (phaseTicks % 2 == 0) for (int i = 0; i < 6; i++)
+            level.sendParticles(new DustParticleOptions(0xB01020, 1.4F), p.getX() + RANDOM.nextGaussian() * 10, p.getY() + 8 + RANDOM.nextDouble() * 6, p.getZ() + RANDOM.nextGaussian() * 10, 1, 0, -0.5, 0, 0.0);
         // The scream: a roar first, then it closes your console.
         if (--nextScream == 30) level.playSound(null, BlockPos.containing(giantX, giantY + 6, giantZ), UnallocatedContent.RECLAIMER_ROAR, SoundSource.HOSTILE, 4F, 0.7F);
         if (nextScream <= 0) { scream(r, p); nextScream = 700 + RANDOM.nextInt(300); }
@@ -532,7 +588,14 @@ public final class KernelShell {
         level.playSound(null, p.blockPosition(), UnallocatedContent.RECLAIMER_ROAR, SoundSource.HOSTILE, 2F, 1.2F);
         int left = CONNECTIONS - lost;
         say(r, p, "conexión " + left + "/" + CONNECTIONS, "connection " + left + "/" + CONNECTIONS, "#aa0000");
-        if (left <= 0) { consumed(r, p, false); return true; }
+        if (left <= 0) {
+            lost = 0; lashes.clear(); stagger = 80;
+            blackout(r, p, 0.05, 1.0, 0.8, "#300000");
+            p.teleportTo(level, SAFE.x, SAFE.y, SAFE.z, Set.of(), p.getYRot(), p.getXRot(), true);
+            p.fallDistance = 0;
+            say(r, p, "te soltó. todavía no termina contigo. conexión 3/3.", "it let you go. it is not done with you. connection 3/3.", "#aa0000");
+            return true;
+        }
         return false;
     }
 }

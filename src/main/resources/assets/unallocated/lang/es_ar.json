@@ -390,5 +390,8 @@
   "map.unallocated.top.score.6": "10415 puntos",
   "map.unallocated.house_of": "Casa de",
   "map.unallocated.house_kept": "(protegida)",
-  "shell.unallocated.attention": "te está escuchando"
+  "shell.unallocated.attention": "te está escuchando",
+  "story.unallocated.puppetbook.0": "Si estás leyendo esto, ya te atrapó una vez. Esto es lo que yo sé.\n\nCuando mueras, elige «Todavía no». Te quedas muerto, como Puppet, y ves sus hilos.",
+  "story.unallocated.puppetbook.1": "Siendo Puppet, y solo así, el chat es la consola de su servidor. Escribe help. Luego cat README y lee mis notas en home/noor.\n\nSi escribes mucho, te oye y baja. Déjalo: cada vez que te atrapa llegas más hondo.",
+  "story.unallocated.puppetbook.2": "A la tercera ves sus procesos con ps. Busca el suyo, el que se come todo, y detenlo con kill y su número.\n\nDetenido, el contrato te dirá qué número darle. — Noor"
 }

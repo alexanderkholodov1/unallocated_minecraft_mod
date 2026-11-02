@@ -1,7 +1,7 @@
 {
  "id": "heap",
  "budget_seconds": 150,
- "checkpoint": "heap.arrival",
+ "checkpoint": "heap.mine",
  "on_enter": [
   {
    "at": 0,
@@ -112,7 +112,15 @@
      "where": "heap.spider"
     },
     {
-     "at": 9,
+     "at": 4,
+     "do": "actionbar",
+     "text": {
+      "es": "La misma mina. Pero no es la misma. Sal.",
+      "en": "The same mine. But not the same. Get out."
+     }
+    },
+    {
+     "at": 22,
      "do": "actionbar",
      "text": {
       "es": "Algo respira detrás de ti. No te des la vuelta.",
@@ -125,7 +133,7 @@
    "id": "heap.take",
    "when": {
     "type": "after",
-    "seconds": 20
+    "seconds": 40
    },
    "actions": [
     {
@@ -213,5 +221,5 @@
    ]
   }
  ],
- "respawn": "mine.entrance"
+ "respawn": "lobby.spawn"
 }

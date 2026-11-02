@@ -46,7 +46,7 @@ public final class EndingClient {
                 || !EndingText.REASON_KEY.equals(text.getKey())) return null;
         var receipt = ContractReceiptLookup.read(Minecraft.getInstance().gameDirectory.toPath());
         endingSplash = true;
-        if (story != null) return new DisconnectedScreen(new TitleScreen(), storyTitle, storyMessage, EndingText.returnButton());
+        if (story != null) return new EndingScreen(storyTitle, storyMessage, EndingText.returnButton());
         return new DisconnectedScreen(new TitleScreen(), EndingText.title(),
             EndingText.component(receipt), EndingText.returnButton());
     }

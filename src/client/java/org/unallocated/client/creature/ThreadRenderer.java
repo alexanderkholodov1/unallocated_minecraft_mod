@@ -32,7 +32,7 @@ public final class ThreadRenderer extends MobRenderer<ThreadEntity, ThreadRender
     @Override
     protected AABB getBoundingBoxForCulling(ThreadEntity entity, float partialTicks) {
         var span = entity.span();
-        return entity.getBoundingBox().inflate(Math.abs(span.x()) / 2 + 1, Math.abs(span.y()) / 2 + 1, Math.abs(span.z()) / 2 + 1);
+        return entity.getBoundingBox().inflate(Math.abs(span.x()) / 2 + 1, Math.abs(span.y()) / 2 + 1, Math.abs(span.z()) / 2 + 1).expandTowards(0, 42, 0);
     }
 
     @Override
