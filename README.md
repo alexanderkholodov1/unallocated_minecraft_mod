@@ -2,7 +2,7 @@
 
 A first-person horror mod for Minecraft Java 26.3 (Fabric) by NULL_Threshold Interactive, made for the USFQ jam "Terror en Primera Persona". It is a story of about 10 to 15 minutes, best played alone, in the dark, with headphones.
 
-**Current version: 0.3.0.** The mod works completely in **English and Spanish**. It adds the contract before the menu, a saved session core, a code-built map, the Reclaimer creature, thread blocks, a reversible interface toolkit, synthesized audio and an epilogue that saves and closes the session. Every dependency you need is bundled inside the JAR. The UNALLOCATED button opens a copy of the prepared world.
+**Current version: 0.4.0.** The mod works completely in **English and Spanish**. Before the world, an intro tells you who you are and why you are joining (one of three arrivals, drawn per copy) and shows the server in a multiplayer list. Then you play an abandoned public server, ValleCraft Network, on real terrain: a network hub, a survival world with claimed player builds, the predecessor's base and the mine; the Heap, the Puppet state with its 3D threads, and the Kernel with three endings. The Reclaimer, the threads, every texture and every sound are original. Every dependency you need is bundled inside the JAR. The version is derived automatically from the release branch; it is never edited by hand.
 
 ## Requirements
 
@@ -12,7 +12,7 @@ A first-person horror mod for Minecraft Java 26.3 (Fabric) by NULL_Threshold Int
 | Loader | **Fabric Loader 0.20.1 or newer** for Minecraft 26.3. Verified with 0.20.1. |
 | Fabric API | **Bundled:** the seven required modules of **0.165.0+26.3** ship inside our JAR. **You do not need to download or install Fabric API separately.** |
 | Java | **Java 25**. The official Minecraft Launcher downloads the right runtime when it starts 26.3; leave the profile's Java executable at its default. |
-| Mod file | **`unallocated-0.3.0.jar`** from the author's release. |
+| Mod file | **`unallocated-0.4.0.jar`** from the author's release. |
 | Account | The **official Minecraft Launcher** works, and so do **TLauncher** and other launchers with **offline accounts**: the mod needs no online authentication. |
 
 Minecraft is pinned to 26.3 because the bundled modules apply mixins to its internal classes; a hotfix could change those targets. The supported version will only be widened after testing.
@@ -33,7 +33,7 @@ You do not need Simple Voice Chat, performance mods, a microphone or any artific
    On macOS, if the system blocks the official file, see [Fabric's macOS instructions](https://docs.fabricmc.net/players/installing-fabric/macos). The Java bundled with the launcher is enough to play; it is not always available to open the universal installer from the desktop or the terminal.
 
 3. In the installer, open the **Client** tab. Choose **Minecraft Version: 26.3** and **Loader Version: 0.20.1 or newer**; you can leave the newest Loader the installer selected. Check that the location matches your Minecraft Launcher, leave **Create Profile** ticked and press **Install**.
-4. Get **`unallocated-0.3.0.jar`** from the author's release. If you received a ZIP from GitHub Actions, unzip that ZIP first: inside are the JAR and its `.sha256` check file. Keep the JAR unextracted.
+4. Get **`unallocated-0.4.0.jar`** from the author's release. If you received a ZIP from GitHub Actions, unzip that ZIP first: inside are the JAR and its `.sha256` check file. Keep the JAR unextracted.
 5. Copy the JAR into the profile's **`mods`** folder. Create the folder if it does not exist:
 
    | System | Default location | How to get there |
@@ -51,7 +51,7 @@ Official guides consulted on 2026-10-26: [Windows](https://docs.fabricmc.net/pla
 
 1. In TLauncher, choose or install a **Fabric 26.3** version (a Fabric version for Minecraft 26.3 with Loader 0.20.1 or newer) and launch it once to the main menu. Then close the game.
 2. Use TLauncher's **open game folder** option to open the game directory. Create a `mods` folder there if it does not exist.
-3. Copy **`unallocated-0.3.0.jar`** into `mods`. Put only our JAR there: Fabric API is already inside it.
+3. Copy **`unallocated-0.4.0.jar`** into `mods`. Put only our JAR there: Fabric API is already inside it.
 4. If you use a TLauncher custom version or modpack version, the mods folder belongs to that version: `.minecraft/versions/<version name>/mods`.
 5. Select that Fabric 26.3 version and press play. No online account is needed.
 
@@ -63,7 +63,9 @@ In the main menu, press **UNALLOCATED**, above **Singleplayer**. You will see **
 
 If you have an unfinished session, the button offers **Continue** or **New session**. Continue keeps the chapter and the remaining time; a new session uses another folder (`UNALLOCATED`, `UNALLOCATED (2)`, …). A finished session is kept and the next start creates another copy.
 
-**If you get stuck:** type **`/unallocated next`** in the chat (Spanish alias **`/unallocated siguiente`**). It works without cheats and is available 5 seconds into each chapter.
+**If you get stuck:** open the pause menu and press **I'm stuck**, or type **`/unallocated next`** in the chat (Spanish alias **`/unallocated siguiente`**). It works without cheats and is available 5 seconds into each chapter. Every chapter also nudges a lost player and moves on by itself.
+
+**When you die** inside the story, the death screen offers **I agree** (consent to another trial, back to life) or **Not yet** (stay dead as a Puppet and see the Reclaimer's threads). As a Puppet, press **R** to agree and come back whenever you want.
 
 **Languages:** the mod is fully available in English and Spanish and picks the language from the game language (any Spanish locale shows Spanish; everything else shows English). Change it in Options → Language.
 
@@ -103,7 +105,7 @@ The integrated `v0.1.4` package adds F3 anomalies, death messages in the entity'
 Use **JDK 25**, **Gradle 9.8.2** (no Gradle wrapper is checked in) and pinned **Loom 1.19.3**.
 
 ```text
-gradle build        # output: build/libs/unallocated-0.3.0.jar
+gradle build        # output: build/libs/unallocated-0.4.0.jar
 gradle runClient    # a development client
 ```
 
