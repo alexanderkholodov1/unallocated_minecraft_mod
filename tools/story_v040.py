@@ -122,7 +122,9 @@ server = {
             cmd(3, 'unallocated tab remove Noor'),
             chat(3, 'Noor salió de la partida', 'Noor left the game', YELLOW),
             bar(5, 'Sigue el camino de antorchas hacia la base.', 'Follow the torch path to the base.')],
-         'capture': {'name': 'colina', 'at': 0.5}},
+         'capture': {'name': 'colina', 'at': 0.5}, 'autoplay': {'wait_seconds': 30}},
+        {'id': 'server.bait_force', 'when': {'type': 'after', 'seconds': 75, 'beat': 'server.leave_hub'},
+         'if': {'not_beats': ['server.bait_scream']}, 'actions': [{'at': 0, 'do': 'bait', 'op': 'scare'}]},
         {'id': 'server.lost_time', 'when': {'type': 'zone', 'zone': 'presa.path'}, 'actions': [
             blackout(0, 0.05, 0.4, 0.3), {'at': 0, 'do': 'audio', 'cue': 'muffle'},
             cmd(0.1, 'time add 2500'),

@@ -428,7 +428,30 @@
    "capture": {
     "name": "colina",
     "at": 0.5
+   },
+   "autoplay": {
+    "wait_seconds": 30
    }
+  },
+  {
+   "id": "server.bait_force",
+   "when": {
+    "type": "after",
+    "seconds": 75,
+    "beat": "server.leave_hub"
+   },
+   "if": {
+    "not_beats": [
+     "server.bait_scream"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "bait",
+     "op": "scare"
+    }
+   ]
   },
   {
    "id": "server.lost_time",
