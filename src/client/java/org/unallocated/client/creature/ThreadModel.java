@@ -40,15 +40,15 @@ public final class ThreadModel extends EntityModel<ThreadRenderState> {
         float sx = state.dx * 8F, sy = -state.dy * 8F, sz = -state.dz * 8F;
         float span = Mth.sqrt(sx * sx + sy * sy + sz * sz);
         float tremble = Mth.sin(state.ageInTicks * 0.9F) * 0.25F;
-        float px = -sx, py = 24F - sy, pz = -sz;
+        float px = -sx, py = 14F - sy, pz = -sz;
         for (int i = 0; i < SEGMENTS; i++) {
             float t1 = (i + 1) / (float) SEGMENTS;
             float sag = Mth.sin(t1 * Mth.PI) * (span * 0.06F + tremble);
-            float x = -sx + 2F * sx * t1, y = 24F - sy + 2F * sy * t1 + sag, z = -sz + 2F * sz * t1;
+            float x = -sx + 2F * sx * t1, y = 14F - sy + 2F * sy * t1 + sag, z = -sz + 2F * sz * t1;
             segment(segments[i], px, py, pz, x, y, z);
             px = x; py = y; pz = z;
         }
-        knot.y = 24F + Mth.sin(0.5F * Mth.PI) * (span * 0.06F + tremble);
+        knot.y = 14F + Mth.sin(0.5F * Mth.PI) * (span * 0.06F + tremble);
         knot.yRot = state.ageInTicks * 0.05F;
     }
 

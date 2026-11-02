@@ -26,6 +26,10 @@ public final class UnallocatedCommand {
                     var runtime = org.unallocated.story.StoryRuntime.get(ctx.getSource().getServer());
                     return runtime.requestPuppet(ctx.getSource().getPlayerOrException()) ? 1 : 0;
                 }))
+                .then(Commands.literal("shell").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
+                    .then(Commands.argument("mode", StringArgumentType.word()).executes(ctx -> {
+                        var source = ctx.getSource();
+                        org.unallocated.story.KernelShell.ending(org.unallocated.story.StoryRuntime.get(source.getServer()), source.getPlayerOrException(), StringArgumentType.getString(ctx, "mode")); return 1; })))
                 .then(Commands.literal("tab").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                     .then(Commands.literal("frame").executes(ctx -> {
                         org.unallocated.story.FakeRoster.frame(ctx.getSource().getPlayerOrException()); return 1; }))

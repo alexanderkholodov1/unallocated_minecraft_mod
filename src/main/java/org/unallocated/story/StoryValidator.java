@@ -16,7 +16,7 @@ import static org.unallocated.story.StoryData.*;
 /** Shared rule IDs/pointers with the offline checker. Parsers receive this validation context. */
 public final class StoryValidator {
     /** Flags the runtime itself sets (Puppet state, randomized arrival); stories may test them without setting them. */
-    public static final java.util.Set<String> RUNTIME_FLAGS = java.util.Set.of("puppet", "arrival.explorer", "arrival.former", "arrival.invited");
+    public static final java.util.Set<String> RUNTIME_FLAGS = java.util.Set.of("puppet", "arrival.explorer", "arrival.former", "arrival.invited", "suspended", "fight");
     public record Finding(String file, String pointer, String rule, String message, boolean warning) {
         public String marker() { return "UNALLOCATED story " + (warning ? "warning " : "invalid ") + file + "#" + pointer + ": [" + rule + "] " + message; }
     }
@@ -257,7 +257,7 @@ public final class StoryValidator {
         for (int i = 0; i < list.size(); i++) if (isString(list.get(i))) refs.add(new Ref(list.get(i).getAsString(), f, p + "/" + i)); else error(f, p + "/" + i, "bad-value", "Expected identifier");
     }
     private void chapter(JsonObject o, String f, String expected) {
-        keys(o, f, "", "id budget_seconds checkpoint respawn beats on_enter on_resume escape", "id budget_seconds checkpoint beats");
+        keys(o, f, "", "id budget_seconds checkpoint respawn stay beats on_enter on_resume escape", "id budget_seconds checkpoint beats");
         if (!string(o, "id", "").equals(expected)) error(f, "/id", "chapter-id-mismatch", "Must match filename/list");
         num(o, "budget_seconds", 30, 1200, false, "bad-time", f, ""); budget += (int) number(o, "budget_seconds", 0);
         position(o.get("checkpoint"), f, "/checkpoint", false);

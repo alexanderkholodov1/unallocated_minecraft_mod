@@ -1,560 +1,109 @@
 {
  "id": "puppet",
- "budget_seconds": 300,
+ "budget_seconds": 1200,
  "checkpoint": "heap.arrival",
+ "respawn": "mine.entrance",
+ "stay": true,
  "on_enter": [
   {
    "at": 0,
-   "do": "command",
-   "run": "unallocated puppet now"
-  },
-  {
-   "at": 0,
-   "do": "title",
-   "title": {
-    "es": "PUPPET",
-    "en": "PUPPET"
-   },
-   "subtitle": {
-    "es": "subject connection: still open",
-    "en": "subject connection: still open"
-   },
-   "fade_in": 0.3,
-   "stay": 3,
-   "fade_out": 1
-  },
-  {
-   "at": 0.5,
-   "do": "command",
-   "run": "give @s minecraft:shears[minecraft:can_break={blocks:\"unallocated:thread\"},minecraft:custom_name={translate:\"item.unallocated.shears\",italic:false}]"
-  },
-  {
-   "at": 1,
-   "do": "chat",
-   "text": {
-    "es": "subject connection: still open. retaining (+fear)",
-    "en": "subject connection: still open. retaining (+fear)",
-    "color": "#8a8a8a"
-   }
-  },
-  {
-   "at": 3,
-   "do": "actionbar",
-   "text": {
-    "es": "Ahora ves sus hilos. Tres hilos rojos custodian el túnel negro: córtalos con las tijeras.",
-    "en": "Now you see its threads. Three red threads guard the black tunnel: cut them with the shears."
-   }
-  },
-  {
-   "at": 2,
-   "do": "creature",
-   "op": "spawn",
-   "id": "echo",
-   "body": {
-    "mannequin": {
-     "profile": "player",
-     "scale": 1
-    }
-   },
-   "where": "heap.echo",
-   "facing": "player"
-  },
-  {
-   "at": 2.1,
-   "do": "creature",
-   "op": "stalk",
-   "id": "echo",
-   "step": 1,
-   "min_distance": 5
-  },
-  {
-   "at": 4,
-   "do": "chat",
-   "text": {
-    "es": "artifact[subject 4114] :: training (gen 1)",
-    "en": "artifact[subject 4114] :: training (gen 1)",
-    "color": "#8a8a8a"
-   }
+   "do": "audio",
+   "cue": "ambient"
   }
  ],
- "on_resume": [
-  {
-   "at": 0,
-   "do": "command",
-   "run": "unallocated tab frame"
-  }
- ],
+ "on_resume": [],
  "escape": [
   {
    "at": 0,
-   "do": "flag",
-   "set": "cut_a"
-  },
-  {
-   "at": 0,
-   "do": "flag",
-   "set": "cut_b"
-  },
-  {
-   "at": 0,
-   "do": "flag",
-   "set": "cut_c"
-  },
-  {
-   "at": 0,
-   "do": "flag",
-   "set": "path_open"
-  },
-  {
-   "at": 0,
-   "do": "creature",
-   "op": "despawn",
-   "id": "echo"
-  },
-  {
-   "at": 0,
-   "do": "creature",
-   "op": "despawn",
-   "id": "reclaimer"
-  },
-  {
-   "at": 0,
    "do": "chat",
    "text": {
-    "es": "sensors around the Kernel: offline",
-    "en": "sensors around the Kernel: offline",
-    "color": "#8a8a8a"
+    "es": "subject 4114 :: reclasificado: intrusión",
+    "en": "subject 4114 :: reclassified: intrusion",
+    "color": "#aa0000"
    }
   }
  ],
  "beats": [
   {
-   "id": "puppet.cut_a",
+   "id": "puppet.start",
    "when": {
-    "type": "break",
-    "block": "unallocated:thread",
-    "zone": "heap.cut_a"
-   },
-   "if": {
-    "not_flags": [
-     "cut_a"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "human_playtest_pool: UNALLOCATED",
-      "en": "human_playtest_pool: UNALLOCATED",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "reclaim pool ... UNALLOCATED",
-      "en": "reclaim pool ... UNALLOCATED",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_a"
-    },
-    {
-     "at": 0.2,
-     "do": "counter",
-     "id": "cuts",
-     "add": 1
-    },
-    {
-     "at": 2.5,
-     "do": "actionbar",
-     "text": {
-      "es": "Hilos cortados: {counter:cuts}/3",
-      "en": "Threads cut: {counter:cuts}/3"
-     }
-    }
-   ],
-   "capture": {
-    "name": "hilos",
-    "at": 0.3
-   }
-  },
-  {
-   "id": "puppet.cut_b",
-   "when": {
-    "type": "break",
-    "block": "unallocated:thread",
-    "zone": "heap.cut_b"
-   },
-   "if": {
-    "not_flags": [
-     "cut_b"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
-      "en": "reclaim[7331] :: cpu 97% :: Can't keep up! Is the server overloaded?",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "watchdog :: guarding pid 7331",
-      "en": "watchdog :: guarding pid 7331",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_b"
-    },
-    {
-     "at": 0.2,
-     "do": "counter",
-     "id": "cuts",
-     "add": 1
-    },
-    {
-     "at": 2.5,
-     "do": "actionbar",
-     "text": {
-      "es": "Hilos cortados: {counter:cuts}/3",
-      "en": "Threads cut: {counter:cuts}/3"
-     }
-    }
-   ]
-  },
-  {
-   "id": "puppet.cut_c",
-   "when": {
-    "type": "break",
-    "block": "unallocated:thread",
-    "zone": "heap.cut_c"
-   },
-   "if": {
-    "not_flags": [
-     "cut_c"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "success_threshold: 1.37 (spec g0: 0.82)",
-      "en": "success_threshold: 1.37 (spec g0: 0.82)",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 1.5,
-     "do": "chat",
-     "text": {
-      "es": "the Kernel :: main loop",
-      "en": "the Kernel :: main loop",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "threads"
-    },
-    {
-     "at": 0.2,
-     "do": "flag",
-     "set": "cut_c"
-    },
-    {
-     "at": 0.2,
-     "do": "counter",
-     "id": "cuts",
-     "add": 1
-    },
-    {
-     "at": 2.5,
-     "do": "actionbar",
-     "text": {
-      "es": "Hilos cortados: {counter:cuts}/3",
-      "en": "Threads cut: {counter:cuts}/3"
-     }
-    }
-   ]
-  },
-  {
-   "id": "puppet.open",
-   "when": {
-    "type": "flag",
-    "flag": "cut_c"
+    "type": "chapter_start"
    },
    "if": {
     "flags": [
-     "cut_a",
-     "cut_b"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "flag",
-     "set": "path_open"
-    },
-    {
-     "at": 1,
-     "do": "chat",
-     "text": {
-      "es": "sensors around the Kernel: blind",
-      "en": "sensors around the Kernel: blind",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 2,
-     "do": "actionbar",
-     "text": {
-      "es": "El túnel negro está abierto. Al fondo está el Kernel.",
-      "en": "The black tunnel is open. The Kernel lies at its end."
-     }
-    }
-   ]
-  },
-  {
-   "id": "puppet.open_b",
-   "when": {
-    "type": "flag",
-    "flag": "cut_b"
-   },
-   "if": {
-    "flags": [
-     "cut_a",
-     "cut_c"
-    ],
-    "not_beats": [
-     "puppet.open"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "flag",
-     "set": "path_open"
-    },
-    {
-     "at": 1,
-     "do": "chat",
-     "text": {
-      "es": "sensors around the Kernel: blind",
-      "en": "sensors around the Kernel: blind",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 2,
-     "do": "actionbar",
-     "text": {
-      "es": "El túnel negro está abierto. Al fondo está el Kernel.",
-      "en": "The black tunnel is open. The Kernel lies at its end."
-     }
-    }
-   ]
-  },
-  {
-   "id": "puppet.open_a",
-   "when": {
-    "type": "flag",
-    "flag": "cut_a"
-   },
-   "if": {
-    "flags": [
-     "cut_b",
-     "cut_c"
-    ],
-    "not_beats": [
-     "puppet.open",
-     "puppet.open_b"
-    ]
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "flag",
-     "set": "path_open"
-    },
-    {
-     "at": 1,
-     "do": "chat",
-     "text": {
-      "es": "sensors around the Kernel: blind",
-      "en": "sensors around the Kernel: blind",
-      "color": "#8a8a8a"
-     }
-    },
-    {
-     "at": 2,
-     "do": "actionbar",
-     "text": {
-      "es": "El túnel negro está abierto. Al fondo está el Kernel.",
-      "en": "The black tunnel is open. The Kernel lies at its end."
-     }
-    }
-   ]
-  },
-  {
-   "id": "puppet.blocked",
-   "when": {
-    "type": "zone",
-    "zone": "kernel.mouth"
-   },
-   "if": {
-    "not_flags": [
-     "path_open"
-    ]
-   },
-   "repeat": {
-    "max": 30,
-    "cooldown_seconds": 4
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "credential rotated: proximity event",
-      "en": "credential rotated: proximity event",
-      "color": "#aa0000"
-     }
-    },
-    {
-     "at": 0,
-     "do": "audio",
-     "cue": "muffle"
-    },
-    {
-     "at": 0.3,
-     "do": "teleport",
-     "to": "heap.arrival",
-     "blackout": true
-    },
-    {
-     "at": 1.5,
-     "do": "actionbar",
-     "text": {
-      "es": "Sus hilos te sintieron. Corta los tres hilos rojos primero ({counter:cuts}/3).",
-      "en": "Its threads felt you. Cut the three red threads first ({counter:cuts}/3)."
-     }
-    }
-   ]
-  },
-  {
-   "id": "puppet.alive_block",
-   "when": {
-    "type": "zone",
-    "zone": "kernel.mouth"
-   },
-   "if": {
-    "flags": [
-     "path_open"
-    ],
-    "not_flags": [
-     "puppet"
-    ]
-   },
-   "repeat": {
-    "max": 30,
-    "cooldown_seconds": 4
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "credential rotated: subject alive",
-      "en": "credential rotated: subject alive",
-      "color": "#aa0000"
-     }
-    },
-    {
-     "at": 0.3,
-     "do": "teleport",
-     "to": "heap.arrival",
-     "blackout": true
-    },
-    {
-     "at": 1.5,
-     "do": "actionbar",
-     "text": {
-      "es": "Sólo un Puppet entra al Kernel. Vivo, te siente.",
-      "en": "Only a Puppet enters the Kernel. Alive, it feels you."
-     }
-    }
-   ]
-  },
-  {
-   "id": "puppet.enter",
-   "when": {
-    "type": "zone",
-    "zone": "kernel.mouth"
-   },
-   "if": {
-    "flags": [
-     "path_open",
      "puppet"
     ]
    },
    "actions": [
     {
-     "at": 0,
+     "at": 0.5,
+     "do": "command",
+     "run": "clear @s minecraft:shears"
+    },
+    {
+     "at": 0.6,
+     "do": "command",
+     "run": "give @s minecraft:shears[minecraft:custom_name={translate:\"item.unallocated.shears\",italic:false}]"
+    },
+    {
+     "at": 2,
+     "do": "chat",
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 7,
+     "do": "chat",
+     "text": {
+      "es": "artifact[subject 4114] :: training (gen {counter:trial})",
+      "en": "artifact[subject 4114] :: training (gen {counter:trial})",
+      "color": "#8a8a8a"
+     }
+    },
+    {
+     "at": 10,
+     "do": "actionbar",
+     "text": {
+      "es": "Ves sus hilos. Suben al cielo, hacia algo que escucha.",
+      "en": "You can see its threads. They rise into the sky, toward something that listens."
+     }
+    },
+    {
+     "at": 4,
      "do": "creature",
-     "op": "despawn",
-     "id": "echo"
+     "op": "spawn",
+     "id": "echo",
+     "body": {
+      "mannequin": {
+       "profile": "player",
+       "scale": 1
+      }
+     },
+     "where": "heap.echo",
+     "facing": "player"
     },
     {
-     "at": 0,
+     "at": 4.1,
      "do": "creature",
-     "op": "despawn",
-     "id": "reclaimer"
-    },
-    {
-     "at": 0.2,
-     "do": "next_chapter"
+     "op": "stalk",
+     "id": "echo",
+     "step": 1,
+     "min_distance": 5
     }
    ]
   },
   {
-   "id": "puppet.revived",
+   "id": "puppet.alive_start",
    "when": {
-    "type": "respawn"
+    "type": "chapter_start"
    },
    "if": {
     "not_flags": [
      "puppet"
     ]
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 1
    },
    "actions": [
     {
@@ -569,80 +118,170 @@
      "fade_out": 1
     },
     {
-     "at": 2,
-     "do": "actionbar",
-     "text": {
-      "es": "Vivo otra vez, y te caza. Lo que cortaste sigue cortado.",
-      "en": "Alive again, and it hunts you. What you cut stays cut."
-     }
+     "at": 0.2,
+     "do": "command",
+     "run": "time set 18000"
     },
     {
      "at": 3,
-     "do": "creature",
-     "op": "spawn",
-     "id": "reclaimer",
-     "body": {
-      "summon": "unallocated:reclaimer"
-     },
-     "where": "heap.spider",
-     "facing": "player"
+     "do": "actionbar",
+     "text": {
+      "es": "Vuelves. El servidor parece normal otra vez.",
+      "en": "You are back. The server looks normal again."
+     }
     },
     {
-     "at": 3.1,
-     "do": "creature",
-     "op": "stalk",
-     "id": "reclaimer",
-     "step": 1.2,
-     "min_distance": 8
+     "at": 20,
+     "do": "actionbar",
+     "text": {
+      "es": "La conexión sigue abierta. Lo sientes.",
+      "en": "The connection is still open. You can feel it."
+     }
     },
     {
-     "at": 9,
-     "do": "command",
-     "run": "tp @s ~ ~ ~ facing entity @e[type=unallocated:reclaimer,limit=1,sort=nearest] eyes"
+     "at": 45,
+     "do": "blackout",
+     "fade_in": 0.05,
+     "hold": 0.35,
+     "fade_out": 0.05
     },
     {
-     "at": 9.1,
-     "do": "creature",
-     "op": "chase",
-     "id": "reclaimer",
-     "speed": 6,
-     "catch_distance": 1.5
-    }
-   ]
-  },
-  {
-   "id": "puppet.caught",
-   "when": {
-    "type": "creature",
-    "creature": "reclaimer",
-    "event": "caught"
-   },
-   "repeat": {
-    "max": 20,
-    "cooldown_seconds": 2
-   },
-   "actions": [
-    {
-     "at": 0,
+     "at": 45.05,
      "do": "counter",
      "id": "trial",
      "add": 1
     },
     {
-     "at": 0,
-     "do": "creature",
-     "op": "hold",
-     "id": "reclaimer"
+     "at": 45.3,
+     "do": "command",
+     "run": "execute at @s anchored eyes run summon unallocated:reclaimer ^ ^-1.9 ^1.3 {NoAI:1b,Invulnerable:1b,Tags:[\"unallocated.scream\"]}"
     },
     {
-     "at": 0.2,
+     "at": 45.35,
+     "do": "command",
+     "run": "execute as @e[tag=unallocated.scream] at @s run tp @s ~ ~ ~ facing entity @p eyes"
+    },
+    {
+     "at": 45.4,
      "do": "audio",
      "cue": "screamer"
     },
     {
-     "at": 0.5,
+     "at": 45.4,
+     "do": "interface",
+     "effect": "DEATH",
+     "seconds": 30,
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)"
+     }
+    },
+    {
+     "at": 46.0,
      "do": "command",
      "run": "kill @s"
+    },
+    {
+     "at": 46.3,
+     "do": "command",
+     "run": "kill @e[tag=unallocated.scream]"
+    }
+   ]
+  },
+  {
+   "id": "puppet.revived",
+   "when": {
+    "type": "respawn"
+   },
+   "if": {
+    "not_flags": [
+     "puppet"
+    ]
+   },
+   "repeat": {
+    "max": 30,
+    "cooldown_seconds": 0
+   },
+   "actions": [
+    {
+     "at": 0.3,
+     "do": "title",
+     "title": {
+      "es": "Trial {counter:trial}",
+      "en": "Trial {counter:trial}"
+     },
+     "fade_in": 0.3,
+     "stay": 2,
+     "fade_out": 1
+    },
+    {
+     "at": 0.2,
+     "do": "command",
+     "run": "time set 18000"
+    },
+    {
+     "at": 3,
+     "do": "actionbar",
+     "text": {
+      "es": "Vuelves. El servidor parece normal otra vez.",
+      "en": "You are back. The server looks normal again."
+     }
+    },
+    {
+     "at": 20,
+     "do": "actionbar",
+     "text": {
+      "es": "La conexión sigue abierta. Lo sientes.",
+      "en": "The connection is still open. You can feel it."
+     }
+    },
+    {
+     "at": 45,
+     "do": "blackout",
+     "fade_in": 0.05,
+     "hold": 0.35,
+     "fade_out": 0.05
+    },
+    {
+     "at": 45.05,
+     "do": "counter",
+     "id": "trial",
+     "add": 1
+    },
+    {
+     "at": 45.3,
+     "do": "command",
+     "run": "execute at @s anchored eyes run summon unallocated:reclaimer ^ ^-1.9 ^1.3 {NoAI:1b,Invulnerable:1b,Tags:[\"unallocated.scream\"]}"
+    },
+    {
+     "at": 45.35,
+     "do": "command",
+     "run": "execute as @e[tag=unallocated.scream] at @s run tp @s ~ ~ ~ facing entity @p eyes"
+    },
+    {
+     "at": 45.4,
+     "do": "audio",
+     "cue": "screamer"
+    },
+    {
+     "at": 45.4,
+     "do": "interface",
+     "effect": "DEATH",
+     "seconds": 30,
+     "text": {
+      "es": "subject connection: still open. retaining (+fear)",
+      "en": "subject connection: still open. retaining (+fear)"
+     }
+    },
+    {
+     "at": 46.0,
+     "do": "command",
+     "run": "kill @s"
+    },
+    {
+     "at": 46.3,
+     "do": "command",
+     "run": "kill @e[tag=unallocated.scream]"
     }
    ]
   },
@@ -657,68 +296,38 @@
     ]
    },
    "repeat": {
-    "max": 20,
-    "cooldown_seconds": 1
+    "max": 30,
+    "cooldown_seconds": 0
    },
    "actions": [
     {
-     "at": 0,
-     "do": "creature",
-     "op": "despawn",
-     "id": "reclaimer"
+     "at": 1,
+     "do": "chat",
+     "text": {
+      "es": "artifact[subject 4114] :: retraining (gen {counter:trial})",
+      "en": "artifact[subject 4114] :: retraining (gen {counter:trial})",
+      "color": "#8a8a8a"
+     }
     },
     {
-     "at": 1,
+     "at": 5,
      "do": "actionbar",
      "text": {
-      "es": "Hilos cortados: {counter:cuts}/3. Luego, el túnel negro.",
-      "en": "Threads cut: {counter:cuts}/3. Then, the black tunnel."
+      "es": "Te devolvió más hondo que antes.",
+      "en": "It put you back deeper than before."
      }
     }
    ]
   },
   {
-   "id": "puppet.fury",
-   "when": {
-    "type": "chat",
-    "pattern": "(?i)reclaimer"
-   },
-   "actions": [
-    {
-     "at": 0,
-     "do": "chat",
-     "text": {
-      "es": "muestra inválida :: el sujeto conoce la designación",
-      "en": "invalid sample :: the subject knows the designation",
-      "color": "#aa0000"
-     }
-    },
-    {
-     "at": 0.3,
-     "do": "audio",
-     "cue": "muffle"
-    },
-    {
-     "at": 0.3,
-     "do": "interface",
-     "effect": "GAMMA",
-     "seconds": 4,
-     "strength": 1
-    }
-   ],
-   "autoplay": {
-    "input": "reclaimer"
-   }
-  },
-  {
    "id": "puppet.nudge",
    "when": {
     "type": "after",
-    "seconds": 120
+    "seconds": 75
    },
    "if": {
-    "not_flags": [
-     "path_open"
+    "flags": [
+     "puppet"
     ]
    },
    "actions": [
@@ -726,8 +335,30 @@
      "at": 0,
      "do": "actionbar",
      "text": {
-      "es": "Los hilos rojos brillan junto al camino hacia el túnel negro, al este. Golpéalos con las tijeras.",
-      "en": "The red threads glow by the path to the black tunnel, to the east. Hit them with the shears."
+      "es": "La nota de Noor decía algo sobre el chat cuando estás muerto.",
+      "en": "Noor's note said something about the chat when you are dead."
+     }
+    }
+   ]
+  },
+  {
+   "id": "puppet.nudge2",
+   "when": {
+    "type": "after",
+    "seconds": 180
+   },
+   "if": {
+    "flags": [
+     "puppet"
+    ]
+   },
+   "actions": [
+    {
+     "at": 0,
+     "do": "actionbar",
+     "text": {
+      "es": "Escribe help en el chat.",
+      "en": "Type help in the chat."
      }
     }
    ]

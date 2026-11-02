@@ -12,7 +12,10 @@ public final class UnallocatedClient implements ClientModInitializer {
             org.unallocated.content.UnallocatedContent.THREAD_ENTITY, org.unallocated.client.creature.ThreadRenderer::new);
         org.unallocated.client.creature.PuppetClient.initialize();
         org.unallocated.client.core.ClientSession.initialize();
-        org.unallocated.client.creature.PuppetThreads.initialize();
+        // The vanilla soundtrack never plays inside a session: a cheerful track over the diary broke the night.
+        net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (client.level != null && org.unallocated.client.core.ClientSession.act() != org.unallocated.core.Act.CONTRACT) client.getMusicManager().stopPlaying();
+        });
         org.unallocated.client.ending.EndingClient.initialize();
         org.unallocated.client.effects.SoundEffects.initialize();
         org.unallocated.client.story.StoryClient.initialize();

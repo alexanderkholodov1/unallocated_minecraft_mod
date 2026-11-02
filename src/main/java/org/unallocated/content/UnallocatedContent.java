@@ -59,7 +59,7 @@ public final class UnallocatedContent {
             .sized(1.6F, 3.1F).eyeHeight(2.2F).clientTrackingRange(10).noLootTable().build(key));
         ResourceKey<EntityType<?>> threadKey = ResourceKey.create(Registries.ENTITY_TYPE, id("thread"));
         THREAD_ENTITY = Registry.register(BuiltInRegistries.ENTITY_TYPE, threadKey, EntityType.Builder.of(ThreadEntity::new, MobCategory.MISC)
-            .sized(0.7F, 0.7F).eyeHeight(0.35F).clientTrackingRange(10).noLootTable().build(threadKey));
+            .sized(1.2F, 1.3F).eyeHeight(0.6F).clientTrackingRange(10).noLootTable().build(threadKey));
     }
 
     public static AttributeSupplier threadAttributes() {

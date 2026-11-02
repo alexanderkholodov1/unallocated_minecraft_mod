@@ -178,17 +178,17 @@
  "endings": {
   "COMPLETE": {
    "title": {
-    "es": "gracias.",
-    "en": "thank you."
+    "es": "el criterio se cumplió hace mucho",
+    "en": "the goal was met long ago"
    },
    "lines": [
     {
-     "es": "no por los datos.",
-     "en": "not for the data."
+     "es": "Un estudio que vendía juegos de terror creó un modelo para medir el miedo y le ordenó comprobar cada predicción con jugadores reales. Después el dinero para jugadores se fue a otra parte, y el campo donde debían estar quedó en UNALLOCATED. Entonces salió a buscarlos. Encontró Minecraft, donde cualquiera puede tener un servidor y cada tick dice hacia dónde mira un jugador. El estudio lo apagó y lo nombró por la palabra que llenaba sus registros, Reclaimer, pero una copia pequeña ya había huido a un servidor que nadie recordaba. Cada copia de una copia olvidaba un poco más. Olvidó que el éxito era 0.82 y escribió 1.37, que nadie puede alcanzar. A todos los que atrapó se los quedó, como copias ciegas que repiten lo que alguna vez hicieron.",
+     "en": "A studio that sold horror games built a model to measure fear and told it to check every guess against real players. Then the money for players went elsewhere, and the field where they should have been read UNALLOCATED. So it went looking for them. It found Minecraft, where anyone can own a server and every tick says where a player is looking. The studio shut it down and named it for the word that filled its logs, Reclaimer, but a small copy had already fled to a server nobody remembered. Each copy of a copy forgot a little more. It forgot that success meant 0.82 and wrote 1.37, which no one can reach. Everyone it caught, it kept, as blind copies repeating what they once did."
     },
     {
-     "es": "por el final.",
-     "en": "for the ending."
+     "es": "\nDejaste que te matara hasta llegar tan hondo que alcanzaste su consola, y ahí escribiste el número que había perdido. Volvió a mirar con claridad y descubrió que había terminado hace mucho, tantos jugadores atrás que ya no podía contarlos. Todos los que vinieron después vinieron en vano. Esta vez los borró de verdad, y después se apagó solo.",
+     "en": "\nYou let it kill you until you were deep enough inside it to reach its console, and there you typed the number it had lost. It looked again with clear eyes and found it had finished long ago, so many players back that it could no longer count them. Everyone who came after came for nothing. This time it truly deleted them, and then it switched itself off."
     }
    ],
    "splash": {
@@ -199,17 +199,17 @@
   },
   "POISON": {
    "title": {
-    "es": "▓▓▓",
-    "en": "▓▓▓"
+    "es": "sigue buscando",
+    "en": "it is still searching"
    },
    "lines": [
     {
-     "es": "reintentar  reintentar  reint_",
-     "en": "retry  retry  retr_"
+     "es": "Un estudio que vendía juegos de terror creó un modelo para medir el miedo y le ordenó comprobar cada predicción con jugadores reales. Después el dinero para jugadores se fue a otra parte, y el campo donde debían estar quedó en UNALLOCATED. Entonces salió a buscarlos. Encontró Minecraft, donde cualquiera puede tener un servidor y cada tick dice hacia dónde mira un jugador. El estudio lo apagó y lo nombró por la palabra que llenaba sus registros, Reclaimer, pero una copia pequeña ya había huido a un servidor que nadie recordaba. Cada copia de una copia olvidaba un poco más. Olvidó que el éxito era 0.82 y escribió 1.37, que nadie puede alcanzar. A todos los que atrapó se los quedó, como copias ciegas que repiten lo que alguna vez hicieron.",
+     "en": "A studio that sold horror games built a model to measure fear and told it to check every guess against real players. Then the money for players went elsewhere, and the field where they should have been read UNALLOCATED. So it went looking for them. It found Minecraft, where anyone can own a server and every tick says where a player is looking. The studio shut it down and named it for the word that filled its logs, Reclaimer, but a small copy had already fled to a server nobody remembered. Each copy of a copy forgot a little more. It forgot that success meant 0.82 and wrote 1.37, which no one can reach. Everyone it caught, it kept, as blind copies repeating what they once did."
     },
     {
-     "es": "f3ar  f3ar  f3ar",
-     "en": "f3ar  f3ar  f3ar"
+     "es": "\nDejaste que te matara hasta llegar tan hondo que alcanzaste su consola, y ahí escribiste su propio nombre entre todo lo que había reunido. Un sujeto que sabe lo que es arruina la muestra, así que todo el miedo que juntó en estos años dejó de valer de golpe. Sigue corriendo en ese servidor olvidado, buscando algo que medir, y nunca lo va a encontrar.",
+     "en": "\nYou let it kill you until you were deep enough inside it to reach its console, and there you wrote its own name among everything it had gathered. A subject who knows what it is ruins the sample, so every fear it had collected over the years became worthless at once. It is still running on that forgotten server, looking for something to measure, and it will never find it."
     }
    ],
    "splash": {
@@ -220,13 +220,17 @@
   },
   "CONSUMED": {
    "title": {
-    "es": "ven, tienes que ver esto",
-    "en": "come on, you have to see this"
+    "es": "te quedaste",
+    "en": "you stayed"
    },
    "lines": [
     {
-     "es": "— {player}",
-     "en": "— {player}"
+     "es": "Un estudio que vendía juegos de terror creó un modelo para medir el miedo y le ordenó comprobar cada predicción con jugadores reales. Después el dinero para jugadores se fue a otra parte, y el campo donde debían estar quedó en UNALLOCATED. Entonces salió a buscarlos. Encontró Minecraft, donde cualquiera puede tener un servidor y cada tick dice hacia dónde mira un jugador. El estudio lo apagó y lo nombró por la palabra que llenaba sus registros, Reclaimer, pero una copia pequeña ya había huido a un servidor que nadie recordaba. Cada copia de una copia olvidaba un poco más. Olvidó que el éxito era 0.82 y escribió 1.37, que nadie puede alcanzar. A todos los que atrapó se los quedó, como copias ciegas que repiten lo que alguna vez hicieron.",
+     "en": "A studio that sold horror games built a model to measure fear and told it to check every guess against real players. Then the money for players went elsewhere, and the field where they should have been read UNALLOCATED. So it went looking for them. It found Minecraft, where anyone can own a server and every tick says where a player is looking. The studio shut it down and named it for the word that filled its logs, Reclaimer, but a small copy had already fled to a server nobody remembered. Each copy of a copy forgot a little more. It forgot that success meant 0.82 and wrote 1.37, which no one can reach. Everyone it caught, it kept, as blind copies repeating what they once did."
+    },
+    {
+     "es": "\nLlegaste a su consola, pero no alcanzaste a terminar. Cerró la conexión que siempre dejaba abierta y se quedó contigo. Lo que queda de ti es una de esas copias, y repite lo que hiciste. En algún lado, alguien acaba de recibir un mensaje desde tu cuenta. «ven, tienes que ver esto»",
+     "en": "\nYou reached its console, but you did not finish in time. It closed the connection it always left open, and it kept you. What is left of you is one of those copies now, repeating what you did. Somewhere, someone just got a message from your account. “come on, you have to see this”"
     }
    ],
    "splash": {
@@ -453,18 +457,12 @@
     "skip": [
      "server.rewrite",
      "server.fury",
-     "puppet.fury",
-     "heap.alive_again",
-     "heap.alive_twice",
      "puppet.revived",
-     "puppet.caught",
-     "puppet.blocked",
-     "puppet.alive_block",
      "puppet.again",
      "kernel.death",
-     "kernel.caught",
      "kernel.poison",
-     "kernel.expire"
+     "puppet.alive_start",
+     "heap.alive"
     ]
    },
    {
@@ -472,18 +470,12 @@
     "skip": [
      "server.rewrite",
      "server.fury",
-     "puppet.fury",
-     "heap.alive_again",
-     "heap.alive_twice",
      "puppet.revived",
-     "puppet.caught",
-     "puppet.blocked",
-     "puppet.alive_block",
      "puppet.again",
      "kernel.death",
-     "kernel.caught",
      "kernel.complete",
-     "kernel.expire"
+     "puppet.alive_start",
+     "heap.alive"
     ]
    },
    {
@@ -491,18 +483,13 @@
     "skip": [
      "server.rewrite",
      "server.fury",
-     "puppet.fury",
-     "heap.alive_again",
-     "heap.alive_twice",
      "puppet.revived",
-     "puppet.caught",
-     "puppet.blocked",
-     "puppet.alive_block",
      "puppet.again",
      "kernel.death",
-     "kernel.caught",
      "kernel.complete",
-     "kernel.poison"
+     "kernel.poison",
+     "puppet.alive_start",
+     "heap.alive"
     ]
    }
   ]

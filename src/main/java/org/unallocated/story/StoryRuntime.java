@@ -128,6 +128,7 @@ public final class StoryRuntime {
         boolean hide = false;
         JsonObject chapter = currentChapter();
         if (chapter == null || !state.active()) return false;
+        if (KernelShell.routes(this, player) && KernelShell.chat(this, player, text)) { signals.removeIf(signal -> signal.type.equals("chat")); return true; }
         for (JsonElement e : array(chapter, "beats")) {
             JsonObject beat = e.getAsJsonObject(); JsonObject when = object(beat, "when");
             if (chatTrigger(when, text, false) && eligible(beat)) { hide |= chatTrigger(when, text, true); fire(string(beat, "id", "")); }
@@ -168,12 +169,18 @@ public final class StoryRuntime {
         boolean respawn = participant != null && participant != p && dead;
         participant = p; JsonObject chapter = currentChapter();
         if (chapter == null) return;
-        if (respawn && pendingPuppet) { pendingPuppet = false; state.addFlag(PUPPET_FLAG); }
+        boolean asPuppet = false;
+        if (respawn) {
+            if (pendingPuppet) { pendingPuppet = false; state.addFlag(PUPPET_FLAG); asPuppet = true; }
+            else if (!state.flags().contains("story.flag.no_revive")) state.removeFlag(PUPPET_FLAG); // "I agree": alive again
+        }
         if (respawn) { signal(p, "respawn", "", null); dead = false; }
         chapterId = string(chapter, "id", ""); String entered = "story.entered." + chapterId;
         boolean resume = state.flags().contains(entered); generation++;
         if (!resume) { scheduler.cancel(null); state.addFlag(entered); }
-        teleport(p, resolvePosition(chapter.get(respawn && chapter.has("respawn") ? "respawn" : "checkpoint")));
+        // A Puppet keeps playing from where it died in the Heap, as if nothing happened; the Kernel starts where you stand.
+        if (asPuppet && deathPosition != null && deathDimension.equals("pocket")) teleport(p, new Position("pocket", deathPosition.x - .5, deathPosition.y, deathPosition.z - .5, p.getYRot(), p.getXRot()));
+        else if (!(bool(chapter, "stay", false) && !respawn && !resume)) teleport(p, resolvePosition(chapter.get(respawn && chapter.has("respawn") ? "respawn" : "checkpoint")));
         applyPuppet(p, state.flags().contains(PUPPET_FLAG));
         scheduler.schedule(chapterId + (resume ? ".on_resume" : ".on_enter"), steps.get(chapterId + (resume ? ".on_resume" : ".on_enter")));
         log("chapter=" + chapterId + " slot=" + state.act() + (resume ? " resume" : " enter"));
@@ -186,9 +193,13 @@ public final class StoryRuntime {
             if (pendingEntry != null) return;
         }
         participant = p; JsonObject chapter = currentChapter(); if (chapter == null) return;
-        if (p.isDeadOrDying() && !dead) { state.setCounter("story.deaths", state.counters().getOrDefault("story.deaths", 0) + 1); signal(p, "death", "", null); }
+        if (p.isDeadOrDying() && !dead) { deathPosition = p.position(); deathDimension = dimensionName(p.level()); state.setCounter("story.deaths", state.counters().getOrDefault("story.deaths", 0) + 1); signal(p, "death", "", null); }
         if (!p.isDeadOrDying() && dead) signal(p, "respawn", "", null);
         dead = p.isDeadOrDying();
+        if (!dead) {
+            try { KernelShell.tick(this, p); } catch (RuntimeException e) { UnallocatedMod.LOGGER.error("UNALLOCATED shell tick failed", e); }
+            if (participant != p || currentChapter() == null) return;
+        }
         int before = generation; drain(true);
         if (before != generation || !state.active()) return;
         for (JsonElement e : array(chapter, "beats")) {
@@ -321,6 +332,8 @@ public final class StoryRuntime {
     /** Set by the runtime while the participant plays dead (LORE 1.10: the connection never closed). */
     public static final String PUPPET_FLAG = "story.flag.puppet";
     private boolean pendingPuppet;
+    private Vec3 deathPosition;
+    private String deathDimension = "";
     /** "Not yet" on the death screen: the next respawn is as a Puppet instead of a living subject. */
     public boolean requestPuppet(ServerPlayer p) {
         if (!state.active() || !p.isDeadOrDying()) return false;
