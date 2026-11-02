@@ -18,7 +18,8 @@
     "InterfaceMouseMixin",
     "InterfaceLightmapMixin",
     "InterfaceDeathPuppetMixin",
-    "InterfacePauseStuckMixin"
+    "InterfacePauseStuckMixin",
+    "InterfaceRecipeToastMixin"
   ],
   "injectors": {
     "defaultRequire": 0
