@@ -2,7 +2,7 @@
 
 A first-person horror mod for Minecraft Java 26.3 (Fabric) by NULL_Threshold Interactive, made for the USFQ jam "Terror en Primera Persona". It is a story of about 10 to 15 minutes, best played alone, in the dark, with headphones.
 
-**Current version: 0.4.0.** The mod works completely in **English and Spanish**. Before the world, an intro tells you who you are and why you are joining (one of three arrivals, drawn per copy) and shows the server in a multiplayer list. Then you play an abandoned public server, ValleCraft Network, on real terrain: a network hub, a survival world with claimed player builds, the predecessor's base and the mine; the Heap, the Puppet state with its 3D threads, and the Kernel with three endings. The Reclaimer, the threads, every texture and every sound are original. Every dependency you need is bundled inside the JAR. The version is derived automatically from the release branch; it is never edited by hand.
+**Current version: 0.5.0** (see the [latest release](https://github.com/alexanderkholodov1/unallocated_minecraft_mod/releases/latest)). The mod works completely in **English and Spanish**. Before the world, an intro tells you who you are and why you are joining (one of three arrivals, drawn per copy) and shows the server in a multiplayer list. Then you play a small public server nobody turned off, ValleCraft Network, on real terrain: a network hub, claimed player builds, Noor's base and diary, and her mine, which opens under you into the Reclaimer's corrupted copy of the world. Dead, you stay as a Puppet who sees its threads, and the chat becomes its console: every death takes you deeper, until the boss fight and three animated endings. The Reclaimer, the threads, the fallen souls, every texture and every sound are original. Every dependency you need, and the map, are bundled inside the JAR. The version is derived automatically from the release branch; it is never edited by hand.
 
 ## Requirements
 
@@ -12,7 +12,7 @@ A first-person horror mod for Minecraft Java 26.3 (Fabric) by NULL_Threshold Int
 | Loader | **Fabric Loader 0.20.1 or newer** for Minecraft 26.3. Verified with 0.20.1. |
 | Fabric API | **Bundled:** the seven required modules of **0.165.0+26.3** ship inside our JAR. **You do not need to download or install Fabric API separately.** |
 | Java | **Java 25**. The official Minecraft Launcher downloads the right runtime when it starts 26.3; leave the profile's Java executable at its default. |
-| Mod file | **`unallocated-0.4.0.jar`** from the author's release. |
+| Mod file | **`unallocated-<version>.jar`** from the author's release (the map is inside). |
 | Account | The **official Minecraft Launcher** works, and so do **TLauncher** and other launchers with **offline accounts**: the mod needs no online authentication. |
 | Memory | Give Minecraft **at least 2 GB of RAM** (the official launcher's default; in TLauncher: Settings → Memory). |
 
@@ -34,7 +34,7 @@ You do not need Simple Voice Chat, performance mods, a microphone or any artific
    On macOS, if the system blocks the official file, see [Fabric's macOS instructions](https://docs.fabricmc.net/players/installing-fabric/macos). The Java bundled with the launcher is enough to play; it is not always available to open the universal installer from the desktop or the terminal.
 
 3. In the installer, open the **Client** tab. Choose **Minecraft Version: 26.3** and **Loader Version: 0.20.1 or newer**; you can leave the newest Loader the installer selected. Check that the location matches your Minecraft Launcher, leave **Create Profile** ticked and press **Install**.
-4. Get **`unallocated-0.4.0.jar`** from the author's release. If you received a ZIP from GitHub Actions, unzip that ZIP first: inside are the JAR and its `.sha256` check file. Keep the JAR unextracted.
+4. Get **`unallocated-<version>.jar`** from the author's release. If you received a ZIP from GitHub Actions, unzip that ZIP first: inside are the JAR and its `.sha256` check file. Keep the JAR unextracted.
 5. Copy the JAR into the profile's **`mods`** folder. Create the folder if it does not exist:
 
    | System | Default location | How to get there |
@@ -52,7 +52,7 @@ Official guides consulted on 2026-10-26: [Windows](https://docs.fabricmc.net/pla
 
 1. In TLauncher, choose or install a **Fabric 26.3** version (a Fabric version for Minecraft 26.3 with Loader 0.20.1 or newer) and launch it once to the main menu. Then close the game.
 2. Use TLauncher's **open game folder** option to open the game directory. Create a `mods` folder there if it does not exist.
-3. Copy **`unallocated-0.4.0.jar`** into `mods`. Put only our JAR there: Fabric API is already inside it.
+3. Copy **`unallocated-<version>.jar`** into `mods`. Put only our JAR there: Fabric API is already inside it.
 4. If you use a TLauncher custom version or modpack version, the mods folder belongs to that version: `.minecraft/versions/<version name>/mods`.
 5. Select that Fabric 26.3 version and press play. No online account is needed.
 
@@ -66,7 +66,7 @@ If you have an unfinished session, the button offers **Continue** or **New sessi
 
 **If you get stuck:** open the pause menu and press **I'm stuck**, or type **`/unallocated next`** in the chat (Spanish alias **`/unallocated siguiente`**). It works without cheats and is available 5 seconds into each chapter. Every chapter also nudges a lost player and moves on by itself.
 
-**When you die** inside the story, the death screen offers **I agree** (consent to another trial, back to life) or **Not yet** (stay dead as a Puppet and see the Reclaimer's threads). As a Puppet, press **R** to agree and come back whenever you want.
+**When you die** inside the story, the death screen (written by it) offers **I agree** (consent to another trial: back to life at spawn, with the notes others left you) or **Not yet** (stay dead where you fell, as a Puppet who sees the Reclaimer's threads). As a Puppet the chat is its console: start with `help`. Every time it catches you, you get deeper and it answers more. As a Puppet, press **R** to agree and come back whenever you want; alive, sleeping in a bed lets it take you again. The whole design is in [docs/design/SHELL-AND-FIGHT.md](docs/design/SHELL-AND-FIGHT.md) (spoilers).
 
 **Languages:** the mod is fully available in English and Spanish and picks the language from the game language (any Spanish locale shows Spanish; everything else shows English). Change it in Options → Language.
 
@@ -106,7 +106,7 @@ The integrated `v0.1.4` package adds F3 anomalies, death messages in the entity'
 Use **JDK 25**, **Gradle 9.8.2** (no Gradle wrapper is checked in) and pinned **Loom 1.19.3**.
 
 ```text
-gradle build        # output: build/libs/unallocated-0.4.0.jar
+gradle build        # output: build/libs/unallocated-<version>.jar (the map is injected by scripts/author_template.py)
 gradle runClient    # a development client
 ```
 
