@@ -198,8 +198,12 @@ heap = {
             {'at': 0.2, 'do': 'audio', 'cue': 'screamer'}, cmd(0.5, 'kill @s')], 'autoplay': {'wait_seconds': 20}},
         {'id': 'heap.to_puppet', 'when': {'type': 'respawn'}, 'if': {'flags': ['puppet']}, 'actions': [
             creature(0, 'despawn'), {'at': 0.2, 'do': 'next_chapter'}], 'autoplay': {'wait_seconds': 200}},
-        {'id': 'heap.alive_again', 'when': {'type': 'respawn'}, 'if': {'not_flags': ['puppet']},
-         'repeat': {'max': 20, 'cooldown_seconds': 1}, 'actions': [
+        {'id': 'heap.alive_twice', 'when': {'type': 'respawn'}, 'if': {'flags': ['alive_once'], 'not_flags': ['puppet']}, 'actions': [
+            chat(0, 'subject connection: still open. retaining (+fear)', None, GRAY),
+            bar(0.5, 'No te deja ir. Te quedas como Puppet.', 'It does not let you go. You stay as a Puppet.'),
+            creature(0, 'despawn'), {'at': 1.5, 'do': 'next_chapter'}]},
+        {'id': 'heap.alive_again', 'when': {'type': 'respawn'}, 'if': {'not_flags': ['puppet', 'alive_once']}, 'actions': [
+            flag(0, 'alive_once'),
             {'at': 0.3, 'do': 'title', 'title': T('Trial {counter:trial}'), 'fade_in': 0.3, 'stay': 2, 'fade_out': 1},
             chat(1, 'subject connection: still open.', None, GRAY),
             bar(2, 'Al morir, elige «Todavía no» para quedarte como Puppet: sólo así verás sus hilos.',
@@ -338,7 +342,7 @@ for dx, dz in ((10, 0), (0, 10), (7, 7), (7, -7)):
     run.append(f'execute in unallocated:pocket run summon unallocated:thread 141.5 70 20.5 {{dx:{dx}.0f,dy:6.0f,dz:{dz}.0f}}')
 story['build']['run'] = run
 story['autoplay'] = {'time_scale': 0.1, 'runs': [
-    {'ending': e, 'skip': ['server.rewrite', 'server.fury', 'puppet.fury', 'heap.alive_again', 'puppet.revived', 'puppet.caught',
+    {'ending': e, 'skip': ['server.rewrite', 'server.fury', 'puppet.fury', 'heap.alive_again', 'heap.alive_twice', 'puppet.revived', 'puppet.caught',
                            'puppet.blocked', 'puppet.alive_block', 'puppet.again', 'kernel.death', 'kernel.caught'] + extra}
     for e, extra in (('COMPLETE', ['kernel.poison', 'kernel.expire']), ('POISON', ['kernel.complete', 'kernel.expire']),
                      ('CONSUMED', ['kernel.complete', 'kernel.poison']))]}
