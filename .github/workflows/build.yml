@@ -6,7 +6,7 @@ name: Build
 # Actions > Build > Run workflow. The version is never edited by hand (see build.gradle).
 on:
   push:
-    branches: ['main', 'v[0-9]*']
+    branches: ['main', 'v[0-9]*', 'rehearsal/**']
   pull_request:
   workflow_dispatch:
 
@@ -17,6 +17,8 @@ jobs:
   package:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    # A rehearsal (CASPIAN rehearse.sh on a temporary rehearsal/* branch) records a verdict and never turns red.
+    continue-on-error: ${{ startsWith(github.ref, 'refs/heads/rehearsal/') }}
     permissions:
       contents: write
     steps:
@@ -90,6 +92,22 @@ jobs:
           tag="unallocated-$version"
           gh release delete "$tag" --cleanup-tag --yes >/dev/null 2>&1 || true
           gh release create "$tag" "build/release/unallocated-$version.jar" "build/release/unallocated-$version.jar.sha256"             build/release/UNALLOCATED-world.zip --target "$GITHUB_SHA" --title "UNALLOCATED $version"             --notes-file docs/release/RELEASE-NOTES.md --latest
+
+      - name: Record rehearsal verdict
+        if: ${{ always() && startsWith(github.ref, 'refs/heads/rehearsal/') }}
+        run: |
+          mkdir -p .tmp/verdict
+          printf '{"sha":"%s","api":"%s","status":"%s"}\n' "${{ github.sha }}" "package" "${{ job.status }}" > ".tmp/verdict/verdict.json"
+          cat .tmp/verdict/verdict.json
+
+      - name: Upload rehearsal verdict
+        if: ${{ always() && startsWith(github.ref, 'refs/heads/rehearsal/') }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: rehearsal-verdict-package
+          include-hidden-files: true
+          path: .tmp/verdict/verdict.json
+          retention-days: 3
 
   full-smoke:
     if: ${{ github.event_name == 'workflow_dispatch' }}
