@@ -406,8 +406,35 @@ public final class KernelShell {
             case "white_room" -> whiteRoom(r, p);
             case "restore" -> restore(r, p);
             case "remove" -> removeGiant(r, p);
+            case "alive" -> aliveRun(r, p);
             default -> { }
         }
+    }
+
+    /**
+     * Every time you come back alive: Noor's notes are always with you (given again if missing), and from the third
+     * run on, Zuri's, who got further and prepares you for what happens when you type at gen 3.
+     */
+    private static void aliveRun(StoryRuntime r, ServerPlayer p) {
+        int runs = r.state().counters().getOrDefault("story.counter.runs", 0) + 1;
+        r.state().setCounter("story.counter.runs", runs);
+        boolean noor = giveBook(r, p, "Noor", "puppetbook", 3);
+        boolean zuri = runs >= 3 && giveBook(r, p, "Zuri", "zuribook", 4);
+        if (zuri) bar(r, p, "Alguien más dejó algo para ti. Un libro firmado por Zuri.", "Someone else left something for you. A book signed by Zuri.");
+        else if (noor && runs == 1) bar(r, p, "Hay un libro en tu inventario que no estaba antes.", "There is a book in your inventory that was not there before.");
+        else bar(r, p, "Los apuntes de Noor siguen contigo.", "Noor's notes are still with you.");
+    }
+
+    private static boolean giveBook(StoryRuntime r, ServerPlayer p, String title, String key, int pages) {
+        var inventory = p.getInventory();
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            var content = inventory.getItem(i).get(net.minecraft.core.component.DataComponents.WRITTEN_BOOK_CONTENT);
+            if (content != null && content.title().raw().equals(title)) return false;
+        }
+        StringBuilder list = new StringBuilder();
+        for (int i = 0; i < pages; i++) list.append(i == 0 ? "" : ",").append("{raw:{translate:\"story.unallocated.").append(key).append(".").append(i).append("\"}}");
+        run(r, p, "give @s minecraft:written_book[minecraft:written_book_content={title:\"" + title + "\",author:\"" + title + "\",pages:[" + list + "]}]");
+        return true;
     }
 
     private static void whiteRoom(StoryRuntime r, ServerPlayer p) {

@@ -283,6 +283,11 @@
       "es": "Si duermes, vendrá por ti.",
       "en": "If you sleep, it will come for you."
      }
+    },
+    {
+     "at": 4,
+     "do": "command",
+     "run": "unallocated shell alive"
     }
    ]
   },
@@ -393,6 +398,11 @@
       "es": "Si duermes, vendrá por ti.",
       "en": "If you sleep, it will come for you."
      }
+    },
+    {
+     "at": 4,
+     "do": "command",
+     "run": "unallocated shell alive"
     }
    ]
   },
@@ -486,40 +496,6 @@
      "at": 0.5,
      "do": "audio",
      "cue": "ambient"
-    }
-   ]
-  },
-  {
-   "id": "puppet.book",
-   "when": {
-    "type": "any",
-    "of": [
-     {
-      "type": "respawn"
-     },
-     {
-      "type": "chapter_start"
-     }
-    ]
-   },
-   "if": {
-    "not_flags": [
-     "puppet"
-    ]
-   },
-   "actions": [
-    {
-     "at": 2,
-     "do": "command",
-     "run": "give @s minecraft:written_book[minecraft:written_book_content={title:\"Noor\",author:\"Noor\",pages:[{raw:{translate:\"story.unallocated.puppetbook.0\"}},{raw:{translate:\"story.unallocated.puppetbook.1\"}},{raw:{translate:\"story.unallocated.puppetbook.2\"}}]}]"
-    },
-    {
-     "at": 6,
-     "do": "actionbar",
-     "text": {
-      "es": "Hay un libro en tu inventario que no estaba antes.",
-      "en": "There is a book in your inventory that was not there before."
-     }
     }
    ]
   },

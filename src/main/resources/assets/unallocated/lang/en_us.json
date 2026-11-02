@@ -393,5 +393,9 @@
   "shell.unallocated.attention": "it is listening",
   "story.unallocated.puppetbook.0": "If you are reading this, it already caught you once. This is what I know.\n\nWhen you die, choose \"Not yet\". You stay dead, as a Puppet, and you see its threads.\n\nIf you want it to take you again, sleep.",
   "story.unallocated.puppetbook.1": "As a Puppet, and only then, the chat is its server's console. Type help. Then cat README and read my notes in home/noor.\n\nIf you type a lot, it hears you and comes down. Let it: every time it catches you, you get deeper.",
-  "story.unallocated.puppetbook.2": "The third time you can see its processes with ps. Find its own, the one eating everything, and stop it with kill and its number.\n\nOnce stopped, the contract tells you which number to give it. — Noor"
+  "story.unallocated.puppetbook.2": "The third time you can see its processes with ps. Find its own, the one eating everything, and stop it with kill and its number.\n\nOnce stopped, the contract tells you which number to give it. — Noor",
+  "story.unallocated.zuribook.0": "Noor didn't make it. I got further, and I'm leaving you this in case you get there.\n\nThe third time it catches you, you can see its processes. But the moment you type the first word, it comes down. And this time it doesn't leave.",
+  "story.unallocated.zuribook.1": "Always run. It is slow, but with the chat open you stand still.\n\nClimb a roof or a tree to type. It takes a while to reach you, though in the end it brings down what holds you.\n\nWhen the ground turns red, move. Threads fall from the sky.",
+  "story.unallocated.zuribook.2": "Type ps and look for the process that eats everything. Its number is all you need. kill and that number stops it.\n\nIf you fall into the void it brings you back. Don't give up there.",
+  "story.unallocated.zuribook.3": "Once stopped, the watchdog wakes it now and then and you have to stop it again.\n\nKnow what you will type. The contract's value with set success_threshold, or its name into its dataset with echo.\n\nI hesitated between the two and it woke up. — Zuri"
 }

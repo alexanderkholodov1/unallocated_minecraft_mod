@@ -393,5 +393,9 @@
   "shell.unallocated.attention": "te está escuchando",
   "story.unallocated.puppetbook.0": "Si estás leyendo esto, ya te atrapó una vez. Esto es lo que yo sé.\n\nCuando mueras, elige «Todavía no». Te quedas muerto, como Puppet, y ves sus hilos.\n\nSi quieres que vuelva por ti, duerme.",
   "story.unallocated.puppetbook.1": "Siendo Puppet, y solo así, el chat es la consola de su servidor. Escribe help. Luego cat README y lee mis notas en home/noor.\n\nSi escribes mucho, te oye y baja. Déjalo: cada vez que te atrapa llegas más hondo.",
-  "story.unallocated.puppetbook.2": "A la tercera ves sus procesos con ps. Busca el suyo, el que se come todo, y detenlo con kill y su número.\n\nDetenido, el contrato te dirá qué número darle. — Noor"
+  "story.unallocated.puppetbook.2": "A la tercera ves sus procesos con ps. Busca el suyo, el que se come todo, y detenlo con kill y su número.\n\nDetenido, el contrato te dirá qué número darle. — Noor",
+  "story.unallocated.zuribook.0": "Noor no llegó. Yo llegué más lejos, y te dejo esto por si llegas tú.\n\nLa tercera vez que te atrapa ya puedes ver sus procesos. Pero en cuanto escribas la primera palabra, baja. Y esta vez no se va.",
+  "story.unallocated.zuribook.1": "Corre siempre. Es lento, pero con el chat abierto te quedas quieto.\n\nSube a un techo o a un árbol para escribir: tarda en llegar, aunque al final tira lo que te sostiene.\n\nCuando el suelo se pinte de rojo, muévete. Caen hilos del cielo.",
+  "story.unallocated.zuribook.2": "Escribe ps y busca el proceso que se come todo. Su número es lo único que necesitas. kill y ese número lo detiene.\n\nSi te caes al vacío te devuelve. No te rindas ahí.",
+  "story.unallocated.zuribook.3": "Detenido, el watchdog lo despierta a ratos y hay que volver a detenerlo.\n\nTen pensado lo que vas a escribir. El valor del contrato con set success_threshold, o su nombre en su dataset con echo.\n\nYo dudé entre los dos y me despertó. — Zuri"
 }
