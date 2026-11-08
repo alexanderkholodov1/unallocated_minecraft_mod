@@ -10,11 +10,11 @@ public record ContractSubmission(Method method, String typedText) {
         Objects.requireNonNull(method);
         Objects.requireNonNull(typedText);
         if (typedText.length() > 64 || (method == Method.TYPED && !isAgreement(typedText))) {
-            throw new IllegalArgumentException("Expected De acuerdo, at most 64 characters");
+            throw new IllegalArgumentException("Expected De acuerdo or I agree, at most 64 characters");
         }
     }
 
     public static boolean isAgreement(String text) {
-        return text.strip().equalsIgnoreCase("De acuerdo");
+        return text.strip().equalsIgnoreCase("De acuerdo") || text.strip().equalsIgnoreCase("I agree");
     }
 }

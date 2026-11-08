@@ -83,11 +83,21 @@ public final class LauncherClient {
         }));
     }
 
+    /** A new copy first tells who you are (one of LORE 3's arrivals, drawn per copy), then "joins" the server. */
     private static void copyAndOpen(Minecraft client) {
+        String arrival = IntroScreen.ARRIVALS.get(java.util.concurrent.ThreadLocalRandom.current().nextInt(IntroScreen.ARRIVALS.size()));
+        client.gui.setScreen(new IntroScreen(arrival, () -> copyAndOpen(client, arrival)));
+    }
+
+    private static void copyAndOpen(Minecraft client, String arrival) {
         client.gui.setScreen(new GenericMessageScreen(Component.translatable("menu.unallocated.connecting")));
         var visible = CompletableFuture.runAsync(() -> { }, CompletableFuture.delayedExecutor(1, java.util.concurrent.TimeUnit.SECONDS));
         CompletableFuture.supplyAsync(() -> {
-            try { return copyTemplate(client.gameDirectory.toPath().resolve("saves")); }
+            try {
+                Path world = copyTemplate(client.gameDirectory.toPath().resolve("saves"));
+                Files.writeString(world.resolve("unallocated-arrival.txt"), arrival + "\n" + System.getProperty("user.name", "") + "\n");
+                return world;
+            }
             catch (Exception exception) { throw new java.util.concurrent.CompletionException(exception); }
         }).thenCombine(visible, (world, ignored) -> world).whenComplete((world, error) -> client.execute(() -> {
             if (error != null) fail(client, error); else open(client, world);

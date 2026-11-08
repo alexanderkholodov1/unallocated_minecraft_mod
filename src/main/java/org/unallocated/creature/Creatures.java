@@ -29,7 +29,7 @@ public final class Creatures {
     private static final String PREFIX = "story.creature.";
     private static final Map<MinecraftServer, Map<String, Body>> SERVERS = new IdentityHashMap<>();
     private static final class Body {
-        JsonObject data; String flag; Entity entity;
+        JsonObject data; String flag; Entity entity; int stuck;
         Body(JsonObject data, String flag) { this.data = data; this.flag = flag; }
     }
     private Creatures() {}
@@ -71,11 +71,30 @@ public final class Creatures {
                         candidate -> safe(entity, saved, new Vec3(candidate.x(), candidate.y(), candidate.z()), player.position(), minimum) != null);
                     Vec3 grounded = safe(entity, saved, new Vec3(next.x(), next.y(), next.z()), player.position(), minimum);
                     if (grounded != null && !grounded.equals(saved)) {
-                        move(body, grounded); face(body, player); persist(server, body);
+                        body.stuck = 0; move(body, grounded); face(body, player); persist(server, body);
+                    } else if (op.equals("chase") && ++body.stuck >= 12) {
+                        // Blocked by terrain: it drops frames and reappears closer (LORE 1.9), never stuck behind a wall.
+                        body.stuck = 0; Vec3 away = saved.subtract(player.position()); away = new Vec3(away.x, 0, away.z);
+                        Vec3 jump = away.lengthSqr() < 1.0E-4 ? player.position() : player.position().add(away.normalize().scale(1.2));
+                        move(body, new Vec3(jump.x, player.getY(), jump.z)); face(body, player); persist(server, body);
                     }
                 }
             }
         });
+    }
+    /** A touched thread: every stalker in the player's dimension lunges toward them, even while seen. */
+    public static void vibration(ServerPlayer player, boolean loud) {
+        var server = player.level().getServer(); var bodies = SERVERS.get(server); if (bodies == null) return;
+        for (var body : bodies.values()) {
+            Entity entity = body.entity;
+            if (entity == null || entity.level() != player.level() || !string(body.data, "op", "").equals("stalk")) continue;
+            double step = number(body.data, "step", 1) * (loud ? 2.5 : 1.2), minimum = number(body.data, "min_distance", 3);
+            Vec3 saved = position(body);
+            var next = CreatureMotion.toward(point(saved), point(player.position()), step, minimum, false,
+                candidate -> safe(entity, saved, new Vec3(candidate.x(), candidate.y(), candidate.z()), player.position(), minimum) != null);
+            Vec3 grounded = safe(entity, saved, new Vec3(next.x(), next.y(), next.z()), player.position(), minimum);
+            if (grounded != null && !grounded.equals(saved)) { move(body, grounded); face(body, player); persist(server, body); }
+        }
     }
     private static CreatureMotion.Point point(Vec3 value) { return new CreatureMotion.Point(value.x, value.y, value.z); }
     private static Vec3 position(Body body) { return new Vec3(number(body.data, "x", 0), number(body.data, "y", 64), number(body.data, "z", 0)); }

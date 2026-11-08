@@ -61,6 +61,10 @@ def strict_json(content):
                       parse_constant=lambda value: (_ for _ in ()).throw(ValueError('Non-finite JSON number: ' + value)))
 
 
+# Flags the Java runtime sets itself (Puppet state, randomized arrival); stories may test them without setting them.
+RUNTIME_FLAGS = {"puppet", "arrival.explorer", "arrival.former", "arrival.invited", "suspended", "fight", "slept"}
+
+
 @dataclass
 class Finding:
     file: str
@@ -1192,7 +1196,7 @@ class Validator:
             self.add_finding(file_rel, "", "error", "bad-value", "Chapter file must contain a JSON object")
             return
 
-        allowed = {"id", "budget_seconds", "checkpoint", "respawn", "on_enter", "on_resume", "escape", "beats"}
+        allowed = {"id", "budget_seconds", "checkpoint", "respawn", "stay", "on_enter", "on_resume", "escape", "beats"}
         for k in data:
             if k not in allowed:
                 self.add_finding(file_rel, f"/{k}", "error", "unknown-key", f"Unknown key '{k}' in chapter")
@@ -1544,7 +1548,7 @@ class Validator:
 
         # 2. Flag never set
         for fl, file, ptr in self.all_flags_tested:
-            if fl not in self.all_flags_set:
+            if fl not in self.all_flags_set and fl not in RUNTIME_FLAGS:
                 self.add_finding(file, ptr, "error", "flag-never-set", f"Flag '{fl}' is tested but never set")
 
         # 3. Ending unreachable

@@ -64,7 +64,7 @@ class StoryLoaderTest {
             id -> Files.isRegularFile(Path.of("src/main/resources/data", id.split(":", 2)[0], "function", id.split(":", 2)[1] + ".mcfunction")),
             features.enabled("effects.options"), features.enabled("effects.screamer")));
         assertTrue(result.valid(), () -> result.findings().toString());
-        assertEquals(java.util.List.of("presa", "heap", "puppet", "vuelta", "kernel"),
+        assertEquals(java.util.List.of("server", "heap", "puppet", "kernel"),
             result.data().chapters().stream().map(chapter -> chapter.get("id").getAsString()).toList());
         assertEquals(Set.of("COMPLETE", "POISON", "CONSUMED"), result.data().root().getAsJsonObject("endings").keySet());
     }

@@ -75,7 +75,7 @@ public final class CreatureActions {
                     if (matches) matches = switch (event) {
                         case "near" -> entity.position().distanceTo(player.position()) <= number(json, "distance", 3);
                         case "seen" -> Creatures.seen(player, entity);
-                        case "caught" -> Creatures.chasing(player, id) && entity.position().distanceTo(player.position()) <= Creatures.catchDistance(player, id);
+                        case "caught" -> !org.unallocated.story.StoryRuntime.get(player.level().getServer()).puppet() && Creatures.chasing(player, id) && entity.position().distanceTo(player.position()) <= Creatures.catchDistance(player, id);
                         default -> false;
                     };
                     if (!matches) { since = -1; return false; }

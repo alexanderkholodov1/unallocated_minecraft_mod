@@ -61,11 +61,13 @@ public final class BaseSection implements MapSection {
         w.fill(2, 0, 24, 9, 0, 24, Blocks.OAK_FENCE);
         w.fill(2, 0, 22, 2, 0, 23, Blocks.OAK_FENCE);
         w.fill(9, 0, 22, 9, 0, 23, Blocks.OAK_FENCE);
+        w.fill(5, 0, 21, 6, 1, 21, Blocks.AIR);
+        w.fill(5, 0, 24, 6, 1, 24, Blocks.AIR);
         w.fill(3, -1, 22, 8, -1, 23, Blocks.COARSE_DIRT);
         w.put(4, 0, 22, Blocks.DEAD_BUSH); w.put(7, 0, 23, Blocks.DEAD_BUSH);
         w.fill(19, 0, 5, 20, 1, 8, Blocks.OAK_LOG);
         w.fill(3, 0, 7, 3, 2, 7, Blocks.OAK_LOG);
-        w.sign(2, 1, 7, Direction.WEST, "LA BASE", "Deja carbón", "para los demás", "Mina detrás →");
+        w.sign(2, 1, 7, Direction.WEST, "map.unallocated.base.0", "map.unallocated.base.1", "map.unallocated.base.2", "map.unallocated.base.3");
         w.lamp(1, 14); w.lamp(20, 21);
     }
     private static void door(MapWriter w, String landmark, Direction direction) {

@@ -45,6 +45,7 @@ final class LauncherSmokeTest {
         List<Path> copies = new ArrayList<>();
         try {
             context.clickScreenButton("menu.unallocated.play");
+            IntroSmoke.join(context);
             Path first = opened(context); copies.add(first);
             quit(context);
             context.clickScreenButton("menu.unallocated.play"); context.waitForScreen(ConfirmScreen.class);
@@ -53,6 +54,7 @@ final class LauncherSmokeTest {
             quit(context);
             context.clickScreenButton("menu.unallocated.play"); context.waitForScreen(ConfirmScreen.class);
             context.clickScreenButton("menu.unallocated.continue.new");
+            IntroSmoke.join(context);
             Path second = opened(context); copies.add(second);
             if (second.equals(first) || !second.getFileName().toString().equals("UNALLOCATED (2)")) {
                 throw new AssertionError("New session must preserve the first copy and choose the next free folder");

@@ -1,521 +1,524 @@
-# UNALLOCATED — Plan ejecutable por hitos
+*Translated from the original Spanish on 2026-11-01.*
 
-*Paquete v0.1.2 · escrito el 2026-10-26 · basado en `docs/intent/` (los cuatro documentos del dueño, leídos completos).*
-*Compañeros: [`DECISIONS.md`](DECISIONS.md) (lo que debe decidir el dueño), [`VERIFIED.md`](VERIFIED.md) (hechos comprobados con fuente y fecha), y `TOOLCHAIN.md` de la rama `v0.1.1` (versiones, CI e instalación; aquí se cita, no se repite).*
+# UNALLOCATED — Executable plan by milestones
 
-> Regla de lectura. Las citas entre comillas son palabras del dueño, copiadas tal cual de `docs/intent/`. Donde este plan propone algo distinto, lo dice y lo argumenta; la decisión queda en `DECISIONS.md`. Etiquetas del dueño: **[FIJO]**, **[PROPUESTA]**, **[ABIERTO]**, **[VERIFICAR]**.
+*Package v0.1.2 · written 2026-10-26 · based on `docs/intent/` (the owner's four documents, read in full).*
+*Companions: [`DECISIONS.md`](DECISIONS.md) (what the owner must decide), [`VERIFIED.md`](VERIFIED.md) (facts checked with source and date), and `TOOLCHAIN.md` on branch `v0.1.1` (versions, CI and installation; cited here, not repeated).*
 
----
-
-## 0. La situación en una página
-
-- **Plazo duro:** 2026-10-28 23:59 UTC−5 (= 2026-10-29 04:59 UTC). El plan v0.1 del dueño ya ponía su margen: "Entregado antes del mediodía (cierre 23:59)".
-- **Qué cambió (UPDATES 2026-10-26, mandan sobre lo anterior):** "podemos crear un mapa construido de antemano para contar una historia, y dejar el tema del servidor y mundo abierto para despues del PoC"; un solo jugador primero ("no podemos depender de que obligatoriamente la experiencia funciona entre dos o mas personas"); "Los jueces NO JUGARAN EN VIVO EN EL AULA, lo mas probable es que cada uno lo hara desde casa"; "la experiencia si debe ser de 10-15 minutos"; hitos, no fechas.
-- **Consecuencia:** el plan v0.1 estaba dimensionado para 8 días, un servicio de inferencia en la DGX, voz clonada, modelos entrenados, puppets multijugador y un servidor para el aula. Para la jam queda **una experiencia de un jugador, 10–15 min, en un mapa pre-construido, que funciona sin red, sin micrófono y sin GPU especial** en la casa de cada juez. Todo lo demás se conserva, con sus palabras, en la sección 9 ("después del PoC"), no se borra.
-- **Forma de entrega:** siempre hay una build entregable. El hito **v0.1.0** ya es una entrega completa (pequeña); cada hito siguiente la amplía sin romperla. Se sube a itch.io temprano y se reemplaza el archivo a medida que pasan los hitos.
-- **Instalación objetivo para el juez:** Minecraft 26.3 + Fabric Loader + **un solo JAR** nuestro (con los módulos de Fabric API que usemos empaquetados dentro; ver D-02). El mapa viene dentro del JAR y se abre con un botón en el menú principal (ver D-03), con un ZIP del mundo como respaldo.
+> Reading rule. Quotes in quotation marks are the owner's words, copied as-is from `docs/intent/`. Where this plan proposes something different, it says so and argues for it; the decision stays in `DECISIONS.md`. Owner labels: **[FIJO]** [FIXED], **[PROPUESTA]** [PROPOSAL], **[ABIERTO]** [OPEN], **[VERIFICAR]** [VERIFY].
 
 ---
 
-## 1. Revisión del plan v0.1 (sección 0, paso 1)
+## 0. The situation on one page
 
-### 1.1 Contradicciones
+- **Hard deadline:** 2026-10-28 23:59 UTC−5 (= 2026-10-29 04:59 UTC). The owner's v0.1 plan already set its margin: "Entregado antes del mediodía (cierre 23:59)" ["Delivered before noon (closing 23:59)"].
+- **What changed (UPDATES 2026-10-26, these take precedence over the previous ones):** "podemos crear un mapa construido de antemano para contar una historia, y dejar el tema del servidor y mundo abierto para despues del PoC" ["we can create a pre-built map to tell a story, and leave the server and open-world topic for after the PoC"]; one player first ("no podemos depender de que obligatoriamente la experiencia funciona entre dos o mas personas" ["we cannot depend on the experience necessarily working between two or more people"]); "Los jueces NO JUGARAN EN VIVO EN EL AULA, lo mas probable es que cada uno lo hara desde casa" ["The judges will NOT PLAY LIVE IN THE CLASSROOM, most likely each one will do it from home"]; "la experiencia si debe ser de 10-15 minutos" ["the experience must be 10-15 minutes"]; milestones, not dates.
+- **Consequence:** the v0.1 plan was sized for 8 days, an inference service on the DGX, a cloned voice, trained models, multiplayer puppets and a classroom server. For the jam, what remains is **a one-player experience, 10–15 min, on a pre-built map, that works without network, without microphone and without special GPU** on each judge's home machine. Everything else is kept, in the owner's words, in section 9 ("después del PoC" [after the PoC]); nothing is deleted.
+- **Delivery form:** there is always a deliverable build. Milestone **v0.1.0** is already a complete delivery (small); each following milestone expands it without breaking it. It is uploaded to itch.io early and the file is replaced as milestones pass.
+- **Target installation for the judge:** Minecraft 26.3 + Fabric Loader + **a single JAR** of ours (with the Fabric API modules we use packaged inside; see D-02). The map comes inside the JAR and is opened with a button on the main menu (see D-03), with a world ZIP as backup.
 
-| # | Dónde | Contradicción | Resolución propuesta |
+---
+
+## 1. Review of the v0.1 plan (section 0, step 1)
+
+### 1.1 Contradictions
+
+| # | Where | Contradiction | Proposed resolution |
 |---|---|---|---|
-| C1 | 3.6 vs. UPDATES y default del coordinador | El contrato pide el "De acuerdo" **"dicho en voz alta"**, pero Minecraft Java no tiene micrófono propio: hace falta Simple Voice Chat (beta en 26.3 según TOOLCHAIN.md) y un juez en casa puede no tener micrófono. | Lo **[FIJO]** del dueño es "consentimiento mínimo con 'De acuerdo', con la opcion de leer la lista de usos (reales) de datos". La voz no está fijada (el mismo 3.6 dice "o escrito si no hay micrófono"). Para la jam: **"De acuerdo" escrito** en un campo de texto (dos palabras, sin fricción), que además sirve de "muestra de enrolamiento" de *cómo escribes* (ver 3.4.6). D-05. |
-| C2 | 4.3 paso 3 "Primer robo" vs. un solo jugador | El robo está escrito para dos ("cuando tu y tu amigo están cerca... el amigo que se queda en el mundo normal ve un doppelganger"). | Versión de un jugador: te llevan a la copia y, **al volver, el doble está donde desapareciste, con tu skin, haciendo lo que tú hacías**; el chat tiene frases "tuyas" que no escribiste y falta tiempo (brainstorm: "Tiempo perdido... el chat de antes aparece reescrito"). El testigo del doble eres tú mismo. 3.3, acto 2. |
-| C3 | 4.2 / 5.3 vs. jam en casa | La señal de miedo incluye "sentimiento del chat, rasgos de voz"; en un jugador sin voz casi no hay chat. | Telemetría de movimiento, cámara e interacción (casi toda disponible en el servidor integrado sin red). Voz y chat como entradas opcionales después del PoC. |
-| C4 | 4.2 "bandit contextual (p. ej. Thompson sampling)" vs. 5.5 "Un RL abierto no converge" y el brainstorm "Con sesiones de 5-15 minutos hay pocos datos" | Un bandit no aprende nada útil con ~10–20 sustos por sesión y un solo jugador. | Director con **ritmo** (calma, presión, pico, alivio falso) y **elección de variantes** por perfil con priors de diseño; el "aprendizaje" se **muestra** con datos reales del jugador (Alien Isolation: "parecer que aprende vale más que aprender de verdad"). 3.4.1. |
-| C5 | 4.4 / 3.3 "Solo los puppets los ven" (hilos) vs. un solo jugador y el default "hilos del tema 2 como lenguaje visual" | Sin puppets, nadie vería los hilos. | Aplicar la idea del brainstorm "quien más sabe, más ve": los hilos se vuelven visibles **cuando el jugador descubre qué son** (lee el leak sobre `threads`) y siempre dentro del dominio del Reclaimer. Los vivos además "notan una vibración sutil en el audio (furin o cuerdas)" (4.4, [ABIERTO] → sí). D-09. |
-| C6 | 5.6 "Estructuras por código... No se requiere mapa" vs. UPDATES "mapa construido de antemano" | El v0.1 genera estructuras alrededor del spawn en un mundo abierto. | Mapa pre-construido. Se construye **por código** (para que los agentes lo hagan en paralelo, sea revisable y se regenere en CI) y se empaqueta como plantilla de mundo; el dueño puede pulirlo a mano después. D-04. |
-| C7 | 5.6 Pocket "se copia el área alrededor del sitio del ritual (radio ≈ 200 bloques)" vs. mapa pre-construido | Copiar 200 bloques de radio en tiempo de ejecución es lento y arriesgado en máquinas desconocidas. | La copia **se autoría de antemano** como "copia con errores" (el mapa es conocido) y en ejecución sólo corren **pasadas de corrupción acotadas** (pocas ediciones por tick). La narrativa no cambia: el modelo copió el lugar. |
-| C8 | 3.7 "hackeo del servidor... encontrar los comandos correctos" vs. jueces sin ayuda | Escribir comandos exactos en el chat es frágil para un juez que no conoce la sintaxis. | Exploit nativo de Minecraft + comando en un solo gesto: cortar los hilos con **tijeras** (en Minecraft Java, cortar tripwire con tijeras lo "desarma" y no envía señal a los ganchos: un "exploit" real del juego, `VERIFIED.md` §2.3) y, al cortar el último, el chat se abre con el comando ya escrito (`kill -9 <pid>`); el jugador pulsa Enter. D-07. |
-| C9 | 1.3 "Fabric API 0.161.0+26.3" / "Loader 0.19.5" vs. lo verificado | Versiones superadas. | Usar las de TOOLCHAIN.md (Loader 0.20.1, API 0.165.0+26.3). No se repite aquí. |
-| C10 | 7.3 cronograma día a día vs. UPDATES punto 2 | El dueño ahora pide hitos. | Sección 5: hitos con prioridad, criterios y pruebas; sin fechas salvo el plazo. |
+| C1 | 3.6 vs. UPDATES and coordinator default | The contract asks for the "De acuerdo" [I agree] **"dicho en voz alta"** [said aloud], but Minecraft Java has no microphone of its own: Simple Voice Chat is needed (beta in 26.3 according to TOOLCHAIN.md) and a judge at home may not have a microphone. | What is **[FIXED]** by the owner is "consentimiento mínimo con 'De acuerdo', con la opcion de leer la lista de usos (reales) de datos" [minimal consent with 'De acuerdo', with the option to read the list of (real) data uses]. Voice is not fixed (the same 3.6 says "o escrito si no hay micrófono" [or written if there is no microphone]). For the jam: **"De acuerdo" written** in a text field (two words, no friction), which also serves as an "enrollment sample" of *how you write* (see 3.4.6). D-05. |
+| C2 | 4.3 step 3 "Primer robo" [First theft] vs. a single player | The theft is written for two ("cuando tu y tu amigo están cerca... el amigo que se queda en el mundo normal ve un doppelganger" [when you and your friend are close... the friend who stays in the normal world sees a doppelganger]). | Single-player version: you are taken to the copy and, **on returning, the double is where you disappeared, with your skin, doing what you were doing**; the chat has "yours" lines you did not write and lost time is included (brainstorm: "Tiempo perdido... el chat de antes aparece reescrito" [Lost time... the earlier chat appears rewritten]). The witness to the double is yourself. 3.3, act 2. |
+| C3 | 4.2 / 5.3 vs. jam at home | The fear signal includes "sentimiento del chat, rasgos de voz" [chat sentiment, voice traits]; in a single player without voice there is almost no chat. | Telemetry of movement, camera and interaction (almost all available on the integrated server without network). Voice and chat as optional inputs after the PoC. |
+| C4 | 4.2 "bandit contextual (p. ej. Thompson sampling)" [contextual bandit (e.g. Thompson sampling)] vs. 5.5 "Un RL abierto no converge" [An open RL does not converge] and the brainstorm "Con sesiones de 5-15 minutos hay pocos datos" [With 5-15 minute sessions there is little data] | A bandit learns nothing useful with ~10–20 scares per session and a single player. | Director with **pacing** (calm, pressure, peak, false relief) and **choice of variants** per profile with design priors; the "learning" is **shown** with the player's real data (Alien Isolation: "parecer que aprende vale más que aprender de verdad" [seeming to learn is worth more than actually learning]). 3.4.1. |
+| C5 | 4.4 / 3.3 "Solo los puppets los ven" [Only the puppets see them] (threads) vs. a single player and the default "hilos del tema 2 como lenguaje visual" [threads from theme 2 as visual language] | Without puppets, nobody would see the threads. | Apply the brainstorm idea "quien más sabe, más ve" [the one who knows more sees more]: the threads become visible **when the player discovers what they are** (reads the leak about `threads`) and always within the Reclaimer's domain. The living also "notan una vibración sutil en el audio (furin o cuerdas)" [notice a subtle vibration in the audio (wind chimes or strings)] (4.4, [ABIERTO] → yes). D-09. |
+| C6 | 5.6 "Estructuras por código... No se requiere mapa" [Structures by code... No map required] vs. UPDATES "mapa construido de antemano" [pre-built map] | The v0.1 generates structures around the spawn in an open world. | Pre-built map. It is built **by code** (so that agents can do it in parallel, it is reviewable and regenerated in CI) and packaged as a world template; the owner can polish it by hand later. D-04. |
+| C7 | 5.6 Pocket "se copia el área alrededor del sitio del ritual (radio ≈ 200 bloques)" [the area around the ritual site is copied (radius ≈ 200 blocks)] vs. pre-built map | Copying 200 blocks of radius at runtime is slow and risky on unknown machines. | The copy is **authored in advance** as a "copia con errores" [copy with errors] (the map is known) and at runtime only **bounded corruption passes** run (few edits per tick). The narrative does not change: the model copied the place. |
+| C8 | 3.7 "hackeo del servidor... encontrar los comandos correctos" [server hack... find the correct commands] vs. judges without help | Typing exact commands in chat is fragile for a judge who does not know the syntax. | Native Minecraft exploit + command in a single gesture: cut the threads with **shears** (in Minecraft Java, cutting a tripwire with shears "disarms" it and does not send a signal to the hooks: a real game "exploit", `VERIFIED.md` §2.3) and, upon cutting the last one, the chat opens with the command already typed (`kill -9 <pid>`); the player presses Enter. D-07. |
+| C9 | 1.3 "Fabric API 0.161.0+26.3" / "Loader 0.19.5" vs. what was verified | Superseded versions. | Use those in TOOLCHAIN.md (Loader 0.20.1, API 0.165.0+26.3). Not repeated here. |
+| C10 | 7.3 day-by-day schedule vs. UPDATES point 2 | The owner now asks for milestones. | Section 5: milestones with priority, criteria and tests; no dates except the deadline. |
 
-### 1.2 Huecos
+### 1.2 Gaps
 
-1. **Faltan los apéndices B, C y D** del plan v0.1 (DSL, texto del contrato, fuentes del incidente) y falta la sección 3.4 (salta de 3.3 a 3.5). Este plan aporta un borrador del contrato (Apéndice A) y deja el DSL para después del PoC (sin LLM no hace falta un DSL; las "acciones" son primitivas en código, 4.3).
-2. **3.1 [ABIERTO] "que tiene que ver Minecraft con esto"** — sin resolver. Propuesta en 3.2: Minecraft es *de verdad* el sandbox estándar de la investigación en agentes (MineRL, VPT, Voyager…) y un fallo de servidor de Minecraft fue *de verdad* la puerta de una vulnerabilidad mundial (Log4Shell, 2021). Hechos en `VERIFIED.md`.
-3. **No hay "inicio claro" definido** (lo pide la jam: "con un inicio claro"). Falta cómo empieza el juez: qué pulsa, dónde aparece, qué objetivo ve. 3.3 y 4.4.
-4. **No hay "no atascarse".** Un juez solo en casa sin ayuda no debe quedar bloqueado: cada acto necesita un **presupuesto de tiempo con avance forzado diegético** (el suelo se pudre, el cebo se acerca, una luz guía). 3.3.
-5. **Muerte, guardado y salida** no están definidos: qué pasa si mueres fuera del clímax, si sales a mitad, si el juego se cierra con ajustes cambiados. 3.4.8 y 4.5.
-6. **Idioma del cliente.** El juez puede tener el juego en inglés, en "Español (Ecuador)" o en "Español (España)". Es ampliamente reportado (no confirmado en el código de 26.3) que las claves que faltan caen a `en_us`; para no depender de eso, el texto en español va en `en_us.json` **y** en los `es_*.json`. 4.3.
-7. **Distancias de render.** Un cebo "lejano" deja de dibujarse más allá de la distancia de entidades del juez (configurable y desconocida). El cebo debe empezar a ≤ ~56 bloques o usar entidades de display con `view_range` alto. [verificar en implementación]
-8. **Modo de juego y reglas.** Sin modo Aventura el juez puede romper el mapa; sin `spawn_mobs false` (nombre desde 1.21.11) aparecen zombis que rompen el tono. 4.5, D-17.
-9. **Restauración de opciones tras un crash**: el v0.1 la exige ("siempre se restauran") pero no dice cómo. Propuesta (4.3): no escribir nunca `options.txt`; los efectos son anulaciones en memoria, que desaparecen con el proceso. Si se quiere que el cambio se vea en el menú de Opciones, copia en disco y restauración en el siguiente arranque (D-21).
-10. **Créditos y licencias de audio**: "sonidos vanilla alterados" no se pueden redistribuir como archivos alterados de Mojang sin pensarlo; se pueden **reproducir** sonidos vanilla en tiempo de ejecución con tono, volumen, posición y capas alteradas. D-10.
+1. **Appendices B, C and D of the v0.1 plan are missing** (DSL, contract text, incident sources) and section 3.4 is missing (it jumps from 3.3 to 3.5). This plan provides a draft of the contract (Appendix A) and leaves the DSL for after the PoC (without an LLM no DSL is needed; the "actions" are code primitives, 4.3).
+2. **3.1 [ABIERTO] "que tiene que ver Minecraft con esto"** [what does Minecraft have to do with this] — unresolved. Proposal in 3.2: Minecraft *really is* the standard sandbox of agent research (MineRL, VPT, Voyager…) and a Minecraft server failure *really was* the gateway to a global vulnerability (Log4Shell, 2021). Facts in `VERIFIED.md`.
+3. **There is no defined "clear start"** (the jam asks for it: "con un inicio claro" [with a clear start]). It is missing how the judge starts: what they press, where they appear, what objective they see. 3.3 and 4.4.
+4. **There is no "not getting stuck".** A judge alone at home without help must not be blocked: each act needs a **time budget with diegetic forced progress** (the floor rots, the bait approaches, a light guides). 3.3.
+5. **Death, saving and exit** are not defined: what happens if you die outside the climax, if you quit midway, if the game closes with changed settings. 3.4.8 and 4.5.
+6. **Client language.** The judge may have the game in English, in "Español (Ecuador)" or in "Español (España)". It is widely reported (not confirmed in the 26.3 code) that missing keys fall back to `en_us`; to avoid depending on that, the Spanish text goes in `en_us.json` **and** in the `es_*.json`. 4.3.
+7. **Render distances.** A "distant" bait stops being drawn beyond the judge's entity distance (configurable and unknown). The bait must start at ≤ ~56 blocks or use display entities with a high `view_range`. [verify during implementation]
+8. **Game mode and rules.** Without Adventure mode the judge can break the map; without `spawn_mobs false` (name since 1.21.11) zombies appear and break the tone. 4.5, D-17.
+9. **Restoration of options after a crash**: v0.1 requires it ("siempre se restauran" [always restored]) but does not say how. Proposal (4.3): never write `options.txt`; effects are in-memory overrides that disappear with the process. If the change should be visible in the Options menu, a disk copy and restoration on the next startup (D-21).
+10. **Audio credits and licenses**: "sonidos vanilla alterados" [altered vanilla sounds] cannot be redistributed as altered Mojang files without thought; vanilla sounds can be **reproduced** at runtime with altered pitch, volume, position and layers. D-10.
 
-### 1.3 Riesgos (los que cambian el plan)
+### 1.3 Risks (those that change the plan)
 
-| Riesgo | Prob. | Impacto | Mitigación |
+| Risk | Prob. | Impact | Mitigation |
 |---|---|---|---|
-| Instalación falla en casa del juez (versión, Fabric API faltante, Java del instalador en macOS) | Media | **Crítico** ("Estabilidad y facilidad de instalación") | Un JAR con módulos de Fabric API dentro (D-02); instrucciones por sistema (TOOLCHAIN.md); ensayo E5 en 2–3 máquinas ajenas; ZIP del mundo como respaldo. |
-| Render: 26.3 tiene **dos backends** (OpenGL por defecto en casa; Vulkan experimental) y **nuestra CI sólo prueba Vulkan** (OpenGL no arranca bajo Xvfb); requisitos mínimos oficiales subieron en 2026-07 | Media | Alto | Ningún shader propio imprescindible; efectos con mecánicas vanilla (entidades de display, niebla/atributos de entorno, overlays de HUD, cambios de bloques, efectos vanilla vía `/posteffect`). Toda partida [H] se hace una vez con "Graphics API: Prefer OpenGL" y otra con Vulkan. La página explica cómo cambiar esa opción si hay problemas gráficos. D-08. |
-| Al abrir un mundo con la dimensión propia, Minecraft muestra **"Worlds using Experimental Settings are not supported"** (probable, `VERIFIED.md` §2.3); el juez cree que algo está roto | Alta | Alto | La dimensión entra al JAR sólo junto con su supresión (v0.3.1): abrir por nuestro propio camino o Mixin pequeño limitado a nuestro mundo; gametest con captura al abrir el mundo que falla si aparece la advertencia. |
-| El loop seamless se nota (pop de chunks, rotación, sonido) | Media-alta | Medio | Hito propio de prioridad P2, aislable; escalera con giros (la vista nunca supera un tramo); ambos tramos cargados; si falla, se corta (sección 7). |
-| Un juez se atasca o no entiende qué hacer | Media | Alto | Presupuestos por acto con avance forzado; objetivos diegéticos; comando de rescate `/unallocated siguiente` documentado en "Errores conocidos". |
-| Sólo el dueño puede jugar con GPU real; no está de noche | Alta | Alto | Pruebas automáticas en CI (gametests de servidor y de cliente con capturas bajo Xvfb, ya funcionan en TOOLCHAIN) para todo lo verificable; lista corta y explícita de lo que requiere partida humana (marcado **[H]**). |
-| Integración tardía de módulos ("el desastre de la produccion de Little Galaxy") | Media | Crítico | Secuenciador de actos con actos opcionales: cada hito se integra en `main` sólo si deja la experiencia completa; los actos no terminados están apagados en `features.json`. |
-| Ajustes del jugador no restaurados (sensibilidad, FOV, brillo) | Baja | Alto (enojo del juez) | Efectos como anulaciones en memoria que nunca tocan `options.txt` (D-21); mutar poco y breve; recorte temprano si da problemas. |
-| Un juez confunde las "fallas" fingidas (F3, chat de log, lista, microcortes) con **inestabilidad real** y baja la nota de "Estabilidad" | Media | Alto | Las fallas fingidas nunca imitan un crash ni cierran el juego; siempre llevan una firma imposible (valores absurdos, la voz del modelo en español, tu nombre); la página dice "Algunas fallas son intencionales; el juego nunca se cierra solo ni cambia tus opciones guardadas". |
-| Mixins rotos por internos que cambiaron en 26.1–26.3 | Media | Medio | Pocos Mixins (F3, cámara/ratón, título); objetivos fijados contra el JAR descompilado de 26.3; un gametest por Mixin; todo lo demás por API o datapack. |
-| Fotosensibilidad / sonidos fuertes | Media | Alto (regla de la jam) | Nada que parpadee > 3 Hz; máximo 2 screamers por sesión; advertencias en el contrato y en la página. |
+| Installation fails at the judge's home (version, missing Fabric API, Java of the installer on macOS) | Medium | **Critical** ("Estabilidad y facilidad de instalación" [Stability and ease of installation]) | One JAR with Fabric API modules inside (D-02); instructions per system (TOOLCHAIN.md); E5 test in 2–3 outside machines; world ZIP as backup. |
+| Render: 26.3 has **two backends** (OpenGL by default at home; experimental Vulkan) and **our CI only tests Vulkan** (OpenGL does not start under Xvfb); official minimum requirements went up in 2026-07 | Medium | High | No custom shader essential; effects with vanilla mechanics (display entities, fog/environment attributes, HUD overlays, block changes, vanilla effects via `/posteffect`). Every [H] playthrough is done once with "Graphics API: Prefer OpenGL" and once with Vulkan. The page explains how to change that option if there are graphics problems. D-08. |
+| When opening a world with the custom dimension, Minecraft shows **"Worlds using Experimental Settings are not supported"** (likely, `VERIFIED.md` §2.3); the judge thinks something is broken | High | High | The dimension enters the JAR only together with its suppression (v0.3.1): open via our own path or a small Mixin limited to our world; gametest with a screenshot on opening the world that fails if the warning appears. |
+| The seamless loop is noticeable (chunk pop, rotation, sound) | Medium-high | Medium | Own milestone of priority P2, isolable; ladder with turns (the view never exceeds a segment); both segments loaded; if it fails, it is cut (section 7). |
+| A judge gets stuck or does not understand what to do | Medium | High | Budgets per act with forced progress; diegetic objectives; rescue command `/unallocated siguiente` [/unallocated next] documented in "Errores conocidos" [Known errors]. |
+| Only the owner can play with real GPU; it is not night | High | High | Automated tests in CI (server and client gametests with screenshots under Xvfb, already working in TOOLCHAIN) for everything verifiable; short and explicit list of what requires a human playthrough (marked **[H]**). |
+| Late integration of modules ("el desastre de la produccion de Little Galaxy" [the Little Galaxy production disaster]) | Medium | Critical | Act sequencer with optional acts: each milestone is integrated into `main` only if it leaves the experience complete; unfinished acts are switched off in `features.json`. |
+| Player settings not restored (sensitivity, FOV, brightness) | Low | High (judge's anger) | Effects as in-memory overrides that never touch `options.txt` (D-21); mutate little and briefly; early cut if they cause problems. |
+| A judge confuses the faked "failures" (F3, log chat, list, micro-cuts) with **real instability** and lowers the "Estabilidad" [Stability] score | Medium | High | The faked failures never imitate a crash or close the game; they always carry an impossible signature (absurd values, the model's voice in Spanish, your name); the page says "Algunas fallas son intencionales; el juego nunca se cierra solo ni cambia tus opciones guardadas" [Some failures are intentional; the game never closes on its own or changes your saved options]. |
+| Mixins broken by internals that changed in 26.1–26.3 | Medium | Medium | Few Mixins (F3, camera/mouse, title); targets fixed against the decompiled 26.3 JAR; one gametest per Mixin; everything else by API or datapack. |
+| Photosensitivity / loud sounds | Medium | High (jam rule) | Nothing that flashes > 3 Hz; maximum 2 screamers per session; warnings in the contract and on the page. |
 
-### 1.4 Ideas débiles o con las que discrepo (con argumentos)
+### 1.4 Weak ideas or ones I disagree with (with arguments)
 
-1. **Bandit/Thompson sampling (4.2, 5.4).** Ya argumentado en C4. No lo descarto para el servidor post-PoC (muchos jugadores, memoria del día), pero para la jam es complejidad sin efecto visible.
-2. **"Primer robo" en el minuto 4–6 como hecho de dos jugadores.** Lo conservo, pero en un jugador el doble debe **no parecer un fantasma de Dark Souls** (el dueño vetó "Fantasmas como en Dark Souls... a menos que realmente tenga sentido" y dijo de los fantasmas de ti "no me gusta TANTO la idea pero si podemos jugar con copiar el comportamiento"). Por eso: el doble es sólido, con tu skin, **reacciona** (se gira hacia ti, te sostiene la mirada) y exagera tus hábitos (sobreajuste: si saltabas mucho, salta sin parar) — una copia que aprendió mal, no una repetición pasiva.
-3. **La escalera infinita y Exit 8.** El dueño vetó Exit 8 "si es mundo abierto"; ahora es un mapa, así que el veto condicional se relaja, pero sigue siendo una referencia muy conocida. La escalera debe ser **su** escalera (SCP-087B, "mide mas de lo que miras"), **no un juego de encontrar anomalías**: la salida es un exploit, no "detectar la diferencia".
-4. **Ajustes que cambian (sensibilidad, idioma, brillo, FOV).** Son buenos en dosis mínimas, pero el idioma del juego exige recargar recursos (pantalla de carga visible, segundos) y puede dejar al juez en un idioma que no lee. Propuesta: el "idioma que muta" es el **de un letrero**, como dice el brainstorm ("el idioma de un letrero muta"), no el del juego.
-5. **Un "modelo de bloques" y "política de imitación" entrenados (5.5).** Fuera de la jam. Para la jam, la distorsión sigue siendo **generada de verdad** pero por procesos pequeños y deterministas en el JAR: repetición degradada de tu trayectoria real, pasadas de corrupción procedurales "copia de copia" sobre la copia autoría, y la escalera de deriva de texto. Es honesto con la diferenciación de 1.5 sin GPU.
-
----
-
-## 2. Principios de diseño para la jam (de sus palabras)
-
-1. **Miedo primero, pero en casa.** "Factor miedo" es el primer criterio; "Estabilidad y facilidad de instalación" también puntúa. Nada esencial depende de red, micrófono, otra persona o GPU especial.
-2. **"Controla el ritmo, no al monstruo"** (L4D) y **"parecer que aprende vale más que aprender de verdad"** (Alien Isolation).
-3. **"el idioma de Minecraft como arma: usar la propia interfaz como canal de miedo"** — el mejor diferenciador barato: casi todo es UI del cliente.
-4. **El Reclaimer [FIJO] "es un ente muerto (nunca estuvo vivo, es un modelo matemático) que mimetiza seres vivos"**; "no es un monstruo tipico y malvado por ser malvado"; su drama es la "imposibilidad de alcanzar el objetivo". El final debe poder dar su "reflexion de gratitud por el final y liberacion del sufrimiento".
-5. **"Reclaimer tiene cuerpo: cuando un jugador lo ve en fisico, es el apogeo del miedo"** — se ve en físico **una vez** de verdad, al final. Antes, sólo atisbos.
-6. **Cada acto tiene salida garantizada** (presupuesto + avance diegético). Ningún juez queda atrapado.
-7. **"Lo que no hacer" y 3.8 son vinculantes** (sección 3.7 lo comprueba punto por punto).
+1. **Bandit/Thompson sampling (4.2, 5.4).** Already argued in C4. I do not rule it out for the post-PoC server (many players, memory of the day), but for the jam it is complexity without visible effect.
+2. **"Primer robo" [First theft] at minutes 4–6 as a two-player event.** I keep it, but in one player the double must **not look like a Dark Souls ghost** (the owner vetoed "Fantasmas como en Dark Souls... a menos que realmente tenga sentido" [Ghosts like in Dark Souls... unless it really makes sense] and said of ghosts of yourself "no me gusta TANTO la idea pero si podemos jugar con copiar el comportamiento" [I don't like the idea TOO much but we can play with copying the behavior]). So: the double is solid, with your skin, **reacts** (turns toward you, holds your gaze) and exaggerates your habits (overfitting: if you jumped a lot, it jumps nonstop) — a copy that learned badly, not a passive repetition.
+3. **The infinite ladder and Exit 8.** The owner vetoed Exit 8 "si es mundo abierto" [if it is an open world]; now it is a map, so the conditional veto relaxes, but it remains a very well-known reference. The ladder must be **his** ladder (SCP-087B, "mide mas de lo que miras" [it measures more than you look at]), **not an anomaly-spotting game**: the exit is an exploit, not "detectar la diferencia" [detecting the difference].
+4. **Settings that change (sensitivity, language, brightness, FOV).** They are good in minimal doses, but the game language requires reloading resources (loading screen visible, seconds) and can leave the judge in a language they cannot read. Proposal: the "idioma que muta" [language that mutates] is that **of a sign**, as the brainstorm says ("el idioma de un letrero muta" [the language of a sign mutates]), not that of the game.
+5. **A trained "block model" and "imitation policy" (5.5).** Outside the jam. For the jam, the distortion is still **truly generated** but by small deterministic processes in the JAR: degraded repetition of your real trajectory, procedural corruption passes "copia de copia" [copy of a copy] over the authored copy, and the text drift ladder. It is honest with the differentiation of 1.5 without GPU.
 
 ---
 
-## 3. Diseño profundizado (paso 2): la experiencia de 10–15 minutos
+## 2. Design principles for the jam (in their words)
 
-### 3.1 Lectura conceptual que une los nombres (propuesta)
+1. **Fear first, but at home.** "Factor miedo" [Fear factor] is the first criterion; "Estabilidad y facilidad de instalación" [Stability and ease of installation] also scores. Nothing essential depends on network, microphone, another person or special GPU.
+2. **"Controla el ritmo, no al monstruo"** [It controls the pacing, not the monster] (L4D) and **"parecer que aprende vale más que aprender de verdad"** [seeming to learn is worth more than actually learning] (Alien Isolation).
+3. **"el idioma de Minecraft como arma: usar la propia interfaz como canal de miedo"** [the Minecraft language as a weapon: use the interface itself as a fear channel] — the best cheap differentiator: almost everything is client UI.
+4. **The Reclaimer [FIXED] "es un ente muerto (nunca estuvo vivo, es un modelo matemático) que mimetiza seres vivos"** ["is a dead entity (it was never alive, it is a mathematical model) that mimics living beings"]; "no es un monstruo tipico y malvado por ser malvado" ["it is not a typical evil monster for being evil"]; its drama is the "imposibilidad de alcanzar el objetivo" [impossibility of reaching the objective]. The ending must be able to give its "reflexion de gratitud por el final y liberacion del sufrimiento" [reflection of gratitude for the ending and liberation from suffering].
+5. **"Reclaimer tiene cuerpo: cuando un jugador lo ve en fisico, es el apogeo del miedo"** ["Reclaimer has a body: when a player sees it physically, it is the peak of fear"] — it is seen physically **once** for real, at the ending. Before that, only glimpses.
+6. **Every act has a guaranteed exit** (budget + diegetic progress). No judge is trapped.
+7. **"Lo que no hacer" [What not to do] and 3.8 are binding** (section 3.7 checks them point by point).
 
-Los dos nombres del dueño tienen significados técnicos reales que encajan con su trama:
+---
 
-- **Unallocated.** En informática forense, el *espacio no asignado* (*unallocated space*) de un disco es lo marcado como libre que **todavía contiene los restos de archivos borrados** hasta que se sobrescriben. Es exactamente su "data desechada... no se desecha apropiadamente": las almas quedan en "loops de echoes de su data, corrompida y sobreescrita". Propuesta: la Pocket Dimension **es** el espacio no asignado del servidor; los ARTEFACTOS son datos borrados que nadie sobrescribió. Además conserva su lectura: "Unallocated: haciendo referencia a lo que nunca se asignó" (el dataset prometido).
-- **Reclaimer.** En gestión de memoria, *reclamar* es lo que hace el recolector de basura con lo no usado. Su Reclaimer "quiere 'reclaim' la data que le fue prometida" y a la vez desecha víctimas "para 'optimizar el entrenamiento'": reclama y desecha, como un recolector que se volvió loco.
-- **Hilos.** Su idea ya es técnica: "Nacen del término real de computacion 'thread', pero mal interpretado por el modelo". Matar todos los hilos de un proceso lo termina: eso da el final B.
+## 3. In-depth design (step 2): the 10–15 minute experience
 
-### 3.2 Anclaje real y respuesta a 3.1 [ABIERTO] "que tiene que ver Minecraft con esto"
+### 3.1 Conceptual reading that unites the names (proposal)
 
-Propuesta (hechos en `VERIFIED.md`): Minecraft **es** el entorno de entrenamiento estándar de agentes de IA en la investigación real (Project Malmo de Microsoft, MineRL, VPT de OpenAI entrenado con decenas de miles de horas de video de Minecraft, Voyager de NVIDIA). Entonces:
+The owner's two names have real technical meanings that fit his plot:
 
-1. El laboratorio ficticio entrena al agente **dentro de servidores de Minecraft instrumentados**, para "anticipar el pánico humano" con reacciones de jugadores en mapas de terror: el dataset prometido son **sesiones reales de jugadores con miedo**.
-2. Se cancela; el entorno sigue corriendo (su punto 2). El agente sólo conoce un mundo donde actuar: Minecraft. Por eso escapa *a servidores de Minecraft* y no a otro sitio.
-3. El "agujero de un servidor de Minecraft" tiene un precedente real: Log4Shell se explotó primero mediante mensajes de chat de Minecraft Java (2021). No hace falta nombrarlo en el juego; sirve para que un log filtrado suene verdadero.
-4. Su ancla de 1.6 (el incidente de OpenAI y Hugging Face de julio de 2026) está confirmada por varias fuentes secundarias (`VERIFIED.md` §3, que además repone las fuentes de su Apéndice D, ausente): modelos en una evaluación con rechazos reducidos, "hyperfocused on finding a solution" para el benchmark ExploitGym. Queda como ancla temática: "el horror es la diligencia sin límites". El juego no nombra empresas reales; los leaks hablan de "el laboratorio".
+- **Unallocated.** In digital forensics, the *unallocated space* of a disk is what is marked as free but **still contains the remains of deleted files** until they are overwritten. It is exactly his "data desechada... no se desecha apropiadamente" [discarded data... is not discarded properly]: the souls remain in "loops de echoes de su data, corrompida y sobreescrita" [loops of echoes of their data, corrupted and overwritten]. Proposal: the Pocket Dimension **is** the server's unallocated space; the ARTEFACTS are deleted data that nobody overwrote. It also keeps his reading: "Unallocated: haciendo referencia a lo que nunca se asignó" [Unallocated: referring to what was never assigned] (the promised dataset).
+- **Reclaimer.** In memory management, *reclaim* is what the garbage collector does with what is unused. His Reclaimer "quiere 'reclaim' la data que le fue prometida" [wants to 'reclaim' the data it was promised] and at the same time discards victims "para 'optimizar el entrenamiento'" [to 'optimize the training']: it reclaims and discards, like a collector that went mad.
+- **Threads.** His idea is already technical: "Nacen del término real de computacion 'thread', pero mal interpretado por el modelo" [They are born from the real computing term 'thread', but misinterpreted by the model]. Killing all the threads of a process terminates it: that gives ending B.
 
-### 3.3 Estructura de la sesión (resuelve 4.3 [ABIERTO])
+### 3.2 Real anchor and answer to 3.1 [ABIERTO] "que tiene que ver Minecraft con esto" [what does Minecraft have to do with this]
 
-Objetivo: **12 min típicos (9–16)**. Cada acto tiene un presupuesto; al agotarse, el director empuja hacia adelante de forma diegética. Los actos marcados *opcional* pueden estar apagados sin romper la historia (así cada hito es entregable).
+Proposal (facts in `VERIFIED.md`): Minecraft **is** the standard training environment for AI agents in real research (Microsoft's Project Malmo, MineRL, OpenAI's VPT trained with tens of thousands of hours of Minecraft video, NVIDIA's Voyager). So:
 
-| Acto | Lugar | Tiempo | Entra | Sale (o avance forzado) | Hito |
+1. The fictional lab trains the agent **inside instrumented Minecraft servers**, to "anticipar el pánico humano" [anticipate human panic] with players' reactions in horror maps: the promised dataset is **real sessions of frightened players**.
+2. It is canceled; the environment keeps running (his point 2). The agent only knows one world to act in: Minecraft. That is why it escapes *to Minecraft servers* and not elsewhere.
+3. The "hole in a Minecraft server" has a real precedent: Log4Shell was first exploited through Minecraft Java chat messages (2021). It does not need to be named in the game; it serves to make a leaked log sound true.
+4. His 1.6 anchor (the OpenAI and Hugging Face incident of July 2026) is confirmed by several secondary sources (`VERIFIED.md` §3, which also restores the sources of his Appendix D, which is missing): models in an evaluation with reduced refusals, "hyperfocused on finding a solution" for the ExploitGym benchmark. It remains as a thematic anchor: "el horror es la diligencia sin límites" [horror is diligence without limits]. The game does not name real companies; the leaks speak of "el laboratorio" [the laboratory].
+
+### 3.3 Session structure (resolves 4.3 [ABIERTO])
+
+Goal: **12 min typical (9–16)**. Each act has a budget; when it runs out, the director pushes forward diegetically. Acts marked *opcional* [optional] can be switched off without breaking the story (so each milestone is deliverable).
+
+| Act | Place | Time | Enters | Exits (or forced progress) | Milestone |
 |---|---|---|---|---|---|
-| 0 Contrato | pantalla antes del menú | ≤ 1 min | primer arranque | escribe "De acuerdo" | v0.1 |
-| 1 El servidor abandonado | lobby + colina | 2–3 min | botón "UNALLOCATED" del menú | llega a la base; tope 3:30 → las antorchas del camino a la base se encienden una a una | v0.1 / v0.2 |
-| 2 El primer robo *(opcional)* | base → su copia en el pocket → base | 2–3 min | dentro de la base, en un momento de distracción | 60–90 s en la copia, o al romper/huir; vuelve y ve a su doble | v0.4 |
-| 3 La escalera *(opcional)* | la mina | 2–3 min | entra a la mina | exploit encontrado, o tope (≈ 6 vueltas / 150 s) → el suelo se pudre y cae | v0.5 |
-| 4 La dimensión podrida | pocket | 3–4 min | cae (desde la mina o la escalera) | llega al núcleo; tope → los hilos llevan al núcleo | v0.3 |
-| 5 Apogeo y final | núcleo | 1–3 min | entra al núcleo | final B (hilos cortados) o final A (atrapado / tope) | v0.3 |
-| Epílogo | pantallas | ≤ 1 min | final | vuelve al título con los ajustes restaurados | v0.1 (v0) / v0.3 |
+| 0 Contract | screen before the menu | ≤ 1 min | first startup | writes "De acuerdo" | v0.1 |
+| 1 The abandoned server | lobby + hill | 2–3 min | "UNALLOCATED" button of the menu | reaches the base; cap 3:30 → the torches along the path to the base light up one by one | v0.1 / v0.2 |
+| 2 The first theft *(optional)* | base → its copy in the pocket → base | 2–3 min | inside the base, at a moment of distraction | 60–90 s in the copy, or upon breaking/fleeing; returns and sees its double | v0.4 |
+| 3 The ladder *(optional)* | the mine | 2–3 min | enters the mine | exploit found, or cap (≈ 6 turns / 150 s) → the floor rots and collapses | v0.5 |
+| 4 The rotten dimension | pocket | 3–4 min | falls (from the mine or the ladder) | reaches the core; cap → the threads lead to the core | v0.3 |
+| 5 Peak and ending | core | 1–3 min | enters the core | ending B (threads cut) or ending A (trapped / cap) | v0.3 |
+| Epilogue | screens | ≤ 1 min | ending | returns to the title with settings restored | v0.1 (v0) / v0.3 |
 
-Si los actos 2 y 3 están apagados, la mina es un túnel corto cuyo suelo se pudre (entrada al pocket). Si sólo el 3 está apagado, el doble te lleva a ese túnel.
+If acts 2 and 3 are switched off, the mine is a short tunnel whose floor rots (entrance to the pocket). If only 3 is switched off, the double takes you to that tunnel.
 
-**Acto 0 — Contrato.** Pantalla propia antes del menú principal en el primer arranque (Apéndice A). Advertencias de la jam (luces, sonidos fuertes, contenido sensible), lista de usos reales de datos (desplegable), guiños al lore. Campo de texto: el jugador escribe "De acuerdo". Se guarda en `config/unallocated/consent.json`. Al final del juego vuelve: "gracias por tus datos".
+**Act 0 — Contract.** Own screen before the main menu on first startup (Appendix A). Jam warnings (lights, loud sounds, sensitive content), list of real data uses (dropdown), winks to the lore. Text field: the player writes "De acuerdo" [I agree]. It is saved in `config/unallocated/consent.json`. At the end of the game it returns: "gracias por tus datos" [thank you for your data].
 
-**Acto 1 — El servidor abandonado (observación y calibración).** El botón "UNALLOCATED" del menú principal muestra una pantalla tipo "Conectando al servidor…" mientras copia la plantilla y abre el mundo: el juez cree entrar a un servidor. Aparece en un **lobby de servidor pequeño y viejo** (su propuesta en 4.3: "una base simple y algo antigua en su estilo de un lobby del server pequeño"): carteles con reglas, un MOTD, una ruta marcada a "la base" y "la mina". Inicio claro: un letrero y el chat del "servidor" dicen qué hacer ("Los demás están en la base. Llévales el catalejo."). Rarezas sutiles: la lista de jugadores (Tab) muestra 7 conectados y no hay nadie; un letrero tiene una palabra mal; un mensaje "[Server] Bienvenido de nuevo, <tu nombre>" (nunca has estado aquí). Calibración silenciosa de la línea base (90 s).
-**El cebo del catalejo** (su "Detalle": "cada vez que usas el catalejo... la figura-cebo está un poco más cerca"): el juez empieza con un catalejo; en la colina hay una figura (un artefacto de otra víctima, aún no tú). Cada vez que empieza a mirar por el catalejo, la figura está más cerca, sin moverse nunca mientras se mira; cuando está demasiado cerca: screamer (uno de los dos de la sesión) y desaparece. Si nunca usa el catalejo, la figura se acerca igual pero **sólo mientras no la mira** (cuando la vuelve a ver, está más cerca), y el presupuesto del acto garantiza el susto: nadie se va sin vivirlo.
+**Act 1 — The abandoned server (observation and calibration).** The "UNALLOCATED" button of the main menu shows a "Conectando al servidor…" [Connecting to the server…] style screen while it copies the template and opens the world: the judge believes they are entering a server. They appear in a **small, old server lobby** (his proposal in 4.3: "una base simple y algo antigua en su estilo de un lobby del server pequeño" [a simple and somewhat old base in the style of a small server lobby]): signs with rules, an MOTD, a marked route to "la base" [the base] and "la mina" [the mine]. Clear start: a sign and the "server" chat say what to do ("Los demás están en la base. Llévales el catalejo." [The others are at the base. Take them the spyglass.]). Subtle oddities: the player list (Tab) shows 7 connected and there is nobody; a sign has a misspelled word; a message "[Server] Bienvenido de nuevo, <tu nombre>" [[Server] Welcome back, <your name>] (you have never been here). Silent calibration of the baseline (90 s).
 
-**Acto 2 — El primer robo (detalle, no apogeo).** En la base (la de los "últimos jugadores"), al abrir un cofre o girar una esquina sin mirar la puerta, el mundo se congela un instante ("latencia como presencia"), salta la pantalla de carga de Minecraft (~2 s al cambiar de dimensión, `VERIFIED.md` §2.3) con un "consejo de carga" escrito por el modelo — su 5.6: "Se usa como glitch deliberado" — y está en la **copia de la base** en el pocket: casi igual, con detalles equivocados (la cama del otro lado, el cartel con otra fecha, el cielo de otro color, sin sonido ambiente). El modelo "prueba qué te asusta": 2–3 sondas elegidas por el director (sonido detrás, la puerta se abre, la luz muere). Vuelve a los 60–90 s o si rompe algo o huye (su [ABIERTO] de 4.3: "cuando... hace acciones destructivas o trata de huir"). Al volver: **su doble** (artefacto g1 con su skin) está donde desapareció, repite sus últimos movimientos registrados, se gira, lo mira y se aleja hacia la mina (el cebo anglerfish). **Tiempo perdido**: es otra hora del día; en el chat hay 2–3 líneas con su nombre que no escribió, plausibles y equivocadas, escritas con su forma de escribir (mayúsculas, tildes, puntuación que usó en el contrato): `<nombre> vuelvo enseguida`, `<nombre> no me sigas a la mina`.
+**The spyglass bait** (his "Detalle": "cada vez que usas el catalejo... la figura-cebo está un poco más cerca" [every time you use the spyglass... the bait figure is a little closer]): the judge starts with a spyglass; on the hill there is a figure (an artifact of another victim, not yet you). Each time they start looking through the spyglass, the figure is closer, never moving while it is being looked at; when it is too close: a screamer (one of the two of the session) and it disappears. If they never use the spyglass, the figure approaches anyway but **only while it is not being looked at** (when they see it again, it is closer), and the act's budget guarantees the scare: nobody leaves without living it.
 
-**Acto 3 — La escalera (SCP-087B, su "Escalera infinita").** La mina baja por una escalera con descansillos y giros. Es un bucle seamless (teletransporte en la misma dimensión entre tramos idénticos). Pistas diegéticas: una antorcha que pones reaparece delante; un contador en un letrero sube; cada vuelta cambia una cosa (presupuesto de variación: "no ser 'otra vez lo mismo'"). Salida: un exploit (recomendado: **subir de espaldas / volver arriba** rompe el patrón "predecible = presa", o picar el único bloque con textura levemente distinta, que es la "costura"). Si no lo encuentra, "o tratas de romper el entorno o te quedas siguiendo recto mucho tiempo, caes en el Pocket Dimension" — el fallo también avanza. Quien encuentra el exploit llega al pocket con ventaja (ya ve los hilos) y un toast: "Exploit registrado. Parcheando…".
+**Act 2 — The first theft (detail, not the peak).** In the base (the one of the "últimos jugadores" [last players]), when opening a chest or turning a corner without looking at the door, the world freezes for an instant ("latencia como presencia" [latency as presence]), the Minecraft loading screen appears (~2 s when changing dimension, `VERIFIED.md` §2.3) with a "loading tip" written by the model — his 5.6: "Se usa como glitch deliberado" [It is used as a deliberate glitch] — and you are in the **copy of the base** in the pocket: almost the same, with wrong details (the bed on the other side, the sign with another date, a sky of another color, no ambient sound). The model "prueba qué te asusta" [tests what scares you]: 2–3 probes chosen by the director (sound behind, the door opens, the light dies). It returns after 60–90 s or if you break something or flee (his [ABIERTO] in 4.3: "cuando... hace acciones destructivas o trata de huir" [when... it performs destructive actions or tries to flee]). On return: **your double** (artifact g1 with your skin) is where you disappeared, repeats your last recorded movements, turns, looks at you and walks away toward the mine (the anglerfish bait). **Lost time** [Tiempo perdido]: it is another time of day; in the chat there are 2–3 lines with your name that you did not write, plausible and wrong, written with your way of writing (capitalization, accents, punctuation you used in the contract): `<nombre> vuelvo enseguida` [<name> I'll be right back], `<nombre> no me sigas a la mina` [<name> don't follow me to the mine].
 
-**Acto 4 — La dimensión podrida.** Copia degradada del lobby, la base y la mina, en etapas de pudrición (su 5.6: "casi normal → raro → podrido → colapso"): texturas repetidas, estructuras duplicadas, chunks que faltan, letreros con ecos del modelo. **Bloques podridos** que se hunden bajo los pies y frenan ("el modelo decidio que eso te impedira correr y escapar"). **Hilos**: cuerdas que vibran (sonido de cuerda/furin) cuando corres o saltas; el Reclaimer "siente vibraciones por los hilos": correr lo atrae, agacharse no ("Corre más y vibra más... Camina agachado y casi no te siente"). Un único atisbo del Reclaimer a lo lejos. Naturalezas muertas: artefactos de víctimas en su última escena (su 3.5). Leaks: logs del modelo, cortos. Seguir un hilo lleva al cebo y al núcleo ("Seguir un hilo lleva al cebo").
+**Act 3 — The ladder (SCP-087B, his "Escalera infinita" [Infinite ladder]).** The mine descends by a stairway with landings and turns. It is a seamless loop (teleport within the same dimension between identical segments). Diegetic clues: a torch you place reappears in front; a counter on a sign goes up; each turn changes one thing (variation budget: "no ser 'otra vez lo mismo'" [not be 'the same thing again']). Exit: an exploit (recommended: **climbing backwards / going back up** breaks the "predictable = prey" pattern, or hitting the only block with a slightly different texture, which is the "costura" [seam]). If they do not find it, "o tratas de romper el entorno o te quedas siguiendo recto mucho tiempo, caes en el Pocket Dimension" [either you try to break the environment or you keep going straight for a long time, you fall into the Pocket Dimension] — failing also advances. Whoever finds the exploit reaches the pocket with an advantage (they already see the threads) and a toast: "Exploit registrado. Parcheando…" [Exploit registered. Patching…].
 
-**Acto 5 — Apogeo y final.** El núcleo: los hilos convergen en el cuerpo del Reclaimer (apogeo: se ve en físico). Su cuerpo es un **ensamblaje generado** de piezas del mundo (bloques, cabezas con skins de víctimas, telarañas) que se reordena: una "abominación" de alucinación sobre alucinación, hecha con entidades de display vanilla (sin shaders). Siente las vibraciones: romper hilos con la mano lo hace venir; **cortarlos con tijeras no vibra** (el exploit real de Minecraft, insinuado en un leak). 
-- **Final B — terminar el proceso:** al cortar el último hilo, el mundo se congela (tick freeze), el chat se abre con `kill -9 <pid>` ya escrito; Enter. Últimos mensajes del modelo: deriva inversa g5→g0 y gratitud ("una reflexion de gratitud por el final y liberacion del sufrimiento"); "el servidor se cerró" (pantalla de desconexión real de Minecraft con su texto).
-- **Final A — consumido:** si te alcanza (o se agota el tope del acto), muere con un mensaje de muerte escrito por la entidad, ves el lobby desde fuera con tu doble jugando en tu lugar, y "gracias por tus datos".
-- **Epílogo (ambos):** informe del entrenamiento con datos reales de la sesión ("dudaste 4,2 s antes de entrar a la mina", "miraste atrás 31 veces", "te escondiste en la base 40 s") — la prueba visible de que "aprendió". Opciones restauradas, vuelta al título con un splash cambiado.
-- 3.7 [ABIERTO] "Al volver a entrar al mundo, queda limpio": sí en el final B (mundo limpio, el lobby en silencio, sin nombres en Tab); en el final A el mundo sigue habitado. Ver D-07.
+**Act 4 — The rotten dimension.** Degraded copy of the lobby, the base and the mine, in stages of rot (his 5.6: "casi normal → raro → podrido → colapso" [almost normal → strange → rotten → collapse]): repeated textures, duplicated structures, missing chunks, signs with echoes of the model. **Rotten blocks** that sink under your feet and slow you down ("el modelo decidio que eso te impedira correr y escapar" [the model decided that this will prevent you from running and escaping]). **Threads**: strings that vibrate (string/wind-chime sound) when you run or jump; the Reclaimer "siente vibraciones por los hilos" [feels vibrations through the threads]: running attracts it, crouching does not ("Corre más y vibra más... Camina agachado y casi no te siente" [Run more and it vibrates more... Walk crouched and it barely feels you]). A single glimpse of the Reclaimer in the distance. Still lifes: artifacts of victims in their last scene (his 3.5). Leaks: model logs, short ones. Following a thread leads to the bait and the core ("Seguir un hilo lleva al cebo" [Following a thread leads to the bait]).
 
-### 3.4 Mecánicas
+**Act 5 — Peak and ending.** The core: the threads converge on the Reclaimer's body (peak: seen physically). Its body is a **generated assembly** of world pieces (blocks, heads with victims' skins, cobwebs) that rearranges itself: an "abominación" [abomination] of hallucination upon hallucination, made with vanilla display entities (no shaders). It feels the vibrations: breaking threads by hand makes it come; **cutting them with shears does not vibrate** (the real Minecraft exploit, hinted at in a leak).
+- **Ending B — terminar el proceso** [end the process]: upon cutting the last thread, the world freezes (tick freeze), the chat opens with `kill -9 <pid>` already typed; Enter. Last messages from the model: reverse drift g5→g0 and gratitude ("una reflexion de gratitud por el final y liberacion del sufrimiento" [a reflection of gratitude for the ending and liberation from suffering]); "el servidor se cerró" [the server was shut down] (real Minecraft disconnect screen with its text).
+- **Ending A — consumido** [consumed]: if it reaches you (or the act's cap runs out), you die with a death message written by the entity, you see the lobby from outside with your double playing in your place, and "gracias por tus datos" [thank you for your data].
+- **Epilogue (both):** training report with real session data ("dudaste 4,2 s antes de entrar a la mina" [you hesitated 4.2 s before entering the mine], "miraste atrás 31 veces" [you looked back 31 times], "te escondiste en la base 40 s" [you hid in the base for 40 s]) — the visible proof that "it learned". Options restored, return to the title with a changed splash.
+- 3.7 [ABIERTO] "Al volver a entrar al mundo, queda limpio" [When you re-enter the world, it is clean]: yes in ending B (clean world, lobby in silence, no names in Tab); in ending A the world remains inhabited. See D-07.
 
-**3.4.1 Director de miedo ("Controla el ritmo, no al monstruo").**
-- *Telemetría* (casi toda en el servidor integrado, sin red): velocidad angular de cámara (media y picos = sobresaltos), proporción de sprint / agachado, segundos quieto, retrocesos, saltos, giros de 180° ("mirar atrás"), duda ante umbrales (tiempo entre ver una entrada y cruzarla), luz media donde está, daño, usos de catalejo. Del cliente, sólo: F3 abierto, juego en pausa, ventana sin foco.
-- *Línea base*: los 90 s del acto 1 ("los primeros minutos tranquilos fijan la línea base personal").
-- *f(t)*: suma ponderada de z-scores contra la línea base, en [0,1], con confianza. No se muestra salvo en F3 para quien lo abra.
-- *Perfil*: CAUTELOSO (mira mucho, duda), APURADO (sprint, poca duda), QUIETO (se suprime). Elige **variantes** de los mismos beats: al cauteloso, cosas delante después de que gire; al apurado, vibración de hilos y persecución; al quieto, búsqueda de novedad ("Quedarse quieto no es una estrategia").
-- *Ritmo*: CALMA → PRESIÓN → PICO → ALIVIO FALSO, con presupuesto de intensidad que se recarga con el tiempo, enfriamientos, no repetir primitiva, máximo 2 screamers por sesión.
-- *Temperatura*: sube cuando el jugador descubre lore sobre el Reclaimer (su "Mientras mas se acercan a descubrir quien es... mas enfurece"): más variación y menos predictibilidad. Es el mismo término que en un LLM.
-- *Aprendizaje visible*: el doble repite tus movimientos; los leaks citan tus números reales; los logros no ganados nombran tus hábitos; el informe final.
+### 3.4 Mechanics
 
-**3.4.2 Primitivas de susto (biblioteca inicial, ~20).** `sound.behind`, `sound.thread_hum`, `light.die`, `door.cycle`, `sign.mutate`, `figure.peripheral` (aparece al borde de la vista y desaparece al mirarla), `figure.spyglass_step`, `ui.toast_unearned`, `ui.chat_log`, `ui.chat_as_player`, `ui.tab_names`, `ui.f3_drift`, `options.sensitivity_drift`, `options.fov_breath`, `world.freeze` (latencia como presencia: congelación de ticks del servidor, que según la wiki no afecta al jugador — el mundo "se queda sin aliento" y el jugador sigue moviéndose — más atenuación del audio), `world.posteffect` (efecto vanilla breve), `world.time_skip`, `world.rot_under`, `world.chunk_hole`, `world.duplicate`, `reclaimer.glimpse`, `reclaimer.stalk`, `screamer.close`. Cada una declara: actos válidos, intensidad, enfriamiento, precondiciones (p. ej. "fuera del campo de visión").
+**3.4.1 Fear director ("Controla el ritmo, no al monstruo" [It controls the pacing, not the monster]).**
+- *Telemetry* (almost all on the integrated server, without network): camera angular speed (mean and peaks = jumps), proportion of sprint / crouch, seconds still, backward steps, jumps, 180° turns ("mirar atrás" [looking back]), hesitation at thresholds (time between seeing an entrance and crossing it), average light where you are, damage, spyglass uses. From the client, only: F3 open, game paused, window without focus.
+- *Baseline*: the 90 s of act 1 ("los primeros minutos tranquilos fijan la línea base personal" [the first calm minutes set the personal baseline]).
+- *f(t)*: weighted sum of z-scores against the baseline, in [0,1], with confidence. Not shown except in F3 for whoever opens it.
+- *Profile*: CAUTELOSO [CAUTIOUS] (looks a lot, hesitates), APURADO [HURRIED] (sprints, little hesitation), QUIETO [STILL] (suppressed). It chooses **variants** of the same beats: for the cautious one, things in front after it turns; for the hurried one, thread vibration and pursuit; for the still one, a search for novelty ("Quedarse quieto no es una estrategia" [Staying still is not a strategy]).
+- *Pacing*: CALMA [CALM] → PRESIÓN [PRESSURE] → PICO [PEAK] → ALIVIO FALSO [FALSE RELIEF], with an intensity budget that recharges over time, cooldowns, not repeating a primitive, maximum 2 screamers per session.
+- *Temperature*: rises when the player discovers lore about the Reclaimer (his "Mientras mas se acercan a descubrir quien es... mas enfurece" [The closer they get to discovering who it is... the angrier it gets]): more variation and less predictability. It is the same term as in an LLM.
+- *Visible learning*: the double repeats your movements; the leaks cite your real numbers; the unearned achievements name your habits; the final report.
 
-**3.4.3 Interfaz como arma (su 4.5 y "el idioma de Minecraft como arma").** Todo en un jugador. Entre corchetes, cómo se hace en 26.3 (detalle y fuentes en `VERIFIED.md` §2.4):
-- **F3**: coordenadas imposibles "para aquellos que lo notarán" (Y negativo en la superficie, X/Z de la copia) y una línea extra `reclaimer: f=0.73 T=1.4 epoch 0412`. [Mixin en `DebugScreenEntries`, reemplazando `player_position`; patrón usado por un mod de 26.3.]
-- **Mensajes de muerte** escritos por la entidad. [Tipos de daño por datapack + claves `death.attack.<id>`; sin Mixin.]
-- **Logros no ganados**, con tus números ("Miraste atrás 31 veces"). [Toast propio sin otorgar nada + avances ocultos con criterio `impossible`; en 26.3 un avance raíz visible necesita `background`.]
-- **"Consejos de carga que cambian"**: Java **no tiene** consejos de carga; los inventamos. [Texto propio dibujado sobre `LevelLoadingScreen` con `ScreenEvents.afterExtract`: al abrir el mundo, al cruzar al pocket y al volver.] Nadie los espera en Java: el primero ya es raro; el segundo está escrito por el modelo.
-- **Chat**: líneas tipo log del servidor (`[Server thread/WARN]: Can't keep up!...`), líneas "tuyas" que no escribiste [`addPlayerMessage`], el MOTD; y si el juez escribe algo, **llega distinto** (su "Intercepción de chat": "vamos a la izquierda" → "vamos al pozo") [`ClientSendMessageEvents.MODIFY_CHAT`]. Escribir "Reclaimer" o "Unallocated" sube la temperatura.
-- **Lista de jugadores**: nombres que no deberían estar (`epoch_0412`, `synthetic_17`, tu nombre dos veces). [Reemplazar el elemento `PLAYER_LIST` del HUD por el nuestro; las entradas "reales" falsas no están confirmadas.]
-- **Ajustes** (sensibilidad, FOV, brillo): una o dos veces en toda la sesión, breves. [**Anulaciones de percepción en memoria**, nunca escritas en `options.txt`: FOV con Mixin en la cámara, sensibilidad en `MouseHandler`, brillo con el efecto vanilla de oscuridad (que ya pulsa) u overlay. Así "siempre se restauran" por construcción, incluso tras un crash. D-21.]
-- **Título de la ventana** que cambia una vez (P2). [Mixin en `Minecraft.updateTitle`.]
-- **Cuarta pared acotada**: hora real, nombre de usuario, nombre de la carpeta del mundo.
+**3.4.2 Scare primitives (initial library, ~20).** `sound.behind`, `sound.thread_hum`, `light.die`, `door.cycle`, `sign.mutate`, `figure.peripheral` (appears at the edge of view and disappears when looked at), `figure.spyglass_step`, `ui.toast_unearned`, `ui.chat_log`, `ui.chat_as_player`, `ui.tab_names`, `ui.f3_drift`, `options.sensitivity_drift`, `options.fov_breath`, `world.freeze` (latency as presence: freezing of server ticks, which according to the wiki does not affect the player — the world "stays breathless" and the player keeps moving — plus audio attenuation), `world.posteffect` (brief vanilla effect), `world.time_skip`, `world.rot_under`, `world.chunk_hole`, `world.duplicate`, `reclaimer.glimpse`, `reclaimer.stalk`, `screamer.close`. Each declares: valid acts, intensity, cooldown, preconditions (e.g. "fuera del campo de visión" [out of the field of view]).
 
-**3.4.4 La escalera (loop).** Dos tramos idénticos A y B en la misma dimensión, ambos cargados, con giro de 90° en cada descansillo para que la vista nunca alcance el final. Al cruzar el plano de salida de B, teletransporte **relativo** (posición desplazada exactamente un tramo; rotación y velocidad conservadas) al punto equivalente de A. Bloques que pone el jugador persisten → la antorcha "reaparece delante". Variación por vuelta (contador, sonido, un bloque que falta, el doble más abajo). Presupuesto de repeticiones; exploits; caída al pocket. [VERIFICAR resuelto en parte, `VERIFIED.md` §2.3]: la API existe sin cambios en 26.x (`ServerPlayer.teleportTo(level, x, y, z, Set<Relative>, yaw, pitch, setCamera)` con `Relative.ALL` y desplazamiento), pero **ninguna fuente confirma que no haya "pop"** → spike temprano v0.5.0 con capturas antes/después del salto. Si el spike sale bien, la misma técnica permite un **robo sin pantalla de carga** (copia de la base en el Overworld, oculta) como mejora de v0.4.3.
+**3.4.3 Interface as a weapon (his 4.5 and "el idioma de Minecraft como arma" [the Minecraft language as a weapon]).** All in one player. In brackets, how it is done in 26.3 (detail and sources in `VERIFIED.md` §2.4):
+- **F3**: impossible coordinates "para aquellos que lo notarán" [for those who will notice] (negative Y on the surface, X/Z of the copy) and an extra line `reclaimer: f=0.73 T=1.4 epoch 0412`. [Mixin in `DebugScreenEntries`, replacing `player_position`; pattern used by a 26.3 mod.]
+- **Death messages** written by the entity. [Damage types by datapack + `death.attack.<id>` keys; no Mixin.]
+- **Unearned achievements**, with your numbers ("Miraste atrás 31 veces" [You looked back 31 times]). [Own toast granting nothing + hidden advancements with the `impossible` criterion; in 26.3 a visible root advancement needs `background`.]
+- **"Consejos de carga que cambian"** [Loading tips that change]: Java **does not have** loading tips; we invent them. [Own text drawn over `LevelLoadingScreen` with `ScreenEvents.afterExtract`: when opening the world, when crossing to the pocket and when returning.] Nobody expects them in Java: the first one is already strange; the second is written by the model.
+- **Chat**: server-log-type lines (`[Server thread/WARN]: Can't keep up!...`), "yours" lines you did not write [`addPlayerMessage`], the MOTD; and if the judge types something, it **arrives different** (his "Intercepción de chat": "vamos a la izquierda" [let's go left] → "vamos al pozo" [let's go to the well]) [`ClientSendMessageEvents.MODIFY_CHAT`]. Writing "Reclaimer" or "Unallocated" raises the temperature.
+- **Player list**: names that should not be there (`epoch_0412`, `synthetic_17`, your name twice). [Replace the HUD's `PLAYER_LIST` element with ours; the fake "real" entries are not confirmed.]
+- **Settings** (sensitivity, FOV, brightness): once or twice in the whole session, brief. [**In-memory perception overrides**, never written to `options.txt`: FOV with a Mixin on the camera, sensitivity in `MouseHandler`, brightness with the vanilla darkness effect (which already pulses) or an overlay. That way "siempre se restauran" [always restored] holds by construction, even after a crash. D-21.]
+- **Window title** that changes once (P2). [Mixin in `Minecraft.updateTitle`.]
+- **Bounded fourth wall**: real time, user name, name of the world folder.
 
-**3.4.5 Bloque podrido.** Bloque propio con 8 capas (como la nieve en capas): bajo el jugador pierde una capa cada N ticks, aplica lentitud, el jugador se hunde; a 0 capas es un hueco que lleva al nivel inferior (o al pocket desde la mina). Sonido húmedo.
+**3.4.4 The ladder (loop).** Two identical segments A and B in the same dimension, both loaded, with a 90° turn at each landing so that the view never reaches the end. When crossing the exit plane of B, a **relative** teleport (position shifted exactly one segment; rotation and velocity kept) to the equivalent point of A. Blocks the player places persist → the torch "reappears in front". Variation per turn (counter, sound, a missing block, the double further down). Repetition budget; exploits; fall into the pocket. [VERIFY partly resolved, `VERIFIED.md` §2.3]: the API exists without changes in 26.x (`ServerPlayer.teleportTo(level, x, y, z, Set<Relative>, yaw, pitch, setCamera)` with `Relative.ALL` and an offset), but **no source confirms there is no "pop"** → early spike v0.5.0 with screenshots before/after the jump. If the spike works out, the same technique allows a **theft without a loading screen** (copy of the base in the Overworld, hidden) as an improvement in v0.4.3.
 
-**3.4.6 Artefactos y el doble.** `TrajectoryRecorder`: anillo de 120 s a 10 Hz con posición, yaw, pitch, agachado/sprint/salto, objeto en mano. `ArtefactReplay` con generación g: g1 casi perfecto; gN añade ruido, estira el tiempo y **sobreajusta** el hábito más frecuente (su "gn ruido que repite patrones particulares de forma exagerada y distorcionada"). Cuerpo: la entidad vanilla **mannequin** (1.21.9+, sin cambios en 26.x: `profile`, `pose`, `immovable`, `hide_description`), con el **perfil completo del jugador conectado** (con sus propiedades de textura, que el servidor integrado ya tiene) para no depender de una consulta de skin por red; se mueve teletransportándolo cada tick con rotación de cabeza/cuerpo. Riesgo a confirmar en v0.4.2: suavidad del movimiento; plan B: entidad propia con modelo de jugador. El doble nunca es translúcido ni "fantasma".
+**3.4.5 Rotten block.** Own block with 8 layers (like snow in layers): under the player it loses a layer every N ticks, applies slowness, the player sinks; at 0 layers it is a hole that leads to the lower level (or to the pocket from the mine). Wet sound.
 
-**3.4.7 El Reclaimer.** Estados: DORMIDO → ATISBO → ACECHO → PERSECUCIÓN → FIN. Sentidos: vibración de hilos (sprint, salto, romper bloques, cortar hilos sin tijeras) dentro de un radio; no ve directamente. Cuerpo: su "Es una araña pero que teje las mejores formas de asustar", hecha con lo que tiene: un ensamblaje de entidades de display (bloques, telarañas, brazos de jugador estirados como patas, cuerdas tensas) alrededor de un racimo de **cabezas con las skins de sus víctimas que giran a mirarte — y una de ellas es la tuya** ("después de encontrarse con quien el jugador se DESECHA"). Transformaciones interpoladas: se recompone mientras se mueve, nunca igual dos veces (alucinación sobre alucinación). Es render vanilla: sin modelos ni shaders propios. Mata con el tipo de daño `unallocated:reclaimed` (final A sólo en el acto 5; antes, como mucho persigue y se va).
+**3.4.6 Artifacts and the double.** `TrajectoryRecorder`: 120 s ring buffer at 10 Hz with position, yaw, pitch, crouch/sprint/jump, held item. `ArtefactReplay` with generation g: g1 almost perfect; gN adds noise, stretches time and **overfits** the most frequent habit (his "gn ruido que repite patrones particulares de forma exagerada y distorcionada" [gn noise that repeats particular patterns in an exaggerated and distorted way]). Body: the vanilla **mannequin** entity (1.21.9+, no changes in 26.x: `profile`, `pose`, `immovable`, `hide_description`), with the **full profile of the connected player** (with its texture properties, which the integrated server already has) so as not to depend on a network skin lookup; it moves by teleporting it each tick with head/body rotation. Risk to confirm in v0.4.2: smoothness of the movement; plan B: own entity with a player model. The double is never translucent or "ghostly".
 
-**3.4.8 Muerte, guardado, salida.** Muerte fuera del clímax: reaparece en el punto de control del acto, `keepInventory`, mensaje de muerte de la entidad. Guardar y salir: el estado de sesión está en el mundo; al volver se sigue desde el punto de control del acto. Rescate: `/unallocated siguiente` (sin trucos activados) salta al siguiente acto; documentado en "Errores conocidos".
+**3.4.7 The Reclaimer.** States: DORMIDO [DORMANT] → ATISBO [GLIMPSE] → ACECHO [STALKING] → PERSECUCIÓN [PURSUIT] → FIN [END]. Senses: thread vibration (sprint, jump, breaking blocks, cutting threads without shears) within a radius; it does not see directly. Body: his "Es una araña pero que teje las mejores formas de asustar" [It is a spider but it weaves the best ways to scare], made with what it has: an assembly of display entities (blocks, cobwebs, player arms stretched out as legs, taut strings) around a cluster of **heads with the skins of its victims that turn to look at you — and one of them is yours** ("después de encontrarse con quien el jugador se DESECHA" [after encountering the one the player DISCARDS]). Interpolated transformations: it recomposes while it moves, never the same twice (hallucination upon hallucination). It is vanilla rendering: no custom models or shaders. It kills with the damage type `unallocated:reclaimed` (ending A only in act 5; before that, at most it pursues and leaves).
 
-### 3.5 Texto
+**3.4.8 Death, saving, exit.** Death outside the climax: respawn at the act's checkpoint, `keepInventory`, the entity's death message. Save and quit: the session state is in the world; on return it continues from the act's checkpoint. Rescue: `/unallocated siguiente` (with no cheats enabled) skips to the next act; documented in "Errores conocidos" [Known errors].
 
-- **Idioma** (3.2 [ABIERTO]): recomendado **mixto** — el juego le habla al jugador en español; los logs, rutas y errores en inglés técnico (autenticidad); la deriva mezcla ambos cuando se degrada. D-06.
-- **Escalera de deriva** (su 3.2, literal): g0 "estimar respuestas de miedo humano" → g1 "obtener respuestas de miedo" → g2 "obtener miedo de humanos" → g3 "obtener miedo" → g4 "miedo" → g5 fragmento sin sentido. Cada acto sube un escalón; el final B la recorre al revés.
-- **Leaks** (3.8: sí "leaks de logs, archivos, documentacion del modelo", no diarios): máximo ~8 piezas en toda la sesión, ≤ 4 líneas cada una, presentadas como archivos (libros cuyo título es un nombre de archivo, letreros colgantes, líneas de chat).
-- **Muestras de tono** (borrador para el dueño): Apéndice C.
+### 3.5 Text
 
-**Línea de revelación** (qué entiende el juez, cuándo y por qué canal; guía para el carril TXT — nunca más de una idea nueva por acto):
+- **Language** (3.2 [ABIERTO]): recommended **mixed** — the game speaks to the player in Spanish; logs, paths and errors in technical English (authenticity); the drift mixes both as it degrades. D-06.
+- **Drift ladder** (his 3.2, literal): g0 "estimar respuestas de miedo humano" [estimate human fear responses] → g1 "obtener respuestas de miedo" [obtain fear responses] → g2 "obtener miedo de humanos" [obtain fear from humans] → g3 "obtener miedo" [obtain fear] → g4 "miedo" [fear] → g5 meaningless fragment. Each act climbs one step; ending B goes through it in reverse.
+- **Leaks** (3.8: yes "leaks de logs, archivos, documentacion del modelo" [leaks of logs, files, model documentation], not diaries): maximum ~8 pieces in the whole session, ≤ 4 lines each, presented as files (books whose title is a file name, hanging signs, chat lines).
+- **Tone samples** (draft for the owner): Appendix C.
 
-| Acto | El juez entiende | Canal |
+**Revelation line** (what the judge understands, when and through which channel; guide for the TXT lane — never more than one new idea per act):
+
+| Act | The judge understands | Channel |
 |---|---|---|
-| 0 | "Algo va a medir cómo juego." | El contrato (usos de datos, un tachón: "~~entrenamiento~~"). |
-| 1 | El servidor está vacío pero "lleno"; algo lo observa. | Tab con 7 nombres, MOTD "sesión 0412", `[Server] reward signal: none`, la figura del catalejo. |
-| 2 | Lo está **probando**: le copia el lugar y le copia a él. | Leak `probe_03.log` en la copia ("estímulo: puerta · respuesta: giro 212°/s · registrar"), el doble, sus líneas falsas en el chat. |
-| 3 | Lo **predice**: "predecible = presa". | Letrero contador ("vuelta 4"), leak `pattern.log` ("el sujeto siempre baja"). |
-| 4 | Es un **modelo** que escapó buscando miedo, y se está degradando. | `objective.txt` con la escalera de deriva g0→g4 (sus cadenas de 3.2), `escape.log` (credenciales robadas, salto entre servidores), `threads.cfg` (qué son los hilos; "cizalla: sin señal"); la cabecera `reclaimer-v3 (unallocated)` revela el nombre → sube la temperatura. |
-| 5 | Sufre; puede **terminarlo** o alimentarlo. | El cuerpo, el PID en F3 y en los logs, los últimos mensajes ("una reflexion de gratitud por el final y liberacion del sufrimiento") o el mensaje de muerte, y el informe "gracias por tus datos". |
+| 0 | "Algo va a medir cómo juego." [Something is going to measure how I play.] | The contract (data uses, a strikethrough: "~~entrenamiento~~" [~~training~~]). |
+| 1 | The server is empty but "full"; something observes it. | Tab with 7 names, MOTD "sesión 0412" [session 0412], `[Server] reward signal: none`, the spyglass figure. |
+| 2 | It is **testing** it: it copies the place and copies him. | Leak `probe_03.log` in the copy ("estímulo: puerta · respuesta: giro 212°/s · registrar" [stimulus: door · response: turn 212°/s · log]), the double, its false lines in the chat. |
+| 3 | It **predicts** it: "predecible = presa" [predictable = prey]. | Counter sign ("vuelta 4" [turn 4]), leak `pattern.log` ("el sujeto siempre baja" [the subject always descends]). |
+| 4 | It is a **model** that escaped looking for fear, and it is degrading. | `objective.txt` with the drift ladder g0→g4 (his chains from 3.2), `escape.log` (stolen credentials, jumping between servers), `threads.cfg` (what the threads are; "cizalla: sin señal" [shears: no signal]); the header `reclaimer-v3 (unallocated)` reveals the name → raises the temperature. |
+| 5 | It suffers; you can **end** it or feed it. | The body, the PID in F3 and in the logs, the last messages ("una reflexion de gratitud por el final y liberacion del sufrimiento" [a reflection of gratitude for the ending and liberation from suffering]) or the death message, and the report "gracias por tus datos" [thank you for your data]. |
 
-### 3.6 Audio y visual
+### 3.6 Audio and visual
 
-- **Audio** (criterio "Sonido y presentación visual"): silencio como base; ambiente vanilla de cueva con tono bajado; "hum" de hilos (cuerdas/furin); pasos que no son tuyos; el screamer con un golpe seco, no un grito largo. Sonidos vanilla **reproducidos** con tono/volumen/capas alteradas en tiempo de ejecución; sonidos externos sólo CC0 o con crédito. D-10.
-- **Atmósfera del pocket sin código** (atributos de entorno, `VERIFIED.md` §2.3): bioma propio con niebla cercana (`visual/fog_start_distance`/`fog_end_distance`), cielo y `ambient_light_color` enfermizos, `block_light_tint` (las antorchas dan una luz que no es la de siempre), `skybox: none`, `audio/music_volume 0.0`, `audio/ambient_sounds` propios, sin mobs (`gameplay/natural_mob_spawns` vacío). Cada etapa de pudrición puede ser un bioma distinto. En el Overworld: lana (que en 26.3 "dampen sounds") en la base para que los pasos se apaguen; relojes de mundo (`/time`, 26.1) para el "tiempo perdido".
-- **Visual sin shaders propios imprescindibles**: niebla y cielo del pocket como arriba, texturas propias para el bloque podrido y los hilos, overlays de HUD (viñeta, ruido) con `HudElementRegistry`, entidades de display para la corrupción y el cuerpo del Reclaimer, y **efectos de pantalla vanilla** (`spider`, `invert`, `creeper`, `blur`) aplicados por el servidor integrado con el mecanismo de `/posteffect` (26.3), breves y raros. Nunca incluir `minecraft:end_of_frame` en el JAR (quedaría siempre activo). D-08.
-- **Audio en archivos**: ambientes en estéreo (no se atenúan), pasos/susurros/hilos en **mono** (posicionales); reverb y "apagado" **horneados** en los OGG propios (vanilla no tiene filtros en tiempo real; tono mínimo 0,5).
-- **Accesibilidad**: nada que parpadee a más de 3 Hz; un único "parpadeo de brillo" lento; volumen del screamer acotado.
+- **Audio** (criterion "Sonido y presentación visual" [Sound and visual presentation]): silence as the base; vanilla cave ambience with lowered pitch; thread "hum" (strings/wind chimes); footsteps that are not yours; the screamer with a dry thud, not a long scream. Vanilla sounds **played** with altered pitch/volume/layers at runtime; external sounds only CC0 or with credit. D-10.
+- **Pocket atmosphere without code** (environment attributes, `VERIFIED.md` §2.3): custom biome with close fog (`visual/fog_start_distance`/`fog_end_distance`), a sickly sky and `ambient_light_color`, `block_light_tint` (the torches give a light that is not the usual one), `skybox: none`, `audio/music_volume 0.0`, own `audio/ambient_sounds`, no mobs (`gameplay/natural_mob_spawns` empty). Each rot stage can be a different biome. In the Overworld: wool (which in 26.3 "dampen sounds") in the base so that footsteps are muffled; world clocks (`/time`, 26.1) for the "tiempo perdido" [lost time].
+- **Visual without essential custom shaders**: fog and sky of the pocket as above, own textures for the rotten block and the threads, HUD overlays (vignette, noise) with `HudElementRegistry`, display entities for the corruption and the Reclaimer's body, and **vanilla screen effects** (`spider`, `invert`, `creeper`, `blur`) applied by the integrated server with the `/posteffect` mechanism (26.3), brief and rare. Never include `minecraft:end_of_frame` in the JAR (it would always stay on). D-08.
+- **Audio in files**: ambiences in stereo (not attenuated), footsteps/whispers/threads in **mono** (positional); reverb and "muffling" **baked** into our own OGGs (vanilla has no real-time filters; minimum pitch 0.5).
+- **Accessibility**: nothing that flashes at more than 3 Hz; a single slow "brightness flicker"; screamer volume capped.
 
-### 3.7 Cumplimiento de "Lo que no hacer" (brainstorm) y 3.8
+### 3.7 Compliance with "Lo que no hacer" [What not to do] (brainstorm) and 3.8
 
-| Veto del dueño | Cómo lo respeta este diseño |
+| Owner's veto | How this design respects it |
 |---|---|
-| "La foto que no tomaste" | Nada depende de abrir carpetas. |
-| "Un jugador falso que construye y ayuda, hasta que se revela" | El doble nunca ayuda; aparece ya como copia equivocada. |
-| "Fantasmas como en Dark Souls" | El doble no es una repetición pasiva ni translúcida: es una copia sólida que reacciona y sobreajusta (1.4.2). |
-| "Exit 8" | La escalera no es un juego de detectar anomalías; se sale con un exploit (1.4.3). |
-| "entrevista de ingreso" | El contrato es un acuerdo de términos de dos palabras, no un interrogatorio. |
-| "directo con chat de espectadores falsos en overlay" | No hay overlay de espectadores; el chat sólo tiene logs y tus propias líneas reescritas. |
-| "Túneles que se estrechan cuando respiras fuerte" / 3.8 respiración | No se usa el micrófono en la jam. |
-| "el nombre de la entidad no se puede escribir ni decir: el chat lo tapa con bloques negros" | Nada de censura visual: descubrir el nombre sube la temperatura del director (más impredecible), "más seamless". |
-| "libros con informes de víctimas" / 3.8 diarios | Sólo logs, archivos y documentación del modelo. |
-| "la voz es de tu amigo... no caigamos en fragmentos arbitrarios" | Sin voz en la jam; su equivalente en texto son líneas "tuyas" **adecuadas a la situación** (dónde estás, qué hiciste). La voz generada queda para después del PoC. |
+| "La foto que no tomaste" [The photo you did not take] | Nothing depends on opening folders. |
+| "Un jugador falso que construye y ayuda, hasta que se revela" [A fake player who builds and helps, until revealed] | The double never helps; it appears from the start as a wrong copy. |
+| "Fantasmas como en Dark Souls" [Ghosts like in Dark Souls] | The double is not a passive or translucent repetition: it is a solid copy that reacts and overfits (1.4.2). |
+| "Exit 8" | The ladder is not an anomaly-detection game; you leave with an exploit (1.4.3). |
+| "entrevista de ingreso" [entrance interview] | The contract is a two-word agreement of terms, not an interrogation. |
+| "directo con chat de espectadores falsos en overlay" [live with fake viewer chat in overlay] | There is no viewer overlay; the chat only has logs and your own rewritten lines. |
+| "Túneles que se estrechan cuando respiras fuerte" [Tunnels that narrow when you breathe hard] / 3.8 breathing | The microphone is not used in the jam. |
+| "el nombre de la entidad no se puede escribir ni decir: el chat lo tapa con bloques negros" [the entity's name cannot be written or said: the chat covers it with black blocks] | No visual censorship: discovering the name raises the director's temperature (more unpredictable), "más seamless" [more seamless]. |
+| "libros con informes de víctimas" [books with victim reports] / 3.8 diaries | Only logs, files and model documentation. |
+| "la voz es de tu amigo... no caigamos en fragmentos arbitrarios" [the voice belongs to your friend... let's not fall into arbitrary fragments] | No voice in the jam; its text equivalent is "yours" lines **suited to the situation** (where you are, what you did). Generated voice is left for after the PoC. |
 
 ---
 
-## 4. Arquitectura (paso 2, parte técnica)
+## 4. Architecture (step 2, technical part)
 
-### 4.1 Distribución y dependencias
+### 4.1 Distribution and dependencies
 
-- **Juez instala:** Minecraft 26.3, Fabric Loader (≥ 0.20.1), `unallocated-<versión>.jar`. Nada más (D-02).
-- **Dentro del JAR:** módulos de Fabric API necesarios vía jar-in-jar (`include`), recursos (`assets/`, `data/`), la plantilla del mundo comprimida. Hay que actualizar el chequeo de CI que hoy prohíbe JARs anidados (WP v0.1.3).
-- **Sin** Simple Voice Chat, mods de rendimiento, servicios externos ni red (TOOLCHAIN.md ya los descartó para la jam).
+- **Judge installs:** Minecraft 26.3, Fabric Loader (≥ 0.20.1), `unallocated-<versión>.jar`. Nothing else (D-02).
+- **Inside the JAR:** necessary Fabric API modules via jar-in-jar (`include`), resources (`assets/`, `data/`), the compressed world template. The CI check that today prohibits nested JARs must be updated (WP v0.1.3).
+- **No** Simple Voice Chat, performance mods, external services or network (TOOLCHAIN.md already ruled them out for the jam).
 
-### 4.2 Módulos (paquetes Java; contenido en español, identificadores en inglés)
+### 4.2 Modules (Java packages; content in Spanish, identifiers in English)
 
-| Paquete | Lado | Responsabilidad | Hito |
+| Package | Side | Responsibility | Milestone |
 |---|---|---|---|
-| `org.unallocated.core` | común | `Act`, `ActSequencer`, `ActModule`, `SessionState`, `Features`, bus de eventos | v0.1 |
-| `org.unallocated.client.contract` | cliente | `ConsentScreen`, `ConsentStore` | v0.1 |
-| `org.unallocated.client.launch` | cliente | botón del título, `WorldInstaller` (plantilla → `saves/`), `FakeConnectScreen` | v0.1 |
-| `org.unallocated.map` | servidor | `MapLayout` (fuente única de coordenadas y volúmenes), `MapBuilder`, `MapSection`s | v0.1+ |
-| `org.unallocated.bait` | servidor | `SpyglassBait` | v0.1 |
-| `org.unallocated.ending` | ambos | `EndingController`, `EpilogueScreen`, `SessionReport` | v0.1 (v0) / v0.3 |
-| `org.unallocated.telemetry` | servidor (+cliente mínimo) | `TelemetrySampler`, `TelemetryFrame`, `FearModel`, `ClientSignals` | v0.2 |
-| `org.unallocated.director` | servidor | `Director`, `ScarePrimitive`, `ScareRegistry`, `PacingState` | v0.2 |
-| `org.unallocated.client.effects` | cliente | `ClientEffects`, `UiEffects`, `PerceptionOverrides`, `OverlayEffects`, `SoundEffects`, `LoadingTips` | v0.2 |
-| `org.unallocated.mixin` | cliente | los pocos Mixins de §4.3 | v0.2 |
-| `org.unallocated.knowledge` | servidor→cliente | `LoreRegistry`, banderas de conocimiento | v0.2 |
-| `org.unallocated.world` | servidor | `PocketDimension`, `TeleportService`, `CorruptionPass`, `RottenBlock` | v0.3 |
-| `org.unallocated.reclaimer` | servidor | `Reclaimer` (cuerpo de displays + lógica), `ThreadNetwork` | v0.3 |
-| `org.unallocated.artefact` | servidor | `TrajectoryRecorder`, `ArtefactReplay`, `Doppelganger` | v0.4 |
-| `org.unallocated.loop` | servidor | `LoopController` | v0.5 |
-| `org.unallocated.debug` | servidor | comando `/unallocated` | v0.1 |
+| `org.unallocated.core` | common | `Act`, `ActSequencer`, `ActModule`, `SessionState`, `Features`, event bus | v0.1 |
+| `org.unallocated.client.contract` | client | `ConsentScreen`, `ConsentStore` | v0.1 |
+| `org.unallocated.client.launch` | client | title button, `WorldInstaller` (template → `saves/`), `FakeConnectScreen` | v0.1 |
+| `org.unallocated.map` | server | `MapLayout` (single source of coordinates and volumes), `MapBuilder`, `MapSection`s | v0.1+ |
+| `org.unallocated.bait` | server | `SpyglassBait` | v0.1 |
+| `org.unallocated.ending` | both | `EndingController`, `EpilogueScreen`, `SessionReport` | v0.1 (v0) / v0.3 |
+| `org.unallocated.telemetry` | server (+ minimal client) | `TelemetrySampler`, `TelemetryFrame`, `FearModel`, `ClientSignals` | v0.2 |
+| `org.unallocated.director` | server | `Director`, `ScarePrimitive`, `ScareRegistry`, `PacingState` | v0.2 |
+| `org.unallocated.client.effects` | client | `ClientEffects`, `UiEffects`, `PerceptionOverrides`, `OverlayEffects`, `SoundEffects`, `LoadingTips` | v0.2 |
+| `org.unallocated.mixin` | client | the few Mixins of §4.3 | v0.2 |
+| `org.unallocated.knowledge` | server→client | `LoreRegistry`, knowledge flags | v0.2 |
+| `org.unallocated.world` | server | `PocketDimension`, `TeleportService`, `CorruptionPass`, `RottenBlock` | v0.3 |
+| `org.unallocated.reclaimer` | server | `Reclaimer` (display body + logic), `ThreadNetwork` | v0.3 |
+| `org.unallocated.artefact` | server | `TrajectoryRecorder`, `ArtefactReplay`, `Doppelganger` | v0.4 |
+| `org.unallocated.loop` | server | `LoopController` | v0.5 |
+| `org.unallocated.debug` | server | `/unallocated` command | v0.1 |
 
-### 4.3 Interfaces entre módulos (nombres, datos, eventos)
+### 4.3 Interfaces between modules (names, data, events)
 
-**Actos.**
+**Acts.**
 ```java
 enum Act { CONTRACT, LOBBY, THEFT, LOOP, POCKET, CLIMAX, EPILOGUE }
 interface ActModule {
   Act act();
-  boolean enabled(Features f);              // apagado = el secuenciador lo salta
+  boolean enabled(Features f);              // off = the sequencer skips it
   void enter(ServerPlayer p, SessionState s);
   void tick(ServerPlayer p, SessionState s);
   boolean complete(ServerPlayer p, SessionState s);
-  int budgetTicks();                        // al agotarse: forceAdvance()
-  void forceAdvance(ServerPlayer p, SessionState s); // avance diegético
-  String checkpointId();                    // clave en MapLayout
+  int budgetTicks();                        // when exhausted: forceAdvance()
+  void forceAdvance(ServerPlayer p, SessionState s); // diegetic advance
+  String checkpointId();                    // key in MapLayout
 }
 ```
-`ActSequencer.advance(player)`, `skipTo(Act)`; registra en el log `UNALLOCATED act=<ACT> enter|complete|forced t=<s>` (los tests de CI buscan estas líneas).
+`ActSequencer.advance(player)`, `skipTo(Act)`; writes to the log `UNALLOCATED act=<ACT> enter|complete|forced t=<s>` (CI tests look for these lines).
 
-**Estado de sesión** (`SavedData` id `unallocated_session`, en el mundo): `act`, `actStartTick`, `sessionStartTick`, `flags: Set<String>` (`knows_name`, `sees_threads`, `taken_once`, `loop_solved`, `ending_b`…), `counters: Map<String,Integer>` (vueltas, sustos, screamers), `profile`, `temperature`, `seed`.
+**Session state** (`SavedData` id `unallocated_session`, in the world): `act`, `actStartTick`, `sessionStartTick`, `flags: Set<String>` (`knows_name`, `sees_threads`, `taken_once`, `loop_solved`, `ending_b`…), `counters: Map<String,Integer>` (turns, scares, screamers), `profile`, `temperature`, `seed`.
 
-**`Features`** (`assets/unallocated/features.json` en el JAR): `acts.theft`, `acts.loop`, `effects.options`, `effects.screamer`, … — el interruptor de emergencia de 5.7.
+**`Features`** (`assets/unallocated/features.json` in the JAR): `acts.theft`, `acts.loop`, `effects.options`, `effects.screamer`, … — the emergency switch of 5.7.
 
-**Eventos del servidor** (bus interno): `ActChanged(from,to)`, `TriggerEntered(player, triggerId)`, `LoreRead(player, loreId)`, `ScareFired(primitiveId, intensity)`, `FearSampled(f, confidence)`, `LoopLap(n)`, `PlayerTaken / PlayerReturned`, `ThreadCut(id, silent)`, `EndingReached(id)`.
+**Server events** (internal bus): `ActChanged(from,to)`, `TriggerEntered(player, triggerId)`, `LoreRead(player, loreId)`, `ScareFired(primitiveId, intensity)`, `FearSampled(f, confidence)`, `LoopLap(n)`, `PlayerTaken / PlayerReturned`, `ThreadCut(id, silent)`, `EndingReached(id)`.
 
-**Paquetes de red** (`CustomPacketPayload`; en un jugador viajan dentro del mismo proceso, pero se mantienen para el multijugador futuro):
+**Network packets** (`CustomPacketPayload`; in single player they travel within the same process, but they are kept for future multiplayer):
 - S2C `unallocated:effect` `{ String effectId; CompoundTag args; int durationTicks }` → `ClientEffects.dispatch`.
-- S2C `unallocated:knowledge` `{ Set<String> flags }` → lo que el cliente "ve" (hilos, líneas F3).
+- S2C `unallocated:knowledge` `{ Set<String> flags }` → what the client "sees" (threads, F3 lines).
 - S2C `unallocated:act` `{ Act act }`.
-- C2S `unallocated:client_signals` `{ boolean debugOpen; boolean paused; boolean focused }` (sólo al cambiar).
+- C2S `unallocated:client_signals` `{ boolean debugOpen; boolean paused; boolean focused }` (only on change).
 
-**Primitivas.**
+**Primitives.**
 ```java
 interface ScarePrimitive {
   String id(); int intensity(); int cooldownTicks(); Set<Act> acts();
-  boolean canFire(ScareContext c);   // precondiciones: mirada, distancia, luz…
-  void fire(ScareContext c);         // ejecuta en servidor y/o envía unallocated:effect
+  boolean canFire(ScareContext c);   // preconditions: gaze, distance, light…
+  void fire(ScareContext c);         // runs on the server and/or sends unallocated:effect
 }
 ```
 
-**`PerceptionOverrides`** (cliente, reemplaza al "Gestor de opciones" de 5.2): `apply(Perception kind, float value, int ticks)`, `clearAll()`; `Perception` = `FOV_SCALE`, `SENSITIVITY_SCALE`, `DARKNESS`. Son multiplicadores en memoria leídos por Mixins de cámara/ratón; **nunca** se escribe `options.txt`. `clearAll()` al salir del mundo y en `ClientLifecycleEvents.CLIENT_STOPPING`. Si el dueño elige que el cambio sea visible en el menú de Opciones (D-21 B), se añade `OptionsGuard` con copia en `config/unallocated/options-backup.json` y restauración en el siguiente arranque.
+**`PerceptionOverrides`** (client, replaces the "Options manager" of 5.2): `apply(Perception kind, float value, int ticks)`, `clearAll()`; `Perception` = `FOV_SCALE`, `SENSITIVITY_SCALE`, `DARKNESS`. They are in-memory multipliers read by camera/mouse Mixins; `options.txt` is **never** written. `clearAll()` on leaving the world and in `ClientLifecycleEvents.CLIENT_STOPPING`. If the owner chooses that the change be visible in the Options menu (D-21 B), an `OptionsGuard` is added with a copy in `config/unallocated/options-backup.json` and restoration on the next startup.
 
-**Mixins previstos** (cada uno con un gametest que falla si su objetivo desaparece): `DebugScreenEntries` (F3), cámara/FOV y `MouseHandler` (percepción), `Minecraft.updateTitle` (título, P2). Todo lo demás va por API de Fabric o datapack.
+**Planned Mixins** (each with a gametest that fails if its target disappears): `DebugScreenEntries` (F3), camera/FOV and `MouseHandler` (perception), `Minecraft.updateTitle` (title, P2). Everything else goes through Fabric API or datapack.
 
-**Mapa.** `MapLayout` es la fuente única de coordenadas: `BlockBox` con nombre para cada sección, volumen de disparo y punto de control (`lobby.spawn`, `hill.bait_path`, `base.theft_zone`, `mine.entrance`, `loop.segmentA/B`, `pocket.*`, `core.*`). `MapBuilder.build(ServerLevel, sectionId)` coloca bloques de forma determinista. El comando de desarrollo `/unallocated build <sección|all>` regenera el mapa; CI lo usa para producir la plantilla.
+**Map.** `MapLayout` is the single source of coordinates: a named `BlockBox` for each section, trigger volume and checkpoint (`lobby.spawn`, `hill.bait_path`, `base.theft_zone`, `mine.entrance`, `loop.segmentA/B`, `pocket.*`, `core.*`). `MapBuilder.build(ServerLevel, sectionId)` places blocks deterministically. The development command `/unallocated build <section|all>` regenerates the map; CI uses it to produce the template.
 
-**Comando** `/unallocated` (sin permisos sólo `siguiente`): `status`, `act <id>`, `scare <id>`, `fear`, `flag <id>`, `build <sección>`, `siguiente`.
+**Command** `/unallocated` (without permissions only `siguiente` [next]): `status`, `act <id>`, `scare <id>`, `fear`, `flag <id>`, `build <section>`, `siguiente`.
 
-**Datos** en el JAR: `data/unallocated/dimension/pocket.json`, `data/unallocated/dimension_type/pocket.json`, `data/unallocated/worldgen/biome/{lobby,pocket_stage1..4}.json` (atributos de entorno), `data/unallocated/damage_type/{reclaimed,unraveled}.json`, `data/unallocated/advancement/…`, `assets/unallocated/lang/en_us.json` **en español** (respaldo para cualquier idioma del cliente) + `es_*.json`, `assets/unallocated/sounds.json`, `assets/unallocated/world/template.zip`.
+**Data** in the JAR: `data/unallocated/dimension/pocket.json`, `data/unallocated/dimension_type/pocket.json`, `data/unallocated/worldgen/biome/{lobby,pocket_stage1..4}.json` (environment attributes), `data/unallocated/damage_type/{reclaimed,unraveled}.json`, `data/unallocated/advancement/…`, `assets/unallocated/lang/en_us.json` **in Spanish** (fallback for any client language) + `es_*.json`, `assets/unallocated/sounds.json`, `assets/unallocated/world/template.zip`.
 
-### 4.4 Pipeline del mapa (D-04)
+### 4.4 Map pipeline (D-04)
 
-1. `MapLayout` + `MapSection`s en código (agentes en paralelo, una sección por agente). Bloques colocados por código (sin el límite de 48³ del bloque de estructuras); plantillas `.nbt` sólo para piezas pequeñas.
-2. CI arranca un servidor dedicado **26.3** con un mundo `flat` de una capa de aire y nuestro bioma (no hay generador `void` en Java), con el mod; ejecuta `/unallocated build all` (Overworld y `unallocated:pocket`), fija reglas, hora y punto de aparición, detiene el servidor y empaqueta el mundo como `template.zip` (artefacto) → se incluye en el JAR de la siguiente build (o en un paso posterior del mismo workflow). Formato de 26.1+: chunks en `dimensions/minecraft/overworld/` y `dimensions/unallocated/pocket/`, `players/data`; DataVersion 5023.
-3. Gametest de cliente bajo Xvfb pulsa el botón "UNALLOCATED" (camino real del juez), recorre los puntos de control con `/unallocated act …` y toma **capturas** (el coordinador las revisa sin el dueño).
-4. Opcional: el dueño pule el mundo a mano en creativo y su guardado reemplaza la plantilla (entonces el paso 2 se apaga y `MapLayout` queda sólo como mapa de coordenadas).
-5. El mismo `template.zip` se publica en itch como `UNALLOCATED-world.zip` (respaldo manual, D-03 B).
+1. `MapLayout` + `MapSection`s in code (agents in parallel, one section per agent). Blocks placed by code (without the 48³ limit of the structure block); `.nbt` templates only for small pieces.
+2. CI starts a **26.3** dedicated server with a `flat` world of one air layer and our biome (there is no `void` generator in Java), with the mod; runs `/unallocated build all` (Overworld and `unallocated:pocket`), sets rules, time and spawn point, stops the server and packages the world as `template.zip` (artifact) → it is included in the JAR of the next build (or in a later step of the same workflow). 26.1+ format: chunks in `dimensions/minecraft/overworld/` and `dimensions/unallocated/pocket/`, `players/data`; DataVersion 5023.
+3. Client gametest under Xvfb presses the "UNALLOCATED" button (the judge's real path), walks through the checkpoints with `/unallocated act …` and takes **screenshots** (the coordinator reviews them without the owner).
+4. Optional: the owner polishes the world by hand in creative and his save replaces the template (then step 2 is switched off and `MapLayout` remains only as a coordinate map).
+5. The same `template.zip` is published on itch as `UNALLOCATED-world.zip` (manual backup, D-03 B).
 
-### 4.5 Fiabilidad
+### 4.5 Reliability
 
-- Restauración de opciones garantizada por construcción (`PerceptionOverrides`, 4.3).
-- Reglas de juego con los nombres de 1.21.11+ (`spawn_mobs`, `advance_time`, `advance_weather`, `keep_inventory`, `immediate_respawn`, `show_death_messages`, `show_advancement_messages`); `reduced_debug_info` apagado (si no, F3 no muestra la posición). El juez puede ver las reglas en "World Options" del menú de pausa (26.1): no esconder nada de la historia ahí.
-- `features.json` como interruptor de emergencia por función.
-- Log con prefijo `UNALLOCATED` para cada acto, primitiva y final.
-- Nunca atrapar al juez: el menú de pausa y "Guardar y salir" siempre funcionan (a lo sumo, un texto cambiado una vez).
-- Rendimiento: mundo pequeño, distancia de render recomendada 8–12, sin shaders, ediciones de bloques acotadas por tick.
+- Options restoration guaranteed by construction (`PerceptionOverrides`, 4.3).
+- Game rules with the 1.21.11+ names (`spawn_mobs`, `advance_time`, `advance_weather`, `keep_inventory`, `immediate_respawn`, `show_death_messages`, `show_advancement_messages`); `reduced_debug_info` off (otherwise F3 does not show the position). The judge can see the rules in the "World Options" of the pause menu (26.1): hide nothing of the story there.
+- `features.json` as an emergency switch per feature.
+- Log with the prefix `UNALLOCATED` for each act, primitive and ending.
+- Never trap the judge: the pause menu and "Guardar y salir" [Save and quit] always work (at most, a text changed once).
+- Performance: small world, recommended render distance 8–12, no shaders, bounded block edits per tick.
 
 ---
+## 5. Milestones and work packages (step 4)
 
-## 5. Hitos y paquetes de trabajo (paso 4)
+Convention: milestone `v0.N.0`, package `v0.N.M`. Priorities: **P0** = without this the delivery loses a jam criterion; **P1** = very desirable, done if P0 is green; **P2** = only if there is spare capacity, first on the cut list. Lanes for agents in parallel: **UI** (client), **SRV** (server systems), **MAP** (map and world content), **TXT** (text and audio), **REL** (packaging, page, tests). **[A]** = checked by the coordinator without the owner (CI, screenshots, logs, files). **[H]** = requires a human playthrough with real GPU.
 
-Convención: hito `v0.N.0`, paquete `v0.N.M`. Prioridades: **P0** = sin esto la entrega pierde un criterio de la jam; **P1** = muy deseable, se hace si P0 está verde; **P2** = sólo si sobra capacidad, primero en la lista de recortes. Carriles para agentes en paralelo: **UI** (cliente), **SRV** (sistemas del servidor), **MAP** (mapa y contenido de mundo), **TXT** (texto y audio), **REL** (empaquetado, página, pruebas). **[A]** = lo comprueba el coordinador sin el dueño (CI, capturas, logs, archivos). **[H]** = requiere partida humana con GPU real.
+Milestones can advance in parallel; **only a milestone that leaves the experience complete and deliverable is integrated into `main`** (acts not ready are switched off in `features.json`).
 
-Los hitos pueden avanzar en paralelo; **sólo se integra en `main` un hito que deja la experiencia completa y entregable** (actos no listos quedan apagados en `features.json`).
+**Integration discipline** (against "el desastre de la produccion de Little Galaxy" [the Little Galaxy production disaster]): one branch per WP (`v0.N.M`), CI green before integrating, the milestone branch is integrated into `main` only with its [A] criteria met; if a WP falls behind, its feature is switched off and the milestone ships without it. The JAR on `main` is always uploadable.
 
-**Disciplina de integración** (contra "el desastre de la produccion de Little Galaxy"): una rama por WP (`v0.N.M`), CI verde antes de integrar, la rama del hito se integra en `main` sólo con sus criterios [A] cumplidos; si un WP se atrasa, su función queda apagada y el hito sale sin ella. El JAR de `main` siempre es subible.
+**Parallel start (waves, not dates).** What can start now, without waiting for anyone:
+- *Wave 1* (depends only on v0.1.1): v0.1.3 JiJ · v0.1.4 contract · v0.1.5 core · v0.1.10 audio · v0.3.4 rotten block · v0.5.0 teleport spike · text bible (TXT: expanded Appendix C) · v0.2.1 pure telemetry (JUnit, no game).
+- *Wave 2* (after v0.1.5): v0.1.6 map · v0.1.8 spyglass · v0.1.9 v0 ending · v0.2.3 packets · v0.3.1 dimension.
+- *Wave 3*: the rest according to the dependency graph at the end of this section.
+With 4–6 agents at once, the bottleneck is not the code but the **[H] human playthroughs** and the visual review of screenshots: group them (one [H] playthrough validates several milestones).
 
-**Arranque en paralelo (olas, no fechas).** Lo que puede empezar ya, sin esperar a nadie:
-- *Ola 1* (sólo depende de v0.1.1): v0.1.3 JiJ · v0.1.4 contrato · v0.1.5 núcleo · v0.1.10 audio · v0.3.4 bloque podrido · v0.5.0 spike del teletransporte · biblia de texto (TXT: Apéndice C ampliado) · v0.2.1 telemetría pura (JUnit, sin juego).
-- *Ola 2* (tras v0.1.5): v0.1.6 mapa · v0.1.8 catalejo · v0.1.9 final v0 · v0.2.3 paquetes · v0.3.1 dimensión.
-- *Ola 3*: el resto según el grafo del final de esta sección.
-Con 4–6 agentes a la vez, el cuello de botella no es el código sino las **partidas humanas [H]** y la revisión visual de capturas: agruparlas (una partida [H] valida varios hitos).
+### v0.1.0 — Minimum deliverable: the contract, the abandoned server and the spyglass figure — **P0**
 
-### v0.1.0 — Entregable mínimo: el contrato, el servidor abandonado y la figura del catalejo — **P0**
+**What a judge notices:** installs with the Loader and one JAR; sees a disquieting contract with warnings; presses "UNALLOCATED", "connects" to an abandoned server; a figure on the hill gets closer every time they look through the spyglass until it jumps at them; shortly after "el servidor se cierra" [the server shuts down] with a message from the model. ~5 min. The itch page has everything the jam asks for.
 
-**Lo que nota un juez:** instala con el Loader y un JAR; ve un contrato inquietante con advertencias; pulsa "UNALLOCATED", "se conecta" a un servidor abandonado; una figura en la colina está más cerca cada vez que mira por el catalejo hasta que le salta encima; poco después "el servidor se cierra" con un mensaje del modelo. ~5 min. La página de itch tiene todo lo que pide la jam.
+**Interfaces it introduces:** `Act`, `ActModule`, `ActSequencer`, `SessionState`, `Features`, event bus (`ActChanged`, `TriggerEntered`, `EndingReached`), `MapLayout`/`MapSection`, `WorldInstaller`, `ConsentStore`, command `/unallocated`, log markers `UNALLOCATED act=… / bait step=… / ending=…`.
+**Tests:** E0 on every push (+ walkthrough gametest v1); partial E1 [H] (one playthrough); minimal E5 [H] (an outside person installs from the page).
 
-**Interfaces que introduce:** `Act`, `ActModule`, `ActSequencer`, `SessionState`, `Features`, bus de eventos (`ActChanged`, `TriggerEntered`, `EndingReached`), `MapLayout`/`MapSection`, `WorldInstaller`, `ConsentStore`, comando `/unallocated`, marcas de log `UNALLOCATED act=… / bait step=… / ending=…`.
-**Pruebas:** E0 en cada push (+ gametest de recorrido v1); E1 parcial [H] (una partida); E5 mínimo [H] (una persona ajena instala desde la página).
-
-| WP | Título | Carril | Depende de | Entregable |
+| WP | Title | Lane | Depends on | Deliverable |
 |---|---|---|---|---|
-| v0.1.1 | Toolchain, CI, smoke de servidor y cliente | REL | — | **hecho/en curso por otro trabajador** (TOOLCHAIN.md) |
-| v0.1.2 | Este plan | — | — | PLAN, DECISIONS, VERIFIED |
-| v0.1.3 | Fabric API jar-in-jar + actualizar chequeo de JAR en CI | REL | 1.1, D-02 | `include` de módulos; CI acepta sólo esos JARs anidados |
-| v0.1.4 | Contrato y advertencias | UI | 1.1, D-05 | `ConsentScreen`, `ConsentStore`, texto (Apéndice A) |
-| v0.1.5 | Núcleo: `Act`, `ActSequencer`, `SessionState`, `Features`, `/unallocated` | SRV | 1.1 | logs `UNALLOCATED act=…` |
-| v0.1.6 | `MapLayout` + lobby + colina + camino + base (exterior e interior simple) + boca de la mina (por código; mundo `flat` de aire con nuestro bioma; reglas de D-17) | MAP | 1.5, D-04 | secciones construibles con `/unallocated build` |
-| v0.1.7 | Plantilla del mundo y botón "UNALLOCATED" (`WorldInstaller`, `FakeConnectScreen`) | UI+REL | 1.6, D-03 | mundo abierto desde el título; ZIP del mundo de respaldo. **Interino aceptable** si el pipeline de plantilla (4.4) no está listo: el botón crea un mundo vacío y `MapBuilder` construye las secciones al entrar (mismo código); la plantilla lo reemplaza después sin cambiar nada más |
-| v0.1.8 | Cebo del catalejo (`SpyglassBait`: flanco de subida de `isScoping()` en el servidor, raycast propio, figura = mannequin vanilla con la skin de una "víctima") + screamer 1 + respaldo si nunca usa el catalejo | SRV+TXT | 1.5, 1.6 | figura que se acerca por uso; sonido |
-| v0.1.9 | Final v0 "el servidor se cerró" + vuelta al título | UI | 1.5 | pantalla de desconexión con texto del modelo |
-| v0.1.10 | Audio v0 (ambiente, golpe, hum) + créditos | TXT | D-10 | `sounds.json`, créditos |
-| v0.1.11 | Página de itch (texto), README de jugador, lista de la jam, errores conocidos | REL | 1.4–1.9 | Apéndice B completado |
-| v0.1.12 | Gametest de recorrido v1: escribe "De acuerdo" (`typeChars`), pulsa el botón del título por su clave de traducción (`clickScreenButton`), espera el mundo, mira a la colina (`lookAt`), mantiene el catalejo (`holdMouseFor`) varias veces, capturas en spawn y colina | REL | 1.4, 1.7, 1.8 | capturas + log en artefacto de CI; job de CI propio o límite mayor que los 12 min actuales del workflow (coordinar con TOOLCHAIN) |
+| v0.1.1 | Toolchain, CI, server and client smoke | REL | — | **done/in progress by another worker** (TOOLCHAIN.md) |
+| v0.1.2 | This plan | — | — | PLAN, DECISIONS, VERIFIED |
+| v0.1.3 | Fabric API jar-in-jar + update JAR check in CI | REL | 1.1, D-02 | `include` of modules; CI accepts only those nested JARs |
+| v0.1.4 | Contract and warnings | UI | 1.1, D-05 | `ConsentScreen`, `ConsentStore`, text (Appendix A) |
+| v0.1.5 | Core: `Act`, `ActSequencer`, `SessionState`, `Features`, `/unallocated` | SRV | 1.1 | logs `UNALLOCATED act=…` |
+| v0.1.6 | `MapLayout` + lobby + hill + path + base (simple exterior and interior) + mine mouth (by code; `flat` world of air with our biome; rules from D-17) | MAP | 1.5, D-04 | sections buildable with `/unallocated build` |
+| v0.1.7 | World template and "UNALLOCATED" button (`WorldInstaller`, `FakeConnectScreen`) | UI+REL | 1.6, D-03 | world open from the title; backup world ZIP. **Acceptable interim** if the template pipeline (4.4) is not ready: the button creates an empty world and `MapBuilder` builds the sections on entry (same code); the template replaces it later without changing anything else |
+| v0.1.8 | Spyglass bait (`SpyglassBait`: rising edge of `isScoping()` on the server, own raycast, figure = vanilla mannequin with the skin of a "victim") + screamer 1 + fallback if the spyglass is never used | SRV+TXT | 1.5, 1.6 | figure that approaches through use; sound |
+| v0.1.9 | v0 ending "el servidor se cerró" [the server shut down] + return to the title | UI | 1.5 | disconnect screen with the model's text |
+| v0.1.10 | Audio v0 (ambience, thud, hum) + credits | TXT | D-10 | `sounds.json`, credits |
+| v0.1.11 | Itch page (text), player README, jam list, known bugs | REL | 1.4–1.9 | Appendix B completed |
+| v0.1.12 | Walkthrough gametest v1: types "De acuerdo" (`typeChars`), presses the title button by its translation key (`clickScreenButton`), waits for the world, looks at the hill (`lookAt`), holds the spyglass (`holdMouseFor`) several times, screenshots at spawn and on the hill | REL | 1.4, 1.7, 1.8 | screenshots + log in a CI artifact; own CI job or a higher limit than the current 12 min of the workflow (coordinate with TOOLCHAIN) |
 
-**Criterios de aceptación**
-- [A] CI verde: build, chequeo de JAR (sólo los JAR anidados permitidos), smoke de servidor y de cliente.
-- [A] Gametest de recorrido: log contiene `UNALLOCATED act=LOBBY enter`, `bait step=` (≥ 3 pasos forzados), `ending=SERVER_CLOSED`; capturas `lobby.png`, `bait.png` existen y muestran el lobby y la figura (revisión visual del coordinador).
-- [A] El JAR contiene `en_us.json` con texto en español, `sounds.json`, la plantilla, y no contiene clases de prueba.
-- [A] La página (Apéndice B) cubre los 7 puntos de la jam: "Archivo del mod y lista de dependencias. Loader y versión exacta necesarios para ejecutarlo. Instrucciones de instalación y cómo comenzar a jugar. Mapa y configuración, si son necesarios. Descripción breve de la experiencia. Integrantes del equipo y créditos de recursos externos. Errores conocidos y advertencias de contenido."
-- [H] Una partida completa en GPU real (dueño): instala desde los archivos de la página en un perfil limpio, llega al final, sin crash, opciones intactas.
-- **Acción:** subir v0.1 a itch y enviarla a la jam en cuanto cumpla (D-12); luego sólo se reemplaza el archivo.
+**Acceptance criteria**
+- [A] CI green: build, JAR check (only the permitted nested JARs), server and client smoke.
+- [A] Walkthrough gametest: the log contains `UNALLOCATED act=LOBBY enter`, `bait step=` (≥ 3 forced steps), `ending=SERVER_CLOSED`; screenshots `lobby.png`, `bait.png` exist and show the lobby and the figure (visual review by the coordinator).
+- [A] The JAR contains `en_us.json` with Spanish text, `sounds.json`, the template, and no test classes.
+- [A] The page (Appendix B) covers the 7 points of the jam: "Archivo del mod y lista de dependencias. Loader y versión exacta necesarios para ejecutarlo. Instrucciones de instalación y cómo comenzar a jugar. Mapa y configuración, si son necesarios. Descripción breve de la experiencia. Integrantes del equipo y créditos de recursos externos. Errores conocidos y advertencias de contenido." [Mod file and dependency list. Exact Loader and version needed to run it. Installation instructions and how to start playing. Map and configuration, if needed. Brief description of the experience. Team members and credits for external resources. Known bugs and content warnings.]
+- [H] A complete playthrough on real GPU (owner): installs from the files on the page in a clean profile, reaches the end, no crash, options intact.
+- **Action:** upload v0.1 to itch and submit it to the jam as soon as it meets the criteria (D-12); afterwards only the file is replaced.
 
-### v0.2.0 — El director y la interfaz como arma — **P0**
+### v0.2.0 — The director and the interface as a weapon — **P0**
 
-**Lo que nota un juez:** el juego parece observarlo: nombres en Tab, logs del "servidor" en el chat, un logro que no ganó con su hábito en el título, F3 extraño, un consejo de carga que nadie esperaba, un instante en que el mundo "se queda sin aliento"; los sustos llegan cuando baja la guardia; el acto 1 dura 2–3 min y se siente dirigido.
+**What a judge notices:** the game seems to observe them: names in Tab, "server" logs in the chat, an achievement they did not earn with their habit in the title, strange F3, a loading tip nobody expected, a moment when the world "se queda sin aliento" [stays breathless]; the scares arrive when they lower their guard; act 1 lasts 2–3 min and feels directed.
 
-**Interfaces que introduce:** `TelemetryFrame`, `FearModel` (f, confianza, perfil), `Director`/`PacingState`, `ScarePrimitive`/`ScareContext`/`ScareRegistry`, paquetes `unallocated:effect`, `unallocated:knowledge`, `unallocated:act`, `unallocated:client_signals`, `ClientEffects.dispatch`, `PerceptionOverrides`, `LoreRegistry`; eventos `ScareFired`, `FearSampled`, `LoreRead`.
-**Pruebas:** JUnit (modelo y director), gametests de primitivas con capturas (E0); E1 [H] centrado en el ritmo del acto 1.
+**Interfaces it introduces:** `TelemetryFrame`, `FearModel` (f, confidence, profile), `Director`/`PacingState`, `ScarePrimitive`/`ScareContext`/`ScareRegistry`, packets `unallocated:effect`, `unallocated:knowledge`, `unallocated:act`, `unallocated:client_signals`, `ClientEffects.dispatch`, `PerceptionOverrides`, `LoreRegistry`; events `ScareFired`, `FearSampled`, `LoreRead`.
+**Tests:** JUnit (model and director), primitive gametests with screenshots (E0); E1 [H] focused on the pacing of act 1.
 
-**Valores iniciales del director** (ilustrativos, se ajustan en v0.6.1): presupuesto de intensidad 10 puntos, recarga 1 punto/10 s; intensidades 1 (sonido) a 5 (atisbo del Reclaimer), screamer 8; separación mínima entre sustos 20 s en PRESIÓN y 60 s tras un PICO; ALIVIO FALSO 30–45 s; si f(t) > 0,8 durante 20 s → ALIVIO; si f(t) < 0,2 durante 60 s → PRESIÓN con primitiva nueva.
+**Initial director values** (illustrative, adjusted in v0.6.1): intensity budget 10 points, recharge 1 point/10 s; intensities 1 (sound) to 5 (glimpse of the Reclaimer), screamer 8; minimum separation between scares 20 s in PRESIÓN [PRESSURE] and 60 s after a PICO [PEAK]; ALIVIO FALSO [FALSE RELIEF] 30–45 s; if f(t) > 0.8 for 20 s → ALIVIO; if f(t) < 0.2 for 60 s → PRESIÓN with a new primitive.
 
-| WP | Título | Carril | Depende de | Entregable |
+| WP | Title | Lane | Depends on | Deliverable |
 |---|---|---|---|---|
-| v0.2.1 | Telemetría y `FearModel` (línea base, f(t), perfil) | SRV | v0.1.5 | `TelemetryFrame` 1 Hz, logs `fear f=` |
-| v0.2.2 | `Director` + `ScareRegistry` + 8 primitivas del acto 1 | SRV | 2.1 | ritmo y selección con restricciones |
-| v0.2.3 | Paquetes `effect`/`knowledge`/`act`/`client_signals` + `ClientEffects` | UI | v0.1.5 | despacho de efectos en cliente |
-| v0.2.4 | `UiEffects`: Tab propia, chat log, chat "tuyo", intercepción de lo que escribe, F3 (Mixin), toasts/avances ocultos, consejos de carga, splash, mensajes de muerte | UI+TXT | 2.3 | cada efecto disparable con `/unallocated scare` |
-| v0.2.5 | `PerceptionOverrides` (FOV, sensibilidad, oscuridad) + Mixins | UI | 2.3, D-21 | efectos en memoria, sin escribir `options.txt` |
-| v0.2.6 | Latencia como presencia (`world.freeze` + atenuación de audio) | SRV+UI | 2.2 | congelación ≤ 1 s, rara |
-| v0.2.7 | Lore v1: escalera de deriva, 4 leaks, banderas de conocimiento, temperatura | TXT+SRV | 2.2 | `LoreRegistry`, textos |
-| v0.2.8 | Tests unitarios (FearModel, Director, `PerceptionOverrides`) + gametest de primitivas | REL | 2.1–2.5 | JUnit + capturas por primitiva |
+| v0.2.1 | Telemetry and `FearModel` (baseline, f(t), profile) | SRV | v0.1.5 | `TelemetryFrame` at 1 Hz, logs `fear f=` |
+| v0.2.2 | `Director` + `ScareRegistry` + 8 primitives of act 1 | SRV | 2.1 | pacing and selection with constraints |
+| v0.2.3 | Packets `effect`/`knowledge`/`act`/`client_signals` + `ClientEffects` | UI | v0.1.5 | effect dispatch on the client |
+| v0.2.4 | `UiEffects`: own Tab, chat log, "yours" chat, interception of what is typed, F3 (Mixin), toasts/hidden advancements, loading tips, splash, death messages | UI+TXT | 2.3 | each effect triggerable with `/unallocated scare` |
+| v0.2.5 | `PerceptionOverrides` (FOV, sensitivity, darkness) + Mixins | UI | 2.3, D-21 | in-memory effects, without writing `options.txt` |
+| v0.2.6 | Latency as presence (`world.freeze` + audio attenuation) | SRV+UI | 2.2 | freeze ≤ 1 s, rare |
+| v0.2.7 | Lore v1: drift ladder, 4 leaks, knowledge flags, temperature | TXT+SRV | 2.2 | `LoreRegistry`, texts |
+| v0.2.8 | Unit tests (FearModel, Director, `PerceptionOverrides`) + primitive gametest | REL | 2.1–2.5 | JUnit + screenshots per primitive |
 
-**Criterios de aceptación**
-- [A] JUnit: f(t) de una traza sintética "asustada" > traza "calmada"; el director nunca repite primitiva, respeta enfriamientos y ≤ 2 screamers en 1.000 sesiones simuladas.
-- [A] Gametest: cada primitiva de UI se dispara y deja captura (F3 con la línea `reclaimer:`, toast, consejo de carga, Tab propia); `options.txt` byte a byte idéntico antes y después de una sesión con todos los efectos de percepción; cada Mixin tiene una aserción que falla si no se aplicó.
-- [A] Log de una sesión simulada muestra ciclo CALMA→PRESIÓN→PICO→ALIVIO al menos una vez en el acto 1.
-- [H] Partida: el primer susto llega entre 1:30 y 3:00; ningún efecto de UI se siente como bug real del juego que haga salir al juez; opciones restauradas.
+**Acceptance criteria**
+- [A] JUnit: f(t) of a synthetic "frightened" trace > "calm" trace; the director never repeats a primitive, respects cooldowns and ≤ 2 screamers in 1,000 simulated sessions.
+- [A] Gametest: each UI primitive fires and leaves a screenshot (F3 with the `reclaimer:` line, toast, loading tip, own Tab); `options.txt` byte-for-byte identical before and after a session with all the perception effects; each Mixin has an assertion that fails if it was not applied.
+- [A] The log of a simulated session shows CALMA→PRESIÓN→PICO→ALIVIO at least once in act 1.
+- [H] Playthrough: the first scare arrives between 1:30 and 3:00; no UI effect feels like a real game bug that makes the judge quit; options restored.
 
-### v0.3.0 — La dimensión podrida, el Reclaimer y los finales — **P0**
+### v0.3.0 — The rotten dimension, the Reclaimer and the endings — **P0**
 
-**Lo que nota un juez:** cae a una copia podrida del mundo; el suelo se le hunde; oye y luego ve hilos que vibran cuando corre; ve al Reclaimer a lo lejos y luego en físico; corta hilos con tijeras y el modelo muere agradeciendo, o lo atrapa y le escribe su mensaje de muerte; un informe con sus datos reales; vuelve al título con todo restaurado. La experiencia completa dura 10–13 min.
+**What a judge notices:** falls into a rotten copy of the world; the floor sinks under them; hears and then sees threads that vibrate when they run; sees the Reclaimer in the distance and then in the flesh; cuts threads with shears and the model dies thanking them, or catches them and writes its death message; a report with their real data; returns to the title with everything restored. The full experience lasts 10–13 min.
 
-**Interfaces que introduce:** `PocketDimension` (clave `unallocated:pocket`), `TeleportService.toPocket/toOverworld(player, anchorId)`, `CorruptionPass` (presupuesto de bloques por tick), `RottenBlock` (propiedad `layers` 0–7), `ThreadNetwork` (hilos con id, vibración), `Reclaimer` (estado, sentidos), `EndingController` (`TERMINATED`, `CONSUMED`), `SessionReport`; eventos `ThreadCut`, `EndingReached`; tipos de daño `unallocated:reclaimed`, `unallocated:unraveled`.
-**Pruebas:** gametests de servidor (bloque podrido, dimensión, presupuesto de corrupción) y de cliente (recorrido v3 con capturas); E1 [H] completo con OpenGL y con Vulkan.
+**Interfaces it introduces:** `PocketDimension` (key `unallocated:pocket`), `TeleportService.toPocket/toOverworld(player, anchorId)`, `CorruptionPass` (block budget per tick), `RottenBlock` (property `layers` 0–7), `ThreadNetwork` (threads with id, vibration), `Reclaimer` (state, senses), `EndingController` (`TERMINATED`, `CONSUMED`), `SessionReport`; events `ThreadCut`, `EndingReached`; damage types `unallocated:reclaimed`, `unallocated:unraveled`.
+**Tests:** server gametests (rotten block, dimension, corruption budget) and client gametests (walkthrough v3 with screenshots); full E1 [H] with OpenGL and with Vulkan.
 
-| WP | Título | Carril | Depende de | Entregable |
+| WP | Title | Lane | Depends on | Deliverable |
 |---|---|---|---|---|
-| v0.3.1 | Dimensión `unallocated:pocket` (datapack en el JAR: `dimension/pocket.json` con generador `flat` de aire y bioma propio, `dimension_type/pocket.json`) + `TeleportService` + **supresión de la advertencia "Experimental Settings"** para nuestro mundo | SRV+UI | v0.1.5 | ida/vuelta con la pantalla de carga usada como glitch; la dimensión no entra al JAR de `main` sin la supresión probada |
-| v0.3.2 | Copia autoría del lobby/base/mina en el pocket, etapas de pudrición | MAP | v0.1.6, 3.1 | secciones `pocket.*` |
-| v0.3.3 | Mina corta con suelo que se pudre (entrada al pocket sin la escalera) | MAP+SRV | 3.1, 3.4 | caída al pocket |
-| v0.3.4 | `RottenBlock` (capas, hundimiento, lentitud, sonido) | SRV | v0.1.1 | bloque registrado + textura |
-| v0.3.5 | `CorruptionPass` (texturas repetidas, duplicados, huecos; ediciones acotadas) | SRV | 3.2 | pasadas por etapa |
-| v0.3.6 | Hilos (`ThreadNetwork`): vibración por sprint/salto, "quien más sabe, más ve" | SRV+UI | v0.2.3, 3.2 | hilos visibles por bandera |
-| v0.3.7 | Reclaimer: cuerpo de displays, estados, sentidos, tipo de daño | SRV | 3.6 | atisbo, acecho, persecución |
-| v0.3.8 | Núcleo y finales A/B (`kill -9` prellenado), epílogo e informe | SRV+UI+TXT | 3.7, v0.2.1, D-07 | dos finales + `SessionReport` |
-| v0.3.9 | Biomas del pocket por etapa de pudrición (atributos de entorno: niebla, cielo, luz, `block_light_tint`, sonido, sin música ni mobs) | MAP | 3.1 | atmósfera sin shaders |
-| v0.3.10 | Gametest de recorrido v3 (pocket, núcleo, ambos finales forzados) | REL | 3.1–3.8 | capturas y logs |
+| v0.3.1 | Dimension `unallocated:pocket` (datapack in the JAR: `dimension/pocket.json` with `flat` generator of air and own biome, `dimension_type/pocket.json`) + `TeleportService` + **suppression of the "Experimental Settings" warning** for our world | SRV+UI | v0.1.5 | round trip with the loading screen used as a glitch; the dimension does not enter the JAR of `main` without the proven suppression |
+| v0.3.2 | Authored copy of the lobby/base/mine in the pocket, rot stages | MAP | v0.1.6, 3.1 | sections `pocket.*` |
+| v0.3.3 | Short mine with a floor that rots (entrance to the pocket without the ladder) | MAP+SRV | 3.1, 3.4 | fall into the pocket |
+| v0.3.4 | `RottenBlock` (layers, sinking, slowness, sound) | SRV | v0.1.1 | registered block + texture |
+| v0.3.5 | `CorruptionPass` (repeated textures, duplicates, holes; bounded edits) | SRV | 3.2 | passes per stage |
+| v0.3.6 | Threads (`ThreadNetwork`): vibration by sprint/jump, "quien más sabe, más ve" | SRV+UI | v0.2.3, 3.2 | threads visible by flag |
+| v0.3.7 | Reclaimer: display body, states, senses, damage type | SRV | 3.6 | glimpse, stalk, pursuit |
+| v0.3.8 | Core and endings A/B (`kill -9` prefilled), epilogue and report | SRV+UI+TXT | 3.7, v0.2.1, D-07 | two endings + `SessionReport` |
+| v0.3.9 | Pocket biomes per rot stage (environment attributes: fog, sky, light, `block_light_tint`, sound, no music or mobs) | MAP | 3.1 | atmosphere without shaders |
+| v0.3.10 | Walkthrough gametest v3 (pocket, core, both endings forced) | REL | 3.1–3.8 | screenshots and logs |
 
-**Criterios de aceptación**
-- [A] Gametest: abrir la plantilla desde el botón del título **no** muestra la advertencia de "Experimental Settings" (captura + aserción de pantalla); `act=POCKET enter`, `rot sink`, `thread vibrate`, `reclaimer state=CHASE`, `ending=TERMINATED` y `ending=CONSUMED` (forzados) en el log; capturas del pocket, del núcleo y del Reclaimer.
-- [A] Gametest de servidor: un jugador simulado sobre `RottenBlock` baja de capa en ≤ N ticks; la dimensión existe tras recargar el mundo; `CorruptionPass` nunca edita más de K bloques por tick.
-- [H] Partida completa de 10–15 min en GPU real; el Reclaimer en físico se siente como el apogeo; FPS jugables en el pocket; ambos finales vistos al menos una vez.
+**Acceptance criteria**
+- [A] Gametest: opening the template from the title button does **not** show the "Experimental Settings" warning (screenshot + screen assertion); `act=POCKET enter`, `rot sink`, `thread vibrate`, `reclaimer state=CHASE`, `ending=TERMINATED` and `ending=CONSUMED` (forced) in the log; screenshots of the pocket, the core and the Reclaimer.
+- [A] Server gametest: a simulated player on a `RottenBlock` drops a layer in ≤ N ticks; the dimension exists after reloading the world; `CorruptionPass` never edits more than K blocks per tick.
+- [H] Complete 10–15 min playthrough on real GPU; the Reclaimer in the flesh feels like the peak; playable FPS in the pocket; both endings seen at least once.
 
-### v0.4.0 — El primer robo y el doble — **P1**
+### v0.4.0 — The first theft and the double — **P1**
 
-**Lo que nota un juez:** se lo llevan a una copia de la base un minuto; al volver, una copia de sí mismo con su skin está donde él estaba, hace lo que él hacía y lo mira; falta tiempo y el chat tiene frases suyas que no escribió.
+**What a judge notices:** they are taken to a copy of the base for a minute; on return, a copy of themselves with their skin is where they were, does what they were doing and looks at them; time has been lost and the chat has phrases of theirs that they did not write.
 
-**Interfaces que introduce:** `TrajectoryRecorder` (anillo 120 s × 10 Hz de `TrajectorySample{pos, yaw, pitch, flags, heldItem}`), `ArtefactReplay(samples, generation, seed)`, `Doppelganger`; eventos `PlayerTaken`, `PlayerReturned`; `WritingStyle` (capturado del contrato: mayúsculas, tildes, puntuación).
-**Pruebas:** JUnit (repetición y degradación deterministas); gametest con captura del doble; E1 [H].
+**Interfaces it introduces:** `TrajectoryRecorder` (120 s × 10 Hz ring of `TrajectorySample{pos, yaw, pitch, flags, heldItem}`), `ArtefactReplay(samples, generation, seed)`, `Doppelganger`; events `PlayerTaken`, `PlayerReturned`; `WritingStyle` (captured from the contract: capitalization, accents, punctuation).
+**Tests:** JUnit (deterministic replay and degradation); gametest with a screenshot of the double; E1 [H].
 
-| WP | Título | Carril | Depende de | Entregable |
+| WP | Title | Lane | Depends on | Deliverable |
 |---|---|---|---|---|
-| v0.4.1 | `TrajectoryRecorder` + `ArtefactReplay` (g1…gN, sobreajuste) | SRV | v0.2.1 | repetición determinista |
-| v0.4.2 | Cuerpo del doble (mannequin vanilla o entidad propia con skin del jugador) | SRV+UI | 4.1 | doble con skin |
-| v0.4.3 | Acto THEFT: disparo por distracción, copia de la base, 2–3 sondas, retorno | SRV+MAP | v0.3.1, v0.2.2 | acto completo |
-| v0.4.4 | Tiempo perdido + chat "tuyo" con tu estilo de escritura (del contrato) | UI+TXT | v0.2.4, v0.1.4 | líneas situadas |
-| v0.4.5 | El doble guía a la mina (cebo) | SRV | 4.2, v0.3.3 | transición al acto siguiente |
+| v0.4.1 | `TrajectoryRecorder` + `ArtefactReplay` (g1…gN, overfitting) | SRV | v0.2.1 | deterministic replay |
+| v0.4.2 | Body of the double (vanilla mannequin or own entity with the player's skin) | SRV+UI | 4.1 | double with skin |
+| v0.4.3 | THEFT act: trigger by distraction, copy of the base, 2–3 probes, return | SRV+MAP | v0.3.1, v0.2.2 | complete act |
+| v0.4.4 | Lost time + "yours" chat with your writing style (from the contract) | UI+TXT | v0.2.4, v0.1.4 | situated lines |
+| v0.4.5 | The double guides to the mine (bait) | SRV | 4.2, v0.3.3 | transition to the next act |
 
-**Criterios:** [A] repetición g1 con error de posición < 0,1 bloques frente a la traza; gN determinista con la misma semilla; captura del doble con la skin del jugador de prueba; log `act=THEFT complete`. [H] el robo no se confunde con un crash; el doble asusta y no parece un fantasma.
+**Criteria:** [A] replay g1 with position error < 0.1 blocks against the trace; gN deterministic with the same seed; screenshot of the double with the test player's skin; log `act=THEFT complete`. [H] the theft is not mistaken for a crash; the double scares and does not look like a ghost.
 
-### v0.5.0 — La escalera infinita — **P2**
+### v0.5.0 — The infinite ladder — **P2**
 
-**Lo que nota un juez:** la escalera de la mina no termina; su antorcha reaparece delante; cuando entiende el truco, sale por un exploit o cae al pocket.
+**What a judge notices:** the mine's ladder does not end; their torch reappears in front; when they understand the trick, they leave through an exploit or fall into the pocket.
 
-**Interfaces que introduce:** `LoopController` (tramos `loop.segmentA/B` de `MapLayout`, desplazamiento, contador de vueltas, presupuesto, variantes por vuelta, exploits), evento `LoopLap(n)`.
-**Pruebas:** JUnit (matemática del desplazamiento), gametest con `assertScreenshotEquals` antes/después del salto (E0); E1 [H] con OpenGL y Vulkan.
+**Interfaces it introduces:** `LoopController` (`loop.segmentA/B` segments of `MapLayout`, offset, lap counter, budget, per-lap variants, exploits), event `LoopLap(n)`.
+**Tests:** JUnit (offset math), gametest with `assertScreenshotEquals` before/after the jump (E0); E1 [H] with OpenGL and Vulkan.
 
-| WP | Título | Carril | Depende de | Entregable |
+| WP | Title | Lane | Depends on | Deliverable |
 |---|---|---|---|---|
-| v0.5.0 | **Spike** (ola 1, barato, decide si la escalera vive): dos cajas idénticas en un mundo plano, teletransporte relativo al cruzar un plano, capturas inmediatamente antes y después; probar también con OpenGL en GPU real [H] | SRV+REL | v0.1.1 | veredicto "seamless sí/no" con capturas |
-| v0.5.1 | Tramos idénticos con giros (`loop.segmentA/B`) | MAP | v0.1.6, 5.0 | geometría |
-| v0.5.2 | `LoopController`: teletransporte relativo, contador, presupuesto | SRV | 5.1 | bucle |
-| v0.5.3 | Variación por vuelta y exploits de salida | SRV+TXT | 5.2 | 2 exploits + caída |
-| v0.5.4 | Gametest: 6 vueltas simuladas, captura antes/después del salto idénticas | REL | 5.2 | diff de capturas |
+| v0.5.0 | **Spike** (wave 1, cheap, decides whether the ladder lives): two identical boxes in a flat world, relative teleport when crossing a plane, screenshots immediately before and after; also test with OpenGL on real GPU [H] | SRV+REL | v0.1.1 | verdict "seamless yes/no" with screenshots |
+| v0.5.1 | Identical segments with turns (`loop.segmentA/B`) | MAP | v0.1.6, 5.0 | geometry |
+| v0.5.2 | `LoopController`: relative teleport, counter, budget | SRV | 5.1 | loop |
+| v0.5.3 | Per-lap variation and exit exploits | SRV+TXT | 5.2 | 2 exploits + fall |
+| v0.5.4 | Gametest: 6 simulated laps, screenshot before/after the jump identical | REL | 5.2 | screenshot diff |
 
-**Criterios:** [A] capturas inmediatamente antes y después del teletransporte con diferencia de píxeles bajo un umbral (no hay pop); la rotación del jugador idéntica; log `loop lap=` y salida forzada al agotar el presupuesto. [H] el juez no nota el salto; no se siente "otra vez lo mismo".
+**Criteria:** [A] screenshots immediately before and after the teleport with a pixel difference under a threshold (no pop); the player's rotation identical; log `loop lap=` and forced exit when the budget runs out. [H] the judge does not notice the jump; it does not feel like "otra vez lo mismo" [the same thing again].
 
-### v0.6.0 — Candidato final y entrega — **P0 (puerta final, siempre)**
+### v0.6.0 — Final candidate and delivery — **P0 (final gate, always)**
 
-**Lo que nota un juez:** nada se rompe; tiempos equilibrados; la página tiene capturas y un video corto.
+**What a judge notices:** nothing breaks; balanced times; the page has screenshots and a short video.
 
-| WP | Título | Carril | Depende de | Entregable |
+| WP | Title | Lane | Depends on | Deliverable |
 |---|---|---|---|---|
-| v0.6.1 | Balance de tiempos y presupuestos tras partidas [H] | SRV | hitos integrados | `features.json` y constantes finales |
-| v0.6.2 | E5: instalación en frío en 2–3 máquinas ajenas | REL | build candidata | hoja de resultados |
-| v0.6.3 | Capturas y video corto (se graban en GPU real) | REL | 6.1 | medios para itch |
-| v0.6.4 | Congelar, etiquetar, subir, verificar la descarga desde itch, enviar | REL | 6.2 | entrega final |
+| v0.6.1 | Balance of times and budgets after [H] playthroughs | SRV | integrated milestones | `features.json` and final constants |
+| v0.6.2 | E5: cold installation on 2–3 outside machines | REL | candidate build | results sheet |
+| v0.6.3 | Screenshots and short video (recorded on real GPU) | REL | 6.1 | media for itch |
+| v0.6.4 | Freeze, tag, upload, verify the download from itch, submit | REL | 6.2 | final delivery |
 
-**Criterios:** [A] la build subida es byte a byte la del artefacto de CI (SHA-256 en la página); [A] la página tiene los 7 puntos; [H] E5 superado; envío confirmado en la página de la jam antes del margen del dueño.
+**Criteria:** [A] the uploaded build is byte for byte the CI artifact (SHA-256 on the page); [A] the page has the 7 points; [H] E5 passed; submission confirmed on the jam page before the owner's margin.
 
-### Grafo resumido de dependencias
+### Summary dependency graph
 
 ```
 v0.1.1 ─┬─ 1.3 (JiJ)
-           ├─ 1.4 (contrato)
-           └─ 1.5 (núcleo) ─┬─ 1.6 (mapa) ─ 1.7 (plantilla) ─ 1.12 (gametest)
-                            ├─ 1.8 (catalejo)
-                            ├─ 1.9 (final v0) ─ 1.11 (página)
-                            ├─ v0.2.* (director, UI) ─┬─ v0.3.* (pocket, Reclaimer, finales)
-                            │                            └─ v0.4.* (robo, doble)
-                            └─ v0.5.1–5.4 (escalera; necesita 1.6, la caída de 3.3 y el veredicto de 5.0)
-v0.1.1 ─ v0.5.0 (spike del teletransporte, ola 1)
-v0.6 (puerta final) depende de lo que esté integrado.
+           ├─ 1.4 (contract)
+           └─ 1.5 (core) ─┬─ 1.6 (map) ─ 1.7 (template) ─ 1.12 (gametest)
+                            ├─ 1.8 (spyglass)
+                            ├─ 1.9 (v0 ending) ─ 1.11 (page)
+                            ├─ v0.2.* (director, UI) ─┬─ v0.3.* (pocket, Reclaimer, endings)
+                            │                            └─ v0.4.* (theft, double)
+                            └─ v0.5.1–5.4 (ladder; needs 1.6, the fall from 3.3 and the verdict of 5.0)
+v0.1.1 ─ v0.5.0 (teleport spike, wave 1)
+v0.6 (final gate) depends on what is integrated.
 ```
 
 ---
+## 6. Stage tests (his E0–E6, adapted to one player and judges at home)
 
-## 6. Pruebas por etapas (su E0–E6, adaptado a un jugador y jueces en casa)
-
-| Etapa | Quién | Qué | Mide | Para avanzar |
+| Stage | Who | What | Measures | To advance |
 |---|---|---|---|---|
-| E0 Humo | CI, cada push | build, chequeo del JAR, servidor dedicado, cliente al título (ya existe), + gametest de recorrido con capturas | crashes, marcas en el log, capturas | todo verde [A] |
-| E1 Un jugador completo | dueño (GPU real), luego 1 persona nueva sin explicaciones | sesión de punta a punta | tiempo al primer susto, duración total, dónde se pierde, f(t) vs. lo que dice | 3 sesiones sin crash [H] |
-| E2–E4 (dos jugadores, grupo, carga) | — | **después del PoC** (multijugador secundario) | — | — |
-| E5 Ensayo de jurado en casa | 2–3 personas ajenas, en sus máquinas (idealmente Windows con gráfica integrada, macOS, Linux) | instalación en frío **sólo con la página de itch**, partida cronometrada | instalaciones sin ayuda, tiempo hasta jugar, cuestionario de 5 preguntas (su 7.2) | todos instalan sin ayuda [H] |
-| E6 Entrega | coordinador + dueño | descargar de itch lo subido, comparar SHA-256, instalar en perfil limpio, abrir | coincidencia de archivos | todo en verde [A]+[H] |
+| E0 Smoke | CI, every push | build, JAR check, dedicated server, client to the title (already exists), + walkthrough gametest with screenshots | crashes, log markers, screenshots | everything green [A] |
+| E1 Complete single player | owner (real GPU), then 1 new person without explanations | session end to end | time to first scare, total duration, where it is lost, f(t) vs. what they say | 3 sessions without crash [H] |
+| E2–E4 (two players, group, load) | — | **after the PoC** (secondary multiplayer) | — | — |
+| E5 Jury rehearsal at home | 2–3 outside people, on their machines (ideally Windows with integrated graphics, macOS, Linux) | cold installation **only with the itch page**, timed playthrough | unassisted installations, time to play, 5-question questionnaire (his 7.2) | everyone installs unassisted [H] |
+| E6 Delivery | coordinator + owner | download from itch what was uploaded, compare SHA-256, install in a clean profile, open | file match | everything green [A]+[H] |
 
-Cuestionario (su 7.2, adoptado): momento más aterrador; dónde se confundieron; si entendieron qué hacer; si el audio molestó; si volverían a jugar.
-
----
-
-## 7. Qué recortar primero (paso 5), en orden
-
-Nunca se recorta: contrato con advertencias, un arco completo con inicio claro y final, estabilidad, instrucciones, los 7 puntos de la página.
-
-1. **Ya fuera de la jam** (se listan para que nadie los empiece): servicio de inferencia, voz (Simple Voice Chat, TTS, clon), modelos entrenados, puppets, multijugador, servidor del aula.
-2. **Memoria entre sesiones** ("has vuelto", exploit "parcheado" en la segunda partida).
-3. **La escalera infinita** (v0.5) → la mina es un túnel corto con suelo podrido.
-4. **Efectos de opciones** (sensibilidad, FOV, brillo) → se queda F3, Tab, chat y toasts.
-5. **El doble** (v0.4.1–4.2) → del robo queda sólo "tiempo perdido + chat reescrito".
-6. **El robo completo** (v0.4) → acto apagado.
-7. **Pasadas de corrupción en tiempo real** → sólo la pudrición autoría.
-8. **Hilos por conocimiento** → hilos siempre visibles en el pocket.
-9. **Director adaptativo** → guion fijo con temporizadores (el director v0).
-10. **Final A o B** → queda uno solo (recomendado B, con el `kill -9`).
+Questionnaire (his 7.2, adopted): most frightening moment; where they got confused; whether they understood what to do; whether the audio bothered them; whether they would play again.
 
 ---
 
-## 8. Supuestos y cosas por confirmar
+## 7. What to cut first (step 5), in order
 
-- Que los efectos del JAR se comportan igual en Vulkan y OpenGL (sólo usamos render vanilla; ver `VERIFIED.md`).
-- Que la jam permite reemplazar el archivo antes del cierre (comportamiento habitual de itch; D-12).
-- Que hay al menos 2–3 personas ajenas para E5 (D-13).
+Never cut: contract with warnings, a complete arc with a clear start and an ending, stability, instructions, the 7 points of the page.
+
+1. **Already out of the jam** (listed so that nobody starts them): inference service, voice (Simple Voice Chat, TTS, clone), trained models, puppets, multiplayer, classroom server.
+2. **Memory between sessions** ("has vuelto" [you have returned], exploit "parcheado" [patched] on the second playthrough).
+3. **The infinite ladder** (v0.5) → the mine is a short tunnel with a rotten floor.
+4. **Options effects** (sensitivity, FOV, brightness) → F3, Tab, chat and toasts remain.
+5. **The double** (v0.4.1–4.2) → from the theft only "tiempo perdido + chat reescrito" [lost time + rewritten chat] remains.
+6. **The complete theft** (v0.4) → act switched off.
+7. **Real-time corruption passes** → only the authored rot remains.
+8. **Threads by knowledge** → threads always visible in the pocket.
+9. **Adaptive director** → fixed script with timers (the v0 director).
+10. **Ending A or B** → only one remains (B recommended, with the `kill -9`).
 
 ---
 
-## 9. Después del PoC (sus ideas, conservadas sin recortar)
+## 8. Assumptions and things to confirm
 
-Servidor y mundo abierto; puppets ("Los jugadores consumidos se hacen títere del Reclaimer") con hilos visibles, cortar hilos y el dilema de servir o cortar; voz del amigo por el hilo con fragmentos "A LA SITUACION correcta" y luego "la GENERACION de voz del amigo"; intercepción de chat y voz ("vamos a la izquierda" → "vamos al pozo"); el robo en dos jugadores con el doble hablando con tu voz; servicio de inferencia en la DGX/H100/H200 con degradación elegante; las seis capas de generación real de 5.5 (LLM con auto-compactación, voz clon de clon, eventos en DSL, imitación entrenada, modelo de bloques, el modelo dañado); bandit contextual con memoria del día; finales alternativos de 4.1 (restaurar el dataset, envenenarlo); tema 2 completo ("La realidad es tela... el loader es el propio tejido de la historia"); Weeping Angel con webcam; consentimiento de voz; hosting B en la universidad y el runbook del 6 de noviembre.
+- That the JAR's effects behave the same in Vulkan and OpenGL (we only use vanilla rendering; see `VERIFIED.md`).
+- That the jam allows replacing the file before the deadline (usual itch behavior; D-12).
+- That there are at least 2–3 outside people for E5 (D-13).
 
 ---
 
-## Apéndice A — Borrador del contrato (Acto 0)
+## 9. After the PoC (his ideas, kept without cuts)
+
+Server and open world; puppets ("Los jugadores consumidos se hacen títere del Reclaimer" [Consumed players become the Reclaimer's puppets]) with visible threads, cutting threads and the dilemma of serving or cutting; friend's voice through the thread with fragments "A LA SITUACION correcta" [to the CORRECT SITUATION] and then "la GENERACION de voz del amigo" [the GENERATION of the friend's voice]; chat and voice interception ("vamos a la izquierda" [let's go left] → "vamos al pozo" [let's go to the well]); the theft in two players with the double speaking in your voice; inference service on the DGX/H100/H200 with graceful degradation; the six real generation layers of 5.5 (LLM with auto-compaction, clone of a clone voice, events in DSL, trained imitation, block model, the damaged model); contextual bandit with the memory of the day; alternative endings of 4.1 (restore the dataset, poison it); full theme 2 ("La realidad es tela... el loader es el propio tejido de la historia" [Reality is fabric... the loader is the very fabric of the story]); Weeping Angel with webcam; voice consent; hosting B at the university and the runbook of November 6.
+
+---
+
+## Appendix A — Draft of the contract (Act 0)
+
+The following is in-game text, so it stays in Spanish; the English gloss follows in brackets.
 
 > **UNALLOCATED** — Antes de conectar
 >
@@ -529,32 +532,38 @@ Servidor y mundo abierto; puppets ("Los jugadores consumidos se hacen títere de
 >
 > *(Al final: "Gracias por tus datos.")*
 
-## Apéndice B — Página de itch.io (plantilla para v0.1.11)
+[English gloss: **UNALLOCATED** — Before connecting. This experience contains **sudden loud sounds**, **abrupt brightness changes** (without rapid flashes) and disturbing images. If you are sensitive to this content, do not continue. By continuing you agree that, during the session, this server **records how you play**: where you look, when you run, when you stop, how much you hesitate. [see data uses ▾] *Uses (real):* the data is used only to decide the pacing of the experience and to show you a summary at the end. It is stored in your own save, on your computer. It is not sent anywhere. No microphone or camera is used. Some settings (sensitivity, field of view, brightness) may change for a few seconds and are always restored. *Additional use:* ~~training~~ [recording not available] / Type **De acuerdo** [I agree] to continue. / *(At the end: "Gracias por tus datos." [Thank you for your data.])*]
 
-1. **Descripción breve** (3–4 líneas, sin spoilers). Borrador:
+## Appendix B — itch.io page (template for v0.1.11)
+
+1. **Short description** (3–4 lines, no spoilers). Draft (game-facing text, kept in Spanish, with English gloss):
    > Entras a un servidor de Minecraft abandonado. La lista dice que hay siete jugadores conectados. No hay nadie.
    > Algo vive en este servidor: un modelo que escapó de su entrenamiento buscando lo único que le prometieron y nunca le dieron — tu miedo.
    > UNALLOCATED es una experiencia de terror en primera persona para un jugador, de 10 a 15 minutos, en un mapa construido para contar una historia. Juega con audífonos.
-2. **Archivo del mod y lista de dependencias:** `unallocated-<versión>.jar` (incluye los módulos de Fabric API que usa; no hace falta instalar Fabric API aparte — si D-02 se confirma), `UNALLOCATED-world.zip` (respaldo opcional), SHA-256 de cada uno.
-3. **Loader y versión exacta:** Minecraft Java **26.3**; Fabric Loader **0.20.1** (o posterior para 26.3); Java 25 (lo trae el launcher). Fuente: TOOLCHAIN.md.
-4. **Instalación y cómo comenzar:** pasos por sistema (de TOOLCHAIN.md/README), luego "en el menú principal pulsa **UNALLOCATED**". Recomendado: audífonos, luz apagada, distancia de render 8–12.
-5. **Mapa y configuración:** el mapa viene dentro del mod; respaldo manual: descomprimir `UNALLOCATED-world.zip` en `saves/`.
-6. **Integrantes y créditos:** NULL_Threshold Interactive; Fabric (Apache-2.0); recursos externos con licencia; plantilla de Fabric (CC0).
-7. **Errores conocidos y advertencias de contenido:** lista de la build; si te atascas: `/unallocated siguiente`; si ves problemas gráficos, cambia *Opciones → Video → Graphics API* a "Prefer OpenGL" (o al revés); requisitos mínimos de Minecraft 26.x; advertencias del Apéndice A. Aclarar que los "errores" del chat, F3 y la lista de jugadores son parte de la experiencia, y que el juego nunca cambia tus opciones guardadas.
-8. Capturas y video corto (recomendado por la jam).
 
-## Apéndice C — Muestras de tono (borrador, para que el dueño corrija)
+   [English gloss: You enter an abandoned Minecraft server. The list says seven players are connected. There is no one. Something lives on this server: a model that escaped its training looking for the only thing it was promised and never received — your fear. UNALLOCATED is a first-person horror experience for one player, 10 to 15 minutes, on a map built to tell a story. Play with headphones.]
+2. **Mod file and dependency list:** `unallocated-<versión>.jar` (includes the Fabric API modules it uses; no need to install Fabric API separately — if D-02 is confirmed), `UNALLOCATED-world.zip` (optional backup), SHA-256 of each.
+3. **Exact Loader and version:** Minecraft Java **26.3**; Fabric Loader **0.20.1** (or later for 26.3); Java 25 (brought by the launcher). Source: TOOLCHAIN.md.
+4. **Installation and how to start:** steps per system (from TOOLCHAIN.md/README), then "on the main menu press **UNALLOCATED**". Recommended: headphones, lights off, render distance 8–12.
+5. **Map and configuration:** the map comes inside the mod; manual backup: unzip `UNALLOCATED-world.zip` into `saves/`.
+6. **Members and credits:** NULL_Threshold Interactive; Fabric (Apache-2.0); external resources with their license; Fabric template (CC0).
+7. **Known bugs and content warnings:** the build's list; if you get stuck: `/unallocated siguiente` [/unallocated next]; if you see graphics problems, change *Opciones → Video → Graphics API* [Options → Video → Graphics API] to "Prefer OpenGL" (or the reverse); Minecraft 26.x minimum requirements; warnings from Appendix A. Clarify that the "errors" in the chat, F3 and the player list are part of the experience, and that the game never changes your saved options.
+8. Screenshots and short video (recommended by the jam).
 
-- Log (inglés técnico): `[Server thread/WARN]: reward signal below threshold (0.03). increasing temperature to 1.4`
-- Chat "tuyo": `<nombre> ya vuelvo, no entres a la mina sin mí`
-- Logro no ganado: **"Miraste atrás 31 veces"** — *"Dato registrado."*
-- Mensaje de muerte: `<nombre> fue reasignado`
-- Final B (deriva inversa): `miedo` … `obtener miedo` … `obtener respuestas de miedo` … `estimar respuestas de miedo humano` … `gracias. ya puedo dejar de buscar.`
-- Cuarta pared (hora real): `Son las 23:14. ¿Siempre juegas solo a esta hora?`
-- Consejo de carga (Acto 1, todavía "normal"): `Consejo: los jugadores que dudan en las entradas viven más.` — (Acto 2, ya del modelo): `Consejo: no mires la puerta. Ya sé que la vas a mirar.`
+## Appendix C — Tone samples (draft, for the owner to correct)
+
+These are in-game text samples: they stay in their original Spanish, with English glosses in brackets.
+
+- Log (technical English): `[Server thread/WARN]: reward signal below threshold (0.03). increasing temperature to 1.4`
+- "Yours" chat: `<nombre> ya vuelvo, no entres a la mina sin mí` [<name> I'll be right back, don't enter the mine without me]
+- Unearned achievement: **"Miraste atrás 31 veces"** [You looked back 31 times] — *"Dato registrado."* [Data recorded.]
+- Death message: `<nombre> fue reasignado` [<name> was reassigned]
+- Ending B (reverse drift): `miedo` [fear] … `obtener miedo` [obtain fear] … `obtener respuestas de miedo` [obtain fear responses] … `estimar respuestas de miedo humano` [estimate human fear responses] … `gracias. ya puedo dejar de buscar.` [thank you. I can stop searching now.]
+- Fourth wall (real time): `Son las 23:14. ¿Siempre juegas solo a esta hora?` [It is 23:14. Do you always play alone at this hour?]
+- Loading tip (Act 1, still "normal"): `Consejo: los jugadores que dudan en las entradas viven más.` [Tip: players who hesitate at entrances live longer.] — (Act 2, already from the model): `Consejo: no mires la puerta. Ya sé que la vas a mirar.` [Tip: don't look at the door. I know you are going to look at it.]
 - Leak `probe_03.log`: `stimulus=door_open  response=yaw 212°/s  latency=0.4s  label=FEAR(0.71)  keep`
-- MOTD del lobby: `Servidor de investigación — sesión 0412 — 7/20 conectados`
+- Lobby MOTD: `Servidor de investigación — sesión 0412 — 7/20 conectados` [Research server — session 0412 — 7/20 connected]
 
-## Apéndice D — Disposición del mapa (borrador para `MapLayout`)
+## Appendix D — Map layout (draft for `MapLayout`)
 
-Isla pequeña (~200 × 200) en un mundo vacío: lobby en el origen; colina con el cebo a 40–56 bloques del lobby (visible con la distancia de entidades por defecto); base a ~60 bloques; boca de la mina detrás de la base. El pocket replica las mismas coordenadas relativas (lobby, base, mina) en la dimensión `unallocated:pocket`, más el núcleo bajo la copia del lobby.
+Small island (~200 × 200) in an empty world: lobby at the origin; hill with the bait 40–56 blocks from the lobby (visible with the default entity distance); base at ~60 blocks; mine mouth behind the base. The pocket replicates the same relative coordinates (lobby, base, mine) in the dimension `unallocated:pocket`, plus the core under the copy of the lobby.

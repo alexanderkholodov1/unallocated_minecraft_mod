@@ -155,8 +155,7 @@ def author():
     (directory / 'eula.txt').write_text('eula=true\n')
     (directory / 'server.properties').write_text(
         'server-ip=127.0.0.1\nserver-port=25565\nonline-mode=false\nlevel-name=UNALLOCATED\n'
-        'level-type=minecraft:flat\ngenerator-settings={"layers":[{"block":"minecraft:air","height":1}],'
-        '"biome":"unallocated:lobby","structure_overrides":[]}\ngenerate-structures=false\n'
+        'level-type=minecraft:normal\nlevel-seed=4114\ngenerate-structures=false\n'
         'gamemode=adventure\nforce-gamemode=true\ndifficulty=normal\nview-distance=2\nsimulation-distance=2\n'
         'max-players=1\npause-when-empty-seconds=-1\n')
     override = ROOT / 'template/override/world.zip'
@@ -168,7 +167,8 @@ def author():
     downloads.mkdir(parents=True, exist_ok=True); (directory / '.fabric').mkdir()
     for relative in ('.fabric/server', 'libraries', 'versions'):
         shared = downloads / relative; shared.mkdir(parents=True, exist_ok=True)
-        (directory / relative).symlink_to(shared, target_is_directory=True)
+        try: (directory / relative).symlink_to(shared, target_is_directory=True)
+        except OSError: shutil.copytree(shared, directory / relative)  # Windows without symlink rights
     launcher = downloads / 'fabric-server-launch.jar'
     if not launcher.is_file():
         url = f'https://meta.fabricmc.net/v2/versions/loader/{props["minecraft_version"]}/{props["loader_version"]}/1.1.2/server/jar'

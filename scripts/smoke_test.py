@@ -33,6 +33,14 @@ API_POLICY = json.loads((ROOT / 'fabric-api-modules.json').read_text())
 API_VERSION = API_POLICY['fabric_api_version']
 
 
+def _signal_group(process, sig):
+    """Signal the whole process group on POSIX; Windows has no groups, so end the process itself."""
+    if os.name == 'nt':
+        process.kill() if sig == getattr(signal, 'SIGKILL', 9) else process.terminate()
+    else:
+        os.killpg(process.pid, sig)
+
+
 def java_executable():
     """Resolve the CI-selected JDK without ever falling back to PATH's Java."""
     configured = os.environ.get('JAVA_HOME', '').strip()
@@ -46,7 +54,7 @@ def java_executable():
     version = re.search(r'^JAVA_VERSION="(\d+)(?:[.+_-][^"\r\n]*)?"$', release, re.M)
     if version is None or version[1] != '25':
         raise RuntimeError(f'JAVA_HOME must point to Java 25; found {version[1] if version else "no valid JAVA_VERSION"} in {home / "release"}')
-    executable = home / 'bin' / 'java'
+    executable = home / 'bin' / ('java.exe' if os.name == 'nt' else 'java')
     if not executable.is_file() or not os.access(executable, os.X_OK):
         raise RuntimeError(f'JAVA_HOME has no executable Java 25 launcher: {executable}')
     return str(executable)
@@ -107,11 +115,34 @@ def server_evidence(with_fabric_api=False):
     return required
 
 
+def _git(*args):
+    try:
+        result = subprocess.run(['git', *args], cwd=ROOT, capture_output=True, text=True, timeout=10)
+        return result.stdout.strip() if result.returncode == 0 else ''
+    except (OSError, subprocess.SubprocessError):
+        return ''
+
+
+def mod_version(fallback):
+    """Same rule as build.gradle: UNALLOCATED_VERSION, a vX.Y.Z branch, the newest unallocated-X.Y.Z release tag, else gradle.properties."""
+    if os.environ.get('UNALLOCATED_VERSION'):
+        return os.environ['UNALLOCATED_VERSION']
+    names = [os.environ.get('GITHUB_HEAD_REF'), os.environ.get('GITHUB_REF_NAME'), _git('rev-parse', '--abbrev-ref', 'HEAD')]
+    tags = ['v' + tag.removeprefix('unallocated-') for tag in _git('tag', '--list', 'unallocated-*', '--sort=-v:refname').split()]
+    for name in names + tags:
+        match = re.fullmatch(r'v(\d+\.\d+\.\d+)', name or '')
+        if match:
+            return match.group(1)
+    return fallback
+
+
 def properties():
-    return dict(
+    values = dict(
         line.split('=', 1) for line in (ROOT / 'gradle.properties').read_text().splitlines()
         if line and not line.startswith('#') and '=' in line
     )
+    values['version'] = mod_version(values.get('version', ''))
+    return values
 
 
 def read(path):
@@ -219,11 +250,11 @@ def monitor(command, cwd, console, required, timeout, stop_when_ready=False,
     finally:
         if process is not None:
             if process.poll() is None:
-                os.killpg(process.pid, signal.SIGTERM)
+                _signal_group(process, signal.SIGTERM)
                 try:
                     process.wait(timeout=5)
                 except subprocess.TimeoutExpired:
-                    os.killpg(process.pid, signal.SIGKILL)
+                    _signal_group(process, getattr(signal, 'SIGKILL', 9))
                     process.wait(timeout=5)
             if process.stdin is not None:
                 process.stdin.close()
@@ -305,10 +336,10 @@ def watch_gradle(command, console, silence=720):
                 time.sleep(.2)
     finally:
         if process is not None and process.poll() is None:
-            os.killpg(process.pid, signal.SIGTERM)
+            _signal_group(process, signal.SIGTERM)
             try: process.wait(timeout=5)
             except subprocess.TimeoutExpired:
-                os.killpg(process.pid, signal.SIGKILL); process.wait(timeout=5)
+                _signal_group(process, getattr(signal, 'SIGKILL', 9)); process.wait(timeout=5)
 
 
 def server(with_fabric_api=False):

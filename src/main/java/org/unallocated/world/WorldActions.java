@@ -9,6 +9,7 @@ import static org.unallocated.story.StoryData.*;
 
 /** Package 4 extensions register before StoryRuntime loads any authored files. */
 public final class WorldActions {
+    private static final String HEAP_RULES = "[ {\"from\":[\"minecraft:grass_block\"],\"to\":[\"unallocated:rot\",\"minecraft:coarse_dirt\",\"minecraft:rooted_dirt\"],\"ratio\":0.32}, {\"from\":[\"minecraft:dirt\",\"minecraft:dirt_path\"],\"to\":[\"minecraft:coarse_dirt\",\"minecraft:rooted_dirt\"],\"ratio\":0.35}, {\"from\":[\"minecraft:short_grass\",\"minecraft:tall_grass\",\"minecraft:fern\",\"minecraft:poppy\",\"minecraft:dandelion\"],\"to\":[\"minecraft:dead_bush\",\"minecraft:air\"],\"ratio\":0.6}, {\"from\":[\"minecraft:oak_leaves\",\"minecraft:spruce_leaves\",\"minecraft:birch_leaves\",\"minecraft:dark_oak_leaves\"],\"to\":[\"minecraft:air\",\"unallocated:web\"],\"ratio\":0.4}, {\"from\":[\"minecraft:oak_log\",\"minecraft:spruce_log\",\"minecraft:birch_log\",\"minecraft:dark_oak_log\"],\"to\":[\"minecraft:stripped_dark_oak_log\",\"minecraft:mangrove_roots\"],\"ratio\":0.3}, {\"from\":[\"minecraft:oak_planks\",\"minecraft:spruce_planks\",\"minecraft:birch_planks\"],\"to\":[\"minecraft:dark_oak_planks\",\"minecraft:stripped_dark_oak_wood\"],\"ratio\":0.25}, {\"from\":[\"minecraft:stone_bricks\",\"minecraft:polished_andesite\",\"minecraft:smooth_stone\"],\"to\":[\"minecraft:cracked_stone_bricks\",\"minecraft:mossy_stone_bricks\",\"minecraft:tuff\"],\"ratio\":0.4}, {\"from\":[\"minecraft:cobblestone\",\"minecraft:stone\"],\"to\":[\"minecraft:mossy_cobblestone\",\"minecraft:tuff\",\"minecraft:cobbled_deepslate\"],\"ratio\":0.35}, {\"from\":[\"minecraft:quartz_block\",\"minecraft:smooth_quartz\",\"minecraft:quartz_bricks\",\"minecraft:white_concrete\"],\"to\":[\"minecraft:calcite\",\"minecraft:light_gray_concrete\",\"minecraft:bone_block\"],\"ratio\":0.35}, {\"from\":[\"minecraft:glass\",\"minecraft:glass_pane\",\"minecraft:white_stained_glass\"],\"to\":[\"minecraft:air\"],\"ratio\":0.5}, {\"from\":[\"minecraft:torch\",\"minecraft:wall_torch\",\"minecraft:lantern\",\"minecraft:campfire\"],\"to\":[\"minecraft:air\"],\"ratio\":0.6}, {\"from\":[\"minecraft:white_wool\",\"minecraft:red_wool\",\"minecraft:blue_wool\",\"minecraft:lime_wool\",\"minecraft:yellow_wool\"],\"to\":[\"minecraft:gray_wool\",\"minecraft:black_wool\"],\"ratio\":0.45}]";
     private static boolean registered;
     private WorldActions() {}
     public static synchronized void registerActions() {
@@ -73,7 +74,12 @@ public final class WorldActions {
                     var runtime = StoryRuntime.get(c.getSource().getServer());
                     var rules = JsonParser.parseString("[{\"from\":[\"minecraft:stone\",\"minecraft:cobblestone\"],\"to\":[\"minecraft:cracked_stone_bricks\"],\"ratio\":0.25}]").getAsJsonArray();
                     return WorldCorruption.start(runtime, zone(runtime, StringArgumentType.getString(c, "zone")), rules, LongArgumentType.getLong(c, "seed"), 0);
-                })));
+                }).then(Commands.literal("heap").executes(c -> {
+                    // Authoring-time rot of the whole Heap: almost everything is slightly wrong, never block by block in view.
+                    var runtime = StoryRuntime.get(c.getSource().getServer());
+                    return WorldCorruption.start(runtime, zone(runtime, StringArgumentType.getString(c, "zone")), JsonParser.parseString(HEAP_RULES).getAsJsonArray(),
+                        LongArgumentType.getLong(c, "seed"), 0);
+                }))));
             dispatcher.register(Commands.literal("unallocated").then(Commands.literal("story")
                 .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS)).then(copy).then(corrupt)));
         });

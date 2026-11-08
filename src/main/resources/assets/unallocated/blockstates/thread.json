@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "unallocated:block/thread"
+    },
+    "axis=z": {
+      "model": "unallocated:block/thread",
+      "y": 90
+    }
+  }
+}
